@@ -190,6 +190,32 @@ Generalised from my own review of a homepage I contributed to. No store data, se
 
 **Demonstrations:** the [hero slideshow](./theme/sections/hero-slideshow.liquid) and [hero image snippet](./theme/snippets/hero-image.liquid) show the loading pattern recommended above, and example 44 checks for scripts that load more than once.
 
+## 15. A self-hosted brand font and a fixed heading scale, without an app
+**Problem class:** A brand's heading typeface was loaded through a font app, and the theme's own heading scale fought with it. The result was inconsistent heading sizes, some headings too small to read in the brand font, and an extra app dependency.
+
+Generalised from my own work on a live Shopify theme. The typeface, store, and file details are left out. The font licence covered web use and was confirmed before anything was uploaded.
+
+**Problems found:**
+- **App dependency.** The font app forced its font onto every H1 and H2 with `!important`, so theme and section styles couldn't override it, and removing the app would remove the brand font.
+- **Light weight only.** The brand serif exists in a Light weight only. At the theme's sizes it read too large, and its thin strokes looked weak on screen.
+- **A fluid scale with fractional sizes.** The theme scaled headings fluidly between screen widths and produced fractional line heights, so headings never matched the design at any fixed size.
+- **Small headings in the wrong font.** The theme renders many section titles and the product title as heading tags sized down by a smaller class, so the Light serif appeared at sizes where it is hard to read.
+- **A testing trap.** A computer with the font installed locally can show the right font even when the web font fails to load.
+
+**The route:**
+1. **Self-host.** Upload the WOFF2 to Shopify Files, then load it from a snippet with a preload link and an `@font-face` rule using `font-display: swap`. No external font host, and no app.
+2. **Remove the app** and its forced `!important` rules, then let normal CSS specificity decide.
+3. **Replace the fluid scale with fixed sizes** on a 4/8px grid, set once as CSS variables in a stylesheet loaded after the theme's own CSS. The theme's files stay unedited, so a theme update cannot undo the change.
+4. **Size the serif down.** H1 moved from 32px to 24px and H2 from 24px to 20px, because the Light serif read too large.
+5. **Pair the fonts.** H3 uses the secondary sans at the same 20px as H2, so the two levels differ by typeface and weight rather than size.
+6. **Thicken without faking bold.** A 0.6px text stroke in the text colour makes the Light serif read slightly heavier. It is one variable, ready to set to 0 if a real Regular or Bold file is added. A browser-generated bold was rejected because it distorts the letterforms.
+7. **Add a safety rule.** Any H2 that the theme sizes down falls back to the sans, while section titles are deliberately shown at the full brand H2 size.
+8. **Test on a computer without the font installed**, so the web font is what is really being checked.
+
+**Result:** consistent headings across templates, one font source fewer, and a single file to maintain. No before-and-after metrics were recorded, so none are claimed.
+
+**Demonstrations:** the [brand font snippet](./theme/snippets/brand-fonts.liquid), the [typography standard](./theme/assets/typography-standards.css), and [their tests](./tests/typography.test.mjs), which check the 4px grid, the H2 and H3 pairing, the safety rule, preloading, and `font-display: swap`.
+
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.
 - Real account, order, product, theme, or vendor identifiers and domain-specific internal rules are excluded.

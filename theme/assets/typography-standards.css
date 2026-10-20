@@ -1,0 +1,66 @@
+/*
+ * Theme typography standard. Illustrative, independently written stylesheet.
+ * Load it directly after the theme's main CSS, without editing the theme's
+ * own files, so a theme update cannot undo it.
+ *
+ * Fixed sizes at every screen width, on a 4/8px grid:
+ *   Element  Font                     Size  Line height
+ *   H1       Brand serif (Light)      24px  32px
+ *   H2       Brand serif (Light)      20px  28px
+ *   H3       Secondary sans           20px  28px   same size as H2; differs by font and weight
+ *   H4       Secondary sans           16px  24px
+ *   H5, H6   Secondary sans           12px  16px
+ *
+ * Why these choices:
+ * - The brand serif ships in a Light weight only and reads large, so H1 and
+ *   H2 are a step smaller than a typical scale.
+ * - Light strokes look thin on screen. A small text stroke in the text colour
+ *   (--display-stroke) adds weight without the browser faking a bold.
+ *   Set it to 0 when a real Regular or Bold file is added.
+ * - A display serif in Light reads poorly below about 20px, so an h2 that a
+ *   theme sizes down with a small class falls back to the sans (safety rule).
+ *
+ * Variable names follow a theme that exposes --h1-font-size to
+ * --h6-font-size; map them to your theme's own variables if they differ.
+ */
+:root {
+  --h1-font-size: 24px;
+  --h2-font-size: 20px;
+  --h3-font-size: 20px;
+  --h4-font-size: 16px;
+  --h5-font-size: 12px;
+  --h6-font-size: 12px;
+  --display-font: "Brand Serif", var(--heading-font-family, sans-serif);
+  --display-stroke: 0.6px;
+}
+
+h1, .h1 { line-height: 32px; }
+h2, .h2, h3, .h3 { line-height: 28px; }
+h4, .h4 { line-height: 24px; }
+h5, .h5, h6, .h6 { line-height: 16px; }
+
+/* H1 and H2 use the brand serif in its Light weight. */
+h1, .h1, h2, .h2 {
+  font-family: var(--display-font);
+  font-weight: 300;
+  -webkit-text-stroke: var(--display-stroke) currentColor;
+}
+
+/* Safety rule: an h2 given a small size class keeps that size but switches
+   to the sans, so the Light serif never renders too small to read.
+   Specificity (0,1,1) outranks the h2 rule above (0,0,1). */
+h2:is(.h3, .h4, .h5, .h6) {
+  font-family: var(--heading-font-family, sans-serif);
+  font-weight: var(--heading-font-weight, 700);
+  -webkit-text-stroke: 0;
+}
+
+/* Section titles that a theme renders as small h2s are shown at the brand H2
+   instead. Specificity (0,2,1) outranks the safety rule, so no !important. */
+h2.section__heading:is(.h3, .h4, .h5, .h6) {
+  font-family: var(--display-font);
+  font-size: var(--h2-font-size);
+  font-weight: 300;
+  line-height: 28px;
+  -webkit-text-stroke: var(--display-stroke) currentColor;
+}
