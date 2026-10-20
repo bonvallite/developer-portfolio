@@ -169,6 +169,27 @@ Generalised from my own dated work logs for two client stores (2022 and 2023). C
 
 **Demonstrations:** 47 (GA4 purchase pixel), 11 and 36 (purchase deduplication), 30 (UTM links), and 01, 10, and 26 (weights and zones).
 
+## 14. Post-launch review of a custom Shopify homepage
+**Problem class:** A redesigned homepage can look finished in the theme editor and still behave differently for real visitors once apps, popups, and slow connections are involved.
+
+Generalised from my own review of a homepage I contributed to. No store data, settings, measured values, or screenshots are included, and none of the recommended fixes had been applied when this was written.
+
+**Approach:**
+1. **Read the code before judging the page.** Review the homepage template and its sections to see how media, carousels, and scripts actually load.
+2. **Load the public page at desktop and mobile sizes** in a headless browser, record which element becomes the Largest Contentful Paint, and capture the full page once any popup is dismissed.
+3. **Check what the first screen really shows** on a phone, not only in the editor preview.
+
+**Findings, as patterns:**
+- **First screen:** a marketing popup can hide a new hero entirely, and a stacked mobile layout can push the headline and main button below the first screen.
+- **Carousels and LCP:** lazy-loading every slide after the first keeps the first load fast, but when an autoplaying carousel advances, the browser may record a later slide as the LCP. Load later slides at low priority, or fetch the next slide in advance.
+- **Navigation:** forcing a page back to the top on return costs visitors their place on a long page.
+- **Scripts:** animation libraries loaded site-wide instead of per page add weight to every other template.
+- **Content:** sections that repeat the same explanation, duplicated product imagery, and repeated badges all dilute the page.
+
+**What I would keep:** near-zero layout shift, a pause control for moving content, review data that updates live, and well-documented sections that editors can change safely.
+
+**Demonstrations:** the [hero slideshow](./theme/sections/hero-slideshow.liquid) and [hero image snippet](./theme/snippets/hero-image.liquid) show the loading pattern recommended above, and example 44 checks for scripts that load more than once.
+
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.
 - Real account, order, product, theme, or vendor identifiers and domain-specific internal rules are excluded.
