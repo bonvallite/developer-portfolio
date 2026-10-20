@@ -1,0 +1,12 @@
+{% comment %}
+  Fictional Shopify Flow internal email body illustration.
+  'sample_flow_result' is a placeholder object. In the Shopify Flow editor,
+  use the real variables exposed by your preceding actions.
+  Do not include customer PII or private pricing rules.
+{% endcomment %}
+<h2>Sample wholesale order check</h2>
+<p>Eligibility: {% if sample_flow_result.eligible %}Qualified{% else %}Review required{% endif %}</p>
+<p>Aggregate weight: {{ sample_flow_result.totalGrams | default: 0 | divided_by: 1000.0 }} kg</p>
+<p>Illustrative tier: {{ sample_flow_result.tier | default: 'none' | escape }}</p>
+<p>Review status: {{ sample_flow_result.reason | default: 'not available' | escape }}</p>
+<p>This message is a portfolio demonstration with fictional data. Verify order details in your authorised store administration interface.</p>
