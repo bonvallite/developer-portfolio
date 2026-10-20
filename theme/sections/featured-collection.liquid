@@ -1,0 +1,51 @@
+{% comment %}
+  Featured collection grid for the homepage. Illustrative, independently written section.
+  Product images below the hero are lazy-loaded with fixed dimensions, so the
+  grid never competes with the hero image or shifts the layout as it loads.
+{% endcomment %}
+
+{%- assign featured = section.settings.collection -%}
+{%- if featured and featured.products.size > 0 -%}
+  <section class="featured-collection" {{ section.shopify_attributes }}>
+    {%- if section.settings.heading != blank -%}
+      <h2 class="featured-collection__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <ul class="featured-collection__grid">
+      {%- for item in featured.products limit: section.settings.limit -%}
+        <li class="featured-collection__item">
+          <a href="{{ item.url }}">
+            {%- if item.featured_image -%}
+              <img src="{{ item.featured_image | image_url: width: 600 }}" width="{{ item.featured_image.width }}" height="{{ item.featured_image.height }}" alt="{{ item.featured_image.alt | default: item.title | escape }}" loading="lazy" decoding="async">
+            {%- endif -%}
+            <span class="featured-collection__title">{{ item.title | escape }}</span>
+            <span class="featured-collection__price">{{ item.price | money }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+    <a class="featured-collection__all" href="{{ featured.url }}">View all</a>
+  </section>
+{%- elsif request.design_mode -%}
+  <p class="featured-collection__empty">Choose a collection with products to fill this section.</p>
+{%- endif -%}
+
+{% stylesheet %}
+  .featured-collection { padding: 2.5rem 1.5rem; }
+  .featured-collection__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; margin: 1.25rem 0; padding: 0; list-style: none; }
+  .featured-collection__item img { display: block; width: 100%; height: auto; }
+  .featured-collection__item a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+  .featured-collection__title, .featured-collection__price { display: block; margin-top: 0.5rem; }
+  @media (max-width: 900px) { .featured-collection__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Featured products" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 2, "max": 12, "step": 2, "default": 8 }
+  ],
+  "presets": [{ "name": "Featured collection" }]
+}
+{% endschema %}

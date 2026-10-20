@@ -1,0 +1,74 @@
+{% comment %}
+  Homepage hero slideshow. Illustrative, independently written section.
+
+  Slides use the hero-image snippet, so the first slide's image is the fast,
+  high-priority LCP image and the rest load lazily (see case study 12).
+  There is deliberately no autoplay: moving content is hard to read, can't
+  always be paused, and pulls every slide's image in early. Visitors swipe
+  or scroll between slides with native CSS scroll snapping, so no JavaScript
+  is needed.
+{% endcomment %}
+
+{%- if section.blocks.size > 0 -%}
+  <section class="hero-slideshow" aria-label="{{ section.settings.label | default: 'Featured' | escape }}" {{ section.shopify_attributes }}>
+    <ul class="hero-slideshow__track">
+      {%- for block in section.blocks -%}
+        <li class="hero-slideshow__slide" {{ block.shopify_attributes }}>
+          {%- render 'hero-image', image: block.settings.image, index: forloop.index0, sizes: '100vw', alt: block.settings.heading -%}
+          <div class="hero-slideshow__content">
+            {%- if block.settings.heading != blank -%}
+              {%- if forloop.first -%}
+                <h1 class="hero-slideshow__heading">{{ block.settings.heading | escape }}</h1>
+              {%- else -%}
+                <h2 class="hero-slideshow__heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="hero-slideshow__text">{{ block.settings.text | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+              <a class="hero-slideshow__button" href="{{ block.settings.button_link }}">{{ block.settings.button_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </section>
+{%- elsif request.design_mode -%}
+  <p class="hero-slideshow__empty">Add a slide to show the hero.</p>
+{%- endif -%}
+
+{% stylesheet %}
+  .hero-slideshow__track { display: flex; margin: 0; padding: 0; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; }
+  .hero-slideshow__slide { position: relative; flex: 0 0 100%; scroll-snap-align: start; }
+  .hero-slideshow__slide img { display: block; width: 100%; height: auto; }
+  .hero-slideshow__content { position: absolute; inset: auto 0 0 0; padding: 2rem 1.5rem; color: #fff; background: linear-gradient(transparent, rgba(0, 0, 0, 0.65)); }
+  .hero-slideshow__heading { margin: 0 0 0.5rem; font-size: clamp(1.75rem, 5vw, 3.25rem); }
+  .hero-slideshow__button { display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; color: inherit; border: 2px solid currentColor; text-decoration: none; }
+  .hero-slideshow__button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+  @media (prefers-reduced-motion: no-preference) { .hero-slideshow__track { scroll-behavior: smooth; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero slideshow",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Accessible name", "default": "Featured", "info": "Read out by screen readers for this region." }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "The first slide's image loads first and fastest." },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Slide heading" },
+        { "type": "text", "id": "text", "label": "Text" },
+        { "type": "text", "id": "button_label", "label": "Button label" },
+        { "type": "url", "id": "button_link", "label": "Button link" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [{ "name": "Hero slideshow", "blocks": [{ "type": "slide" }, { "type": "slide" }] }]
+}
+{% endschema %}

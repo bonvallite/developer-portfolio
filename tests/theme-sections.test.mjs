@@ -4,10 +4,11 @@
 // Previewing in a development theme is still required.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { Liquid } from "liquidjs";
 
-const engine = new Liquid();
+// {% render 'name' %} resolves to theme/snippets/name.liquid, as in a theme.
+const engine = new Liquid({ root: new URL("../theme/snippets/", import.meta.url).pathname, extname: ".liquid" });
 // {% schema %} and {% stylesheet %} produce no HTML output in Shopify either.
 for (const name of ["schema", "stylesheet"]) {
   engine.registerTag(name, {
@@ -20,6 +21,7 @@ for (const name of ["schema", "stylesheet"]) {
 }
 // Shopify's image_url returns a CDN URL; the stub keeps the requested width visible.
 engine.registerFilter("image_url", (image, ...args) => `${image.src}?width=${args.find(a => Array.isArray(a) && a[0] === "width")?.[1]}`);
+engine.registerFilter("money", cents => `$${(cents / 100).toFixed(2)}`);
 engine.registerFilter("handleize", v => String(v ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""));
 
 const source = name => readFileSync(new URL(`../theme/sections/${name}.liquid`, import.meta.url), "utf8");
@@ -30,7 +32,7 @@ const render = (name, context) => engine.parseAndRender(source(name), context).t
 const badge = (label, tone, description) => ({ label: { value: label }, tone: { value: tone }, description: { value: description } });
 const productWith = value => ({ metafields: { custom: { category_badge: { value } } } });
 
-for (const name of ["product-category-badge", "campaign-phases"]) {
+for (const name of ["product-category-badge", "campaign-phases", "hero-slideshow", "featured-collection"]) {
   test(`${name}: schema is valid JSON and declares every setting the template reads`, () => {
     const text = source(name);
     const schema = schemaOf(text);
@@ -122,17 +124,63 @@ test("hero image: later slides stay lazy, and no image renders nothing", async (
   assert.equal(await hero({ index: 0 }), "");
 });
 
-test("landing template: every section and block it uses exists, in a valid order", () => {
-  const template = JSON.parse(readFileSync(new URL("../theme/templates/page.campaign-landing.json", import.meta.url), "utf8"));
-  assert.deepEqual(template.order, Object.keys(template.sections));
-  for (const section of Object.values(template.sections)) {
-    const schema = schemaOf(source(section.type));
-    const blockTypes = new Set(schema.blocks.map(b => b.type));
-    assert.deepEqual([...section.block_order].sort(), Object.keys(section.blocks).sort());
-    for (const block of Object.values(section.blocks)) {
-      assert.ok(blockTypes.has(block.type), block.type);
-      const ids = new Set(schema.blocks.find(b => b.type === block.type).settings.map(st => st.id));
-      for (const key of Object.keys(block.settings)) assert.ok(ids.has(key), `${section.type} block setting ${key}`);
+for (const file of readdirSync(new URL("../theme/templates/", import.meta.url)).filter(f => f.endsWith(".json"))) {
+  test(`template ${file}: every section, block, and setting it uses exists, in a valid order`, () => {
+    const template = JSON.parse(readFileSync(new URL(`../theme/templates/${file}`, import.meta.url), "utf8"));
+    assert.deepEqual(template.order, Object.keys(template.sections));
+    for (const section of Object.values(template.sections)) {
+      const schema = schemaOf(source(section.type));
+      const sectionIds = new Set(schema.settings.map(st => st.id));
+      for (const key of Object.keys(section.settings ?? {})) assert.ok(sectionIds.has(key), `${section.type} setting ${key}`);
+      const blocks = section.blocks ?? {};
+      assert.deepEqual([...(section.block_order ?? [])].sort(), Object.keys(blocks).sort());
+      for (const block of Object.values(blocks)) {
+        const definition = schema.blocks?.find(b => b.type === block.type);
+        assert.ok(definition, `${section.type} block type ${block.type}`);
+        const ids = new Set(definition.settings.map(st => st.id));
+        for (const key of Object.keys(block.settings)) assert.ok(ids.has(key), `${section.type} block setting ${key}`);
+      }
     }
-  }
+  });
+}
+
+test("campaign: MM-DD phases repeat every year and can wrap over New Year", async () => {
+  const seasonal = JSON.parse(readFileSync(new URL("../theme/templates/page.seasonal-landing.json", import.meta.url), "utf8")).sections.season;
+  const blocks = seasonal.block_order.map(id => seasonal.blocks[id]);
+  const at = async date => (await preview(date, blocks)).match(/data-phase="([^"]+)"/)?.[1];
+  assert.equal(await at("2026-12-01"), "christmas");
+  assert.equal(await at("2031-12-24"), "christmas");       // a different year, same season
+  assert.equal(await at("2026-12-25"), "evergreen");       // the gap between seasons
+  assert.equal(await at("2026-12-30"), "boxing-day-to-new-year");
+  assert.equal(await at("2027-01-02"), "boxing-day-to-new-year"); // wrapped into the next year
+  assert.equal(await at("2027-01-03"), "evergreen");
+  assert.equal(await at("2027-06-15"), "end-of-financial-year");
+});
+
+const slide = (heading, extra = {}) => ({ settings: { image: { src: `/demo/${heading}.png`, width: 1600, height: 900 }, heading, ...extra } });
+
+test("hero slideshow: only the first slide's image is high priority, with one h1", async () => {
+  const html = await render("hero-slideshow", { section: { settings: { label: "Featured" }, blocks: [slide("First", { button_label: "Shop", button_link: "/collections/all" }), slide("Second <b>")] } });
+  assert.equal(html.match(/fetchpriority="high"/g).length, 1);
+  assert.match(html, /<img[^>]*src="\/demo\/First.png[^"]*"[^>]*loading="eager"/);
+  assert.equal(html.match(/loading="lazy"/g).length, 1); // the second slide
+  assert.equal(html.match(/<h1/g).length, 1);
+  assert.match(html, /<h2 class="hero-slideshow__heading">Second &lt;b&gt;<\/h2>/);
+  assert.match(html, /href="\/collections\/all">Shop<\/a>/);
+  assert.doesNotMatch(html, /<script/);
+});
+
+test("hero slideshow: no slides renders an editor-only note", async () => {
+  assert.equal(await render("hero-slideshow", { section: { settings: {}, blocks: [] } }), "");
+  assert.match(await render("hero-slideshow", { section: { settings: {}, blocks: [] }, request: { design_mode: true } }), /Add a slide/);
+});
+
+test("featured collection: respects the limit and lazy-loads product images", async () => {
+  const products = Array.from({ length: 5 }, (_, i) => ({ title: `Demo ${i}`, url: `/products/demo-${i}`, price: 1000 + i,
+    featured_image: { src: `/demo/p${i}.png`, width: 600, height: 600 } }));
+  const html = await render("featured-collection", { section: { settings: { heading: "Featured", collection: { products, url: "/collections/demo" }, limit: 4 } } });
+  assert.equal(html.match(/<li/g).length, 4);
+  assert.equal(html.match(/loading="lazy"/g).length, 4);
+  assert.match(html, /\$10\.00/);
+  assert.match(await render("featured-collection", { section: { settings: { collection: { products: [] } } }, request: { design_mode: true } }), /Choose a collection/);
 });
