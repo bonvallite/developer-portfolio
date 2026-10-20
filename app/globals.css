@@ -12,3 +12,6 @@
 
 /* Remote-work readiness: user-supplied equipment and connectivity, stated without uptime guarantees. */
 .workspace-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.workspace-grid article{border:1px solid #36383d;background:#171a1f;padding:30px}.workspace-grid h3{font-size:23px;margin:16px 0 12px}.workspace-grid p{color:#aeb0b8;line-height:1.8;font-size:14px}.workspace-grid small{color:#969aa3;font-size:12px;line-height:1.6}@media(max-width:650px){.workspace-grid{grid-template-columns:1fr}.workspace-grid article{padding:24px}}
+
+/* Technical skills are deliberately scoped to demonstrated commerce engineering work. */
+.skills-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.skills-grid article{border:1px solid #3d3931;background:#181b20;padding:30px}.skills-grid h3{font-size:23px;margin:0 0 13px}.skills-grid p,.skills-strategy p{color:#adb0b8;font-size:14px;line-height:1.85;margin:0}.skills-strategy{border-top:1px solid #755e40;margin-top:32px;padding-top:22px}.skills-strategy h3{font-size:24px;margin:0 0 12px}.skills-strategy .skills-note{font-size:12px;color:#92949d;margin-top:13px}@media(max-width:650px){.skills-grid{grid-template-columns:1fr}.skills-grid article{padding:23px}}
