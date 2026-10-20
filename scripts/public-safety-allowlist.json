@@ -1,0 +1,4 @@
+{
+  "comment": "Values that are deliberately public and may appear in tracked files. Each entry is an exact string. Add only what you intend to publish, such as a contact email shown on the site.",
+  "allow": ["bonvallite@gmail.com"]
+}
