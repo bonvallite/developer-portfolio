@@ -4,9 +4,10 @@
   Each "Phase" block holds its own dates, headline, offer, and button, so
   non-developers schedule a campaign entirely in the theme editor. The first
   block whose date window contains today wins; leave both dates empty on a
-  final block to make it the evergreen fallback. Dates are text settings in
-  YYYY-MM-DD format because theme settings have no date picker; ISO strings
-  compare correctly as text.
+  final block to make it the evergreen fallback. Dates are text settings
+  because theme settings have no date picker: YYYY-MM-DD for a one-off
+  campaign, or MM-DD for a season that repeats every year. Use the same
+  format for both dates in a block. Both formats compare correctly as text.
 
   "Today" comes from the shop's time zone at render time. Shopify caches
   storefront pages, so a phase can switch a little after midnight rather than
@@ -20,11 +21,35 @@
     assign today = section.settings.preview_date
   endif
 
+  assign today_md = today | slice: 5, 5
+
   assign active = nil
   for block in section.blocks
-    assign starts = block.settings.start_date | default: '0000-01-01'
-    assign ends = block.settings.end_date | default: '9999-12-31'
-    if starts <= today and today <= ends
+    assign starts = block.settings.start_date | default: ''
+    assign ends = block.settings.end_date | default: ''
+    assign matched = false
+
+    # MM-DD dates repeat every year, for seasonal campaigns. A range whose
+    # start is later than its end wraps over New Year (for example 12-26 to 01-02).
+    if starts.size == 5 or ends.size == 5
+      assign from = starts | default: '01-01'
+      assign to = ends | default: '12-31'
+      if from <= to
+        if from <= today_md and today_md <= to
+          assign matched = true
+        endif
+      elsif today_md >= from or today_md <= to
+        assign matched = true
+      endif
+    else
+      assign from = starts | default: '0000-01-01'
+      assign to = ends | default: '9999-12-31'
+      if from <= today and today <= to
+        assign matched = true
+      endif
+    endif
+
+    if matched
       assign active = block
       break
     endif
@@ -77,8 +102,8 @@
       "name": "Phase",
       "settings": [
         { "type": "text", "id": "label", "label": "Internal name", "default": "Phase" },
-        { "type": "text", "id": "start_date", "label": "Start date", "info": "YYYY-MM-DD, inclusive. Leave empty for no start limit." },
-        { "type": "text", "id": "end_date", "label": "End date", "info": "YYYY-MM-DD, inclusive. Leave empty for no end limit." },
+        { "type": "text", "id": "start_date", "label": "Start date", "info": "YYYY-MM-DD for one year, or MM-DD to repeat every year. Inclusive. Leave empty for no start limit." },
+        { "type": "text", "id": "end_date", "label": "End date", "info": "YYYY-MM-DD or MM-DD, inclusive. An MM-DD end earlier than the start wraps over New Year." },
         { "type": "text", "id": "eyebrow", "label": "Eyebrow text" },
         { "type": "text", "id": "headline", "label": "Headline", "default": "Campaign headline" },
         { "type": "richtext", "id": "offer", "label": "Offer details" },

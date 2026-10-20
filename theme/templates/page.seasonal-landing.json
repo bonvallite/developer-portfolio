@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "season": {
+      "type": "campaign-phases",
+      "settings": {},
+      "blocks": {
+        "christmas": { "type": "phase", "settings": { "label": "Christmas", "start_date": "12-01", "end_date": "12-24", "eyebrow": "Christmas", "headline": "Gifts sorted for everyone", "button_label": "Shop gifts", "button_link": "/collections/all" } },
+        "boxing-day": { "type": "phase", "settings": { "label": "Boxing Day to New Year", "start_date": "12-26", "end_date": "01-02", "eyebrow": "Boxing Day", "headline": "Boxing Day sale", "button_label": "Shop the sale", "button_link": "/collections/all" } },
+        "eofy": { "type": "phase", "settings": { "label": "End of financial year", "start_date": "06-01", "end_date": "06-30", "eyebrow": "EOFY", "headline": "End of financial year sale", "button_label": "Shop the sale", "button_link": "/collections/all" } },
+        "evergreen": { "type": "phase", "settings": { "label": "Evergreen", "headline": "Explore the range", "button_label": "Browse", "button_link": "/collections/all" } }
+      },
+      "block_order": ["christmas", "boxing-day", "eofy", "evergreen"]
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": { "heading": "Seasonal favourites", "limit": 8 }
+    }
+  },
+  "order": ["season", "featured"]
+}

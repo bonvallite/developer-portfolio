@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-slideshow",
+      "settings": { "label": "Featured" },
+      "blocks": {
+        "slide-1": { "type": "slide", "settings": { "heading": "New season range", "text": "Fictional demo copy. Replace with your own.", "button_label": "Shop now", "button_link": "/collections/all" } },
+        "slide-2": { "type": "slide", "settings": { "heading": "Gift ideas", "button_label": "Browse gifts", "button_link": "/collections/all" } }
+      },
+      "block_order": ["slide-1", "slide-2"]
+    },
+    "seasonal": {
+      "type": "campaign-phases",
+      "settings": {},
+      "blocks": {
+        "christmas": { "type": "phase", "settings": { "label": "Christmas", "start_date": "12-01", "end_date": "12-24", "eyebrow": "Christmas", "headline": "Gifts sorted", "button_label": "Shop gifts", "button_link": "/pages/seasonal" } },
+        "eofy": { "type": "phase", "settings": { "label": "End of financial year", "start_date": "06-01", "end_date": "06-30", "eyebrow": "EOFY", "headline": "End of financial year sale", "button_label": "Shop the sale", "button_link": "/pages/seasonal" } }
+      },
+      "block_order": ["christmas", "eofy"]
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": { "heading": "Featured products", "limit": 8 }
+    }
+  },
+  "order": ["hero", "seasonal", "featured"]
+}

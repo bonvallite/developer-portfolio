@@ -55,7 +55,7 @@ Read [Engineering case studies](./CASE_STUDIES.md) for explanations of storefron
 
 ## Theme sections
 
-Two Online Store 2.0 sections in [theme/](./theme/README.md): a category badge read from a metaobject reference, and a campaign landing section whose headline and offer change by date and are scheduled in the theme editor. Both have rendering tests and are labelled illustrative.
+Shopify Online Store 2.0 theme files in [theme/](./theme/README.md): a homepage template (hero slideshow, seasonal banner, and featured collection), a seasonal landing page that switches between Christmas, Boxing Day, and EOFY every year, a campaign landing template, and a category badge read from a metaobject reference. All have rendering tests and are labelled illustrative.
 
 ## Interactive B2B simulator
 
