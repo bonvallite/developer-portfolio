@@ -15,7 +15,9 @@
         <tr>
           <td>{{ order.reference | escape }}</td>
           <td>{{ order.items }}</td>
-          <td>{{ order.totalCents | divided_by: 100.0 }}</td>
+          {%- assign dollars = order.totalCents | divided_by: 100 -%}
+          {%- assign cents = order.totalCents | modulo: 100 | prepend: '0' | slice: -2, 2 -%}
+          <td>${{ dollars }}.{{ cents }}</td>
         </tr>
       {% endfor %}
     </tbody>
