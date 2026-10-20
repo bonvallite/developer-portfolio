@@ -8,6 +8,8 @@ Independently written Shopify Online Store 2.0 theme files. They are **illustrat
 | [sections/campaign-phases.liquid](sections/campaign-phases.liquid) | A landing section whose headline and offer change by date, scheduled entirely in the theme editor |
 | [sections/hero-slideshow.liquid](sections/hero-slideshow.liquid) | A homepage hero with swipeable slides, no autoplay, and a fast first image |
 | [sections/featured-collection.liquid](sections/featured-collection.liquid) | A product grid for a chosen collection, with lazy-loaded images |
+| [snippets/brand-fonts.liquid](snippets/brand-fonts.liquid) | A licensed brand font self-hosted from Shopify Files, without a font app |
+| [assets/typography-standards.css](assets/typography-standards.css) | A fixed heading scale: brand serif for H1 and H2, secondary sans from H3 |
 | [snippets/hero-image.liquid](snippets/hero-image.liquid) | A slideshow image that loads the first slide fast for LCP and keeps the rest lazy |
 | [templates/page.campaign-landing.json](templates/page.campaign-landing.json) | A landing page template built from the campaign section |
 | [templates/index.json](templates/index.json) | A homepage: hero slideshow, seasonal banner, and featured collection |
@@ -69,6 +71,12 @@ Limitations, stated plainly:
   {% render 'hero-image', image: block.settings.image, index: forloop.index0, sizes: '100vw' %}
 {% endfor %}
 ```
+
+## Brand font and typography standard
+
+[snippets/brand-fonts.liquid](snippets/brand-fonts.liquid) loads a licensed brand font from Shopify Files with a preload link and `font-display: swap`, with no font app. [assets/typography-standards.css](assets/typography-standards.css) replaces a theme's fluid heading scale with fixed sizes on a 4/8px grid: the brand serif for H1 (24px) and H2 (20px), and the secondary sans for H3 at the same 20px as H2. A 0.6px text stroke thickens the Light serif, and a safety rule keeps the serif from rendering too small to read. The full story is [case study 15](../CASE_STUDIES.md#15-a-self-hosted-brand-font-and-a-fixed-heading-scale-without-an-app).
+
+Upload the WOFF2 in *Content > Files*, render the snippet once in `layout/theme.liquid` after the theme's main CSS, then load the stylesheet straight after it.
 
 ## Homepage template
 

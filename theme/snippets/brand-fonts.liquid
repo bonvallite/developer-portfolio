@@ -1,0 +1,30 @@
+{% comment %}
+  Self-hosted brand font, loaded without a font app. Illustrative, independently written snippet.
+  Render once in layout/theme.liquid, directly after the theme's main stylesheet:
+    {% render 'brand-fonts' %}
+
+  Route: upload the licensed WOFF2 to Shopify admin > Content > Files, then
+  reference it by file name with file_url. No app, no external font host.
+  - preload: the browser starts fetching the font before it reads the CSS;
+  - font-display: swap: text appears in the fallback font straight away and
+    switches when the brand font arrives, so headings are never invisible.
+  Only the WOFF2 is used on the web; desktop OTF files are larger and unnecessary.
+
+  Before you start: confirm the font licence covers web use, and keep the
+  file name in Files exactly as below, because file_url finds it by name.
+{% endcomment %}
+
+{%- assign brand_font_file = 'Brand_Serif_Light.woff2' -%}
+{%- assign brand_font_url = brand_font_file | file_url -%}
+{%- if brand_font_url != blank -%}
+  <link rel="preload" href="{{ brand_font_url }}" as="font" type="font/woff2" crossorigin>
+  {%- style -%}
+    @font-face {
+      font-family: "Brand Serif";
+      src: url("{{ brand_font_url }}") format("woff2");
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+  {%- endstyle -%}
+{%- endif -%}
