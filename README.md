@@ -1,0 +1,46 @@
+# Developer Portfolio | Bon Vallite
+
+Practical e-commerce engineering, API integrations, automation, and storefront performance.
+
+**LinkedIn:** https://www.linkedin.com/in/bonvallite/
+
+## Engineering focus
+
+- **Shopify theme engineering:** Liquid sections, responsive product detail pages, metafields and metaobjects, accessibility, SEO, and page performance.
+- **B2B commerce:** Conceptual examples of volume-based pricing tiers, eligibility checks, catalogues, and notification flows using mock data.
+- **API and fulfilment integrations:** Illustrative REST/GraphQL webhooks, idempotent event handling, tracking status normalisation, and retry strategies.
+- **Delivery estimates:** Example date calculations distinguishing parcel movement from residential delivery days.
+- **Analytics quality:** Event deduplication, ecommerce transaction validation, and reconciliation techniques.
+
+## Project showcase (case studies, not employer source code)
+
+### Shopify storefront improvements
+Responsive components, content structuring, product discovery, and performance strategies.
+
+### Weight-based B2B workflow
+A sample architecture for pricing based on aggregate order weight, with synthetic products and thresholds. No production catalogues, discounts, or workflows are included.
+
+### Fulfilment status integration
+A sample event pipeline illustrating signature verification, deduplication, mapping, and error handling. No production endpoints, tokens, identifiers, or vendor payloads are included.
+
+### Shipping and delivery modelling
+A mock delivery calculator modelling dispatch, transport, regional eligibility, and final-mile delivery constraints. It does not reflect live fulfilment rules.
+
+### Tracking and attribution auditing
+Generic checks for event integrity and analytics comparisons using synthetic datasets.
+
+## Security and publication policy
+
+This repository is a **portfolio**, not a backup or mirror of an employer's production systems.
+
+- Never commit passwords, API keys, Shopify access tokens, OAuth credentials, webhook secrets, service-account files, private certificates, or environment variables.
+- Never commit customer/order data, personal information, real tracking identifiers, private dashboards, internal communications, or confidential pricing.
+- Never copy company-owned themes, Cloudflare Workers, Shopify Flow exports, app configuration, or proprietary logic without permission from the owner.
+- Publish independently written examples with mock input, placeholder domain names, and fictional business rules.
+- Review source code *and Git history* before publishing. Deleting a secret from the latest commit does not remove it from prior commits.
+- Use environment variables and a local ignored `.env` file for non-public values, and provide only a safe `.env.example`.
+- Run secret and sensitive-content checks before every public push.
+
+## About these examples
+
+The topics reflect professional engineering experience. Any accompanying public example should be independently authored and should not be represented as the original client implementation. Full production code and private configuration are intentionally excluded.
