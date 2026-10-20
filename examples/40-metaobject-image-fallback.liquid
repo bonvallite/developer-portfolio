@@ -1,0 +1,10 @@
+{% comment %}
+Independently authored Shopify Liquid demonstration. Replace 'sample_diagram'
+with a metafield exposed in a project you own. No private field definitions.
+{% endcomment %}
+{% assign diagram = product.metafields.custom.sample_diagram.value %}
+{% if diagram %}
+  {{ diagram | image_url: width: 960 | image_tag: loading: 'lazy', alt: product.title }}
+{% elsif product.featured_image %}
+  {{ product.featured_image | image_url: width: 960 | image_tag: loading: 'lazy', alt: product.title }}
+{% endif %}
