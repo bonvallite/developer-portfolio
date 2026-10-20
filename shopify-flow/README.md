@@ -29,3 +29,7 @@ No live Shopify store ID, email address, customer, discount tier, workflow expor
 - Confirm that the Flow trigger exposes the fields referenced by the Run code mapping and the Send internal email action.
 - Test empty line items, missing weights, deleted products, unexpected units, retries, duplicate triggers, and notification destinations in a sandbox store.
 - Email templates must be previewed in the real Shopify editor before use.
+
+## Audited workflow catalogue
+
+A separate [sanitised catalogue of 15 reviewed Flow exports](./WORKFLOW_CATALOGUE.md) documents reporting, rewards, B2B onboarding, discount governance, Collabs communications and order administration without publishing original configuration. A [fictional digest email](./sample-operations-email.liquid) and [fictional test data](./sample-report-data.json) demonstrate one additional pattern.
