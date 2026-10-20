@@ -1,0 +1,19 @@
+{% comment %}
+  Independently written Shopify-style notification snippet for demonstration.
+  Uses commonly available order-level Liquid variables but availability varies
+  by notification type. Preview in the actual Shopify notification editor.
+{% endcomment %}
+<h1>Thanks for your order{% if customer and customer.first_name %}, {{ customer.first_name | escape }}{% endif %}!</h1>
+<p>We've received your order and will send another update when it progresses.</p>
+{% if order_name %}
+  <p>Order reference: <strong>{{ order_name | escape }}</strong></p>
+{% endif %}
+{% if line_items %}
+  <h2>Your items</h2>
+  <ul>
+    {% for line in line_items %}
+      <li>{{ line.title | escape }} &times; {{ line.quantity }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+<p>Delivery details and tracking, where available, will be provided through your normal order updates.</p>
