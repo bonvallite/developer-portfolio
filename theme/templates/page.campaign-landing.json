@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "campaign": {
+      "type": "campaign-phases",
+      "settings": {},
+      "blocks": {
+        "early": {
+          "type": "phase",
+          "settings": { "label": "Early access", "start_date": "2026-11-01", "end_date": "2026-11-14", "eyebrow": "Members first", "headline": "Early access is open", "button_label": "Shop early", "button_link": "/collections/all" }
+        },
+        "main": {
+          "type": "phase",
+          "settings": { "label": "Main event", "start_date": "2026-11-15", "end_date": "2026-11-30", "headline": "The sale is on", "button_label": "Shop the sale", "button_link": "/collections/all" }
+        },
+        "evergreen": {
+          "type": "phase",
+          "settings": { "label": "Evergreen", "headline": "Explore the range", "button_label": "Browse", "button_link": "/collections/all" }
+        }
+      },
+      "block_order": ["early", "main", "evergreen"]
+    }
+  },
+  "order": ["campaign"]
+}

@@ -127,6 +127,48 @@ Unlike sections 1 to 10, this one describes work on this repository, so every fi
 
 **Demonstrations:** [the CI workflow](./.github/workflows/portfolio-ci.yml), [the publication safety scanner](./scripts/check-public-safety.mjs), [the example tests](./tests/examples.test.mjs), and the repository's pull requests.
 
+## 12. Performance baseline audit for a Shopify storefront
+**Problem class:** A store felt slow and had collected apps, tracking tags, and fonts over several years. Before changing anything, the team needed a written baseline to measure fixes against.
+
+Generalised from my own audit notes. The store, its apps, and all metric values are left out. The document recorded the starting point only, so no results are claimed here.
+
+**Approach:**
+1. **Record a baseline.** Desktop Lighthouse lab metrics (LCP, TBT, and CLS), plus a mobile run covering main-thread work, JavaScript execution, render-blocking resources, and image delivery.
+2. **Break LCP into its phases** (time to first byte, resource load delay, load duration, and render delay) to find which phase to fix, not just that LCP was slow.
+3. **List every third-party script, font source, preconnect, and theme app embed**, the last one by one from `settings_data.json`.
+
+**Findings, by category:**
+- **LCP:** the hero slideshow image was the LCP element on every page, and it was lazy-loaded by a hardcoded attribute through `data-src`, with no fetch priority. Load delay and render delay accounted for almost all of the LCP time. The hero images were also uploaded as PNG.
+- **Duplicate tracking:** a tag manager container and a session-recording script each loaded twice, and an advertising pixel showed signs of firing twice.
+- **Blocking time:** besides the duplicates, large app bundles shipped mostly unused code, and the platform's own pixel manager was the heaviest single script.
+- **Render-blocking CSS:** an app loaded stylesheets that coverage analysis showed were completely unused.
+- **Fonts:** four separate sources served typefaces, and none of them set `font-display`, so text waited for web fonts.
+- **Housekeeping:** apps that had been uninstalled had left theme files, embed entries, and admin pages behind.
+
+**Recommended fixes and follow-ups recorded:** load the first hero image eagerly with high priority, deduplicate tags, add two missing preconnects, review one embed whose purpose was unclear, and confirm whether a split test was still running. Cleaning up the leftover files was kept separate from the performance changes, following section 9.
+
+**Demonstrations:** the [LCP-safe hero image snippet](./theme/snippets/hero-image.liquid), and three read-only audit tools built for these checks: 44 (scripts loaded twice), 45 (`font-display` and font hosts), and 46 (app embeds, including ones left behind by uninstalled apps). Also 34 and 35.
+
+## 13. Store builds and tracking set-up
+**Problem class:** Launching or onboarding a store means building a large catalogue and its navigation quickly, then connecting analytics and shopping channels without double counting.
+
+Generalised from my own dated work logs for two client stores (2022 and 2023). Client names, suppliers, and the pricing formula are left out. The logs record the work, not results.
+
+**Build (first store):**
+- Bulk-uploaded a supplier catalogue of over a thousand products with SKUs and images, then built about 50 collections, the category and mega menus, and homepage collection blocks.
+- Customised the theme's fonts, colours, and footer, and fixed the contact form and legal pages.
+- Rebuilt shipping as weight bands derived from supplier costs so that free shipping could be offered, then recalculated product prices to match.
+- Set up the supplier's data feed, where a permissions issue on the supplier's side blocked progress. The log doesn't record how that was resolved.
+
+**Onboarding and tracking (second store):**
+- Audited the store, then installed and customised a premium theme.
+- Set up a GTM data layer and connected it to GA4, configured Google Merchant Center shopping feeds and debugged the product feed, and configured the Meta pixel and catalogue for a social shop.
+- Wrote headlines and descriptions for every collection, and planned a collection structure and announcement-bar messages.
+
+**What I would do differently today:** order-status-page scripts are now deprecated for checkout tracking. Example 47 shows the current approach, a custom pixel that sends a GA4 purchase with a transaction ID so that duplicates can be removed.
+
+**Demonstrations:** 47 (GA4 purchase pixel), 11 and 36 (purchase deduplication), 30 (UTM links), and 01, 10, and 26 (weights and zones).
+
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.
 - Real account, order, product, theme, or vendor identifiers and domain-specific internal rules are excluded.

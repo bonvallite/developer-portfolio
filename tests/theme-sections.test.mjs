@@ -18,6 +18,8 @@ for (const name of ["schema", "stylesheet"]) {
     render() { return ""; },
   });
 }
+// Shopify's image_url returns a CDN URL; the stub keeps the requested width visible.
+engine.registerFilter("image_url", (image, ...args) => `${image.src}?width=${args.find(a => Array.isArray(a) && a[0] === "width")?.[1]}`);
 engine.registerFilter("handleize", v => String(v ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""));
 
 const source = name => readFileSync(new URL(`../theme/sections/${name}.liquid`, import.meta.url), "utf8");
@@ -95,4 +97,42 @@ test("campaign: the live storefront ignores the preview date and uses today", as
   const html = await render("campaign-phases", { section: { settings: { preview_date: "2000-06-01" }, blocks }, request: { design_mode: false } });
   assert.match(html, /Current headline/);
   assert.doesNotMatch(html, /editor-note/);
+});
+
+const hero = context => engine.parseAndRender(readFileSync(new URL("../theme/snippets/hero-image.liquid", import.meta.url), "utf8"), context)
+  .then(html => html.replace(/\s+/g, " ").trim());
+const image = { src: "/demo/hero.png", width: 1600, height: 900, alt: "Demo hero" };
+
+test("hero image: the first slide loads eagerly with high priority and a real src", async () => {
+  const html = await hero({ image, index: 0 });
+  assert.match(html, /loading="eager" fetchpriority="high"/);
+  assert.match(html, / src="\/demo\/hero.png\?width=1200"/);
+  assert.doesNotMatch(html, /data-src|loading="lazy"/);
+  assert.match(html, /width="1600" height="900"/);
+  // srcset stops at the original width instead of asking the CDN to upscale.
+  assert.match(html, /srcset="[^"]*1600w"/);
+  assert.doesNotMatch(html, /2000w/);
+});
+
+test("hero image: later slides stay lazy, and no image renders nothing", async () => {
+  const html = await hero({ image, index: 2, alt: "Slide <3>" });
+  assert.match(html, /loading="lazy" decoding="async"/);
+  assert.doesNotMatch(html, /fetchpriority/);
+  assert.match(html, /alt="Slide &lt;3&gt;"/);
+  assert.equal(await hero({ index: 0 }), "");
+});
+
+test("landing template: every section and block it uses exists, in a valid order", () => {
+  const template = JSON.parse(readFileSync(new URL("../theme/templates/page.campaign-landing.json", import.meta.url), "utf8"));
+  assert.deepEqual(template.order, Object.keys(template.sections));
+  for (const section of Object.values(template.sections)) {
+    const schema = schemaOf(source(section.type));
+    const blockTypes = new Set(schema.blocks.map(b => b.type));
+    assert.deepEqual([...section.block_order].sort(), Object.keys(section.blocks).sort());
+    for (const block of Object.values(section.blocks)) {
+      assert.ok(blockTypes.has(block.type), block.type);
+      const ids = new Set(schema.blocks.find(b => b.type === block.type).settings.map(st => st.id));
+      for (const key of Object.keys(block.settings)) assert.ok(ids.has(key), `${section.type} block setting ${key}`);
+    }
+  }
 });

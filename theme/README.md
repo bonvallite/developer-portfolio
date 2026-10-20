@@ -1,13 +1,15 @@
-# Theme sections
+# Theme sections, snippet, and template
 
-Two independently written Shopify Online Store 2.0 sections. They are **illustrative**: written for this portfolio with fictional content, not taken from any store's theme, and not tested in a live store. Copy them into a development theme and preview them before you use them anywhere real.
+Independently written Shopify Online Store 2.0 theme files. They are **illustrative**: written for this portfolio with fictional content, not taken from any store's theme, and not tested in a live store. Copy them into a development theme and preview them before you use them anywhere real.
 
 | File | What it shows |
 |---|---|
 | [sections/product-category-badge.liquid](sections/product-category-badge.liquid) | A product badge read from a metaobject reference, with one source of truth |
 | [sections/campaign-phases.liquid](sections/campaign-phases.liquid) | A landing section whose headline and offer change by date, scheduled entirely in the theme editor |
+| [snippets/hero-image.liquid](snippets/hero-image.liquid) | A slideshow image that loads the first slide fast for LCP and keeps the rest lazy |
+| [templates/page.campaign-landing.json](templates/page.campaign-landing.json) | A landing page template built from the campaign section |
 
-Neither section needs configuration, environment variables, or credentials, so there is no `.env.example` for them.
+None of these files needs configuration, environment variables, or credentials, so there is no `.env.example` for them.
 
 ## Category badge: data model
 
@@ -54,6 +56,20 @@ Limitations, stated plainly:
 - This section changes the message only. Offers and prices must be configured separately, as real Shopify discounts.
 - Theme settings have no date picker, so dates are typed as text. A badly formatted date makes that phase never match, and the theme editor note shows which phase is active so editors can spot this.
 
+## Hero image snippet
+
+[snippets/hero-image.liquid](snippets/hero-image.liquid) renders slideshow images so that the first slide, which is usually the Largest Contentful Paint element, starts downloading at once: a real `src` instead of `data-src`, `loading="eager"`, `fetchpriority="high"`, and explicit dimensions. Later slides stay lazy. The `srcset` stops at the uploaded width, so the CDN is never asked to upscale. It comes from the audit in [case study 12](../CASE_STUDIES.md#12-performance-baseline-audit-for-a-shopify-storefront).
+
+```liquid
+{% for block in section.blocks %}
+  {% render 'hero-image', image: block.settings.image, index: forloop.index0, sizes: '100vw' %}
+{% endfor %}
+```
+
+## Landing page template
+
+[templates/page.campaign-landing.json](templates/page.campaign-landing.json) is an alternate page template built from the campaign section, with three example phases. Assign it to a page in *Online Store > Pages*, then change the content in the theme editor. To compare two versions of a landing page, duplicate the template under a new name (for example `page.campaign-landing-b`), change one thing, and point each campaign link, or a split-testing app, at a different page. Add your theme's own header-dependent or product sections alongside it as needed.
+
 ## Validation
 
 ```sh
@@ -61,6 +77,7 @@ npm test
 ```
 
 - `tests/theme-sections.test.mjs` renders both sections with [liquidjs](https://liquidjs.com/) and fictional data. It checks phase selection at each boundary, overlap priority, preview-date isolation, escaping, the tone allow-list, product override, and that every setting the template reads is declared in its schema.
+- The same file renders the hero snippet for first and later slides, and checks that the landing template only uses sections, blocks, and settings that exist.
 - `tests/liquid-structure.test.mjs` checks that block tags are balanced.
 
 liquidjs is not Shopify's renderer. Shopify-only tags such as `{% schema %}` are stubbed in the tests, so passing tests show the section logic is right, not that the section has been verified on Shopify.
