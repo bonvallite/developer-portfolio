@@ -338,3 +338,52 @@ test("43 reports products whose badge tags disagree with the metafield", async (
   ]);
   assert.deepEqual(report[0].fromTags, ["Bestseller"]);
 });
+
+test("44 groups repeated scripts but keeps different containers apart", async () => {
+  const { duplicateScripts } = await ex("44-duplicate-script-audit");
+  assert.deepEqual(duplicateScripts([
+    "https://tags.example/gtm.js?id=GT-AAAA", "https://tags.example/gtm.js?id=GT-AAAA&l=dataLayer",
+    "https://tags.example/gtm.js?id=GT-BBBB",
+    "https://rec.example/record.js?v=1", "https://rec.example/record.js?v=2", "https://rec.example/record.js",
+    "not a url",
+  ]), [{ script: "rec.example/record.js", count: 3 }, { script: "tags.example/gtm.js?id=GT-AAAA", count: 2 }]);
+});
+
+test("45 finds font-face rules without font-display and counts font hosts", async () => {
+  const { fontFacesMissingDisplay, fontHosts } = await ex("45-font-loading-audit");
+  const css = `@font-face { font-family: "Demo Sans"; src: url(a.woff2); }
+    @font-face { font-family: Demo Serif; src: url(b.woff2); font-display: swap; }`;
+  assert.deepEqual(fontFacesMissingDisplay(css), ["Demo Sans"]);
+  assert.deepEqual(fontHosts(["https://a.example/f.woff2", "https://a.example/g.woff2", "https://b.example/x.ttf", "https://b.example/app.js"]),
+    ["a.example", "b.example"]);
+});
+
+test("46 lists app embeds and flags ones left behind by uninstalled apps", async () => {
+  const { auditAppEmbeds } = await ex("46-app-embed-audit");
+  const settings = { current: { blocks: {
+    "1": { type: "shopify://apps/demo-reviews/blocks/stars/abc", disabled: false },
+    "2": { type: "shopify://apps/old-popup/blocks/popup/def", disabled: true },
+    "3": { type: "@app" },
+  } } };
+  assert.deepEqual(auditAppEmbeds(settings, ["demo-reviews"]), [
+    { id: "1", app: "demo-reviews", embed: "stars", enabled: true, orphaned: false },
+    { id: "2", app: "old-popup", embed: "popup", enabled: false, orphaned: true },
+  ]);
+  assert.deepEqual(auditAppEmbeds({ current: "Default" }), []);
+});
+
+test("47 maps checkout_completed to a GA4 purchase and skips events without an order id", async () => {
+  const { toGa4Purchase, register } = await ex("47-ga4-purchase-pixel");
+  const checkout = { order: { id: "9001" }, currencyCode: "AUD", totalPrice: { amount: 55 }, totalTax: { amount: 5 },
+    shippingLine: { price: { amount: 10 } }, lineItems: [{ title: "Demo item", quantity: 2, variant: { sku: "DEMO-1", price: { amount: 22.5 } } }] };
+  assert.deepEqual(toGa4Purchase(checkout).ecommerce, { transaction_id: "9001", value: 55, tax: 5, shipping: 10, currency: "AUD",
+    items: [{ item_id: "DEMO-1", item_name: "Demo item", price: 22.5, quantity: 2 }] });
+  assert.equal(toGa4Purchase({ ...checkout, order: null }), null);
+
+  let handler;
+  const dataLayer = [];
+  register({ subscribe: (name, fn) => { assert.equal(name, "checkout_completed"); handler = fn; } }, dataLayer);
+  handler({ data: { checkout } });
+  handler({ data: { checkout: { lineItems: [] } } });
+  assert.deepEqual(dataLayer.map(entry => entry.event ?? "clear"), ["clear", "purchase"]);
+});

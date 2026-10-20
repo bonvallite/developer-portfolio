@@ -1,0 +1,41 @@
+{% comment %}
+  LCP-safe hero image. Illustrative, independently written snippet.
+  Usage: {% render 'hero-image', image: block.settings.image, index: forloop.index0, sizes: '100vw' %}
+
+  A slideshow's first image is usually the Largest Contentful Paint element,
+  so it must start downloading immediately:
+  - a real src (not data-src that waits for a lazy-loading script),
+  - loading="eager" and fetchpriority="high",
+  - width and height so the browser reserves space (no layout shift).
+  Later slides stay lazy. image_url lets Shopify's CDN serve modern formats
+  such as WebP to browsers that accept them, instead of the uploaded PNG.
+{% endcomment %}
+
+{%- if image -%}
+  {%- liquid
+    assign widths = '480,800,1200,1600,2000' | split: ','
+    assign srcset = ''
+    for w in widths
+      assign px = w | plus: 0
+      if px <= image.width
+        assign entry = image | image_url: width: px | append: ' ' | append: px | append: 'w'
+        assign srcset = srcset | append: entry | append: ', '
+      endif
+    endfor
+    assign srcset_size = srcset | size | minus: 2
+    assign srcset = srcset | slice: 0, srcset_size
+  -%}
+  <img
+    src="{{ image | image_url: width: 1200 }}"
+    {% if srcset != blank %}srcset="{{ srcset }}"{% endif %}
+    sizes="{{ sizes | default: '100vw' }}"
+    width="{{ image.width }}"
+    height="{{ image.height }}"
+    alt="{{ alt | default: image.alt | escape }}"
+    {%- if index == 0 %}
+      loading="eager" fetchpriority="high"
+    {%- else %}
+      loading="lazy" decoding="async"
+    {%- endif %}
+  >
+{%- endif -%}

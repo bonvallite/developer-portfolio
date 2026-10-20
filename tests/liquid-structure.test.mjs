@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 
 const BLOCKS = ["if", "unless", "for", "case", "capture", "comment"];
-const files = ["examples", "shopify-flow", "theme/sections"].flatMap(dir =>
+const files = ["examples", "shopify-flow", "theme/sections", "theme/snippets"].flatMap(dir =>
   readdirSync(new URL(`../${dir}/`, import.meta.url)).filter(f => f.endsWith(".liquid")).map(f => `${dir}/${f}`));
 
 export function unbalanced(source) {
