@@ -1,0 +1,6 @@
+/* Generic, accessible product layout with no client branding. */
+.sample-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
+.sample-grid img { display: block; width: 100%; height: auto; border-radius: 0.625rem; }
+.sample-grid a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+@media (max-width: 900px) { .sample-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .sample-grid { grid-template-columns: 1fr; } }
