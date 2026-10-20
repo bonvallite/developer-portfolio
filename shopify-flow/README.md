@@ -30,6 +30,6 @@ No live Shopify store ID, email address, customer, discount tier, workflow expor
 - Test empty line items, missing weights, deleted products, unexpected units, retries, duplicate triggers, and notification destinations in a sandbox store.
 - Email templates must be previewed in the real Shopify editor before use.
 
-## Audited workflow catalogue
+## Flow engineering patterns
 
-A separate [sanitised catalogue of 15 reviewed Flow exports](./WORKFLOW_CATALOGUE.md) documents reporting, rewards, B2B onboarding, discount governance, Collabs communications and order administration without publishing original configuration. A [fictional digest email](./sample-operations-email.liquid) and [fictional test data](./sample-report-data.json) demonstrate one additional pattern.
+[Shopify Flow engineering patterns](./WORKFLOW_CATALOGUE.md) summarises reporting, promotional, B2B onboarding, discount governance, order tagging and messaging patterns in general terms, without publishing any original workflow configuration. A [fictional digest email](./sample-operations-email.liquid) and [fictional test data](./sample-report-data.json) demonstrate one of them.

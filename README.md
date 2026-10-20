@@ -47,7 +47,7 @@ The topics reflect professional engineering experience. Any accompanying public 
 
 ## Public code library
 
-Browse **40 independently authored, public-safe example files** in [examples/](./examples). These demonstrate Liquid, HTML, CSS, JavaScript, API integration patterns, B2B weight calculations, tracking, delivery estimations, analytics, catalogue governance, and SEO. Each is a compact illustrative example rather than a complete deployed system.
+Browse **42 independently authored, public-safe example files** in [examples/](./examples). The [portfolio index](./PORTFOLIO_INDEX.md) maps them to each engineering area and includes project cards. These demonstrate Liquid, HTML, CSS, JavaScript, API integration patterns, B2B weight calculations, tracking, delivery estimations, analytics, catalogue governance, and SEO. Each is a compact illustrative example rather than a complete deployed system. Every JavaScript example has a unit test in [tests/examples.test.mjs](./tests/examples.test.mjs).
 
 Read [Engineering case studies](./CASE_STUDIES.md) for explanations of storefront work, B2B commerce, fulfilment integrations, shipping calendars, analytics, redirect management, performance, and marketing technology.
 
@@ -60,3 +60,14 @@ A standalone, fictional weight-based wholesale price calculator is now included 
 ## Shopify Flow and Liquid notifications
 
 See [Shopify Flow portfolio examples](./shopify-flow/README.md) for a fictional aggregate-weight workflow, Run code action, internal email Liquid, and customer notification Liquid. These are original educational templates, not exported employer workflows or production-ready Shopify configurations. A standalone Node test suite checks the example Flow logic.
+
+## Validation
+
+```sh
+npm install
+npm test               # examples, Flow Run code, B2B simulator, Liquid structure
+npm run check:safety   # scan tracked files for credentials, store IDs and contact details
+npx tsc --noEmit && npm run build
+```
+
+[GitHub Actions](./.github/workflows/portfolio-ci.yml) runs the same checks on every push and pull request. The safety scan catches common credential formats but does not replace a human review of ownership and confidentiality.
