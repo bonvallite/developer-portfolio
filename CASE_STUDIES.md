@@ -104,6 +104,29 @@ This write-up is generalised: it describes the diagnosis method with fictional n
 
 **Demonstrations:** 43 (audit) and the [category badge section](./theme/sections/product-category-badge.liquid).
 
+## 11. Auditing and hardening this portfolio repository
+**Problem class:** A public portfolio grows quickly through many small commits. Nobody had checked whether its automated checks actually ran, whether its history contained anything that shouldn't be public, or whether its examples did what their comments said.
+
+Unlike sections 1 to 10, this one describes work on this repository, so every figure below can be checked against its public commits, pull requests, and GitHub Actions runs. The work was done with an AI coding assistant (Claude Code), with each change reviewed and approved through pull requests.
+
+**Approach:**
+1. **Audit before changing anything.** Inventory every file, read the full Git history, and run each CI step locally. No edits until the findings were reviewed.
+2. **Scan the history, not just the current files.** Every version of every file in every commit was checked for credential formats, store and analytics identifiers, webhook URLs, and contact details. Nothing secret was found. The review also covered content that pattern matching cannot catch: a few descriptions identified a specific vendor and specific internal workflows, so they were generalised in later pull requests.
+3. **Find out why CI was red.** The workflow ran `npm test`, but `package.json` had no `test` script, so every run on `main` failed before reaching a single test (20 runs at the time of writing). The tests themselves passed when run directly. Vercel kept deploying regardless, because deployment did not depend on CI.
+4. **Make tests prove something.** A test was added for every example. Each new test was then checked by breaking the code on purpose: the idempotency test fails against the original handler, which ran duplicate events twice when they arrived together, and each of four deliberate breaks in the theme sections makes the matching test fail.
+5. **Automate the publication check.** A small, dependency-free scanner (`npm run check:safety`) now runs in CI. Its first run flagged a hardcoded secret in a test fixture. The secret was harmless, but the fix was to generate a random one at runtime rather than weaken the rule.
+6. **Stack small pull requests.** Fixes, additions, and content changes went into separate, reviewable pull requests, each based on the one before, so no change reached `main` without review.
+
+**What the evidence shows:**
+- CI failed on every run on `main` before the fix, and passes on the pull request branches.
+- The test count went from 11 to 72, covering every JavaScript example, the theme sections, and the delivery rule.
+- One concurrency bug was found and fixed (example 03), with a test that reproduces it.
+- Two of the audit's own mistakes were caught by its checks: the coverage test found an example count off by one, and calculating the real badge contrast ratios corrected an inaccurate accessibility claim.
+
+**Lesson:** A green build badge, or a passing local test run, says nothing until you confirm CI actually reaches the tests. Checking the checks came first.
+
+**Demonstrations:** [the CI workflow](./.github/workflows/portfolio-ci.yml), [the publication safety scanner](./scripts/check-public-safety.mjs), [the example tests](./tests/examples.test.mjs), and the repository's pull requests.
+
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.
 - Real account, order, product, theme, or vendor identifiers and domain-specific internal rules are excluded.
