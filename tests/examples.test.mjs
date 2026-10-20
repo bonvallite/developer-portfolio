@@ -320,3 +320,21 @@ test("42 adds GST to taxable lines only, rounding once", async () => {
   assert.throws(() => invoiceTotals([{ unitCents: 1.5, quantity: 1 }]));
   assert.deepEqual(invoiceTotals([]), { subtotalCents: 0, taxableCents: 0, gstCents: 0, totalCents: 0 });
 });
+
+test("43 reports products whose badge tags disagree with the metafield", async () => {
+  const { auditBadgeSources } = await ex("43-badge-source-audit");
+  const report = auditBadgeSources([
+    { id: "p1", tags: ["Badge:Bestseller", "summer"], badgeLabel: "New" },
+    { id: "p2", tags: ["badge:New"], badgeLabel: null },
+    { id: "p3", tags: ["badge:new"], badgeLabel: "New" },
+    { id: "p4", tags: ["badge:New", "badge:Sale"], badgeLabel: "Sale" },
+    { id: "p5", tags: ["summer"], badgeLabel: "New" },
+  ]);
+  assert.deepEqual(report.map(r => [r.id, r.issues]), [
+    ["p1", ["tag_disagrees_with_metafield"]],
+    ["p2", ["tag_without_metafield"]],
+    ["p3", ["redundant_tag"]],
+    ["p4", ["multiple_badge_tags"]],
+  ]);
+  assert.deepEqual(report[0].fromTags, ["Bestseller"]);
+});
