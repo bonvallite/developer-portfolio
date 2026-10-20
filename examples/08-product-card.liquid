@@ -1,0 +1,15 @@
+{% comment %}
+Public, independently authored Liquid illustration using standard product objects.
+Not extracted from any client theme. Assumes product is set by the calling template.
+{% endcomment %}
+{% if product %}
+  <article class="sample-product-card">
+    <a href="{{ product.url }}">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 560 | image_tag: loading: 'lazy', alt: product.title }}
+      {% endif %}
+      <h3>{{ product.title | escape }}</h3>
+      <p>{{ product.price | money }}</p>
+    </a>
+  </article>
+{% endif %}
