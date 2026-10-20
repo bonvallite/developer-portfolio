@@ -1,0 +1,25 @@
+{
+  "reportDate": "2026-01-12",
+  "orders": [
+    {
+      "reference": "EXAMPLE-001",
+      "items": 3,
+      "totalCents": 12500
+    },
+    {
+      "reference": "EXAMPLE-002",
+      "items": 2,
+      "totalCents": 7850
+    }
+  ],
+  "inventory": [
+    {
+      "sku": "DEMO-A",
+      "available": 10
+    },
+    {
+      "sku": "DEMO-B",
+      "available": 2
+    }
+  ]
+}
