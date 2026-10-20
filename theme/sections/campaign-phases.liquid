@@ -1,0 +1,101 @@
+{% comment %}
+  Phased campaign landing section. Illustrative, independently written example.
+
+  Each "Phase" block holds its own dates, headline, offer, and button, so
+  non-developers schedule a campaign entirely in the theme editor. The first
+  block whose date window contains today wins; leave both dates empty on a
+  final block to make it the evergreen fallback. Dates are text settings in
+  YYYY-MM-DD format because theme settings have no date picker; ISO strings
+  compare correctly as text.
+
+  "Today" comes from the shop's time zone at render time. Shopify caches
+  storefront pages, so a phase can switch a little after midnight rather than
+  exactly on it. Use a discount's own start and end dates for price changes;
+  this section only changes the message.
+{% endcomment %}
+
+{%- liquid
+  assign today = 'now' | date: '%Y-%m-%d'
+  if request.design_mode and section.settings.preview_date != blank
+    assign today = section.settings.preview_date
+  endif
+
+  assign active = nil
+  for block in section.blocks
+    assign starts = block.settings.start_date | default: '0000-01-01'
+    assign ends = block.settings.end_date | default: '9999-12-31'
+    if starts <= today and today <= ends
+      assign active = block
+      break
+    endif
+  endfor
+-%}
+
+{%- if active -%}
+  <section class="campaign-phase" data-phase="{{ active.settings.label | handleize }}" {{ active.shopify_attributes }}>
+    {%- if active.settings.eyebrow != blank -%}
+      <p class="campaign-phase__eyebrow">{{ active.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+    <h2 class="campaign-phase__headline">{{ active.settings.headline | escape }}</h2>
+    {%- if active.settings.offer != blank -%}
+      <div class="campaign-phase__offer">{{ active.settings.offer }}</div>
+    {%- endif -%}
+    {%- if active.settings.button_label != blank and active.settings.button_link != blank -%}
+      <a class="campaign-phase__button" href="{{ active.settings.button_link }}">{{ active.settings.button_label | escape }}</a>
+    {%- endif -%}
+    {%- if request.design_mode -%}
+      <p class="campaign-phase__editor-note">Showing phase "{{ active.settings.label | escape }}" for {{ today }}.</p>
+    {%- endif -%}
+  </section>
+{%- elsif request.design_mode -%}
+  <p class="campaign-phase__editor-note">No phase covers {{ today }}. Add a phase with no dates as a fallback.</p>
+{%- endif -%}
+
+{% stylesheet %}
+  .campaign-phase { padding: 3rem 1.5rem; text-align: center; }
+  .campaign-phase__eyebrow { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8125rem; }
+  .campaign-phase__headline { margin: 0.5rem 0 1rem; font-size: clamp(1.75rem, 5vw, 3rem); }
+  .campaign-phase__button { display: inline-block; margin-top: 1.25rem; padding: 0.75rem 1.5rem; border: 2px solid currentColor; text-decoration: none; }
+  .campaign-phase__button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+  .campaign-phase__editor-note { font-style: italic; opacity: 0.7; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Campaign phases",
+  "settings": [
+    {
+      "type": "text",
+      "id": "preview_date",
+      "label": "Preview date (theme editor only)",
+      "info": "YYYY-MM-DD. Lets you check a future phase before it goes live. Ignored on the live storefront."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "phase",
+      "name": "Phase",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Internal name", "default": "Phase" },
+        { "type": "text", "id": "start_date", "label": "Start date", "info": "YYYY-MM-DD, inclusive. Leave empty for no start limit." },
+        { "type": "text", "id": "end_date", "label": "End date", "info": "YYYY-MM-DD, inclusive. Leave empty for no end limit." },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow text" },
+        { "type": "text", "id": "headline", "label": "Headline", "default": "Campaign headline" },
+        { "type": "richtext", "id": "offer", "label": "Offer details" },
+        { "type": "text", "id": "button_label", "label": "Button label" },
+        { "type": "url", "id": "button_link", "label": "Button link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Campaign phases",
+      "blocks": [
+        { "type": "phase", "settings": { "label": "Early access", "headline": "Early access is open" } },
+        { "type": "phase", "settings": { "label": "Main event", "headline": "The sale is on" } },
+        { "type": "phase", "settings": { "label": "Evergreen", "headline": "Explore the range" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
