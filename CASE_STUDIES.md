@@ -30,6 +30,8 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Demonstrations:** 06, 19, 26, 39 and 41 (zone calculator with dispatch cut-off and zone delivery days).
 
+**One source of truth for the delivery rule:** "Can a residential drop happen on this date?" is defined once, in 19. Earlier versions of this repository repeated the weekend check inside 06, so a change to one copy, such as adding holidays, could silently miss the other. Now 06 and 41 both call 19, and [a guard test](./tests/delivery-single-source.test.mjs) checks every start date in a year to confirm that neither ever produces a date 19 rejects. The same test feeds it a deliberately drifted copy of the rule, which only skips weekends, to show the guard fails when copies disagree.
+
 ## 5. Analytics and attribution troubleshooting
 **Problem class:** Ecommerce platforms and event analytics may disagree on sessions, purchases, and revenue.
 
@@ -57,6 +59,50 @@ These are **high-level, public-safe project summaries** informed by professional
 **Approach:** Distinguish tracking hygiene from marketing outcomes, validate event names and deduplication, and avoid exposing identifiable visitors or private campaign strategy.
 
 **Demonstrations:** 11, 12, 27, 30.
+
+## 9. Editing a live store safely: read first, one change at a time, log everything
+**Problem class:** Many store fixes have to be made in a live theme or live admin settings, where a mistake is visible to customers straight away and several small edits made together are hard to untangle.
+
+**Approach:** A deliberately slow routine, used for every change, however small:
+1. **Read first.** Before editing, read the template, section, snippet, or setting that renders the problem, and find every other place that reads the same data, for example with a code search for the metafield key or tag. Note what the page shows now, with a screenshot.
+2. **Work on a copy.** Duplicate the live theme, or use a development theme, and make the change there. Preview it on the affected pages at mobile and desktop widths.
+3. **One change at a time.** Each change has one purpose. If a second problem turns up, it goes on the list, not into the current edit.
+4. **Log the change.** Record it before publishing, using the template below.
+5. **Publish, then verify.** Check the same pages again on the live store, compare them with the "before" notes, and keep the previous theme version ready to republish.
+
+```text
+Date and time:
+Where:            (theme name, file, or admin setting)
+Why:              (problem, and how it was confirmed)
+Change:           (what was edited, old value -> new value)
+Checked before:   (pages and devices previewed)
+Checked after:    (pages and devices verified live)
+How to undo:      (previous theme version, or the old value)
+```
+
+**Why it works:** A single, logged change can be traced and reversed in minutes. A batch of unlogged edits turns every later problem into an investigation.
+
+**Demonstrations:** This is a process, so there is no code for it. Examples 23, 25, 29, and 43 follow the same read-only principle: they report, and a person decides what to change.
+
+## 10. Diagnosing a badge that came from stale tags
+**Problem class:** A product shows a badge, such as "Bestseller" or "New", that merchandisers believe they removed. Editing the badge in the admin appears to change nothing.
+
+This write-up is generalised: it describes the diagnosis method with fictional names, not a specific store.
+
+**Diagnosis:**
+1. **Find what renders the badge.** Searching the theme code for the badge markup showed two sources: newer code read a product metafield, and older code still checked for a `badge:` product tag.
+2. **Compare the two sources.** For an affected product, the metafield had been updated but an old `badge:Bestseller` tag was still on the product. The tag check ran first, so the stale tag won.
+3. **Measure the scope before fixing.** A read-only audit (example 43) compares tags with the metafield for every product and sorts products into: tag disagrees with metafield, tag without metafield, several badge tags, and tags that are now redundant.
+
+**Fix:**
+- Make the metafield the only source. The [category badge section](./theme/README.md) reads a metaobject reference and deliberately ignores tags.
+- Copy any badge that existed only as a tag into the metafield, so nothing disappears unexpectedly.
+- Remove the tag check from the theme, then remove the `badge:` tags, one change at a time and logged as in section 9.
+- Re-run the audit. Only once it reports nothing is the tag logic safe to delete permanently.
+
+**Lesson:** Two sources for one fact will eventually disagree. When migrating from tags to metafields, retire the old source on purpose instead of leaving it as a fallback.
+
+**Demonstrations:** 43 (audit) and the [category badge section](./theme/sections/product-category-badge.liquid).
 
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.

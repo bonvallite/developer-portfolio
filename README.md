@@ -47,11 +47,15 @@ The topics reflect professional engineering experience. Any accompanying public 
 
 ## Public code library
 
-Browse **42 independently authored, public-safe example files** in [examples/](./examples). The [portfolio index](./PORTFOLIO_INDEX.md) maps them to each engineering area and includes project cards. These demonstrate Liquid, HTML, CSS, JavaScript, API integration patterns, B2B weight calculations, tracking, delivery estimations, analytics, catalogue governance, and SEO. Each is a compact illustrative example rather than a complete deployed system. Every JavaScript example has a unit test in [tests/examples.test.mjs](./tests/examples.test.mjs).
+Browse **43 independently authored, public-safe example files** in [examples/](./examples). The [portfolio index](./PORTFOLIO_INDEX.md) maps them to each engineering area and includes project cards. These demonstrate Liquid, HTML, CSS, JavaScript, API integration patterns, B2B weight calculations, tracking, delivery estimations, analytics, catalogue governance, and SEO. Each is a compact illustrative example rather than a complete deployed system. Every JavaScript example has a unit test in [tests/examples.test.mjs](./tests/examples.test.mjs).
 
-Read [Engineering case studies](./CASE_STUDIES.md) for explanations of storefront work, B2B commerce, fulfilment integrations, shipping calendars, analytics, redirect management, performance, and marketing technology.
+Read [Engineering case studies](./CASE_STUDIES.md) for explanations of storefront work, B2B commerce, fulfilment integrations, shipping calendars, analytics, redirect management, performance, marketing technology, safe live-store editing, and debugging a stale-tag badge.
 
 **Publication note:** This is not an export of all historical work. The exact code and confidential implementations belonging to clients or employers are not included; additions require an independent permission and privacy review.
+
+## Theme sections
+
+Two Online Store 2.0 sections in [theme/](./theme/README.md): a category badge read from a metaobject reference, and a campaign landing section whose headline and offer change by date and are scheduled in the theme editor. Both have rendering tests and are labelled illustrative.
 
 ## Interactive B2B simulator
 
@@ -65,7 +69,7 @@ See [Shopify Flow portfolio examples](./shopify-flow/README.md) for a fictional 
 
 ```sh
 npm install
-npm test               # examples, Flow Run code, B2B simulator, Liquid structure
+npm test               # examples, theme sections, delivery rule guard, Flow, B2B simulator, Liquid structure
 npm run check:safety   # scan tracked files for credentials, store IDs and contact details
 npx tsc --noEmit && npm run build
 ```

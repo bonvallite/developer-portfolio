@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Github, Layers3, GitBranch } from 'lucide-react';
 const projects = [
   { number:'01', category:'SHOPIFY / B2B', title:'Weight-based B2B purchasing', description:'Designed weight-based wholesale workflows and built an independent interactive pricing simulator using fictional data.', technologies:['Shopify Markets','B2B Catalogues','Shopify Flow'], icon:Layers3 },
-  { number:'02', category:'SERVERLESS / API', title:'Shopify × CartonCloud integration', description:'Built an integration approach to synchronise order fulfilment, shipment tracking and delivery status between warehouse operations and Shopify.', technologies:['Cloudflare Workers','Webhooks','OAuth 2.0','REST API'], icon:GitBranch },
-  { number:'03', category:'PRODUCT DATA / UX', title:'Structured product metadata', description:'Implemented structured product attributes including marbling scores, descriptions and imagery using metafields and custom Shopify theme components.', technologies:['Metafields','Liquid','Shopify Themes'], icon:ShoppingBag },
+  { number:'02', category:'SERVERLESS / API', title:'Warehouse fulfilment integration', description:'Built an integration approach to synchronise order fulfilment, shipment tracking and delivery status between a warehouse management system and Shopify.', technologies:['Cloudflare Workers','Webhooks','OAuth 2.0','REST API'], icon:GitBranch },
+  { number:'03', category:'PRODUCT DATA / UX', title:'Structured product metadata', description:'Implemented structured product attributes, including product-specific grading data, descriptions and imagery, using metafields and custom Shopify theme components.', technologies:['Metafields','Liquid','Shopify Themes'], icon:ShoppingBag },
   { number:'04', category:'DATA / ANALYTICS', title:'Conversion and tracking diagnostics', description:'Investigated measurement gaps between Shopify and GA4, reviewed event instrumentation and helped identify improvements to ecommerce reporting.', technologies:['GA4','Google Tag Manager','Analytics'], icon:BarChart3 },
 ];
 const capabilities = [

@@ -1,0 +1,65 @@
+{% comment %}
+  Product category badge driven by a metaobject reference.
+  Illustrative, independently written section; see theme/README.md for the data model.
+
+  Source of truth: the product metafield custom.category_badge, a reference to
+  a "category_badge" metaobject entry (fields: label, tone, description).
+  Product tags are deliberately NOT read here. Keeping one source avoids the
+  stale-tag problem described in CASE_STUDIES.md, section 10.
+{% endcomment %}
+
+{%- liquid
+  assign badge_product = section.settings.product | default: product
+  assign badge = badge_product.metafields.custom.category_badge.value
+
+  # Only known tones become class names, so editors cannot inject arbitrary CSS classes.
+  assign tone = 'neutral'
+  case badge.tone.value
+    when 'positive', 'attention'
+      assign tone = badge.tone.value
+  endcase
+-%}
+
+{%- if badge and badge.label.value != blank -%}
+  <div class="category-badge category-badge--{{ tone }}" {{ section.shopify_attributes }}>
+    <span class="category-badge__label">{{ badge.label.value | escape }}</span>
+    {%- if section.settings.show_description and badge.description.value != blank -%}
+      <p class="category-badge__description">{{ badge.description.value | escape }}</p>
+    {%- endif -%}
+  </div>
+{%- elsif request.design_mode -%}
+  {%- comment -%} Shown only in the theme editor, so merchants know why nothing renders. {%- endcomment -%}
+  <p class="category-badge__empty">No category badge is set for this product.</p>
+{%- endif -%}
+
+{% stylesheet %}
+  .category-badge { display: inline-flex; flex-direction: column; gap: 0.25rem; padding: 0.375rem 0.75rem; border-radius: 999px; border: 1px solid currentColor; }
+  .category-badge__label { font-weight: 600; font-size: 0.875rem; }
+  .category-badge__description { margin: 0; font-size: 0.8125rem; }
+  /* Each text and background pair has at least 7:1 contrast (WCAG AAA); the label text carries the meaning, not the colour. */
+  .category-badge--neutral { color: #3a3a3a; background: #f2f2f2; }
+  .category-badge--positive { color: #1d5c2e; background: #e6f4ea; }
+  .category-badge--attention { color: #7a3b00; background: #fff1e0; }
+  .category-badge__empty { font-style: italic; opacity: 0.7; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Category badge",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "Leave empty on product templates to use the current product."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show badge description",
+      "default": false
+    }
+  ],
+  "presets": [{ "name": "Category badge" }]
+}
+{% endschema %}
