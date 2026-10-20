@@ -22,12 +22,16 @@ const RULES = [
   ["Australian mobile number", /(\+?61\s?|0)4\d{2}\s?\d{3}\s?\d{3}\b/],
   ["Workers subdomain", /\b[a-z0-9-]+\.[a-z0-9-]+\.workers\.dev\b/i],
 ];
-const SKIP = [/^scripts\/check-public-safety\.mjs$/, /\.(png|jpe?g|gif|ico|woff2?)$/i, /^package-lock\.json$/];
+// Deliberately public values (for example the contact email on the site) are
+// listed in public-safety-allowlist.json and removed before matching.
+const ALLOW = JSON.parse(readFileSync(new URL("./public-safety-allowlist.json", import.meta.url), "utf8")).allow;
+const SKIP = [/^scripts\/check-public-safety\.mjs$/, /^scripts\/public-safety-allowlist\.json$/, /\.(png|jpe?g|gif|ico|woff2?)$/i, /^package-lock\.json$/];
 
 const files = execFileSync("git", ["ls-files"], { encoding: "utf8" }).split("\n").filter(f => f && !SKIP.some(r => r.test(f)));
 const findings = [];
 for (const file of files) {
-  readFileSync(file, "utf8").split("\n").forEach((line, i) => {
+  readFileSync(file, "utf8").split("\n").forEach((raw, i) => {
+    const line = ALLOW.reduce((text, value) => text.split(value).join(""), raw);
     for (const [label, pattern] of RULES) if (pattern.test(line)) findings.push(`${file}:${i + 1} ${label}`);
   });
 }
