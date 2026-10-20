@@ -14,12 +14,12 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Approach:** Model a weight aggregation and eligibility function, validate tier definitions, then reason about separate customer-facing and back-office actions. Apply authorisation and platform-native discount mechanisms in actual implementations.
 
-**Demonstrations:** 01, 10, 15, 32.
+**Demonstrations:** 01 (weight units), 10, 15, 32, 42 (GST invoice totals) and the [interactive simulator](./B2B_DEMO.md).
 
 ## 3. Fulfilment and order tracking
 **Problem class:** Vendor status events need authentication, normalisation, reliable processing, and observability.
 
-**Approach:** Verify webhook signatures over raw payloads, build idempotency boundaries with durable storage, normalise provider events to internal statuses, add bounded retries and logging that omits customer details.
+**Approach:** Verify webhook signatures over raw payloads, build idempotency boundaries with durable storage, normalise provider events to internal statuses without letting late events move a shipment backwards, add bounded retries and logging that omits customer details.
 
 **Demonstrations:** 02, 03, 04, 05, 13, 33, 36. The examples are not a deployable production integration.
 
@@ -28,14 +28,14 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Approach:** Model transit days and destination delivery constraints separately, use explicit holiday calendars and destination service eligibility, and word estimates without promises.
 
-**Demonstrations:** 06, 19, 26, 39.
+**Demonstrations:** 06, 19, 26, 39 and 41 (zone calculator with dispatch cut-off and zone delivery days).
 
 ## 5. Analytics and attribution troubleshooting
 **Problem class:** Ecommerce platforms and event analytics may disagree on sessions, purchases, and revenue.
 
 **Approach:** Compare transactions by anonymised identifier, inspect duplicate events, review event configuration, assess reporting filters, and separate genuine missing transactions from attribution gaps.
 
-**Demonstrations:** 11, 12, 27, 30.
+**Demonstrations:** 11 (purchase dedupe across reloads), 12, 27, 30.
 
 ## 6. Catalogue governance, SEO, and redirects
 **Problem class:** Product changes can create broken links, inconsistent headings, incomplete sales-channel publication, and search discoverability gaps.
