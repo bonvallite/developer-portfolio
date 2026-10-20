@@ -1,0 +1,32 @@
+{% comment %}
+  Independently authored email example with synthetic data.
+  'sample_report' is an illustrative input binding, not a live Shopify Flow variable.
+  Map verified Flow outputs in your own sandbox before using.
+  Never include real recipient addresses, order data or internal operating rules.
+{% endcomment %}
+<h2>Sample operations digest</h2>
+<p>Reporting date: {{ sample_report.reportDate | escape }}</p>
+{% if sample_report.orders %}
+  <h3>Orders</h3>
+  <table>
+    <thead><tr><th>Reference</th><th>Items</th><th>Total</th></tr></thead>
+    <tbody>
+      {% for order in sample_report.orders %}
+        <tr>
+          <td>{{ order.reference | escape }}</td>
+          <td>{{ order.items }}</td>
+          <td>{{ order.totalCents | divided_by: 100.0 }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+{% if sample_report.inventory %}
+  <h3>Sample inventory snapshot</h3>
+  <ul>
+  {% for item in sample_report.inventory %}
+    <li>{{ item.sku | escape }}: {{ item.available }} available</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+<p>Illustrative report only. Values and schema are fictional.</p>
