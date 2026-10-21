@@ -167,7 +167,9 @@ Generalised from my own dated work logs for two client stores (2022 and 2023). C
 
 **What I would do differently today:** order-status-page scripts are now deprecated for checkout tracking. Example 47 shows the current approach, a custom pixel that sends a GA4 purchase with a transaction ID so that duplicates can be removed.
 
-**Demonstrations:** 47 (GA4 purchase pixel), 11 and 36 (purchase deduplication), 30 (UTM links), and 01, 10, and 26 (weights and zones).
+**Behaviour analytics:** alongside GA4, I use Microsoft Clarity and Hotjar heatmaps and session recordings to see where visitors scroll, click, and give up. Example 49 shows a privacy-first set-up: neither tool loads until the visitor allows analytics through Shopify's consent banner, and email, phone, name, and address fields are masked so recordings never capture them.
+
+**Demonstrations:** 49 (Clarity and Hotjar loader), 47 (GA4 purchase pixel), 11 and 36 (purchase deduplication), 30 (UTM links), and 01, 10, and 26 (weights and zones).
 
 ## 14. Post-launch review of a custom Shopify homepage
 **Problem class:** A redesigned homepage can look finished in the theme editor and still behave differently for real visitors once apps, popups, and slow connections are involved.

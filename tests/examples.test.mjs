@@ -426,3 +426,52 @@ test("48 discovers an open-shadow cart and keeps reward states configuration-dri
   assert.equal(shouldHideNativeFallback(true), true);
   assert.throws(() => rewardState(1, { ...config, shippingCents: 5000 }), /ascending/);
 });
+
+test("49 loads Clarity and Hotjar only after analytics consent, once, with customer details masked", async () => {
+  const { startBehaviourAnalytics, loadClarity, loadHotjar, maskSensitive } = await ex("49-behaviour-analytics-loader");
+  const fakeDocument = () => {
+    const listeners = {}, scripts = [], fields = [{ attrs: {}, setAttribute(k, v) { this.attrs[k] = v; } }];
+    return { scripts, fields, listeners,
+      head: { appendChild: s => scripts.push(s) },
+      createElement: () => ({}),
+      querySelector: sel => scripts.find(s => sel.includes(s.src)) ?? null,
+      querySelectorAll: () => fields,
+      addEventListener: (name, fn) => { listeners[name] = fn; } };
+  };
+
+  // No consent yet: nothing loads until the banner reports analytics allowed.
+  let allowed = false;
+  const win = { Shopify: { customerPrivacy: { analyticsProcessingAllowed: () => allowed } } };
+  const doc = fakeDocument();
+  startBehaviourAnalytics(win, doc, { clarityId: "demo1234", hotjarId: "1234567" });
+  assert.equal(doc.scripts.length, 0);
+  doc.listeners.visitorConsentCollected({ detail: { analyticsAllowed: false } });
+  assert.equal(doc.scripts.length, 0);
+  doc.listeners.visitorConsentCollected({ detail: { analyticsAllowed: true } });
+  assert.deepEqual(doc.scripts.map(s => s.src), ["https://www.clarity.ms/tag/demo1234", "https://static.hotjar.com/c/hotjar-1234567.js?sv=6"]);
+  assert.deepEqual(doc.fields[0].attrs, { "data-clarity-mask": "true", "data-hj-suppress": "" });
+  doc.listeners.visitorConsentCollected({ detail: { analyticsAllowed: true } }); // repeat event
+  assert.equal(doc.scripts.length, 2);
+
+  // Consent already given on page load starts straight away.
+  allowed = true;
+  const doc2 = fakeDocument();
+  startBehaviourAnalytics(win, doc2, { clarityId: "demo1234" });
+  assert.equal(doc2.scripts.length, 1);
+
+  // Each safeguard on its own: a script is never added twice, and consent fires the callback once.
+  const doc3 = fakeDocument();
+  assert.equal(loadClarity({}, doc3, "demo1234"), true);
+  assert.equal(loadClarity({}, doc3, "demo1234"), false);
+  const { whenAnalyticsAllowed } = await ex("49-behaviour-analytics-loader");
+  let calls = 0;
+  const doc4 = fakeDocument();
+  whenAnalyticsAllowed({ Shopify: { customerPrivacy: { analyticsProcessingAllowed: () => true } } }, doc4, () => calls++);
+  doc4.listeners.visitorConsentCollected({ detail: { analyticsAllowed: true } });
+  assert.equal(calls, 1);
+
+  // Invalid IDs are refused rather than injected into a URL.
+  assert.equal(loadClarity({}, fakeDocument(), "bad/id"), false);
+  assert.equal(loadHotjar({}, fakeDocument(), "12ab"), false);
+  assert.equal(maskSensitive(null), 0);
+});
