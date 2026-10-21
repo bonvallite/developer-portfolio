@@ -60,6 +60,21 @@ export default function RewardsEnginePage() {
         </>}
       </section>
     </div>
+    <section style={{marginTop:75,padding:"clamp(22px,4vw,44px)",border:"1px solid #816a49",borderRadius:14,background:"linear-gradient(140deg,#24211c,#15191c)"}}>
+      <p style={{letterSpacing:2,color:"#d9b47c",fontSize:12}}>END-TO-END OWNERSHIP / WHAT I BRING TO THE TABLE</p>
+      <h2 style={{fontSize:"clamp(28px,4.5vw,48px)",lineHeight:1.16,margin:"16px 0 19px"}}>I connect the commercial problem to the code that solves it.</h2>
+      <p style={{color:"#d9dde1",lineHeight:1.85,fontSize:16,maxWidth:870}}>A promotion is more than a banner. Customers experience it across announcements, collections, campaign pages, product discovery and the cart. I approach the challenge as one system: research the purchase journey, examine the data, design the interface, build reusable Shopify components, integrate carefully with an app-owned cart and validate the business rules behind the message.</p>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(190px,1fr))",gap:12,marginTop:28}}>
+        {[
+          ["01 / ANALYSE","ShopifyQL, AOV trends, conversion friction and outcome measurement"],
+          ["02 / DESIGN","Reward journey, progressive feedback and responsive visual hierarchy"],
+          ["03 / ENGINEER","Liquid, metaobjects, HTML/CSS, JavaScript and Shadow DOM"],
+          ["04 / INTEGRATE","App-owned React interfaces, Flow fulfilment and checkout boundaries"],
+          ["05 / VALIDATE","Fallback behaviour, threshold tests, accessibility and documentation"]
+        ].map(([step,detail])=><article key={step} style={{padding:18,border:"1px solid #665740",background:"#131618"}}><h3 style={{fontSize:12,letterSpacing:1.2,color:"#d9b47c"}}>{step}</h3><p style={{fontSize:13,lineHeight:1.75,color:"#b6bbc3"}}>{detail}</p></article>)}
+      </div>
+      <p style={{marginTop:25,color:"#aeb1bb",fontSize:13,lineHeight:1.8}}>The goal is one editorial source for connected storefront messages, not unverified claims that changing a metaobject also rewrites Shopify Flow or shipping discounts. Product-card and checkout placements require their own verification. Historical commercial improvements must not be attributed to this specific new cart interface without post-launch evidence.</p>
+    </section>
     <section style={{marginTop:70}}>
       <p style={{letterSpacing:2,color:"#d9b47c",fontSize:12}}>PROBLEM → SOLUTION</p>
       <h2 style={{fontSize:36}}>Less promotional drift. More cohesive journeys.</h2>
