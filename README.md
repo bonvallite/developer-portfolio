@@ -80,12 +80,17 @@ A standalone, fictional weight-based wholesale price calculator is now included 
 
 See [Shopify Flow portfolio examples](./shopify-flow/README.md) for a fictional aggregate-weight workflow, Run code action, internal email Liquid, and customer notification Liquid. These are original educational templates, not exported employer workflows or production-ready Shopify configurations. A standalone Node test suite checks the example Flow logic.
 
+## Python automation
+
+[projects/samsung-health-csv-merger](./projects/samsung-health-csv-merger) is a Python and Pandas command-line tool that merges many CSV exports into one file, skips a common extra title row, and reports files it could not read. [Its tests](./tests/python/test_merge_samsung_health.py) use small synthetic CSVs, so no personal data is involved, and run in CI. [projects/python-notebook-review](./projects/python-notebook-review) reviews Jupyter training notebooks, and [skills/python-automation-portfolio](./skills/python-automation-portfolio) is a reusable workflow for turning scripts into documented, privacy-safe projects. See the [/python-automation](./app/python-automation/page.tsx) page on the site.
+
 ## Validation
 
 ```sh
 npm install
 npm test               # examples, theme sections, delivery rule guard, Flow, B2B simulator, Liquid structure
 npm run check:safety   # scan tracked files for credentials, store IDs and contact details
+npm run test:python    # Python tests (needs: pip install -r projects/samsung-health-csv-merger/requirements.txt)
 npx tsc --noEmit && npm run build
 ```
 
