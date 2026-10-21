@@ -216,6 +216,26 @@ Generalised from my own work on a live Shopify theme. The typeface, store, and f
 
 **Demonstrations:** the [brand font snippet](./theme/snippets/brand-fonts.liquid), the [typography standard](./theme/assets/typography-standards.css), and [their tests](./tests/typography.test.mjs), which check the 4px grid, the H2 and H3 pairing, the safety rule, preloading, and `font-display: swap`.
 
+## 16. Enhancing an app-owned cart inside an open Shadow DOM
+**Problem class:** A third-party subscription or cart app can own the drawer UI, rerender its markup after hydration, and isolate that markup inside a Shadow DOM. Normal theme CSS and one-time DOM edits can therefore miss the cart or disappear on the next app render.
+
+Generalised from recent storefront maintenance. This write-up deliberately excludes the store, app configuration, theme identifiers, live reward thresholds, product names, screenshots, and employer-owned source.
+
+**Approach:**
+1. **Keep ownership boundaries clear.** The app remains responsible for cart lines, quantity controls, subscriptions, totals, and checkout. Theme code only enhances presentation and communicates reward qualification.
+2. **Discover the real render root.** Search the document and nested **open** shadow roots for the cart. Do not try to bypass a closed ShadowRoot; use an app-supported extension surface instead.
+3. **Load styles where the cart actually lives.** When the cart is inside an open ShadowRoot, inject the public stylesheet into that same root rather than relying on document-level CSS.
+4. **Add stable hooks after hydration.** App-generated utility classes and inline styles can change. Add narrow `data-*` hooks to the title, subtotal, and total after each render, then scope typography and spacing rules to those hooks.
+5. **Keep reward data outside the runtime.** Thresholds and reward labels come from configuration. The browser only evaluates the current subtotal against ascending milestones; it does not hardcode campaign values or product names.
+6. **Preserve a fallback.** Hide the app's native promotional message only after the custom reward component renders successfully. If configuration, cart loading, or rendering fails, remove the enhancement and leave the native message visible.
+7. **Treat copy and spacing as maintainable states.** Reward text is generated from the current state, and small cart spacing overrides are isolated from checkout behaviour. Every change is documented with scope, reason, and validation.
+
+**Why this pattern is safer:** It works with the third-party app instead of replacing it. A rerender can reapply the hooks, failed custom UI falls back to the app, and campaign configuration can change without rewriting cart logic.
+
+**Demonstration:** [48 open Shadow DOM cart enhancer](./examples/48-open-shadow-cart-enhancer.js) shows open-root discovery, fictional threshold states, stable hook wiring, and a native-fallback guard. The values are synthetic and the code is independently authored for this portfolio.
+
+**Limitations:** Open Shadow DOM access is a browser implementation detail the app can change. A production version also needs app-specific lifecycle events, accessibility QA, mobile/desktop testing, and an approved integration surface.
+
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.
 - Real account, order, product, theme, or vendor identifiers and domain-specific internal rules are excluded.
