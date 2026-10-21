@@ -234,6 +234,8 @@ Generalised from recent storefront maintenance. This write-up deliberately exclu
 
 **Demonstration:** [48 open Shadow DOM cart enhancer](./examples/48-open-shadow-cart-enhancer.js) shows open-root discovery, fictional threshold states, stable hook wiring, and a native-fallback guard. The values are synthetic and the code is independently authored for this portfolio.
 
+**Development history:** [Read the full public-safe engineering history](./THIRD_PARTY_CART_HISTORY.md), from identifying the app-owned cart through Shadow DOM handling, stable hooks, reward-state design, spacing refinements, copy rules, fallback behaviour, documentation, and boundary QA.
+
 **Limitations:** Open Shadow DOM access is a browser implementation detail the app can change. A production version also needs app-specific lifecycle events, accessibility QA, mobile/desktop testing, and an approved integration surface.
 
 ## Publication boundaries
