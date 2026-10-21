@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Gift, ShoppingBag, Truck, Settings2, ShieldCheck } from "lucide-react";
 import { DEMO_OFFER, calculateRewardState, formatAUD } from "../../lib/rewards-engine.mjs";
+import RewardsVisuals from "./RewardsVisuals";
 
 type Offer = {
   enabled: boolean;
@@ -32,7 +33,7 @@ export default function RewardsEnginePage() {
     <Link href="/" style={{color:"#d9b47c",display:"inline-flex",gap:8,alignItems:"center"}}><ArrowLeft size={16}/> Back to portfolio</Link>
     <p style={{color:"#d9b47c",letterSpacing:2,fontSize:12,marginTop:65}}>SHOPIFY · METAOBJECTS · JAVASCRIPT · AUTOMATION</p>
     <h1 style={{fontSize:"clamp(40px,7vw,80px)",letterSpacing:"-3px",lineHeight:1.06,margin:"18px 0 20px"}}>One configuration.<br/><span style={{color:"#d9b47c"}}>Every customer touchpoint.</span></h1>
-    <p style={{color:"#afb4bd",maxWidth:810,lineHeight:1.8,fontSize:17}}>An interactive, independently authored illustration of a unified gift-with-purchase experience. Adjust fictional offer settings and watch the announcement banner, collection promotion and minicart respond together.</p>
+    <p style={{color:"#afb4bd",maxWidth:810,lineHeight:1.8,fontSize:17}}>An interactive, independently authored illustration of a unified gift-with-purchase experience. Adjust fictional offer settings and watch the announcement, product-card reference, collection promotion and minicart respond together.</p>
     <div style={{display:"flex",gap:10,flexWrap:"wrap",margin:"30px 0 24px"}}>
       {["Metaobject-led content","Liquid theme surfaces","React-aware cart enhancement","Post-checkout Shopify Flow"].map(s=><span key={s} style={{padding:"9px 13px",border:"1px solid #6e5940",color:"#edd0a2",fontSize:12}}>{s}</span>)}
     </div>
@@ -72,6 +73,16 @@ export default function RewardsEnginePage() {
         </>}
       </section>
     </div>
+    <section id="backend-diagram" style={{marginTop:72}} aria-labelledby="backend-title">
+      <p style={{color:"#d9b47c",fontSize:12,letterSpacing:2}}>BACKEND / SYSTEMS ARCHITECTURE</p>
+      <h2 id="backend-title" style={{fontSize:"clamp(30px,4vw,44px)",margin:"12px 0",lineHeight:1.16}}>From one editor to every experience — then to fulfilment.</h2>
+      <p style={{color:"#b7bcc3",maxWidth:850,lineHeight:1.8,fontSize:15}}>The diagram separates the editorial source of truth from the authoritative checkout and post-order rules. Solid arrows show customer-facing data flow and order fulfilment. The dashed line is a required configuration consistency check: Shopify Flow and delivery discounts are <strong>not automatically rewritten</strong> by changing a metaobject.</p>
+      <a href="/rewards-backend-architecture.svg" target="_blank" rel="noopener noreferrer" aria-label="Open enlarged backend architecture diagram" style={{display:"block",marginTop:22}}>
+        <img src="/rewards-backend-architecture.svg" alt="Configuration-led rewards architecture diagram: a metaobject drives Liquid and JavaScript storefront surfaces, while a completed order separately triggers Shopify Flow gift fulfilment and shipping discounts are enforced independently." style={{width:"100%",height:"auto",border:"1px solid #3e4c42",borderRadius:14,background:"#111b18"}}/>
+      </a>
+      <p style={{color:"#9da9a7",fontSize:12,marginTop:9}}>Click the architecture illustration to inspect a larger version. Conceptual, public-safe design — not a live Flow export.</p>
+    </section>
+    <RewardsVisuals offer={offer} subtotal={subtotal}/>
     <section style={{marginTop:75,padding:"clamp(22px,4vw,44px)",border:"1px solid #816a49",borderRadius:14,background:"linear-gradient(140deg,#24211c,#15191c)"}}>
       <p style={{letterSpacing:2,color:"#d9b47c",fontSize:12}}>END-TO-END OWNERSHIP / WHAT I BRING TO THE TABLE</p>
       <h2 style={{fontSize:"clamp(28px,4.5vw,48px)",lineHeight:1.16,margin:"16px 0 19px"}}>I connect the commercial problem to the code that solves it.</h2>
