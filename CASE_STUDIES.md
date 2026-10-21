@@ -238,6 +238,16 @@ Generalised from recent storefront maintenance. This write-up deliberately exclu
 
 **Limitations:** Open Shadow DOM access is a browser implementation detail the app can change. A production version also needs app-specific lifecycle events, accessibility QA, mobile/desktop testing, and an approved integration surface.
 
+## 17. Shipping webhooks supporting chargeback evidence
+
+**Problem class:** Payment, fulfilment, courier proof, and customer communications need to be reconciled into a traceable dispute response.
+
+**Contribution:** Developed a custom Cloudflare and Shopify integration to synchronise shipment tracking and delivery events, then used the linked records when reviewing disputes and preparing evidence narratives.
+
+**Outcome boundary:** Successful disputes were confirmed with courier-linked delivery events present in Shopify. That supports the evidence value of the integration; it does not establish that the webhook alone caused the issuer's decision. Private case details, commercial figures, and production code remain excluded.
+
+**Read more:** [Shipping webhooks and chargeback evidence](./CHARGEBACK_EVIDENCE.md), including event-time accuracy, recurring-payment evidence, notification limits, and the distinction between drafts and submissions.
+
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.
 - Real account, order, product, theme, or vendor identifiers and domain-specific internal rules are excluded.

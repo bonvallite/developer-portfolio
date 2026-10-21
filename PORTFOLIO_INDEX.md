@@ -9,7 +9,7 @@ How this repository maps to each area of Shopify and e-commerce engineering. All
 | 3 | Shopify Flow automation | Covered | [shopify-flow/](shopify-flow/README.md): Run code action, email Liquid, [patterns](shopify-flow/WORKFLOW_CATALOGUE.md) |
 | 4 | B2B commerce and weight-based pricing | Covered | [Simulator](B2B_DEMO.md) (`/b2b-demo`), [01 units](examples/01-weight-unit-normaliser.js), [10 eligibility](examples/10-cart-weight-eligibility.js), [15 tier validation](examples/15-discount-rule-validator.js), [42 GST invoice](examples/42-b2b-gst-invoice.js) |
 | 5 | API and webhook integrations | Covered | [02 HMAC](examples/02-webhook-signature.js), [03 idempotency](examples/03-idempotent-event-handler.js), [05 retry](examples/05-retry-backoff.js), [13 safe logging](examples/13-safe-log-redaction.js), [20 GraphQL pagination](examples/20-graphql-pagination.js) |
-| 6 | Cloudflare Workers | Not represented | No Workers source was found in the sources reviewed for this portfolio |
+| 6 | Cloudflare Workers | Partial | [Shipping webhook and chargeback evidence case study](CHARGEBACK_EVIDENCE.md); architecture and evidence review only, no production Worker source |
 | 7 | Fulfilment and tracking automation | Covered | [04 status mapping and ordering](examples/04-fulfilment-status-map.js), [33 stale parcels](examples/33-stale-tracking-events.js), [36 event keys](examples/36-stable-event-keys.js) |
 | 8 | Delivery calculator engineering | Covered | [41 zone calculator](examples/41-delivery-zone-calculator.js), [06 transit](examples/06-business-day-delivery.js), [19 calendar](examples/19-holiday-calendar.js) as the [single source of truth](tests/delivery-single-source.test.mjs), [26 zones](examples/26-shipping-zone-matcher.js), [39 wording](examples/39-shipping-estimate-copy.js) |
 | 9 | Metafields and metaobjects | Covered | [Category badge from a metaobject reference](theme/README.md#category-badge-data-model), [43 tag and metafield audit](examples/43-badge-source-audit.js), [07 metafield parsing](examples/07-product-metafield-parser.js), [40 metaobject fallback](examples/40-metaobject-image-fallback.liquid) |
@@ -79,6 +79,13 @@ Every card follows the same outline. **Evidence** lists only what this repositor
 - **Approach:** browser guard against re-sent purchase events on reload (11, with event keys from 36), order-versus-analytics reconciliation (12), a funnel report (27) and consistent UTM building (30).
 - **Evidence:** unit tests.
 - **Limitations:** no GA4 or GTM configuration is published, and GA4's own `transaction_id` deduplication still applies.
+
+### Shipping webhooks and chargeback evidence
+- **Objective:** connect shipping records with the evidence needed to review a payment dispute.
+- **Technologies:** Cloudflare Workers, Shopify APIs, courier webhooks.
+- **Contribution:** custom tracking and delivery synchronisation, evidence reconciliation, and response preparation.
+- **Evidence:** [Public case study](./CHARGEBACK_EVIDENCE.md) grounded in a review of order-level dispute statuses and fulfilment events.
+- **Limitations:** documentation only; private case records, commercial figures, final evidence submissions, issuer reasoning, and production source are not published. Successful disputes do not establish that the integration was the sole cause.
 
 ## Validation
 
