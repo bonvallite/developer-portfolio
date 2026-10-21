@@ -70,6 +70,63 @@ flowchart TD
     A -. validated synchronisation needed .-> G
 ```
 
+## Engineering walkthrough: from configuration to customer experience
+
+This project illustrates how one engineer combines design, data modelling, frontend implementation, third-party integration and post-purchase operations. The following is a **generalised technical pattern**, not a verbatim export of the employer's source.
+
+### A. Create the editorial source: Shopify metaobjects
+
+The promotion uses an editor-managed object to hold whether the offer is enabled, ordered spend milestones, reward descriptions, the short announcement line and terms. Product-specific metafield references can be added for contextual placements where needed, but the offer's threshold definitions should not be duplicated in dozens of theme sections.
+
+**Production pattern:** Liquid validates that an offer exists and that its thresholds are ordered; missing or disabled configuration hides the custom reward display. The Liquid bridge serialises safe, typed values into an inert JSON script for the cart runtime. Thresholds are converted to cents rather than comparing formatted strings.
+
+**Benefit:** A merchandiser can change the displayed reward names or amounts in one structured editor instead of changing a homepage banner, collection section and cart script individually. Backend promotion rules are a separate approval/check step.
+
+### B. Use the right presentation layer at each touchpoint
+
+| Customer journey stage | Presentation responsibility | Technology |
+| --- | --- | --- |
+| Homepage/announcement bar | Concise offer message | Shopify Liquid, reusable snippet, HTML/CSS |
+| Product discovery / card | Contextual offer placement *where connected* | Shopify theme sections, card templates and references |
+| Collection and seasonal page | Rich offer strip alongside relevant merchandising | Custom templates, sections, Liquid, CSS |
+| Third-party minicart | Current reward, exact spend remaining, three-stage progress rail | JavaScript, cart AJAX response, scoped styling, open Shadow DOM |
+| Checkout | Authoritative shipping and payment rules; not the minicart | Shopify-supported checkout/discount configuration |
+| After checkout | Add qualifying free gift items to an order | Shopify Flow and order processing |
+
+These are **distinct owners**, not one React application. In particular, the third-party minicart was rendered by React, but the custom progress component is a **plain JavaScript enhancement**, not a replacement React component.
+
+### C. Solve the React/Shadow DOM integration boundary
+
+The visible cart was not owned by the theme's native drawer. Editing that drawer would not have updated the customer's actual experience. The enhancement had to find the app-owned drawer, traverse **open** shadow roots and insert its own stylesheet into the same root.
+
+The generalised runtime follows this sequence:
+
+1. Read validated offer configuration produced by Liquid.
+2. Discover the app-rendered drawer; retry during app hydration, without crossing closed roots.
+3. Read the cart subtotal via Shopify's cart AJAX response.
+4. Compare the subtotal against real monetary thresholds, compute the next reward and remaining amount in cents, then position the visual rail.
+5. Inject a single accessible progression block and update its copy after quantity changes, rerenders, drawer reopen and relevant cart interactions.
+6. Apply stable scoped hooks for typography/spacing instead of relying on changing utility class combinations.
+7. Retain the app's own cart functionality and show its original promotional UI if configuration, discovery or rendering fails.
+
+**Design nuance:** The rail's three milestones can be spaced equally *visually* even where the monetary gaps are unequal. Reward qualification must use exact configured thresholds, never the percentage filled on the rail.
+
+**Engineering nuance:** A `MutationObserver` and idempotent render path handle React rehydration without duplicate components or aggressive DOM replacement. A custom enhancement must never seize control of checkout, subscriptions, cart totals or quantity logic from the vendor.
+
+### D. Complete the promise through Shopify Flow
+
+After purchase, an independently managed Shopify Flow workflow evaluates eligible orders and adds the qualifying gift lines for fulfilment. The storefront progression does **not** add gifts to the customer's cart or charge for them. Shipping qualification belongs to separate delivery/discount rules.
+
+The documented production pattern includes order event handling, reward threshold branches and line-item additions. A production safety review must verify the **current** Flow product mappings, qualifying subtotal basis, subscription renewals, idempotency and duplicate prevention. These details are not reproduced in the portfolio and should not be assumed to be automatically synchronised with the editorial metaobject.
+
+### E. Turn the implementation into an engineering practice
+
+The workflow is more than a mock-up: analyse funnel friction, design the progression, identify which system owns each page element, build reusable components, QA exact reward boundaries, preserve fallback paths, version-control documentation and measure the commercial response.
+
+Tests should cover empty and gift-card-only baskets, just-below/at/above every threshold, discounted totals, quantity changes, app rerenders, disabled configuration, mobile widths, subscription edge cases and native fallback.
+
+The portfolio [interactive demo](app/rewards-engine/page.tsx) now lets visitors change a fictional offer and compare **homepage, product-card, collection and minicart** presentation. Its order-workflow panel is descriptive only. [Pure JavaScript calculations](lib/rewards-engine.mjs) and [tests](tests/rewards-engine.test.mjs) demonstrate the state logic independently of any client integration.
+
 ## Why distinct layers matter
 
 **Liquid:** Reads storefront-visible structured data and renders theme-native content with explicit empty/disabled states. Do not scatter threshold literals across multiple section schemas.
