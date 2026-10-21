@@ -5,11 +5,22 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Gift, ShoppingBag, Truck, Settings2, ShieldCheck } from "lucide-react";
 import { DEMO_OFFER, calculateRewardState, formatAUD } from "../../lib/rewards-engine.mjs";
 
+type Offer = {
+  enabled: boolean;
+  name: string;
+  giftThreshold: number;
+  giftLabel: string;
+  shippingThreshold: number;
+  bonusThreshold: number;
+  bonusLabel: string;
+  terms: string;
+};
+
 export default function RewardsEnginePage() {
-  const [offer, setOffer] = useState({ ...DEMO_OFFER });
+  const [offer, setOffer] = useState<Offer>({ ...DEMO_OFFER });
   const [subtotal, setSubtotal] = useState(180);
   const state = useMemo(() => calculateRewardState(offer, subtotal), [offer, subtotal]);
-  const [surface, setSurface] = useState<"home"|"collection"|"cart">("cart");
+  const [surface, setSurface] = useState<"home"|"product"|"collection"|"cart">("cart");
   const input = (label: string, field: "giftThreshold"|"shippingThreshold"|"bonusThreshold") => (
     <label style={{display:"grid",gap:7,fontSize:13,color:"#d6d6db"}}>{label}
       <input aria-label={label} type="number" min={1} max={9999} value={offer[field]}
@@ -45,10 +56,11 @@ export default function RewardsEnginePage() {
           <input type="range" min="0" max="450" step="5" value={subtotal} onChange={e=>setSubtotal(Number(e.target.value))}/>
         </label>
         <div role="group" aria-label="Preview surface" style={{display:"flex",gap:6,marginBottom:16,flexWrap:"wrap"}}>
-          {(["home","collection","cart"] as const).map(key=><button key={key} type="button" aria-pressed={surface===key} onClick={()=>setSurface(key)} style={{cursor:"pointer",background:surface===key?"#d9b47c":"#2a2f34",color:surface===key?"#141414":"white",padding:"9px 12px",border:0,borderRadius:7,textTransform:"capitalize"}}>{key==="home"?"Homepage":key==="collection"?"Collection":"Minicart"}</button>)}
+          {(["home","product","collection","cart"] as const).map(key=><button key={key} type="button" aria-pressed={surface===key} onClick={()=>setSurface(key)} style={{cursor:"pointer",background:surface===key?"#d9b47c":"#2a2f34",color:surface===key?"#141414":"white",padding:"9px 12px",border:0,borderRadius:7,textTransform:"capitalize"}}>{key==="home"?"Homepage":key==="product"?"Product card":key==="collection"?"Collection":"Minicart"}</button>)}
         </div>
         {!state.valid ? <p role="alert" style={{color:"#ffbcaa"}}>Invalid thresholds or labels. Promotional messages are hidden until the settings are corrected.</p> : !state.enabled ? <p>Promotion disabled. Customer messaging is hidden.</p> : <>
           {surface==="home" && <div style={{background:"#d9b47c",color:"#151515",padding:22,borderRadius:10,textAlign:"center"}}><p style={{fontSize:12,letterSpacing:1}}>SEASONAL REWARDS</p><h3 style={{fontSize:23}}>Shop more. Enjoy more.</h3><p>Receive {offer.giftLabel} when you spend {formatAUD(offer.giftThreshold)}.</p></div>}
+          {surface==="product" && <div style={{display:"grid",gridTemplateColumns:"minmax(105px,1fr) 2fr",gap:16,background:"#f4f1e9",color:"#1b2422",borderRadius:10,padding:17}}><div style={{borderRadius:8,background:"linear-gradient(150deg,#d8ceb9,#eee8da)",minHeight:142,display:"grid",placeItems:"center",color:"#536351"}}><ShoppingBag size={40} strokeWidth={1.2}/></div><div><p style={{fontSize:11,letterSpacing:1.2}}>ILLUSTRATIVE PRODUCT CARD</p><h3 style={{fontSize:19,margin:"12px 0 9px"}}>Butcher's seasonal selection</h3><p style={{fontSize:13,lineHeight:1.65}}>Spend {formatAUD(offer.giftThreshold)} to unlock {offer.giftLabel}.</p><span style={{fontSize:12,fontWeight:700}}>Browse selection →</span></div></div>}
           {surface==="collection" && <div style={{border:"1px solid #9d7f57",borderRadius:10,padding:25,background:"#24231f"}}><p style={{fontSize:12,color:"#d9b47c"}}>CURATED COLLECTION</p><h3 style={{fontSize:26}}>Unlock something extra.</h3><p style={{lineHeight:1.7}}>Spend {formatAUD(offer.giftThreshold)} for {offer.giftLabel}. Spend {formatAUD(offer.bonusThreshold)} for {offer.bonusLabel} too.</p><span style={{display:"inline-flex",alignItems:"center",gap:6,color:"#d9b47c"}}>Explore collection <ArrowRight size={16}/></span></div>}
           {surface==="cart" && <div style={{background:"#f4f1e9",color:"#1b2422",borderRadius:10,padding:24}}>
             <p style={{fontSize:12,letterSpacing:1}}>YOUR CART · REWARDS</p><h3 style={{fontSize:22}}>{state.next? `Add ${formatAUD(state.remaining)} to unlock your next reward` : "All three rewards unlocked!"}</h3>
@@ -82,7 +94,21 @@ export default function RewardsEnginePage() {
         {[["01 / The problem","Promotional messages can drift between homepage, collections, a third-party cart and fulfilment rules."],["02 / Central configuration","A Shopify metaobject models reward thresholds, labels and terms once for every storefront presentation surface."],["03 / The technical challenge","An app-owned cart may render in an open ShadowRoot and rerender through React hydration. Enhancements must not take over transactional behaviour."],["04 / The reliable pattern","Use Liquid for theme content, scoped JavaScript for app integration, and a distinct post-checkout automation path with eligibility and duplicate guards."]].map(([heading,body])=><article key={heading} style={{padding:24,background:"#1a1e23",border:"1px solid #393d42"}}><h3 style={{fontSize:18,color:"#d9b47c"}}>{heading}</h3><p style={{color:"#adb1ba",lineHeight:1.8,fontSize:14}}>{body}</p></article>)}
       </div>
     </section>
-    <section style={{marginTop:60,padding:25,border:"1px solid #6e5940",borderRadius:12}}>
+    <section style={{marginTop:70}}>
+      <p style={{letterSpacing:2,color:"#d9b47c",fontSize:12}}>BEHIND THE EXPERIENCE / POST-CHECKOUT AUTOMATION</p>
+      <h2 style={{fontSize:"clamp(26px,4vw,37px)",margin:"14px 0"}}>The storefront explains. The order workflow fulfils.</h2>
+      <p style={{color:"#afb4bd",lineHeight:1.8,maxWidth:830}}>The cart progress rail is only an information layer. In the production engineering pattern, Shopify Flow evaluates the order after checkout and handles qualifying gifts. Shipping is enforced separately. Changing editorial offer data does not automatically change these independent rules.</p>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(190px,1fr))",gap:12,marginTop:23}}>
+        {[
+          {step:"01",title:"Order placed",detail:"Checkout remains under Shopify's supported order lifecycle."},
+          {step:"02",title:"Evaluate eligibility",detail:"Recheck spend, exclusions, subscriptions and prior processing state."},
+          {step:"03",title:"Add eligible gift",detail:"Shopify Flow adds qualifying line items using the authorised order action."},
+          {step:"04",title:"Fulfil and verify",detail:"Record processing, guard against repeat additions and pack the gift."}
+        ].map(item=><div key={item.step} style={{border:"1px solid #60503a",padding:19,background:"#1a1e23"}}><span style={{fontSize:12,color:"#d9b47c"}}>{item.step} / AUTOMATION</span><h3 style={{fontSize:19,margin:"14px 0 7px"}}>{item.title}</h3><p style={{color:"#adb4bd",fontSize:13,lineHeight:1.75}}>{item.detail}</p></div>)}
+      </div>
+      <p style={{color:"#adb4bd",fontSize:12,marginTop:20}}>Conceptual workflow only: no live orders, gifts or discounts are changed by this demonstration. Actual Flow settings require independent verification.</p>
+    </section>
+    <section style={{marginTop:60,padding:25,border:"1px solid #6e5940",borderRadius:12}}> 
       <h2 style={{display:"flex",gap:12,alignItems:"center",fontSize:22}}><ShieldCheck/> What this demonstration does — and does not — prove</h2>
       <p style={{color:"#b6bac3",lineHeight:1.8}}>Every setting and reward in this interactive demo is fictional. The visual surfaces share one local JavaScript configuration; there is no active Shopify connection, production theme code, shipping discount, third-party cart modification or Shopify Flow execution. In a production integration, gift fulfilment and shipping eligibility must be validated independently against authoritative platform rules. AOV improvement is an optimisation hypothesis, not a measured outcome.</p>
       <p style={{color:"#d9b47c",fontSize:14}}>Study the reusable implementation in GitHub: <a href="https://github.com/bonvallite/developer-portfolio/blob/main/lib/rewards-engine.mjs" style={{textDecoration:"underline"}}>rewards engine</a> · <a href="https://github.com/bonvallite/developer-portfolio/blob/main/THIRD_PARTY_CART_HISTORY.md" style={{textDecoration:"underline"}}>Shadow DOM engineering history</a></p>
