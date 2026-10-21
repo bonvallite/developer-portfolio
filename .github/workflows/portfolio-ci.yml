@@ -18,5 +18,12 @@ jobs:
       - run: npm install --no-audit --no-fund
       - name: Unit tests (examples, Flow Run code, B2B simulator, Liquid structure)
         run: npm test
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Python tests (Samsung Health CSV merger)
+        run: |
+          python -m pip install -r projects/samsung-health-csv-merger/requirements.txt
+          python -m unittest discover -s tests/python -v
       - run: npx tsc --noEmit
       - run: npm run build

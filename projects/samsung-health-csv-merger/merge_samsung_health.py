@@ -5,9 +5,11 @@ import pandas as pd
 
 def merge(input_dir: Path, output: Path):
     sources = sorted(input_dir.glob("com.samsung.*.csv"))
+    report_path = output.with_name(output.stem + "_report.csv")
+    own_files = {output.resolve(), report_path.resolve()}  # never read our own output back in
     frames, report = [], []
     for path in sources:
-        if path.resolve() == output.resolve():
+        if path.resolve() in own_files:
             continue
         try:
             with path.open(encoding="utf-8-sig") as stream:
@@ -23,7 +25,7 @@ def merge(input_dir: Path, output: Path):
         except (OSError, UnicodeError, ValueError, pd.errors.ParserError) as exc:
             report.append((path.name, "failed", 0, str(exc)))
     output.parent.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(report, columns=["file", "status", "rows", "error"]).to_csv(output.with_name(output.stem + "_report.csv"), index=False)
+    pd.DataFrame(report, columns=["file", "status", "rows", "error"]).to_csv(report_path, index=False)
     if not frames:
         raise RuntimeError("No valid Samsung Health CSV exports found")
     pd.concat(frames, ignore_index=True, sort=False).to_csv(output, index=False, encoding="utf-8-sig")

@@ -15,4 +15,4 @@ description: Create, audit, document and showcase safe Python automation project
 7. Inspect GitHub/Vercel destinations before writing. Publishing a skill to GitHub does not install it on Vercel.
 8. Present Vercel skills as public portfolio case studies, not private-data processing services.
 
-See scripts/merge_health.py and references/portfolio-checklist.md.
+See scripts/merge_health.py (kept identical to projects/samsung-health-csv-merger/merge_samsung_health.py; a test checks this) and references/portfolio-checklist.md.
