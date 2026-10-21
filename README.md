@@ -72,6 +72,10 @@ Read [Engineering case studies](./CASE_STUDIES.md) for explanations of storefron
 
 Shopify Online Store 2.0 theme files in [theme/](./theme/README.md): a homepage template (hero slideshow, seasonal banner, and featured collection), a seasonal landing page that switches between Christmas, Boxing Day, and EOFY every year, a campaign landing template, and a category badge read from a metaobject reference. All have rendering tests and are labelled illustrative.
 
+## Interactive rewards-engine case study
+
+The [interactive rewards-engine demonstration](./app/rewards-engine/page.tsx) shows a fictional configuration powering homepage messaging, collection promotions and a three-milestone cart-progress preview. See [architecture, separation of responsibilities and QA notes](./REWARDS_ENGINE_CASE_STUDY.md), [pure JavaScript](./lib/rewards-engine.mjs) and [boundary tests](./tests/rewards-engine.test.mjs). This is a generalised public-safe teaching example, not employer code or an actual Shopify/Flow connection; it does not claim measured AOV uplift.
+
 ## Interactive B2B simulator
 
 A standalone, fictional weight-based wholesale price calculator is now included at [`/b2b-demo`](./app/b2b-demo/page.tsx). See [B2B_DEMO.md](./B2B_DEMO.md) for the architecture, usage notes, and production boundaries. It includes Node.js unit tests and [GitHub Actions CI](./.github/workflows/portfolio-ci.yml). The route will be publicly usable once the portfolio's Next.js deployment successfully builds and publishes the latest commit.
