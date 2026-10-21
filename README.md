@@ -12,6 +12,10 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 - **Delivery estimates:** Example date calculations distinguishing parcel movement from residential delivery days.
 - **Analytics quality:** Event deduplication, ecommerce transaction validation, and reconciliation techniques.
 
+## CTA and conversion-leak audit case study
+
+The [conversion audit case study](./app/conversion-audit/page.tsx) describes a public-safe approach to diagnosing Shopify purchase-funnel friction: CTA functionality, product discovery, mobile UX, promotional eligibility messaging, cart-to-checkout continuity, event instrumentation and traffic-quality segmentation. The portfolio homepage links to `/conversion-audit`. This is a methodology-focused case study; internal conversion counts, private commercial results and employer source code are deliberately excluded. It does not assert a measured uplift or claim all recommendations shipped.
+
 ## Project showcase (case studies, not employer source code)
 
 ### Shopify storefront improvements
