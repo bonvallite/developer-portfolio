@@ -74,6 +74,10 @@ Shopify Online Store 2.0 theme files in [theme/](./theme/README.md): a homepage 
 
 ## Interactive rewards-engine case study
 
+![Rewards architecture illustration](public/rewards-backend-architecture.svg)
+
+The case study now includes an [editable backend architecture diagram](public/rewards-backend-architecture.svg) and four [synchronised frontend visual mock-ups](./app/rewards-engine/RewardsVisuals.tsx) for homepage, product discovery, collections and minicart. All examples use synthetic values and do not expose client assets or code.
+
 The [interactive rewards-engine demonstration](./app/rewards-engine/page.tsx) shows a fictional configuration powering homepage messaging, collection promotions and a three-milestone cart-progress preview. See [architecture, separation of responsibilities and QA notes](./REWARDS_ENGINE_CASE_STUDY.md), [pure JavaScript](./lib/rewards-engine.mjs) and [boundary tests](./tests/rewards-engine.test.mjs). This is a generalised public-safe teaching example, not employer code or an actual Shopify/Flow connection; it does not claim measured AOV uplift.
 
 ## Interactive B2B simulator
