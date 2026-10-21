@@ -387,3 +387,42 @@ test("47 maps checkout_completed to a GA4 purchase and skips events without an o
   handler({ data: { checkout: { lineItems: [] } } });
   assert.deepEqual(dataLayer.map(entry => entry.event ?? "clear"), ["clear", "purchase"]);
 });
+
+
+test("48 discovers an open-shadow cart and keeps reward states configuration-driven", async () => {
+  const { findAcrossOpenRoots, rewardState, shouldHideNativeFallback } = await ex("48-open-shadow-cart-enhancer");
+
+  const drawer = { kind: "drawer" };
+  const shadow = {
+    querySelector: selector => selector === "#cart-drawer" ? drawer : null,
+    querySelectorAll: () => [],
+  };
+  const documentLike = {
+    querySelector: () => null,
+    querySelectorAll: () => [{ shadowRoot: shadow }],
+  };
+  assert.equal(findAcrossOpenRoots(documentLike, "#cart-drawer"), drawer);
+
+  const config = {
+    tierOneCents: 10000,
+    shippingCents: 15000,
+    tierTwoCents: 25000,
+    giftOne: "Sample reward",
+    giftTwo: "Bonus reward",
+  };
+  assert.deepEqual(rewardState(9999, config), {
+    stage: "tier_one_next", remainingCents: 1, unlocked: []
+  });
+  assert.deepEqual(rewardState(10000, config), {
+    stage: "shipping_next", remainingCents: 5000, unlocked: ["Sample reward"]
+  });
+  assert.deepEqual(rewardState(15000, config), {
+    stage: "tier_two_next", remainingCents: 10000, unlocked: ["Sample reward", "free shipping"]
+  });
+  assert.deepEqual(rewardState(25000, config), {
+    stage: "complete", remainingCents: 0, unlocked: ["Sample reward", "free shipping", "Bonus reward"]
+  });
+  assert.equal(shouldHideNativeFallback(false), false);
+  assert.equal(shouldHideNativeFallback(true), true);
+  assert.throws(() => rewardState(1, { ...config, shippingCents: 5000 }), /ascending/);
+});
