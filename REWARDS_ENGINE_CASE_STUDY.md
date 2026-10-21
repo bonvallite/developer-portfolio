@@ -139,6 +139,19 @@ The portfolio [interactive demo](app/rewards-engine/page.tsx) now lets visitors 
 
 **Delivery discounts and checkout:** The marketing milestone alone does not grant delivery eligibility. Shipping qualification must be implemented and enforced by the Shopify discount/rate rules for the applicable region, basket and subscription context. Checkout extensions are a distinct supported surface and cannot be assumed to share theme Liquid.
 
+## Visual architecture and frontend mock-ups
+
+![Configuration-led rewards architecture](public/rewards-backend-architecture.svg)
+
+The [SVG architecture diagram](public/rewards-backend-architecture.svg) is editable, version-controlled and viewable at full size. It separates two important responsibilities:
+
+- **Storefront presentation:** editor-managed offer → Liquid validation/serialised values → JavaScript calculation → homepage, product-card placement where integrated, collection/campaign templates and third-party minicart.
+- **Authoritative fulfilment:** completed order → Shopify Flow eligibility → qualifying gift line additions → fulfilment. Shipping discounts are enforced through separate rules. A **dashed validation line** is a reminder to reconcile those rules with the editorial offer; it does not depict automatic synchronisation.
+
+The interactive [frontend mock-up gallery](/rewards-engine#frontend-reference) contains four high-fidelity, responsive **fictional** visual references: announcement/homepage, product card, collection campaign and minicart progression. Their amounts, labels and reward states all consume the *same local configuration object* edited at the top of the demo.
+
+The minicart mock-up visually echoes an approved internal progression concept (headline, three milestones, progress rail, subtotal and CTAs) but is independently authored with synthetic product names and illustrations. The original internal HTML mock-up, live brand assets, operational thresholds, fulfilment IDs and private code have **not** been published. The mock-ups are design references only, not functioning Shopify checkout or production screenshots.
+
 ## Demo and test coverage
 
 - [Interactive simulator](/rewards-engine) — independently authored Next.js presentation with editable synthetic offer, homepage, collection and minicart previews.
