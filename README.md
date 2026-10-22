@@ -6,6 +6,8 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 **Google Developer profile:** https://g.dev/bonvallite
 
+**Wikipedia contributions:** https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite
+
 ## Engineering focus
 
 - **Shopify theme engineering:** Liquid sections, responsive product detail pages, metafields and metaobjects, accessibility, SEO, and page performance.
