@@ -2,6 +2,15 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-10-22 — Explicit app ownership and bidirectional architecture
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/cartoncloud-integration-case-study-20261022`, Vercel project `developer-portfolio`.
+- **Affected files:** `app/cartoncloud-integration/page.tsx`, `app/page.tsx`, `CARTONCLOUD_INTEGRATION.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Reframed the hero, technical explanation and homepage feature to distinguish the custom Cloudflare Worker application built by the developer from the Shopify–CartonCloud integration workflows built by the same developer. Replaced the ambiguous one-way process diagram with an accessible, responsive conceptual diagram using two-way arrows, two highlighted contribution stages, and an explicit return path into Shopify tracking events and order metafields. Updated relevant inline source comments to explain the diagram's relationship to the underlying application.
+- **Reason:** Recruiters should understand both app development and end-to-end integration expertise without mistaking the app for a Shopify App Store listing or implying CartonCloud itself was developed.
+- **Validation:** Existing PR head `eedde3054f37bc050e476fc232769d1ef48f5696` had a successful GitHub Actions run and READY Vercel preview. New commits saved via the GitHub connector, with expected text replacements checked; the updated head's CI, Vercel preview and public-site QA are pending before production publication.
+- **Scope:** Portfolio source only. No Shopify production theme or Cloudflare Worker changes. No screenshot, real order IDs, credentials or employer-owned integration code published.
+
 ## 2026-10-22 — CartonCloud custom integration case study
 
 - **Target:** `bonvallite/developer-portfolio`, public Next.js portfolio connected to Vercel.
