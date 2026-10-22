@@ -19,3 +19,13 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Reason:** Make the owner's public Google Developer profile accessible from the portfolio.
 - **Validation:** Confirmed the original contact markup, added a unique HTTPS URL with `target="_blank"` and `rel="noopener noreferrer"`, and preserved the existing contact links. Remote saved-file check and deployment status are separate follow-up checks, not a claim of a completed browser test.
 - **Release:** Committed to `main`; Vercel production deployment status to be confirmed.
+
+## 2026-10-22 — Wikipedia contributor profile
+
+- **Target:** `bonvallite/developer-portfolio` on `main`, connected to the Vercel portfolio project.
+- **Affected files:** `app/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a Wikipedia contributor button linking to the public `Special:Contributions/Bonvallite` page, beside the Google Developer profile button. Existing social and contact links were preserved.
+- **Reason:** Surface Wikipedia editing contributions as part of the portfolio's public professional presence, without asserting editor status, edit counts or article authorship beyond the linked history.
+- **Inline documentation:** Existing contact-section comment documents public external destinations, independent ownership, and safe new-tab link attributes.
+- **Validation:** Checked source before editing, used the supplied HTTPS URL and `noopener noreferrer`. Saved-file verification and deployed-site testing to be recorded separately; no build or browser test claimed at this stage.
+- **Release:** Main branch commit; production deployment verification pending.
