@@ -23,7 +23,7 @@ Only the homepage is implemented — there are no customer accounts, product det
 | Storytelling hero | Three manually selectable story panels; accessible buttons, stable dimensions | Mock headlines and stock photography |
 | Shop by occasion | Four visual panels filter the collection and scroll to discovery | All groupings are invented |
 | Product browse | Filter tabs, sample prices, quick add | No Shopify Admin or Storefront API |
-| Demo bag | Add, remove, quantity changes, calculated demo subtotal | No checkout, fulfilment, payments or local persistence |
+| Demo bag | Add, remove, quantity changes and demo subtotal; keyboard focus containment, Escape close and focus restoration | No checkout, fulfilment, payments or local persistence |
 | Marbling explorer | Accessible range input, semantic score descriptions | Educational illustration, not product grading data |
 | Delivery reassurance | Four sample postcode responses; validation and live announcements | No real delivery eligibility, prices, service promises or logistics logic |
 | Responsive navigation | Mobile menu and in-page anchors | No copied theme navigation schema |
