@@ -95,3 +95,12 @@ npx tsc --noEmit && npm run build
 ```
 
 [GitHub Actions](./.github/workflows/portfolio-ci.yml) runs the same checks on every push and pull request. The safety scan catches common credential formats but does not replace a human review of ownership and confidentiality.
+
+
+## Eve Curls: international European Markets case study (October 2026)
+
+The [Eve Curls international Shopify Markets case study](./app/eve-curls/page.tsx) outlines the developer's work on a multi-country European ecommerce approach operating within one Shopify ecosystem. Markets discussed: the UK, Switzerland, Netherlands, Italy, France and Spain. The portfolio covers market-level language and currency contexts, market-aware product catalogues, localised landing-page content, domain planning and common theme components with regional presentation overrides.
+
+The [interactive preview](./app/eve-curls/MarketPreview.tsx) deliberately uses six fictional market configurations, translated example copy, illustrative products, fixed mock prices and non-resolving `.invalid` example URLs. It does **not** query or expose any Eve Curls catalogue, theme, Shopify configuration, live domain route, currency conversion, tax calculation or real customer data. Switzerland is shown using a German-language sample, while French and Italian are noted as potential alternatives. The diagram at [public/portfolio/eve-curls-markets.svg](./public/portfolio/eve-curls-markets.svg) is independently authored.
+
+Technical distinction: Shopify supports market-based theme customisations on a shared published theme; this should not be presented as separate simultaneously published themes within one shop. User-described project scope is not equivalent to an audited live market-by-market configuration or a measured commercial outcome.
