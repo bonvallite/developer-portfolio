@@ -95,3 +95,14 @@
 .credential-facts dd{margin:0;color:#c2c1c6}
 .credential-body .credential-note{font-size:12px;color:#9ea1aa;margin-top:19px}
 @media(max-width:650px){.credential-section{padding-top:55px;padding-bottom:58px}.credential-card{flex-direction:column;gap:16px}.credential-mark{height:54px;width:54px}.credential-facts>div{grid-template-columns:1fr;gap:4px}.credential-detail-section{padding-top:50px}}
+
+/* Owner-provided community and running interests; these compact cards use the existing
+   dark portfolio design and stack at narrow widths. Photos are not referenced until
+   durable first-party image hosting is verified. */
+.personal-section{padding-top:70px;padding-bottom:80px}
+.personal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.personal-grid article{border:1px solid #504538;background:linear-gradient(125deg,#201f1f,#14181d);padding:clamp(24px,3vw,38px)}
+.personal-grid h3{font-size:clamp(21px,2.6vw,29px);margin:18px 0 12px}
+.personal-grid p{font-size:14px;line-height:1.85;color:#b3b6bd}
+.personal-note{font-size:12px;line-height:1.7;color:#969aa3;margin-top:20px}
+@media(max-width:650px){.personal-grid{grid-template-columns:1fr}.personal-section{padding-top:45px;padding-bottom:60px}}
