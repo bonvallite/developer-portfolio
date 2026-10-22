@@ -63,3 +63,14 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Deployment verification:** Vercel reported the latest production deployment of commit `618894a1e9cfc09284dfda967a709f19c77accf9` as `READY`. GitHub's Vercel status check for that commit reported `success`.
 - **Limitations:** Live authenticated HTML retrieval failed with a Vercel 403 access error at the deployment alias/protection bypass; a separate public web fetch also could not access those routes. Therefore actual browser rendering, link clicks, mobile layouts, and runtime errors are **not independently verified**. No local TypeScript/test/build run was performed during this final pass. Production readiness is based on Vercel's deployment status, not a visual QA claim.
 - **Release:** This documentation-only change is committed to `main`, triggering another Vercel production deployment. Check the newest deployment's status separately; the prior known-good build is the commit above.
+
+
+## 2026-10-22 — Community involvement and running section
+
+- **Target:** `bonvallite/developer-portfolio`, Git-linked Vercel production site.
+- **Affected files:** `app/page.tsx`, `app/globals.css`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a responsive Beyond the Code homepage section documenting self-reported volunteering with DEVCON, community outreach and medical missions, plus an active running lifestyle. The accompanying original photos were provided by the owner but are **not yet published** because permanent binary asset upload to the connected repository was unavailable in this session.
+- **Why:** Present the owner's community contribution and work–life balance without inventing volunteer roles, specific race outcomes or unverified sporting achievements.
+- **Inline documentation:** The homepage comment separates owner-provided claims from photographic evidence. The CSS comment documents responsive layout and deliberately absent photo URLs.
+- **Validation:** Inspected existing source, README, changelog and CSS before editing; preserved original sections and inserted new markup/styles. Saved-file re-read, Vercel build results and browser QA to be checked separately. No image upload, asset deployment or visual QA is claimed.
+- **Pending:** Upload all six user-supplied original photographs to durable project image hosting, display them across hero, About and personal-interest sections with responsive sizing and accessible alt text, then test desktop and mobile. Do not use expiring Canva preview URLs as permanent site assets.
