@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="785" viewBox="0 0 1440 785" role="img" aria-labelledby="diagram-title diagram-desc">
+<title id="diagram-title">Configuration-led rewards architecture: storefront and post-checkout fulfilment</title>
+<desc id="diagram-desc">An editor-managed Shopify metaobject is validated and read through Liquid and JavaScript to render connected storefront messaging in the announcement, collection, product placement and app-owned minicart. Separately, after an order is placed, Shopify Flow evaluates eligibility, adds gift items and hands off to fulfilment. Delivery discounts are enforced separately. Dotted lines indicate a necessary consistency check rather than automatic propagation.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#121d1a"/><stop offset="1" stop-color="#0c1113"/></linearGradient>
+<linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#24332c"/><stop offset="1" stop-color="#17221e"/></linearGradient>
+<marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#7ca78f"/></marker>
+<marker id="arrowGold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#c6a36e"/></marker>
+<marker id="arrowGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#7d8687"/></marker>
+<style>
+text{font-family:Arial,Helvetica,sans-serif} .eyebrow{font-size:13px;font-weight:700;letter-spacing:2.4px;fill:#bbaa87}.heading{font-size:22px;font-weight:700;fill:#fbf7ed}.body{font-size:15px;fill:#cad5cf}.small{font-size:13px;fill:#a9b7af}.number{font-size:14px;font-weight:700;fill:#ddbb85}.node{fill:url(#panel);stroke:#55735e;stroke-width:1.5}.line{stroke:#7ca78f;stroke-width:3;fill:none;marker-end:url(#arrowGreen)}.goldLine{stroke:#c6a36e;stroke-width:3;fill:none;marker-end:url(#arrowGold)}.dotted{stroke:#868b80;stroke-width:2.5;fill:none;stroke-dasharray:8 8;marker-end:url(#arrowGrey)}
+</style>
+</defs>
+<rect width="1440" height="785" fill="url(#bg)" rx="18"/>
+<rect x="24" y="24" width="1392" height="348" rx="17" fill="#1b2822" fill-opacity=".48" stroke="#385744"/>
+<rect x="24" y="402" width="1392" height="294" rx="17" fill="#302821" fill-opacity=".39" stroke="#806842"/>
+<text x="52" y="62" class="eyebrow">01  /  EDITORIAL CONFIGURATION &amp; STOREFRONT</text>
+<text x="52" y="90" class="body">One structured promotion powers multiple customer-facing presentations</text>
+<rect class="node" x="52" y="123" width="309" height="186" rx="14"/>
+<text x="76" y="157" class="number">SOURCE OF EDITORIAL TRUTH</text>
+<text x="76" y="189" class="heading">Shopify Metaobject</text>
+<text x="76" y="216" class="body">Enabled · gift labels</text>
+<text x="76" y="241" class="body">Spend thresholds · terms</text>
+<rect x="75" y="260" width="249" height="30" rx="7" fill="#365b45"/>
+<text x="199" y="280" text-anchor="middle" fill="#eff8ee" font-family="Arial" font-size="13" font-weight="700">Edit once for linked messages</text>
+<path class="line" d="M361 216 H418"/>
+<rect class="node" x="418" y="123" width="319" height="186" rx="14"/>
+<text x="442" y="157" class="number">SAFE PRESENTATION BRIDGE</text>
+<text x="442" y="189" class="heading">Liquid + JavaScript</text>
+<text x="442" y="216" class="body">Validate · convert to cents</text>
+<text x="442" y="241" class="body">Read cart · calculate next goal</text>
+<text x="442" y="272" class="small">App-owned React remains in control</text>
+<path class="line" d="M737 216 H792"/>
+<rect x="792" y="123" width="595" height="186" rx="14" fill="#1f3028" stroke="#648772" stroke-width="1.5"/>
+<text x="816" y="156" class="number">CONNECTED FRONTEND TOUCHPOINTS</text>
+<rect x="814" y="173" width="268" height="49" rx="8" fill="#324b3d"/>
+<text x="836" y="204" font-size="17" fill="#fff9e9" font-family="Arial">Header / homepage banner</text>
+<rect x="1094" y="173" width="270" height="49" rx="8" fill="#324b3d"/>
+<text x="1114" y="204" font-size="17" fill="#fff9e9" font-family="Arial">Product-card placement*</text>
+<rect x="814" y="232" width="268" height="49" rx="8" fill="#324b3d"/>
+<text x="836" y="263" font-size="17" fill="#fff9e9" font-family="Arial">Collections / campaigns</text>
+<rect x="1094" y="232" width="270" height="49" rx="8" fill="#324b3d"/>
+<text x="1114" y="263" font-size="17" fill="#fff9e9" font-family="Arial">Shadow DOM minicart</text>
+<text x="52" y="349" class="small">* Product-card and checkout placements need individual integration and verification.</text>
+<text x="52" y="443" class="eyebrow">02  /  ORDER-LEVEL ENFORCEMENT &amp; FULFILMENT</text>
+<text x="52" y="468" class="body">Separate authoritative business rules, not controlled by the frontend visual component</text>
+<rect x="52" y="503" width="232" height="122" rx="12" fill="#393127" stroke="#b89562"/>
+<text x="70" y="529" class="number">TRIGGER</text>
+<text x="70" y="557" class="heading">Order placed</text>
+<text x="70" y="581" class="body">Checkout completed</text>
+<path class="goldLine" d="M284 563 H325"/>
+<rect x="325" y="503" width="251" height="122" rx="12" fill="#393127" stroke="#b89562"/>
+<text x="345" y="529" class="number">AUTOMATION</text>
+<text x="345" y="557" class="heading">Shopify Flow</text>
+<text x="345" y="581" class="body">Check order eligibility</text>
+<text x="345" y="601" class="small">Discounts · renewals · duplicates</text>
+<path class="goldLine" d="M576 563 H618"/>
+<rect x="618" y="503" width="241" height="122" rx="12" fill="#393127" stroke="#b89562"/>
+<text x="639" y="529" class="number">REWARD ACTION</text>
+<text x="639" y="557" class="heading">Add eligible gifts</text>
+<text x="639" y="582" class="body">Post-checkout order lines</text>
+<path class="goldLine" d="M859 563 H900"/>
+<rect x="900" y="503" width="221" height="122" rx="12" fill="#393127" stroke="#b89562"/>
+<text x="921" y="529" class="number">OPERATIONS</text>
+<text x="921" y="557" class="heading">Fulfilment</text>
+<text x="921" y="582" class="body">Pack and reconcile</text>
+<rect x="1141" y="503" width="246" height="122" rx="12" fill="#2b2d2a" stroke="#948b75"/>
+<text x="1161" y="529" class="number">SEPARATE ENFORCEMENT</text>
+<text x="1161" y="557" class="heading">Shipping discounts</text>
+<text x="1161" y="582" class="body">Rates · postcode · eligibility</text>
+<path class="dotted" d="M197 309 V385 H452 V503"/>
+<text x="473" y="391" class="small">Consistency check needed: NOT automatic propagation</text>
+<text x="52" y="664" class="small">Illustrative reference architecture. No live workflow, store identifiers, offer values or internal scripts are embedded.</text>
+<text x="52" y="744" class="eyebrow">ENGINEERING STORY:  ANALYSE  →  MODEL  →  DESIGN  →  INTEGRATE  →  VALIDATE  →  MEASURE</text>
+</svg>
