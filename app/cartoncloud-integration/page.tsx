@@ -1,23 +1,25 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
-  ArrowLeft, ArrowRight, ArrowUpRight, Boxes, CheckCircle2, Clock3,
+  ArrowLeft, ArrowRight, ArrowUpRight, ArrowDownUp, Boxes, CheckCircle2, Clock3,
   Cloud, Database, GitBranch, ShieldCheck, Truck, Workflow, AlertTriangle
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Shopify and CartonCloud delivery synchronisation | Developer portfolio',
-  description: 'A public-safe technical case study of a custom Shopify and CartonCloud integration, using a Cloudflare Worker to coordinate fulfilment, tracking and delivery-date data.',
+  title: 'Custom Shopify delivery app and CartonCloud integration | Developer portfolio',
+  description: 'I built both a Cloudflare Worker delivery app and the Shopify–CartonCloud integration that handles fulfilment information, tracking and estimated delivery dates.',
 };
 
-// Conceptual presentation of an actual integration project. Labels and data
-// are deliberately generalised: this is not a production topology, log export,
-// live monitoring tool or a reproduction of employer-owned implementation.
-const stages = [
-  { icon: Boxes, title: 'Shopify orders', description: 'Orders, fulfilment records and fulfilment-order lookups' },
-  { icon: Cloud, title: 'Serverless integration', description: 'Worker orchestration, API authentication and event handling' },
-  { icon: Truck, title: 'CartonCloud', description: 'Consignment processing, movement and delivery milestones' },
-  { icon: Database, title: 'Shopify updates', description: 'Tracking events, order metafields and estimated delivery dates' }
+// Public-safe conceptual diagram of two distinct contributions: the custom
+// serverless application and the API integration workflows it orchestrates.
+// The bidirectional arrows represent logical data exchange, not direct network
+// connections or a copy of the employer's production architecture.
+// Delivery results return to Shopify through the app and integration.
+const architecture = [
+  { icon: Boxes, label: 'COMMERCE PLATFORM', title: 'Shopify orders', detail: 'Order and fulfilment information', highlight: false },
+  { icon: Cloud, label: 'CUSTOM APP I BUILT', title: 'Cloudflare Worker delivery app', detail: 'API authentication · Orchestration · Delivery-date handling · Diagnostics', highlight: true },
+  { icon: GitBranch, label: 'INTEGRATION I BUILT', title: 'Shopify–CartonCloud integration', detail: 'API requests · Webhook processing · Consignment and tracking synchronisation', highlight: true },
+  { icon: Truck, label: 'LOGISTICS PLATFORM', title: 'CartonCloud', detail: 'Consignments · Tracking milestones · Delivery events', highlight: false },
 ];
 const engineering = [
   { title: 'API orchestration', description: 'Connect commerce fulfilments to a warehouse system using authenticated REST calls and a serverless integration layer.', icon: GitBranch },
@@ -41,12 +43,12 @@ export default function CartonCloudIntegrationCaseStudy() {
       <section className="hero container" style={{paddingBottom:70}}>
         <Link href="/#work" className="inline-flex items-center gap-2 text-sm text-[#d8b27c]"><ArrowLeft size={16}/> Back to selected work</Link>
         <div className="eyebrow mt-12"><span className="spark"/> CUSTOM APP / SHOPIFY + CARTONCLOUD</div>
-        <h1>Connecting orders<br/><em>to delivery reality.</em></h1>
+        <h1>I built the app.<br/><em>I built the integration.</em></h1>
         <div className="hero-bottom">
-          <p>Designed and built a custom serverless integration to connect Shopify fulfilment information with CartonCloud consignments, tracking and delivery-date updates. The challenge was to keep order information aligned across two independently operated systems.</p>
+          <p>I designed and developed both the custom Cloudflare Worker delivery app and the Shopify–CartonCloud API integration. Together, they coordinate Shopify fulfilment information, logistics consignments, tracking events and estimated delivery-date updates.</p>
           <a href="https://github.com/bonvallite/developer-portfolio/blob/main/CARTONCLOUD_INTEGRATION.md" className="button secondary" target="_blank" rel="noopener noreferrer">Technical write-up <ArrowUpRight size={17}/></a>
         </div>
-        <div className="hero-tags"><span>SHOPIFY APIS</span><span>CLOUDFLARE WORKERS</span><span>REST / WEBHOOKS</span><span>OAUTH SCOPES</span><span>ORDER METAFIELDS</span></div>
+        <div className="hero-tags"><span>SHOPIFY APIS</span><span>CLOUDFLARE WORKERS</span><span>REST / WEBHOOKS</span><span>OAUTH SCOPES</span><span>ORDER METAFIELDS</span><span>CUSTOM APP DEVELOPMENT</span></div>
       </section>
 
       <section className="section container" style={{paddingTop:35}}>
@@ -61,20 +63,33 @@ export default function CartonCloudIntegrationCaseStudy() {
 
       <section className="stripe">
         <div className="section container">
-          <span className="overline">02 / INTEGRATION ARCHITECTURE</span>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-5 mb-4">Event-driven by design.</h2>
-          <p className="max-w-3xl text-[#aeb0b8] leading-8 mb-10">A simplified illustration of the intended two-way workflow. Arrows show the logical information path; the layout is not a literal export of a production system.</p>
-          <ol className="grid grid-cols-1 md:grid-cols-4 gap-3 list-none p-0 m-0">
-            {stages.map((stage, i) => <li className="relative bg-[#202329] border border-[#6c5538] p-6 min-h-[218px]" key={stage.title}>
-              <div className="flex items-center justify-between text-[#d9b47c]"><span className="text-xs tracking-[.16em]">STEP 0{i + 1}</span><stage.icon size={29}/></div>
-              <h3 className="text-xl mt-8 mb-3">{stage.title}</h3>
-              <p className="text-sm text-[#b0b2bc] leading-6">{stage.description}</p>
-              {i < stages.length - 1 && <ArrowRight aria-hidden="true" size={18} className="hidden md:block absolute -right-4 top-1/2 z-10 text-[#d9b47c] bg-[#202329] rounded-full"/>}
-            </li>)}
-          </ol>
-          <div className="grid md:grid-cols-2 gap-4 mt-5">
-            <div className="border-l-2 border-[#d9b47c] bg-[#181b20] p-5"><p className="text-xs tracking-wider text-[#d9b47c]">OUTBOUND</p><p className="mt-2 text-sm leading-7 text-[#c2c3c8]">Shopify fulfilment context is used to locate or create the corresponding CartonCloud consignment.</p></div>
-            <div className="border-l-2 border-[#d9b47c] bg-[#181b20] p-5"><p className="text-xs tracking-wider text-[#d9b47c]">INBOUND</p><p className="mt-2 text-sm leading-7 text-[#c2c3c8]">Carrier milestones inform tracking, fulfilment events and estimated delivery fields associated with the Shopify order.</p></div>
+          <span className="overline">02 / WHAT I BUILT</span>
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-5 mb-4">The app. The integration. The delivery data.</h2>
+          <p className="max-w-3xl text-[#aeb0b8] leading-8 mb-10">Two distinct development contributions working as one system. The app orchestrates the operations; the custom integration handles communication and data mapping between Shopify and CartonCloud.</p>
+          <div className="mx-auto max-w-3xl" aria-label="Conceptual Shopify and CartonCloud custom app and integration architecture">
+            {architecture.map((stage, i) => <div key={stage.title}>
+              <div className={stage.highlight
+                ? 'border-2 border-[#d9b47c] bg-[#22201c] rounded-xl px-5 py-6 sm:px-9'
+                : 'border border-[#494b4a] bg-[#202329] rounded-xl px-5 py-6 sm:px-9'}>
+                <div className="flex flex-wrap items-start gap-4 sm:gap-6">
+                  <stage.icon size={33} className="shrink-0 text-[#d9b47c]" aria-hidden="true"/>
+                  <div className="min-w-0 flex-1">
+                    <span className="overline">{stage.label}</span>
+                    <h3 className="text-xl sm:text-2xl mt-2 mb-2">{stage.title}</h3>
+                    <p className="text-sm leading-7 text-[#c2c4c9]">{stage.detail}</p>
+                  </div>
+                </div>
+              </div>
+              {i < architecture.length - 1 && <div className="flex items-center justify-center gap-3 py-3 text-[#d9b47c]"><ArrowDownUp size={25} aria-hidden="true"/><span className="text-xs tracking-wide text-[#b6b8bf]">Two-way data exchange</span></div>}
+            </div>)}
+            <div className="mt-5 border-l-4 border-[#d9b47c] bg-[#16191d] px-5 py-6 sm:px-8">
+              <div className="flex items-center gap-3 text-[#d9b47c]"><Database size={23} aria-hidden="true"/><strong>Results written back to Shopify</strong></div>
+              <p className="text-sm leading-7 text-[#c2c4c9] mt-3">The same app and integration provide the return path for tracking information, fulfilment events and estimated delivery dates stored in order metafields.</p>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 mt-8">
+            <article className="border-l-2 border-[#d9b47c] bg-[#181b20] p-6"><span className="overline">01 / CUSTOM APPLICATION</span><h3 className="text-lg mt-3 mb-2">I built the serverless app</h3><p className="text-sm leading-7 text-[#c2c3c8]">The Cloudflare Worker application coordinates authenticated requests, webhook handling, delivery-date logic, error investigation and Shopify order updates.</p></article>
+            <article className="border-l-2 border-[#d9b47c] bg-[#181b20] p-6"><span className="overline">02 / CUSTOM INTEGRATION</span><h3 className="text-lg mt-3 mb-2">I built the API connection</h3><p className="text-sm leading-7 text-[#c2c3c8]">The Shopify–CartonCloud integration maps fulfilment information to consignments, exchanges tracking events and synchronises delivery data between platforms.</p></article>
           </div>
           <p className="disclaimer">Conceptual visual only. No internal architecture diagram, payload, real order reference or secret is reproduced.</p>
         </div>
@@ -102,7 +117,7 @@ export default function CartonCloudIntegrationCaseStudy() {
           <span className="overline">05 / RESULT & LEARNINGS</span>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-5 mb-6">A maintainable integration pattern.</h2>
           <div className="grid md:grid-cols-2 gap-10">
-            <div><h3 className="text-2xl mb-4">What I delivered</h3><p className="text-[#afb1b9] leading-8">A custom Shopify-to-warehouse application layer with order/fulfilment lookups, tracking-state handling and delivery-date update paths. This reduced the need to treat the two platforms as isolated sources when investigating orders. No quantified time saving is claimed.</p></div>
+            <div><h3 className="text-2xl mb-4">What I delivered</h3><p className="text-[#afb1b9] leading-8">Both a custom serverless delivery app and the Shopify–CartonCloud integration it operates, including order/fulfilment lookups, tracking-state handling and delivery-date update paths. This reduced the need to treat the two platforms as isolated sources when investigating orders. No quantified time saving is claimed.</p></div>
             <div><h3 className="text-2xl mb-4">What reliable operation still demands</h3><p className="text-[#afb1b9] leading-8">Permission validation, durable idempotency, bounded retries, observable write failures and sampling across dispatch, transit and delivered orders. The project is described as implemented and tested in part; current full-production synchronisation has not been freshly verified.</p></div>
           </div>
           <div className="actions mt-10"><Link className="button primary" href="/#work">Explore other projects <ArrowRight size={17}/></Link><a className="button secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/bonvallite/developer-portfolio/blob/main/CARTONCLOUD_INTEGRATION.md">Read technical documentation <ArrowUpRight size={17}/></a></div>
