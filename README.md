@@ -29,7 +29,7 @@ The [shipping integration case study](./app/shipping-integration/page.tsx) expla
 
 ## Custom Shopify and CartonCloud integration
 
-The [CartonCloud integration case study](./app/cartoncloud-integration/page.tsx) documents the custom Cloudflare Worker-based bridge between Shopify fulfilment information and CartonCloud consignment events, including tracking updates, estimated delivery-date order metafields, authorisation troubleshooting and evidence limitations. See [technical documentation](./CARTONCLOUD_INTEGRATION.md). This account contains no production Worker code, order IDs or private API credentials. Successful API reads are not misrepresented as completed delivery updates.
+I built both a **custom Cloudflare Worker delivery app** and its **Shopify–CartonCloud API integration**, connecting Shopify fulfilment information to consignments and returning tracking events and estimated delivery-date information to Shopify. The [CartonCloud case study](./app/cartoncloud-integration/page.tsx) now includes a responsive two-way architecture diagram with separate, clearly labelled app and integration contributions. See [technical documentation](./CARTONCLOUD_INTEGRATION.md) for the responsibilities, permission troubleshooting, historical testing and evidence limits. The public account contains no production Worker code, private order identifiers or API credentials, and does not present successful API reads as complete delivery synchronisation.
 
 ## Shipping webhooks and chargeback evidence
 
