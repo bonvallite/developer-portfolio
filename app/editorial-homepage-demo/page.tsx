@@ -8,7 +8,7 @@
  * catalogue, branding, fulfilment rules, API, reviews or proprietary configuration.
  * All purchase and postcode interactions are local demonstrations only.
  */
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronDown, Flame, Menu, Minus, Plus, ShoppingBag, SlidersHorizontal, Snowflake, Sprout, X } from 'lucide-react';
 import styles from './demo.module.css';
 
@@ -53,10 +53,47 @@ export default function EditorialHomepageDemo() {
   const [tab, setTab] = useState<Tab>('all');
   const [cart, setCart] = useState<Record<string, number>>({});
   const [bagOpen, setBagOpen] = useState(false);
+  const drawerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [marbling, setMarbling] = useState(6);
   const [postcode, setPostcode] = useState('');
   const [postcodeMessage, setPostcodeMessage] = useState('');
+  // Keep the demo drawer keyboard accessible without pulling in an app/cart dependency.
+  // Escape closes it; Tab stays inside; focus returns to the control that opened it.
+  useEffect(() => {
+    if (!bagOpen) return;
+    const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const drawer = drawerRef.current;
+    drawer?.querySelector<HTMLButtonElement>('[data-close-bag]')?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setBagOpen(false);
+        return;
+      }
+      if (event.key !== 'Tab' || !drawer) return;
+      const focusable = Array.from(drawer.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled])'));
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+      if (event.shiftKey && (document.activeElement === first || !drawer.contains(document.activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !drawer.contains(document.activeElement))) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previouslyFocused?.focus();
+    };
+  }, [bagOpen]);
+
   const slide = slides[slideIndex];
   const visibleProducts = useMemo(() => products.filter(p => tab === 'all' || p.occasion === tab).slice(0, 4), [tab]);
   const bagItems = products.filter(p => (cart[p.id] || 0) > 0);
@@ -104,7 +141,7 @@ export default function EditorialHomepageDemo() {
       <section className={styles.closing}><span>THE FINAL WORD</span><h2>A little more care.<br/><em>A lot more flavour.</em></h2><a href="#top">Back to the beginning <ArrowUpRight size={18}/></a></section>
     </main>
     <footer className={styles.footer}><div><a className={styles.logo} href="#top"><span className={styles.logoSymbol} aria-hidden="true">✳</span><span>EMBER <i>&</i> GRAIN<small>THE MODERN BUTCHERY</small></span></a><p>Independent portfolio demonstration. Brand, catalogue and interactions are fictional.</p></div><div className={styles.footerLinks}><a href="#demo-occasions">Discover</a><a href="#demo-shop">The cuts</a><a href="#demo-craft">Our craft</a><a href="#demo-delivery">Delivery</a></div><small>© 2026 EDITORIAL STOREFRONT CONCEPT · NO CLIENT CODE OR IMAGES</small></footer>
-    {bagOpen && <div className={styles.drawerOverlay} onClick={() => setBagOpen(false)}><aside role="dialog" aria-modal="true" aria-label="Demo shopping bag" className={styles.drawer} onClick={event => event.stopPropagation()}><div className={styles.drawerHead}><div><span className={styles.micro}>FICTIONAL CHECKOUT EXPERIENCE</span><h2>Your bag ({bagCount})</h2></div><button type="button" aria-label="Close bag" onClick={() => setBagOpen(false)}><X size={24}/></button></div>{bagItems.length ? <div className={styles.drawerItems}>{bagItems.map(p => <div className={styles.drawerItem} key={p.id}><div className={styles.drawerThumb} style={{backgroundImage:'url("' + p.image + '")'}}/><div><strong>{p.name}</strong><small>{p.cut}</small><div className={styles.quantity}><button type="button" aria-label={'Remove one ' + p.name} onClick={() => changeQuantity(p.id, -1)}><Minus size={14}/></button><span>{cart[p.id]}</span><button type="button" aria-label={'Add one ' + p.name} onClick={() => changeQuantity(p.id, 1)}><Plus size={14}/></button></div></div><strong>{money(p.price * cart[p.id])}</strong></div>)}</div> : <div className={styles.emptyBag}><ShoppingBag size={34} strokeWidth={1}/><p>Your story starts with a good cut.</p><button onClick={() => setBagOpen(false)} type="button">Explore the collection <ArrowRight size={15}/></button></div>}<div className={styles.drawerFoot}><div><span>Demo subtotal</span><strong>{money(bagTotal)}</strong></div><p><Check size={14}/> This is a portfolio mock-up. No orders or payments are available.</p><button type="button" disabled>Checkout unavailable in demo</button></div></aside></div>}
+    {bagOpen && <div className={styles.drawerOverlay} onClick={() => setBagOpen(false)}><aside ref={drawerRef} role="dialog" aria-modal="true" aria-label="Demo shopping bag" className={styles.drawer} onClick={event => event.stopPropagation()}><div className={styles.drawerHead}><div><span className={styles.micro}>FICTIONAL CHECKOUT EXPERIENCE</span><h2>Your bag ({bagCount})</h2></div><button data-close-bag type="button" aria-label="Close bag" onClick={() => setBagOpen(false)}><X size={24}/></button></div>{bagItems.length ? <div className={styles.drawerItems}>{bagItems.map(p => <div className={styles.drawerItem} key={p.id}><div className={styles.drawerThumb} style={{backgroundImage:'url("' + p.image + '")'}}/><div><strong>{p.name}</strong><small>{p.cut}</small><div className={styles.quantity}><button type="button" aria-label={'Remove one ' + p.name} onClick={() => changeQuantity(p.id, -1)}><Minus size={14}/></button><span>{cart[p.id]}</span><button type="button" aria-label={'Add one ' + p.name} onClick={() => changeQuantity(p.id, 1)}><Plus size={14}/></button></div></div><strong>{money(p.price * cart[p.id])}</strong></div>)}</div> : <div className={styles.emptyBag}><ShoppingBag size={34} strokeWidth={1}/><p>Your story starts with a good cut.</p><button onClick={() => setBagOpen(false)} type="button">Explore the collection <ArrowRight size={15}/></button></div>}<div className={styles.drawerFoot}><div><span>Demo subtotal</span><strong>{money(bagTotal)}</strong></div><p><Check size={14}/> This is a portfolio mock-up. No orders or payments are available.</p><button type="button" disabled>Checkout unavailable in demo</button></div></aside></div>}
     <a className={styles.portfolioReturn} href="/" aria-label="Return to developer portfolio">← Portfolio</a>
   </div>;
 }
