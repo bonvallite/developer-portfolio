@@ -4,6 +4,8 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 **LinkedIn:** https://www.linkedin.com/in/bonvallite/
 
+**Google Developer profile:** https://g.dev/bonvallite
+
 ## Engineering focus
 
 - **Shopify theme engineering:** Liquid sections, responsive product detail pages, metafields and metaobjects, accessibility, SEO, and page performance.
