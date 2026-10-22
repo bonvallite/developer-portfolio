@@ -18,6 +18,12 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 
 
+## Community involvement and healthy lifestyle
+
+The [Beyond the Code](./app/page.tsx) homepage section introduces my self-reported volunteering with DEVCON, community outreach programmes, and medical missions, alongside running from fun runs to longer-distance events. These are personal interests rather than claimed professional accreditations or measured sporting results.
+
+**Image publication:** The owner supplied six original photos (three studio/work portraits, two running photos, and a race-medal photo). The files are **not yet in this repository or on Vercel** because the available authenticated source tools cannot transmit these binary uploads to GitHub and transient Canva preview URLs are not an acceptable permanent production asset. The source section deliberately has no broken or expiring image references. Once durable asset hosting is available, use descriptive alt text and responsive dimensions, test crops and loading, and record the asset paths and validation in the changelog.
+
 ## Engineering focus
 
 - **Shopify theme engineering:** Liquid sections, responsive product detail pages, metafields and metaobjects, accessibility, SEO, and page performance.
