@@ -28,13 +28,13 @@ const markets: readonly Market[] = [
     products:[{name:'Voorbeeld Krullencrème',price:24.5},{name:'Voorbeeld Stylinggel',price:20.0}]},
   {code:'it',country:'Italy',flag:'🇮🇹',locale:'it-IT',currency:'EUR',language:'Italian',
     headline:'Ricci, a modo tuo.',subtitle:'Una routine semplice per i tuoi ricci.',cta:'Scopri la collezione',offer:'Trova la tua routine',discountPercent:8,checkoutLabel:'Pagamento',accountLabel:'Il mio account',catalogue:'IT sample catalogue',route:'https://store.example.invalid/it/',
-    products:[{name:'Crema Ricci — Esempio',price:25.0},{name:'Gel Ricci — Esempio',price:21.0}]},
+    products:[{name:'Crema Ricci (Esempio)',price:25.0},{name:'Gel Ricci (Esempio)',price:21.0}]},
   {code:'fr',country:'France',flag:'🇫🇷',locale:'fr-FR',currency:'EUR',language:'French',
     headline:'Des boucles, à votre façon.',subtitle:'Une routine pensée pour vos boucles.',cta:'Découvrir la collection',offer:'Trouvez votre routine',discountPercent:15,checkoutLabel:'Paiement',accountLabel:'Mon compte',catalogue:'FR sample catalogue',route:'https://store.example.invalid/fr/',
-    products:[{name:'Crème Boucles — Exemple',price:26.0},{name:'Gel Boucles — Exemple',price:21.5}]},
+    products:[{name:'Crème Boucles (Exemple)',price:26.0},{name:'Gel Boucles (Exemple)',price:21.5}]},
   {code:'es',country:'Spain',flag:'🇪🇸',locale:'es-ES',currency:'EUR',language:'Spanish',
     headline:'Tus rizos, a tu manera.',subtitle:'Tu rutina para unos rizos naturales.',cta:'Explorar la colección',offer:'Descubre tu rutina',discountPercent:5,checkoutLabel:'Finalizar compra',accountLabel:'Mi cuenta',catalogue:'ES sample catalogue',route:'https://store.example.invalid/es/',
-    products:[{name:'Crema de Rizos — Ejemplo',price:24.0},{name:'Gel de Rizos — Ejemplo',price:20.0}]},
+    products:[{name:'Crema de Rizos (Ejemplo)',price:24.0},{name:'Gel de Rizos (Ejemplo)',price:20.0}]},
 ];
 
 const formatMoney = (value: number, m: Market) =>
