@@ -29,3 +29,14 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Inline documentation:** Existing contact-section comment documents public external destinations, independent ownership, and safe new-tab link attributes.
 - **Validation:** Checked source before editing, used the supplied HTTPS URL and `noopener noreferrer`. Saved-file verification and deployed-site testing to be recorded separately; no build or browser test claimed at this stage.
 - **Release:** Main branch commit; production deployment verification pending.
+
+## 2026-10-22 — Cybersecurity: Foundation of CERT Operations attendance training
+
+- **Target:** `bonvallite/developer-portfolio`, `main` branch, Vercel `developer-portfolio` (production).
+- **Affected files:** `app/page.tsx`, `app/experience/page.tsx`, `app/globals.css`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a responsive homepage cybersecurity training card and a detailed Experience-page record for the 12-hour Foundations of CERT Operations course attended 5–6 December 2023. The public heading uses the owner's requested title “Cybersecurity: Foundation of CERT Operations”. Clearly identified the evidence as a certificate of attendance, not an accredited professional certification; provided the organiser, training dates and evidence limitations.
+- **Why:** Include verifiable professional development in cybersecurity without overstating the credential.
+- **Documentation:** Updated inline JSX comments describing evidence provenance and public-document privacy, maintained responsive CSS commentary, and updated the README. The signed 2023 source PDF is deliberately not distributed publicly because it contains an issuer's digital signature.
+- **Validation:** Inspected the supplied single-page certificate and the existing repository changelog, code, CSS comments, and conventions. Checked that the source changed with the intended course name, date, 12-hour duration, organiser, and attendance wording; this entry does not assert a completed TypeScript/build/browser test.
+- **Pending checks:** Re-fetch committed files, review Vercel's production build and verify `/#certifications` and `/experience#training` at desktop/mobile sizes. Keep deployment status aligned with actual Vercel results.
+- **Release:** Changes committed directly on `main` to trigger the project's Git-linked production deployment; final deployment status must be checked.
