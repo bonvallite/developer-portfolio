@@ -2,6 +2,15 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-10-22 — CartonCloud custom integration case study
+
+- **Target:** `bonvallite/developer-portfolio`, public Next.js portfolio connected to Vercel.
+- **Affected files:** `app/cartoncloud-integration/page.tsx`, `app/page.tsx`, `CARTONCLOUD_INTEGRATION.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a responsive CartonCloud serverless integration case study, a conceptual order-to-consignment-to-tracking diagram, structured evidence and QA boundaries, technical documentation, and a featured project link.
+- **Reason:** Demonstrate custom Shopify API, fulfilment, serverless and delivery-date engineering without exposing employer source code or customer identifiers.
+- **Validation:** GitHub file creation and content updates were confirmed. Production build, TypeScript, automated tests, publication scan and live Vercel deployment remain pending; no claims of completed production QA. Screenshot reviewed manually and omitted from publication because it contains real order identifiers.
+- **Scope:** Portfolio only; no Shopify theme or production integration files changed.
+
 ## 2026-10-22 — Documentation as an engineering standard
 
 - **Target:** `bonvallite/developer-portfolio`, Next.js portfolio for the existing Vercel project.
