@@ -37,7 +37,7 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Approach:** Compare transactions by anonymised identifier, inspect duplicate events, review event configuration, assess reporting filters, and separate genuine missing transactions from attribution gaps.
 
-**Demonstrations:** 11 (purchase dedupe across reloads), 12, 27, 30, and [case study 17](#17-investigating-ecommerce-tracking-discrepancies-across-tag-versions).
+**Demonstrations:** 11 (purchase dedupe across reloads), 12, 27, 30, and [case study 18](#18-investigating-ecommerce-tracking-discrepancies-across-tag-versions).
 
 ## 6. Catalogue governance, SEO, and redirects
 **Problem class:** Product changes can create broken links, inconsistent headings, incomplete sales-channel publication, and search discoverability gaps.
@@ -58,7 +58,7 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Approach:** Distinguish tracking hygiene from marketing outcomes, validate event names and deduplication, and avoid exposing identifiable visitors or private campaign strategy.
 
-**Demonstrations:** 11, 12, 27, 30, and [case study 17](#17-investigating-ecommerce-tracking-discrepancies-across-tag-versions).
+**Demonstrations:** 11, 12, 27, 30, and [case study 18](#18-investigating-ecommerce-tracking-discrepancies-across-tag-versions).
 
 ## 9. Editing a live store safely: read first, one change at a time, log everything
 **Problem class:** Many store fixes have to be made in a live theme or live admin settings, where a mistake is visible to customers straight away and several small edits made together are hard to untangle.
@@ -167,7 +167,9 @@ Generalised from my own dated work logs for two client stores (2022 and 2023). C
 
 **What I would do differently today:** order-status-page scripts are now deprecated for checkout tracking. Example 47 shows the current approach, a custom pixel that sends a GA4 purchase with a transaction ID so that duplicates can be removed.
 
-**Demonstrations:** 47 (GA4 purchase pixel), 11 and 36 (purchase deduplication), 30 (UTM links), and 01, 10, and 26 (weights and zones).
+**Behaviour analytics:** alongside GA4, I use Microsoft Clarity and Hotjar heatmaps and session recordings to see where visitors scroll, click, and give up. Example 49 shows a privacy-first set-up: neither tool loads until the visitor allows analytics through Shopify's consent banner, and email, phone, name, and address fields are masked so recordings never capture them.
+
+**Demonstrations:** 49 (Clarity and Hotjar loader), 47 (GA4 purchase pixel), 11 and 36 (purchase deduplication), 30 (UTM links), and 01, 10, and 26 (weights and zones).
 
 ## 14. Post-launch review of a custom Shopify homepage
 **Problem class:** A redesigned homepage can look finished in the theme editor and still behave differently for real visitors once apps, popups, and slow connections are involved.
@@ -238,8 +240,17 @@ Generalised from recent storefront maintenance. This write-up deliberately exclu
 
 **Limitations:** Open Shadow DOM access is a browser implementation detail the app can change. A production version also needs app-specific lifecycle events, accessibility QA, mobile/desktop testing, and an approved integration surface.
 
+## 17. Shipping webhooks supporting chargeback evidence
 
-## 17. Investigating ecommerce tracking discrepancies across tag versions
+**Problem class:** Payment, fulfilment, courier proof, and customer communications need to be reconciled into a traceable dispute response.
+
+**Contribution:** Developed a custom Cloudflare and Shopify integration to synchronise shipment tracking and delivery events, then used the linked records when reviewing disputes and preparing evidence narratives.
+
+**Outcome boundary:** Successful disputes were confirmed with courier-linked delivery events present in Shopify. That supports the evidence value of the integration; it does not establish that the webhook alone caused the issuer's decision. Private case details, commercial figures, and production code remain excluded.
+
+**Read more:** [Shipping webhooks and chargeback evidence](./CHARGEBACK_EVIDENCE.md), including event-time accuracy, recurring-payment evidence, notification limits, and the distinction between drafts and submissions.
+
+## 18. Investigating ecommerce tracking discrepancies across tag versions
 **Problem class:** A commerce platform and its analytics property reported different purchase totals. The audit needed to distinguish purchases that were missing from analytics from purchases that were recorded but attributed to an unclear source.
 
 This case study is generalised from a private audit. Store identity, reporting dates, counts, revenue, measurement IDs, container and version numbers, tag names, custom product fields, and raw event data are omitted.
@@ -256,6 +267,7 @@ This case study is generalised from a private audit. Store identity, reporting d
 **Lesson:** A sound audit checks event delivery and source attribution separately. Correct transaction IDs on captured purchases do not prove every order was captured, and changes to key-event status are not the same as stopping event collection.
 
 **Publication boundary:** This is documentation only. No client configuration, analytics data, account identifiers, or production code is included.
+
 
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.
