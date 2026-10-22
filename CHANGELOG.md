@@ -74,3 +74,13 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Inline documentation:** The homepage comment separates owner-provided claims from photographic evidence. The CSS comment documents responsive layout and deliberately absent photo URLs.
 - **Validation:** Inspected existing source, README, changelog and CSS before editing; preserved original sections and inserted new markup/styles. Saved-file re-read, Vercel build results and browser QA to be checked separately. No image upload, asset deployment or visual QA is claimed.
 - **Pending:** Upload all six user-supplied original photographs to durable project image hosting, display them across hero, About and personal-interest sections with responsive sizing and accessible alt text, then test desktop and mobile. Do not use expiring Canva preview URLs as permanent site assets.
+
+## 2026-10-22 — Publish six original portfolio photographs
+
+- **Target:** `bonvallite/developer-portfolio`, Git-linked Vercel production site.
+- **Affected files:** `public/photos/jomar-studio-portrait.jpg`, `public/photos/jomar-working-laptop.jpg`, `public/photos/jomar-with-laptop.jpg`, `public/photos/jomar-running-event.jpg`, `public/photos/jomar-road-running.jpg`, `public/photos/jomar-running-medal.jpg`, `app/page.tsx`, `app/experience/page.tsx`, `app/globals.css`, `README.md`, and `CHANGELOG.md`.
+- **Change:** Uploaded all six user-provided photographs as size-optimised, metadata-stripped first-party JPEG assets. Integrated portraits into the homepage hero, About, and Experience, plus running and medal photography into Beyond the Code. Added responsive styling, alt text, explicit dimensions and lazy loading outside the primary hero.
+- **Why:** Show the owner's genuine professional and personal photography in place of absent images or AI-generated substitutes, while limiting bandwidth and layout shift.
+- **Documentation:** Reconciled outdated README image-upload blocker; updated inline JSX comments and CSS comments describing purpose, asset provenance, responsive crops and image dependencies.
+- **Validation:** Compared staged image dimensions and SHA-256 digests against generated web derivatives. Uploaded and received a unique Git blob SHA for each image. Verified all six `Image` source paths are present in the code and that the exact six blob paths are included in the commit tree; re-read and external build verification are to be checked after deployment.
+- **Remaining QA:** Check actual deployment status, browser image loads, 390px and desktop crops, and any layout overflow. Do not claim these tests before execution.
