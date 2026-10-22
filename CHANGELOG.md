@@ -2,6 +2,15 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-10-22 — Custom delivery app and CartonCloud integration portfolio
+
+- **Target:** `bonvallite/developer-portfolio`, refresh branch `feature/cartoncloud-app-integration-refresh-20261022`, existing Next.js/Vercel portfolio.
+- **Affected files:** `app/cartoncloud-integration/page.tsx`, `app/page.tsx`, `CARTONCLOUD_INTEGRATION.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a dedicated case study and technical write-up that clearly distinguish the custom Cloudflare Worker delivery app built by the developer from the Shopify–CartonCloud API integration built by the same developer. Included a mobile-responsive conceptual architecture diagram with bidirectional data exchange and a separately described return path to Shopify order metafields, delivery estimates and fulfilment events. Added the project to the existing homepage and README; documented responsibilities and evidence boundaries in inline source comments.
+- **Reason:** Present both custom app development and cross-platform API integration skills without misrepresenting a Shopify App Store listing, directly connecting unrelated services, or publishing employer source or private order data.
+- **Validation:** Original PR #20's preceding version passed a GitHub Actions run and Vercel preview. That PR later could not merge because of conflicts with newer `main`; this refresh was recreated from the current main with file-by-file updates rather than overwriting intervening work. The refreshed branch's CI, safety checks and preview must pass before publication. No public production outcome is assumed by this entry.
+- **Scope:** Portfolio documentation and UI only, not a Shopify theme, CartonCloud configuration, live Worker, customer orders or production integration.
+
 ## 2026-10-22 — Documentation as an engineering standard
 
 - **Target:** `bonvallite/developer-portfolio`, Next.js portfolio for the existing Vercel project.
