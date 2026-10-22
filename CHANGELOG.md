@@ -84,3 +84,13 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Documentation:** Reconciled outdated README image-upload blocker; updated inline JSX comments and CSS comments describing purpose, asset provenance, responsive crops and image dependencies.
 - **Validation:** Compared staged image dimensions and SHA-256 digests against generated web derivatives. Uploaded and received a unique Git blob SHA for each image. Verified all six `Image` source paths are present in the code and that the exact six blob paths are included in the commit tree; re-read and external build verification are to be checked after deployment.
 - **Remaining QA:** Check actual deployment status, browser image loads, 390px and desktop crops, and any layout overflow. Do not claim these tests before execution.
+
+
+## 2026-10-22 — Photo publication verification
+
+- **Target:** Production Vercel `developer-portfolio`; deployed photo integration commit `04be2aa39138c9dc8a6eea26b50c9c5a7c9895d8`.
+- **Files:** `public/photos/` (all six image files), `app/page.tsx`, `app/experience/page.tsx`, `app/globals.css`, `README.md`, `CHANGELOG.md`.
+- **Saved-source validation:** Re-read all six GitHub image paths and confirmed their blob SHAs match the committed asset references. Confirmed the current `main` branch points to the photo integration commit. Verified each optimised source image opens and has no EXIF metadata.
+- **Production HTTP validation:** Vercel reported photo integration commit `READY`. Public `/` and `/experience` returned HTTP 200 with the expected alt text and photo references. Each of the six `/photos/*.jpg` endpoints returned HTTP 200 with `image/jpeg` and the expected file byte length. Next.js's `/_next/image` optimisation returned HTTP 200 and `image/jpeg` for the hero image.
+- **Outstanding:** Actual browser screenshots, interactive image-lightbox checks (none added), and desktop/mobile visual crop inspection have **not** been performed. Responsive CSS and image `sizes` have been reviewed in source, not yet visually certified.
+- **Documentation and release:** Added this follow-up evidence to avoid claiming visual checks that were not carried out. This documentation-only commit may trigger a further Vercel Git-linked production deployment.
