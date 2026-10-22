@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Github, Layers3, GitBranch } from 'lucide-react';
-// Featured projects include a public-safe warehouse integration case study; no client code or data is embedded.
+// Featured projects describe professional contributions without employer source.
+// Project 02 links to a conceptual case study of both the custom application
+// and the independent API integration workflows; no production log data is used.
 const projects = [
   { number:'01', category:'SHOPIFY / B2B', title:'Weight-based B2B purchasing', description:'Designed weight-based wholesale workflows and built an independent interactive pricing simulator using fictional data.', technologies:['Shopify Markets','B2B Catalogues','Shopify Flow'], icon:Layers3 },
-  { number:'02', category:'SERVERLESS / API', title:'Warehouse fulfilment integration', description:'Built a custom Shopify and CartonCloud serverless integration connecting fulfilment information, shipment tracking and estimated delivery-date updates.', technologies:['Cloudflare Workers','Webhooks','OAuth 2.0','REST API'], icon:GitBranch },
+  { number:'02', category:'CUSTOM APP / SERVERLESS API', title:'Shopify delivery app + CartonCloud integration', description:'I built both the Cloudflare Worker delivery app and the Shopify–CartonCloud integration for fulfilment, tracking and estimated delivery-date synchronisation.', technologies:['Custom App','Cloudflare Workers','Shopify APIs','Webhooks'], icon:GitBranch },
   { number:'03', category:'PRODUCT DATA / UX', title:'Structured product metadata', description:'Implemented structured product attributes, including product-specific grading data, descriptions and imagery, using metafields and custom Shopify theme components.', technologies:['Metafields','Liquid','Shopify Themes'], icon:ShoppingBag },
   { number:'04', category:'DATA / ANALYTICS', title:'Conversion and tracking diagnostics', description:'Investigated measurement gaps between Shopify and GA4, reviewed event instrumentation and helped identify improvements to ecommerce reporting.', technologies:['GA4','Google Tag Manager','Analytics'], icon:BarChart3 },
 ];
