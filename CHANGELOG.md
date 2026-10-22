@@ -40,3 +40,15 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Validation:** Inspected the supplied single-page certificate and the existing repository changelog, code, CSS comments, and conventions. Re-fetched all five committed files and confirmed both the homepage and Experience sections, supporting CSS, readme entry, and changelog were saved; verified the title, course name, December 2023 dates, 12-hour duration, issuer and attendance wording. Vercel's production build was building at the time of this record; this does not claim a completed TypeScript/build/browser test.
 - **Pending checks:** Confirm Vercel production deployment reaches READY, then verify `/#certifications` and `/experience#training` at desktop and mobile sizes. Browser/mobile rendering remains unverified.
 - **Release:** Changes committed directly on `main` to trigger the project's Git-linked production deployment; final deployment status must be checked.
+
+
+## 2026-10-22 — Undersea cable cybersecurity session portfolio entry
+
+- **Target:** `bonvallite/developer-portfolio`, `main`, connected to the Vercel `developer-portfolio` production project.
+- **Files:** `app/page.tsx`, `app/experience/page.tsx`, `app/globals.css`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a second cybersecurity/professional-development card, linked to `/experience#undersea-cables-session`, for “No Fiber, No Cyber: Safeguarding the World's Undersea Cables”. Summarised the U.S.–Philippines Joint Cybersecurity Working Group and APTelecom announcement, Ortigas location, Thursday 16 November (2–4 p.m. Philippine Time), undersea cable security/maintenance focus, speakers Phillip Nervig and Eric Handa, and moderator John Garrity. Reworded the section intro so the announcement is not mislabelled as formal training.
+- **Why:** Include the owner's requested cybersecurity industry-session reference alongside the separately supported CERT training.
+- **Evidence and limitations:** Input was an invitation/announcement, **not evidence that the owner attended**. The year was absent from the source (Thursday 16 November aligns with 2023, but this inferred year is intentionally not presented as verified). No certificate or attendance claim is made.
+- **Inline documentation:** Updated home and Experience JSX comments on evidence boundaries; updated shared CSS comment and documented card spacing; updated README.
+- **Validation:** Reviewed existing source, comments, engineering standards and prior changelog before editing. Checked exact provided names, title, time and location against user-supplied announcement. Remote re-read of saved files and deployment checks pending at the moment of this entry; no build or browser test is asserted.
+- **Release:** Saved on `main`; verify Git-linked Vercel production deployment, page rendering and GitHub checks.
