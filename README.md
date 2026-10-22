@@ -11,6 +11,13 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 - **API and fulfilment integrations:** Illustrative REST/GraphQL webhooks, idempotent event handling, tracking status normalisation, and retry strategies.
 - **Delivery estimates:** Example date calculations distinguishing parcel movement from residential delivery days.
 - **Analytics quality:** Event deduplication, ecommerce transaction validation, and reconciliation techniques.
+- **Maintainable delivery:** Inline documentation, dated changelogs, validation evidence and practical release handovers.
+
+## Documentation and change control
+
+Documentation is an essential part of delivery. My [engineering standard](./ENGINEERING_STANDARDS.md) requires reading existing source and change history before editing, keeping inline explanations accurate, recording every change and verifying the saved result. Records include the date, target, affected files, change, reason, actual validation and pending checks. For Shopify theme work, this includes the private `pa-theme-changelog` and exact theme ID.
+
+The portfolio presents this practice at [`/engineering-standards`](./app/engineering-standards/page.tsx), linked from the homepage quality and skills sections. The [contribution guidance](./CONTRIBUTING.md), [PR checklist](./.github/pull_request_template.md), [reusable change record](./ENGINEERING_STANDARDS.md#reusable-change-record) and [portfolio changelog](./CHANGELOG.md) make it usable for future work. The public record example is fictional. This documents a working standard; historical documentation completeness still requires an audit, and CI does not automatically certify comment accuracy.
 
 ## CTA and conversion-leak audit case study
 
@@ -90,7 +97,7 @@ See [Shopify Flow portfolio examples](./shopify-flow/README.md) for a fictional 
 
 ## Python automation
 
-[projects/samsung-health-csv-merger](./projects/samsung-health-csv-merger) is a Python and Pandas command-line tool that merges many CSV exports into one file, skips a common extra title row, and reports files it could not read. [Its tests](./tests/python/test_merge_samsung_health.py) use small synthetic CSVs, so no personal data is involved, and run in CI. [projects/python-notebook-review](./projects/python-notebook-review) reviews Jupyter training notebooks, and [skills/python-automation-portfolio](./skills/python-automation-portfolio) is a reusable workflow for turning scripts into documented, privacy-safe projects. See the [/python-automation](./app/python-automation/page.tsx) page on the site.
+[projects/samsung-health-csv-merger](./projects/samsung-health-csv-merger) is a Python and Pandas command-line tool that merges many CSV exports into one file, skips a common extra title row, and reports files it could not read. [Its tests](./tests/python/test_merge_samsung_health.py) use small synthetic CSVs, so no personal data is involved, and run in CI. [projects/python-notebook-review](./projects/python-notebook-review) reviews Jupyter training notebooks, and [skills/python-automation-portfolio](./skills/python-automation-portfolio) is a reusable workflow for turning scripts into documented, privacy-safe projects. [projects/fictional-faq-retrieval](./projects/fictional-faq-retrieval) adds an independently authored, offline FAQ CLI using entirely fictional sources, deterministic retrieval, explicit abstention and source attribution. Its standard-library tests run in the same Python CI suite. See the [/python-automation](./app/python-automation/page.tsx) page on the site.
 
 ## Validation
 
@@ -103,3 +110,4 @@ npx tsc --noEmit && npm run build
 ```
 
 [GitHub Actions](./.github/workflows/portfolio-ci.yml) runs the same checks on every push and pull request. The safety scan catches common credential formats but does not replace a human review of ownership and confidentiality.
+

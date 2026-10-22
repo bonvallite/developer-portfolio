@@ -75,12 +75,12 @@ export default function RewardsEnginePage() {
     </div>
     <section id="backend-diagram" style={{marginTop:72}} aria-labelledby="backend-title">
       <p style={{color:"#d9b47c",fontSize:12,letterSpacing:2}}>BACKEND / SYSTEMS ARCHITECTURE</p>
-      <h2 id="backend-title" style={{fontSize:"clamp(30px,4vw,44px)",margin:"12px 0",lineHeight:1.16}}>From one editor to every experience — then to fulfilment.</h2>
+      <h2 id="backend-title" style={{fontSize:"clamp(30px,4vw,44px)",margin:"12px 0",lineHeight:1.16}}>From one editor to every experience, then to fulfilment.</h2>
       <p style={{color:"#b7bcc3",maxWidth:850,lineHeight:1.8,fontSize:15}}>The diagram separates the editorial source of truth from the authoritative checkout and post-order rules. Solid arrows show customer-facing data flow and order fulfilment. The dashed line is a required configuration consistency check: Shopify Flow and delivery discounts are <strong>not automatically rewritten</strong> by changing a metaobject.</p>
       <a href="/rewards-backend-architecture.svg" target="_blank" rel="noopener noreferrer" aria-label="Open enlarged backend architecture diagram" style={{display:"block",marginTop:22}}>
         <img src="/rewards-backend-architecture.svg" alt="Configuration-led rewards architecture diagram: a metaobject drives Liquid and JavaScript storefront surfaces, while a completed order separately triggers Shopify Flow gift fulfilment and shipping discounts are enforced independently." style={{width:"100%",height:"auto",border:"1px solid #3e4c42",borderRadius:14,background:"#111b18"}}/>
       </a>
-      <p style={{color:"#9da9a7",fontSize:12,marginTop:9}}>Click the architecture illustration to inspect a larger version. Conceptual, public-safe design — not a live Flow export.</p>
+      <p style={{color:"#9da9a7",fontSize:12,marginTop:9}}>Click the architecture illustration to inspect a larger version. Conceptual, public-safe design, not a live Flow export.</p>
     </section>
     <RewardsVisuals offer={offer} subtotal={subtotal}/>
     <section style={{marginTop:75,padding:"clamp(22px,4vw,44px)",border:"1px solid #816a49",borderRadius:14,background:"linear-gradient(140deg,#24211c,#15191c)"}}>
@@ -120,7 +120,7 @@ export default function RewardsEnginePage() {
       <p style={{color:"#adb4bd",fontSize:12,marginTop:20}}>Conceptual workflow only: no live orders, gifts or discounts are changed by this demonstration. Actual Flow settings require independent verification.</p>
     </section>
     <section style={{marginTop:60,padding:25,border:"1px solid #6e5940",borderRadius:12}}> 
-      <h2 style={{display:"flex",gap:12,alignItems:"center",fontSize:22}}><ShieldCheck/> What this demonstration does — and does not — prove</h2>
+      <h2 style={{display:"flex",gap:12,alignItems:"center",fontSize:22}}><ShieldCheck/> What this demonstration does, and does not, prove</h2>
       <p style={{color:"#b6bac3",lineHeight:1.8}}>Every setting and reward in this interactive demo is fictional. The visual surfaces share one local JavaScript configuration; there is no active Shopify connection, production theme code, shipping discount, third-party cart modification or Shopify Flow execution. In a production integration, gift fulfilment and shipping eligibility must be validated independently against authoritative platform rules. AOV improvement is an optimisation hypothesis, not a measured outcome.</p>
       <p style={{color:"#d9b47c",fontSize:14}}>Study the reusable implementation in GitHub: <a href="https://github.com/bonvallite/developer-portfolio/blob/main/lib/rewards-engine.mjs" style={{textDecoration:"underline"}}>rewards engine</a> · <a href="https://github.com/bonvallite/developer-portfolio/blob/main/THIRD_PARTY_CART_HISTORY.md" style={{textDecoration:"underline"}}>Shadow DOM engineering history</a></p>
     </section>

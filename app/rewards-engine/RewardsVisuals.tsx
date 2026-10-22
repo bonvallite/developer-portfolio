@@ -100,7 +100,7 @@ export default function RewardsVisuals({offer, subtotal}: {offer:Offer; subtotal
                 {icon:<Package size={18}/>,label:"Bonus reward",value:offer.bonusThreshold}
               ].map((m,i)=><div key={i} style={{background:"#f3efe3",color:"#293c30",padding:"12px 6px",textAlign:"center",borderRadius:5,opacity:active?1:.5}}>
                 <div style={{display:"flex",justifyContent:"center",marginBottom:7}}>{m.icon}</div>
-                <strong style={{fontSize:17}}>{active?formatAUD(m.value):"—"}</strong>
+                <strong style={{fontSize:17}}>{active?formatAUD(m.value):"Off"}</strong>
                 <div style={{fontSize:10,lineHeight:1.3,marginTop:4}}>{m.label}</div>
               </div>)}
             </div>

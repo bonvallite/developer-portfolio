@@ -4,11 +4,11 @@ An independently authored **public portfolio demonstration**, inspired by genera
 
 ## One developer. One connected commerce experience.
 
-**Role:** End-to-end e-commerce engineer — analytics, conversion strategy, UI/UX design, Shopify development, integration engineering, testing and documentation.
+**Role:** End-to-end e-commerce engineer: analytics, conversion strategy, UI/UX design, Shopify development, integration engineering, testing and documentation.
 
 **The challenge:** A promotion is not one banner. It follows a customer from the homepage to a product card, collection page, seasonal landing page, cart and checkout. When each surface holds its own amounts, gift labels and terms, every campaign change becomes a checklist: update the header, update templates, update the cart, verify shipping, verify fulfilment, then hope no message was missed. Third-party cart technology adds another layer of complexity. Inconsistent messages weaken trust precisely when the shopper is deciding whether to add more.
 
-**My approach:** I worked backwards from a commercial question — *how can we make the next meaningful reward visible at the moment of purchase, while making future campaigns easier to maintain?* — and designed a configuration-led rewards architecture. One structured offer provides the editorial truth; each storefront surface translates that data into the right experience for its context. Instead of hardcoding an amount or a product name into every banner, a merchandising edit can update all connected presentation surfaces.
+**My approach:** I worked backwards from a commercial question, *how can we make the next meaningful reward visible at the moment of purchase, while making future campaigns easier to maintain?*, and designed a configuration-led rewards architecture. One structured offer provides the editorial truth; each storefront surface translates that data into the right experience for its context. Instead of hardcoding an amount or a product name into every banner, a merchandising edit can update all connected presentation surfaces.
 
 **What I bring to the table:** I do not stop at spotting a conversion leak or designing a mock-up. I can trace the underlying technology, model the data, write the Liquid and JavaScript, integrate with a third-party React-rendered cart without replacing its transactional logic, coordinate Shopify Flow fulfilment rules, review analytics, test edge cases and leave maintainable documentation behind. This joins commercial judgement with implementation detail.
 
@@ -42,7 +42,7 @@ I approached the work as a complete problem-solving cycle: investigate customer 
 
 The maintainability benefit is immediate: connected **storefront copy and milestone displays** no longer require independently hardcoding every value. The business effect is the hypothesis to evaluate: clearer next-reward messaging may motivate a larger basket. Historical AOV trends on the real project were favourable before this particular cart-progress release; they are **not proof that the new ladder caused growth**.
 
-**Portfolio positioning:** *I combine the analytical mindset of a conversion specialist, the visual judgement of a UI/UX designer and the implementation depth of a Shopify engineer. I can own the journey from problem discovery to a tested, maintainable solution — and I know how to distinguish an impressive interface from a commercially proven result.*
+**Portfolio positioning:** *I combine the analytical mindset of a conversion specialist, the visual judgement of a UI/UX designer and the implementation depth of a Shopify engineer. I can own the journey from problem discovery to a tested, maintainable solution, and I know how to distinguish an impressive interface from a commercially proven result.*
 
 ## Problem and goal
 
@@ -51,10 +51,10 @@ When promotional content is separately maintained in announcement bars, product 
 ## Data model (illustrative)
 
 A single Shopify metaobject might expose:
-- `enabled` — boolean
-- `gift_threshold`, `shipping_threshold`, `bonus_threshold` — positive numbers, strictly ascending
-- `gift_label`, `bonus_label`, `short_line`, `terms` — edited content
-- `offer_link` — optional URL
+- `enabled`: boolean
+- `gift_threshold`, `shipping_threshold`, `bonus_threshold`: positive numbers, strictly ascending
+- `gift_label`, `bonus_label`, `short_line`, `terms`: edited content
+- `offer_link`: optional URL
 
 The real demonstration does **not** query Shopify: [`lib/rewards-engine.mjs`](lib/rewards-engine.mjs) provides a fictional static object that the interactive page can edit locally.
 
@@ -154,10 +154,10 @@ The minicart mock-up visually echoes an approved internal progression concept (h
 
 ## Demo and test coverage
 
-- [Interactive simulator](/rewards-engine) — independently authored Next.js presentation with editable synthetic offer, homepage, collection and minicart previews.
-- [Reward engine](lib/rewards-engine.mjs) — pure JavaScript with offer validation, next milestone, remaining spend and visual progress.
-- [Boundary tests](tests/rewards-engine.test.mjs) — exact thresholds, invalid/disabled configuration, changed values and negative spend.
-- [Third-party cart development history](THIRD_PARTY_CART_HISTORY.md) — public-safe engineering lessons about Shadow DOM, hydration, scoped hooks, fallback and QA.
+- [Interactive simulator](/rewards-engine): independently authored Next.js presentation with editable synthetic offer, homepage, collection and minicart previews.
+- [Reward engine](lib/rewards-engine.mjs): pure JavaScript with offer validation, next milestone, remaining spend and visual progress.
+- [Boundary tests](tests/rewards-engine.test.mjs): exact thresholds, invalid/disabled configuration, changed values and negative spend.
+- [Third-party cart development history](THIRD_PARTY_CART_HISTORY.md): public-safe engineering lessons about Shadow DOM, hydration, scoped hooks, fallback and QA.
 
 ## From mock-up to maintainable operation
 

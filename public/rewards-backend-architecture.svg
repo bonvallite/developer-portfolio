@@ -43,7 +43,7 @@ text{font-family:Arial,Helvetica,sans-serif} .eyebrow{font-size:13px;font-weight
 <text x="1114" y="263" font-size="17" fill="#fff9e9" font-family="Arial">Shadow DOM minicart</text>
 <text x="52" y="349" class="small">* Product-card and checkout placements need individual integration and verification.</text>
 <text x="52" y="443" class="eyebrow">02  /  ORDER-LEVEL ENFORCEMENT &amp; FULFILMENT</text>
-<text x="52" y="468" class="body">Separate authoritative business rules — not controlled by the frontend visual component</text>
+<text x="52" y="468" class="body">Separate authoritative business rules, not controlled by the frontend visual component</text>
 <rect x="52" y="503" width="232" height="122" rx="12" fill="#393127" stroke="#b89562"/>
 <text x="70" y="529" class="number">TRIGGER</text>
 <text x="70" y="557" class="heading">Order placed</text>
@@ -69,7 +69,7 @@ text{font-family:Arial,Helvetica,sans-serif} .eyebrow{font-size:13px;font-weight
 <text x="1161" y="557" class="heading">Shipping discounts</text>
 <text x="1161" y="582" class="body">Rates · postcode · eligibility</text>
 <path class="dotted" d="M197 309 V385 H452 V503"/>
-<text x="473" y="391" class="small">Consistency check needed — NOT automatic propagation</text>
+<text x="473" y="391" class="small">Consistency check needed: NOT automatic propagation</text>
 <text x="52" y="664" class="small">Illustrative reference architecture. No live workflow, store identifiers, offer values or internal scripts are embedded.</text>
 <text x="52" y="744" class="eyebrow">ENGINEERING STORY:  ANALYSE  →  MODEL  →  DESIGN  →  INTEGRATE  →  VALIDATE  →  MEASURE</text>
 </svg>
