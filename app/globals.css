@@ -73,11 +73,13 @@
   .standards-page .button { white-space: normal; text-align: center; }
 }
 
-/* Cybersecurity attendance credential: scoped presentation shared by the homepage
-   and experience page. The certificate remains a private signed document; this UI
-   communicates only evidence-backed attendance, not a professional certification. */
+/* Cybersecurity professional-development cards shared by the homepage and
+   experience page. The CERT course has a private attendance certificate; the
+   undersea-cable event is invitation-sourced and must not imply attendance. */
 .credential-section{padding-top:74px;padding-bottom:82px}
 .credential-section .section-head{margin-bottom:28px}
+/* Stack two distinct evidence types without suggesting equivalent credentials. */
+.credential-section .credential-card + .credential-card,.credential-event{margin-top:18px;scroll-margin-top:24px}
 .credential-card{display:flex;align-items:flex-start;gap:28px;padding:clamp(24px,4vw,42px);border:1px solid #5b4b37;background:linear-gradient(110deg,#25221e,#15191e)}
 .credential-mark{display:grid;place-items:center;flex:none;width:66px;height:66px;border:1px solid #846b45;color:#d9b47c;background:#3a30234d}
 .credential-body{min-width:0;flex:1}
