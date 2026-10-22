@@ -52,3 +52,14 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Inline documentation:** Updated home and Experience JSX comments on evidence boundaries; updated shared CSS comment and documented card spacing; updated README.
 - **Validation:** Reviewed existing source, comments, engineering standards and prior changelog before editing. Checked exact provided names, title, time and location against user-supplied announcement. Remote re-read of saved files and deployment checks pending at the moment of this entry; no build or browser test is asserted.
 - **Release:** Saved on `main`; verify Git-linked Vercel production deployment, page rendering and GitHub checks.
+
+
+## 2026-10-22 — Final deployment and source verification
+
+- **Target:** Vercel `developer-portfolio` production, GitHub `bonvallite/developer-portfolio` `main`.
+- **Scope:** Verify the Google Developer and Wikipedia links, DICT Foundations of CERT Operations attendance card, and undersea cable security session entry shipped in the recent commits.
+- **Files checked:** `app/page.tsx`, `app/experience/page.tsx`, `app/globals.css`, `README.md`, `CHANGELOG.md`.
+- **Source verification:** Re-fetched all five saved files. Confirmed both profile links, the CERT training card/details, the undersea cable event/details, responsive card styles, explanatory JSX/CSS comments, and written records are present. The event remains explicitly invitation-based and does not claim attendance.
+- **Deployment verification:** Vercel reported the latest production deployment of commit `618894a1e9cfc09284dfda967a709f19c77accf9` as `READY`. GitHub's Vercel status check for that commit reported `success`.
+- **Limitations:** Live authenticated HTML retrieval failed with a Vercel 403 access error at the deployment alias/protection bypass; a separate public web fetch also could not access those routes. Therefore actual browser rendering, link clicks, mobile layouts, and runtime errors are **not independently verified**. No local TypeScript/test/build run was performed during this final pass. Production readiness is based on Vercel's deployment status, not a visual QA claim.
+- **Release:** This documentation-only change is committed to `main`, triggering another Vercel production deployment. Check the newest deployment's status separately; the prior known-good build is the commit above.
