@@ -16,3 +16,7 @@ A portfolio-safe overview of four original Jupyter notebooks, with no raw notebo
 - Dependency versions, automated tests and anonymised fixture data are needed for reliable public examples.
 
 This review used static inspection. No claim is made that all notebooks or downloaded AI models were run. Raw source and underlying CSVs remain private.
+
+## Independent follow-on demonstration
+
+[Offline fictional FAQ retrieval](../fictional-faq-retrieval) is a new, independently authored Python CLI, not a copy or runnable export of these notebooks. It uses fictional documents, full-corpus deterministic retrieval, verbatim answers and document/section attribution, with explicit unsupported, ambiguous and budget-limited outcomes. Its automated tests require only the Python standard library. The project README explains the architecture, limitations and differences from the experiments above. These review notes remain static findings, not evidence that the original prototypes were repaired or executed.

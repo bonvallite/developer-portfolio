@@ -1,0 +1,34 @@
+[
+  {
+    "id": "cloudberry-handbook",
+    "title": "Cloudberry Moon Library: visitor handbook (fictional)",
+    "entries": [
+      {
+        "section": "opening-hours",
+        "questions": ["When is the moon library open?", "What are the moon library opening hours?"],
+        "answer": "The fictional moon library opens Tuesday to Friday, from 10 am to 4 pm."
+      },
+      {
+        "section": "borrowing",
+        "questions": ["How many star maps can I borrow?"],
+        "answer": "A fictional visitor may borrow two star maps for seven days."
+      }
+    ]
+  },
+  {
+    "id": "cloudberry-workshops",
+    "title": "Cloudberry Moon Library: workshop guide (fictional)",
+    "entries": [
+      {
+        "section": "booking",
+        "questions": ["How do I book a lantern workshop?", "How can I reserve a lantern workshop?"],
+        "answer": "Reserve a fictional lantern workshop at the library desk at least one day before the session."
+      },
+      {
+        "section": "materials",
+        "questions": ["Are lantern workshop materials supplied?"],
+        "answer": "Paper, string and reusable lights are supplied for the fictional lantern workshop."
+      }
+    ]
+  }
+]

@@ -37,7 +37,7 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Approach:** Compare transactions by anonymised identifier, inspect duplicate events, review event configuration, assess reporting filters, and separate genuine missing transactions from attribution gaps.
 
-**Demonstrations:** 11 (purchase dedupe across reloads), 12, 27, 30.
+**Demonstrations:** 11 (purchase dedupe across reloads), 12, 27, 30, and [case study 18](#18-investigating-ecommerce-tracking-discrepancies-across-tag-versions).
 
 ## 6. Catalogue governance, SEO, and redirects
 **Problem class:** Product changes can create broken links, inconsistent headings, incomplete sales-channel publication, and search discoverability gaps.
@@ -58,7 +58,7 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Approach:** Distinguish tracking hygiene from marketing outcomes, validate event names and deduplication, and avoid exposing identifiable visitors or private campaign strategy.
 
-**Demonstrations:** 11, 12, 27, 30.
+**Demonstrations:** 11, 12, 27, 30, and [case study 18](#18-investigating-ecommerce-tracking-discrepancies-across-tag-versions).
 
 ## 9. Editing a live store safely: read first, one change at a time, log everything
 **Problem class:** Many store fixes have to be made in a live theme or live admin settings, where a mistake is visible to customers straight away and several small edits made together are hard to untangle.
@@ -249,6 +249,25 @@ Generalised from recent storefront maintenance. This write-up deliberately exclu
 **Outcome boundary:** Successful disputes were confirmed with courier-linked delivery events present in Shopify. That supports the evidence value of the integration; it does not establish that the webhook alone caused the issuer's decision. Private case details, commercial figures, and production code remain excluded.
 
 **Read more:** [Shipping webhooks and chargeback evidence](./CHARGEBACK_EVIDENCE.md), including event-time accuracy, recurring-payment evidence, notification limits, and the distinction between drafts and submissions.
+
+## 18. Investigating ecommerce tracking discrepancies across tag versions
+**Problem class:** A commerce platform and its analytics property reported different purchase totals. The audit needed to distinguish purchases that were missing from analytics from purchases that were recorded but attributed to an unclear source.
+
+This case study is generalised from a private audit. Store identity, reporting dates, counts, revenue, measurement IDs, container and version numbers, tag names, custom product fields, and raw event data are omitted.
+
+**Approach:**
+1. **Align the comparison.** Confirm the date range, time zone, currency, order status rules, and revenue definition before comparing totals.
+2. **Separate collection from attribution.** A purchase assigned to direct or unassigned traffic is still a recorded purchase. Removing an event's key-event designation can change key-event reporting, but does not by itself stop the underlying event from being collected.
+3. **Compare tag versions.** Review whether the GA4 configuration and ecommerce event tags were active, which analytics destination they used, and what triggers and filters governed them. Check the app pixel and tag-manager paths for overlap.
+4. **Follow the event route.** The snapshots showed a transition from active core analytics tags to paused tags around the start of the reporting window. A later configuration routed ecommerce events to another analytics destination with a narrower product-attribute condition.
+5. **Validate with transaction-level evidence.** Match privacy-safe transaction identifiers between commerce orders and analytics records, then test representative baskets, payment flows, consent states, and devices.
+
+**Finding:** The tag history showed a plausible event-delivery gap and later conditional routing, making tracking loss a credible explanation for some of the discrepancy. The snapshots alone could not establish how many purchases were missed or which destination supplied the final analytics total; that required transaction-level matching and confirmation of the app's independent tracking.
+
+**Lesson:** A sound audit checks event delivery and source attribution separately. Correct transaction IDs on captured purchases do not prove every order was captured, and changes to key-event status are not the same as stopping event collection.
+
+**Publication boundary:** This is documentation only. No client configuration, analytics data, account identifiers, or production code is included.
+
 
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.

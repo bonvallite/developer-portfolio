@@ -1,4 +1,4 @@
-# Editorial storefront homepage — interactive portfolio demo
+# Editorial storefront homepage: interactive portfolio demo
 
 **Status:** independently written, public-safe demonstration (22 October 2026)
 
@@ -14,7 +14,7 @@ The concept brand is **Ember & Grain**. All copy, products, prices, reviews (non
 - Source: [React/TypeScript homepage](../../app/editorial-homepage-demo/page.tsx)
 - Styles: [responsive, scoped CSS module](../../app/editorial-homepage-demo/demo.module.css)
 
-Only the homepage is implemented — there are no customer accounts, product detail pages, checkout, live catalogue APIs, or extra store pages.
+Only the homepage is implemented. There are no customer accounts, product detail pages, checkout, live catalogue APIs, or extra store pages.
 
 ## Interaction map
 
@@ -38,7 +38,7 @@ Only the homepage is implemented — there are no customer accounts, product det
 
 For an actual Shopify implementation, editable section blocks and structured metafields/metaobjects would make story panels and merchandising content maintainable without hardcoding. This paragraph describes a recommended pattern, **not** a claim that the prototype uses that production architecture.
 
-## Core Web Vitals — supplied production benchmark
+## Core Web Vitals: supplied production benchmark
 
 On 22 October 2026, the author supplied the following **28-day real-user field measurements** for a production storefront. They are presented anonymously and **are not performance results for this React demo**. The assessment was reported as **Passed** on both device groups.
 
