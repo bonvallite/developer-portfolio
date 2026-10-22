@@ -13,6 +13,9 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 **Cybersecurity: Foundation of CERT Operations** — a 12-hour *certificate of attendance* for **Foundations of CERT Operations**, 5–6 December 2023, through DICT Region XII & Mainland BARMM and its ICT Literacy and Competency Development Bureau. The course is summarised at [Professional development](./app/experience/page.tsx) (homepage card: `#certifications`, detailed section: `/experience#training`). It is not a professional cybersecurity certification. The signed original PDF is intentionally not committed to this public repository to protect the issuer's digital signature.
 
+**Industry session — No Fiber, No Cyber: Safeguarding the World's Undersea Cables:** The portfolio also summarises an event announcement supplied by the owner for a U.S.–Philippines Joint Cybersecurity Working Group session with APTelecom, scheduled for Thursday 16 November, 2–4 p.m. Philippine Time in Ortigas. The invitation names Phillip Nervig and Eric Handa as speakers and John Garrity as moderator. The announcement does not specify the year or confirm the owner's attendance; do not represent it as a completed course or credential. See `/experience#undersea-cables-session`.
+
+
 
 
 ## Engineering focus
