@@ -4,6 +4,26 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 **LinkedIn:** https://www.linkedin.com/in/bonvallite/
 
+**Google Developer profile:** https://g.dev/bonvallite
+
+**Wikipedia contributions:** https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite
+
+ 
+## Cybersecurity training
+
+**Cybersecurity: Foundation of CERT Operations** — a 12-hour *certificate of attendance* for **Foundations of CERT Operations**, 5–6 December 2023, through DICT Region XII & Mainland BARMM and its ICT Literacy and Competency Development Bureau. The course is summarised at [Professional development](./app/experience/page.tsx) (homepage card: `#certifications`, detailed section: `/experience#training`). It is not a professional cybersecurity certification. The signed original PDF is intentionally not committed to this public repository to protect the issuer's digital signature.
+
+**Industry session — No Fiber, No Cyber: Safeguarding the World's Undersea Cables:** The portfolio also summarises an event announcement supplied by the owner for a U.S.–Philippines Joint Cybersecurity Working Group session with APTelecom, scheduled for Thursday 16 November, 2–4 p.m. Philippine Time in Ortigas. The invitation names Phillip Nervig and Eric Handa as speakers and John Garrity as moderator. The announcement does not specify the year or confirm the owner's attendance; do not represent it as a completed course or credential. See `/experience#undersea-cables-session`.
+
+
+
+
+## Community involvement and healthy lifestyle
+
+The [Beyond the Code](./app/page.tsx) homepage section introduces my self-reported volunteering with DEVCON, community outreach programmes, and medical missions, alongside running from fun runs to longer-distance events. These are personal interests rather than claimed professional accreditations or measured sporting results.
+
+**Image publication:** All six owner-supplied original photographs have now been added to this repository as EXIF-stripped, optimised JPEGs under [`public/photos/`](./public/photos/) and are presented using Next.js `Image` components. The homepage features the laptop portrait, the About section uses the seated studio portrait, the Experience page shows the working portrait, and the personal section shows two running photos plus the medal. The original uploaded files are retained outside the public repository; no AI-generated substitutes or expiring external-image URLs are used. Source-specific alt text, image dimensions, responsive sizes and lazy loading are included; the homepage hero photo is prioritised.
+
 ## Engineering focus
 
 - **Shopify theme engineering:** Liquid sections, responsive product detail pages, metafields and metaobjects, accessibility, SEO, and page performance.
@@ -26,6 +46,10 @@ The [conversion audit case study](./app/conversion-audit/page.tsx) describes a p
 ## Cold-chain shipping and subscription checkout
 
 The [shipping integration case study](./app/shipping-integration/page.tsx) explains how developer-led troubleshooting aligned Recharge subscriptions, Zapiet zone rates and Shopify shipping rules across order thresholds and purchasing scenarios. The public account includes no customer records, production shipping configuration, proprietary code or unverified claims of zero recurrence. The homepage links to `/shipping-integration`.
+
+## Custom Shopify delivery app and CartonCloud integration
+
+I built both a **custom Cloudflare Worker delivery app** and its **Shopify–CartonCloud API integration**, linking Shopify fulfilment information to consignments and returning tracking events and estimated delivery-date information to Shopify. The [CartonCloud case study](./app/cartoncloud-integration/page.tsx) includes a responsive two-way architecture diagram with separate, clearly labelled app and integration contributions. See [technical documentation](./CARTONCLOUD_INTEGRATION.md) for implementation responsibilities, permission troubleshooting, historical testing and evidence limits. The public account contains no production Worker code, real order identifiers or private API credentials, and does not present successful API reads as complete delivery synchronisation.
 
 ## Shipping webhooks and chargeback evidence
 
@@ -102,7 +126,6 @@ npx tsc --noEmit && npm run build
 ```
 
 [GitHub Actions](./.github/workflows/portfolio-ci.yml) runs the same checks on every push and pull request. The safety scan catches common credential formats but does not replace a human review of ownership and confidentiality.
-
 
 ## Eve Curls: international European Markets case study (October 2026)
 
