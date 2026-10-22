@@ -47,6 +47,10 @@ The [conversion audit case study](./app/conversion-audit/page.tsx) describes a p
 
 The [shipping integration case study](./app/shipping-integration/page.tsx) explains how developer-led troubleshooting aligned Recharge subscriptions, Zapiet zone rates and Shopify shipping rules across order thresholds and purchasing scenarios. The public account includes no customer records, production shipping configuration, proprietary code or unverified claims of zero recurrence. The homepage links to `/shipping-integration`.
 
+## Custom Shopify delivery app and CartonCloud integration
+
+I built both a **custom Cloudflare Worker delivery app** and its **Shopify–CartonCloud API integration**, linking Shopify fulfilment information to consignments and returning tracking events and estimated delivery-date information to Shopify. The [CartonCloud case study](./app/cartoncloud-integration/page.tsx) includes a responsive two-way architecture diagram with separate, clearly labelled app and integration contributions. See [technical documentation](./CARTONCLOUD_INTEGRATION.md) for implementation responsibilities, permission troubleshooting, historical testing and evidence limits. The public account contains no production Worker code, real order identifiers or private API credentials, and does not present successful API reads as complete delivery synchronisation.
+
 ## Shipping webhooks and chargeback evidence
 
 The [chargeback evidence case study](./CHARGEBACK_EVIDENCE.md) explains how my custom Cloudflare and Shopify shipping integration connected consignments, tracking, and delivery events to dispute preparation. It distinguishes confirmed outcomes from causal claims and keeps customer records, order identifiers, private tracking links, and confidential commercial figures out of the public account.
