@@ -8,33 +8,42 @@
 
 Order and fulfilment information lived in Shopify, while shipment movement and delivery milestones lived in CartonCloud. Keeping tracking details, fulfilment events and estimated delivery dates aligned required bridging two different platforms. The aim was to reduce fragmented order visibility and support consistent customer-facing delivery updates.
 
-## My contribution
+## My contribution: I built both the app and the integration
 
-I designed and built a custom serverless integration using a Cloudflare Worker to coordinate Shopify fulfilment-order lookups, CartonCloud consignment processing, tracking-state handling and order-level estimated-delivery-date updates. The integration explored mapping provider events to Shopify fulfilment events and using order metafields to make delivery estimates accessible to downstream operations and notifications.
+I designed and developed two connected parts of the solution:
 
-This is a project account, not a claim that a Shopify App Store listing, embedded app UI, or fully independent CartonCloud implementation was developed.
+### 1. The custom delivery app I built
 
-## Architecture
+I implemented the serverless application layer using a Cloudflare Worker. It coordinates Shopify Admin API calls and fulfilment-order lookups, authentication, event processing, tracking-state handling, delivery-date updates, error investigation and order metafield writes. The application owns the orchestration responsibilities, rather than being simply a configuration change inside an existing Shopify theme.
+
+### 2. The Shopify–CartonCloud integration I built
+
+I also developed the integration workflows linking Shopify fulfilment information to CartonCloud consignments and returning shipment tracking, delivery events and estimated delivery-date information to Shopify. This involves mapping the data and behaviours of two different platforms into a consistent order workflow.
+
+**Scope clarification:** These are two parts of one custom technical solution, not a claim of two separately published commercial products or an independently authored CartonCloud platform. The app is not claimed to be a Shopify App Store listing or embedded administration interface.
+
+## Conceptual architecture
 
 ```text
-Shopify orders / fulfilment orders
-           |
-           v
-Custom Cloudflare Worker integration
-  - authorised Admin API requests
-  - order / consignment correlation
-  - status and date mapping
-  - event processing / diagnostics
-           |
-           v
-CartonCloud consignments and shipment milestones
-           |
-           v
-Worker update path -> Shopify tracking / fulfilment events
-                   -> estimated delivery-date order metafields
+          Shopify orders and fulfilment information
+                           ↕
+                CUSTOM APP I BUILT
+           Cloudflare Worker application
+      Authentication · Orchestration · ETA handling
+                           ↕
+             INTEGRATION I BUILT
+             Shopify–CartonCloud APIs
+      Webhooks · Consignments · Tracking events
+                           ↕
+                     CartonCloud
+            Consignments and delivery milestones
+
+  RETURN PATH (through the same app and integration)
+  -> Shopify tracking and fulfilment events
+  -> Shopify order metafields and estimated delivery dates
 ```
 
-The architecture is deliberately simplified. Exact triggers, webhook secrets, request payloads, retry implementation, operational thresholds and private schema keys are not published.
+Arrows describe logical exchange rather than production network boundaries. The integration is implemented and coordinated by the custom app. Exact triggers, webhook secrets, request payloads, retry implementation, operational thresholds and private schema keys are not published.
 
 ## Development challenges
 
@@ -63,4 +72,4 @@ The screenshot itself is excluded because it shows production order identifiers 
 
 ## Public showcase
 
-See [the CartonCloud case study](/cartoncloud-integration) in the deployed Next.js portfolio. All diagrams and terminology are independently reconstructed from the project description; no private implementation or live customer data is supplied.
+See [the CartonCloud case study](./app/cartoncloud-integration/page.tsx) in the Next.js portfolio, subject to deployment validation. All diagrams and terminology are independently reconstructed from the project description; no private implementation or live customer data is supplied.
