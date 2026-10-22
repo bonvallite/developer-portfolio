@@ -127,6 +127,31 @@ npx tsc --noEmit && npm run build
 
 [GitHub Actions](./.github/workflows/portfolio-ci.yml) runs the same checks on every push and pull request. The safety scan catches common credential formats but does not replace a human review of ownership and confidentiality.
 
+## Eve Curls: international European Markets case study (October 2026)
+
+The [Eve Curls international Shopify Markets case study](./app/eve-curls/page.tsx) outlines the developer's work on a multi-country European ecommerce approach operating within one Shopify ecosystem. Markets discussed: the UK, Switzerland, Netherlands, Italy, France and Spain. The portfolio covers market-level language and currency contexts, market-aware product catalogues, localised landing-page content, domain planning and common theme components with regional presentation overrides.
+
+The [interactive preview](./app/eve-curls/MarketPreview.tsx) deliberately uses six fictional market configurations, translated example copy, illustrative products, fixed mock prices, percentage-discount examples, checkout/account labels and non-resolving `.invalid` example URLs. It does **not** query or expose any Eve Curls catalogue, theme, Shopify configuration, live domain route, currency conversion, tax calculation or real customer data. Switzerland is shown using a German-language sample, while French and Italian are noted as potential alternatives. The diagram at [public/portfolio/eve-curls-markets.svg](./public/portfolio/eve-curls-markets.svg) is independently authored.
+
+Technical distinction: Shopify supports market-based theme customisations on a shared published theme; this should not be presented as separate simultaneously published themes within one shop. User-described project scope is not equivalent to an audited live market-by-market configuration or a measured commercial outcome.
+
+### Six Shopify Markets configuration areas
+
+The Eve Curls case study now maps the six configuration groups named in Shopify's Markets admin:
+
+| Area | Experience illustrated | Production boundary |
+| --- | --- | --- |
+| Currency | GBP/CHF/EUR formatting and fixed fictional prices for each selected country | Real conversion, checkout settlement and refunds require the appropriate payment processor and live market settings. |
+| Catalogs | Market-specific product names and availability/price illustrations | No actual published client catalogue or product records. |
+| Discounts | Different example percentage offers, including a market with no offer | In Shopify, percentage reductions use the local price; fixed-value discounts are defined in the store's base currency and converted at checkout. Real market assignment, eligibility and stacking are not simulated. |
+| Online Store / Theme | Country-specific hero and CTA content | Shopify publishes one theme, with per-market section/block overrides on Advanced or Plus; global typography, colours and Liquid templates are shared. |
+| Checkout and accounts | Illustrative translated checkout/account labels | This preview does not simulate Shopify checkout. Plan-dependent per-market checkout and account customisations start on Advanced; certain checkout blocks are Plus-only. |
+| Domain / language | Example `.invalid` URL paths and localised storefront copy | Not live Eve Curls domains or verified current market-language configuration. |
+
+This is a **public-safe case study** of the developer's stated architectural scope, not a verified export of Eve Curls administration or an end-to-end checkout test. The market selector changes only in-memory React state; all displayed values are static fictional fixtures. It does not perform currency conversion, taxes, actual payments, Shopify discounts or account authentication.
+
+Shopify documentation: [Managing markets](https://help.shopify.com/en/manual/markets/getting-started/managing-markets), [Markets customisation](https://help.shopify.com/en/manual/markets/customizations), [feature and plan requirements](https://help.shopify.com/en/manual/markets/getting-started/requirements-and-considerations), [discounts in Markets](https://help.shopify.com/en/manual/markets/discounts-and-gift-cards), and [market theme customisation](https://help.shopify.com/en/manual/markets/customizations/online-store).
+
 ## Editorial homepage storytelling demo
 
 The public-safe [/editorial-homepage-demo](./app/editorial-homepage-demo/page.tsx) is a single, independent premium commerce homepage. It combines a story carousel, occasion-based browsing, fictional collection filtering, a local demo bag, an educational marbling slider, and a sample postcode interaction in a responsive design. It is not client theme code or a copy of the original brand. [Read the case study and author-supplied 28-day Core Web Vitals benchmark](./projects/editorial-homepage-demo/README.md). Production measurements are clearly separated from the unmeasured React prototype.
