@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "test": "node --test \"tests/**/*.test.mjs\"",
+    "test:faq": "python3 -m unittest discover -s tests/python -p test_faq_retrieval.py -v",
     "test:python": "python3 -m unittest discover -s tests/python",
     "check:safety": "node scripts/check-public-safety.mjs"
   },
@@ -28,3 +29,4 @@
     "liquidjs": "^10.21.0"
   }
 }
+

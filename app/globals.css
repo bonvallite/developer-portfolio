@@ -48,3 +48,45 @@
 .markets-checkout-preview>div{min-width:0}.markets-checkout-preview span,.markets-checkout-preview strong{display:block}
 .markets-checkout-preview span{font-size:9px;letter-spacing:1px;color:#55685e}.markets-checkout-preview strong{font-size:14px;margin-top:7px;color:#254336}
 @media(max-width:650px){.markets-product-list article{align-items:center}.markets-checkout-preview{grid-template-columns:1fr}}
+
+/* Engineering-standard page: scoped to .standards-* alongside shared demo-shell
+   typography. The record grid stacks labels above values on small screens. */
+.standards-heading { max-width: 980px; }
+.standards-heading .overline { line-height: 1.8; }
+.standards-heading .button { margin-top: 12px; }
+.standards-contract { display: flex; align-items: flex-start; gap: 22px; padding: clamp(24px, 4vw, 40px); border: 1px solid #80613d; background: linear-gradient(120deg, #29251e, #15191e); }
+.standards-contract > svg { flex-shrink: 0; color: #dfbb86; margin-top: 5px; }
+.standards-contract h2 { font-size: clamp(24px, 3.3vw, 36px); line-height: 1.25; letter-spacing: -0.8px; margin: 15px 0; }
+.standards-contract p, .standards-grid p, .standards-value-grid p { color: #b4b6be; font-size: 14px; line-height: 1.85; margin: 0; }
+.standards-section { padding-top: 80px; }
+.standards-section .section-head h2 { font-size: clamp(32px, 4.2vw, 50px); }
+.standards-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; }
+.standards-grid li { padding: 27px; border: 1px solid #3d3931; background: #181b20; }
+.standards-card-top { display: flex; align-items: center; justify-content: space-between; color: #d9b47c; }
+.standards-card-top span { font-size: 11px; letter-spacing: 1px; }
+.standards-grid h3, .standards-value-grid h3 { font-size: 21px; margin: 25px 0 12px; letter-spacing: -0.4px; }
+.standards-record { border: 1px solid #66533a; background: #15191e; padding: clamp(22px, 4vw, 40px); }
+.standards-record-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.standards-record h3 { font-size: clamp(24px, 3vw, 32px); line-height: 1.2; margin: 15px 0 24px; }
+.standards-status { border: 1px solid #7e643d; color: #e2c18d; background: #382d1e; padding: 8px 12px; font-size: 12px; line-height: 1.5; flex-shrink: 0; }
+.standards-record dl { margin: 0; }
+.standards-record dl > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 22px; padding: 19px 0; border-top: 1px solid #ffffff1c; font-size: 14px; line-height: 1.8; }
+.standards-record dt { color: #d9b47c; font-weight: 600; }
+.standards-record dd { margin: 0; color: #b9bbc3; min-width: 0; overflow-wrap: anywhere; }
+.standards-record code { color: #eee4d4; font-size: 12px; }
+.standards-value-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px; }
+.standards-value-grid article { border-top: 1px solid #756044; }
+.standards-footnote { margin: 35px 0 30px; padding-top: 24px; border-top: 1px solid #ffffff1c; color: #9ca0aa; font-size: 12px; line-height: 1.85; max-width: 900px; }
+.standards-page a:focus-visible { outline: 2px solid #dfbb86; outline-offset: 5px; }
+@media (max-width: 900px) { .standards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 650px) {
+  .standards-grid, .standards-value-grid { grid-template-columns: 1fr; }
+  .standards-contract { gap: 15px; }
+  .standards-contract > svg { width: 23px; }
+  .standards-grid li { padding: 23px; }
+  .standards-record-heading { flex-direction: column; gap: 0; margin-bottom: 22px; }
+  .standards-record h3 { margin-bottom: 18px; }
+  .standards-record dl > div { grid-template-columns: 1fr; gap: 4px; }
+  .standards-section { padding-top: 60px; }
+  .standards-page .button { white-space: normal; text-align: center; }
+}
