@@ -11,6 +11,13 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 - **API and fulfilment integrations:** Illustrative REST/GraphQL webhooks, idempotent event handling, tracking status normalisation, and retry strategies.
 - **Delivery estimates:** Example date calculations distinguishing parcel movement from residential delivery days.
 - **Analytics quality:** Event deduplication, ecommerce transaction validation, and reconciliation techniques.
+- **Maintainable delivery:** Inline documentation, dated changelogs, validation evidence and practical release handovers.
+
+## Documentation and change control
+
+Documentation is an essential part of delivery. My [engineering standard](./ENGINEERING_STANDARDS.md) requires reading existing source and change history before editing, keeping inline explanations accurate, recording every change and verifying the saved result. Records include the date, target, affected files, change, reason, actual validation and pending checks. For Shopify theme work, this includes the private `pa-theme-changelog` and exact theme ID.
+
+The portfolio presents this practice at [`/engineering-standards`](./app/engineering-standards/page.tsx), linked from the homepage quality and skills sections. The [contribution guidance](./CONTRIBUTING.md), [PR checklist](./.github/pull_request_template.md), [reusable change record](./ENGINEERING_STANDARDS.md#reusable-change-record) and [portfolio changelog](./CHANGELOG.md) make it usable for future work. The public record example is fictional. This documents a working standard; historical documentation completeness still requires an audit, and CI does not automatically certify comment accuracy.
 
 ## CTA and conversion-leak audit case study
 
