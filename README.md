@@ -10,6 +10,13 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 **Wikipedia contributions:** https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite
 
+## Site favicon
+
+The portfolio uses the owner's selected **option 6**, the cyan `{JRV}` code monogram on a dark-blue rounded-square background. `app/icon.svg` is the canonical favicon file. It embeds a compact 64 × 64 pixel derivative of the approved generated artwork in a self-contained SVG wrapper, so the icon has no external image or font dependency. Next.js App Router discovers `app/icon.svg` automatically and includes the favicon link in page metadata; the explanatory comment in `app/layout.tsx` documents that convention. No conflicting `app/favicon.ico` is present.
+
+When replacing the mark, update `app/icon.svg`, check rendered appearance at 16 × 16 and 32 × 32 as well as the browser tab, confirm it loads on production, and update this README and the dated `CHANGELOG.md`.
+
+
  
 ## Cybersecurity training
 
