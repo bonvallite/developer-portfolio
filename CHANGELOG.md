@@ -2,6 +2,16 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-10-23 — Downloadable resume PDF
+
+- **Target:** `bonvallite/developer-portfolio`, `main`, connected to the Vercel `developer-portfolio` production project.
+- **Affected files:** `public/Jomar-Vallite-Resume.pdf` (new), `app/page.tsx`, `app/experience/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Published the owner's updated two-page 2026 resume as a static PDF at `/Jomar-Vallite-Resume.pdf`. Linked it from the homepage header navigation, the contact buttons and the top of the Experience page, and added it to the README. All links open in a new tab with `noopener noreferrer`.
+- **Reason:** Give recruiters and clients a direct, stable resume download from both the live portfolio and the GitHub repository.
+- **Content and privacy:** The PDF is the owner's own resume, prepared and approved by the owner. Its contact details (email, the WhatsApp number already linked in the contact section, GitHub, LinkedIn and portfolio URLs) were already public on this site. It names the owner's current employer and past clients as normal resume content; it contains no source code, credentials, customer data or store identifiers.
+- **Maintenance:** To update the resume, replace `public/Jomar-Vallite-Resume.pdf` in place so every existing link keeps working.
+- **Validation:** Recorded in the associated commit and deployment check.
+
 ## 2026-10-22 — Custom delivery app and CartonCloud integration portfolio
 
 - **Target:** `bonvallite/developer-portfolio`, refresh branch `feature/cartoncloud-app-integration-refresh-20261022`, existing Next.js/Vercel portfolio.

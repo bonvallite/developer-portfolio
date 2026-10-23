@@ -2,6 +2,8 @@
 
 Practical e-commerce engineering, API integrations, automation, and storefront performance.
 
+**Resume (PDF):** https://developer-portfolio-my-dojo.vercel.app/Jomar-Vallite-Resume.pdf ([file in this repository](./public/Jomar-Vallite-Resume.pdf))
+
 **LinkedIn:** https://www.linkedin.com/in/bonvallite/
 
 **Google Developer profile:** https://g.dev/bonvallite
