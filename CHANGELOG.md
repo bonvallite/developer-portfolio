@@ -124,3 +124,14 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Validation performed:** Confirmed the image asset's original pixels and the selected logo visually; created a compressed, square derivative. Rendered a local SVG-embedded image to confirm the approach works, then confirmed GitHub accepted `app/icon.svg`, and re-read it to check the committed file. Checked that `app/favicon.ico`, `app/icon.png`, and `public/favicon.ico` were absent before adding the new icon.
 - **Remaining validation:** Confirm the latest Vercel Git-linked production deployment reaches `READY` with successful check; check that the homepage links to the icon and that `/icon.svg` returns valid SVG. Actual browser 16 × 16 and 32 × 32 favicons across browsers remain pending unless separately verified.
 - **Release and rollback:** Committed to `main` for automatic Vercel production deployment. Revert these commits to restore the previous no-custom-favicon state.
+ 
+
+## 2026-10-23 — Favicon encoded-image correction
+
+- **Target:** `bonvallite/developer-portfolio`, Next.js App Router, `main` branch, Vercel `developer-portfolio`.
+- **Files:** `app/icon.svg`, `README.md`, `CHANGELOG.md`; previous `app/layout.tsx` inline documentation remains applicable.
+- **Correction:** The first SVG favicon committed on 23 October embedded a malformed JPEG and could not be decoded reliably. Replaced its embedded image with a verified 64 × 64 pixel palette-optimised PNG derivative of the actual selected cyan `{JRV}` icon, keeping the same `app/icon.svg` path, accessible title and self-contained SVG metadata.
+- **Why:** A successful Git deployment alone does not prove image bytes are valid or that a browser will render a favicon.
+- **Validation:** Decoded and visually inspected the replacement PNG, re-fetched the exact GitHub-saved `app/icon.svg` file, extracted its `data:image/png;base64` payload and verified it decoded as the intended `{JRV}` logo. The image is self-contained with no external dependency. The source code comment and README remain aligned with the change.
+- **Pending:** Check Vercel production deployment for the corrected commit and HTTP responses of `/icon.svg` and homepage; check actual Chrome/Edge tab display and cache refresh. Do not claim browser confirmation until actually exercised.
+- **Release and recovery:** Corrective commit `b14e6eaf6c18d6e2f914e5b71a4ee766c866d5f5`, followed by documentation commits on `main`. Roll back to earlier no-custom-icon commit if required.
