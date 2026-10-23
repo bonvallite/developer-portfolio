@@ -113,3 +113,14 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 - **Production HTTP validation:** Vercel reported photo integration commit `READY`. Public `/` and `/experience` returned HTTP 200 with the expected alt text and photo references. Each of the six `/photos/*.jpg` endpoints returned HTTP 200 with `image/jpeg` and the expected file byte length. Next.js's `/_next/image` optimisation returned HTTP 200 and `image/jpeg` for the hero image.
 - **Outstanding:** Actual browser screenshots, interactive image-lightbox checks (none added), and desktop/mobile visual crop inspection have **not** been performed. Responsive CSS and image `sizes` have been reviewed in source, not yet visually certified.
 - **Documentation and release:** Added this follow-up evidence to avoid claiming visual checks that were not carried out. This documentation-only commit may trigger a further Vercel Git-linked production deployment.
+
+## 2026-10-23 — Selected JRV code favicon
+
+- **Target:** `bonvallite/developer-portfolio`, Next.js App Router, GitHub `main`, connected Vercel `developer-portfolio` production project.
+- **Affected files:** `app/icon.svg` (new), `app/layout.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Published the user's chosen option 6, the bright cyan `{JRV}` code monogram on a dark-blue rounded square, as a self-contained 64 × 64 raster-derived SVG favicon at `app/icon.svg`. Next.js automatically links this file as the site icon. No `app/favicon.ico` previously existed.
+- **Reason:** Personalise the browser tab and bookmarks with the approved developer identity without depending on an external image service.
+- **Inline documentation:** Added a Next.js file-convention comment beside `metadata` in `app/layout.tsx` to prevent conflicting icon declarations. Added asset provenance, sizing, update guidance and testing expectations in the README.
+- **Validation performed:** Confirmed the image asset's original pixels and the selected logo visually; created a compressed, square derivative. Rendered a local SVG-embedded image to confirm the approach works, then confirmed GitHub accepted `app/icon.svg`, and re-read it to check the committed file. Checked that `app/favicon.ico`, `app/icon.png`, and `public/favicon.ico` were absent before adding the new icon.
+- **Remaining validation:** Confirm the latest Vercel Git-linked production deployment reaches `READY` with successful check; check that the homepage links to the icon and that `/icon.svg` returns valid SVG. Actual browser 16 × 16 and 32 × 32 favicons across browsers remain pending unless separately verified.
+- **Release and rollback:** Committed to `main` for automatic Vercel production deployment. Revert these commits to restore the previous no-custom-favicon state.
