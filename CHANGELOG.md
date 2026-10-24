@@ -2,6 +2,16 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-10-24 — Lexicographic permutations algorithm demonstration
+
+- **Target:** `bonvallite/developer-portfolio`, feature branch `feature/lexicographic-permutations-20261024` and proposed `/permutations-demo` route.
+- **Affected files:** `projects/lexicographic-permutations/permutations.c`, `sample-output.txt`, `README.md`, `lib/lexicographic-permutations.mjs`, `tests/permutations.test.mjs`, `app/permutations-demo/page.tsx`, `app/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added an educational C backtracking example retaining the original exercise structure with a one-line bitmask reset, an independently written browser-side JavaScript generator, automated test cases, and a page to preview or download lexicographically ordered permutations.
+- **Reason:** Demonstrate recursive state management, algorithm debugging, user input validation, and testable client-side functionality.
+- **Content and privacy:** The challenge is labelled an educational debugging exercise, not original professional client work. Input is a seven-letter string, not a customer or employer dataset.
+- **Validation:** Output generated for `bcehitz`: 5,040 lines, ordered and distinct. CI, build, browser QA, and Vercel preview remain pending until checks are run. No production deployment claimed.
+- **Release:** Proposed pull request only. Existing production branch is unchanged.
+
 ## 2026-10-23 — Downloadable resume PDF
 
 - **Target:** `bonvallite/developer-portfolio`, `main`, connected to the Vercel `developer-portfolio` production project.
