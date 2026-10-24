@@ -2,6 +2,17 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-10-24 - Conversion journey case study and public carousel
+
+- **Target:** `bonvallite/developer-portfolio`, Vercel `developer-portfolio` production, team `my-dojo`.
+- **Affected files:** `app/conversion-audit/page.tsx`, `app/page.tsx`, `public/portfolio/shopify-conversion-journey.pdf`, `README.md`, `CHANGELOG.md`.
+- **Change:** Expanded the existing conversion case study with the six-stage journey, Shopify Analytics, GA4, Clarity, source inspection, delivered improvements, developer-reported QA, and explicit open measurement items. Added a public nine-slide portrait PDF and a stable download link. Refreshed the homepage project summary.
+- **Reason:** Show the progression from diagnosis to implementation and production validation for Shopify owners and hiring teams.
+- **Publication:** Created a separate public PDF excluding internal conversion figures, traffic counts, and private audit attachments. No proprietary code, production IDs, or customer information added. Reported operational QA is distinct from portfolio checks and measured commercial uplift.
+- **Inline documentation:** Added source comments documenting public PDF ownership, evidence provenance, backend rule boundaries, and alignment of the homepage, case study, and download.
+- **Validation:** 104 JavaScript tests and 16 Python tests passed. Publication scan passed for 143 tracked files. TypeScript, Next.js production build, and Git whitespace checks passed. Built homepage, case-study route, and PDF returned HTTP 200. Case-study HTML contains the six-stage journey and download link, and served PDF bytes match the local nine-page public asset. PDF text bounds, internal-figure exclusions, and all rendered slides passed review. Browser/mobile visual checks remain pending because the browser binary download failed. Production status and remote saved-source checks follow publication.
+- **Recovery:** Pre-change main commit `caf282f5114f8b5598be1917e99262181b2bd209`. Revert this scoped change to restore the prior case study.
+
 ## 2026-10-24 — Interactive CSS engineering lab
 
 - **Target:** Personal `bonvallite/developer-portfolio` repository, `feature/interactive-css-lab-20261024`, preview route `/css-lab`.

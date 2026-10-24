@@ -52,6 +52,8 @@ The portfolio presents this practice at [`/engineering-standards`](./app/enginee
 
 The [conversion audit case study](./app/conversion-audit/page.tsx) describes a public-safe approach to diagnosing Shopify purchase-funnel friction: CTA functionality, product discovery, mobile UX, promotional eligibility messaging, cart-to-checkout continuity, event instrumentation and traffic-quality segmentation. The portfolio homepage links to `/conversion-audit`. This is a methodology-focused case study; internal conversion counts, private commercial results and employer source code are deliberately excluded. It does not assert a measured uplift or claim all recommendations shipped.
 
+The expanded case study maps six journey stages from landing to purchase, explains the roles of Shopify Analytics, GA4, Microsoft Clarity, and source inspection, and distinguishes audit hypotheses from later developer-reported live QA. The [nine-slide public PDF](./public/portfolio/shopify-conversion-journey.pdf) is served at `/portfolio/shopify-conversion-journey.pdf`. This edition excludes internal commercial figures and private audit attachments. The original LinkedIn draft is not published verbatim. Keep the page, downloadable PDF, and evidence limitations aligned when updating this case study.
+
 ## Cold-chain shipping and subscription checkout
 
 The [shipping integration case study](./app/shipping-integration/page.tsx) explains how developer-led troubleshooting aligned Recharge subscriptions, Zapiet zone rates and Shopify shipping rules across order thresholds and purchasing scenarios. The public account includes no customer records, production shipping configuration, proprietary code or unverified claims of zero recurrence. The homepage links to `/shipping-integration`.
