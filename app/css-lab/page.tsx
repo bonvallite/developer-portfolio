@@ -21,6 +21,7 @@ export default function CssLabPage() {
   const [borderBox, setBorderBox] = useState(true);
   const [visibility, setVisibility] = useState<Visibility>("visible");
   const [clicks, setClicks] = useState(0);
+  const [actionClicked, setActionClicked] = useState(false);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [revealed, setRevealed] = useState(false);
 
@@ -111,7 +112,7 @@ export default function CssLabPage() {
             <div className={styles.labHeading}><Code2 size={23}/><div><h3>Flexbox row</h3><p>One growing item and one fixed-size action</p></div></div>
             <div className={styles.flexDemo}>
               <div className={styles.flexContent}><strong>Flexible content area</strong><small>flex: 1; min-width: 0;</small></div>
-              <button type="button" className={styles.flexButton} onClick={e=>{ e.currentTarget.textContent="Clicked"; }}>Action</button>
+              <button type="button" className={styles.flexButton} onClick={()=>setActionClicked(value=>!value)}>{actionClicked?"Clicked":"Action"}</button>
             </div>
             <p className={styles.helper}>Resize the window. The content compresses first, while the button keeps its natural width through <code>flex: none</code>.</p>
             <div className={styles.hoverDemo}>
