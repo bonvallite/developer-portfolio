@@ -6,7 +6,7 @@ import { lexicographicPermutations } from "../../lib/lexicographic-permutations.
 
 // Public educational example. Never fetches data, sends input to a server, or
 // claims ownership of the original debugging exercise.
-const source = "https://github.com/bonvallite/developer-portfolio/tree/feature/lexicographic-permutations-20261024/projects/lexicographic-permutations";
+const source = "https://github.com/bonvallite/developer-portfolio/tree/main/projects/lexicographic-permutations";
 
 export default function PermutationsDemo() {
   const [input, setInput] = useState("abc");
