@@ -2,6 +2,16 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-10-24 — Interactive CSS engineering lab
+
+- **Target:** Personal `bonvallite/developer-portfolio` repository, `feature/interactive-css-lab-20261024`, preview route `/css-lab`.
+- **Affected files:** `app/css-lab/page.tsx`, `app/css-lab/css-lab.module.css`, `lib/css-lab.mjs`, `tests/css-lab.test.mjs`, `docs/CSS_LAB.md`, `app/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Authored a responsive, interactive HTML/CSS concept guide with 14 original explanatory notes, three browser experiments, and an eight-question self-test. Linked it from the portfolio homepage and added tests and architecture notes.
+- **Reason:** Demonstrate front-end CSS understanding, responsive interface construction, and maintainable React UI state without reproducing an employment assessment.
+- **Security:** No company-owned code, original assessment questions, user input uploads, external fonts or credentials are published.
+- **Validation:** Unit, safety, type, build, and preview checks pending; do not infer production release from successful GitHub file writes.
+- **Release:** Feature branch, review before production. Existing main not modified by these commits.
+
 ## 2026-10-23 — Downloadable resume PDF
 
 - **Target:** `bonvallite/developer-portfolio`, `main`, connected to the Vercel `developer-portfolio` production project.
