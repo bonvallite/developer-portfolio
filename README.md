@@ -120,6 +120,10 @@ A standalone, fictional weight-based wholesale price calculator is now included 
 
 See [Shopify Flow portfolio examples](./shopify-flow/README.md) for a fictional aggregate-weight workflow, Run code action, internal email Liquid, and customer notification Liquid. These are original educational templates, not exported employer workflows or production-ready Shopify configurations. A standalone Node test suite checks the example Flow logic.
 
+## Lexicographic permutation and backtracking demonstration
+
+The [interactive permutations demo](./app/permutations-demo/page.tsx) illustrates recursive backtracking and state cleanup in a debugging exercise. The browser uses independently written, validated JavaScript and can generate and download permutations of up to seven lowercase characters. [Source and 5,040-line sample](./projects/lexicographic-permutations/) are included, without proprietary client information. This is educational practice, not represented as employer code or an independently invented programming challenge.
+
 ## Python automation
 
 [projects/samsung-health-csv-merger](./projects/samsung-health-csv-merger) is a Python and Pandas command-line tool that merges many CSV exports into one file, skips a common extra title row, and reports files it could not read. [Its tests](./tests/python/test_merge_samsung_health.py) use small synthetic CSVs, so no personal data is involved, and run in CI. [projects/python-notebook-review](./projects/python-notebook-review) reviews Jupyter training notebooks, and [skills/python-automation-portfolio](./skills/python-automation-portfolio) is a reusable workflow for turning scripts into documented, privacy-safe projects. [projects/fictional-faq-retrieval](./projects/fictional-faq-retrieval) adds an independently authored, offline FAQ CLI using entirely fictional sources, deterministic retrieval, explicit abstention and source attribution. Its standard-library tests run in the same Python CI suite. See the [/python-automation](./app/python-automation/page.tsx) page on the site.
