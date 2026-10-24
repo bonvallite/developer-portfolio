@@ -12,12 +12,12 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 ## Site favicon
 
-The portfolio uses the owner's selected **option 6**, the cyan `{JRV}` code monogram on a dark-blue rounded-square background. `app/icon.svg` is the canonical favicon file. It embeds a verified, 64 × 64 pixel indexed PNG derivative of the approved generated artwork in a self-contained SVG wrapper, so the icon has no external image or font dependency. An initial JPEG-embedded version failed to decode and was replaced with the verified PNG; check both the actual encoded image and its file response, not only a successful deployment. Next.js App Router discovers `app/icon.svg` automatically and includes the favicon link in page metadata; the explanatory comment in `app/layout.tsx` documents that convention. No conflicting `app/favicon.ico` is present.
+The favicon retains the owner's selected **option 6** `{JRV}` code monogram and its original 64 × 64 artwork. On **24 October 2026** its former cyan-on-navy colours were adjusted to the actual portfolio colours: **warm gold `#D9B47C` on charcoal `#0B0E12`**, with supporting bronze highlights. Only the indexed PNG's colour palette and corner transparency changed; the letterform and pixel positions remain unchanged. The original light outside-corner pixels now have transparent alpha, avoiding white corners in browser tabs. This was a colour-alignment refinement, not a new logo selection.
 
-When replacing the mark, update `app/icon.svg`, check rendered appearance at 16 × 16 and 32 × 32 as well as the browser tab, confirm it loads on production, and update this README and the dated `CHANGELOG.md`.
+`app/icon.svg` is the sole canonical Next.js App Router favicon convention file. It embeds a validated indexed 64 × 64 PNG inside a self-contained SVG wrapper, without external images, scripts or fonts. The original chosen PNG had previously replaced an incorrectly embedded JPEG. `app/layout.tsx` documents the automatic favicon registration; do not add `metadata.icons`, `app/favicon.ico` or a competing public favicon.
 
+When changing the icon, preserve the approved design, revalidate PNG chunk checksums, update the XML and layout comments, verify the SVG response on the production domain, inspect 16 × 16 and 32 × 32 browser-tab and bookmark appearances (including cache refresh), and record the evidence and limitations in `CHANGELOG.md`.
 
- 
 ## Cybersecurity training
 
 **Cybersecurity: Foundation of CERT Operations** — a 12-hour *certificate of attendance* for **Foundations of CERT Operations**, 5–6 December 2023, through DICT Region XII & Mainland BARMM and its ICT Literacy and Competency Development Bureau. The course is summarised at [Professional development](./app/experience/page.tsx) (homepage card: `#certifications`, detailed section: `/experience#training`). It is not a professional cybersecurity certification. The signed original PDF is intentionally not committed to this public repository to protect the issuer's digital signature.
