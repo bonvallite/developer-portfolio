@@ -120,6 +120,10 @@ A standalone, fictional weight-based wholesale price calculator is now included 
 
 See [Shopify Flow portfolio examples](./shopify-flow/README.md) for a fictional aggregate-weight workflow, Run code action, internal email Liquid, and customer notification Liquid. These are original educational templates, not exported employer workflows or production-ready Shopify configurations. A standalone Node test suite checks the example Flow logic.
 
+## Interactive HTML and CSS engineering lab
+
+The [CSS engineering lab](./app/css-lab/page.tsx) introduces 14 compact concept notes and three interactive browser demonstrations, from box sizing to flex layouts and visibility. Eight original questions exercise the underlying principles. Code and explanations are maintained in [`lib/css-lab.mjs`](./lib/css-lab.mjs), automated checks in [`tests/css-lab.test.mjs`](./tests/css-lab.test.mjs), and architecture in [`docs/CSS_LAB.md`](./docs/CSS_LAB.md). This is educational practice, not a published copy of an employment assessment or evidence of a certification.
+
 ## Python automation
 
 [projects/samsung-health-csv-merger](./projects/samsung-health-csv-merger) is a Python and Pandas command-line tool that merges many CSV exports into one file, skips a common extra title row, and reports files it could not read. [Its tests](./tests/python/test_merge_samsung_health.py) use small synthetic CSVs, so no personal data is involved, and run in CI. [projects/python-notebook-review](./projects/python-notebook-review) reviews Jupyter training notebooks, and [skills/python-automation-portfolio](./skills/python-automation-portfolio) is a reusable workflow for turning scripts into documented, privacy-safe projects. [projects/fictional-faq-retrieval](./projects/fictional-faq-retrieval) adds an independently authored, offline FAQ CLI using entirely fictional sources, deterministic retrieval, explicit abstention and source attribution. Its standard-library tests run in the same Python CI suite. See the [/python-automation](./app/python-automation/page.tsx) page on the site.
