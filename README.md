@@ -170,3 +170,8 @@ Shopify documentation: [Managing markets](https://help.shopify.com/en/manual/mar
 ## Editorial homepage storytelling demo
 
 The public-safe [/editorial-homepage-demo](./app/editorial-homepage-demo/page.tsx) is a single, independent premium commerce homepage. It combines a story carousel, occasion-based browsing, fictional collection filtering, a local demo bag, an educational marbling slider, and a sample postcode interaction in a responsive design. It is not client theme code or a copy of the original brand. [Read the case study and author-supplied 28-day Core Web Vitals benchmark](./projects/editorial-homepage-demo/README.md). Production measurements are clearly separated from the unmeasured React prototype.
+
+
+## Reserved professional photography slots (23 October 2026)
+
+The homepage now has two intentionally empty, CSS-drawn, responsive image slots in `app/page.tsx`, styled in `app/globals.css`, labelled **Professional headshot** (4:5 portrait) and **At work / lifestyle** (3:2 landscape). The slots contain no photo assets or network fetches. Existing portrait and lifestyle photography remains intact and is not replaced. When final images are approved, replace the respective placeholder artwork with accessible `next/image` components, supply appropriate descriptive alt text, and preserve these aspect ratios. The decorative placeholder markup is marked as such, and the section explicitly says it does not contain actual photographs.
