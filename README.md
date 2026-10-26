@@ -170,3 +170,7 @@ Shopify documentation: [Managing markets](https://help.shopify.com/en/manual/mar
 ## Editorial homepage storytelling demo
 
 The public-safe [/editorial-homepage-demo](./app/editorial-homepage-demo/page.tsx) is a single, independent premium commerce homepage. It combines a story carousel, occasion-based browsing, fictional collection filtering, a local demo bag, an educational marbling slider, and a sample postcode interaction in a responsive design. It is not client theme code or a copy of the original brand. [Read the case study and author-supplied 28-day Core Web Vitals benchmark](./projects/editorial-homepage-demo/README.md). Production measurements are clearly separated from the unmeasured React prototype.
+
+## Student and client showcase (26 October 2026)
+
+The [Shopify–CartonCloud integration showcase](./app/cartoncloud-integration/page.tsx) now provides audience-specific explanations for students and prospective clients: a four-step order-to-delivery teaching walkthrough and a discover/build/verify client journey. Illustrative examples are distinct from proven live results. No credentials, private integration source, order IDs or customer payloads are published.

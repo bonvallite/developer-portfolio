@@ -51,6 +51,49 @@ export default function CartonCloudIntegrationCaseStudy() {
         <div className="hero-tags"><span>SHOPIFY APIS</span><span>CLOUDFLARE WORKERS</span><span>REST / WEBHOOKS</span><span>OAUTH SCOPES</span><span>ORDER METAFIELDS</span><span>CUSTOM APP DEVELOPMENT</span></div>
       </section>
 
+      {/* Public education and prospective-client showcase. All scenarios below are
+          illustrative; they are not live system captures or measured outcomes.
+          Keep these explanations aligned with CARTONCLOUD_INTEGRATION.md. */}
+      <section className="section container" style={{paddingTop:20}}>
+        <span className="overline">PUBLIC SHOWCASE / FOR STUDENTS & CLIENTS</span>
+        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-5 mb-5">From checkout to doorstep.</h2>
+        <p className="text-[#adb1b8] leading-8 max-w-4xl">A real-world software engineering case study: how a custom serverless application bridges an ecommerce platform and a logistics system. Explore the business challenge, the technical decisions and the limits of the available validation evidence.</p>
+        <div className="grid md:grid-cols-2 gap-5 mt-8">
+          <article className="border border-[#494237] rounded-xl bg-[#181b20] p-7">
+            <span className="overline">FOR STUDENTS</span><h3 className="text-2xl mt-3 mb-3">Learn how integrations work</h3>
+            <p className="text-[#bfc1c6] leading-7 text-sm">Follow order-created webhooks, REST/GraphQL APIs, OAuth authentication, serverless execution, delivery-rule calculations and status mapping. See why error handling and verification matter as much as writing code.</p>
+            <a href="#learning-path" className="inline-flex items-center gap-2 text-[#d9b47c] mt-5">View the learning path <ArrowRight size={16}/></a>
+          </article>
+          <article className="border border-[#494237] rounded-xl bg-[#181b20] p-7">
+            <span className="overline">FOR FUTURE CLIENTS</span><h3 className="text-2xl mt-3 mb-3">Understand the business value</h3>
+            <p className="text-[#bfc1c6] leading-7 text-sm">See how operational pain points are translated into an integration design: fewer disconnected records, structured delivery updates, traceable status changes and a path for diagnosing failures. Quantified savings require production measurement.</p>
+            <a href="#client-journey" className="inline-flex items-center gap-2 text-[#d9b47c] mt-5">Explore the delivery approach <ArrowRight size={16}/></a>
+          </article>
+        </div>
+      </section>
+      <section id="learning-path" className="stripe"><div className="section container">
+        <span className="overline">CLASSROOM WALKTHROUGH / FOUR STEPS</span>
+        <h2 className="text-4xl font-semibold mt-5 mb-8">What happens when an order is placed?</h2>
+        <div className="grid md:grid-cols-2 gap-5">
+          {[
+            ['01 / EVENT','Shopify emits an order or fulfilment event','An authenticated webhook carries relevant order data to the application.'],
+            ['02 / COMPUTE','The Worker applies business rules','The app can calculate postcode-based delivery estimates and prepare consignment data.'],
+            ['03 / CONNECT','APIs exchange logistics information','The integration communicates with CartonCloud and translates provider statuses into Shopify events.'],
+            ['04 / RECORD','Shopify stores customer-facing updates','Order metafields and fulfilment events provide structured tracking and estimated-date records.']
+          ].map(([step,title,body])=><article key={step} className="border-l-2 border-[#d9b47c] bg-[#191c21] p-7"><span className="overline">{step}</span><h3 className="text-xl mt-3 mb-3">{title}</h3><p className="text-sm text-[#bfc1c6] leading-7">{body}</p></article>)}
+        </div>
+        <p className="disclaimer">Teaching illustration, not a guarantee that all steps complete for every live order. Credentials and customer payloads are intentionally omitted.</p>
+      </div></section>
+      <section id="client-journey" className="section container">
+        <span className="overline">CLIENT PERSPECTIVE / PROBLEM TO SOLUTION</span>
+        <h2 className="text-4xl font-semibold mt-5 mb-8">Engineering grounded in operations.</h2>
+        <div className="grid md:grid-cols-3 gap-5">
+          <article className="border border-[#474137] p-7 rounded-lg"><span className="overline">DISCOVER</span><h3 className="text-xl mt-3 mb-3">Map the process</h3><p className="text-[#bfc1c6] text-sm leading-7">Identify where order IDs, consignment IDs, dispatch schedules and tracking updates diverge.</p></article>
+          <article className="border border-[#474137] p-7 rounded-lg"><span className="overline">BUILD</span><h3 className="text-xl mt-3 mb-3">Connect the systems</h3><p className="text-[#bfc1c6] text-sm leading-7">Design authenticated webhooks, API mapping, delivery estimates and safe status transitions.</p></article>
+          <article className="border border-[#474137] p-7 rounded-lg"><span className="overline">VERIFY</span><h3 className="text-xl mt-3 mb-3">Prove the result</h3><p className="text-[#bfc1c6] text-sm leading-7">Test fulfilment scenarios, inspect logs and exceptions, and validate order-level outcomes before claiming success.</p></article>
+        </div>
+        <p className="disclaimer">This publicly shareable case study is educational and illustrative. It does not reproduce employer-owned Worker source, secret configuration, customer records or internal endpoints.</p>
+      </section>
       <section className="section container" style={{paddingTop:35}}>
         <div className="section-head"><div><span className="overline">01 / THE PROBLEM</span><h2>Two platforms. One customer expectation<span className="dot">.</span></h2></div></div>
         <p className="text-[#acafb8] text-base leading-8 max-w-4xl">Shopify records the order and communicates with customers; CartonCloud manages the physical consignment lifecycle. Without a dependable bridge, shipment movement, tracking state and estimated delivery dates can become fragmented. Manual checking introduces delays and makes a consistent customer-facing delivery experience harder to maintain.</p>

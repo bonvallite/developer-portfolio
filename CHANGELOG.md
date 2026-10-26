@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-10-26 — Student and prospective-client integration showcase
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/cartoncloud-public-showcase-20261026`; Vercel `developer-portfolio` preview expected through connected Git.
+- **Affected files:** `app/cartoncloud-integration/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added dedicated audience sections for students and future clients, a four-stage Shopify-to-logistics teaching walkthrough, and a discover/build/verify client journey to the existing CartonCloud integration case study.
+- **Reason:** Explain both the developer's custom application and integration work in accessible educational and commercial language without duplicating the existing case study.
+- **Privacy and documentation:** Source JSX comments specify illustrative architecture and evidence limits. No Worker code, token, customer payload, production endpoint or private identity copied into the portfolio.
+- **Validation:** Inspected source and saved edits through GitHub connector. Remote TypeScript, Next.js build, deployment preview and browser/mobile QA remain to be checked. Production main is unchanged pending PR review.
+
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
 ## 2026-10-24 - Conversion journey case study and public carousel
