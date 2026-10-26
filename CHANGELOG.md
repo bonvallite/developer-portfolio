@@ -2,6 +2,17 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-10-26 - Multi-segment Shopify B2B architecture case study
+
+- **Target:** `bonvallite/developer-portfolio`, feature branch `feature/b2b-multisegment-20261026`, Vercel `developer-portfolio` preview before production.
+- **Affected files:** `app/b2b-demo/page.tsx`, `app/page.tsx`, `B2B_DEMO.md`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Reframed the B2B portfolio work from a single weight-based pricing example into a multi-segment Shopify architecture covering Retail, Wholesale Entry, Growth and Premium contexts. Added catalogue/access, contextual storefront, company-location and business-rule layers while retaining the fictional weight-based calculator as one demonstrable rule inside the broader system.
+- **Reason:** Better represent the engineering scope required to serve different market segments and business solutions within one Shopify ecosystem.
+- **Publication boundary:** No live customer assignments, production catalogue memberships, private pricing, payment terms, thresholds, product IDs, store identifiers or employer-owned source are published. The interactive data remains fictional.
+- **Inline documentation:** Added a source comment to the B2B route explaining the public-safe segment model and data boundary. Homepage and documentation copy now use the same multi-segment framing.
+- **Validation:** Feature-branch TypeScript, Next.js build, CI, Vercel preview, route rendering and production release are pending at the time of this entry. Do not infer a successful release until those checks are recorded.
+- **Recovery:** Base commit before this change: `1e7b38aa81f8df9ff408a1768ef7f379f528fb8b`.
+
 ## 2026-10-24 - Conversion journey case study and public carousel
 
 - **Target:** `bonvallite/developer-portfolio`, Vercel `developer-portfolio` production, team `my-dojo`.

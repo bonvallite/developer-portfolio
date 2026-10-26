@@ -9,12 +9,14 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Demonstrations:** Product card (08), CSS grid (09), accessible FAQ (17), cart dialog focus (21), breadcrumb structured data (24), heading normalisation (37), and image fallback (40).
 
-## 2. Weight-based wholesale pricing and automation
-**Problem class:** Conventional quantity pricing does not directly express order-level aggregate weight requirements.
+## 2. Multi-segment B2B markets, catalogues and business rules
+**Problem class:** One wholesale experience does not fit every business buyer. Retail customers, smaller trade accounts, growing venues and high-volume accounts can require different product access, pricing logic, storefront messaging and operational treatment.
 
-**Approach:** Model a weight aggregation and eligibility function, validate tier definitions, then reason about separate customer-facing and back-office actions. Apply authorisation and platform-native discount mechanisms in actual implementations.
+**Approach:** Separate customer segments into explicit Shopify market contexts, assign catalogue entitlements to the appropriate B2B company locations, and use contextual storefront configuration so each segment receives the intended product range and experience. Keep Retail governed separately so wholesale-only products can remain available through the Online Store channel for authenticated B2B buyers without becoming available in the retail market. Business rules such as aggregate order-weight eligibility are then layered on top through platform-supported pricing, automation and validation.
 
-**Demonstrations:** 01 (weight units), 10, 15, 32, 42 (GST invoice totals) and the [interactive simulator](./B2B_DEMO.md).
+**Public demonstration:** The [interactive B2B architecture demo](./B2B_DEMO.md) illustrates Retail, Wholesale Entry, Growth and Premium contexts using fictional presentation data. Its weight-based pricing calculator is independently authored example code and does not reproduce live catalogues, customer records, private thresholds or production discount logic.
+
+**Demonstrations:** 01 (weight units), 10, 15, 32, 42 (GST invoice totals) and the [interactive B2B architecture demo](./B2B_DEMO.md).
 
 ## 3. Fulfilment and order tracking
 **Problem class:** Vendor status events need authentication, normalisation, reliable processing, and observability.

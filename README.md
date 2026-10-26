@@ -36,7 +36,7 @@ The [Beyond the Code](./app/page.tsx) homepage section introduces my self-report
 ## Engineering focus
 
 - **Shopify theme engineering:** Liquid sections, responsive product detail pages, metafields and metaobjects, accessibility, SEO, and page performance.
-- **B2B commerce:** Conceptual examples of volume-based pricing tiers, eligibility checks, catalogues, and notification flows using mock data.
+- **B2B commerce:** Multi-segment Shopify Markets architecture spanning Retail, Wholesale Entry, Growth and Premium contexts, with catalogue entitlements, contextual storefront experiences, eligibility controls, and independently authored pricing/automation examples using fictional data.
 - **API and fulfilment integrations:** Illustrative REST/GraphQL webhooks, idempotent event handling, tracking status normalisation, and retry strategies.
 - **Delivery estimates:** Example date calculations distinguishing parcel movement from residential delivery days.
 - **Analytics quality:** Event deduplication, ecommerce transaction validation, and reconciliation techniques.
@@ -74,8 +74,8 @@ Responsive components, content structuring, product discovery, and performance s
 ### Third-party cart enhancement
 A public-safe pattern for discovering an app-owned cart inside an open ShadowRoot, adding stable hooks after hydration, deriving reward states from fictional configuration, and keeping the app's native fallback available. No employer theme code, live promotion values, product names, store identifiers, or private app configuration are included.
 
-### Weight-based B2B workflow
-A sample architecture for pricing based on aggregate order weight, with synthetic products and thresholds. No production catalogues, discounts, or workflows are included.
+### Multi-segment Shopify B2B architecture
+A public-safe model of separate Retail, Wholesale Entry, Wholesale Growth and Wholesale Premium contexts. It shows how Shopify Markets, catalogues, company-location eligibility, contextual storefront experiences and business rules can serve different customer segments. The included weight-based calculator is one independently authored example rule, not a copy of production pricing or customer contracts.
 
 ### Fulfilment status integration
 A sample event pipeline illustrating signature verification, deduplication, mapping, and error handling. No production endpoints, tokens, identifiers, or vendor payloads are included.
@@ -114,9 +114,9 @@ Read [Engineering case studies](./CASE_STUDIES.md) for explanations of storefron
 
 Shopify Online Store 2.0 theme files in [theme/](./theme/README.md): a homepage template (hero slideshow, seasonal banner, and featured collection), a seasonal landing page that switches between Christmas, Boxing Day, and EOFY every year, a campaign landing template, and a category badge read from a metaobject reference. All have rendering tests and are labelled illustrative.
 
-## Interactive B2B simulator
+## Interactive B2B architecture demo
 
-A standalone, fictional weight-based wholesale price calculator is now included at [`/b2b-demo`](./app/b2b-demo/page.tsx). See [B2B_DEMO.md](./B2B_DEMO.md) for the architecture, usage notes, and production boundaries. It includes Node.js unit tests and [GitHub Actions CI](./.github/workflows/portfolio-ci.yml). The route will be publicly usable once the portfolio's Next.js deployment successfully builds and publishes the latest commit.
+The [`/b2b-demo`](./app/b2b-demo/page.tsx) route now presents a broader multi-segment commerce architecture: Retail plus Wholesale Entry, Growth and Premium contexts, each with a different catalogue/access purpose and storefront experience. The existing fictional weight-based calculator remains as one example of a business rule that can sit inside a wider B2B operating model. See [B2B_DEMO.md](./B2B_DEMO.md) for the architecture, usage notes, and publication boundaries. No live company records, production prices, private thresholds, store identifiers, or employer-owned source are exposed.
 
 ## Shopify Flow and Liquid notifications
 
