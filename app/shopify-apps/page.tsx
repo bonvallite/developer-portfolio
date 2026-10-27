@@ -1,8 +1,11 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, ArrowUpRight, Boxes, Workflow, RefreshCw, ShieldCheck } from 'lucide-react';
 
 // Public-safe capability showcase, based on an owner-provided Shopify Dev Dashboard screenshot
 // dated 27 October 2026 and the separately documented CartonCloud integration case study.
+// The screenshot is a compressed derivative of the owner-supplied 27 October 2026 image,
+// stored at public/portfolio/shopify-apps-dashboard.webp. The original has not been published.
 // An app listing does not verify code ownership, deployed features, or production reliability.
 // Keep client secrets, actual inventory, and private dashboard exports out of this page.
 const apps = [
@@ -23,12 +26,13 @@ export default function ShopifyAppsPage() {
     <span className="overline">CUSTOM SHOPIFY APPS / API ENGINEERING</span>
     <h1 style={{fontSize:'clamp(2.5rem,6vw,5rem)',lineHeight:1.09,margin:'16px 0 24px'}}>Automating operations.<br/>Making room for higher-value work.</h1>
     <p style={{maxWidth:840,fontSize:'1.17rem',lineHeight:1.8}}>I build Shopify app and integration solutions that connect platforms, streamline inventory management and operational events, and reduce the manual effort behind recurring tasks. The goal is simple: let teams focus on decisions, customers, and the work that matters most.</p>
-    {/* Evidence exhibit transcribes the provided dashboard screenshot; the original
-        image is not yet published as an asset and is not represented as embedded. */}
+    {/* Evidence image is a compressed copy of the supplied dashboard screenshot.
+        The listing is not evidence of app internals, production status or authorship. */}
     <section className="flow-feature" aria-label="Shopify developer dashboard evidence">
       <span className="overline">SOURCE EVIDENCE / 27 OCTOBER 2026</span>
       <h3>Shopify Dev Dashboard app listings</h3>
-      <p>Evidence from a screenshot supplied by the developer. The visible dashboard listed four apps: Honey's Place Inventory Sync (0 installs), CartonCloud (1 install), IndexNowfor CDT (0 installs), and zipify (0 installs). This is a textual transcription, not the screenshot itself. App internals, ownership, and client outcomes require separate confirmation.</p>
+      <figure style={{margin:'20px 0',maxWidth:760}}><a href="/portfolio/shopify-apps-dashboard.webp" target="_blank" rel="noopener noreferrer" aria-label="Open Shopify Dev Dashboard screenshot"><Image src="/portfolio/shopify-apps-dashboard.webp" alt="Shopify Dev Dashboard apps list showing Honey's Place Inventory Sync, CartonCloud, IndexNowfor CDT and zipify" width={380} height={245} sizes="(max-width: 700px) 100vw, 760px" style={{width:'100%',height:'auto',borderRadius:12}}/></a><figcaption style={{marginTop:8,fontSize:13}}>Owner-supplied Shopify developer dashboard screenshot, 27 October 2026. Select to open the image.</figcaption></figure>
+      <p>Evidence from a screenshot supplied by the developer. The visible dashboard listed four apps: Honey's Place Inventory Sync (0 installs), CartonCloud (1 install), IndexNowfor CDT (0 installs), and zipify (0 installs). The image above is a compressed copy of the screenshot alongside this transcription. App internals, ownership, and client outcomes require separate confirmation.</p>
     </section>
     <section className="section" aria-labelledby="apps-heading">
       <div className="section-head"><div><span className="overline">01 / APP PORTFOLIO</span><h2 id="apps-heading">Applications in my developer dashboard<span className="dot">.</span></h2></div></div>
