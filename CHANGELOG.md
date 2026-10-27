@@ -1,3 +1,13 @@
+## 2026-10-27 — Shopify app development and operational automation portfolio
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/shopify-app-development-showcase-20261027`, Vercel preview through existing Git integration.
+- **Files:** `app/shopify-apps/page.tsx`, `app/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a public-safe Shopify custom-app showcase covering inventory synchronisation, API integrations, webhook events, and operational automation; added a homepage link. Documented four entries visible in the developer-provided dashboard screenshot and differentiated the documented CartonCloud integration from app listings that do not independently verify their feature scope.
+- **Why:** Show how custom app engineering can streamline repetitive tasks and help business teams concentrate on higher-value work.
+- **Documentation and privacy:** Added source comments recording evidence boundaries, updated README and changelog. No production secrets, customer data, or proprietary implementation are included.
+- **Validation:** Source inspection, dashboard screenshot review and GitHub writes performed. Type checking, automated tests, Vercel build and browser QA are not claimed until observed.
+- **Release:** Feature branch for review, not automatically a production release.
+
 # Portfolio changelog
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
