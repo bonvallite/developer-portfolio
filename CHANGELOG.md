@@ -1,3 +1,13 @@
+
+## 2026-10-27 — App evidence exhibit and client-problem framing
+
+- **Target:** `bonvallite/developer-portfolio`, `feature/shopify-app-development-showcase-20261027`.
+- **Affected files:** `app/shopify-apps/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a labelled on-page transcription of the owner-provided Shopify dashboard screenshot and connected the inventory and delivery entries to client needs without asserting unsupported outcomes.
+- **Why:** Provide recruiters and prospective clients evidence context and business relevance.
+- **Documentation:** Updated inline JSX comment describing screenshot evidence and the image-publication limitation.
+- **Validation:** Re-read GitHub source prior to editing; saved-file re-read, preview build and browser checks pending. The screenshot binary has not been committed or deployed.
+
 ## 2026-10-27 — Shopify app development and operational automation portfolio
 
 - **Target:** `bonvallite/developer-portfolio`, branch `feature/shopify-app-development-showcase-20261027`, Vercel preview through existing Git integration.
