@@ -1,3 +1,11 @@
+## 2026-10-27 — Publish dashboard screenshot in Shopify app portfolio
+
+- **Target:** `bonvallite/developer-portfolio`, theme ID not applicable, branch `feature/shopify-app-development-showcase-20261027`.
+- **Files:** `public/portfolio/shopify-apps-dashboard.webp`, `app/shopify-apps/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a compressed derivative of the developer-supplied Shopify Dev Dashboard screenshot and embedded it in the custom-app showcase with descriptive alt text, caption, and a link to the image asset. Updated source comments and replaced the outdated documentation stating no image was embedded.
+- **Reason:** Provide actual visual evidence of the four app listings while keeping production credentials and customer data out of the site.
+- **Validation:** GitHub image blob created and committed, branch ref updated, image JSX written. Preview build and browser rendering remain to be verified. Original higher-resolution screenshot retained outside public GitHub.
+
 
 ## 2026-10-27 — App evidence exhibit and client-problem framing
 
