@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-04 - Campaign planning and execution showcase (review branch)
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/campaign-execution-case-study-20261104`, Vercel preview only.
+- **Affected files:** `app/campaign-execution/page.tsx`, `app/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a fictional, independently authored six-stage campaign delivery case study and homepage navigation, covering planning, implementation, integration QA, launch monitoring and retrospective analysis.
+- **Reason:** Demonstrate end-to-end Shopify campaign engineering and operational planning without disclosing employer performance or unannounced campaigns.
+- **Inline documentation:** Page source explains fictional content and evidence boundaries.
+- **Validation:** Remote file creation and branch saves verified through GitHub; automated tests, Vercel preview and visual QA pending. Production not published.
+
+
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
 ## 2026-10-24 - Conversion journey case study and public carousel
