@@ -170,3 +170,7 @@ Shopify documentation: [Managing markets](https://help.shopify.com/en/manual/mar
 ## Editorial homepage storytelling demo
 
 The public-safe [/editorial-homepage-demo](./app/editorial-homepage-demo/page.tsx) is a single, independent premium commerce homepage. It combines a story carousel, occasion-based browsing, fictional collection filtering, a local demo bag, an educational marbling slider, and a sample postcode interaction in a responsive design. It is not client theme code or a copy of the original brand. [Read the case study and author-supplied 28-day Core Web Vitals benchmark](./projects/editorial-homepage-demo/README.md). Production measurements are clearly separated from the unmeasured React prototype.
+
+## Campaign planning and execution case study
+
+The [campaign execution case study](./app/campaign-execution/page.tsx) presents an independently authored, fictional Shopify promotion workflow from scoping and theme planning to integration checks, release QA, monitoring and iteration. The homepage links to `/campaign-execution`. No client campaign details, commercial figures, or proprietary implementation are included. This is a methodology demonstration, not evidence of a measured campaign uplift.
