@@ -15,26 +15,23 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-AU">
+      <head>
+        {/*
+          Google's manual installation requires the actual scripts in <head>.
+          A preview showed that next/script beforeInteractive only preloaded GTM
+          in the head while serialising its execution queue into the body.
+          Keep this one sitewide async loader and dataLayer initialiser together.
+          Review visitor notice and consent controls before collecting analytics.
+        */}
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KVJVH4VM" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());",
+          }}
+        />
+      </head>
       <body>
         {children}
-        {/*
-          Next.js beforeInteractive injects these into the document <head> for every route.
-          Initialise dataLayer first, then load the owner's GTM container exactly once.
-          Do not add another Google tag via page components or Vercel project settings.
-          Check the published privacy notice and any required consent handling.
-        */}
-        <Script id="google-tag-datalayer" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-          `}
-        </Script>
-        <Script
-          id="google-tag-manager"
-          strategy="beforeInteractive"
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-KVJVH4VM"
-        />
         <Analytics />
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
