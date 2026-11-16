@@ -2,6 +2,17 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-16 - Relocate Microsoft Clarity to document head without duplicate tracking
+
+- **Target:** `bonvallite/developer-portfolio`, Vercel `developer-portfolio` (team `my-dojo`, project `prj_sAyVySdCHlqUTAasaGh1FyYkk8MY`), feature branch `fix/clarity-head-single-install-20261116`, public portfolio domain `www.jrvallite.com`.
+- **Affected files:** `app/layout.tsx`, `tests/site-analytics.test.mjs`, `README.md`, `CHANGELOG.md`.
+- **Change:** Relocated the existing Microsoft Clarity loader for public project `zekmhvjftc` from `next/script` with `afterInteractive` in the layout body into exactly one server-rendered native inline `<script>` in the shared document `<head>`, retaining the exact owner-provided asynchronous loader. Removed the old instance and its now-unused import. Kept GTM `GTM-KVJVH4VM` and Vercel Analytics intact.
+- **Reason:** The owner requested the Clarity snippet again, after specifically asking about `<head>` placement. It was already installed; relocation rather than duplicate insertion meets that placement preference while avoiding two trackers.
+- **Inline documentation:** Updated comments beside the script to describe the single owner, external async loader, duplicate risks and visitor consent dependency; revised README and site-analytics assertions to cover head placement and no duplicate Clarity instance.
+- **Privacy:** No consent-management or visitor privacy notice was added. Verify applicable consent and the Clarity workspace configuration separately. Clarity may also be configured through GTM, which is outside the repository audit.
+- **Validation:** Source changes and test added; GitHub CI, preview HTML, and production release checks to be recorded when completed. Browser network capture and Clarity session dashboard still require independent verification.
+- **Recovery:** Revert this scoped change to restore the prior body `afterInteractive` behaviour without touching GTM or Vercel Analytics.
+
 ## 2026-11-16 - Add Google Tag Manager to portfolio document head
 
 - **Target:** `bonvallite/developer-portfolio` Next.js root layout, Vercel `developer-portfolio` (`prj_sAyVySdCHlqUTAasaGh1FyYkk8MY`), team `my-dojo`, feature branch `feat/gtm-kvjvh4vm-20261116`, intended production domain `jrvallite.com`.

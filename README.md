@@ -20,7 +20,7 @@ The Next.js root layout (`app/layout.tsx`) installs Google Tag Manager container
 
 ## Portfolio analytics: Microsoft Clarity
 
-The shared Next.js App Router layout (`app/layout.tsx`) loads Microsoft Clarity **once across all portfolio pages** with `next/script` and `strategy="afterInteractive"`. The public Clarity project ID is `zekmhvjftc`; it is not a secret. Vercel Analytics is retained independently. Do not also inject the same Clarity tag in Vercel settings, page components or other snippets, as that would duplicate tracking.
+The shared Next.js App Router layout (`app/layout.tsx`) loads Microsoft Clarity **once across all portfolio pages** from a native inline `<script id="microsoft-clarity">` inside the initial HTML `<head>`, using the owner's exact self-inserting asynchronous loader. The previous `next/script` `afterInteractive` instance in `<body>` has been removed to prevent duplicate page tracking. The public Clarity project ID is `zekmhvjftc`; it is not a secret. Vercel Analytics is retained independently. Do not also inject the same Clarity tag in Vercel settings, page components or other snippets, as that would duplicate tracking.
 
 **Privacy and consent review:** Clarity can collect visitor interaction data. Confirm that the published site notice, consent configuration and any required regional privacy controls are appropriate before relying on session recordings. No consent manager, consent gating or privacy notice was implemented by this tracking-only change. Deployment status does not prove that recordings or consent behaviour are functioning. Verify the loaded `https://www.clarity.ms/tag/zekmhvjftc` request and new sessions in the intended Clarity project after production deployment.
 
