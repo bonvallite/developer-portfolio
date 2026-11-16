@@ -10,6 +10,12 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 **Wikipedia contributions:** https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite
 
+## Portfolio analytics: Microsoft Clarity
+
+The shared Next.js App Router layout (`app/layout.tsx`) loads Microsoft Clarity **once across all portfolio pages** with `next/script` and `strategy="afterInteractive"`. The public Clarity project ID is `zekmhvjftc`; it is not a secret. Vercel Analytics is retained independently. Do not also inject the same Clarity tag in Vercel settings, page components or other snippets, as that would duplicate tracking.
+
+**Privacy and consent review:** Clarity can collect visitor interaction data. Confirm that the published site notice, consent configuration and any required regional privacy controls are appropriate before relying on session recordings. No consent manager, consent gating or privacy notice was implemented by this tracking-only change. Deployment status does not prove that recordings or consent behaviour are functioning. Verify the loaded `https://www.clarity.ms/tag/zekmhvjftc` request and new sessions in the intended Clarity project after production deployment.
+
 ## Site favicon
 
 The favicon retains the owner's selected **option 6** `{JRV}` code monogram and its original 64 × 64 artwork. On **24 October 2026** its former cyan-on-navy colours were adjusted to the actual portfolio colours: **warm gold `#D9B47C` on charcoal `#0B0E12`**, with supporting bronze highlights. Only the indexed PNG's colour palette and corner transparency changed; the letterform and pixel positions remain unchanged. The original light outside-corner pixels now have transparent alpha, avoiding white corners in browser tabs. This was a colour-alignment refinement, not a new logo selection.
