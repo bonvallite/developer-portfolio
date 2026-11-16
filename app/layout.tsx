@@ -17,6 +17,24 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-AU">
       <body>
         {children}
+        {/*
+          Next.js beforeInteractive injects these into the document <head> for every route.
+          Initialise dataLayer first, then load the owner's GTM container exactly once.
+          Do not add another Google tag via page components or Vercel project settings.
+          Check the published privacy notice and any required consent handling.
+        */}
+        <Script id="google-tag-datalayer" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `}
+        </Script>
+        <Script
+          id="google-tag-manager"
+          strategy="beforeInteractive"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-KVJVH4VM"
+        />
         <Analytics />
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
