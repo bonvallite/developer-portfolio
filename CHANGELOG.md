@@ -2,6 +2,17 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-16 - Sitewide Microsoft Clarity installation
+
+- **Target:** `bonvallite/developer-portfolio` (Next.js), feature branch `feat/microsoft-clarity-zekmhvjftc-20261116`, Vercel project `developer-portfolio`, team `my-dojo`, intended public portfolio domains `jrvallite.com` and `www.jrvallite.com`.
+- **Affected files:** `app/layout.tsx`, `tests/site-analytics.test.mjs`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added the owner's supplied Microsoft Clarity loader and public project ID `zekmhvjftc` using Next.js `Script` with `afterInteractive` from the shared root layout. Existing Vercel Analytics remains present. Added a small regression test for one script instance, the correct tag URL and project ID.
+- **Reason:** Enable sitewide behaviour analytics for the developer portfolio without duplicating script injection across pages or blocking initial HTML.
+- **Inline documentation and dependencies:** The root layout comments identify the loader's sitewide scope, public ID, and privacy/consent requirement. The README documents the loading strategy, how to avoid duplicate tags, and post-deployment verification.
+- **Privacy boundary:** This change does not add a consent-management system, gate tracking on consent, or publish a privacy notice. Review the published notice and jurisdiction-specific consent requirements before interpreting visitor recordings.
+- **Validation:** Source-level assertions and CI test added; verify GitHub Actions, Vercel preview/production build, live network request, and Clarity dashboard independently. Do not treat successful source writes as proof that tracking is active.
+- **Recovery:** Revert the scoped layout, test and documentation changes if the tracker must be disabled; preserve the pre-change Vercel Analytics component.
+
 ## 2026-10-24 - Conversion journey case study and public carousel
 
 - **Target:** `bonvallite/developer-portfolio`, Vercel `developer-portfolio` production, team `my-dojo`.
