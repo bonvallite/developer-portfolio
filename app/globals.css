@@ -147,3 +147,20 @@
 .markets-checkout-preview>div{min-width:0}.markets-checkout-preview span,.markets-checkout-preview strong{display:block}
 .markets-checkout-preview span{font-size:9px;letter-spacing:1px;color:#55685e}.markets-checkout-preview strong{font-size:14px;margin-top:7px;color:#254336}
 @media(max-width:650px){.markets-product-list article{align-items:center}.markets-checkout-preview{grid-template-columns:1fr}}
+
+/* Optional portfolio photo slots: CSS-only placeholders. Existing portrait
+   and working-lifestyle photographs are preserved and continue to load normally. */
+.portrait-slot-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:18px}
+.portrait-slot{margin:0;min-width:0;border:1px solid #554c43;background:#161b21}
+.portrait-slot-art{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 40%,#31404a,#171d24 70%);border-bottom:1px solid #4a4643}
+.portrait-slot--headshot .portrait-slot-art{aspect-ratio:4/5;max-height:490px}
+.portrait-slot--work .portrait-slot-art{aspect-ratio:3/2;max-height:490px}
+.portrait-slot-art::after{content:"";position:absolute;inset:15px;border:1px dashed #a88c686b;pointer-events:none}
+.portrait-slot-art-label{position:absolute;bottom:34px;left:20px;right:20px;font:600 11px 'Space Grotesk',sans-serif;letter-spacing:2px;color:#d6b88d;text-align:center}
+.portrait-slot-avatar{position:relative;display:block;width:33%;height:38%;border-radius:48% 48% 20% 20%;background:#6e7881;opacity:.42;transform:translateY(-4%)}
+.portrait-slot-avatar span{position:absolute;width:55%;aspect-ratio:1;border-radius:50%;background:#7a858e;left:22%;top:-45%}
+.portrait-slot-desk{position:relative;width:52%;height:28%;border:8px solid #6f7c85;border-bottom-width:17px;border-radius:9px;opacity:.5;transform:translateY(-22%)}
+.portrait-slot-desk span{position:absolute;left:-24%;right:-24%;bottom:-37px;height:9px;background:#7d8a90;border-radius:12px}
+.portrait-slot figcaption{display:flex;flex-direction:column;gap:8px;padding:23px}.portrait-slot figcaption strong{font-size:18px}.portrait-slot figcaption span{font-size:13px;line-height:1.6;color:#a9adb5}
+.portrait-slot-note{color:#8d959e;font-size:12px;line-height:1.7;margin-top:20px}
+@media(max-width:700px){.portrait-slot-grid{grid-template-columns:1fr}.portrait-slot--headshot .portrait-slot-art{max-height:440px}.portrait-slot--work .portrait-slot-art{max-height:none}}
