@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 const layout = readFileSync(new URL('../app/layout.tsx', import.meta.url), 'utf8');
+const publicAllowlist = JSON.parse(readFileSync(new URL('../scripts/public-safety-allowlist.json', import.meta.url), 'utf8')).allow;
 
 test('portfolio analytics: Microsoft Clarity loads once after interactivity', () => {
   assert.match(layout, /import Script from 'next\/script';/);
@@ -27,4 +28,9 @@ test('portfolio analytics: GTM loads once in the initial document head', () => {
   assert.equal((layout.match(/id="google-tag-datalayer"/g) ?? []).length, 1);
   assert.match(layout, /<Script id="microsoft-clarity" strategy="afterInteractive">/);
   assert.match(layout, /<Analytics \/>/);
+});
+
+test('portfolio publication safety: only this intentionally public GTM ID is allowlisted', () => {
+  assert.ok(publicAllowlist.includes('GTM-KVJVH4VM'));
+  assert.deepEqual(publicAllowlist.filter((value) => value.startsWith('GTM-')), ['GTM-KVJVH4VM']);
 });
