@@ -1,5 +1,5 @@
 // Guard sitewide Microsoft Clarity and Google Tag Manager integrations against duplicate tags or changed IDs.
-// Static checks cannot establish live network requests, recording behaviour, conversion tags or consent compliance.
+// Static checks cannot establish live network requests, real HTML rendering, conversion tags or consent compliance.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -17,15 +17,16 @@ test('portfolio analytics: Microsoft Clarity loads once after interactivity', ()
   assert.match(layout, /<Analytics \/>/);
 });
 
-test('portfolio analytics: GTM loads once in the initial document head', () => {
-  assert.match(layout, /<Script id="google-tag-datalayer" strategy="beforeInteractive">/);
-  assert.match(layout, /window\.dataLayer = window\.dataLayer \|\| \[\];/);
-  assert.match(layout, /function gtag\(\)\{dataLayer\.push\(arguments\);\}/);
-  assert.match(layout, /gtag\('js', new Date\(\)\);/);
-  assert.match(layout, /id="google-tag-manager"\s+strategy="beforeInteractive"\s+src="https:\/\/www\.googletagmanager\.com\/gtm\.js\?id=GTM-KVJVH4VM"/);
+test('portfolio analytics: GTM is directly inside the head, once per root layout', () => {
+  const head = layout.match(/<head>([\s\S]*?)<\/head>/)?.[1];
+  assert.ok(head, 'root layout must include the GTM head section');
+  assert.match(head, /<script async src="https:\/\/www\.googletagmanager\.com\/gtm\.js\?id=GTM-KVJVH4VM" \/>/);
+  assert.match(head, /dangerouslySetInnerHTML/);
+  assert.match(head, /window\.dataLayer = window\.dataLayer \|\| \[\];/);
+  assert.match(head, /function gtag\(\)\{dataLayer\.push\(arguments\);\}/);
+  assert.match(head, /gtag\('js', new Date\(\)\);/);
   assert.equal((layout.match(/GTM-KVJVH4VM/g) ?? []).length, 1);
-  assert.equal((layout.match(/id="google-tag-manager"/g) ?? []).length, 1);
-  assert.equal((layout.match(/id="google-tag-datalayer"/g) ?? []).length, 1);
+  assert.equal((head.match(/<script\b/g) ?? []).length, 2);
   assert.match(layout, /<Script id="microsoft-clarity" strategy="afterInteractive">/);
   assert.match(layout, /<Analytics \/>/);
 });
