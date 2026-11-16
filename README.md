@@ -10,6 +10,14 @@ Practical e-commerce engineering, API integrations, automation, and storefront p
 
 **Wikipedia contributions:** https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite
 
+## Portfolio analytics: Google Tag Manager
+
+The Next.js root layout (`app/layout.tsx`) installs Google Tag Manager container **`GTM-KVJVH4VM`** sitewide, using the owner's supplied asynchronous `gtm.js` URL and `window.dataLayer` / `gtag('js', new Date())` initialisation **directly in a single explicit `<head>` section**. These two native script elements reproduce Google's manual head snippet, rather than using a Next.js `beforeInteractive` script queue, which preview HTML showed outside the head. The asynchronous external script and immediate inline initialiser are emitted on the initial HTML for every route. Do not repeat them in page components. The container ID is public and is not a secret. The repository's publication safety scanner has an exact-value exception for this ID only in `scripts/public-safety-allowlist.json`; all other GTM/GA4 IDs continue to be flagged.
+
+**Avoid duplicate measurement:** Keep this as the sole GTM loader for the portfolio. Do not paste the same snippet into other pages, Vercel settings or additional snippets. The site also retains an independent Microsoft Clarity loader and Vercel Analytics. GTM container contents, Google Analytics destinations, triggers, and any separate tags must be reviewed in the Tag Manager workspace: installing the container does not itself prove a Google Analytics destination or conversion event is configured.
+
+**Privacy and consent:** This tracking-only change does not implement a cookie banner or consent enforcement. Review the public privacy notice and applicable consent requirements before collecting visitor information. Validate the production document `<head>`, the single `gtm.js?id=GTM-KVJVH4VM` browser request, the Tag Assistant connection, and events in the intended Google destination after deployment.
+
 ## Portfolio analytics: Microsoft Clarity
 
 The shared Next.js App Router layout (`app/layout.tsx`) loads Microsoft Clarity **once across all portfolio pages** with `next/script` and `strategy="afterInteractive"`. The public Clarity project ID is `zekmhvjftc`; it is not a secret. Vercel Analytics is retained independently. Do not also inject the same Clarity tag in Vercel settings, page components or other snippets, as that would duplicate tracking.

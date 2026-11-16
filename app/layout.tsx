@@ -15,6 +15,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-AU">
+      <head>
+        {/*
+          Google's manual installation requires the actual scripts in <head>.
+          A preview showed that next/script beforeInteractive only preloaded GTM
+          in the head while serialising its execution queue into the body.
+          Keep this one sitewide async loader and dataLayer initialiser together.
+          Review visitor notice and consent controls before collecting analytics.
+        */}
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KVJVH4VM" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());",
+          }}
+        />
+      </head>
       <body>
         {children}
         <Analytics />

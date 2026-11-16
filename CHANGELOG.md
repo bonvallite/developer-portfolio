@@ -2,6 +2,17 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-16 - Add Google Tag Manager to portfolio document head
+
+- **Target:** `bonvallite/developer-portfolio` Next.js root layout, Vercel `developer-portfolio` (`prj_sAyVySdCHlqUTAasaGh1FyYkk8MY`), team `my-dojo`, feature branch `feat/gtm-kvjvh4vm-20261116`, intended production domain `jrvallite.com`.
+- **Affected files:** `app/layout.tsx`, `tests/site-analytics.test.mjs`, `scripts/public-safety-allowlist.json`, `README.md`, `CHANGELOG.md`.
+- **Change:** Installed the owner's Google Tag Manager container `GTM-KVJVH4VM` once for all routes, preserving their provided asynchronous `gtm.js` URL and `dataLayer` / `gtag('js', new Date())` initialisation. Initially tried Next.js `beforeInteractive`, but preview HTML showed only a GTM preload in `<head>` and its script execution queue in `<body>`. Corrected the implementation to two native HTML script elements immediately within the explicit shared root `<head>`, matching Google's manual placement requirement.
+- **Reason:** Enable the requested sitewide Google tag without repeated per-page insertion, while preserving existing independent Clarity and Vercel Analytics integrations.
+- **Inline documentation:** Updated root layout comments to explain direct `<head>` placement, the preview-discovered `beforeInteractive` limitation, duplication avoidance and privacy dependencies. Expanded site analytics tests, README instructions and the allowlist explanatory JSON comment.
+- **Privacy/scope:** Does not add a consent manager or modify GTM's published workspace, its tags, triggers, destinations, or conversion configuration. Verify notice and consent obligations separately. Google no longer requires a separate `noscript` iframe in the new manual snippet provided.
+- **Safety and validation:** The first GitHub CI run stopped at the publication safety scan, which intentionally flags GTM identifiers by default. Added an **exact-string exception only for `GTM-KVJVH4VM`** in `scripts/public-safety-allowlist.json` and a regression assertion proving no other GTM ID is permitted. Existing secret and identifier rules remain intact. The corrected safety scan, JavaScript tests, Python tests, TypeScript checks, and Next.js build passed in GitHub CI. Vercel preview returned HTTP 200, but rendered only a GTM preload in `<head>` with the `beforeInteractive` execution queue elsewhere; therefore switched to native `<head>` scripts. Re-run CI and inspect actual rendered HTML, and check the production deployment; Google Tag Assistant and downstream data collection still need a real browser test.
+- **Recovery:** Revert only the new GTM `Script` declarations and related documentation/tests; keep the existing Clarity and Vercel Analytics components.
+
 ## 2026-11-16 - Sitewide Microsoft Clarity installation
 
 - **Target:** `bonvallite/developer-portfolio` (Next.js), feature branch `feat/microsoft-clarity-zekmhvjftc-20261116`, Vercel project `developer-portfolio`, team `my-dojo`, intended public portfolio domains `jrvallite.com` and `www.jrvallite.com`.
