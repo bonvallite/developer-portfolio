@@ -1,4 +1,7 @@
 {
-  "comment": "Values that are deliberately public and may appear in tracked files. Each entry is an exact string. Add only what you intend to publish, such as a contact email shown on the site.",
-  "allow": ["bonvallite@gmail.com"]
+  "comment": "Values intentionally public in this repository. Entries must be exact literals, never wildcards. The GTM container ID is public by design; keep all other GA4/GTM IDs blocked unless explicitly approved.",
+  "allow": [
+    "bonvallite@gmail.com",
+    "GTM-KVJVH4VM"
+  ]
 }
