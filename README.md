@@ -47,6 +47,10 @@ The [Beyond the Code](./app/page.tsx) homepage section introduces my self-report
 
 **Image publication:** All six owner-supplied original photographs have now been added to this repository as EXIF-stripped, optimised JPEGs under [`public/photos/`](./public/photos/) and are presented using Next.js `Image` components. The homepage features the laptop portrait, the About section uses the seated studio portrait, the Experience page shows the working portrait, and the personal section shows two running photos plus the medal. The original uploaded files are retained outside the public repository; no AI-generated substitutes or expiring external-image URLs are used. Source-specific alt text, image dimensions, responsive sizes and lazy loading are included; the homepage hero photo is prioritised.
 
+## 2026 work overview
+
+The homepage links to [2026 commerce engineering work](./app/commerce-work-2026/page.tsx), a public-safe overview covering Shopify storefronts, custom fulfilment integrations, B2B purchasing and analytics integrity. The route links to existing detailed case studies and independently authored demonstrations. It intentionally makes no quantified uplift claims and contains no private client configuration.
+
 ## Engineering focus
 
 - **Shopify theme engineering:** Liquid sections, responsive product detail pages, metafields and metaobjects, accessibility, SEO, and page performance.
