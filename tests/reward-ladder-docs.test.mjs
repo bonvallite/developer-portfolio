@@ -6,8 +6,8 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (file) => readFileSync(join(root, file), "utf8");
-const DOCS = ["REWARD_LADDER_DEMO.md", "REWARD_LADDER_PLAN.md"];
-const ROUTES = ["reward-ladder-demo", "reward-ladder-plan"];
+const DOCS = ["REWARD_LADDER_DEMO.md", "REWARD_LADDER_PLAN.md", "REWARD_LADDER_MOCKUP.md"];
+const ROUTES = ["reward-ladder-demo", "reward-ladder-plan", "reward-ladder-mockup"];
 
 test("every relative link in the reward ladder docs points at a file that exists", () => {
   for (const doc of DOCS) {

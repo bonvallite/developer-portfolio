@@ -188,6 +188,8 @@ export default function RewardLadderDemo() {
       <Link href="/" style={{ color: "#dfbd8d" }}>← Back to portfolio</Link>
       <span style={{ color: "#81838a" }}> | </span>
       <Link href="/reward-ladder-plan" style={{ color: "#dfbd8d" }}>Read the plan</Link>
+      <span style={{ color: "#81838a" }}> | </span>
+      <Link href="/reward-ladder-mockup" style={{ color: "#dfbd8d" }}>Design mockup</Link>
       <p style={{ color: "#dfbd8d", marginTop: "2.5rem", letterSpacing: 2 }}>INTERACTIVE ENGINEERING DEMO</p>
       <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.6rem)", lineHeight: 1.15, margin: "1rem 0" }}>Reward ladder for an app-owned cart</h1>
       <p style={{ ...muted, maxWidth: 760 }}>

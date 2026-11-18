@@ -134,7 +134,7 @@ A standalone, fictional weight-based wholesale price calculator is now included 
 
 ## Interactive reward ladder
 
-A fictional third-party cart rendered in an open Shadow DOM, with a reward-progress ladder layered on top at [`/reward-ladder-demo`](./app/reward-ladder-demo/page.tsx). Edit the offer fields, change the basket, jump to exact threshold boundaries, then break the app (re-render, change its markup, close it, blank a field) to see the ladder fail closed on bad data and fail open on structural changes. See [REWARD_LADDER_DEMO.md](./REWARD_LADDER_DEMO.md) for the architecture, rules, and validation, and the [plan page](./app/reward-ladder-plan/page.tsx) at `/reward-ladder-plan` for how it was planned before it was built. It includes 38 unit and integration tests, including real Shadow DOM tests in jsdom.
+A fictional third-party cart rendered in an open Shadow DOM, with a reward-progress ladder layered on top at [`/reward-ladder-demo`](./app/reward-ladder-demo/page.tsx). Edit the offer fields, change the basket, jump to exact threshold boundaries, then break the app (re-render, change its markup, close it, blank a field) to see the ladder fail closed on bad data and fail open on structural changes. See [REWARD_LADDER_DEMO.md](./REWARD_LADDER_DEMO.md) for the architecture, rules, and validation, the [plan page](./app/reward-ladder-plan/page.tsx) at `/reward-ladder-plan` for how it was planned before it was built, and the [interactive design mockup](./REWARD_LADDER_MOCKUP.md) at `/reward-ladder-mockup`. It includes 38 unit and integration tests, including real Shadow DOM tests in jsdom.
 
 ## Shopify Flow and Liquid notifications
 

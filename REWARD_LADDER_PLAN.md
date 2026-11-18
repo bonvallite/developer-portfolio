@@ -19,5 +19,6 @@ A worked plan for adding tiered reward progress to a cart that a third-party app
 ## Related
 
 - [Interactive demo](REWARD_LADDER_DEMO.md) (`/reward-ladder-demo`)
+- [Interactive design mockup](REWARD_LADDER_MOCKUP.md) (`/reward-ladder-mockup`)
 - [Case study 19](CASE_STUDIES.md#19-planning-a-reward-ladder-before-building-it)
 - Engine: [`lib/reward-ladder.mjs`](lib/reward-ladder.mjs). Enhancer: [`lib/reward-ladder-mount.mjs`](lib/reward-ladder-mount.mjs).

@@ -160,6 +160,7 @@ export default function RewardLadderPlan() {
       <div className="actions" style={{ marginTop: 24 }}>
         <Link href="/#work" className="button secondary"><ArrowLeft size={16} /> Back to projects</Link>
         <Link href="/reward-ladder-demo" className="button secondary">Interactive demo <ArrowUpRight size={16} /></Link>
+        <Link href="/reward-ladder-mockup" className="button secondary">Design mockup <ArrowUpRight size={16} /></Link>
         <a href="https://github.com/bonvallite/developer-portfolio" className="button secondary" target="_blank" rel="noopener noreferrer">GitHub portfolio <ArrowUpRight size={16} /></a>
       </div>
     </section>

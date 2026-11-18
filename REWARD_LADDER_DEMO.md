@@ -4,7 +4,7 @@
 
 This demonstration shows how to add a tiered reward progress component to a cart that a third-party app owns and renders inside an **open Shadow DOM**. The shop, products, prices, offer values, and the "app" are all fictional. It is **independently developed example code**, not the source of any client theme, app configuration, or promotion.
 
-**Related:** the [plan](REWARD_LADDER_PLAN.md) (`/reward-ladder-plan`) shows how this was planned before it was built, using the same fictional offer.
+**Related:** the [plan](REWARD_LADDER_PLAN.md) (`/reward-ladder-plan`) shows how this was planned before it was built, and the [design mockup](REWARD_LADDER_MOCKUP.md) (`/reward-ladder-mockup`) lets you step through the design states, using the same fictional offer.
 
 ## What the page lets you do
 
