@@ -2,6 +2,16 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-18 - Use actual portfolio favicon in website contact button
+
+- **Scope:** JR Vallite public Next.js portfolio only, not the Shopify theme. GitHub repository `bonvallite/developer-portfolio`, branch `feature/b2b-markets-case-study-20261118`, PR #36.
+- **Affected files:** `app/page.tsx`, `app/globals.css`, `CHANGELOG.md`. Reuses existing `app/icon.svg` unchanged.
+- **Change:** Replace the generic globe inside the website contact button with the existing `{JRV}` favicon, served locally by Next.js as `/icon.svg`. Apply a dark icon backing for gold contrast while preserving the link label, URL, focus states and responsive contact grid.
+- **Reason:** Make the portfolio website link display its true visual identity.
+- **Inline documentation:** Updated the JSX icon dependency note and CSS documentation. No new package, external icon request or modified browser favicon.
+- **Validation:** Pending GitHub safety scan, automated tests, TypeScript and build, followed by Vercel release verification for the final commit.
+
+
 ## 2026-11-18 - Contact service logo treatments and destination colours
 
 - **Scope:** JR Vallite public portfolio only; no Shopify theme changes. GitHub repository `bonvallite/developer-portfolio`, branch `feature/b2b-markets-case-study-20261118` (PR #36).
