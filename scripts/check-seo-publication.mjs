@@ -48,6 +48,12 @@ const oldResume = new RegExp(given + '-' + family + '-Resume\\.pdf', 'i');
 const personalNames = new RegExp('(?:' + given + '|JR)[\\s_-]+' + family, 'i');
 for (const file of allRoutes) {
   const source = read(file);
+  // A client-only page gets SEO metadata from its adjacent server layout.
+  const route = file === 'app/page.tsx' ? '/' : '/' + file.slice('app/'.length, -'/page.tsx'.length);
+  const layoutPath = route === '/' ? 'app/page.tsx' : file.slice(0, -'page.tsx'.length) + 'layout.tsx';
+  const seoSource = existsSync(join(root, layoutPath)) ? read(layoutPath) : source;
+  assert.ok(seoSource.includes("canonical: '" + route + "'") || (route === '/experience' && seoSource.includes("canonical:'/experience'")), file + ' missing self canonical');
+  assert.ok(route === '/' || sitemap.includes("'" + route + "'"), file + ' absent from sitemap');
   assert.doesNotMatch(source, personalNames, file + ' contains personal-name content');
   assert.doesNotMatch(source, oldResume, file + ' references removed resume');
   for (const match of source.matchAll(/(?:href|src)=["'](\/[^"'?#]*)/g)) {
