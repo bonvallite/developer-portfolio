@@ -46,12 +46,14 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - [ ] Review contact journey without exposing personally identifying information in search-oriented copy.
 **Gate:** Homepage metadata, copy and mobile contact journey reviewed.
 
-### Stage 3 — Services and search landing pages (NOT STARTED)
-- [ ] /shopify-developer: themes, Liquid, storefront performance and B2B.
-- [ ] /ecommerce-management: catalogue, operations, promotions, reporting and integrations.
-- [ ] /shopify-cro: conversion funnels, GA4, Clarity, testing and optimisation process.
-- [ ] /shopify-app-development: demonstrable custom apps, Shopify APIs, webhooks and serverless integrations.
-- [ ] Connect each page to documented case studies and contact route.
+### Stage 3 — Services and search landing pages (IN PROGRESS)
+- [x] /shopify-developer: themes, Liquid, storefront performance and B2B.
+- [x] /ecommerce-management: catalogue, operations, promotions, reporting and integrations.
+- [x] /shopify-cro: conversion funnels, GA4, Clarity, testing and optimisation process.
+- [x] /shopify-app-development: demonstrable custom apps, Shopify APIs, webhooks and serverless integrations.
+- [x] Connect each page to existing documented case studies and homepage contact route.
+- [x] Add unique page metadata, self-referencing canonical URLs, sitemap coverage and homepage service navigation.
+- [ ] Verify CI validation on final commit; inspect rendered pages for mobile, keyboard and SEO metadata.
 **Gate:** Unique helpful content and sitemap/canonical coverage checked.
 
 ### Stage 4 — Technical evidence, case studies and content authority (NOT STARTED)
@@ -124,3 +126,13 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - `app/globals.css`: added two-column responsive services layout, mobile stacking and visible keyboard focus.
 - Copy limits custom app claims to demonstrated custom integration engineering, not third-party marketplace publication.
 - All edits build on the prior SEO privacy branch; outstanding Stage 1 privacy considerations remain open. Tests and rendered visual review must pass before declaring Stage 2 complete.
+
+## Stage 3 implementation record (2026-11-18)
+- Created `app/components/ServicePage.tsx` as a shared server-rendered service layout; each route supplies its own unique helpful content and links to existing case-study evidence.
+- Added `app/shopify-developer/page.tsx`, `app/ecommerce-management/page.tsx`, `app/shopify-cro/page.tsx`, and `app/shopify-app-development/page.tsx`.
+- Each service route has a unique title, description, own canonical URL and Open Graph title/description/URL. No personal-name SEO markup or unverified public Shopify App Store claims.
+- Updated `app/page.tsx` service cards to link to these four new routes; existing technical case-study links remain on each service page.
+- Updated `app/sitemap.ts` to include all four routes with priority appropriate to service intent.
+- Added responsive service page styling and keyboard focus outlines in `app/globals.css`; retained existing brand palette.
+- All page contact CTAs return to `/#contact` rather than publishing new personal identifiers.
+- Stage 3 stays on draft PR #37. Await automated CI, rendered HTML, visual accessibility, and privacy acceptance before any production merge.
