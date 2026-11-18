@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import CaseStudyContext from '../components/CaseStudyContext';
 
 export const metadata = {
   title: 'Cold-chain shipping and subscription checkout | Developer portfolio',
-  description: 'A public-safe engineering case study on coordinating Shopify shipping rules, Recharge subscriptions and Zapiet zone rates.',
+  description: 'Shopify shipping integration case study covering Recharge subscriptions, Zapiet delivery zones, mixed carts and checkout rate validation.',
+  alternates: { canonical: '/shipping-integration' },
 };
 
 export default function ShippingIntegrationCaseStudy() {
@@ -26,5 +28,6 @@ export default function ShippingIntegrationCaseStudy() {
     <h2>Engineering lessons</h2>
     <p>Cross-platform commerce issues require systems thinking: understanding how separate checkout services interact, creating a scenario matrix, distinguishing displayed rates from amounts customers actually pay, and documenting validated business rules.</p>
     <p style={{marginTop:40,fontSize:14,opacity:.8}}>This public-safe case study contains no customer data, internal rate tables, production configuration or proprietary source code.</p>
+    <CaseStudyContext summary="Cross-app diagnosis of delivery-zone rates and subscription order eligibility, including distinctions between displayed rates, discounts and final charges." evidenceLimit="The reviewed orders were a sample, not an exhaustive audit, so no zero-recurrence or measured uplift is claimed." services={[{"title":"Ecommerce management","href":"/ecommerce-management","description":"Shipping operations, customer journey reliability and coordination across commerce apps."},{"title":"Custom Shopify apps and APIs","href":"/shopify-app-development","description":"Understanding system boundaries when delivery and subscription services exchange data."}]} />
   </main>;
 }
