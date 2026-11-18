@@ -12,7 +12,8 @@ export default function B2BDemo() {
     <Link href="/" style={{ color: "#dfbd8d" }}>← Back to portfolio</Link>
     <p style={{ color: "#dfbd8d", marginTop: "2.5rem", letterSpacing: 2 }}>INTERACTIVE ENGINEERING DEMO</p>
     <h1 style={{ fontSize: "clamp(2rem, 5vw, 4rem)", lineHeight: 1.15, margin: "1rem 0" }}>B2B weight-based pricing simulator</h1>
-    {/* This calculator is a separate fictional exercise. The B2B case study documents the market-level architecture, not an order-weight pricing engine. */}<p style={{margin:"16px 0",color:"#e3bf8a"}}>Interested in the actual solution design? <Link href="/b2b-modernisation" style={{textDecoration:"underline"}}>Explore the four-market B2B architecture →</Link></p>\n    <p style={{ color: "#bbc0c7", maxWidth: 700 }}>Change quantities to see how an order-level weight threshold determines a volume discount. All products, prices and thresholds are fictional. No account, checkout, or live Shopify connection is used.</p>
+    {/* This calculator is a separate fictional exercise. The B2B case study documents the market-level architecture, not an order-weight pricing engine. */}<p style={{margin:"16px 0",color:"#e3bf8a"}}>Interested in the actual solution design? <Link href="/b2b-modernisation" style={{textDecoration:"underline"}}>Explore the four-market B2B architecture →</Link></p>
+    <p style={{ color: "#bbc0c7", maxWidth: 700 }}>Change quantities to see how an order-level weight threshold determines a volume discount. All products, prices and thresholds are fictional. No account, checkout, or live Shopify connection is used.</p>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16, marginTop: 30 }}>
       {DEMO_PRODUCTS.map(p => <section key={p.id} style={{ border: "1px solid #4c4f55", padding: 22, borderRadius: 14 }}>
         <h2 style={{ fontSize: 20 }}>{p.title}</h2>
