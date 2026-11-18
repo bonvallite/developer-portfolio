@@ -147,3 +147,16 @@
 .markets-checkout-preview>div{min-width:0}.markets-checkout-preview span,.markets-checkout-preview strong{display:block}
 .markets-checkout-preview span{font-size:9px;letter-spacing:1px;color:#55685e}.markets-checkout-preview strong{font-size:14px;margin-top:7px;color:#254336}
 @media(max-width:650px){.markets-product-list article{align-items:center}.markets-checkout-preview{grid-template-columns:1fr}}
+
+/* Stage 2 hiring-service navigation: concise, accessible service summaries use
+   existing portfolio colours and link only to published, evidence-backed routes.
+   Stage 3 may replace those route targets with dedicated service landing pages. */
+.hiring-services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.hiring-services-grid article{min-width:0;border:1px solid #46515a;border-radius:12px;background:#202a32;padding:26px}
+.hiring-services-grid article h3{font-size:clamp(20px,2.2vw,29px);line-height:1.25;margin:15px 0 12px}
+.hiring-services-grid article p{color:#bec8ce;line-height:1.75;font-size:14px}
+.hiring-services-grid article a{display:inline-flex;align-items:center;gap:8px;color:#e3c397;font-size:13px;font-weight:600;margin-top:18px;text-decoration:underline;text-underline-offset:4px}
+.hiring-services-grid article a:focus-visible,.hiring-services-cta a:focus-visible{outline:2px solid #e3c397;outline-offset:4px}
+.hiring-services-cta{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:20px;padding:22px 24px;border:1px solid #56606a;border-radius:12px}
+.hiring-services-cta p{font-size:15px;line-height:1.6;max-width:600px}
+@media(max-width:720px){.hiring-services-grid{grid-template-columns:1fr}.hiring-services-grid article{padding:21px}.hiring-services-cta{flex-direction:column;align-items:flex-start}}
