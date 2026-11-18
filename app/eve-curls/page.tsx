@@ -1,12 +1,14 @@
 import Link from 'next/link';
+import CaseStudyContext from '../components/CaseStudyContext';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowUpRight, Globe2, Languages, Coins, PackageSearch, PanelsTopLeft, Waypoints, ShieldCheck, BadgePercent, CreditCard } from 'lucide-react';
 import MarketPreview from './MarketPreview';
 
 export const metadata: Metadata = {
-  title: 'Eve Curls | Shopify Markets & European Localisation | Jomar Vallite',
+  title: 'Shopify Markets & European Ecommerce Localisation Case Study',
   description: 'International Shopify Markets architecture case study covering six European markets, regional languages, currencies, catalogues, domains, theme customisations and a fictional interactive demo.',
+  alternates: { canonical: '/eve-curls' },
 };
 
 const markets = [
@@ -66,5 +68,6 @@ export default function EveCurlsMarketsCaseStudy() {
       <p className="markets-evidence">Experience summary supplied by the developer. The six countries and six configuration areas represent the scope described for this case study; the public demo does not verify which configurations are currently active on the production shop. No revenue, conversion improvement, or deployment count is claimed. This page contains no client exports, API secrets, private commercial pricing, or customer records.</p>
       <div className="markets-case-actions"><Link className="button secondary" href="/experience"><ArrowLeft size={17}/> Back to experience</Link><Link className="button secondary" href="/#work">More case studies <ArrowUpRight size={17}/></Link></div>
     </section>
+    <CaseStudyContext summary="Shopify Markets configuration concepts for six European markets, including regional catalogue, currency, language, theme and checkout considerations." evidenceLimit="The interactive demonstration uses independent fictional data; the public page does not independently verify which market settings are currently live." services={[{"title":"Shopify developer","href":"/shopify-developer","description":"International storefront configuration and maintainable theme architecture."},{"title":"Ecommerce management","href":"/ecommerce-management","description":"Market catalogue, promotional operations and regional shopping experiences."}]} />
   </main>;
 }

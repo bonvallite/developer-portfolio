@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import CaseStudyContext from '../components/CaseStudyContext';
 import type { Metadata } from 'next';
 import {
   ArrowLeft, ArrowRight, ArrowUpRight, ArrowDownUp, Boxes, CheckCircle2, Clock3,
@@ -7,7 +8,8 @@ import {
 
 export const metadata: Metadata = {
   title: 'Custom Shopify delivery app and CartonCloud integration | Developer portfolio',
-  description: 'I built both a Cloudflare Worker delivery app and the Shopify–CartonCloud integration that handles fulfilment information, tracking and estimated delivery dates.',
+  description: 'Custom Shopify API and Cloudflare Worker integration case study covering fulfilment, tracking updates and estimated delivery dates with clearly stated validation limits.',
+  alternates: { canonical: '/cartoncloud-integration' },
 };
 
 // Public-safe conceptual diagram of two distinct contributions: the custom
@@ -37,7 +39,7 @@ export default function CartonCloudIntegrationCaseStudy() {
   return (
     <main>
       <header className="header container">
-        <Link className="brand" href="/"><strong>JV.</strong><span>DEVELOPER PORTFOLIO</span></Link>
+        <Link className="brand" href="/"><strong>EC.</strong><span>SHOPIFY COMMERCE ENGINEERING</span></Link>
         <nav aria-label="Page navigation"><Link href="/#work">Projects</Link><Link href="/experience">Experience</Link></nav>
       </header>
       <section className="hero container" style={{paddingBottom:70}}>
@@ -124,6 +126,7 @@ export default function CartonCloudIntegrationCaseStudy() {
           <p className="disclaimer">Portfolio documentation only. This page does not provide credentials, production Worker code, tracking URLs, raw customer records or employer-owned configuration.</p>
         </div>
       </section>
+    <CaseStudyContext summary="A custom Cloudflare Worker application and Shopify–CartonCloud integration connecting fulfilment events, tracking status and estimated delivery information." evidenceLimit="Described implementation and partial testing are not proof of full present-day production synchronisation, quantified savings or flawless event delivery." services={[{"title":"Custom Shopify apps and APIs","href":"/shopify-app-development","description":"OAuth, webhooks, serverless orchestration and fulfilment system integrations."},{"title":"Shopify developer","href":"/shopify-developer","description":"Storefront features that depend on reliable order and delivery integration data."}]} />
     </main>
   );
 }

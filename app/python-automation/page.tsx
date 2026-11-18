@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Python Automation & Reusable Skills | Developer Portfolio',
   description: 'Public-safe Python automation, offline fictional FAQ retrieval, Samsung Health CSV ingestion and Jupyter notebook review.',
+  alternates: { canonical: '/python-automation' },
 };
 
 const github = 'https://github.com/bonvallite/developer-portfolio';

@@ -1,14 +1,10 @@
-# Developer Portfolio | Bon Vallite
+# Shopify Commerce Engineering | Developer Portfolio
 
-Practical e-commerce engineering, API integrations, automation, and storefront performance.
+Service-led portfolio covering Shopify development, ecommerce management, conversion rate optimisation, custom API integrations, and storefront performance. Public pages intentionally avoid personal-name SEO.
 
-**Resume (PDF):** https://developer-portfolio-my-dojo.vercel.app/Jomar-Vallite-Resume.pdf ([file in this repository](./public/Jomar-Vallite-Resume.pdf))
 
-**LinkedIn:** https://www.linkedin.com/in/bonvallite/
 
-**Google Developer profile:** https://g.dev/bonvallite
 
-**Wikipedia contributions:** https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite
 
 ## Portfolio analytics: Google Tag Manager
 
