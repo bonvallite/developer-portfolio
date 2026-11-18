@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowUpRight, Globe2, Languages, Coins, PackageSearch, Panel
 import MarketPreview from './MarketPreview';
 
 export const metadata: Metadata = {
-  title: 'Eve Curls | Shopify Markets & European Localisation | Jomar Vallite',
+  title: 'Shopify Markets & European Ecommerce Localisation Case Study',
   description: 'International Shopify Markets architecture case study covering six European markets, regional languages, currencies, catalogues, domains, theme customisations and a fictional interactive demo.',
 };
 
