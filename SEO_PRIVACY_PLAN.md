@@ -75,3 +75,18 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - Existing homepage references personal-profile links, personal photos and named asset paths. Removing exact visible name text is not equivalent to fully anonymising the website.
 - The sitemap uses an explicitly curated list; each route must be confirmed before release.
 - GitHub draft PR #37 remains unmerged. No automated validation or deployment has been verified.
+
+## Stage 1 continuation: repository and domain audit (2026-11-18)
+- [x] Verified Vercel domain settings: `jrvallite.com` redirects with HTTP 308 to verified primary `www.jrvallite.com`. Canonical host selection confirmed in configuration; live HTTP fetch could not be independently verified.
+- [x] Audited the recursive GitHub branch tree: 154 tracked blobs; 12 case-study/detail route pages plus homepage; all explicitly listed sitemap routes have corresponding page.tsx source.
+- [x] Removed additional personal-name SEO title references in `app/engineering-standards/page.tsx`, `app/eve-curls/page.tsx`, and `app/shopify-flow/page.tsx`.
+- [x] Corrected an important canonical inheritance risk: sitewide `alternates.canonical='/'` removed from root layout and applied to homepage only. Each future service/detail page requires its own self-referencing canonical.
+- [ ] Six personal-name filenames still exist under `public/photos/` (running, studio, laptop images). These may be visible to search engines even after changing alt text; review/rename or remove with exact reference updates.
+- [ ] Several page links to `github.com/bonvallite`, GitHub project paths and `g.dev/bonvallite` still expose an identifiable personal handle. Decide whether to keep technical proof links or replace with a neutral public showcase account.
+- [ ] Existing `README.md` and project documentation mention the owner's name and outdated public résumé URL; these are public GitHub content, separate from production site metadata.
+- [ ] Name-specific résumé was deleted from the branch, but external search caches, older deployments and repository history may persist.
+- [ ] Full asset-content / embedded EXIF / PDF metadata audit not yet completed.
+- [ ] Public site pages could not be fetched by web tooling, and direct Git clone was blocked by runtime DNS. Do not claim rendered-site verification.
+- [ ] No npm test, safety scan, tsc or production build executed. Latest checked commit had no GitHub workflow runs reported; Vercel check was pending.
+
+**Stage 1 release gate remains BLOCKED** pending the privacy decisions, full asset audit, build/test verification and public HTTP checks.
