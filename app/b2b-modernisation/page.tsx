@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 // Approval is manual, following a Shopify Forms submission to the assigned team.
 // The approval email is a Shopify Settings > Notifications message, while
 // customer sign-in uses an emailed one-time code; neither is a custom login app.
-// Market-specific storefront presentation and checkout are contextual, not
+// Retail Black Friday and Cyber Monday promotional presentation is separate\n// from retail Catalog 1's normal-price baseline and B2B tier catalogues.\n// Market-specific storefront presentation and checkout are contextual, not
 // separate stores or a promise of independently customised checkout code.
 const markets = [
-  { name: 'Retail market', kind: 'B2C', detail: 'Standard consumer catalogue', tone: 'retail' },
-  { name: 'Wholesale tier 1', kind: 'B2B', detail: 'Company pricing catalogue A', tone: 'wholesale' },
-  { name: 'Wholesale tier 2', kind: 'B2B', detail: 'Company pricing catalogue B', tone: 'wholesale' },
-  { name: 'Wholesale tier 3', kind: 'B2B', detail: 'Company pricing catalogue C', tone: 'wholesale' },
+  { name: 'Retail', kind: 'B2C', detail: 'Catalog 1 · Normal retail pricing', tone: 'retail' },
+  { name: 'Wholesale Tier 1', kind: 'B2B', detail: 'Catalog 2 · Tier 1 pricing', tone: 'wholesale' },
+  { name: 'Wholesale Tier 2', kind: 'B2B', detail: 'Catalog 3 · Tier 2 pricing', tone: 'wholesale' },
+  { name: 'Wholesale Tier 3', kind: 'B2B', detail: 'Catalog 4 · Tier 3 pricing', tone: 'wholesale' },
 ];
 const capabilities = [
   { icon: Building2, title: 'Market architecture', description: 'Structured one retail and three wholesale purchasing contexts within a single Shopify Advanced store.' },
@@ -67,6 +67,28 @@ export default function B2BModernisation() {
           {['Catalogue pricing','Market-aware theme content','Applicable checkout settings'].map(x=><div key={x} style={{background:'#131619',padding:'16px 10px',borderRadius:9,textAlign:'center',fontSize:13,color:'#e6d4bb'}}>{x}</div>)}
         </div>
         <p style={{color:'#9ca0aa',fontSize:12,lineHeight:1.7,marginTop:19}}>Illustrative architecture. Pricing eligibility is governed by Shopify market and company configuration, not client-side JavaScript. A market-specific checkout experience does not imply a separate checkout or custom checkout code.</p>
+      </section>
+
+      {/* The retail campaign rollout is a separate marketing operation on the
+          retail market, not another B2B pricing tier or a fifth catalogue.
+          Do not imply verified campaign revenue or a live discount value. */}
+      <section aria-labelledby="retail-rollout" style={{marginTop:82,padding:'clamp(22px,4vw,38px)',border:'1px solid #4c4539',borderRadius:16,background:'#161a1e'}}>
+        <p className="overline">RETAIL MARKET / SEASONAL CAMPAIGN ROLLOUT</p>
+        <h2 id="retail-rollout" style={{fontSize:'clamp(1.8rem,4vw,2.8rem)',margin:'14px 0'}}>Black Friday and Cyber Monday, within the same storefront</h2>
+        <p style={{color:'#afb2bb',lineHeight:1.8,maxWidth:850}}>Alongside the wholesale rollout, I worked on the retail market's Black Friday and Cyber Monday campaign experience. The retail market retained Catalog 1 as its normal-price catalogue; seasonal campaign offers and merchandising are a separate layer from the three wholesale catalogue pricing tiers.</p>
+        <div className="b2bm-two-col" style={{display:'grid',gridTemplateColumns:'repeat(2,minmax(0,1fr))',gap:14,marginTop:25}}>
+          <article style={{border:'1px solid #6f6049',padding:21,borderRadius:12}}>
+            <p style={{fontSize:11,color:'#e0bd83',letterSpacing:1.2}}>RETAIL CONTEXT</p>
+            <h3>Retail → Catalog 1</h3>
+            <p style={{fontSize:13,color:'#babac0',lineHeight:1.7}}>Standard catalogue pricing is the baseline for general customers.</p>
+          </article>
+          <article style={{border:'1px solid #6f6049',padding:21,borderRadius:12}}>
+            <p style={{fontSize:11,color:'#e0bd83',letterSpacing:1.2}}>SEASONAL EXPERIENCE</p>
+            <h3>Black Friday → Cyber Monday</h3>
+            <p style={{fontSize:13,color:'#babac0',lineHeight:1.7}}>Campaign landing-page and storefront presentation support the retail promotional rollout, separately from company-specific B2B pricing.</p>
+          </article>
+        </div>
+        <p style={{color:'#999da6',fontSize:12,lineHeight:1.7,marginTop:20}}>This public account describes campaign scope and experience design, not the confidential offer configuration, unpublished dates, or a measured sales uplift.</p>
       </section>
 
       <section style={{marginTop:82}}>
