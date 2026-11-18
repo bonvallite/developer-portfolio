@@ -75,7 +75,7 @@ Every card follows the same outline. **Evidence** lists only what this repositor
 - **Objective:** enhance an app-owned cart without replacing its cart or checkout behaviour.
 - **Technologies:** browser DOM APIs, open Shadow DOM traversal, JavaScript, scoped CSS hooks.
 - **Approach:** discover the drawer across open roots, inject styles into the owning root, add stable hooks after hydration, derive reward states from fictional configuration, and keep the app-native promotional UI as a fallback.
-- **Evidence:** example 48 plus its boundary-focused unit test, the [public-safe development history](./THIRD_PARTY_CART_HISTORY.md), and the [interactive reward ladder demo](./REWARD_LADDER_DEMO.md) with 38 unit and jsdom Shadow DOM tests.
+- **Evidence:** example 48 plus its boundary-focused unit test, the [public-safe development history](./THIRD_PARTY_CART_HISTORY.md), the [interactive reward ladder demo](./REWARD_LADDER_DEMO.md) with 38 unit and jsdom Shadow DOM tests, and the [plan](./REWARD_LADDER_PLAN.md) it was built from.
 - **Limitations:** illustrative only. No production app selectors, live reward values, private theme code, or app configuration are published.
 
 ### Analytics data integrity
