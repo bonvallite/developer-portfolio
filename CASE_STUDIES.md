@@ -9,6 +9,15 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Demonstrations:** Product card (08), CSS grid (09), accessible FAQ (17), cart dialog focus (21), breadcrumb structured data (24), heading normalisation (37), and image fallback (40).
 
+## Shopify B2B modernisation: four markets, three company pricing tiers
+**Problem class:** A third-party wholesale purchasing journey added account and pricing complexity despite the store's Shopify Advanced plan.
+
+**My contribution:** Organised a single-store architecture around one retail market and three volume-eligibility B2B markets. Approved companies were associated with their appropriate B2B market; each market carried a relevant catalogue and pricing context. Native customer sign-in and company purchasing contexts reduced the need for a separate wholesale portal. I also worked on contextual theme presentation, wholesale landing pages and the purchasing experience.
+
+**Public diagram:** [Four-market B2B modernisation case study](./app/b2b-modernisation/page.tsx) (`/b2b-modernisation`). Its four-market diagram and customer journey are intentionally conceptual. The [weight-based simulator](./B2B_DEMO.md) is fictional and **not** a reproduction of the deployed market architecture.
+
+**Impact and evidence limits:** The business reported more wholesale interest, and business-associated order value rose in selected months. Those categories include candidate and wholesale-tagged accounts; confirmed company orders, go-live dates, repeat buyers and attribution require reconciliation. No confidential discount rates, company IDs, merchant name or internal account records are published.
+
 ## 2. Weight-based wholesale pricing and automation
 **Problem class:** Conventional quantity pricing does not directly express order-level aggregate weight requirements.
 
