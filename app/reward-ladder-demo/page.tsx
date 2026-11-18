@@ -196,7 +196,9 @@ export default function RewardLadderDemo() {
         The cart on the right is a fictional third-party app rendered inside an open Shadow DOM. The ladder is an enhancement layered on top: it reads offer fields, mounts once, survives the app re-rendering, and gets out of the way when anything is wrong. Edit the offer, change the basket, then break the app on purpose. All values are fictional and nothing connects to a store.
       </p>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24, marginTop: 28, alignItems: "start" }}>
+      {/* Cap the minimum track at the available width so phone-sized viewports
+          keep the controls and Shadow DOM cart inside the page padding. */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))", gap: 24, marginTop: 28, alignItems: "start" }}>
         <div style={{ display: "grid", gap: 20 }}>
           <section style={box}>
             <h2 style={{ fontSize: 20 }}>1. Offer fields</h2>
@@ -290,7 +292,9 @@ export default function RewardLadderDemo() {
           <li><strong style={{ color: "white" }}>Idempotent mount.</strong> Re-renders, repeated reconciles and stray duplicates all converge on exactly one ladder.</li>
         </ul>
         <p style={{ ...muted, marginTop: 16 }}>Illustration only. A production version needs the vendor&apos;s supported extension surface where one exists, accessibility testing on real devices, and a subtotal basis verified against the rule that actually grants rewards.</p>
-        <a href="https://github.com/bonvallite/developer-portfolio/tree/main/lib" target="_blank" rel="noreferrer" style={{ color: "#dfbd8d" }}>View source on GitHub ↗</a>
+        {/* This release stays on its reviewed feature branch while the PR is
+            unmerged, so its public source link must follow that same branch. */}
+        <a href="https://github.com/bonvallite/developer-portfolio/tree/feature/reward-ladder-demo/lib" target="_blank" rel="noopener noreferrer" style={{ color: "#dfbd8d" }}>View source on GitHub ↗</a>
       </section>
     </main>
   );

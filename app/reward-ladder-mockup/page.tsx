@@ -104,7 +104,9 @@ export default function RewardLadderMockup() {
         Step through the five design states, scrub the subtotal, switch between today&apos;s shipping-only strip and the proposed ladder, and click a design note to highlight that part. The ladder is drawn by the same renderer as the working component. Shop, products, and offer are fictional.
       </p>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(330px, 1fr))", gap: 24, marginTop: 28, alignItems: "start" }}>
+      {/* The cart widths are upper bounds; narrow phones must still fit both
+          grid tracks within the page padding rather than clip the preview. */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 330px), 1fr))", gap: 24, marginTop: 28, alignItems: "start" }}>
         <div style={{ display: "grid", gap: 18 }}>
           <section style={box} aria-labelledby="states-h">
             <h2 id="states-h" style={{ fontSize: 19, margin: 0 }}>Design states</h2>

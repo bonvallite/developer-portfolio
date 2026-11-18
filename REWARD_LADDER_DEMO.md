@@ -51,7 +51,7 @@ flowchart LR
 | `lib/reward-ladder-mount.mjs` (+ `.d.mts`) | DOM enhancer: discovery, idempotent mount, observer, teardown |
 | `lib/reward-ladder-demo-app.mjs` (+ `.d.mts`) | The fictional app cart used by the page and its tests |
 | `app/reward-ladder-demo/page.tsx` | The interactive route |
-| `tests/reward-ladder*.test.mjs` | 38 unit and integration tests |
+| `tests/reward-ladder*.test.mjs` | 48 tests: 38 engine/enhancer/app tests, four documentation tests, and six mockup tests |
 
 ## Run locally
 
@@ -72,6 +72,17 @@ Visit `http://localhost:3000/reward-ladder-demo`.
 - GitHub Actions also runs the publication safety scan, TypeScript, and the production build.
 
 jsdom is not a browser. The interactive route has not been verified in every real browser, so check it on a deployed preview rather than assuming it works.
+
+### 18 November 2026: publication review
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/reward-ladder-demo`, based on main commit `9e9c0900889a51ad24700ace14371f6ab336b845`; Vercel project `developer-portfolio` in `my-dojo`.
+- **Scope:** The six sanitised patches and their 26 changed paths. The private pack, patch inbox, and `package-lock.json` are excluded. The homepage outside the Reward Ladder block is unchanged. `package.json` adds only the `jsdom` development dependency; the CI file changes only a test-step label.
+- **Release corrections:** `app/reward-ladder-demo/page.tsx` and `app/reward-ladder-mockup/page.tsx` now cap grid minimum widths at the available space, avoiding fixed tracks wider than narrow phone viewports. The demo's source link follows the published feature branch while the pull request remains unmerged. Adjacent JSX comments explain both dependencies. This document corrects the total Reward Ladder test count to 48.
+- **Validation before those corrections:** All six patches applied cleanly. All 155 JavaScript tests and 16 Python tests passed; the publication scan passed for 163 tracked files; TypeScript, the Next.js production build, and Git whitespace checks passed. Review of all six commits found no newly introduced client source, private identifiers, credentials, or live offer data.
+- **Open checks:** Repeat type/build and affected checks after the release corrections; verify the Vercel preview in a real browser, including narrow screens and the simulated app recovery controls. The local browser could not start because its runtime forbids a required socket; no local visual success is claimed.
+- **Release and recovery:** Publication is authorised; the pull request must remain unmerged. Production deployment is to use the reviewed branch commit without changing the project's production branch. The existing main deployment is the recovery reference. A later deployment of main can replace this direct branch release until the pull request is separately merged.
+
+This entry stays in the approved project documentation because the release scope excludes changes to unrelated files.
 
 ## Production boundaries
 
