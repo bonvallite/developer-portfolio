@@ -26,7 +26,8 @@
     "tailwindcss": "^3.4.17",
     "postcss": "^8.5.0",
     "autoprefixer": "^10.4.20",
-    "liquidjs": "^10.21.0"
+    "liquidjs": "^10.21.0",
+    "jsdom": "^26.1.0"
   }
 }
 
