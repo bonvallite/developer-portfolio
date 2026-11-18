@@ -2,7 +2,11 @@
 
 Practical e-commerce engineering, API integrations, automation, and storefront performance.
 
-**Resume (PDF):** https://developer-portfolio-my-dojo.vercel.app/Jomar-Vallite-Resume.pdf ([file in this repository](./public/Jomar-Vallite-Resume.pdf))
+**Portfolio website:** https://jrvallite.com
+
+**Contact:** hello@jrvallite.com (published mailto address; mailbox delivery is configured separately). Vercel currently redirects the apex to `www.jrvallite.com`; that redirect must be reversed in Vercel's domain settings to make the apex the browser-visible final URL.
+
+**Resume (PDF):** https://jrvallite.com/Jomar-Vallite-Resume.pdf ([file in this repository](./public/Jomar-Vallite-Resume.pdf))
 
 **LinkedIn:** https://www.linkedin.com/in/bonvallite/
 
