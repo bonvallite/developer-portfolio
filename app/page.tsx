@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Github, Layers3, GitBranch, ShieldCheck, Network, FileText, Mail, Globe, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Github, Layers3, GitBranch, ShieldCheck, Network, FileText, Mail, Globe, MessageCircle, LockKeyhole } from 'lucide-react';
 // Project 02 documents separate custom application and API integration work.
 // Public case-study content and diagram are illustrative; no client source or IDs.
 const projects = [
@@ -70,7 +70,8 @@ export default function Home() {
       {/* Contact icons are self-contained and styled in service-associated colours.
           Brand initials are typographic representations, not downloaded third-party assets.
           Keep visible text labels, meaningful names, mailto/link targets and new-tab safeguards.
-          Email delivery depends on separately configured mailbox and DNS records. */}
+          Email delivery depends on separately configured mailbox and DNS records.
+          Webmail is a separate owner/authorised-user login destination; no credentials are embedded. */}
       <div className="actions contact-service-links">
         <a className="button contact-service contact-service--github" href="https://github.com/bonvallite" target="_blank" rel="noopener noreferrer"><span className="contact-service-icon" aria-hidden="true"><Github size={20}/></span><span>View my GitHub</span><ArrowUpRight size={16} className="contact-link-arrow" aria-hidden="true"/></a>
         <a className="button contact-service contact-service--resume" href="/Jomar-Vallite-Resume.pdf" target="_blank" rel="noopener noreferrer"><span className="contact-service-icon" aria-hidden="true"><FileText size={20}/></span><span>Resume (PDF)</span><ArrowUpRight size={16} className="contact-link-arrow" aria-hidden="true"/></a>
@@ -78,6 +79,7 @@ export default function Home() {
         <a className="button contact-service contact-service--wikipedia" href="https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite" target="_blank" rel="noopener noreferrer"><span className="contact-service-icon" aria-hidden="true"><span className="contact-wikipedia-mark">W</span></span><span>Wikipedia contributor</span><ArrowUpRight size={16} className="contact-link-arrow" aria-hidden="true"/></a>
         <a className="button contact-service contact-service--linkedin" href="https://www.linkedin.com/in/bonvallite/" target="_blank" rel="noopener noreferrer"><span className="contact-service-icon" aria-hidden="true"><span className="contact-linkedin-mark">in</span></span><span>LinkedIn</span><ArrowUpRight size={16} className="contact-link-arrow" aria-hidden="true"/></a>
         <a className="button contact-service contact-service--email" href="mailto:hello@jrvallite.com"><span className="contact-service-icon" aria-hidden="true"><Mail size={20}/></span><span>hello@jrvallite.com</span><ArrowUpRight size={16} className="contact-link-arrow" aria-hidden="true"/></a>
+        <a className="button contact-service contact-service--webmail" href="https://webmail.jrvallite.com/" target="_blank" rel="noopener noreferrer" aria-label="Webmail login for authorised mailbox users"><span className="contact-service-icon" aria-hidden="true"><LockKeyhole size={20}/></span><span>Webmail Login</span><ArrowUpRight size={16} className="contact-link-arrow" aria-hidden="true"/></a>
         <a className="button contact-service contact-service--website" href="https://jrvallite.com" target="_blank" rel="noopener noreferrer"><span className="contact-service-icon" aria-hidden="true"><Image src="/icon.svg" width={25} height={25} alt="" unoptimized className="contact-website-favicon"/></span><span>jrvallite.com</span><ArrowUpRight size={16} className="contact-link-arrow" aria-hidden="true"/></a>
         <a className="button contact-service contact-service--whatsapp" href="https://api.whatsapp.com/send?phone=639075480000&text=Hi%20JR%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="Contact me on WhatsApp at +63 907 548 0000"><span className="contact-service-icon" aria-hidden="true"><MessageCircle size={20}/></span><span>WhatsApp</span><ArrowUpRight size={16} className="contact-link-arrow" aria-hidden="true"/></a>
       </div></div></section>
