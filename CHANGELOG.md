@@ -2,6 +2,16 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-18 - Update public portfolio contact email and website URL
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118` (PR #36); no Shopify theme change.
+- **Affected files:** `app/page.tsx`, `app/layout.tsx`, `README.md`, `scripts/public-safety-allowlist.json`, `CHANGELOG.md`.
+- **Change:** Replace the homepage Gmail mailto button with `hello@jrvallite.com`, add `jrvallite.com` to contact actions, use the apex URL in site metadata, and update the résumé URL in README. Narrow the safety allowlist to the newly approved public email.
+- **Reason:** Align the portfolio's contact information and published branding to the requested custom domain and email.
+- **Documentation:** Updated inline contact and SEO metadata comments to document their intent and dependencies. The apex-to-www Vercel redirect must be reversed through project domain settings before canonical URL and final browser URL are consistent. Publishing a mailto link does not configure mail hosting.
+- **Validation:** Await GitHub CI and Vercel preview checks for this final commit; neither DNS nor mailbox delivery is claimed as tested.
+
+
 ## 2026-11-18 - Add six-step B2B customer journey diagram
 
 - **Scope:** Public portfolio only, no Shopify theme or production notification modifications.
