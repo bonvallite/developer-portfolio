@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, BookOpen, CheckCircle2, ClipboardList, FileCode2, GitBranch, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Documentation & engineering standards | Jomar Vallite',
+  title: 'Shopify Engineering Standards & Documentation',
   description: 'How inline documentation, dated changelogs, validation evidence and release handovers make commerce systems easier to maintain.',
 };
 
