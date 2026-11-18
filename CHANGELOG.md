@@ -1,6 +1,16 @@
 # Portfolio changelog
 
-Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
+Entries record changes from 22 October 2026 onwards.
+
+## 2026-11-18 - Showcase four-market native Shopify B2B architecture
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118`, based on the reward ladder feature branch to preserve its currently published pages.
+- **Affected files:** `app/b2b-modernisation/page.tsx`, `app/page.tsx`, `app/b2b-demo/page.tsx`, `CASE_STUDIES.md`, `B2B_DEMO.md`, `README.md`, `CHANGELOG.md`.
+- **What and why:** Added a responsive conceptual four-market diagram and a dedicated case study of native B2B company account onboarding, market catalogue assignments, three wholesale tiers, retail segmentation, and context-sensitive storefront experiences. Updated homepage project positioning and cross-linked the existing fictional weight calculator without suggesting it represents actual market pricing.
+- **Privacy and accuracy:** No employer configuration, wholesale percentages, company IDs, production theme code, customer details or unreconciled revenue figures are published. The architecture is illustrative; business-associated sales trends are not asserted as causal B2B uplift.
+- **Inline documentation:** The new page documents confidentiality and market-context boundaries in code comments; existing simulator link explains the independence of the exercise.
+- **Validation:** Pending GitHub Actions publication scan, tests, TypeScript and build. Verify deployment preview before production promotion.
+ Earlier repository history remains available in Git commits and pull requests.
 
 ## 2026-11-16 - Relocate Microsoft Clarity to document head without duplicate tracking
 
