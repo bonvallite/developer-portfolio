@@ -1,6 +1,12 @@
 import Link from 'next/link';
+import CaseStudyContext from '../components/CaseStudyContext';
+import type { Metadata } from 'next';
 import { ArrowLeft, ArrowUpRight, BarChart3, CheckCircle2, MousePointerClick, ShoppingCart, ShieldCheck } from 'lucide-react';
 
+// Unique case-study metadata keeps the CRO evidence page separate from the service page.
+export const metadata: Metadata = { title: "Shopify Conversion Funnel Audit & CRO Case Study", description: "Shopify conversion optimisation case study examining product discovery, cart and checkout friction, CTA QA, GA4 event coverage and measured-evidence boundaries.", alternates: { canonical: '/conversion-audit' } };
+
+// The related-service panel connects validated technical evidence to hiring-intent pages.
 // Public narrative only: summarise the owner's audit and later reported QA without
 // client metrics or private source. GA4 hypotheses and revenue uplift remain open.
 // The static PDF is a redacted public edition, not the original internal audit.
@@ -29,7 +35,7 @@ const findings = [
 
 export default function ConversionAuditCaseStudy() {
   return <main>
-    <header className="header container"><Link className="brand" href="/"><strong>JV.</strong><span>DEVELOPER PORTFOLIO</span></Link><nav aria-label="Page navigation"><Link href="/#work">Projects</Link><Link href="/experience">Experience</Link></nav></header>
+    <header className="header container"><Link className="brand" href="/"><strong>EC.</strong><span>SHOPIFY COMMERCE ENGINEERING</span></Link><nav aria-label="Page navigation"><Link href="/#work">Projects</Link><Link href="/experience">Experience</Link></nav></header>
     <section className="hero container" style={{paddingBottom:48}}>
       <div className="eyebrow"><span className="spark"/> CASE STUDY / ECOMMERCE OPTIMISATION</div>
       <h1>Finding conversion<br/><em>leaks across the funnel.</em></h1>
@@ -80,5 +86,6 @@ export default function ConversionAuditCaseStudy() {
       <p className="disclaimer">Evidence: owner-supplied Conversion Journey Audit dated 24 October 2026 and later implementation and Phase 4.4 QA reports. Internal attachments are not published. The downloadable PDF uses the same public evidence boundaries.</p>
       <div className="actions" style={{marginTop:24}}><Link href="/#work" className="button secondary"><ArrowLeft size={16}/> Back to projects</Link><a href="https://github.com/bonvallite/developer-portfolio" className="button secondary" target="_blank" rel="noopener noreferrer">GitHub portfolio <ArrowUpRight size={16}/></a></div>
     </section>
+    <CaseStudyContext summary="A funnel-led review of Shopify customer journeys, CTA behaviour, mobile discovery, cart and checkout QA, and event measurement reliability." evidenceLimit="The case study documents observed issues and reported functional checks, but does not establish a causal revenue or conversion uplift." services={[{"title":"Shopify CRO specialist","href":"/shopify-cro","description":"Funnel diagnosis, behavioural analysis, UX improvements and measurement validation."},{"title":"Shopify developer","href":"/shopify-developer","description":"Responsive storefront changes and reliable product-to-checkout interactions."}]} />
   </main>;
 }
