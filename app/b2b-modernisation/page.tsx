@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, Layers3, LogIn, ShoppingBag, SlidersHorizontal, Store, UsersRound } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, Layers3, SlidersHorizontal, Store, UsersRound } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'B2B Commerce Modernisation | Shopify Markets & Catalogues | JR Vallite',
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 // Conceptual public-safe representation of a four-market implementation.
 // The labels are illustrative: real market names, catalogue rules, company
 // assignments, prices, and client-specific configurations are not published.
-// Market-specific storefront presentation and checkout are contextual, not
+// Approval is manual, following a Shopify Forms submission to the assigned team.\n// The approval email is a Shopify Settings > Notifications message, while\n// customer sign-in uses an emailed one-time code; neither is a custom login app.\n// Market-specific storefront presentation and checkout are contextual, not
 // separate stores or a promise of independently customised checkout code.
 const markets = [
   { name: 'Retail market', kind: 'B2C', detail: 'Standard consumer catalogue', tone: 'retail' },
@@ -25,10 +25,10 @@ const capabilities = [
   { icon: SlidersHorizontal, title: 'Contextual storefront UX', description: 'Tailored landing-page content and theme presentation to make the wholesale buying journey clearer.' },
 ];
 const pathway = [
-  { number: '01', title: 'Apply and sign in', body: 'Use the native customer account journey instead of a second wholesale portal.' },
-  { number: '02', title: 'Approve the company', body: 'Review the application and associate an eligible business with its pricing tier and B2B market.' },
-  { number: '03', title: 'Recognise purchasing context', body: 'The customer signs in and selects the company purchasing context.' },
-  { number: '04', title: 'Present entitled pricing', body: 'Market catalogue, theme presentation and applicable checkout configuration follow the selected context.' },
+  { number: '01', title: 'Submit wholesale form', body: 'The applicant submits Shopify Forms, which sends the application to the team assigned to review it.' },
+  { number: '02', title: 'Team approval and email', body: 'The assigned team approves the application, associates the company with its B2B market, and an approval email is sent using Shopify Settings > Notifications.' },
+  { number: '03', title: 'Email-code sign-in', body: 'The approved customer enters their email address and signs in with the one-time code Shopify sends to that inbox.' },
+  { number: '04', title: 'Automatic company pricing', body: 'When shopping for the approved company, the assigned B2B market catalogue applies its pricing, with the relevant storefront and checkout context.' },
 ];
 
 export default function B2BModernisation() {
@@ -38,8 +38,8 @@ export default function B2BModernisation() {
       <header style={{marginTop:72,marginBottom:46}}>
         <p className="overline">COMMERCE ENGINEERING / SHOPIFY ADVANCED</p>
         <h1 style={{fontSize:'clamp(2.35rem,6vw,5rem)',lineHeight:1.08,letterSpacing:'-.045em',maxWidth:960,margin:'20px 0'}}>One Shopify storefront.<br/><span style={{color:'#d9b47c'}}>Four markets. Three B2B tiers.</span></h1>
-        <p style={{fontSize:'clamp(1rem,2vw,1.22rem)',color:'#adb0ba',lineHeight:1.8,maxWidth:830}}>I helped simplify a complicated wholesale experience by replacing a separate app-led journey with Shopify customer accounts, company market assignment, market-specific catalogues, and contextual storefront presentation.</p>
-        <div style={{display:'flex',flexWrap:'wrap',gap:9,marginTop:24}}>{['Shopify Markets','B2B company accounts','Catalogue pricing','Theme and landing-page UX'].map(x=><span key={x} style={{border:'1px solid #796443',padding:'9px 12px',fontSize:12,color:'#e4c18f'}}>{x}</span>)}</div>
+        <p style={{fontSize:'clamp(1rem,2vw,1.22rem)',color:'#adb0ba',lineHeight:1.8,maxWidth:830}}>I helped simplify a complicated wholesale experience using Shopify Forms for applications, team approval, Shopify Notifications for approval emails, passwordless customer sign-in, company market assignment, and market-specific catalogues.</p>
+        <div style={{display:'flex',flexWrap:'wrap',gap:9,marginTop:24}}>{['Shopify Forms','Shopify Notifications','Email-code sign-in','B2B Markets and Catalogues'].map(x=><span key={x} style={{border:'1px solid #796443',padding:'9px 12px',fontSize:12,color:'#e4c18f'}}>{x}</span>)}</div>
       </header>
 
       <section aria-labelledby="architecture" style={{border:'1px solid #4c4539',borderRadius:20,padding:'clamp(20px,4vw,38px)',background:'linear-gradient(145deg,#1c1d20,#111418)'}}>
@@ -49,7 +49,7 @@ export default function B2BModernisation() {
         <div style={{border:'1px solid #806847',background:'#24221f',padding:20,borderRadius:14,textAlign:'center',maxWidth:490,margin:'0 auto'}}>
           <Store color="#e0b777" style={{margin:'0 auto 8px'}} aria-hidden="true"/>
           <strong style={{display:'block',fontSize:19}}>Shopify Advanced storefront</strong>
-          <span style={{color:'#b9ac94',fontSize:13}}>Native customer sign-in · Company purchasing context</span>
+          <span style={{color:'#b9ac94',fontSize:13}}>Shopify Forms approval · Email-code sign-in · Company purchasing context</span>
         </div>
         <div aria-hidden="true" style={{height:28,width:2,background:'#b89661',margin:'0 auto'}}/>
         <div style={{border:'1px solid #54483a',borderRadius:10,textAlign:'center',padding:13,color:'#e4c18f',maxWidth:380,margin:'0 auto 28px',fontWeight:600}}>Market assignment and catalogue selection</div>
@@ -76,7 +76,7 @@ export default function B2BModernisation() {
           </article>
           <article style={{border:'1px solid #876c45',padding:24,borderRadius:12}}>
             <h3>After: native Shopify B2B Markets</h3>
-            <p style={{color:'#adb0b7',lineHeight:1.8}}>One customer account experience, approved company contexts, three catalogue-led B2B pricing tiers, and a dedicated retail market in the same storefront.</p>
+            <p style={{color:'#adb0b7',lineHeight:1.8}}>Shopify Forms applications and team approval, notification emails, one-time sign-in codes, approved company contexts, three B2B catalogue tiers, and a separate retail market.</p>
           </article>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function B2BModernisation() {
 
       <section style={{marginTop:82}}>
         <p className="overline">COMPANY BUYING JOURNEY</p>
-        <h2 style={{fontSize:'clamp(1.8rem,4vw,2.8rem)',margin:'14px 0 24px'}}>From application to automatic pricing</h2>
+        <h2 style={{fontSize:'clamp(1.8rem,4vw,2.8rem)',margin:'14px 0 24px'}}>Shopify Forms to approved company pricing</h2>
         <ol className="b2bm-path" style={{display:'grid',gridTemplateColumns:'repeat(4,minmax(0,1fr))',gap:16,listStyle:'none',padding:0}}>
           {pathway.map(s=><li key={s.number} style={{border:'1px solid #393b40',borderRadius:12,padding:19,minWidth:0}}>
             <span style={{fontSize:12,color:'#d9b47c',letterSpacing:2}}>{s.number}</span>
