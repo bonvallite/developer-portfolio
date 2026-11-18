@@ -196,6 +196,8 @@ The QA checklist covered patterns such as:
 
 For public code, [example 48](./examples/48-open-shadow-cart-enhancer.js) keeps only the generalisable parts: open-root discovery, stable hooks, configuration-driven reward states, and fallback behaviour.
 
+Sections 7 to 10 (reward progress, exact qualification, state-driven copy, and the fallback rule) are also available as an interactive demonstration with tests: see the [reward ladder demo](./REWARD_LADDER_DEMO.md).
+
 ## 14. What changed during the work
 
 The development sequence can be summarised as:

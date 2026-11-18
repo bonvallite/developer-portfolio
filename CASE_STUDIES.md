@@ -238,6 +238,8 @@ Generalised from recent storefront maintenance. This write-up deliberately exclu
 
 **Development history:** [Read the full public-safe engineering history](./THIRD_PARTY_CART_HISTORY.md), from identifying the app-owned cart through Shadow DOM handling, stable hooks, reward-state design, spacing refinements, copy rules, fallback behaviour, documentation, and boundary QA.
 
+**Interactive demonstration:** [Reward ladder demo](./REWARD_LADDER_DEMO.md) (`/reward-ladder-demo`) applies this pattern to a fictional app cart, with live offer fields, exact boundary testing, and buttons that simulate the app re-rendering, changing its markup, or disappearing.
+
 **Limitations:** Open Shadow DOM access is a browser implementation detail the app can change. A production version also needs app-specific lifecycle events, accessibility QA, mobile/desktop testing, and an approved integration surface.
 
 ## 17. Shipping webhooks supporting chargeback evidence
@@ -268,6 +270,24 @@ This case study is generalised from a private audit. Store identity, reporting d
 
 **Publication boundary:** This is documentation only. No client configuration, analytics data, account identifiers, or production code is included.
 
+## 19. Planning a reward ladder before building it
+**Problem class:** A cart should show progress toward several promotional rewards, but the cart belongs to a third-party app and the rewards are granted by separate automation. Building the visual first risks promising something the automation does not deliver.
+
+Generalised from planning work done before implementation. It deliberately excludes the store, app, theme, thresholds, reward names, and employer-owned source.
+
+**Approach:**
+1. **Confirm who owns the visible cart.** A theme can contain a perfectly good cart drawer that is switched off while an app injects its own. Check the theme's cart setting and the rendered DOM before choosing where code goes.
+2. **List every qualification engine.** A ladder with three markers may be backed by more than one system, for example an automation that adds gifts and a separate discount rule that grants free shipping. Each marker needs its own verified rule. "Match the automation exactly" covers only the markers that automation owns.
+3. **Write the subtotal basis down as a contract.** Before or after discounts, gift cards, subscription lines, shipping, and tax all change the answer. Implement it as one small function so a correction is a one-line change, and back-test it against recent real orders before launch.
+4. **Choose failure behaviour by failure type.** Bad or missing offer data fails *closed*: render nothing. A changed or missing app structure fails *open*: remove the enhancement and leave the app's own UI visible. The two rules are opposites on purpose.
+5. **Take copy from configuration verbatim.** If a configured label already begins with a word like "Free", a sentence frame that adds its own produces "a free Free item". Frames should only add words the data never contains.
+6. **Separate visuals from qualification.** Real thresholds are rarely evenly spaced. Qualify on exact amounts, and draw the bar in equal segments so labels do not collide.
+7. **Keep fulfilment out of the cart UI.** The cart communicates qualification. Say plainly, in editable configuration text, that rewards are added after checkout, so customers are not confused by a missing line item.
+8. **Stage the rollout.** Mount the new component alongside the app's own UI first, then enable hiding once mounting has proved stable. Test one cent either side of every threshold, repeated app re-renders, and the disabled state.
+
+**Demonstration:** The [reward ladder demo](./REWARD_LADDER_DEMO.md) implements steps 3 to 6 with fictional values, and its tests cover step 8's boundary and re-render cases.
+
+**Limitations:** Planning cannot replace verifying the real granting rule, and a front-end ladder never grants anything itself.
 
 ## Publication boundaries
 - Employer-owned code, live themes, Shopify Flow exports, proprietary rules, private API contracts, and actual tracking datasets are intentionally **not** published.

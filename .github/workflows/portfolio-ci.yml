@@ -16,7 +16,7 @@ jobs:
       - name: Publication safety scan
         run: node scripts/check-public-safety.mjs
       - run: npm install --no-audit --no-fund
-      - name: Unit tests (examples, Flow Run code, B2B simulator, Liquid structure)
+      - name: Unit tests (examples, Flow Run code, B2B simulator, reward ladder, Liquid structure)
         run: npm test
       - uses: actions/setup-python@v5
         with:
