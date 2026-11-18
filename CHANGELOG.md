@@ -1,5 +1,27 @@
 # Portfolio changelog
 
+## 2026-11-18 - Align Fieldstone gift packaging demo with portfolio palette
+
+- **Target:** `bonvallite/developer-portfolio`, review branch `feat/fieldstone-gift-packaging-20261118`, Vercel preview only.
+- **Affected files:** `public/gift-packaging-reference/index.html`, `app/gift-packaging-reference/page.tsx`, `CHANGELOG.md`.
+- **Change:** Updated the isolated demo's palette and typography to match the public portfolio: charcoal `#0B0E12`, warm gold `#D9B47C`, cream-white text, muted greys, DM Sans, and Space Grotesk. Styled tabs, gift card, buttons, panels, drawer, controls, focus states, and mobile layouts. Matched the Next.js iframe page backdrop to avoid a light surround.
+- **Reason:** The previous cream/white and brown theme was visually inconsistent with the portfolio.
+- **Inline documentation:** Updated the embedded stylesheet ownership comments and Next.js iframe documentation. No cart logic, merchant integration, or live Shopify theme was changed.
+- **Validation:** Source-only CSS/palette and page wrapper review before commit; full browser desktop/mobile QA and Vercel preview validation are pending. Existing prototype validation limitations still apply.
+- **Release/recovery:** Draft PR #38 only; revert this style-only commit to restore the original demo appearance.
+
+
+## 2026-11-18 - Add independent Fieldstone gift packaging cart demonstration
+
+- **Target:** Public Next.js developer portfolio, feature branch `feat/fieldstone-gift-packaging-20261118`, Vercel preview only.
+- **Affected files:** `app/gift-packaging-reference/page.tsx`, `public/gift-packaging-reference/index.html`, `CHANGELOG.md`.
+- **Change:** Added a standalone, fictional six-view gift packaging demonstration with shared in-memory cart state, optional priced packaging, quantity limit of one, removal when the last ordinary product is removed, simulated checkout and example order email. The Next.js route isolates the demo in an iframe; no live Shopify endpoints are called.
+- **Reason:** Present the complete customer-facing cart journey as an interactive technical portfolio example without exposing private merchant implementation.
+- **Inline documentation:** The page explains sandbox isolation; the HTML script documents its owned cart state and lack of network requests.
+- **Validation performed:** Standalone JavaScript syntax validated with `node --check`; ZIP integrity verified. Full Next.js test suite, public safety scan, TypeScript check, build, browser desktop/390px QA, and Vercel preview readiness remain pending.
+- **Release/recovery:** Proposed feature branch only, not merged; revert this feature commit to remove the new route and static asset.
+
+
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
 ## 2026-11-16 - Relocate Microsoft Clarity to document head without duplicate tracking
