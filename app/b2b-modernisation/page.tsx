@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, Layers3, SlidersHorizontal, Store, UsersRound } from 'lucide-react';
 
@@ -29,11 +30,15 @@ const capabilities = [
   { icon: Layers3, title: 'Catalogue-led pricing', description: 'Mapped a distinct catalogue to each market so entitled customers see the applicable prices when buying for their company.' },
   { icon: SlidersHorizontal, title: 'Contextual storefront UX', description: 'Tailored landing-page content and theme presentation to make the wholesale buying journey clearer.' },
 ];
+// The diagram is a newly authored public-safe SVG. This ordered list provides
+// an accessible text counterpart and stacks clearly on small screens.
 const pathway = [
-  { number: '01', title: 'Submit wholesale form', body: 'The applicant submits Shopify Forms, which sends the application to the team assigned to review it.' },
-  { number: '02', title: 'Team approval and welcome email', body: 'The assigned team approves the application and company market assignment; a branded, Liquid-personalised Shopify notification welcomes the approved business and links to sign-in.' },
-  { number: '03', title: 'Email-code sign-in', body: 'The approved customer enters their email address and signs in with the one-time code Shopify sends to that inbox.' },
-  { number: '04', title: 'Automatic company pricing', body: 'When shopping for the approved company, the assigned B2B market catalogue applies its pricing, with the relevant storefront and checkout context.' },
+  { number: '01', title: 'Shopify Form submitted', body: 'A business customer submits the wholesale access application using Shopify Forms.' },
+  { number: '02', title: 'Team reviews application', body: 'The assigned team manually reviews the application before granting access.' },
+  { number: '03', title: 'Company approved', body: 'The company is approved and associated with the relevant wholesale market and catalogue.' },
+  { number: '04', title: 'Approval email sent', body: 'A customised Shopify Notifications email welcomes the approved customer and provides a sign-in link.' },
+  { number: '05', title: 'Email-code sign-in', body: 'The customer enters an email address and signs in with Shopify\'s one-time email code.' },
+  { number: '06', title: 'Assigned B2B pricing applies', body: 'When shopping for the approved company, market-specific catalogue prices apply automatically.' },
 ];
 
 export default function B2BModernisation() {
@@ -144,7 +149,15 @@ export default function B2BModernisation() {
       <section style={{marginTop:82}}>
         <p className="overline">COMPANY BUYING JOURNEY</p>
         <h2 style={{fontSize:'clamp(1.8rem,4vw,2.8rem)',margin:'14px 0 24px'}}>Shopify Forms to approved company pricing</h2>
-        <ol className="b2bm-path" style={{display:'grid',gridTemplateColumns:'repeat(4,minmax(0,1fr))',gap:16,listStyle:'none',padding:0}}>
+        {/* Wide visual diagram mirrors the separately readable ordered steps.
+            Horizontal scrolling on narrow screens preserves text legibility. */}
+        <figure style={{margin:'0 0 30px',border:'1px solid #775f3d',borderRadius:18,overflow:'hidden',background:'#17191c'}}>
+          <div role="region" aria-label="Scrollable business customer journey diagram" tabIndex={0} style={{overflowX:'auto'}}>
+            <Image src="/diagrams/b2b-business-customer-journey.svg" alt="Six-stage Shopify B2B journey: form submission, team review, company approval, welcome notification, email-code sign-in, and automatic company catalogue pricing." width={1600} height={820} unoptimized style={{display:'block',width:'100%',minWidth:950,height:'auto'}}/>
+          </div>
+          <figcaption style={{padding:'12px 18px',fontSize:12,color:'#b3b5bd',lineHeight:1.6}}>Conceptual reconstruction of the native B2B customer journey. Swipe horizontally on a small screen to inspect the full diagram. No confidential customer records or notification code are shown.</figcaption>
+        </figure>
+        <ol className="b2bm-path" style={{display:'grid',gridTemplateColumns:'repeat(3,minmax(0,1fr))',gap:16,listStyle:'none',padding:0}}>
           {pathway.map(s=><li key={s.number} style={{border:'1px solid #393b40',borderRadius:12,padding:19,minWidth:0}}>
             <span style={{fontSize:12,color:'#d9b47c',letterSpacing:2}}>{s.number}</span>
             <h3 style={{fontSize:17,margin:'14px 0 10px'}}>{s.title}</h3>
