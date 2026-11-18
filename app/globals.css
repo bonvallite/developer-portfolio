@@ -148,8 +148,8 @@
 .markets-checkout-preview span{font-size:9px;letter-spacing:1px;color:#55685e}.markets-checkout-preview strong{font-size:14px;margin-top:7px;color:#254336}
 @media(max-width:650px){.markets-product-list article{align-items:center}.markets-checkout-preview{grid-template-columns:1fr}}
 
-/* Contact service icons are lightweight CSS/inline icons: no third-party favicon
-   requests, SDK or extra package. Brand-associated colours identify destinations
+/* Contact service icons use lightweight CSS/inline marks and the website's
+   own local /icon.svg favicon; no third-party icon requests, SDK or extra package. Brand-associated colours identify destinations
    while preserving the same accessible button labels and keyboard focus states. */
 .contact .contact-service-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1120px;margin:0 auto}
 .contact .contact-service{min-width:0;width:100%;min-height:68px;white-space:normal;text-align:left;justify-content:flex-start;gap:11px;padding:10px 14px;background:linear-gradient(125deg,color-mix(in srgb,var(--contact-accent) 12%,#171a1f),#15171a 75%);border:1px solid color-mix(in srgb,var(--contact-accent) 47%,#38383c);border-radius:12px;color:#f3f1ec;font-size:12px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
@@ -164,6 +164,9 @@
 .contact-service--linkedin{--contact-accent:#0a84c6}
 .contact-service--email{--contact-accent:#69c4e5}
 .contact-service--website{--contact-accent:#d9b47c}
+/* Reuse the actual local JRV favicon, rather than a generic globe, without altering the browser tab favicon. */
+.contact .contact-service--website .contact-service-icon{background:#101319;border:1px solid #896f49}
+.contact .contact-website-favicon{display:block;width:25px;height:25px;object-fit:contain}
 .contact-service--whatsapp{--contact-accent:#35cf78}
 .contact .contact-google-mark{font:700 26px/1 Arial,sans-serif;background:conic-gradient(#4285f4 0 25%,#34a853 25% 50%,#fbbc05 50% 72%,#ea4335 72% 88%,#4285f4 88%);color:transparent;background-clip:text;-webkit-background-clip:text}
 .contact .contact-service--google .contact-service-icon{background:#fff}
