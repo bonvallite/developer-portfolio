@@ -90,3 +90,17 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - [ ] No npm test, safety scan, tsc or production build executed. Latest checked commit had no GitHub workflow runs reported; Vercel check was pending.
 
 **Stage 1 release gate remains BLOCKED** pending the privacy decisions, full asset audit, build/test verification and public HTTP checks.
+
+## Stage 1 identity cleanup continuation (2026-11-18)
+- [x] Removed the Experience page's broken name-specific résumé download button, replacing it with a project showcase link. The name-specific PDF was already removed from this branch.
+- [x] Replaced six photo filenames with neutral subject-based names, preserving existing photo bytes and updating homepage and Experience page image references. Photos themselves still visibly depict the portfolio owner.
+- [x] Removed name-led public profile shortcuts (personal GitHub profile, LinkedIn, Google Developer profile and Wikipedia contributions) from the homepage contact section. Case-study source links remain to document technical work.
+- [x] Removed the personal-name header and outdated résumé/social profile shortcut lines from repository README.
+- [x] Changed the WhatsApp pre-filled greeting to avoid the owner's initials.
+- [x] Removed an unused social icon import from homepage.
+- [ ] The site's contact email, repository owner/commit attribution, links from case-study pages, historical Git commits, and domain remain potentially identifying. Hiding these requires separate architectural/identity decisions, and cannot be guaranteed by SEO changes.
+- [ ] The personal photo sections remain; consider replacing with anonymous commerce engineering visuals if visual anonymity is required.
+- [ ] GitHub Actions validates publication safety, npm install, tests, TypeScript and build on pull requests. Latest checks were queued or in progress at time of review; passing status still needs verification.
+- [ ] Direct HTTP requests to the public site did not succeed through the available web retrieval tool, so rendered response and index status are unverified.
+
+**Do not merge or deploy while automated checks, external metadata exposure and live crawl verification remain unresolved.**
