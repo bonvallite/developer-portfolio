@@ -1,6 +1,18 @@
 # Portfolio changelog
 
-Entries record changes from 22 October 2026 onwards.
+Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
+
+
+
+## 2026-11-18 - Correct Shopify B2B approval and email-code login documentation
+
+- **Theme impact:** None. This change affects the public portfolio only, not a Shopify theme.
+- **Repository and branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118`.
+- **Files:** `app/b2b-modernisation/page.tsx`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Update:** Describe the actual workflow: Shopify Forms application, review by the assigned team, approval email from Shopify Settings > Notifications, Shopify customer email-code sign-in, then the assigned company B2B market catalogue pricing.
+- **Reason:** Avoid implying a custom wholesale login or that the application and sign-in happen together.
+- **Inline documentation:** Revised conceptual diagram commentary and step descriptions. No private company records or live pricing disclosed.
+- **Validation:** Fresh GitHub CI and Vercel preview are required before a replacement production release.
 
 ## 2026-11-18 - Showcase four-market native Shopify B2B architecture
 
@@ -9,8 +21,8 @@ Entries record changes from 22 October 2026 onwards.
 - **What and why:** Added a responsive conceptual four-market diagram and a dedicated case study of native B2B company account onboarding, market catalogue assignments, three wholesale tiers, retail segmentation, and context-sensitive storefront experiences. Updated homepage project positioning and cross-linked the existing fictional weight calculator without suggesting it represents actual market pricing.
 - **Privacy and accuracy:** No employer configuration, wholesale percentages, company IDs, production theme code, customer details or unreconciled revenue figures are published. The architecture is illustrative; business-associated sales trends are not asserted as causal B2B uplift.
 - **Inline documentation:** The new page documents confidentiality and market-context boundaries in code comments; existing simulator link explains the independence of the exercise.
-- **Validation:** Pending GitHub Actions publication scan, tests, TypeScript and build. Verify deployment preview before production promotion.
- Earlier repository history remains available in Git commits and pull requests.
+- **Validation:** Original B2B release completed GitHub CI and Vercel production deployment; subsequent corrections are checked separately.
+
 
 ## 2026-11-16 - Relocate Microsoft Clarity to document head without duplicate tracking
 
