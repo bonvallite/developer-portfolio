@@ -11,7 +11,8 @@ export const metadata: Metadata = {
   title: { default: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps', template: '%s | Shopify Commerce Engineering' },
   description: 'Shopify development, ecommerce management, conversion rate optimisation, custom apps and API integrations. Explore practical projects and technical expertise.',
   keywords: ['Shopify developer', 'Shopify expert', 'ecommerce manager', 'Shopify CRO specialist', 'Shopify app developer', 'Shopify API integration', 'Shopify B2B developer'],
-  alternates: { canonical: '/' },
+  // Do not set a root canonical: it would be inherited by case-study routes.
+  // The homepage owns its canonical; service pages will use their own URLs.
   openGraph: { type: 'website', url: 'https://www.jrvallite.com/', siteName: 'Shopify Commerce Engineering', title: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps', description: 'Shopify storefront engineering, ecommerce operations, CRO, custom integrations and automation.' },
   robots: { index: true, follow: true },
 };
