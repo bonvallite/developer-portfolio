@@ -2,7 +2,15 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-18 - Document customised Shopify B2B approval notification
 
+- **Scope:** Public JR Vallite portfolio only, no modification of the production Shopify notification or theme.
+- **Branch and repository:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118`.
+- **Affected files:** `app/b2b-modernisation/page.tsx`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Expanded onboarding to describe the customised Shopify Settings > Notifications approval/welcome email built with responsive HTML, Liquid personalisation, branded fallbacks, and a native account sign-in CTA.
+- **Reason:** Reflect the demonstrated customer communication after manual company approval, separately from Shopify's passwordless email-code authentication.
+- **Safety and inline documentation:** Added source comments specifying confidential-template boundaries. Excluded actual email HTML, promotional code, pricing and shipping terms, identifiable customer/company information and internal contact details.
+- **Validation:** Await fresh GitHub CI and Vercel preview build before production redeployment.
 
 ## 2026-11-18 - Clarify four-market catalogue mapping and retail holiday rollout
 
