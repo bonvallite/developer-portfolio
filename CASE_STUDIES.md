@@ -9,6 +9,21 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Demonstrations:** Product card (08), CSS grid (09), accessible FAQ (17), cart dialog focus (21), breadcrumb structured data (24), heading normalisation (37), and image fallback (40).
 
+## Shopify B2B modernisation: four markets, three company pricing tiers
+**Problem class:** A third-party wholesale purchasing journey added account and pricing complexity despite the store's Shopify Advanced plan.
+
+**My contribution:** Organised a single-store architecture around one retail market and three volume-eligibility B2B markets. Approved companies were associated with their appropriate B2B market; each market carried a relevant catalogue and pricing context. Shopify Forms collected applications for review by the assigned team; after approval, a Shopify Settings > Notifications email informed the customer. Approved customers entered their email address and signed in with a one-time code, then shopped in their assigned company context where the B2B market catalogue automatically applied pricing. This avoided a separate wholesale login portal. I also worked on contextual theme presentation, wholesale landing pages and the purchasing experience.
+
+**Approval notification implementation:** The customer-facing welcome email was customised in Shopify Settings > Notifications using responsive HTML, conditional Liquid personalisation for customer and company details, branding fallbacks and a sign-in call to action. It explained that entitled trade catalogue pricing applied after login. The published case study describes the engineering and user experience only, not the employer-owned template, incentive codes, shipping conditions or private commercial content.
+
+**Retail campaign rollout:** The same storefront also supported the retail market's Black Friday and Cyber Monday campaign presentation. Retail remained the normal-price Catalog 1 context; seasonal offers and merchandising were a separate campaign layer, not an additional B2B catalogue or tier. The public description deliberately excludes private offer rules, campaign sales figures, and unverified uplift attribution.
+
+**Customer journey diagram:** A six-stage public-safe SVG at `public/diagrams/b2b-business-customer-journey.svg` shows Shopify Forms, manual team review, company approval and market assignment, the custom notification, one-time-code sign-in, and automatic assigned B2B pricing. The portfolio page includes an accessible six-step ordered list. The SVG does not publish a private merchant implementation.
+
+**Public diagram:** [Four-market B2B modernisation case study](./app/b2b-modernisation/page.tsx) (`/b2b-modernisation`). Its four-market diagram and customer journey are intentionally conceptual. The [weight-based simulator](./B2B_DEMO.md) is fictional and **not** a reproduction of the deployed market architecture.
+
+**Impact and evidence limits:** The business reported more wholesale interest, and business-associated order value rose in selected months. Those categories include candidate and wholesale-tagged accounts; confirmed company orders, go-live dates, repeat buyers and attribution require reconciliation. No confidential discount rates, company IDs, merchant name or internal account records are published.
+
 ## 2. Weight-based wholesale pricing and automation
 **Problem class:** Conventional quantity pricing does not directly express order-level aggregate weight requirements.
 

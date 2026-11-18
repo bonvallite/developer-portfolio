@@ -2,7 +2,11 @@
 
 Practical e-commerce engineering, API integrations, automation, and storefront performance.
 
-**Resume (PDF):** https://developer-portfolio-my-dojo.vercel.app/Jomar-Vallite-Resume.pdf ([file in this repository](./public/Jomar-Vallite-Resume.pdf))
+**Portfolio website:** https://jrvallite.com
+
+**Contact:** hello@jrvallite.com (published mailto address; mailbox delivery is configured separately). Vercel currently redirects the apex to `www.jrvallite.com`; that redirect must be reversed in Vercel's domain settings to make the apex the browser-visible final URL.
+
+**Resume (PDF):** https://jrvallite.com/Jomar-Vallite-Resume.pdf ([file in this repository](./public/Jomar-Vallite-Resume.pdf))
 
 **LinkedIn:** https://www.linkedin.com/in/bonvallite/
 
@@ -79,6 +83,16 @@ I built both a **custom Cloudflare Worker delivery app** and its **Shopify–Car
 ## Shipping webhooks and chargeback evidence
 
 The [chargeback evidence case study](./CHARGEBACK_EVIDENCE.md) explains how my custom Cloudflare and Shopify shipping integration connected consignments, tracking, and delivery events to dispute preparation. It distinguishes confirmed outcomes from causal claims and keeps customer records, order identifiers, private tracking links, and confidential commercial figures out of the public account.
+
+## Shopify B2B market architecture case study
+
+The [four-market B2B modernisation page](./app/b2b-modernisation/page.tsx) at `/b2b-modernisation` shows the architecture and my implementation responsibilities: one retail market, three volume-eligibility B2B markets, company assignment, market-specific catalogues, Shopify Forms submissions reviewed by the assigned team, Shopify Notifications approval emails, and passwordless email-code customer sign-in. The diagram is conceptually reconstructed rather than copied from production, with no client-specific catalogue values, company data or private settings. Its commercial discussion is qualitative and avoids attributing observed order-value changes without a confirmed B2B order cohort.
+
+The four markets are explicitly labelled Retail (Catalog 1, normal pricing), Wholesale Tier 1 (Catalog 2), Wholesale Tier 2 (Catalog 3), and Wholesale Tier 3 (Catalog 4). The related retail-market Black Friday and Cyber Monday campaign rollout is documented as a separate seasonal merchandising and promotional experience, not an additional pricing catalogue.\n\nThe public case study embeds [the six-step business customer journey diagram](./public/diagrams/b2b-business-customer-journey.svg) and a readable, accessible sequence. The diagram illustrates Shopify Forms, team review, company market assignment, branded notification, email-code login and automatic catalogue pricing without publishing employer code or customer records.
+
+The approval experience includes a customised Shopify Notifications welcome email built with HTML and Liquid for conditional greetings, responsive branded layout and an account sign-in call to action. The public case study omits the actual merchant email source, special offers, redemption rules and private operational details.
+
+The existing [`/b2b-demo` simulator](./B2B_DEMO.md) remains a separate fictional calculation exercise, not a representation of actual catalogue entitlements.
 
 ## Project showcase (case studies, not employer source code)
 

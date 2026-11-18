@@ -7,6 +7,11 @@ import { Analytics } from '@vercel/analytics/next';
 export const metadata: Metadata = {
   title: 'Jomar Vallite | Shopify & API Integration Developer',
   description: 'Shopify development, commerce automation, APIs, and serverless integration projects by Jomar Vallite.',
+  // Apex URL is the public-facing portfolio address. Vercel currently
+  // redirects the apex to www; align the domain redirect before SEO sign-off.
+  metadataBase: new URL('https://jrvallite.com'),
+  alternates: { canonical: 'https://jrvallite.com' },
+  openGraph: { url: 'https://jrvallite.com', siteName: 'JR Vallite' },
 };
 // The root layout owns one sitewide Microsoft Clarity installation, as a native
 // inline script in <head> alongside GTM. Its self-inserting external tag loads async.

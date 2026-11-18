@@ -2,6 +2,95 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-18 - Add authorised webmail login link to contact section
+
+- **Scope:** Public JR Vallite portfolio only, not Shopify theme code; GitHub `bonvallite/developer-portfolio` on `feature/b2b-markets-case-study-20261118` (PR #36).
+- **Files:** `app/page.tsx`, `app/globals.css`, and `CHANGELOG.md`.
+- **Change:** Add a distinct Webmail Login button pointing to `https://webmail.jrvallite.com/`, with a lock icon, violet accent, explicit authorised-user label, and the same external-link security attributes as other public services.
+- **Why:** Give the portfolio owner a convenient route to mailbox sign-in without confusing it with the `hello@jrvallite.com` public enquiry link.
+- **Documentation and dependencies:** Updated JSX comments to clarify that webmail is a separate login destination, not an email delivery feature. No usernames, passwords, authentication state, or DNS configuration are included or modified. CSS documents the separate accent and reuses existing responsive/focus rules.
+- **Validation:** Pending CI publication safety scan, unit tests, TypeScript, build and Vercel preview before production release.
+
+
+## 2026-11-18 - Use actual portfolio favicon in website contact button
+
+- **Scope:** JR Vallite public Next.js portfolio only, not the Shopify theme. GitHub repository `bonvallite/developer-portfolio`, branch `feature/b2b-markets-case-study-20261118`, PR #36.
+- **Affected files:** `app/page.tsx`, `app/globals.css`, `CHANGELOG.md`. Reuses existing `app/icon.svg` unchanged.
+- **Change:** Replace the generic globe inside the website contact button with the existing `{JRV}` favicon, served locally by Next.js as `/icon.svg`. Apply a dark icon backing for gold contrast while preserving the link label, URL, focus states and responsive contact grid.
+- **Reason:** Make the portfolio website link display its true visual identity.
+- **Inline documentation:** Updated the JSX icon dependency note and CSS documentation. No new package, external icon request or modified browser favicon.
+- **Validation:** Pending GitHub safety scan, automated tests, TypeScript and build, followed by Vercel release verification for the final commit.
+
+
+## 2026-11-18 - Contact service logo treatments and destination colours
+
+- **Scope:** JR Vallite public portfolio only; no Shopify theme changes. GitHub repository `bonvallite/developer-portfolio`, branch `feature/b2b-markets-case-study-20261118` (PR #36).
+- **Affected files:** `app/page.tsx`, `app/globals.css`, `CHANGELOG.md`.
+- **Change:** Refresh the eight contact action buttons with self-contained destination-associated visual marks and colour treatments: GitHub, résumé, Google Developer, Wikipedia, LinkedIn, email, portfolio website, and WhatsApp. Use a responsive four-column/two-column/single-column grid with visible readable text, hover and focus-visible states.
+- **Reason:** Make each external service immediately recognisable, improve scanning, and retain the portfolio's premium dark appearance without loading third-party favicons.
+- **Inline documentation and dependencies:** Added JSX comments covering public targets, contact-label accessibility, and absence of remote image dependencies, plus CSS comments explaining visual tokens. Existing approved destination URLs, `noopener noreferrer`, and the email address are preserved. Typographic brand initials are visual approximations rather than official asset files.
+- **Validation:** Pending GitHub automated publication safety scan, unit tests, TypeScript, build and Vercel preview verification for the final commit.
+
+
+## 2026-11-18 - Update public portfolio contact email and website URL
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118` (PR #36); no Shopify theme change.
+- **Affected files:** `app/page.tsx`, `app/layout.tsx`, `README.md`, `scripts/public-safety-allowlist.json`, `CHANGELOG.md`.
+- **Change:** Replace the homepage Gmail mailto button with `hello@jrvallite.com`, add `jrvallite.com` to contact actions, use the apex URL in site metadata, and update the résumé URL in README. Narrow the safety allowlist to the newly approved public email.
+- **Reason:** Align the portfolio's contact information and published branding to the requested custom domain and email.
+- **Documentation:** Updated inline contact and SEO metadata comments to document their intent and dependencies. The apex-to-www Vercel redirect must be reversed through project domain settings before canonical URL and final browser URL are consistent. Publishing a mailto link does not configure mail hosting.
+- **Validation:** Await GitHub CI and Vercel preview checks for this final commit; neither DNS nor mailbox delivery is claimed as tested.
+
+
+## 2026-11-18 - Add six-step B2B customer journey diagram
+
+- **Scope:** Public portfolio only, no Shopify theme or production notification modifications.
+- **Repository and branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118`, PR #36.
+- **Affected files:** `public/diagrams/b2b-business-customer-journey.svg`, `app/b2b-modernisation/page.tsx`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Change and purpose:** Added a separately authored six-stage gold-and-charcoal SVG journey diagram, and changed the site's semantic ordered list to match: Shopify Forms → team review → approved company and market → branded notification → email-code sign-in → assigned company catalogue pricing.
+- **Documentation and safety:** Added inline comments about the SVG and scrolling presentation; source diagram contains no original email template, live offer codes, private company IDs, or customer information.
+- **Validation:** Pending fresh GitHub CI and Vercel build for the final change set.
+
+## 2026-11-18 - Document customised Shopify B2B approval notification
+
+- **Scope:** Public JR Vallite portfolio only, no modification of the production Shopify notification or theme.
+- **Branch and repository:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118`.
+- **Affected files:** `app/b2b-modernisation/page.tsx`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Expanded onboarding to describe the customised Shopify Settings > Notifications approval/welcome email built with responsive HTML, Liquid personalisation, branded fallbacks, and a native account sign-in CTA.
+- **Reason:** Reflect the demonstrated customer communication after manual company approval, separately from Shopify's passwordless email-code authentication.
+- **Safety and inline documentation:** Added source comments specifying confidential-template boundaries. Excluded actual email HTML, promotional code, pricing and shipping terms, identifiable customer/company information and internal contact details.
+- **Validation:** Await fresh GitHub CI and Vercel preview build before production redeployment.
+
+## 2026-11-18 - Clarify four-market catalogue mapping and retail holiday rollout
+
+- **Scope:** Public portfolio only. No changes to Shopify theme or market settings.
+- **Branch:** `feature/b2b-markets-case-study-20261118`.
+- **Affected files:** `app/b2b-modernisation/page.tsx`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Explicitly name Retail → Catalog 1 (normal pricing), Wholesale Tier 1 → Catalog 2, Wholesale Tier 2 → Catalog 3, and Wholesale Tier 3 → Catalog 4. Add the retail Black Friday and Cyber Monday campaign rollout as a separate experience alongside native B2B.
+- **Reason:** Show my combined B2B market architecture and seasonal retail execution without presenting campaign offers as additional catalogue tiers.
+- **Documentation:** Update explanatory diagram comments and supporting documents. Keep merchant campaign rules and unverified revenue out of the public version.
+- **Validation:** Fresh GitHub CI and Vercel build required before production release.
+
+## 2026-11-18 - Correct Shopify B2B approval and email-code login documentation
+
+- **Theme impact:** None. This change affects the public portfolio only, not a Shopify theme.
+- **Repository and branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118`.
+- **Files:** `app/b2b-modernisation/page.tsx`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Update:** Describe the actual workflow: Shopify Forms application, review by the assigned team, approval email from Shopify Settings > Notifications, Shopify customer email-code sign-in, then the assigned company B2B market catalogue pricing.
+- **Reason:** Avoid implying a custom wholesale login or that the application and sign-in happen together.
+- **Inline documentation:** Revised conceptual diagram commentary and step descriptions. No private company records or live pricing disclosed.
+- **Validation:** Fresh GitHub CI and Vercel preview are required before a replacement production release.
+
+## 2026-11-18 - Showcase four-market native Shopify B2B architecture
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118`, based on the reward ladder feature branch to preserve its currently published pages.
+- **Affected files:** `app/b2b-modernisation/page.tsx`, `app/page.tsx`, `app/b2b-demo/page.tsx`, `CASE_STUDIES.md`, `B2B_DEMO.md`, `README.md`, `CHANGELOG.md`.
+- **What and why:** Added a responsive conceptual four-market diagram and a dedicated case study of native B2B company account onboarding, market catalogue assignments, three wholesale tiers, retail segmentation, and context-sensitive storefront experiences. Updated homepage project positioning and cross-linked the existing fictional weight calculator without suggesting it represents actual market pricing.
+- **Privacy and accuracy:** No employer configuration, wholesale percentages, company IDs, production theme code, customer details or unreconciled revenue figures are published. The architecture is illustrative; business-associated sales trends are not asserted as causal B2B uplift.
+- **Inline documentation:** The new page documents confidentiality and market-context boundaries in code comments; existing simulator link explains the independence of the exercise.
+- **Validation:** Original B2B release completed GitHub CI and Vercel production deployment; subsequent corrections are checked separately.
+
+
 ## 2026-11-16 - Relocate Microsoft Clarity to document head without duplicate tracking
 
 - **Target:** `bonvallite/developer-portfolio`, Vercel `developer-portfolio` (team `my-dojo`, project `prj_sAyVySdCHlqUTAasaGh1FyYkk8MY`), feature branch `fix/clarity-head-single-install-20261116`, public portfolio domain `www.jrvallite.com`.
