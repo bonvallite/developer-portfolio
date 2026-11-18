@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: SEO publication and privacy source checks
+        run: node scripts/check-seo-publication.mjs
       - name: Publication safety scan
         run: node scripts/check-public-safety.mjs
       - run: npm install --no-audit --no-fund
