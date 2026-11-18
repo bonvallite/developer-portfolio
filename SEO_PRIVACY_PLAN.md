@@ -66,11 +66,18 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - [ ] Verify final build, mobile rendering, keyboard navigation, and public-safe publication.
 **Gate:** Case study claims and public publication safety verified.
 
-### Stage 5 — Validation and controlled deployment (NOT STARTED)
-- [ ] Run npm install, npm test, node scripts/check-public-safety.mjs, npx tsc --noEmit and npm run build.
-- [ ] Review robots.txt, sitemap.xml, canonical tags, descriptions, OG metadata, HTTP redirects and mobile performance in preview.
-- [ ] Merge only after checks pass and the draft PR is approved; verify Vercel production release.
-**Gate:** All tests pass, deployment verified, and no identity leaks introduced.
+### Stage 5 — Validation and controlled deployment (IN PROGRESS)
+- [x] Verify passing GitHub Actions for the prior Stage 4 head (run 44278318414).
+- [x] Verify a READY Vercel preview corresponding to Stage 4 commit 3775fee1.
+- [x] Add and enable `scripts/check-seo-publication.mjs` in GitHub Actions; verify an initial successful execution.
+- [x] Fix home Open Graph URL inheritance; scope home metadata to home.
+- [x] Add unique canonical metadata for remaining technical content and client-rendered interactive demonstrations.
+- [x] Remove non-professional personal-interest and residential workspace sections and unused running photos from public assets.
+- [ ] Verify GitHub Actions and Vercel preview for the **final** Stage 5 commit, not only earlier commits.
+- [ ] Inspect actual rendered HTML, canonical tags, descriptions, OG tags, robots.txt, sitemap.xml, and removed asset HTTP status. Automated URL fetch failed from this environment.
+- [ ] Review mobile and keyboard rendering, performance, privacy of public personal photos, and search-engine indexing.
+- [ ] Merge only after the release gate passes; confirm deployed production commit and post-release behaviour.
+**Gate:** All tests pass, rendered preview/privacy verified, and approved deployment checked.
 
 ### Stage 6 — Search Console, indexing and measurement (NOT STARTED)
 - [ ] Submit sitemap and inspect service-page indexing.
@@ -150,3 +157,15 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - `app/shopify-flow/page.tsx`: canonical and operations/API links; retain conceptual-workflow disclosure.
 - `app/globals.css`: responsive and focus-visible styles for the case-study panel; no change to brand tokens.
 - Stage 4 does not add unverified App Store schema or quantitative outcomes. Visual inspection, privacy approval, final CI validation and production indexing verification remain outstanding.
+
+## Stage 5 implementation and verification record (2026-11-18)
+- Confirmed GitHub PR #37 is open and draft; earlier head `3775fee1` passed Actions run `44278318414` and has a matching READY Vercel preview `dpl_6WqZK5B2z4r7n9Mahs2rnZaASUsF`.
+- A direct HTTP fetch from both the public domain and the protected preview failed from the available runtime; do not state that rendered HTML, HTTP redirects or page appearance were validated.
+- Added `scripts/check-seo-publication.mjs` with source-level checks for page canonical URLs, sitemap entries, hiring service links, missing internal routes, removed name-bearing résumé, and personal-name string reintroduction. CI step added in `.github/workflows/portfolio-ci.yml`. Earlier workflow run `44279517089` passed with the new check enabled. The test avoids including a searchable complete personal-name string in its own code.
+- Refined `app/layout.tsx` and `app/page.tsx` so the homepage Open Graph URL is not incorrectly inherited on every subpage.
+- Added scoped canonical metadata to `app/experience/page.tsx`, `app/engineering-standards/page.tsx` and `app/python-automation/page.tsx`.
+- Added server-side SEO layout metadata in `app/b2b-demo/layout.tsx`, `app/chilled-delivery-demo/layout.tsx`, `app/css-lab/layout.tsx` and `app/editorial-homepage-demo/layout.tsx`, because their pages are client components.
+- Removed personal running-interest and domestic-workspace disclosures from `app/page.tsx`; removed three now-unreferenced running photographs from `public/photos/`. The professional project evidence and service CTAs remain.
+- Extended the SEO checker to require appropriate self-referencing canonicals and sitemap coverage on each route; final run still requires review.
+- Outstanding identity risks: user-supplied email handle, public GitHub username/commit metadata, historical repository content, professional photographs, and third-party/cached references. Optimising site content cannot guarantee absence of name-based search associations.
+- **Do not merge or deploy to production while the final preview and privacy reviews remain outstanding.**
