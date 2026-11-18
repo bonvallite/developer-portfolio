@@ -2,6 +2,16 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-18 - Contact service logo treatments and destination colours
+
+- **Scope:** JR Vallite public portfolio only; no Shopify theme changes. GitHub repository `bonvallite/developer-portfolio`, branch `feature/b2b-markets-case-study-20261118` (PR #36).
+- **Affected files:** `app/page.tsx`, `app/globals.css`, `CHANGELOG.md`.
+- **Change:** Refresh the eight contact action buttons with self-contained destination-associated visual marks and colour treatments: GitHub, résumé, Google Developer, Wikipedia, LinkedIn, email, portfolio website, and WhatsApp. Use a responsive four-column/two-column/single-column grid with visible readable text, hover and focus-visible states.
+- **Reason:** Make each external service immediately recognisable, improve scanning, and retain the portfolio's premium dark appearance without loading third-party favicons.
+- **Inline documentation and dependencies:** Added JSX comments covering public targets, contact-label accessibility, and absence of remote image dependencies, plus CSS comments explaining visual tokens. Existing approved destination URLs, `noopener noreferrer`, and the email address are preserved. Typographic brand initials are visual approximations rather than official asset files.
+- **Validation:** Pending GitHub automated publication safety scan, unit tests, TypeScript, build and Vercel preview verification for the final commit.
+
+
 ## 2026-11-18 - Update public portfolio contact email and website URL
 
 - **Repository/branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118` (PR #36); no Shopify theme change.
