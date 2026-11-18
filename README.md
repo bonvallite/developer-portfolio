@@ -120,7 +120,7 @@ The topics reflect professional engineering experience. Any accompanying public 
 
 Browse **49 independently authored, public-safe example files** in [examples/](./examples). The [portfolio index](./PORTFOLIO_INDEX.md) maps them to each engineering area and includes project cards. These demonstrate Liquid, HTML, CSS, JavaScript, API integration patterns, B2B weight calculations, tracking, delivery estimations, analytics, catalogue governance, and SEO. Each is a compact illustrative example rather than a complete deployed system. Every JavaScript example has a unit test in [tests/examples.test.mjs](./tests/examples.test.mjs).
 
-Read [Engineering case studies](./CASE_STUDIES.md) for explanations of storefront work, B2B commerce, fulfilment integrations, shipping calendars, analytics, redirect management, performance, marketing technology, safe live-store editing, debugging a stale-tag badge, a performance baseline audit, store builds with tracking set-up, and safely enhancing an app-owned cart rendered in an open Shadow DOM.
+Read [Engineering case studies](./CASE_STUDIES.md) for explanations of storefront work, B2B commerce, fulfilment integrations, shipping calendars, analytics, redirect management, performance, marketing technology, safe live-store editing, debugging a stale-tag badge, a performance baseline audit, store builds with tracking set-up, safely enhancing an app-owned cart rendered in an open Shadow DOM, and planning a reward ladder for that cart before building it.
 
 **Publication note:** This is not an export of all historical work. The exact code and confidential implementations belonging to clients or employers are not included; additions require an independent permission and privacy review.
 
@@ -131,6 +131,10 @@ Shopify Online Store 2.0 theme files in [theme/](./theme/README.md): a homepage 
 ## Interactive B2B simulator
 
 A standalone, fictional weight-based wholesale price calculator is now included at [`/b2b-demo`](./app/b2b-demo/page.tsx). See [B2B_DEMO.md](./B2B_DEMO.md) for the architecture, usage notes, and production boundaries. It includes Node.js unit tests and [GitHub Actions CI](./.github/workflows/portfolio-ci.yml). The route will be publicly usable once the portfolio's Next.js deployment successfully builds and publishes the latest commit.
+
+## Interactive reward ladder
+
+A fictional third-party cart rendered in an open Shadow DOM, with a reward-progress ladder layered on top at [`/reward-ladder-demo`](./app/reward-ladder-demo/page.tsx). Edit the offer fields, change the basket, jump to exact threshold boundaries, then break the app (re-render, change its markup, close it, blank a field) to see the ladder fail closed on bad data and fail open on structural changes. See [REWARD_LADDER_DEMO.md](./REWARD_LADDER_DEMO.md) for the architecture, rules, and validation, the [plan page](./app/reward-ladder-plan/page.tsx) at `/reward-ladder-plan` for how it was planned before it was built, and the [interactive design mockup](./REWARD_LADDER_MOCKUP.md) at `/reward-ladder-mockup`. It includes 38 unit and integration tests, including real Shadow DOM tests in jsdom.
 
 ## Shopify Flow and Liquid notifications
 
