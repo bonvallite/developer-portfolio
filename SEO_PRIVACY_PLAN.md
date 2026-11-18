@@ -56,10 +56,14 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - [ ] Verify CI validation on final commit; inspect rendered pages for mobile, keyboard and SEO metadata.
 **Gate:** Unique helpful content and sitemap/canonical coverage checked.
 
-### Stage 4 — Technical evidence, case studies and content authority (NOT STARTED)
-- [ ] Improve descriptive headings, concise outcomes, internal links and technical screenshots.
-- [ ] Use accurate Project/SoftwareApplication/Service structured data only when supported.
-- [ ] Audit privacy and remove unapproved client details.
+### Stage 4 — Technical evidence, case studies and content authority (IN PROGRESS)
+- [x] Add concise evidence summaries, explicit limitations and relevant service links to five case studies.
+- [x] Improve conversion-audit search metadata; add case-study self-referencing canonicals where missing.
+- [x] Add shared responsive layout and documented keyboard focus styles for evidence-to-service navigation.
+- [x] Review new copy to avoid exact personal-name references and unsupported commercial uplift claims.
+- [ ] Review screenshots, technical diagrams and image metadata for privacy and consent before changing them.
+- [ ] Consider structured data only where the type and all fields are supportable; no unverifiable SoftwareApplication/App Store claims.
+- [ ] Verify final build, mobile rendering, keyboard navigation, and public-safe publication.
 **Gate:** Case study claims and public publication safety verified.
 
 ### Stage 5 — Validation and controlled deployment (NOT STARTED)
@@ -136,3 +140,13 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - Added responsive service page styling and keyboard focus outlines in `app/globals.css`; retained existing brand palette.
 - All page contact CTAs return to `/#contact` rather than publishing new personal identifiers.
 - Stage 3 stays on draft PR #37. Await automated CI, rendered HTML, visual accessibility, and privacy acceptance before any production merge.
+
+## Stage 4 implementation record (2026-11-18)
+- `app/components/CaseStudyContext.tsx` newly added. Server-rendered component shows technical contribution, an explicit evidence boundary, service-specific internal links, and an existing contact CTA. Comment documents publication constraints.
+- `app/conversion-audit/page.tsx`: unique descriptive conversion funnel audit metadata, canonical, CRO/development links and no claimed revenue uplift.
+- `app/cartoncloud-integration/page.tsx`: integration-oriented metadata/canonical and related API/developer links; retain documented limits on production verification.
+- `app/shipping-integration/page.tsx`: canonical and related ecommerce management/API service links; retain order-sample limitation.
+- `app/eve-curls/page.tsx`: canonical and related international storefront/ecommerce operations links; retain fictional-demo and production-scope limitation.
+- `app/shopify-flow/page.tsx`: canonical and operations/API links; retain conceptual-workflow disclosure.
+- `app/globals.css`: responsive and focus-visible styles for the case-study panel; no change to brand tokens.
+- Stage 4 does not add unverified App Store schema or quantitative outcomes. Visual inspection, privacy approval, final CI validation and production indexing verification remain outstanding.
