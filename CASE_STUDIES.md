@@ -18,7 +18,9 @@ These are **high-level, public-safe project summaries** informed by professional
 
 **Retail campaign rollout:** The same storefront also supported the retail market's Black Friday and Cyber Monday campaign presentation. Retail remained the normal-price Catalog 1 context; seasonal offers and merchandising were a separate campaign layer, not an additional B2B catalogue or tier. The public description deliberately excludes private offer rules, campaign sales figures, and unverified uplift attribution.
 
-**Public diagram: [Four-market B2B modernisation case study](./app/b2b-modernisation/page.tsx) (`/b2b-modernisation`). Its four-market diagram and customer journey are intentionally conceptual. The [weight-based simulator](./B2B_DEMO.md) is fictional and **not** a reproduction of the deployed market architecture.
+**Customer journey diagram:** A six-stage public-safe SVG at `public/diagrams/b2b-business-customer-journey.svg` shows Shopify Forms, manual team review, company approval and market assignment, the custom notification, one-time-code sign-in, and automatic assigned B2B pricing. The portfolio page includes an accessible six-step ordered list. The SVG does not publish a private merchant implementation.
+
+**Public diagram:** [Four-market B2B modernisation case study](./app/b2b-modernisation/page.tsx) (`/b2b-modernisation`). Its four-market diagram and customer journey are intentionally conceptual. The [weight-based simulator](./B2B_DEMO.md) is fictional and **not** a reproduction of the deployed market architecture.
 
 **Impact and evidence limits:** The business reported more wholesale interest, and business-associated order value rose in selected months. Those categories include candidate and wholesale-tagged accounts; confirmed company orders, go-live dates, repeat buyers and attribution require reconciliation. No confidential discount rates, company IDs, merchant name or internal account records are published.
 
