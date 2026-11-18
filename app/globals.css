@@ -160,3 +160,29 @@
 .hiring-services-cta{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:20px;padding:22px 24px;border:1px solid #56606a;border-radius:12px}
 .hiring-services-cta p{font-size:15px;line-height:1.6;max-width:600px}
 @media(max-width:720px){.hiring-services-grid{grid-template-columns:1fr}.hiring-services-grid article{padding:21px}.hiring-services-cta{flex-direction:column;align-items:flex-start}}
+
+
+/* Stage 3: shared service landing pages, using existing portfolio type and
+   accessible focus treatments. Service descriptions and links are server-rendered. */
+.service-page{min-height:100vh}
+.service-header{display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:96px;border-bottom:1px solid #ffffff1b}
+.service-back,.service-footer a{display:inline-flex;align-items:center;gap:9px;color:#dcb987;font-size:13px}
+.service-hero{padding-top:104px;padding-bottom:104px;background:radial-gradient(ellipse at 75% 18%,#6f4a2229,transparent 60%)}
+.service-hero h1{font-size:clamp(39px,6vw,78px);letter-spacing:-2px;line-height:1.12;max-width:930px;margin:19px 0 28px}
+.service-lead{font-size:clamp(17px,2vw,22px);line-height:1.6;max-width:810px;color:#f0eae0}
+.service-audience{font-size:15px;line-height:1.8;color:#adb7bf;max-width:760px;margin:20px 0 30px}
+.service-section h2{font-size:clamp(27px,3.5vw,43px);line-height:1.2;margin:12px 0 28px}
+.service-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.service-card-grid article{background:#1c252d;border:1px solid #414d56;border-radius:12px;padding:26px;min-width:0}
+.service-card-grid h3{font-size:clamp(20px,2vw,25px);line-height:1.3;margin:13px 0}
+.service-card-grid p{font-size:14px;line-height:1.8;color:#c1cbd0}
+.service-card-grid a{display:inline-flex;align-items:center;gap:8px;color:#e0bc8a;font-size:13px;margin-top:20px;text-decoration:underline;text-underline-offset:4px}
+.service-card-grid a:hover,.service-back:hover,.service-footer a:hover{color:#fff0d1}
+.service-card-grid a:focus-visible,.service-back:focus-visible,.service-footer a:focus-visible{outline:2px solid #e2be8a;outline-offset:4px}
+.service-stripe{background:#141b21}
+.service-disclaimer{font-size:13px;color:#abb9c0;line-height:1.7;max-width:800px;margin:-4px 0 24px}
+.service-bottom-cta{border-top:1px solid #414d56;padding-top:48px;padding-bottom:74px}
+.service-bottom-cta h2{font-size:clamp(28px,3.4vw,44px)}
+.service-bottom-cta p{font-size:15px;line-height:1.8;max-width:690px;color:#bcc8cc;margin:16px 0 24px}
+.service-footer{display:flex;align-items:center;min-height:100px;border-top:1px solid #ffffff1b}
+@media(max-width:720px){.service-header{padding-top:18px;padding-bottom:18px;flex-wrap:wrap}.service-hero{padding-top:66px;padding-bottom:72px}.service-card-grid{grid-template-columns:1fr}.service-card-grid article{padding:22px}.service-hero h1{letter-spacing:-1px}.service-header .button{font-size:12px}}
