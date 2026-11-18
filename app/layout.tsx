@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   keywords: ['Shopify developer', 'Shopify expert', 'ecommerce manager', 'Shopify CRO specialist', 'Shopify app developer', 'Shopify API integration', 'Shopify B2B developer'],
   // Do not set a root canonical: it would be inherited by case-study routes.
   // The homepage owns its canonical; service pages will use their own URLs.
-  openGraph: { type: 'website', url: 'https://www.jrvallite.com/', siteName: 'Shopify Commerce Engineering', title: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps', description: 'Shopify storefront engineering, ecommerce operations, CRO, custom integrations and automation.' },
+  // Avoid a sitewide Open Graph URL that would incorrectly identify all subpages as home.
+  openGraph: { type: 'website', siteName: 'Shopify Commerce Engineering', title: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps', description: 'Shopify storefront engineering, ecommerce operations, CRO, custom integrations and automation.' },
   robots: { index: true, follow: true },
 };
 // The root layout owns one sitewide Microsoft Clarity installation, as a native
