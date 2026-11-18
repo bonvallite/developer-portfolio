@@ -177,3 +177,12 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - Attempts to open the public canonical website and previous Vercel preview were unsuccessful; rendered metadata and mobile visual checks remain outstanding.
 - Created `SEO_STAGE6_SEARCH_CONSOLE.md` with a concrete post-release launch, indexing and measurement runbook. **No Search Console submission or production release was performed.**
 - Keep production unchanged until the final branch preview, asset/privacy review and deployment verification pass. Documentation-only commits require checking the final head again.
+
+## Release gate recheck (2026-11-18, evening)
+- GitHub PR #37 remains open and draft at commit `d4fae7d23e38039317c96c20407faa37aa638d90`. Latest GitHub Actions run completed successfully; merging is still not authorised by the release gate.
+- Vercel deployments filtered to this branch show READY previews for older commits, but **no matching deployment for current PR head**.
+- Attempted explicit Vercel preview build of current head; Vercel returned `402 payment_required` with `api-deployments-free-per-day` (daily API deployment capacity exceeded; service advised retry after 86,400 seconds).
+- The available working environment has no authenticated Vercel CLI binary, so no safe CLI fallback was available. Do not alter account billing, deployment protection, or project quotas automatically.
+- Direct web retrieval of homepage, robots.txt, sitemap.xml and prior preview URL remained inaccessible. This is not proof that those URLs are down.
+- Production is on a separate, older deployment; no merge, domain promotion or production deployment occurred.
+- Next gate: after Vercel deployment capacity is available, build exactly the final PR SHA to preview and inspect actual HTML/mobile rendering. Confirm privacy trade-offs (identifying domain/email/public account and professional photos) before release.
