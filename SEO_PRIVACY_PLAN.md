@@ -79,8 +79,9 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - [ ] Merge only after the release gate passes; confirm deployed production commit and post-release behaviour.
 **Gate:** All tests pass, rendered preview/privacy verified, and approved deployment checked.
 
-### Stage 6 — Search Console, indexing and measurement (NOT STARTED)
-- [ ] Submit sitemap and inspect service-page indexing.
+### Stage 6 — Search Console, indexing and measurement (PREPARED; NOT LAUNCHED)
+- [x] Prepare `SEO_STAGE6_SEARCH_CONSOLE.md` covering domain verification, sitemap submission, URL Inspection, personal-name result refresh, measurement, and 30/60/90-day reporting.
+- [ ] After approved production release, submit sitemap and inspect service-page indexing.
 - [ ] Request refresh/removal for outdated snippets and assets where applicable.
 - [ ] Monitor queries, landing pages, organic enquiries and hiring-related conversion events.
 - [ ] Review SEO performance after approximately 30, 60 and 90 days.
@@ -169,3 +170,10 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - Extended the SEO checker to require appropriate self-referencing canonicals and sitemap coverage on each route; final run still requires review.
 - Outstanding identity risks: user-supplied email handle, public GitHub username/commit metadata, historical repository content, professional photographs, and third-party/cached references. Optimising site content cannot guarantee absence of name-based search associations.
 - **Do not merge or deploy to production while the final preview and privacy reviews remain outstanding.**
+
+## Stage 5 release review and Stage 6 preparation (2026-11-18)
+- PR #37 remains **draft** at commit `4669201b` before documentation updates. GitHub validation passed and PR is mergeable, but mergeable is not approval.
+- Exact-commit deployment search for `4669201b` returned no preview; earlier Vercel branch deployment `e0d5deb` was READY.
+- Attempts to open the public canonical website and previous Vercel preview were unsuccessful; rendered metadata and mobile visual checks remain outstanding.
+- Created `SEO_STAGE6_SEARCH_CONSOLE.md` with a concrete post-release launch, indexing and measurement runbook. **No Search Console submission or production release was performed.**
+- Keep production unchanged until the final branch preview, asset/privacy review and deployment verification pass. Documentation-only commits require checking the final head again.
