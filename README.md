@@ -84,7 +84,7 @@ The [chargeback evidence case study](./CHARGEBACK_EVIDENCE.md) explains how my c
 
 The [four-market B2B modernisation page](./app/b2b-modernisation/page.tsx) at `/b2b-modernisation` shows the architecture and my implementation responsibilities: one retail market, three volume-eligibility B2B markets, company assignment, market-specific catalogues, Shopify Forms submissions reviewed by the assigned team, Shopify Notifications approval emails, and passwordless email-code customer sign-in. The diagram is conceptually reconstructed rather than copied from production, with no client-specific catalogue values, company data or private settings. Its commercial discussion is qualitative and avoids attributing observed order-value changes without a confirmed B2B order cohort.
 
-The existing [`/b2b-demo` simulator](./B2B_DEMO.md) remains a separate fictional calculation exercise, not a representation of actual catalogue entitlements.
+The four markets are explicitly labelled Retail (Catalog 1, normal pricing), Wholesale Tier 1 (Catalog 2), Wholesale Tier 2 (Catalog 3), and Wholesale Tier 3 (Catalog 4). The related retail-market Black Friday and Cyber Monday campaign rollout is documented as a separate seasonal merchandising and promotional experience, not an additional pricing catalogue.\n\nThe existing [`/b2b-demo` simulator](./B2B_DEMO.md) remains a separate fictional calculation exercise, not a representation of actual catalogue entitlements.
 
 ## Project showcase (case studies, not employer source code)
 
