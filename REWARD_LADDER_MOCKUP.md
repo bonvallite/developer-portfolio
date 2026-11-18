@@ -30,6 +30,20 @@ The ladder in the mockup is drawn by the same renderer the working enhancer uses
 - [Plan](REWARD_LADDER_PLAN.md) (`/reward-ladder-plan`)
 - [Interactive demo](REWARD_LADDER_DEMO.md) (`/reward-ladder-demo`), which shows the working behaviour: re-renders, anchor loss, fail-open and fail-closed rules
 
+## Preview validation: 18 November 2026
+
+Real desktop Chrome checks on the Vercel preview used commit `9c6a380e7f3e74cf4f60afe4ffa55ff8912ba6f9` and code tree `c7cb207b14832d8eac897d4fddc6313079c3c34a`.
+
+- States A to E produced the expected reward stages, and the subtotal slider changed qualification correctly at $99, $100, $149, and $150.
+- Today mode hid the ladder and Proposed mode restored it. Changing the offer updated its thresholds; disabling rewards removed the ladder.
+- The 360, 390, and 480 px drawer-width controls worked, with no horizontal overflow inside the mockup cart.
+- All six design-note toggles highlighted the corresponding parts, and quantity controls updated the basket.
+- No application console errors were observed in these flows; browser-extension logs were excluded.
+
+The full release checks passed: 155 JavaScript tests, 16 Python tests, the publication scan for 163 tracked files, TypeScript, and the production build. After the release corrections, the 48 Reward Ladder tests, TypeScript, and the build passed again. See the [publication review](REWARD_LADDER_DEMO.md#18-november-2026-publication-review) for the shared evidence and recovery plan.
+
+This records preview QA only. Production has not been deployed at the time of this entry; the production release receipt and current status are maintained in [PR #35](https://github.com/bonvallite/developer-portfolio/pull/35).
+
 ## Limits
 
-A mockup shows intent. It does not grant rewards, and it has not been checked on real devices or assistive technology. The pages were checked by building them and inspecting the rendered output, not in a real browser.
+A mockup shows intent and does not grant rewards. The browser checks cover desktop Chrome and the mockup's drawer-width controls. They do not establish behaviour in an actual mobile browser viewport, on physical mobile devices, in other browsers, or with assistive technology. Screen-reader announcements and real store/checkout integration remain unverified.
