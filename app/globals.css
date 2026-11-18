@@ -163,6 +163,8 @@
 .contact-service--wikipedia{--contact-accent:#d4d7dd}
 .contact-service--linkedin{--contact-accent:#0a84c6}
 .contact-service--email{--contact-accent:#69c4e5}
+/* Authorised webmail login: distinct from the public email contact action. */
+.contact-service--webmail{--contact-accent:#a88be0}
 .contact-service--website{--contact-accent:#d9b47c}
 /* Reuse the actual local JRV favicon, rather than a generic globe, without altering the browser tab favicon. */
 .contact .contact-service--website .contact-service-icon{background:#101319;border:1px solid #896f49}
