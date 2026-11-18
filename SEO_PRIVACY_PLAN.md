@@ -36,10 +36,14 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - [ ] Audit the sitemap entries against existing routes.
 **Gate:** Privacy and URL inventory completed and reviewed.
 
-### Stage 2 — Homepage search intent and recruitment conversion (NOT STARTED)
-- [ ] Align main heading, title, intro, navigation and contact sections with Shopify development, ecommerce management and CRO.
-- [ ] Add clearly labelled enquiry paths for employers and potential clients.
-- [ ] Retain evidence-based positioning; avoid implying unverified Shopify App Store releases.
+### Stage 2 — Homepage search intent and recruitment conversion (IN PROGRESS)
+- [x] Align homepage heading, intro, Services navigation, and contact text with Shopify development, ecommerce management, CRO and custom integrations.
+- [x] Add four service summaries linked to existing, published case-study or experience routes.
+- [x] Add hiring-led contact and project evidence calls to action for employers and potential clients.
+- [x] Avoid unverified claims about published Shopify App Store apps.
+- [x] Add responsive service-card styling, focus-visible treatment and code documentation.
+- [ ] Validate new homepage in built HTML, on mobile and using keyboard navigation.
+- [ ] Review contact journey without exposing personally identifying information in search-oriented copy.
 **Gate:** Homepage metadata, copy and mobile contact journey reviewed.
 
 ### Stage 3 — Services and search landing pages (NOT STARTED)
@@ -113,3 +117,10 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - [ ] External profile associations, historical Git author names, current email handle and browser/search-engine caching still remain potentially identifying.
 - [ ] Public production and protected preview HTML fetch could not be independently checked; verify them before merge.
 - [ ] A subsequent documentation-only commit will create a new CI run; confirm that final branch head also passes before merging.
+
+## Stage 2 implementation record (2026-11-18)
+- Branch: `seo/shopify-hiring-positioning`. Production stays unchanged pending approved merge.
+- `app/page.tsx`: added service-led H1, hiring-friendly hero copy, relevant navigation, four cards for Shopify development, ecommerce management, CRO and custom apps/integrations, and clearer contact calls to action. Cards link to existing evidence rather than unbuilt service URLs.
+- `app/globals.css`: added two-column responsive services layout, mobile stacking and visible keyboard focus.
+- Copy limits custom app claims to demonstrated custom integration engineering, not third-party marketplace publication.
+- All edits build on the prior SEO privacy branch; outstanding Stage 1 privacy considerations remain open. Tests and rendered visual review must pass before declaring Stage 2 complete.
