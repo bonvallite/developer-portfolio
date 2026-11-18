@@ -104,3 +104,12 @@ Position the site for Shopify developer, ecommerce manager, conversion rate opti
 - [ ] Direct HTTP requests to the public site did not succeed through the available web retrieval tool, so rendered response and index status are unverified.
 
 **Do not merge or deploy while automated checks, external metadata exposure and live crawl verification remain unresolved.**
+
+## Stage 1 verification checkpoint (2026-11-18)
+- [x] Re-scanned all 13 source route pages on the branch: zero exact matches for Jomar/Vallite name references; six renamed photo URLs resolve to assets in the Git tree.
+- [x] Recursive Git tree contains no remaining filenames matching `jomar` or `vallite` after image renames and PDF removal.
+- [x] GitHub Actions workflow run 44276465786 passed publication safety scan, npm install, unit tests, Python tests, TypeScript check and production build on commit `402e9e6a`.
+- [ ] Image identity information has not been independently verified by a decoded EXIF metadata parser. A superficial binary/base64 marker scan was inconclusive.
+- [ ] External profile associations, historical Git author names, current email handle and browser/search-engine caching still remain potentially identifying.
+- [ ] Public production and protected preview HTML fetch could not be independently checked; verify them before merge.
+- [ ] A subsequent documentation-only commit will create a new CI run; confirm that final branch head also passes before merging.
