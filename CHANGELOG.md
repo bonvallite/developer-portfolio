@@ -2,6 +2,16 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-18 - Add authorised webmail login link to contact section
+
+- **Scope:** Public JR Vallite portfolio only, not Shopify theme code; GitHub `bonvallite/developer-portfolio` on `feature/b2b-markets-case-study-20261118` (PR #36).
+- **Files:** `app/page.tsx`, `app/globals.css`, and `CHANGELOG.md`.
+- **Change:** Add a distinct Webmail Login button pointing to `https://webmail.jrvallite.com/`, with a lock icon, violet accent, explicit authorised-user label, and the same external-link security attributes as other public services.
+- **Why:** Give the portfolio owner a convenient route to mailbox sign-in without confusing it with the `hello@jrvallite.com` public enquiry link.
+- **Documentation and dependencies:** Updated JSX comments to clarify that webmail is a separate login destination, not an email delivery feature. No usernames, passwords, authentication state, or DNS configuration are included or modified. CSS documents the separate accent and reuses existing responsive/focus rules.
+- **Validation:** Pending CI publication safety scan, unit tests, TypeScript, build and Vercel preview before production release.
+
+
 ## 2026-11-18 - Use actual portfolio favicon in website contact button
 
 - **Scope:** JR Vallite public Next.js portfolio only, not the Shopify theme. GitHub repository `bonvallite/developer-portfolio`, branch `feature/b2b-markets-case-study-20261118`, PR #36.
