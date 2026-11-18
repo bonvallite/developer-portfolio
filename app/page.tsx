@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Github, Layers3, GitBranch, ShieldCheck, Network } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Layers3, GitBranch, ShieldCheck, Network } from 'lucide-react';
 // Target service-led hiring searches; keep personal-name PDFs and visible name references out.
 // Keep this canonical scoped to the homepage, never inherited by other routes.
 export const metadata: Metadata = { alternates: { canonical: '/' } };
