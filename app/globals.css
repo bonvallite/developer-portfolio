@@ -152,7 +152,7 @@
    requests, SDK or extra package. Brand-associated colours identify destinations
    while preserving the same accessible button labels and keyboard focus states. */
 .contact .contact-service-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1120px;margin:0 auto}
-.contact .contact-service{--contact-accent:#d9b47c;min-width:0;width:100%;min-height:68px;white-space:normal;text-align:left;justify-content:flex-start;gap:11px;padding:10px 14px;background:linear-gradient(125deg,color-mix(in srgb,var(--contact-accent) 12%,#171a1f),#15171a 75%);border:1px solid color-mix(in srgb,var(--contact-accent) 47%,#38383c);border-radius:12px;color:#f3f1ec;font-size:12px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.contact .contact-service{min-width:0;width:100%;min-height:68px;white-space:normal;text-align:left;justify-content:flex-start;gap:11px;padding:10px 14px;background:linear-gradient(125deg,color-mix(in srgb,var(--contact-accent) 12%,#171a1f),#15171a 75%);border:1px solid color-mix(in srgb,var(--contact-accent) 47%,#38383c);border-radius:12px;color:#f3f1ec;font-size:12px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
 .contact .contact-service:hover{border-color:var(--contact-accent);box-shadow:0 9px 25px color-mix(in srgb,var(--contact-accent) 13%,transparent)}
 .contact .contact-service:focus-visible{outline:3px solid var(--contact-accent);outline-offset:3px}
 .contact .contact-service-icon{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;min-width:38px;border-radius:10px;background:var(--contact-accent);color:#12151a}
