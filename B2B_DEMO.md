@@ -1,5 +1,8 @@
 # Weight-based B2B pricing simulator
 
+**Related real-world expertise:** [Four-market Shopify B2B modernisation](./app/b2b-modernisation/page.tsx) (`/b2b-modernisation`). That case study concerns company market assignment, market-level catalogue entitlements, native accounts, and contextual storefronts. The simulator below is a distinct, fictional order-weight calculation exercise and does **not** reproduce how the real market tier prices were calculated.
+
+
 **Interactive route:** `/b2b-demo` on a deployed version of this Next.js portfolio.
 
 This demonstration shows aggregate order weight, current fictional wholesale tier, next threshold, subtotal, savings and total. It is **independently developed example code**, not the source of a client's Shopify catalogue, automation or theme.
