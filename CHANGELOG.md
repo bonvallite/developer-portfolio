@@ -2,6 +2,15 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-18 - Add six-step B2B customer journey diagram
+
+- **Scope:** Public portfolio only, no Shopify theme or production notification modifications.
+- **Repository and branch:** `bonvallite/developer-portfolio`, `feature/b2b-markets-case-study-20261118`, PR #36.
+- **Affected files:** `public/diagrams/b2b-business-customer-journey.svg`, `app/b2b-modernisation/page.tsx`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Change and purpose:** Added a separately authored six-stage gold-and-charcoal SVG journey diagram, and changed the site's semantic ordered list to match: Shopify Forms → team review → approved company and market → branded notification → email-code sign-in → assigned company catalogue pricing.
+- **Documentation and safety:** Added inline comments about the SVG and scrolling presentation; source diagram contains no original email template, live offer codes, private company IDs, or customer information.
+- **Validation:** Pending fresh GitHub CI and Vercel build for the final change set.
+
 ## 2026-11-18 - Document customised Shopify B2B approval notification
 
 - **Scope:** Public JR Vallite portfolio only, no modification of the production Shopify notification or theme.
