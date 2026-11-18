@@ -5,7 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fieldstone Provisions | Gift Packaging Cart Demo</title>
 <style>
-:root{font-family:Inter,Arial,sans-serif;color:#24221e;background:#f7f6f2;font-size:16px}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}header{background:#292821;color:white;padding:20px max(20px,calc((100vw - 1100px)/2));display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-family:Georgia,serif;font-size:25px}.tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#f0d99a}main{max-width:1100px;margin:28px auto;padding:0 20px}h1,h2,h3{font-family:Georgia,serif}h1{font-size:clamp(30px,5vw,46px);margin:6px 0}p{line-height:1.6}.muted{color:#66645e}.eyebrow{color:#896c32;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tabs button,.toggle button{padding:10px 16px;border:1px solid #c8c2b7;border-radius:10px;background:white}.tabs button[aria-selected=true],.toggle button[aria-pressed=true]{background:#292821;color:white}.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:20px}.panel{background:white;border:1px solid #ddd7cb;border-radius:18px;padding:24px;box-shadow:0 7px 25px #24221e0c}.panel h2{margin-top:0}.product{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #ece7df}.thumb{width:70px;height:70px;background:linear-gradient(140deg,#ded4b9,#a5b2a3);border-radius:10px;display:grid;place-items:center;font-size:27px}.product-info{flex:1;min-width:0}.product-info strong{display:block}.qty{display:inline-flex;border:1px solid #ddd5c8;border-radius:8px;overflow:hidden;align-items:center}.qty button{border:0;background:white;padding:6px 12px}.qty span{min-width:26px;text-align:center}.gift{border:1px solid #bda16d;background:#fbf8ef;border-radius:12px;padding:16px;margin:18px 0}.gift-top{display:flex;align-items:center;gap:9px}.gift input{accent-color:#81662e;width:18px;height:18px}.gift label{font-weight:700;flex:1}.info{width:27px;height:27px;border-radius:50%;border:1px solid #8f784a;background:white;font-size:13px}.tip{margin-top:10px;background:white;border:1px solid #ddcfac;padding:12px;border-radius:10px;font-size:14px}.price{font-weight:700;white-space:nowrap}.summary{border-top:1px solid #ded8ce;margin-top:16px;padding-top:16px}.summary div{display:flex;justify-content:space-between;margin-bottom:9px}.total{font-size:22px;font-weight:700}.primary{border:0;background:#8a703c;color:white;border-radius:9px;padding:13px 18px;font-weight:700;width:100%;margin-top:16px}.secondary{border:1px solid #a69b83;background:white;border-radius:9px;padding:12px 18px}.status{color:#565247;min-height:22px;font-size:14px}.drawer{max-width:410px;margin-left:auto;border:1px solid #d5cab4;border-radius:14px;overflow:hidden;box-shadow:0 15px 40px #00000015;background:white}.drawer-head{padding:18px 22px;background:#f4f0e7;display:flex;justify-content:space-between;align-items:center}.drawer-body{padding:0 22px 22px}.phone{max-width:390px;margin:auto}.phone .drawer{max-width:100%;box-shadow:0 0 0 8px #232323}.toggle{display:flex;gap:8px;margin-bottom:14px}.hide{display:none!important}.notice{background:#edf1e9;color:#31513b;padding:12px;border-radius:9px}.notice-warn{background:#fff4db;color:#805d22}.steps{font-size:13px;color:#777}.explain{margin-top:22px}.explain li{margin:6px 0}.footer{padding:30px 20px;text-align:center;color:#777;font-size:13px}.no-items{padding:18px 0;color:#777}@media(max-width:760px){.layout{grid-template-columns:1fr}.panel{padding:18px}header{padding:18px 20px}.brand{font-size:21px}}
+/* Fieldstone's fictional demo uses the portfolio's existing charcoal-and-gold
+   visual tokens and DM Sans / Space Grotesk typography. These styles belong only
+   to the isolated static prototype; they do not override the Next.js shell. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{color-scheme:dark;--bg:#0b0e12;--surface:#181b20;--surface-alt:#20242a;--edge:#3d3931;--text:#f4f2ee;--muted:#adb0b8;--gold:#d9b47c;--gold-soft:#edcb98;--gold-dark:#aa8052;font-family:'DM Sans',Arial,sans-serif;color:var(--text);background:var(--bg);font-size:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 86% 3%,#6f4a2225,transparent 52%),var(--bg);color:var(--text)}
+button,input{font:inherit}button{cursor:pointer;transition:border-color .2s,background .2s,transform .2s}button:hover{border-color:var(--gold)}button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+header{background:#14171c;border-bottom:1px solid #73614c55;padding:24px max(22px,calc((100vw - 1100px)/2));display:flex;justify-content:space-between;align-items:center;gap:18px}
+.brand{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-.7px;font-size:25px;color:var(--text)}
+.tag{font:600 11px 'Space Grotesk',sans-serif;letter-spacing:1.7px;text-transform:uppercase;color:var(--gold)}
+main{max-width:1100px;margin:50px auto 28px;padding:0 22px}h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.7px}h1{font-size:clamp(34px,5vw,55px);line-height:1.1;letter-spacing:-2px;margin:18px 0 18px}h2{font-size:24px}h3{font-size:18px}p{line-height:1.7}
+.muted{color:var(--muted)!important}.eyebrow{color:var(--gold);font:600 12px 'Space Grotesk',sans-serif;letter-spacing:1.5px;text-transform:uppercase}
+.tabs{display:flex;flex-wrap:wrap;gap:9px;margin:33px 0 25px;padding-bottom:4px}
+.tabs button,.toggle button{padding:11px 16px;border:1px solid #514a40;border-radius:8px;background:var(--surface);color:#dad8d4;font-size:13px;font-weight:600}
+.tabs button[aria-selected=true],.toggle button[aria-pressed=true]{background:var(--gold);color:#17120e;border-color:var(--gold)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,365px);gap:20px;align-items:start}
+.panel{background:linear-gradient(155deg,#1c1f24,#15181d);border:1px solid var(--edge);border-radius:13px;padding:26px;box-shadow:0 10px 38px #00000028;min-width:0}
+.panel h2{margin-top:0;color:var(--text)}.panel>p{color:var(--muted)}
+.product{display:flex;align-items:center;gap:13px;padding:16px 0;border-bottom:1px solid #ffffff1e}
+.thumb{width:66px;height:66px;flex:none;background:linear-gradient(135deg,#383126,#1c2528);border:1px solid #64523d;border-radius:9px;display:grid;place-items:center;font-size:27px}
+.product-info{flex:1;min-width:0}.product-info strong{display:block;color:var(--text);font-size:14px;margin-bottom:4px}.product-info .muted{font-size:12px}
+.qty{display:inline-flex;border:1px solid #5e554b;border-radius:7px;overflow:hidden;align-items:center;margin-top:8px}
+.qty button{border:0;background:#25272b;color:var(--gold);padding:6px 12px}.qty button:hover{background:#383128}.qty span{min-width:26px;text-align:center;font-size:13px}
+.gift{border:1px solid #80613d;background:linear-gradient(115deg,#2a251d,#211e1b);border-radius:11px;padding:17px;margin:20px 0}
+.gift-top{display:flex;align-items:center;gap:9px}.gift input{accent-color:var(--gold);width:19px;height:19px;flex-shrink:0}.gift label{font-weight:600;flex:1;font-size:14px;color:var(--text)}
+.info{width:27px;height:27px;flex-shrink:0;border-radius:50%;border:1px solid var(--gold-dark);background:#211e19;color:var(--gold);font-size:13px}
+.tip{margin-top:12px;background:#15171b;border:1px solid #69533b;color:#d4ccbf;padding:13px;border-radius:8px;font-size:13px;line-height:1.65}
+.price{font-weight:700;white-space:nowrap;color:var(--gold-soft)}
+.summary{border-top:1px solid #ffffff28;margin-top:20px;padding-top:17px}.summary div{display:flex;justify-content:space-between;gap:12px;margin-bottom:9px;font-size:14px;color:#d3d2d1}
+.summary .total{font-size:21px;font-weight:700;color:var(--text);padding-top:8px}.summary .total span:last-child{color:var(--gold)}
+.primary{border:1px solid var(--gold);background:var(--gold);color:#17120e;border-radius:7px;padding:14px 18px;font-weight:700;width:100%;margin-top:16px}
+.primary:hover{background:#eac797;border-color:#eac797;transform:translateY(-1px)}
+.secondary{border:1px solid #665642;background:#212227;color:var(--gold-soft);border-radius:7px;padding:12px 16px}
+.secondary:hover{background:#292722}
+button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.status{color:var(--gold-soft);min-height:22px;font-size:13px}
+.drawer{max-width:410px;margin-left:auto;border:1px solid #64533f;border-radius:11px;overflow:hidden;box-shadow:0 18px 40px #00000040;background:#15181d}
+.drawer-head{padding:18px 22px;background:#25221d;display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid #6f553a}
+.drawer-head span{color:var(--muted);font-size:12px}.drawer-body{padding:0 22px 22px}
+.phone{max-width:390px;margin:auto}.phone .drawer{max-width:100%;box-shadow:0 0 0 7px #38322b}
+.toggle{display:flex;gap:8px;margin-bottom:15px}.hide{display:none!important}
+.notice{background:#242b25;color:#b9d4bd;border:1px solid #415745;padding:13px;border-radius:8px;line-height:1.6;font-size:13px}
+.notice-warn{background:#302719;color:#e9cb8c;border-color:#7f632e}
+.steps{font-size:13px;color:var(--gold);letter-spacing:.2px}
+.explain{margin-top:24px}.explain li{margin:9px 0;color:#b7b7b9;line-height:1.65}.footer{padding:37px 22px;text-align:center;color:#90939c;font-size:12px;border-top:1px solid #ffffff16}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.panel{padding:20px}header{padding:19px 22px}.brand{font-size:22px}main{margin-top:33px}.tabs{margin-top:26px}.tabs button{font-size:12px;padding:10px 12px}}
+@media(max-width:420px){.thumb{width:52px;height:52px;font-size:22px}.product{gap:9px}.drawer-body{padding:0 12px 16px}.drawer-head{padding:14px}.gift{padding:12px}.gift label{font-size:12px}.qty button{padding:5px 9px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}button{transition:none!important}}
+
 </style>
 </head>
 <body>

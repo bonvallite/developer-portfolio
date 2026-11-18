@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-18 - Align Fieldstone gift packaging demo with portfolio palette
+
+- **Target:** `bonvallite/developer-portfolio`, review branch `feat/fieldstone-gift-packaging-20261118`, Vercel preview only.
+- **Affected files:** `public/gift-packaging-reference/index.html`, `app/gift-packaging-reference/page.tsx`, `CHANGELOG.md`.
+- **Change:** Updated the isolated demo's palette and typography to match the public portfolio: charcoal `#0B0E12`, warm gold `#D9B47C`, cream-white text, muted greys, DM Sans, and Space Grotesk. Styled tabs, gift card, buttons, panels, drawer, controls, focus states, and mobile layouts. Matched the Next.js iframe page backdrop to avoid a light surround.
+- **Reason:** The previous cream/white and brown theme was visually inconsistent with the portfolio.
+- **Inline documentation:** Updated the embedded stylesheet ownership comments and Next.js iframe documentation. No cart logic, merchant integration, or live Shopify theme was changed.
+- **Validation:** Source-only CSS/palette and page wrapper review before commit; full browser desktop/mobile QA and Vercel preview validation are pending. Existing prototype validation limitations still apply.
+- **Release/recovery:** Draft PR #38 only; revert this style-only commit to restore the original demo appearance.
+
+
 ## 2026-11-18 - Add independent Fieldstone gift packaging cart demonstration
 
 - **Target:** Public Next.js developer portfolio, feature branch `feat/fieldstone-gift-packaging-20261118`, Vercel preview only.
