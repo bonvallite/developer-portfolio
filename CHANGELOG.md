@@ -2,6 +2,15 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-18 - Add public-safe 2026 commerce engineering overview
+
+- **Target:** `bonvallite/developer-portfolio`, feature branch `feat/2026-commerce-work-overview-20261118`; Vercel project `developer-portfolio` (production remains unchanged pending review).
+- **Affected files:** `app/commerce-work-2026/page.tsx`, `app/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a dedicated summary of 2026 Shopify, B2B, fulfilment and analytics work, and linked it from the homepage; linked existing public-safe examples and engineering documentation.
+- **Reason:** Help hiring teams and collaborators understand recent technical responsibilities without scanning every case study.
+- **Documentation:** Added source comments on evidence boundaries and revised the README navigation.
+- **Validation:** Reviewed repository structure and existing source before editing. Follow-up CI, preview rendering and mobile checks are required before merging or production release. No commercial uplift or end-to-end integration result is claimed.
+
 ## 2026-11-16 - Relocate Microsoft Clarity to document head without duplicate tracking
 
 - **Target:** `bonvallite/developer-portfolio`, Vercel `developer-portfolio` (team `my-dojo`, project `prj_sAyVySdCHlqUTAasaGh1FyYkk8MY`), feature branch `fix/clarity-head-single-install-20261116`, public portfolio domain `www.jrvallite.com`.
