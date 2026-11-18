@@ -1,3 +1,31 @@
+## 2026-10-27 — Publish dashboard screenshot in Shopify app portfolio
+
+- **Target:** `bonvallite/developer-portfolio`, theme ID not applicable, branch `feature/shopify-app-development-showcase-20261027`.
+- **Files:** `public/portfolio/shopify-apps-dashboard.webp`, `app/shopify-apps/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a compressed derivative of the developer-supplied Shopify Dev Dashboard screenshot and embedded it in the custom-app showcase with descriptive alt text, caption, and a link to the image asset. Updated source comments and replaced the outdated documentation stating no image was embedded.
+- **Reason:** Provide actual visual evidence of the four app listings while keeping production credentials and customer data out of the site.
+- **Validation:** GitHub image blob created and committed, branch ref updated, image JSX written. Preview build and browser rendering remain to be verified. Original higher-resolution screenshot retained outside public GitHub.
+
+
+## 2026-10-27 — App evidence exhibit and client-problem framing
+
+- **Target:** `bonvallite/developer-portfolio`, `feature/shopify-app-development-showcase-20261027`.
+- **Affected files:** `app/shopify-apps/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a labelled on-page transcription of the owner-provided Shopify dashboard screenshot and connected the inventory and delivery entries to client needs without asserting unsupported outcomes.
+- **Why:** Provide recruiters and prospective clients evidence context and business relevance.
+- **Documentation:** Updated inline JSX comment describing screenshot evidence and the image-publication limitation.
+- **Validation:** Re-read GitHub source prior to editing; saved-file re-read, preview build and browser checks pending. The screenshot binary has not been committed or deployed.
+
+## 2026-10-27 — Shopify app development and operational automation portfolio
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/shopify-app-development-showcase-20261027`, Vercel preview through existing Git integration.
+- **Files:** `app/shopify-apps/page.tsx`, `app/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a public-safe Shopify custom-app showcase covering inventory synchronisation, API integrations, webhook events, and operational automation; added a homepage link. Documented four entries visible in the developer-provided dashboard screenshot and differentiated the documented CartonCloud integration from app listings that do not independently verify their feature scope.
+- **Why:** Show how custom app engineering can streamline repetitive tasks and help business teams concentrate on higher-value work.
+- **Documentation and privacy:** Added source comments recording evidence boundaries, updated README and changelog. No production secrets, customer data, or proprietary implementation are included.
+- **Validation:** Source inspection, dashboard screenshot review and GitHub writes performed. Type checking, automated tests, Vercel build and browser QA are not claimed until observed.
+- **Release:** Feature branch for review, not automatically a production release.
+
 # Portfolio changelog
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
