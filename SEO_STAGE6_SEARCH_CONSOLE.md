@@ -58,3 +58,9 @@ Every review should note exact reporting dates, the previous comparison period, 
 - Vercel API did not return a deployment for exact commit `4669201b`, although earlier branch previews were READY.
 - Production and preview HTML fetches were not accessible to the available reader.
 - Site domain and repository account remain potentially attributable to the owner.
+
+## Latest execution blocker (2026-11-18)
+- PR head `d4fae7d23e38039317c96c20407faa37aa638d90` passed GitHub Actions but has not been tied to an exact Vercel preview.
+- Manual Git-source preview deployment request was rejected by Vercel with HTTP 402 `api-deployments-free-per-day` (daily API deployment limit). An authenticated CLI fallback was not available in the execution environment.
+- No Search Console submission, verification change, indexing request, merge, or live-site deployment was performed.
+- Resume the checklist only when the exact preview and rendered-route verification can be completed, keeping the site indexable for skills rather than trying to erase the domain identity.
