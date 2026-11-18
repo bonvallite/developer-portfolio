@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight, BookOpen, CheckCircle2, ClipboardList, FileCod
 export const metadata: Metadata = {
   title: 'Shopify Engineering Standards & Documentation',
   description: 'How inline documentation, dated changelogs, validation evidence and release handovers make commerce systems easier to maintain.',
+  alternates: { canonical: '/engineering-standards' },
 };
 
 const standards = [
