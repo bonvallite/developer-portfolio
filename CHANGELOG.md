@@ -4,6 +4,16 @@ Entries record changes from 22 October 2026 onwards. Earlier repository history 
 
 
 
+## 2026-11-18 - Clarify four-market catalogue mapping and retail holiday rollout
+
+- **Scope:** Public portfolio only. No changes to Shopify theme or market settings.
+- **Branch:** `feature/b2b-markets-case-study-20261118`.
+- **Affected files:** `app/b2b-modernisation/page.tsx`, `CASE_STUDIES.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Explicitly name Retail → Catalog 1 (normal pricing), Wholesale Tier 1 → Catalog 2, Wholesale Tier 2 → Catalog 3, and Wholesale Tier 3 → Catalog 4. Add the retail Black Friday and Cyber Monday campaign rollout as a separate experience alongside native B2B.
+- **Reason:** Show my combined B2B market architecture and seasonal retail execution without presenting campaign offers as additional catalogue tiers.
+- **Documentation:** Update explanatory diagram comments and supporting documents. Keep merchant campaign rules and unverified revenue out of the public version.
+- **Validation:** Fresh GitHub CI and Vercel build required before production release.
+
 ## 2026-11-18 - Correct Shopify B2B approval and email-code login documentation
 
 - **Theme impact:** None. This change affects the public portfolio only, not a Shopify theme.
