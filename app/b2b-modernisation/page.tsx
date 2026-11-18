@@ -13,7 +13,9 @@ export const metadata: Metadata = {
 // Approval is manual, following a Shopify Forms submission to the assigned team.
 // The approval email is a Shopify Settings > Notifications message, while
 // customer sign-in uses an emailed one-time code; neither is a custom login app.
-// Retail Black Friday and Cyber Monday promotional presentation is separate\n// from retail Catalog 1's normal-price baseline and B2B tier catalogues.\n// Market-specific storefront presentation and checkout are contextual, not
+// Retail Black Friday and Cyber Monday promotional presentation is separate
+// from retail Catalog 1's normal-price baseline and B2B tier catalogues.
+// Market-specific storefront presentation and checkout are contextual, not
 // separate stores or a promise of independently customised checkout code.
 const markets = [
   { name: 'Retail', kind: 'B2C', detail: 'Catalog 1 · Normal retail pricing', tone: 'retail' },
@@ -29,7 +31,7 @@ const capabilities = [
 ];
 const pathway = [
   { number: '01', title: 'Submit wholesale form', body: 'The applicant submits Shopify Forms, which sends the application to the team assigned to review it.' },
-  { number: '02', title: 'Team approval and email', body: 'The assigned team approves the application, associates the company with its B2B market, and an approval email is sent using Shopify Settings > Notifications.' },
+  { number: '02', title: 'Team approval and welcome email', body: 'The assigned team approves the application and company market assignment; a branded, Liquid-personalised Shopify notification welcomes the approved business and links to sign-in.' },
   { number: '03', title: 'Email-code sign-in', body: 'The approved customer enters their email address and signs in with the one-time code Shopify sends to that inbox.' },
   { number: '04', title: 'Automatic company pricing', body: 'When shopping for the approved company, the assigned B2B market catalogue applies its pricing, with the relevant storefront and checkout context.' },
 ];
@@ -89,6 +91,29 @@ export default function B2BModernisation() {
           </article>
         </div>
         <p style={{color:'#999da6',fontSize:12,lineHeight:1.7,marginTop:20}}>This public account describes campaign scope and experience design, not the confidential offer configuration, unpublished dates, or a measured sales uplift.</p>
+      </section>
+
+      {/* Public summary of an existing custom Shopify Notifications HTML/Liquid
+          template; deliberately do not reproduce confidential code, live
+          incentives, redemption conditions, addresses or business terms.
+          The template communicates approval; Shopify provides email-code login. */}
+      <section aria-labelledby="welcome-notification" style={{marginTop:72,padding:'clamp(22px,4vw,38px)',border:'1px solid #4c4539',borderRadius:16,background:'#171a1e'}}>
+        <p className="overline">CUSTOMER ONBOARDING / SHOPIFY NOTIFICATIONS</p>
+        <h2 id="welcome-notification" style={{fontSize:'clamp(1.8rem,4vw,2.8rem)',margin:'14px 0'}}>Branded wholesale approval email</h2>
+        <p style={{color:'#b5b7bf',lineHeight:1.8,maxWidth:840}}>I customised a Shopify Notifications approval and welcome email using responsive HTML, email-safe layout techniques and Shopify Liquid personalisation. It recognises an approved business, explains that its entitled trade prices appear automatically, and guides the customer to the native account sign-in.</p>
+        <div className="b2bm-two-col" style={{display:'grid',gridTemplateColumns:'repeat(2,minmax(0,1fr))',gap:16,marginTop:26}}>
+          <article style={{padding:22,border:'1px solid #6a573f',borderRadius:12}}>
+            <p style={{fontSize:11,color:'#d9b47c',letterSpacing:1.4}}>IMPLEMENTATION</p>
+            <h3>Shopify HTML + Liquid</h3>
+            <p style={{fontSize:13,lineHeight:1.8,color:'#aeb2bb'}}>Responsive HTML email with conditional customer and company greetings, accessible fallback branding, email-client compatibility, and a prominent account CTA.</p>
+          </article>
+          <article style={{padding:22,border:'1px solid #6a573f',borderRadius:12}}>
+            <p style={{fontSize:11,color:'#d9b47c',letterSpacing:1.4}}>CUSTOMER EXPERIENCE</p>
+            <h3>Approval to first order</h3>
+            <p style={{fontSize:13,lineHeight:1.8,color:'#aeb2bb'}}>The welcome message clarifies trade account access and purchasing benefits. Customers then sign in using the email code issued by Shopify; company catalogue prices appear in their approved buying context.</p>
+          </article>
+        </div>
+        <p style={{color:'#9ca0aa',fontSize:12,lineHeight:1.7,marginTop:18}}>This is a high-level description of the communication pattern, not the actual email template. Promotional codes, shipping conditions, account details and private merchant copy are excluded.</p>
       </section>
 
       <section style={{marginTop:82}}>
