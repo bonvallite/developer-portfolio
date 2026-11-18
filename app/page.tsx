@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Layers3, GitBranch, ShieldCheck, Network } from 'lucide-react';
 // Target service-led hiring searches; keep personal-name PDFs and visible name references out.
 // Keep this canonical scoped to the homepage, never inherited by other routes.
-export const metadata: Metadata = { alternates: { canonical: '/' } };
+export const metadata: Metadata = { alternates: { canonical: '/' }, openGraph: { url: 'https://www.jrvallite.com/' } };
 // Project 02 documents separate custom application and API integration work.
 // Public case-study content and diagram are illustrative; no client source or IDs.
 const projects = [
