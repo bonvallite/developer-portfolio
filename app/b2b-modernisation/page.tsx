@@ -10,7 +10,10 @@ export const metadata: Metadata = {
 // Conceptual public-safe representation of a four-market implementation.
 // The labels are illustrative: real market names, catalogue rules, company
 // assignments, prices, and client-specific configurations are not published.
-// Approval is manual, following a Shopify Forms submission to the assigned team.\n// The approval email is a Shopify Settings > Notifications message, while\n// customer sign-in uses an emailed one-time code; neither is a custom login app.\n// Market-specific storefront presentation and checkout are contextual, not
+// Approval is manual, following a Shopify Forms submission to the assigned team.
+// The approval email is a Shopify Settings > Notifications message, while
+// customer sign-in uses an emailed one-time code; neither is a custom login app.
+// Market-specific storefront presentation and checkout are contextual, not
 // separate stores or a promise of independently customised checkout code.
 const markets = [
   { name: 'Retail market', kind: 'B2C', detail: 'Standard consumer catalogue', tone: 'retail' },
