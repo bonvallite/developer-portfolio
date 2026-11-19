@@ -237,3 +237,42 @@
 .storefront-shot-unavailable a:focus-visible{outline:2px solid #e2be8a;outline-offset:3px}
 .storefront-device.mobile .storefront-shot-unavailable{padding:7px;gap:7px}
 .storefront-device.mobile .storefront-shot-unavailable p,.storefront-device.mobile .storefront-shot-unavailable a{font-size:10px}
+
+/* Cinematic storefront gallery on /experience.
+   Motion is lightweight CSS only; navigation is user-initiated and never
+   autoplays. Component: app/experience/StorefrontShowcase.tsx.
+   Keep this scoped so shared portfolio cards are unaffected. */
+.cinematic-showcase{position:relative;isolation:isolate;margin:30px 0 16px;border:1px solid #495660;border-radius:22px;padding:clamp(15px,3vw,33px);background:linear-gradient(160deg,#1a252e 0%,#101a22 65%,#161f28 100%);overflow:hidden}
+.cinematic-showcase:focus-visible{outline:2px solid #e2be8a;outline-offset:5px}
+.cinematic-showcase-top{display:flex;gap:18px;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative;z-index:1}
+.cinematic-showcase-top p{margin:8px 0 0;font-size:15px;color:#cdd4d8}
+.cinematic-showcase-count{white-space:nowrap;color:#b3bdc3;font-size:18px;font-variant-numeric:tabular-nums}
+.cinematic-showcase-count strong{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,52px);color:#f6e7c9;line-height:1}
+.cinematic-showcase-stage{position:relative;min-width:0}
+.cinematic-showcase-glow{pointer-events:none;position:absolute;left:10%;right:10%;top:6%;height:55%;border-radius:50%;background:radial-gradient(ellipse,#947a413b 0%,transparent 72%);filter:blur(25px)}
+.cinematic-showcase-slide{position:relative;animation:cinematic-showcase-arrive .65s cubic-bezier(.21,.8,.2,1) both;transform-origin:50% 45%}
+.cinematic-showcase-slide .storefront-preview-card{position:relative;background:linear-gradient(150deg,#25313b,#16212a);border-color:#56616b;padding:clamp(15px,2.6vw,28px);box-shadow:0 24px 58px #0005;border-radius:18px}
+.cinematic-showcase-slide .storefront-preview-head h3{font-size:clamp(21px,2.7vw,31px)}
+.cinematic-showcase-slide .storefront-preview-pair{grid-template-columns:minmax(0,2.2fr) minmax(105px,1fr);gap:clamp(10px,2.5vw,27px)}
+.cinematic-showcase-slide .storefront-screen{border-color:#4e5a65;box-shadow:0 18px 35px #0006}
+.cinematic-showcase-slide .storefront-device.desktop .storefront-screen{transform:perspective(1200px) rotateY(-2deg);transform-origin:right}
+.cinematic-showcase-slide .storefront-device.mobile .storefront-screen{transform:translateY(10px) rotate(1deg);box-shadow:0 23px 35px #0009}
+.cinematic-showcase-navigation{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:20px 0 4px;position:relative;z-index:1}
+.cinematic-showcase-navigation button{display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid #72716a;border-radius:999px;background:#202c35;color:#f6e7c9;font:inherit;font-size:13px;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.cinematic-showcase-navigation button:hover{background:#394149;border-color:#e2be8a;transform:translateY(-2px)}
+.cinematic-showcase-navigation button:focus-visible,.cinematic-showcase-index button:focus-visible,.cinematic-showcase-progress button:focus-visible{outline:2px solid #e2be8a;outline-offset:3px}
+.cinematic-showcase-current{font-size:13px;color:#d8d1c0;text-align:center}
+.cinematic-showcase-progress{display:flex;justify-content:center;gap:1px;padding:10px 0 16px}
+.cinematic-showcase-progress button{border:0;padding:7px 3px;background:transparent;cursor:pointer;flex:1;max-width:60px}
+.cinematic-showcase-progress span{display:block;height:3px;width:100%;border-radius:3px;background:#65707a;transition:background .25s,transform .25s}
+.cinematic-showcase-progress span.selected{background:#e2b33c;transform:scaleY(1.5)}
+.cinematic-showcase-index{display:flex;gap:9px;overflow-x:auto;padding:8px 2px 13px;scrollbar-width:thin;scrollbar-color:#6b7780 transparent}
+.cinematic-showcase-index button{white-space:nowrap;display:inline-flex;gap:8px;align-items:center;flex:0 0 auto;background:#1b2932;border:1px solid #4f5d68;border-radius:12px;color:#d1d8dc;padding:12px;font:inherit;font-size:12px;cursor:pointer;transition:transform .25s,background .25s,border-color .25s}
+.cinematic-showcase-index button:hover{border-color:#d6bc87;background:#283640;transform:translateY(-2px)}
+.cinematic-showcase-index button.active{color:#f9e4b8;border-color:#d6bc87;background:#364039}
+.cinematic-index-number{font-size:10px;color:#b7c2c7;font-variant-numeric:tabular-nums}
+.cinematic-showcase-hint{color:#aebbc2;font-size:11px;line-height:1.6;margin:9px 0 0}
+@keyframes cinematic-showcase-arrive{from{opacity:0;transform:translate3d(0,19px,0) scale(.975);filter:blur(3px)}to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+@media(max-width:640px){.cinematic-showcase{border-radius:16px}.cinematic-showcase-top{align-items:flex-end}.cinematic-showcase-top p{font-size:13px}.cinematic-showcase-slide .storefront-preview-pair{grid-template-columns:minmax(0,1.4fr) minmax(94px,1fr)}.cinematic-showcase-navigation button{padding:10px}.cinematic-showcase-current{max-width:100px;font-size:12px}.cinematic-showcase-index button{padding:11px 10px}}
+@media(max-width:385px){.cinematic-showcase-navigation button span{display:none}.cinematic-showcase-slide .storefront-device>.overline{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.cinematic-showcase-slide{animation:none!important}.cinematic-showcase-navigation button,.cinematic-showcase-progress span,.cinematic-showcase-index button{transition:none!important}.cinematic-showcase-navigation button:hover,.cinematic-showcase-index button:hover{transform:none}.cinematic-showcase-slide .storefront-device.desktop .storefront-screen,.cinematic-showcase-slide .storefront-device.mobile .storefront-screen{transform:none}}
