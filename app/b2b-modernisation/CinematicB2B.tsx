@@ -16,7 +16,7 @@ import './cinematic.css';
 // differ and may overlap: never add them as one revenue total.
 // The alternative growth tab is modelled, not merchant revenue. July 2026 is the
 // reported implementation month, not a verified cut-over date.
-// Source: Peter_Augustus_All_Reports_Master_2026-11-18.xlsx SEG_Monthly
+// Source: adjusted historical reporting export, SEG_Monthly (18 Nov 2026)
 // and read-only ShopifyQL, Jan–Oct 2026. No client records, IDs, or real rates.
 
 type Market = { name: string; label: string; catalogue: string; price: number; explanation: string };
@@ -59,7 +59,6 @@ const aov = {
   returning: { retail:241.87, b2b:839.38 }
 };
 const formatMoney = (n:number) => 'A$' + n.toLocaleString('en-AU',{minimumFractionDigits:2,maximumFractionDigits:2});
-const formatRounded = (n:number) => 'A$' + Math.round(n).toLocaleString('en-AU');
 
 export default function CinematicB2B(){
   const [marketIndex,setMarketIndex]=useState(0);
