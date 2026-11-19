@@ -1,5 +1,89 @@
 # Portfolio changelog
 
+## 2026-11-19 - Reconcile case study with current production homepage and professional links
+
+- **Target:** `bonvallite/developer-portfolio`, PR #39; `main` commit `2456b99b564b906dde2de29c5a9bd94e9abacf26`.
+- **Files:** `app/page.tsx`, `app/experience/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Preserved newer homepage rotation, restored JRV identity, professional links and résumé, new B2B pages, while adding the analytics case study to the latest project evidence layout. Reconciled both changelog histories.
+- **Reason:** Avoid overwriting unrelated work during release.
+- **Validation:** Full CI required on reconciled branch. No theme files or customer records changed.
+
+## 2026-11-19 - Complete local-browser QA for analytics case study
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, PR #39. No production merge or manual Vercel deployment.
+- **Affected files:** `tests/case-study-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, `app/data-extraction-automation/interactive-lab.tsx`, `CHANGELOG.md`.
+- **Change:** Added Playwright Chrome QA on a locally served Next.js build for desktop (1440×900), tablet (768×1024), and mobile (390×844). Checks route/structured output, the cinematic hero, absence of horizontal overflow, interactive lesson and code-tab controls, 17-file archive display, archive URL response and JavaScript page errors. Uploaded full-page screenshots as a seven-day GitHub Actions artifact.
+- **Fix identified by browser QA:** Corrected the lesson tuple's positional mapping: `[stage, heading, description, deliverable]`. Previously the component displayed the description as the heading and omitted the deliverable.
+- **CI configuration:** Replaced unsupported Playwright browser installation on Ubuntu 26.04 with an Ubuntu 24.04 runner and the runner-provided Chrome browser. Browser checks are restricted to this feature branch's pull requests to limit unrelated CI work.
+- **Validation:** GitHub Actions run [#44529578132](https://github.com/bonvallite/developer-portfolio/actions/runs/44529578132) passed baseline SEO/privacy, publication safety, JavaScript/Python tests, TypeScript, production build and all three browser viewport checks. GitHub artifact `case-study-browser-qa` contains `desktop-full.png`, `tablet-full.png`, and `mobile-full.png`; downloaded and visually reviewed. External Vercel preview exists for merge commit `ef8bf211`, but the current post-QA changes were tested locally in GitHub, not deployed to production.
+
+## 2026-11-19 - Merge analytics pipeline case study with current homepage work
+
+- **Target:** `bonvallite/developer-portfolio`, `feature/google-analytics-api-portfolio-20261119`, PR #39.
+- **Scope:** homepage selected-work case study card and matching project-evidence mapping; experience page link; case-study route and interactive lab; sanitised Python archive; README and Python portfolio documentation.
+- **Resolution:** Retain current `main` homepage rotation/gallery, project storytelling and experience storefront showcases; introduce only the analytics project and source-safe links. Reconcile the two changelog branches without dropping either history.
+- **Validation:** Source-level merge conflict review, no private data added. GitHub Actions must rerun on reconciled commit; release remains draft and unmerged.
+
+## 2026-11-19 - Restore portfolio CI trigger and confirm merge blocker
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39.
+- **Affected files:** `.github/workflows/portfolio-ci.yml`, `CHANGELOG.md`.
+- **Change:** Restored the standard `main`-only push trigger while retaining the existing `pull_request` trigger. The temporary feature-branch push trigger had been used to obtain a complete GitHub Actions validation run.
+- **Reason:** Keep normal CI conventions and avoid ongoing duplicate branch push workflows after successful verification.
+- **Validation:** GitHub Actions run #44520783303 passed the safety, SEO, JavaScript unit, Python unit, TypeScript and Next.js build checks on commit `0e753407`. Archive readback contains 17 Python files and a targeted scan found no personal Windows paths, email addresses, or known employer identifiers. GitHub PR API currently reports `mergeable_state: dirty`, so this branch is **not merge-ready**; conflicts against `main` still require resolution. No production merge was performed.
+
+## 2026-11-19 - Publish sanitised Python source and interactive cinematic case study (GitHub only)
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39, no approved production merge.
+- **Affected files:** `public/case-studies/ecommerce-analytics/sanitised-python-source-archive.md`, `app/data-extraction-automation/interactive-lab.tsx`, `app/data-extraction-automation/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Published the full content of 17 owner-uploaded Python scripts in a public, sanitised Markdown archive; added a five-stage educational walkthrough, selectable Python code examples and explanations, and a CSS-only cinematic pipeline visual. Linked the archive from the interactive case study and documented the important limits.
+- **Why:** Communicate the real engineering process from business requirements to API-based delivery, and make substantial Python work inspectable without publishing private client identifiers or raw datasets. Keep the page lightweight and accessible.
+- **Documentation:** Added source-provenance and confidentiality comments in the code; updated README to reflect that the sanitised scripts are now publicly available rather than withheld.
+- **Sanitisation:** Replaced the GA4 property ID, Search Console site/property, employer brand search expressions and Windows user paths with example values. No OAuth client secrets, access tokens or raw customer data were uploaded. The source is educational and not configured to run against live systems as provided.
+- **Validation:** Confirmed GitHub content readback for the case-study page, interactive component and archive; scanned those files for known private identifiers; confirmed 17 Python sections in the source archive. TypeScript, npm tests, public-safety script, production build and browser QA remain **unverified** in this session. GitHub commits can automatically trigger Vercel previews even though no direct Vercel operation was requested.
+- **Release:** Draft PR only; no merge to main.
+
+## 2026-11-19 - Rebuild extraction case study as problem-to-solution story (GitHub only)
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39. No merge or manual Vercel action.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `CHANGELOG.md`.
+- **Change:** Replaced the text-heavy case study with a five-stage editorial narrative, platform favicon/source architecture, lightweight native HTML interactive code disclosures, output catalogue, clear CTA links and responsive dark/gold styling. Updated GA4 statements using the 10 source-reviewed Python modules. Added Bing as a documented extraction platform, with Shopify/Klaviyo kept distinct from verified API scripts.
+- **Reason:** Show how an original 12-month business reporting brief became a documented multi-platform data engineering workflow, without consuming client-side UI resources or publishing client data.
+- **Inline documentation:** Records public-safe code provenance, external favicon loading, source limits, and distinction between Shopify GraphQL / Bash skills and unverified involvement in this particular extraction.
+- **Validation:** GitHub source inspection and type-oriented static review before write. Full local tests, safety scanner, TypeScript compilation, browser QA and any Vercel build have not been run here. Feature branch only. Note that automatic Vercel integration may still create a preview from GitHub commits.
+
+## 2026-11-19 - Clarify 12-month cross-platform extraction purpose
+
+- **Target:** `bonvallite/developer-portfolio`, review branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `app/page.tsx`, `CHANGELOG.md`.
+- **Change:** Repositioned the case study as a 12-month, multi-dataset workflow covering GA4, Search Console and Google Ads, and revised the featured project description. Documented distinct platform methods and dataset types rather than implying a single Python script implements all three.
+- **Reason:** Explain the business purpose of extracting detailed underlying data rather than screenshots or dashboard summaries.
+- **Documentation:** Updated inline comments separating independently inspected GSC Python and Ads JavaScript sources from user-reported GA4 API configuration. Preserved confidentiality and limitations.
+- **Validation:** Source and saved content checked; latest Vercel preview build and CI must be confirmed before release. No production merge.
+
+
+## 2026-11-19 - Display Python ranking calculation on Vercel case study
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `CHANGELOG.md`.
+- **Change:** Embedded a read-only, formatted excerpt from the owner-supplied Search Console Python `fetch_monthly_keywords()` function, with a mobile-scrollable code panel and explanation of impression-weighted search position and observed-period changes.
+- **Reason:** Let prospective employers and clients inspect real Python logic, alongside the business purpose of the resulting SEO dataset.
+- **Inline documentation:** Added component comments identifying the provenance, read-only display and dependency on the private `get_daily_query()` helper. The portfolio does not run the script or connect to Google accounts.
+- **Safety and validation:** Source-specific identifiers, private data and credentials omitted. GitHub file retrieval and updated commit must be checked; full automated tests, browser/mobile QA and Vercel build remain separately verifiable.
+- **Release:** Feature branch only, no production merge.
+
+
+## 2026-11-19 - Showcase ecommerce API extraction and data value
+
+- **Target:** `bonvallite/developer-portfolio`, review branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `app/page.tsx`, `app/python-automation/page.tsx`, `app/experience/page.tsx`, `skills/python-automation-portfolio/SKILL.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a public-safe case study of Python Google Search Console API exports and JavaScript Google Ads reporting scripts; described authentication, pagination, CSV exports, data limitations and value for ecommerce SEO, paid media and conversion measurement. Linked it from projects, skills, Python and experience sections; extended reusable documentation.
+- **Reason:** Make demonstrated scripting, technical depth and the practical value of resulting datasets visible to potential employers and clients.
+- **Inline documentation:** Added context and confidentiality notes in the case study and homepage, and kept reusable skill and README aligned.
+- **Validation:** Reviewed source descriptions and repository contents prior to writes; code execution, CI, safety scan, Next.js build and Vercel preview verification must be reported after remote checks. Do not infer successful business exports or production release.
+- **Release:** Review branch only; no merge or production deployment authorised.
+
+
 ## 2026-11-19 - Restore owner-requested résumé, professional profiles and webmail shortcut
 - **Target:** `bonvallite/developer-portfolio`, `fix/restore-jrv-professional-links-webmail-resume` based on `main`.
 - **Affected files:** `app/page.tsx`, `app/experience/page.tsx`, `public/JRV-Resume.pdf` (restored unchanged from historical Git blob), `app/globals.css`, `README.md`, `CHANGELOG.md`.
