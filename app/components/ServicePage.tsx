@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 // copy and links to existing case studies. Do not add personal-name SEO or unverified
 // outcomes. Contact CTA returns to the homepage's existing contact choices.
 // Keep the privacy notice accessible from service pages, not just the homepage.
+// Cross-link the four existing service routes without introducing unverified schema claims.
 export type ServiceContent = {
   label: string;
   heading: string;
@@ -47,6 +48,16 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
         <p className="service-disclaimer">Public examples describe documented work or independent demonstrations. They do not expose confidential client configurations or promise specific commercial results.</p>
         <div className="service-card-grid">{content.evidence.map(item => <article key={item.href}><h3>{item.title}</h3><p>{item.description}</p><Link href={item.href}>Explore project <ArrowUpRight size={16} /></Link></article>)}</div>
       </section>
+      <nav className="container section service-section" aria-label="Explore other Shopify services">
+        <span className="overline">EXPLORE SERVICES</span>
+        <h2>Related Shopify expertise</h2>
+        <div className="service-card-grid">
+          <Link href="/shopify-developer">Shopify development <ArrowUpRight size={16} /></Link>
+          <Link href="/ecommerce-management">Ecommerce management <ArrowUpRight size={16} /></Link>
+          <Link href="/shopify-cro">Conversion rate optimisation <ArrowUpRight size={16} /></Link>
+          <Link href="/shopify-app-development">Custom apps and integrations <ArrowUpRight size={16} /></Link>
+        </div>
+      </nav>
       <section className="container service-bottom-cta">
         <h2>Looking for Shopify expertise?</h2>
         <p>Share the role, store challenge, desired outcome, and any relevant technical constraints to start a practical discussion.</p>
