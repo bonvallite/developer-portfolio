@@ -1,7 +1,9 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
-// The approved {JRV} monogram uses the site's gold-on-charcoal palette in app/icon.svg.
+// Public wordmark: EC. (Shopify Commerce Engineering). The approved {JRV}
+// browser favicon is intentionally different and remains in app/icon.svg,
+// using the site's gold-on-charcoal palette.
 // Next.js discovers this self-contained, transparent-corner favicon automatically.
 // Do not add a competing metadata.icons entry or a legacy favicon.ico.
 // Search metadata describes services, not the site owner's personal name.
