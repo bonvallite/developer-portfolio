@@ -1,4 +1,5 @@
 # Manual evidence capture only. Never commit screenshots or deploy site changes.
+# Retired storefronts must be removed from both the input choices and capture script.
 name: Capture storefront homepage previews
 on:
   workflow_dispatch:
@@ -18,7 +19,6 @@ on:
           - rene-ruiz-collection
           - urban-august
           - warehouse-lighting
-          - skull-seeker
           - osoyoo
           - axlrodd
           - tronus-footwear
