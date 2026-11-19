@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-19 - Correct public wordmark to JRV
+- **Target:** `bonvallite/developer-portfolio`, branch `fix/replace-ec-wordmark-with-jrv-20261119`.
+- **Affected files:** `app/page.tsx`, `app/layout.tsx`, `app/cartoncloud-integration/page.tsx`, `app/conversion-audit/page.tsx`, `app/RotationArchive.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change and reason:** Replaced the mistaken EC. wordmark with user-confirmed JRV throughout visible navigation and archive elements. Aligned footer and site metadata with JRV while retaining Shopify Commerce Engineering as a descriptive service label. Preserved the original `{JRV}` favicon and public contact email `hello@jrvallite.com`.
+- **Validation:** Reviewed each affected source file and its comments before editing; CI and deployment verification to follow the commit.
+
+
 ## 2026-11-19 - EC. public branding, {JRV} favicon and domain email
 - **Target:** `bonvallite/developer-portfolio`, branch `fix/brand-ec-jrv-favicon-contact-email-20261119`, Next.js/Vercel portfolio.
 - **Affected files:** `app/page.tsx`, `app/privacy/page.tsx`, `app/layout.tsx`, `README.md`, `scripts/public-safety-allowlist.json`, `CHANGELOG.md`.
