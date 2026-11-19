@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 const content: ServiceContent = {
+  // Keep this path aligned with this route's canonical metadata.
+  path: '/shopify-developer',
   "label": "SHOPIFY DEVELOPER / THEME ENGINEERING",
   "heading": "Shopify Developer for custom storefronts and B2B commerce",
   "lead": "Build and maintain Shopify storefronts with Liquid, Online Store 2.0 theme architecture, responsive customer journeys, and disciplined change management.",
