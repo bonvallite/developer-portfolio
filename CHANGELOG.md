@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-19 - Complete local-browser QA for analytics case study
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, PR #39. No production merge or manual Vercel deployment.
+- **Affected files:** `tests/case-study-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, `app/data-extraction-automation/interactive-lab.tsx`, `CHANGELOG.md`.
+- **Change:** Added Playwright Chrome QA on a locally served Next.js build for desktop (1440×900), tablet (768×1024), and mobile (390×844). Checks route/structured output, the cinematic hero, absence of horizontal overflow, interactive lesson and code-tab controls, 17-file archive display, archive URL response and JavaScript page errors. Uploaded full-page screenshots as a seven-day GitHub Actions artifact.
+- **Fix identified by browser QA:** Corrected the lesson tuple's positional mapping: `[stage, heading, description, deliverable]`. Previously the component displayed the description as the heading and omitted the deliverable.
+- **CI configuration:** Replaced unsupported Playwright browser installation on Ubuntu 26.04 with an Ubuntu 24.04 runner and the runner-provided Chrome browser. Browser checks are restricted to this feature branch's pull requests to limit unrelated CI work.
+- **Validation:** GitHub Actions run [#44529578132](https://github.com/bonvallite/developer-portfolio/actions/runs/44529578132) passed baseline SEO/privacy, publication safety, JavaScript/Python tests, TypeScript, production build and all three browser viewport checks. GitHub artifact `case-study-browser-qa` contains `desktop-full.png`, `tablet-full.png`, and `mobile-full.png`; downloaded and visually reviewed. External Vercel preview exists for merge commit `ef8bf211`, but the current post-QA changes were tested locally in GitHub, not deployed to production.
+
 ## 2026-11-19 - Merge analytics pipeline case study with current homepage work
 
 - **Target:** `bonvallite/developer-portfolio`, `feature/google-analytics-api-portfolio-20261119`, PR #39.
