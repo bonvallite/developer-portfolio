@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacy' },
 };
 
+// The public privacy enquiry address is the portfolio domain mailbox.
+// Keep it aligned with the contact links on app/page.tsx.
 export default function PrivacyPage() {
   return (
     <main className="container" style={{ paddingTop: 96, paddingBottom: 96, maxWidth: 820 }}>
@@ -21,7 +23,7 @@ export default function PrivacyPage() {
       <h2>Analytics</h2>
       <p>Google Tag Manager can load other tags depending on its published configuration. Microsoft Clarity provides interaction analytics, and Vercel Analytics provides website traffic measurement. Their processing and retention depend on the relevant provider and account settings.</p>
       <h2>Your choices</h2>
-      <p>You can manage browser privacy and tracking settings. To ask about this website's analytics or request information about an enquiry you sent, contact <a href="mailto:bonvallite@gmail.com?subject=Portfolio%20privacy%20enquiry">the site operator by email</a>.</p>
+      <p>You can manage browser privacy and tracking settings. To ask about this website's analytics or request information about an enquiry you sent, contact <a href="mailto:hello@jrvallite.com?subject=Portfolio%20privacy%20enquiry">the site operator by email</a>.</p>
       <p><strong>Note:</strong> This notice describes integrations identified in the site code; it does not certify that every deployed tag or consent setting has been independently audited.</p>
     </main>
   );
