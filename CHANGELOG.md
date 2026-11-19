@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-19 - Display Python ranking calculation on Vercel case study
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `CHANGELOG.md`.
+- **Change:** Embedded a read-only, formatted excerpt from the owner-supplied Search Console Python `fetch_monthly_keywords()` function, with a mobile-scrollable code panel and explanation of impression-weighted search position and observed-period changes.
+- **Reason:** Let prospective employers and clients inspect real Python logic, alongside the business purpose of the resulting SEO dataset.
+- **Inline documentation:** Added component comments identifying the provenance, read-only display and dependency on the private `get_daily_query()` helper. The portfolio does not run the script or connect to Google accounts.
+- **Safety and validation:** Source-specific identifiers, private data and credentials omitted. GitHub file retrieval and updated commit must be checked; full automated tests, browser/mobile QA and Vercel build remain separately verifiable.
+- **Release:** Feature branch only, no production merge.
+
+
 ## 2026-11-19 - Showcase ecommerce API extraction and data value
 
 - **Target:** `bonvallite/developer-portfolio`, review branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
