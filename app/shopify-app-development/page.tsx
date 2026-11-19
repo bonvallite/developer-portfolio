@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 const content: ServiceContent = {
+  // Keep this path aligned with this route's canonical metadata.
+  path: '/shopify-app-development',
   "label": "SHOPIFY APPS / API INTEGRATIONS",
   "heading": "Custom Shopify Apps and API Integrations",
   "lead": "Connect Shopify to external systems using custom application logic, authenticated APIs, webhooks, and serverless infrastructure designed around reliable ecommerce operations.",
