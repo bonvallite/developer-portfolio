@@ -285,13 +285,13 @@
    of a 920px scene. Closed front shifts -50% of its own page width, open is 0,
    and closed back shifts +50%. This visually centres all three states.
    Preserve contrast and reduced-motion handling, and do not restyle .hero. */
-.rotation-archive{--ra-accent:#d9b47c;--ra-accent-hover:#b9905b;position:relative;isolation:isolate;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:clamp(60px,7vw,100px) 28px 72px;background:radial-gradient(ellipse at 50% 43%,#26241f 0%,#14171c 65%,#0b0e12 100%);color:#f6f6f7;border-top:1px solid #ffffff13;border-bottom:1px solid #ffffff13;font-family:'DM Sans',sans-serif;overflow:hidden}
+.rotation-archive{--ra-accent:#d9b47c;--ra-accent-hover:#b9905b;position:relative;isolation:isolate;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:clamp(60px,7vw,100px) 28px 72px;background:radial-gradient(ellipse at 50% 33%,#221e1a 0%,#14171c 49%,#0b0e12 88%);color:#f6f6f7;border-top:1px solid #ffffff13;border-bottom:1px solid #ffffff13;font-family:'DM Sans',sans-serif;overflow:hidden}
 .rotation-archive:focus-visible{outline:2px solid var(--ra-accent);outline-offset:-5px}
-.rotation-heading{text-align:center;max-width:680px;position:relative;z-index:2}
+.rotation-heading{text-align:center;max-width:780px;position:relative;z-index:2}
 .rotation-kicker{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--ra-accent)}
-.rotation-heading h2{font-family:'DM Sans',sans-serif;font-size:clamp(30px,4vw,47px);font-weight:800;letter-spacing:-.045em;line-height:1.12;margin:15px 0 12px}
-.rotation-heading h2 em{font-style:normal;color:#eac99a}
-.rotation-heading p{margin:0;color:#bfc2cb;font-size:clamp(12px,1.5vw,15px);line-height:1.7}
+.rotation-heading h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-.045em;line-height:1.12;margin:15px 0 12px}
+.rotation-heading h2 em{font-style:normal;color:#d9b47c}
+.rotation-heading p{margin:0;color:#bfc2cb;font-size:clamp(13px,1.5vw,16px);line-height:1.7}
 .rotation-scene{width:100%;max-width:920px;height:500px;perspective:2400px;position:relative;touch-action:pan-y;flex-shrink:0}
 .rotation-book{position:absolute;right:0;top:0;width:50%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.25,1,.5,1)}
 .rotation-book--front{transform:translateX(-50%)}
@@ -299,16 +299,16 @@
 .rotation-book--back{transform:translateX(50%)}
 .rotation-sheet{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:left center;transform:rotateY(0deg);transition:transform .85s cubic-bezier(.645,.045,.355,1);will-change:transform}
 .rotation-sheet.is-flipped{transform:rotateY(-180deg)}
-.rotation-face{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;color:#121316;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border:1px solid #e0e0e0;box-shadow:inset 0 0 28px #00000009,0 15px 35px #0004}
-.rotation-face--front{border-radius:2px 8px 8px 2px;background:linear-gradient(to right,#00000016,transparent 9%),#fff}
-.rotation-face--back{transform:rotateY(180deg);border-radius:8px 2px 2px 8px;background:linear-gradient(to left,#00000016,transparent 9%),#fafafa}
-.rotation-cover,.rotation-back-cover{border-left:8px solid var(--ra-accent)!important;color:#fff!important;background:linear-gradient(135deg,#292722,#111418)!important;justify-content:center;text-align:center}
+.rotation-face{position:absolute;inset:0;display:flex;flex-direction:column;background:#f4f2ee;color:#1a1917;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border:1px solid #e0e0e0;box-shadow:inset 0 0 28px #00000009,0 15px 35px #0004}
+.rotation-face--front{border-radius:2px 8px 8px 2px;background:linear-gradient(to right,#00000016,transparent 9%),#f4f2ee}
+.rotation-face--back{transform:rotateY(180deg);border-radius:8px 2px 2px 8px;background:linear-gradient(to left,#00000016,transparent 9%),#ece8e1}
+.rotation-cover,.rotation-back-cover{border-left:8px solid var(--ra-accent)!important;color:#fff!important;background:linear-gradient(135deg,#24201b,#111418)!important;justify-content:center;text-align:center}
 .rotation-back-cover{border-left:0!important;border-right:8px solid var(--ra-accent)!important}
 .rotation-cover-content{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;width:100%;height:100%;padding:32px 20px}
 .rotation-cover-content>span{color:#e3bf8a;font-size:10px;letter-spacing:.24em;font-weight:800}
-.rotation-cover-content h3{font-family:'DM Sans',sans-serif;font-size:clamp(24px,3.2vw,41px);line-height:1.1;letter-spacing:.055em;margin:0;font-weight:900}
+.rotation-cover-content h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3.2vw,41px);line-height:1.1;letter-spacing:.055em;margin:0;font-weight:900}
 .rotation-cover-content p{max-width:280px;color:#bfc3cd;font-size:13px;line-height:1.6;margin:0}
-.rotation-cover-link{display:inline-flex;align-items:center;gap:7px;color:#fff;background:var(--ra-accent);border-radius:99px;font-size:12px;font-weight:750;padding:12px 15px;position:relative;z-index:4}
+.rotation-cover-link{display:inline-flex;align-items:center;gap:7px;color:#17120e;background:var(--ra-accent);border-radius:99px;font-size:12px;font-weight:750;padding:12px 15px;position:relative;z-index:4}
 .rotation-cover-link:hover{background:var(--ra-accent-hover)}
 .rotation-page-content{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:15px;width:100%;height:100%;padding:clamp(16px,2.4vw,30px)}
 .rotation-meta{display:flex;justify-content:space-between;gap:7px;font-size:10px;font-weight:750;letter-spacing:.09em;color:#5d636e}
@@ -319,12 +319,14 @@
 .rotation-image-fallback span{font-size:9px;letter-spacing:.12em;font-weight:700;color:#727984}
 .rotation-image-fallback strong{font-size:clamp(14px,2vw,23px)}
 .rotation-image-fallback small{font-size:11px;line-height:1.5}
-.rotation-summary h3{font-family:'DM Sans',sans-serif;font-size:clamp(15px,2vw,24px);font-weight:800;letter-spacing:-.02em;margin:0 0 5px}
+.rotation-summary h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,2vw,24px);font-weight:800;letter-spacing:-.02em;margin:0 0 5px}
 .rotation-summary p{font-size:clamp(10px,1.2vw,13px);line-height:1.5;color:#4c5560;margin:0}
-.rotation-page-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #e1e4e8;padding-top:12px}
+.rotation-page-actions{display:flex;align-items:center;justify-content:space-between;gap:9px;border-top:1px solid #d5cec3;padding-top:12px}
 .rotation-page-actions>span{font-size:9px;font-weight:700;letter-spacing:.08em;color:#6c737b}
-.rotation-page-actions a{display:inline-flex;gap:6px;align-items:center;white-space:nowrap;background:var(--ra-accent);color:white;border-radius:999px;padding:10px 12px;font-size:11px;font-weight:700;position:relative;z-index:4}
+.rotation-page-actions a{display:inline-flex;gap:6px;align-items:center;white-space:nowrap;background:var(--ra-accent);color:#17120e;border-radius:999px;padding:10px 12px;font-size:11px;font-weight:700;position:relative;z-index:4}
 .rotation-page-actions a:hover{background:var(--ra-accent-hover)}
+.rotation-page-actions .rotation-case-link{background:transparent;color:#504029;border:1px solid #a48a62;white-space:normal;text-align:center}
+.rotation-page-actions .rotation-case-link:hover{background:#e5d6c0;color:#17120e}
 .rotation-page-actions a:focus-visible,.rotation-cover-link:focus-visible{outline:3px solid #121316;outline-offset:3px}
 .rotation-turn-surface{position:absolute;inset:0;z-index:2;width:100%;height:100%;border:0;background:transparent;color:transparent;cursor:pointer}
 .rotation-turn-surface:focus-visible{outline:4px solid var(--ra-accent);outline-offset:-5px}
@@ -336,13 +338,21 @@
 .rotation-count{font-size:12px;font-weight:650;color:#eceaf0;min-width:105px;text-align:center}
 .rotation-hint{font-size:11px;color:#aaaeb9;text-align:center;max-width:600px;margin:0;line-height:1.6}
 .rotation-after{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;max-width:920px;padding-top:21px;border-top:1px solid #ffffff25}
-.rotation-after span{font-size:10px;letter-spacing:.1em;color:#a6a9b2}
+.rotation-after div{display:flex;flex-direction:column;gap:6px}.rotation-after strong{font:600 14px 'Space Grotesk',sans-serif;color:#eee1d0}.rotation-after span{font-size:11px;line-height:1.5;color:#a6a9b2}
 .rotation-after a{color:#e7c18c;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:7px}
 .rotation-after a:hover{color:white}
-@media(max-width:680px){.rotation-archive{padding:66px 12px 56px;gap:22px}.rotation-scene{height:430px}.rotation-page-content{gap:9px;padding:14px 11px}.rotation-image{height:46%;border-radius:6px}.rotation-meta{font-size:8px;letter-spacing:.02em;flex-wrap:wrap}.rotation-page-actions{flex-wrap:wrap;gap:5px;padding-top:6px}.rotation-page-actions>span{font-size:7px}.rotation-page-actions a{font-size:9px;padding:8px}.rotation-summary h3{font-size:clamp(12px,3vw,17px)}.rotation-summary p{font-size:10px}.rotation-cover-content h3{font-size:clamp(17px,5vw,30px)}.rotation-cover-content{padding:16px 8px;gap:15px}.rotation-cover-content>span{font-size:8px}.rotation-cover-content p{font-size:10px}.rotation-controls button{min-width:80px;padding:10px 12px}.rotation-count{min-width:75px}.rotation-after{flex-direction:column;text-align:center}.rotation-hint{max-width:330px}.rotation-image-fallback small{font-size:9px}}
+@media(max-width:680px){.rotation-archive{padding:66px 12px 56px;gap:22px}.rotation-scene{height:430px}.rotation-page-content{gap:9px;padding:14px 11px}.rotation-image{height:46%;border-radius:6px}.rotation-meta{font-size:8px;letter-spacing:.02em;flex-wrap:wrap}.rotation-page-actions{flex-wrap:wrap;gap:5px;padding-top:6px}.rotation-page-actions>span{font-size:7px}.rotation-page-actions a{font-size:9px;padding:8px}.rotation-page-actions{align-items:stretch}.rotation-page-actions a{flex:1;justify-content:center;line-height:1.25}.rotation-summary h3{font-size:clamp(12px,3vw,17px)}.rotation-summary p{font-size:10px}.rotation-cover-content h3{font-size:clamp(17px,5vw,30px)}.rotation-cover-content{padding:16px 8px;gap:15px}.rotation-cover-content>span{font-size:8px}.rotation-cover-content p{font-size:10px}.rotation-controls button{min-width:80px;padding:10px 12px}.rotation-count{min-width:75px}.rotation-after{flex-direction:column;text-align:center}.rotation-hint{max-width:370px}.rotation-image-fallback small{font-size:9px}}
 @media(max-width:390px){.rotation-scene{height:390px}.rotation-page-content{padding:11px 8px}.rotation-page-actions a{padding:7px 8px}.rotation-cover-content h3{letter-spacing:0}}
 @media(prefers-reduced-motion:reduce){.rotation-archive .rotation-book,.rotation-archive .rotation-sheet,.rotation-archive .rotation-image img,.rotation-archive .rotation-controls button{transition:none!important}.rotation-archive .rotation-controls button:hover{transform:none}}
 
+
+/* Align the book's editorial surfaces, CTA language and hierarchy with the
+   site's Space Grotesk headings, gold buttons and cream text. The book is a
+   secondary case-study introduction, not a separate brand or checkout. */
+.rotation-page-actions a:focus-visible,.rotation-after a:focus-visible{outline:2px solid #86673b;outline-offset:3px}
+.rotation-archive .rotation-cover-link,.rotation-archive .rotation-page-actions>a:last-child{color:#17120e}
+.rotation-archive .rotation-cover-link:hover,.rotation-archive .rotation-page-actions>a:last-child:hover{color:#17120e}
+@media(max-width:440px){.rotation-page-actions{gap:5px}.rotation-page-actions a{font-size:8px;padding:7px 5px}.rotation-heading h2{font-size:clamp(27px,7.5vw,36px)}}
 /* Stable image frames and lightweight loading placeholders. A warm gold shimmer
    appears only while mShots is pending. It avoids blank panels or layout shift,
    but cannot reduce the remote service's initial screenshot-generation time. */
