@@ -208,3 +208,23 @@
 /* Stage 1 homepage hero: balance the longer service-led headline on desktop and mobile without changing headings on other pages. */
 #home.hero h1 { font-size: clamp(38px, 4.8vw, 68px); line-height: 1.12; letter-spacing: -2.2px; max-width: 1100px; }
 @media (max-width: 700px) { #home.hero h1 { font-size: clamp(32px, 8.5vw, 46px); line-height: 1.15; letter-spacing: -1.4px; } }
+
+
+/* /experience public-site previews: use independent, lazily loaded screenshot
+   thumbnails rather than copying client assets. Browser viewport and image
+   output dimensions are defined in app/experience/page.tsx. */
+.storefront-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:28px}
+.storefront-featured-preview{margin-top:24px}
+.storefront-preview-card{background:#1c252d;border:1px solid #424d56;border-radius:14px;padding:20px;min-width:0}
+.storefront-preview-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.storefront-preview-head h3{font-size:19px;line-height:1.35;margin:0}
+.storefront-preview-head a{display:inline-flex;align-items:center;gap:6px;color:#e2be8a;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.storefront-preview-head a:focus-visible{outline:2px solid #e2be8a;outline-offset:4px}
+.storefront-preview-pair{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(105px,1fr);align-items:start;gap:14px}
+.storefront-device{min-width:0}
+.storefront-device>.overline{display:block;font-size:10px;letter-spacing:.08em;line-height:1.5;margin-bottom:9px}
+.storefront-screen{border:5px solid #37444e;border-radius:9px;overflow:hidden;background:#28323a;box-shadow:0 9px 23px #0003;aspect-ratio:1280/800}
+.storefront-screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.storefront-device.mobile .storefront-screen{max-width:190px;margin:0 auto;border-width:5px 4px;border-radius:18px;aspect-ratio:390/844}
+@media(max-width:850px){.storefront-preview-grid{grid-template-columns:1fr}}
+@media(max-width:460px){.storefront-preview-card{padding:14px}.storefront-preview-pair{grid-template-columns:minmax(0,1.6fr) minmax(95px,1fr);gap:9px}.storefront-device>.overline{font-size:9px}.storefront-preview-head h3{font-size:17px}}
