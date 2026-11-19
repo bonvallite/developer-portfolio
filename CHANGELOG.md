@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-19 - Link gift-packaging demo from portfolio homepage
+
+- **Target:** `bonvallite/developer-portfolio` on branch `feat/gift-packaging-homepage-discovery-20261119`, Vercel preview; main/production unchanged.
+- **Affected files:** `app/page.tsx`, `CHANGELOG.md`.
+- **Change:** Added a gift-packaging project callout in the homepage selected-work section with an internal link to the existing `/gift-packaging-reference` interactive example.
+- **Reason:** The production demo was reachable by direct URL but had no discoverable homepage link. This makes the work visible to employers and potential clients.
+- **Inline documentation:** JSX comment identifies the independently authored demo and its local route; existing source documentation preserved.
+- **Validation:** Reviewed saved source and link target for exact path and fictional/no-payment claims. CI build, browser/mobile layout and Vercel preview checks pending.
+- **Release and recovery:** Proposed branch/PR only; revert this scoped homepage callout without affecting the demo route.
+
+
 ## 2026-11-18 - Align Fieldstone gift packaging demo with portfolio palette
 
 - **Target:** `bonvallite/developer-portfolio`, review branch `feat/fieldstone-gift-packaging-20261118`, Vercel preview only.
