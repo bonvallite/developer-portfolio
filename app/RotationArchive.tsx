@@ -9,6 +9,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, RotateCcw } from 'lucide-react';
 // Names and links are portfolio references, not endorsements or evidence of
 // individual authorship. Screenshots come from an external public-site thumbnail
 // service; a failed request falls back to a simple, legible editorial panel.
+// Only the visible book faces mount images, avoiding six hidden-sheet requests.
 const pages = [
   { name: 'Peter Augustus', category: 'AUSTRALIAN ECOMMERCE', detail: 'Responsive homepage & Shopify operations', url: 'https://www.peteraugustus.com.au/' },
   { name: 'Eve Curls', category: 'INTERNATIONAL COMMERCE', detail: 'European-market storefront reference', url: 'https://www.evecurls.com/' },
@@ -19,12 +20,15 @@ const pages = [
 const sheetCount = 3;
 function StoreImage({ name, url }: { name: string; url: string }) {
   const [error, setError] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   // A cached public homepage thumbnail, not an authenticated production capture.
-  const source = `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?vpw=900&vph=620&w=900&h=620`;
-  return <div className="rotation-image">
+  // Keep the 900px capture viewport but request a 520px-wide thumbnail.
+  // Remote generation can still be slow on a cold cache; only mount visible pages.
+  const source = `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?vpw=900&vph=620&w=520&h=358`;
+  return <div className={`rotation-image${loaded ? " is-ready" : ""}`}>
     {error ? <div className="rotation-image-fallback"><span>STOREFRONT PREVIEW</span><strong>{name}</strong><small>Open the live site to view its current homepage.</small></div> :
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={source} alt={`Public homepage preview of ${name}`} loading="lazy" decoding="async" onError={() => setError(true)} referrerPolicy="no-referrer"/>}
+      <img src={source} alt={`Public homepage preview of ${name}`} loading="lazy" decoding="async" onLoad={() => setLoaded(true)} onError={() => setError(true)} referrerPolicy="no-referrer"/>}
   </div>;
 }
 function ReferencePage({ index }: { index: number }) {
@@ -76,11 +80,11 @@ export default function RotationArchive() {
           const backVisible = index === currentSheet - 1;
           return <div key={index} className={`rotation-sheet${flipped ? ' is-flipped' : ''}`} style={{zIndex:flipped ? index + 1 : sheetCount - index}}>
             <div className={`rotation-face rotation-face--front${index === 0 ? ' rotation-cover' : ''}`} aria-hidden={!frontVisible} inert={!frontVisible}>
-              {index === 0 ? <div className="rotation-cover-content"><span>EC. / WORK ARCHIVE</span><h3>THE<br/>ROTATION<br/>ARCHIVE</h3><p>Shopify Commerce Engineering</p><span>INTERACTIVE EDITION · 2026</span></div> : <ReferencePage index={index === 1 ? 1 : 3}/>}
+              {index === 0 ? <div className="rotation-cover-content"><span>EC. / WORK ARCHIVE</span><h3>THE<br/>ROTATION<br/>ARCHIVE</h3><p>Shopify Commerce Engineering</p><span>INTERACTIVE EDITION · 2026</span></div> : frontVisible ? <ReferencePage index={index === 1 ? 1 : 3}/> : null}
               {frontVisible && <button className="rotation-turn-surface" type="button" aria-label={index === 0 ? 'Open the book' : 'Turn to next page'} onClick={() => faceClick(index,'front')}/>}
             </div>
             <div className={`rotation-face rotation-face--back${index === sheetCount - 1 ? ' rotation-cover rotation-back-cover' : ''}`} aria-hidden={!backVisible} inert={!backVisible}>
-              {index === sheetCount - 1 ? <div className="rotation-cover-content"><span>END OF ARCHIVE</span><h3>WHAT<br/>COMES<br/>NEXT?</h3><p>Explore the projects behind the storefronts.</p><Link href="/experience" className="rotation-cover-link" onClick={event=>event.stopPropagation()}>Explore experience <ArrowUpRight size={15}/></Link></div> : <ReferencePage index={index === 0 ? 0 : 2}/>}
+              {index === sheetCount - 1 ? <div className="rotation-cover-content"><span>END OF ARCHIVE</span><h3>WHAT<br/>COMES<br/>NEXT?</h3><p>Explore the projects behind the storefronts.</p><Link href="/experience" className="rotation-cover-link" onClick={event=>event.stopPropagation()}>Explore experience <ArrowUpRight size={15}/></Link></div> : backVisible ? <ReferencePage index={index === 0 ? 0 : 2}/> : null}
               {backVisible && index !== sheetCount - 1 && <button className="rotation-turn-surface rotation-turn-surface--back" type="button" aria-label="Turn to previous page" onClick={() => faceClick(index,'back')}/>}
             </div>
           </div>;
