@@ -1,6 +1,6 @@
 # Verified storefront screenshot workflow
 
-This manual workflow captures public homepage viewports for the 12 stores referenced on `/experience`. It does **not** publish images or change production.
+This manual workflow captures public homepage viewports for 11 active storefronts (10 in the experience reference grid, plus the featured Peter Augustus site) on `/experience`. It does **not** publish images or change production.
 
 ## Runner compatibility
 
@@ -33,3 +33,7 @@ The public page currently uses third-party WordPress mShots previews and display
 ## Capture limitations
 
 Marketing popups, localisation, bot protection, personalisation and cookie consent banners may affect captured screens. The workflow is not an archival screenshot service, a UX audit, or evidence of quantified results. Never attempt to bypass a site's access restrictions or reuse private client screenshots without permission.
+
+## Retired storefront maintenance (19 November 2026)
+
+Skull Seeker (`https://www.skullseeker.com/`) has been retired per the portfolio owner's direction after a DNS resolution failure in run `44490966868`. It is excluded from `/experience`, the screenshot script and the manual GitHub Actions store selector. The present capture target is **11 sites / 22 images**, including Peter Augustus. Historical audit records and prior artefacts remain unchanged and may mention the former entry.

@@ -9,6 +9,7 @@ import { chromium } from 'playwright';
 import { mkdir, writeFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
+// Active public sites only. Retired/unresolvable sites are deliberately excluded.
 const stores = [
   ['peter-augustus', 'Peter Augustus', 'https://www.peteraugustus.com.au/'],
   ['poseidon-animal-health', 'Poseidon Animal Health', 'https://poseidonanimalhealth.com.au/'],
@@ -18,7 +19,6 @@ const stores = [
   ['rene-ruiz-collection', 'Rene Ruiz Collection', 'https://reneruizcollection.com/'],
   ['urban-august', 'Urban August', 'https://urbanaugust.com/'],
   ['warehouse-lighting', 'Warehouse-Lighting', 'https://www.warehouse-lighting.com/'],
-  ['skull-seeker', 'Skull Seeker', 'https://www.skullseeker.com/'],
   ['osoyoo', 'OSOYOO', 'https://osoyoo.com/'],
   ['axlrodd', 'Axlrodd', 'https://axlrodd.com/'],
   ['tronus-footwear', 'Tronus Footwear', 'https://tronusfootwear.com/'],
