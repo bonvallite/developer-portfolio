@@ -4,7 +4,11 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 // Shared server-rendered service layout. Each route supplies distinct, evidence-led
 // copy and links to existing case studies. Do not add personal-name SEO or unverified
 // outcomes. Contact CTA returns to the homepage's existing contact choices.
+// Keep the privacy notice accessible from service pages, not just the homepage.
+// Cross-link the four existing service routes. Minimal WebPage JSON-LD repeats only
+// visible route content and the explicit canonical path; never include identity claims.
 export type ServiceContent = {
+  path: string;
   label: string;
   heading: string;
   lead: string;
@@ -15,8 +19,17 @@ export type ServiceContent = {
 };
 
 export default function ServicePage({ content }: { content: ServiceContent }) {
+  // Serialize JSON as inert script data, escaping HTML-significant characters.
+  const webPageSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: content.heading,
+    description: content.lead,
+    url: `https://www.jrvallite.com${content.path}`,
+  }).replace(/</g, '\\u003c');
   return (
     <main className="service-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: webPageSchema }} />
       <header className="container service-header">
         <Link href="/" className="service-back"><ArrowLeft size={17} /> Back to portfolio</Link>
         <Link href="/#contact" className="button secondary">Discuss a role or project <ArrowUpRight size={16} /></Link>
@@ -46,12 +59,22 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
         <p className="service-disclaimer">Public examples describe documented work or independent demonstrations. They do not expose confidential client configurations or promise specific commercial results.</p>
         <div className="service-card-grid">{content.evidence.map(item => <article key={item.href}><h3>{item.title}</h3><p>{item.description}</p><Link href={item.href}>Explore project <ArrowUpRight size={16} /></Link></article>)}</div>
       </section>
+      <nav className="container section service-section" aria-label="Explore other Shopify services">
+        <span className="overline">EXPLORE SERVICES</span>
+        <h2>Related Shopify expertise</h2>
+        <div className="service-card-grid">
+          <Link href="/shopify-developer">Shopify development <ArrowUpRight size={16} /></Link>
+          <Link href="/ecommerce-management">Ecommerce management <ArrowUpRight size={16} /></Link>
+          <Link href="/shopify-cro">Conversion rate optimisation <ArrowUpRight size={16} /></Link>
+          <Link href="/shopify-app-development">Custom apps and integrations <ArrowUpRight size={16} /></Link>
+        </div>
+      </nav>
       <section className="container service-bottom-cta">
         <h2>Looking for Shopify expertise?</h2>
         <p>Share the role, store challenge, desired outcome, and any relevant technical constraints to start a practical discussion.</p>
         <Link href="/#contact" className="button primary">Make an enquiry <ArrowUpRight size={17} /></Link>
       </section>
-      <footer className="container service-footer"><Link href="/">Shopify Commerce Engineering <ArrowRight size={15} /></Link></footer>
+      <footer className="container service-footer"><Link href="/">Shopify Commerce Engineering <ArrowRight size={15} /></Link><Link href="/privacy">Privacy and analytics</Link></footer>
     </main>
   );
 }

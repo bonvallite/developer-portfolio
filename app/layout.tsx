@@ -25,6 +25,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en-AU">
       <head>
+        {/* Reuse an early connection for public screenshot thumbnails in the
+            experience and archive galleries, without preloading hidden images. */}
+        <link rel="preconnect" href="https://s.wordpress.com" crossOrigin="anonymous" />
         {/*
           Google's manual installation requires the actual scripts in <head>.
           A preview showed that next/script beforeInteractive only preloaded GTM

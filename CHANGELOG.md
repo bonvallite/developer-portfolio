@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-19 - Merge analytics pipeline case study with current homepage work
+
+- **Target:** `bonvallite/developer-portfolio`, `feature/google-analytics-api-portfolio-20261119`, PR #39.
+- **Scope:** homepage selected-work case study card and matching project-evidence mapping; experience page link; case-study route and interactive lab; sanitised Python archive; README and Python portfolio documentation.
+- **Resolution:** Retain current `main` homepage rotation/gallery, project storytelling and experience storefront showcases; introduce only the analytics project and source-safe links. Reconcile the two changelog branches without dropping either history.
+- **Validation:** Source-level merge conflict review, no private data added. GitHub Actions must rerun on reconciled commit; release remains draft and unmerged.
+
 ## 2026-11-19 - Restore portfolio CI trigger and confirm merge blocker
 
 - **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39.
@@ -58,6 +65,17 @@
 - **Inline documentation:** Added context and confidentiality notes in the case study and homepage, and kept reusable skill and README aligned.
 - **Validation:** Reviewed source descriptions and repository contents prior to writes; code execution, CI, safety scan, Next.js build and Vercel preview verification must be reported after remote checks. Do not infer successful business exports or production release.
 - **Release:** Review branch only; no merge or production deployment authorised.
+
+
+## 2026-11-19 - Rebase homepage discovery link onto current production source
+
+- **Target:** `bonvallite/developer-portfolio`, feature branch `feat/gift-packaging-homepage-link-current-20261119`, based on `main` commit `8c8828c`.
+- **Affected files:** `app/page.tsx`, `CHANGELOG.md`.
+- **Change:** Added a selected-work homepage callout linking to the existing independent fictional `/gift-packaging-reference` demo, preserving newer homepage changes made after the original PR #40 branch.
+- **Reason:** Make the published gift packaging demonstration discoverable to employers and clients without overwriting 17 newer commits on `main`.
+- **Inline documentation:** Comment beside the callout explains its independent authorship and lack of merchant checkout/payment access.
+- **Validation:** Exact insertion anchor and internal link confirmed by source inspection. GitHub Actions, Next.js build, safety checks, Vercel preview and browser/mobile navigation to be verified after push.
+- **Release/recovery:** Review branch only; revert this scoped commit to remove the homepage link while retaining the independent demo route.
 
 
 ## 2026-11-18 - Align Fieldstone gift packaging demo with portfolio palette

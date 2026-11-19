@@ -204,3 +204,161 @@
 .case-context-grid a:hover{color:#fff0d1}
 .case-context-grid a:focus-visible{outline:2px solid #e2be8a;outline-offset:4px}
 @media(max-width:720px){.case-context-grid{grid-template-columns:1fr}.case-context-grid article{padding:21px}}
+
+/* Stage 1 homepage hero: balance the longer service-led headline on desktop and mobile without changing headings on other pages. */
+#home.hero h1 { font-size: clamp(38px, 4.8vw, 68px); line-height: 1.12; letter-spacing: -2.2px; max-width: 1100px; }
+@media (max-width: 700px) { #home.hero h1 { font-size: clamp(32px, 8.5vw, 46px); line-height: 1.15; letter-spacing: -1.4px; } }
+
+
+/* /experience public-site previews: use independent, lazily loaded screenshot
+   thumbnails rather than copying client assets. Browser viewport and image
+   output dimensions are defined in app/experience/StorefrontPreview.tsx. */
+.storefront-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:28px}
+.storefront-featured-preview{margin-top:24px}
+.storefront-preview-card{background:#1c252d;border:1px solid #424d56;border-radius:14px;padding:20px;min-width:0}
+.storefront-preview-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.storefront-preview-head h3{font-size:19px;line-height:1.35;margin:0}
+.storefront-preview-head a{display:inline-flex;align-items:center;gap:6px;color:#e2be8a;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.storefront-preview-head a:focus-visible{outline:2px solid #e2be8a;outline-offset:4px}
+.storefront-preview-pair{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(105px,1fr);align-items:start;gap:14px}
+.storefront-device{min-width:0}
+.storefront-device>.overline{display:block;font-size:10px;letter-spacing:.08em;line-height:1.5;margin-bottom:9px}
+.storefront-screen{border:5px solid #37444e;border-radius:9px;overflow:hidden;background:#28323a;box-shadow:0 9px 23px #0003;aspect-ratio:1280/800}
+.storefront-screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.storefront-device.mobile .storefront-screen{max-width:190px;margin:0 auto;border-width:5px 4px;border-radius:18px;aspect-ratio:390/844}
+@media(max-width:850px){.storefront-preview-grid{grid-template-columns:1fr}}
+@media(max-width:460px){.storefront-preview-card{padding:14px}.storefront-preview-pair{grid-template-columns:minmax(0,1.6fr) minmax(95px,1fr);gap:9px}.storefront-device>.overline{font-size:9px}.storefront-preview-head h3{font-size:17px}}
+
+/* Fallback stays inside the allocated screenshot aspect ratio to avoid layout
+   shift if the third-party screenshot service cannot produce an image. */
+.storefront-shot-unavailable{height:100%;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:12px;color:#d7dee2;background:linear-gradient(145deg,#283640,#18222a)}
+.storefront-shot-unavailable p{font-size:12px;line-height:1.5;margin:0;overflow-wrap:anywhere}
+.storefront-shot-unavailable a{font-size:12px;color:#e2be8a;text-decoration:underline;text-underline-offset:3px}
+.storefront-shot-unavailable a:focus-visible{outline:2px solid #e2be8a;outline-offset:3px}
+.storefront-device.mobile .storefront-shot-unavailable{padding:7px;gap:7px}
+.storefront-device.mobile .storefront-shot-unavailable p,.storefront-device.mobile .storefront-shot-unavailable a{font-size:10px}
+
+/* Cinematic storefront gallery on /experience.
+   Motion is lightweight CSS only; navigation is user-initiated and never
+   autoplays. Component: app/experience/StorefrontShowcase.tsx.
+   Keep this scoped so shared portfolio cards are unaffected. */
+.cinematic-showcase{position:relative;isolation:isolate;margin:30px 0 16px;border:1px solid #495660;border-radius:22px;padding:clamp(15px,3vw,33px);background:linear-gradient(160deg,#1c1e23 0%,#111418 65%,#16191d 100%);overflow:hidden}
+.cinematic-showcase:focus-visible{outline:2px solid #e2be8a;outline-offset:5px}
+.cinematic-showcase-top{display:flex;gap:18px;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative;z-index:1}
+.cinematic-showcase-top p{margin:8px 0 0;font-size:15px;color:#cdd4d8}
+.cinematic-showcase-count{white-space:nowrap;color:#b3bdc3;font-size:18px;font-variant-numeric:tabular-nums}
+.cinematic-showcase-count strong{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,52px);color:#f6e7c9;line-height:1}
+.cinematic-showcase-stage{position:relative;min-width:0}
+.cinematic-showcase-glow{pointer-events:none;position:absolute;left:10%;right:10%;top:6%;height:55%;border-radius:50%;background:radial-gradient(ellipse,#d9b47c2c 0%,transparent 72%);filter:blur(25px)}
+.cinematic-showcase-slide{position:relative;animation:cinematic-showcase-arrive .65s cubic-bezier(.21,.8,.2,1) both;transform-origin:50% 45%}
+.cinematic-showcase-slide .storefront-preview-card{position:relative;background:linear-gradient(150deg,#272725,#17191c);border-color:#746654;padding:clamp(15px,2.6vw,28px);box-shadow:0 24px 58px #0005;border-radius:18px}
+.cinematic-showcase-slide .storefront-preview-head h3{font-size:clamp(21px,2.7vw,31px)}
+.cinematic-showcase-slide .storefront-preview-pair{grid-template-columns:minmax(0,2.2fr) minmax(105px,1fr);gap:clamp(10px,2.5vw,27px)}
+.cinematic-showcase-slide .storefront-screen{border-color:#4e5a65;box-shadow:0 18px 35px #0006}
+.cinematic-showcase-slide .storefront-device.desktop .storefront-screen{transform:perspective(1200px) rotateY(-2deg);transform-origin:right}
+.cinematic-showcase-slide .storefront-device.mobile .storefront-screen{transform:translateY(10px) rotate(1deg);box-shadow:0 23px 35px #0009}
+.cinematic-showcase-navigation{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:20px 0 4px;position:relative;z-index:1}
+.cinematic-showcase-navigation button{display:inline-flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid #72716a;border-radius:999px;background:#23211e;color:#f6e7c9;font:inherit;font-size:13px;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.cinematic-showcase-navigation button:hover{background:#394149;border-color:#e2be8a;transform:translateY(-2px)}
+.cinematic-showcase-navigation button:focus-visible,.cinematic-showcase-index button:focus-visible,.cinematic-showcase-progress button:focus-visible{outline:2px solid #e2be8a;outline-offset:3px}
+.cinematic-showcase-current{font-size:13px;color:#d8d1c0;text-align:center}
+.cinematic-showcase-progress{display:flex;justify-content:center;gap:1px;padding:10px 0 16px}
+.cinematic-showcase-progress button{border:0;padding:7px 3px;background:transparent;cursor:pointer;flex:1;max-width:60px}
+.cinematic-showcase-progress span{display:block;height:3px;width:100%;border-radius:3px;background:#6b665f;transition:background .25s,transform .25s}
+.cinematic-showcase-progress span.selected{background:#e2b33c;transform:scaleY(1.5)}
+.cinematic-showcase-index{display:flex;gap:9px;overflow-x:auto;padding:8px 2px 13px;scrollbar-width:thin;scrollbar-color:#6b7780 transparent}
+.cinematic-showcase-index button{white-space:nowrap;display:inline-flex;gap:8px;align-items:center;flex:0 0 auto;background:#1c1e23;border:1px solid #4f5d68;border-radius:12px;color:#d1d8dc;padding:12px;font:inherit;font-size:12px;cursor:pointer;transition:transform .25s,background .25s,border-color .25s}
+.cinematic-showcase-index button:hover{border-color:#d6bc87;background:#2d2b27;transform:translateY(-2px)}
+.cinematic-showcase-index button.active{color:#f9e4b8;border-color:#d6bc87;background:#383229}
+.cinematic-index-number{font-size:10px;color:#b7c2c7;font-variant-numeric:tabular-nums}
+.cinematic-showcase-hint{color:#aebbc2;font-size:11px;line-height:1.6;margin:9px 0 0}
+@keyframes cinematic-showcase-arrive{from{opacity:0;transform:translate3d(0,19px,0) scale(.975);filter:blur(3px)}to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+@media(max-width:640px){.cinematic-showcase{border-radius:16px}.cinematic-showcase-top{align-items:flex-end}.cinematic-showcase-top p{font-size:13px}.cinematic-showcase-slide .storefront-preview-pair{grid-template-columns:minmax(0,1.4fr) minmax(94px,1fr)}.cinematic-showcase-navigation button{padding:10px}.cinematic-showcase-current{max-width:100px;font-size:12px}.cinematic-showcase-index button{padding:11px 10px}}
+@media(max-width:385px){.cinematic-showcase-navigation button span{display:none}.cinematic-showcase-slide .storefront-device>.overline{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.cinematic-showcase-slide{animation:none!important}.cinematic-showcase-navigation button,.cinematic-showcase-progress span,.cinematic-showcase-index button{transition:none!important}.cinematic-showcase-navigation button:hover,.cinematic-showcase-index button:hover{transform:none}.cinematic-showcase-slide .storefront-device.desktop .storefront-screen,.cinematic-showcase-slide .storefront-device.mobile .storefront-screen{transform:none}}
+
+
+/* Homepage-only 3D archive book. Gold and charcoal match the global brand
+   colours (#d9b47c, #14171c); no isolated orange palette is retained.
+   Images mount on active faces and use smaller public thumbnail outputs.
+   Coordinates: book anchored at the right half
+   of a 920px scene. Closed front shifts -50% of its own page width, open is 0,
+   and closed back shifts +50%. This visually centres all three states.
+   Preserve contrast and reduced-motion handling, and do not restyle .hero. */
+.rotation-archive{--ra-accent:#d9b47c;--ra-accent-hover:#b9905b;position:relative;isolation:isolate;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:clamp(60px,7vw,100px) 28px 72px;background:radial-gradient(ellipse at 50% 33%,#221e1a 0%,#14171c 49%,#0b0e12 88%);color:#f6f6f7;border-top:1px solid #ffffff13;border-bottom:1px solid #ffffff13;font-family:'DM Sans',sans-serif;overflow:hidden}
+.rotation-archive:focus-visible{outline:2px solid var(--ra-accent);outline-offset:-5px}
+.rotation-heading{text-align:center;max-width:780px;position:relative;z-index:2}
+.rotation-kicker{font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--ra-accent)}
+.rotation-heading h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-.045em;line-height:1.12;margin:15px 0 12px}
+.rotation-heading h2 em{font-style:normal;color:#d9b47c}
+.rotation-heading p{margin:0;color:#bfc2cb;font-size:clamp(13px,1.5vw,16px);line-height:1.7}
+.rotation-scene{width:100%;max-width:920px;height:500px;perspective:2400px;position:relative;touch-action:pan-y;flex-shrink:0}
+.rotation-book{position:absolute;right:0;top:0;width:50%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.25,1,.5,1)}
+.rotation-book--front{transform:translateX(-50%)}
+.rotation-book--open{transform:translateX(0)}
+.rotation-book--back{transform:translateX(50%)}
+.rotation-sheet{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:left center;transform:rotateY(0deg);transition:transform .85s cubic-bezier(.645,.045,.355,1);will-change:transform}
+.rotation-sheet.is-flipped{transform:rotateY(-180deg)}
+.rotation-face{position:absolute;inset:0;display:flex;flex-direction:column;background:#f4f2ee;color:#1a1917;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border:1px solid #e0e0e0;box-shadow:inset 0 0 28px #00000009,0 15px 35px #0004}
+.rotation-face--front{border-radius:2px 8px 8px 2px;background:linear-gradient(to right,#00000016,transparent 9%),#f4f2ee}
+.rotation-face--back{transform:rotateY(180deg);border-radius:8px 2px 2px 8px;background:linear-gradient(to left,#00000016,transparent 9%),#ece8e1}
+.rotation-cover,.rotation-back-cover{border-left:8px solid var(--ra-accent)!important;color:#fff!important;background:linear-gradient(135deg,#24201b,#111418)!important;justify-content:center;text-align:center}
+.rotation-back-cover{border-left:0!important;border-right:8px solid var(--ra-accent)!important}
+.rotation-cover-content{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;width:100%;height:100%;padding:32px 20px}
+.rotation-cover-content>span{color:#e3bf8a;font-size:10px;letter-spacing:.24em;font-weight:800}
+.rotation-cover-content h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3.2vw,41px);line-height:1.1;letter-spacing:.055em;margin:0;font-weight:900}
+.rotation-cover-content p{max-width:280px;color:#bfc3cd;font-size:13px;line-height:1.6;margin:0}
+.rotation-cover-link{display:inline-flex;align-items:center;gap:7px;color:#17120e;background:var(--ra-accent);border-radius:99px;font-size:12px;font-weight:750;padding:12px 15px;position:relative;z-index:4}
+.rotation-cover-link:hover{background:var(--ra-accent-hover)}
+.rotation-page-content{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:15px;width:100%;height:100%;padding:clamp(16px,2.4vw,30px)}
+.rotation-meta{display:flex;justify-content:space-between;gap:7px;font-size:10px;font-weight:750;letter-spacing:.09em;color:#5d636e}
+.rotation-image{height:49%;min-height:0;background:#f4f5f7;border-radius:10px;overflow:hidden;flex-shrink:1}
+.rotation-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .25s ease}
+.rotation-image img:hover{transform:scale(1.05)}
+.rotation-image-fallback{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:14px;background:linear-gradient(145deg,#eceef1,#dadee4);color:#252a31}
+.rotation-image-fallback span{font-size:9px;letter-spacing:.12em;font-weight:700;color:#727984}
+.rotation-image-fallback strong{font-size:clamp(14px,2vw,23px)}
+.rotation-image-fallback small{font-size:11px;line-height:1.5}
+.rotation-summary h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,2vw,24px);font-weight:800;letter-spacing:-.02em;margin:0 0 5px}
+.rotation-summary p{font-size:clamp(10px,1.2vw,13px);line-height:1.5;color:#4c5560;margin:0}
+.rotation-page-actions{display:flex;align-items:center;justify-content:space-between;gap:9px;border-top:1px solid #d5cec3;padding-top:12px}
+.rotation-page-actions>span{font-size:9px;font-weight:700;letter-spacing:.08em;color:#6c737b}
+.rotation-page-actions a{display:inline-flex;gap:6px;align-items:center;white-space:nowrap;background:var(--ra-accent);color:#17120e;border-radius:999px;padding:10px 12px;font-size:11px;font-weight:700;position:relative;z-index:4}
+.rotation-page-actions a:hover{background:var(--ra-accent-hover)}
+.rotation-page-actions .rotation-case-link{background:transparent;color:#504029;border:1px solid #a48a62;white-space:normal;text-align:center}
+.rotation-page-actions .rotation-case-link:hover{background:#e5d6c0;color:#17120e}
+.rotation-page-actions a:focus-visible,.rotation-cover-link:focus-visible{outline:3px solid #121316;outline-offset:3px}
+.rotation-turn-surface{position:absolute;inset:0;z-index:2;width:100%;height:100%;border:0;background:transparent;color:transparent;cursor:pointer}
+.rotation-turn-surface:focus-visible{outline:4px solid var(--ra-accent);outline-offset:-5px}
+.rotation-controls{display:flex;gap:clamp(10px,3vw,30px);align-items:center;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+.rotation-controls button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #4b4d55;border-radius:99px;padding:12px 21px;min-width:120px;background:#20232b;color:#fff;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:background .2s,transform .2s,border-color .2s}
+.rotation-controls button:hover:not(:disabled){background:var(--ra-accent-hover);border-color:var(--ra-accent);transform:translateY(-2px)}
+.rotation-controls button:disabled{opacity:.35;cursor:not-allowed}
+.rotation-controls button:focus-visible{outline:2px solid var(--ra-accent);outline-offset:3px}
+.rotation-count{font-size:12px;font-weight:650;color:#eceaf0;min-width:105px;text-align:center}
+.rotation-hint{font-size:11px;color:#aaaeb9;text-align:center;max-width:600px;margin:0;line-height:1.6}
+.rotation-after{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;max-width:920px;padding-top:21px;border-top:1px solid #ffffff25}
+.rotation-after div{display:flex;flex-direction:column;gap:6px}.rotation-after strong{font:600 14px 'Space Grotesk',sans-serif;color:#eee1d0}.rotation-after span{font-size:11px;line-height:1.5;color:#a6a9b2}
+.rotation-after a{color:#e7c18c;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:7px}
+.rotation-after a:hover{color:white}
+@media(max-width:680px){.rotation-archive{padding:66px 12px 56px;gap:22px}.rotation-scene{height:430px}.rotation-page-content{gap:9px;padding:14px 11px}.rotation-image{height:46%;border-radius:6px}.rotation-meta{font-size:8px;letter-spacing:.02em;flex-wrap:wrap}.rotation-page-actions{flex-wrap:wrap;gap:5px;padding-top:6px}.rotation-page-actions>span{font-size:7px}.rotation-page-actions a{font-size:9px;padding:8px}.rotation-page-actions{align-items:stretch}.rotation-page-actions a{flex:1;justify-content:center;line-height:1.25}.rotation-summary h3{font-size:clamp(12px,3vw,17px)}.rotation-summary p{font-size:10px}.rotation-cover-content h3{font-size:clamp(17px,5vw,30px)}.rotation-cover-content{padding:16px 8px;gap:15px}.rotation-cover-content>span{font-size:8px}.rotation-cover-content p{font-size:10px}.rotation-controls button{min-width:80px;padding:10px 12px}.rotation-count{min-width:75px}.rotation-after{flex-direction:column;text-align:center}.rotation-hint{max-width:370px}.rotation-image-fallback small{font-size:9px}}
+@media(max-width:390px){.rotation-scene{height:390px}.rotation-page-content{padding:11px 8px}.rotation-page-actions a{padding:7px 8px}.rotation-cover-content h3{letter-spacing:0}}
+@media(prefers-reduced-motion:reduce){.rotation-archive .rotation-book,.rotation-archive .rotation-sheet,.rotation-archive .rotation-image img,.rotation-archive .rotation-controls button{transition:none!important}.rotation-archive .rotation-controls button:hover{transform:none}}
+
+
+/* Align the book's editorial surfaces, CTA language and hierarchy with the
+   site's Space Grotesk headings, gold buttons and cream text. The book is a
+   secondary case-study introduction, not a separate brand or checkout. */
+.rotation-page-actions a:focus-visible,.rotation-after a:focus-visible{outline:2px solid #86673b;outline-offset:3px}
+.rotation-archive .rotation-cover-link,.rotation-archive .rotation-page-actions>a:last-child{color:#17120e}
+.rotation-archive .rotation-cover-link:hover,.rotation-archive .rotation-page-actions>a:last-child:hover{color:#17120e}
+@media(max-width:440px){.rotation-page-actions{gap:5px}.rotation-page-actions a{font-size:8px;padding:7px 5px}.rotation-heading h2{font-size:clamp(27px,7.5vw,36px)}}
+/* Stable image frames and lightweight loading placeholders. A warm gold shimmer
+   appears only while mShots is pending. It avoids blank panels or layout shift,
+   but cannot reduce the remote service's initial screenshot-generation time. */
+.storefront-screen:not(.is-ready):not(:has(.storefront-shot-unavailable)),.rotation-image:not(.is-ready):not(:has(.rotation-image-fallback)){background:linear-gradient(110deg,#2c2924 15%,#494033 45%,#2c2924 75%);background-size:200% 100%;animation:pa-preview-skeleton 1.8s ease-in-out infinite}
+.storefront-screen img,.rotation-image img{transition:opacity .25s ease,transform .25s ease}
+.storefront-screen:not(.is-ready) img,.rotation-image:not(.is-ready) img{opacity:0}
+.storefront-screen.is-ready img,.rotation-image.is-ready img{opacity:1}
+@keyframes pa-preview-skeleton{from{background-position:100% 0}to{background-position:-100% 0}}
+@media(prefers-reduced-motion:reduce){.storefront-screen,.rotation-image{animation:none!important}.storefront-screen img,.rotation-image img{transition:none!important}}
