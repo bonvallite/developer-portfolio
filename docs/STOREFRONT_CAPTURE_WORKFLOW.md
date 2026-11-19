@@ -1,6 +1,6 @@
 # Verified storefront screenshot workflow
 
-This manual workflow captures public homepage viewports for the 11 currently listed stores (plus Peter Augustus, which is featured separately) on `/experience`. It does **not** publish images or change production.
+This manual workflow captures public homepage viewports for 11 active storefronts (10 in the experience reference grid, plus the featured Peter Augustus site) on `/experience`. It does **not** publish images or change production.
 
 ## Runner compatibility
 
