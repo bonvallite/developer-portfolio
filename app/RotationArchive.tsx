@@ -10,11 +10,13 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, RotateCcw } from 'lucide-react';
 // individual authorship. Screenshots come from an external public-site thumbnail
 // service; a failed request falls back to a simple, legible editorial panel.
 // Only the visible book faces mount images, avoiding six hidden-sheet requests.
+// Each spread has a project-context CTA and a separate public-site link;
+// the latter is not an endorsement or proof of exclusive authorship.
 const pages = [
-  { name: 'Peter Augustus', category: 'AUSTRALIAN ECOMMERCE', detail: 'Responsive homepage & Shopify operations', url: 'https://www.peteraugustus.com.au/' },
-  { name: 'Eve Curls', category: 'INTERNATIONAL COMMERCE', detail: 'European-market storefront reference', url: 'https://www.evecurls.com/' },
-  { name: 'Poseidon Animal Health', category: 'STOREFRONT REFERENCE', detail: 'Commerce experience and responsive discovery', url: 'https://poseidonanimalhealth.com.au/' },
-  { name: 'Jace Industries', category: 'STOREFRONT REFERENCE', detail: 'Shopify storefront and customer journey', url: 'https://jaceindustries.com/' },
+  { name: 'Peter Augustus', category: 'THEME ENGINEERING / OPERATIONS', detail: 'Modular homepage UX, product discovery, delivery logic and storefront maintenance.', url: 'https://www.peteraugustus.com.au/', caseHref: '/experience#custom-homepage', caseLabel: 'View homepage case study' },
+  { name: 'Eve Curls', category: 'SHOPIFY MARKETS / INTERNATIONAL', detail: 'A six-market Shopify architecture spanning storefront, catalogues, currencies and localisation.', url: 'https://www.evecurls.com/', caseHref: '/eve-curls', caseLabel: 'Explore Markets demo' },
+  { name: 'Poseidon Animal Health', category: 'STOREFRONT EXPERIENCE', detail: 'Public storefront reference demonstrating responsive merchandising and product discovery.', url: 'https://poseidonanimalhealth.com.au/', caseHref: '/experience', caseLabel: 'View experience overview' },
+  { name: 'Jace Industries', category: 'STOREFRONT EXPERIENCE', detail: 'Public storefront reference within the broader Shopify development and management portfolio.', url: 'https://jaceindustries.com/', caseHref: '/experience', caseLabel: 'View experience overview' },
 ] as const;
 
 const sheetCount = 3;
@@ -37,7 +39,7 @@ function ReferencePage({ index }: { index: number }) {
     <div className="rotation-meta"><span>{page.category}</span><span>{String(index + 1).padStart(2, '0')} / 04</span></div>
     <StoreImage name={page.name} url={page.url}/>
     <div className="rotation-summary"><h3>{page.name}</h3><p>{page.detail}</p></div>
-    <div className="rotation-page-actions"><span>PUBLIC SITE REFERENCE</span><a href={page.url} target="_blank" rel="noopener noreferrer" onClick={event => event.stopPropagation()}>Visit site <ArrowUpRight size={14}/></a></div>
+    <div className="rotation-page-actions"><Link href={page.caseHref} onClick={event => event.stopPropagation()} className="rotation-case-link">{page.caseLabel} <ArrowUpRight size={13}/></Link><a href={page.url} target="_blank" rel="noopener noreferrer" onClick={event => event.stopPropagation()}>Live website <ArrowUpRight size={13}/></a></div>
   </div>;
 }
 
@@ -68,9 +70,9 @@ export default function RotationArchive() {
   }
   return <section id="storefront-archive" className="rotation-archive" aria-label="Interactive storefront lookbook" tabIndex={0} onKeyDown={handleKeys}>
     <div className="rotation-heading">
-      <span className="rotation-kicker">THE STOREFRONT ARCHIVE / VOL. 01</span>
-      <h2>Commerce work, <em>page by page.</em></h2>
-      <p>Turn through selected storefront references, then explore the technical work behind the experience.</p>
+      <span className="rotation-kicker">SELECTED WORK / THE STOREFRONT ARCHIVE</span>
+      <h2>More than a storefront. <em>Engineering behind every experience.</em></h2>
+      <p>Explore responsive Shopify interfaces, multi-market architecture and ongoing ecommerce operations. Each spread connects a live storefront reference with the related work or technical approach.</p>
     </div>
     <div className="rotation-scene" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <div className={`rotation-book rotation-book--${state}`}>
@@ -80,11 +82,11 @@ export default function RotationArchive() {
           const backVisible = index === currentSheet - 1;
           return <div key={index} className={`rotation-sheet${flipped ? ' is-flipped' : ''}`} style={{zIndex:flipped ? index + 1 : sheetCount - index}}>
             <div className={`rotation-face rotation-face--front${index === 0 ? ' rotation-cover' : ''}`} aria-hidden={!frontVisible} inert={!frontVisible}>
-              {index === 0 ? <div className="rotation-cover-content"><span>EC. / WORK ARCHIVE</span><h3>THE<br/>ROTATION<br/>ARCHIVE</h3><p>Shopify Commerce Engineering</p><span>INTERACTIVE EDITION · 2026</span></div> : frontVisible ? <ReferencePage index={index === 1 ? 1 : 3}/> : null}
+              {index === 0 ? <div className="rotation-cover-content"><span>EC. / WORK ARCHIVE</span><h3>SHOPIFY<br/>WORK<br/>ARCHIVE</h3><p>Storefront UX · B2B · Integrations · CRO</p><span>OPEN TO EXPLORE THE WORK</span></div> : frontVisible ? <ReferencePage index={index === 1 ? 1 : 3}/> : null}
               {frontVisible && <button className="rotation-turn-surface" type="button" aria-label={index === 0 ? 'Open the book' : 'Turn to next page'} onClick={() => faceClick(index,'front')}/>}
             </div>
             <div className={`rotation-face rotation-face--back${index === sheetCount - 1 ? ' rotation-cover rotation-back-cover' : ''}`} aria-hidden={!backVisible} inert={!backVisible}>
-              {index === sheetCount - 1 ? <div className="rotation-cover-content"><span>END OF ARCHIVE</span><h3>WHAT<br/>COMES<br/>NEXT?</h3><p>Explore the projects behind the storefronts.</p><Link href="/experience" className="rotation-cover-link" onClick={event=>event.stopPropagation()}>Explore experience <ArrowUpRight size={15}/></Link></div> : backVisible ? <ReferencePage index={index === 0 ? 0 : 2}/> : null}
+              {index === sheetCount - 1 ? <div className="rotation-cover-content"><span>BEYOND THE SCREENSHOTS</span><h3>BUILT.<br/>MANAGED.<br/>OPTIMISED.</h3><p>See the technical responsibilities, selected projects and practical demonstrations.</p><Link href="/experience" className="rotation-cover-link" onClick={event=>event.stopPropagation()}>View experience &amp; case studies <ArrowUpRight size={15}/></Link></div> : backVisible ? <ReferencePage index={index === 0 ? 0 : 2}/> : null}
               {backVisible && index !== sheetCount - 1 && <button className="rotation-turn-surface rotation-turn-surface--back" type="button" aria-label="Turn to previous page" onClick={() => faceClick(index,'back')}/>}
             </div>
           </div>;
@@ -98,7 +100,7 @@ export default function RotationArchive() {
         ? <button type="button" onClick={() => setCurrentSheet(0)}><RotateCcw size={17}/> Back to cover</button>
         : <button type="button" onClick={() => turn(1)}>Next <ArrowRight size={18}/></button>}
     </div>
-    <p className="rotation-hint">Use the controls, click a visible page, or swipe on mobile. Select a live-site link to open the website without turning the page.</p>
-    <div className="rotation-after"><span>PUBLIC EXPERIENCE REFERENCES · NOT CLIENT ENDORSEMENTS</span><Link href="/experience">View the full cinematic gallery <ArrowUpRight size={17}/></Link></div>
+    <p className="rotation-hint">Turn the pages using the controls or swipe on mobile. Case-study links explain the work; live-site links open the public storefronts.</p>
+    <div className="rotation-after"><div><strong>Want the technical details?</strong><span> Public references, not client endorsements or verified performance claims.</span></div><Link href="/experience">Explore projects &amp; experience <ArrowUpRight size={17}/></Link></div>
   </section>;
 }
