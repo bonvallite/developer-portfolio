@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 // Shared server-rendered service layout. Each route supplies distinct, evidence-led
 // copy and links to existing case studies. Do not add personal-name SEO or unverified
 // outcomes. Contact CTA returns to the homepage's existing contact choices.
+// Keep the privacy notice accessible from service pages, not just the homepage.
 export type ServiceContent = {
   label: string;
   heading: string;
@@ -51,7 +52,7 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
         <p>Share the role, store challenge, desired outcome, and any relevant technical constraints to start a practical discussion.</p>
         <Link href="/#contact" className="button primary">Make an enquiry <ArrowUpRight size={17} /></Link>
       </section>
-      <footer className="container service-footer"><Link href="/">Shopify Commerce Engineering <ArrowRight size={15} /></Link></footer>
+      <footer className="container service-footer"><Link href="/">Shopify Commerce Engineering <ArrowRight size={15} /></Link><Link href="/privacy">Privacy and analytics</Link></footer>
     </main>
   );
 }
