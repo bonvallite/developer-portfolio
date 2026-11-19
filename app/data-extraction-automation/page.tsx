@@ -1,72 +1,80 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
-// Public-safe case study only. Do not embed employer-owned scripts, OAuth files,
-// Search Console properties, advertising account identifiers or raw exports.
-// Reported capabilities describe source-review findings, not a live API demo.
+// Public-safe, static editorial case study. No live APIs, credentials, customer
+// records, raw client exports or verified business-performance claims.
+// Platform favicons are illustrative identifiers loaded from Google favicon service.
+// Source-derived logic is abbreviated and sanitised; do not publish original
+// employer scripts or claim Shopify GraphQL was part of these verified exports.
 export const metadata: Metadata = {
-  title: '12-Month GA4, Search Console & Google Ads Data Extraction',
-  description: '12-month reporting workflow across GA4, Search Console and Google Ads, with distinct datasets for acquisition, organic search, paid campaigns and conversions.',
+  title: '12-Month Ecommerce Data Engineering | Analytics & API Automation',
+  description: 'A real-world reporting challenge turned into documented Python, JavaScript and Google API extraction workflows. Explore the architecture, source-safe code and reporting outcomes.',
   alternates: { canonical: '/data-extraction-automation' },
 };
 
-// Owner-provided source excerpt rendered as text, never executed on Vercel.
-// Keep credentials and employer data out of public examples.
-const monthlyKeywordCode = "def fetch_monthly_keywords():\n    monthly = {}\n    for r in get_daily_query():\n        month = r[\"keys\"][0][:7]\n        q = r[\"keys\"][1]\n        key = (q, month)\n        clicks = r.get(\"clicks\", 0)\n        impr = r.get(\"impressions\", 0)\n        pos = r.get(\"position\", 0.0)\n        if key not in monthly:\n            monthly[key] = {\"clicks\": 0, \"impr\": 0, \"pos_impr_sum\": 0.0}\n        monthly[key][\"clicks\"] += clicks\n        monthly[key][\"impr\"] += impr\n        monthly[key][\"pos_impr_sum\"] += pos * max(impr, 1)\n\n    by_query = {}\n    for (q, month), d in monthly.items():\n        avg_pos = round(d[\"pos_impr_sum\"] / max(d[\"impr\"], 1), 2)\n        ctr = round(d[\"clicks\"] / d[\"impr\"], 6) if d[\"impr\"] > 0 else 0.0\n        by_query.setdefault(q, []).append((month, d[\"clicks\"], d[\"impr\"], ctr, avg_pos))\n\n    out = []\n    for q, series in sorted(by_query.items()):\n        series.sort(key=lambda item: item[0])\n        prev_pos = None\n        for month, clicks, impr, ctr, avg_pos in series:\n            pos_delta = round(prev_pos - avg_pos, 2) if prev_pos is not None else \"\"\n            out.append([month, q, clicks, impr, ctr, avg_pos, prev_pos if prev_pos is not None else \"\", pos_delta])\n            prev_pos = avg_pos\n    return out";
-
-// Three data sources serve distinct questions. GSC Python and Google Ads JavaScript
-// were source-reviewed; GA4 Google Cloud API authentication was owner-reported.
-// Do not imply all three connectors run from one Python script or are fully validated.
-const sources = [
-  { name: 'Google Search Console', language: 'Python', implementation: 'OAuth credentials and token refresh, reusable Search Analytics requests, paginated CSV exports, query/page/device breakdowns and URL inspection sampling.', value: 'Understand organic discoverability, branded versus non-branded demand, page and collection visibility, device differences, keyword movement and indexing priorities.' },
-  { name: 'Google Ads', language: 'JavaScript / GAQL', implementation: 'Google Ads Scripts define 20 reporting categories with 24 CSV output targets spanning campaigns, ad groups, creative assets, keywords, search terms, devices, locations, conversions and budgets.', value: 'Evaluate paid traffic quality, advertising cost, conversion value and campaign efficiency for budgeting and optimisation.' },
-  { name: 'Google Analytics 4 (GA4)', language: 'Google Cloud API / reporting', implementation: 'Configured GA4 API access and authentication through Google Cloud for a 12-month reporting workflow. GA4 extraction source code was not provided for independent review.', value: 'Study acquisition channels, traffic, device behaviour and ecommerce events; compare tracked conversions with Shopify orders while respecting attribution differences.' },
+const services = [["Shopify","shopify.com","Sales, orders and customers","Available handover data; GraphQL code not verified"],["Google Analytics 4","analytics.google.com","10 Python reporting modules","Source reviewed"],["Search Console","search.google.com","30-output GSC export schema","Source reviewed; notes included"],["Google Ads","ads.google.com","20 JavaScript reporting categories","Source reviewed"],["Bing","bing.com","10 configured Webmaster endpoints","Python client reported"],["Klaviyo","klaviyo.com","Campaign and flow reporting","Aggregated exports available"]];
+const stages = [["01","THE REQUEST","One historical baseline, multiple commercial questions","The original brief asked for detailed order, customer, acquisition, paid-media, organic social, email and trading records. It required 12 complete calendar months plus November MTD separately, retaining original IDs, campaign names and metric definitions."],["02","THE PROBLEM","The information lived in disconnected systems","Shopify, Google analytics products, advertising accounts and messaging platforms each expose different dimensions, access models and reporting limitations. Dashboard screenshots could not provide the underlying records needed for reconciliation."],["03","THE ENGINEERING","Separate extraction workflows, one documented handover","Python GA4 and GSC modules, JavaScript Google Ads Scripts and a Bing JSON API client were organised around authentication, paginated requests, chunked queries, CSV exports and audit-friendly manifests. Shopify and Klaviyo data also formed part of the wider handover."],["04","THE RECOVERY WORK","Handle real-world API constraints","Search Console queries required compatible dimension combinations; Discover reporting dropped an unsupported device dimension. URL inspection was given timeout/retry handling. Individual export failures were recorded without discarding the whole reporting run."],["05","THE RESULT","Structured files prepared for analysis","The approach produces source-specific CSV datasets and manifests, allowing analysts to investigate traffic, customer journeys, search visibility and advertising effectiveness. Verified outputs and unfinished coverage are distinguished instead of implying that every planned report succeeded."]];
+const examples = [{"title":"GA4 · paginated acquisition","lang":"Python / GA4 Data API","code":"offset = 0\nwhile True:\n    request = RunReportRequest(\n        property=property_path,\n        dimensions=dimensions,\n        metrics=metrics,\n        date_ranges=date_ranges,\n        limit=PAGE_SIZE,\n        offset=offset,\n    )\n    response = client.run_report(request)\n    # Convert dimension and metric values into export rows.\n    offset += len(response.rows)\n    if not response.rows or offset >= response.row_count:\n        break","note":"Sanitised excerpt reconstructed from the supplied GA4 Python modules; does not connect to live accounts."},{"title":"Search Console · 30-day chunks","lang":"Python / Search Analytics API","code":"cur = start_dt\nwhile cur <= end_dt:\n    chunk_end = min(cur + timedelta(days=29), end_dt)\n    rows = query_rows(\n        service, site_url,\n        cur.isoformat(), chunk_end.isoformat(),\n        ['date', 'query', 'page'], 'web'\n    )\n    output.extend(rows)\n    cur = chunk_end + timedelta(days=1)","note":"Generalised from the supplied GSC chunking approach. The original workflow uses 25,000-row startRow pagination."},{"title":"Google Ads · isolated CSV exports","lang":"JavaScript / Google Ads Scripts / GAQL","code":"function runExport(folder, manifest, filename, headers, query, mapFn) {\n  try {\n    const rows = [headers];\n    const report = AdsApp.search(query);\n    while (report.hasNext()) rows.push(mapFn(report.next()));\n    writeCsvToFolder(folder, filename, rows);\n    manifest.push([filename, rows.length - 1, 'OK']);\n  } catch (error) {\n    manifest.push([filename, 0, 'ERROR']);\n  }\n}","note":"Sanitised implementation pattern from the supplied Google Ads code. Google Ads uses GAQL, not Shopify GraphQL."},{"title":"Shopify · commerce extraction interface","lang":"GraphQL / Shopify Admin API","code":"query OrdersForReporting($cursor: String) {\n  orders(first: 100, after: $cursor) {\n    pageInfo { hasNextPage endCursor }\n    edges {\n      node { id createdAt name }\n    }\n  }\n}","note":"Independent illustrative GraphQL example only. A Shopify GraphQL export script for this project has not been supplied or verified."}];
+const stack = ['Python', 'JavaScript', 'Google Cloud', 'OAuth 2.0', 'REST APIs', 'Google Ads Scripts', 'GAQL', 'PowerShell', 'CSV / Excel', 'Shopify GraphQL (related skill)'];
+const pipeline = [
+  ['01 / CONNECT','Authorised access','Google Cloud OAuth, platform permissions and separate credential scopes'],
+  ['02 / EXTRACT','API-driven retrieval','GA4 paginated reports, GSC 30-day chunks, Google Ads Scripts and Bing endpoints'],
+  ['03 / VERIFY','Fault-aware processing','API dimension compatibility, retries, row counts and per-dataset statuses'],
+  ['04 / DELIVER','Organised handover','Separate CSV exports, source manifests, calendar and reporting coverage notes'],
 ];
 
 export default function DataExtractionAutomationPage() {
-  return <main className="container" style={{maxWidth:960,paddingTop:72,paddingBottom:100}}>
-    <Link href="/" style={{textDecoration:'underline'}}>← Back to portfolio</Link>
-    <p className="overline" style={{marginTop:48}}>CASE STUDY / PYTHON / JAVASCRIPT / ECOMMERCE DATA</p>
-    <h1>12 months of ecommerce data. Three Google platforms.</h1>
-    <p>Developed a 12-month reporting workflow across Google Analytics 4 (GA4), Google Search Console and Google Ads. It is designed to extract multiple separate datasets, not just summary dashboard screenshots, so ecommerce teams can examine traffic, organic discovery, campaign spend, conversion signals and measurement gaps over time.</p>
-    <section className="flow-feature">
-      <span className="overline">DELIVERY APPROACH</span>
-      <h2>Authenticate → extract 12-month data → export distinct datasets → analyse</h2>
-      <p>The reporting approach combines Python API work (including Search Console), Google Cloud API access for GA4, and JavaScript Google Ads Scripts. Each source has its own dimensions and output datasets, for example daily organic queries and pages, advertising campaigns and search terms, and GA4 acquisition and ecommerce measurements. CSV exports make the underlying records available for monthly trends, cross-platform comparisons and deeper business reporting. Successful execution and complete dataset coverage must be validated separately.</p>
+  return <main className="case-study">
+    
+<style>{'.case-study{background:#0b0e12;color:#f4f2ee;min-height:100vh}.case-shell{max-width:1160px;margin:auto;padding:0 28px}.case-hero{padding:86px 0 78px;background:radial-gradient(ellipse at 84% 10%,#b28b4520,transparent 60%)}.case-kicker{color:#d9b47c;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}.case-hero h1{font-size:clamp(40px,5.4vw,76px);letter-spacing:-2.7px;line-height:1.07;max-width:980px;margin:20px 0}.case-lede{color:#b6b8c1;max-width:760px;font-size:18px;line-height:1.8}.case-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}.case-button{padding:13px 18px;border-radius:5px;border:1px solid #9d8056;color:#f6e5ca;font-size:13px;font-weight:700}.case-button.case-primary{background:#d9b47c;color:#17120e}.case-caption{font-size:12px;color:#a1a3ad;line-height:1.65}.case-section{padding:76px 0;border-top:1px solid #ffffff18}.case-section h2{font-size:clamp(30px,3.3vw,47px);line-height:1.15;letter-spacing:-1.5px;max-width:850px;margin:12px 0 20px}.case-section-intro{max-width:760px;color:#b6b8c1;line-height:1.85}.case-flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:32px}.case-card{background:linear-gradient(150deg,#1a1d22,#111418);border:1px solid #444038;border-radius:12px;padding:24px;min-width:0}.case-card h3{font-size:20px;letter-spacing:-.5px;margin:8px 0}.case-card p{color:#b7b8c0;font-size:14px;line-height:1.75}.case-index{color:#d9b47c;font-size:12px;letter-spacing:1px}.case-platforms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.case-platform{display:flex;gap:12px;align-items:start;border-radius:11px;border:1px solid #39383a;background:#171a1e;padding:17px;min-width:0}.case-platform img{width:28px;height:28px;object-fit:contain;flex-shrink:0}.case-platform strong{display:block;font-size:14px}.case-platform span{display:block;color:#a9abb4;font-size:12px;margin-top:5px;line-height:1.5}.case-pipeline{margin-top:22px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.case-node{border:1px solid #775f40;border-radius:12px;padding:22px 16px;background:#201e1b}.case-node span{font-size:11px;letter-spacing:1px;color:#d9b47c}.case-node strong{display:block;margin:10px 0;font-size:15px}.case-node p{color:#b6b6bc;font-size:12px;line-height:1.6;margin:0}.case-tech{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}.case-tech span{border:1px solid #6e5c43;color:#e8c896;padding:8px 11px;border-radius:4px;font-size:12px}.case-detail{border:1px solid #514738;border-radius:10px;background:#15191d;margin:12px 0;overflow:hidden}.case-detail summary{cursor:pointer;padding:18px 22px;color:#f3dfc0;font-weight:700;list-style-position:inside}.case-detail summary:focus-visible,.case-button:focus-visible{outline:2px solid #e9be7d;outline-offset:3px}.case-detail pre{overflow-x:auto;font-size:12px;line-height:1.7;color:#d4e1d4;background:#0d1014;margin:0;padding:22px}.case-detail p{color:#aaaeba;font-size:13px;line-height:1.7;margin:0;padding:16px 22px}.case-disclaimer{border-left:3px solid #d9b47c;background:#171a1e;padding:20px 24px;color:#bfc0c5;line-height:1.8;font-size:13px}.case-footer{padding:55px 0 85px}.case-footer a{color:#e2bd85;text-decoration:underline}@media(max-width:750px){.case-shell{padding:0 20px}.case-hero{padding:58px 0}.case-section{padding:56px 0}.case-flow,.case-platforms{grid-template-columns:1fr}.case-pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}.case-card{padding:19px}}@media(max-width:410px){.case-pipeline{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){.case-study *{scroll-behavior:auto!important;transition:none!important}}'}</style>
+    <header className="case-shell case-hero">
+      <Link href="/" style={{color:'#d9b47c',fontSize:13}}>← Back to portfolio</Link>
+      <p className="case-kicker" style={{marginTop:50}}>ENGINEERING CASE STUDY / DATA PIPELINES / ECOMMERCE</p>
+      <h1>One complex reporting request.<br/><span style={{color:'#d9b47c'}}>A repeatable data pipeline.</span></h1>
+      <p className="case-lede">Turning a 12-month ecommerce performance brief into API-driven extraction workflows, traceable CSV datasets and an evidence-led reporting handover.</p>
+      <div className="case-actions"><a href="#architecture" className="case-button case-primary">View architecture ↗</a><a href="#code" className="case-button">Explore code ↗</a><a href="#outputs" className="case-button">Review outputs ↗</a></div>
+      <p className="case-caption">Python · JavaScript · Google Cloud · Search Console · GA4 · Google Ads · Bing · Shopify reporting</p>
+    </header>
+    <section className="case-shell case-section" id="story">
+      <p className="case-kicker">01 / FROM PROBLEM TO SOLUTION</p>
+      <h2>A business needed answers. The data was spread across platforms.</h2>
+      <p className="case-section-intro">The brief asked for detailed, joinable underlying records rather than screenshots or dashboard summaries. Its scope included sales and customers, acquisition and conversion, advertising, organic social, email and fulfilment, with 12 full months and current-month data separated. My engineering response focused on repeatable extraction and traceable outputs instead of rebuilding reports manually.</p>
+      <div className="case-flow">{stages.map(stage=><article className="case-card" key={stage[0]}><span className="case-index">{stage[0]} / {stage[1]}</span><h3>{stage[2]}</h3><p>{stage[3]}</p></article>)}</div>
     </section>
-    {sources.map((source) => <section key={source.name} className="flow-feature">
-      <span className="overline">{source.language.toUpperCase()}</span>
-      <h2>{source.name}</h2>
-      <h3>What I implemented or investigated</h3><p>{source.implementation}</p>
-      <h3>Why the resulting data matters</h3><p>{source.value}</p>
-    </section>)}
-    <section className="flow-feature">
-      <span className="overline">SEARCH CONSOLE / REPORTING DESIGN</span>
-      <h2>Thirty planned Search Console outputs, with explicit coverage limits.</h2>
-      <p>The reviewed Search Console script organises 30 reporting outputs, including performance trends, pages, queries, devices, search intent segments, monthly keyword positions and a sample of up to 250 high-impression URLs for URL inspection. Some outputs are API-limit explanations rather than extracted datasets and must not be counted as successful data pulls.</p>
-      <p>Daily and monthly comparisons should use clearly specified reporting windows. Search Console query exports are not guaranteed to contain every anonymised or low-frequency query; pagination does not remove API coverage limits. Indexing checks should be described as sampled diagnostics.</p>
+    <section className="case-shell case-section" id="architecture">
+      <p className="case-kicker">02 / HOW THE SYSTEM FITS TOGETHER</p>
+      <h2>Multiple sources. Separate extractors. One organised handover.</h2>
+      <p className="case-section-intro">Each platform has distinct API capabilities and metric definitions. This diagram shows an extraction architecture, not a live synchronised data warehouse or an assertion that every source was retrieved by Python.</p>
+      <div className="case-platforms" aria-label="Source platforms">{services.map(source=><div className="case-platform" key={source[0]}>
+        {/* Favicons support recognition; text labels remain visible if external images fail. */}
+        <img src={'https://www.google.com/s2/favicons?domain='+source[1]+'&sz=64'} width="28" height="28" alt="" loading="lazy" referrerPolicy="no-referrer" />
+        <div><strong>{source[0]}</strong><span>{source[2]}</span><span>{source[3]}</span></div>
+      </div>)}</div>
+      <div className="case-pipeline" aria-label="Data extraction process">{pipeline.map(node=><div className="case-node" key={node[0]}><span>{node[0]}</span><strong>{node[1]}</strong><p>{node[2]}</p></div>)}</div>
+      <div className="case-tech" aria-label="Technologies used and related capabilities">{stack.map(tech=><span key={tech}>{tech}</span>)}</div>
+      <p className="case-caption">Execution tooling: the supplied extraction source establishes Python and JavaScript. PowerShell was used in the documented Windows workflow. Bash and Shopify GraphQL remain relevant engineering capabilities, but their direct use in this data extraction has not been verified.</p>
     </section>
-    {/* Read-only excerpt from the supplied GSC script. No tokens or private data.
-        get_daily_query() is defined elsewhere in the owner's source. */}
-    <section className="flow-feature" id="python-code">
-      <span className="overline">REAL PYTHON / MONTHLY SEO INTELLIGENCE</span>
-      <h2>Inside the reporting logic.</h2>
-      <p>This selected function from my Google Search Console script aggregates daily query metrics into monthly trends, calculates impression-weighted search positions and compares observed periods.</p>
-      <div style={{border:'1px solid #6a573f',borderRadius:12,overflow:'hidden',background:'#0b0e12'}}>
-        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12,padding:'12px 18px',background:'#1b1e23',borderBottom:'1px solid #3d3931'}}>
-          <strong style={{fontSize:13,color:'#d9b47c'}}>monthly_keyword_trends.py</strong>
-          <span style={{fontSize:12,color:'#a4a6ae'}}>Python · Source excerpt · Read-only</span>
-        </div>
-        <pre style={{margin:0,padding:'22px 20px',overflowX:'auto',fontSize:12,lineHeight:1.8,color:'#e6e5e1',tabSize:4}}><code>{monthlyKeywordCode}</code></pre>
+    <section className="case-shell case-section" id="code">
+      <p className="case-kicker">03 / ENGINEERING, NOT JUST REPORTING</p>
+      <h2>Explore the implementation decisions.</h2>
+      <p className="case-section-intro">Open each example to inspect the mechanics behind the extraction. Examples are sanitised for a public portfolio; they are not executable against client accounts.</p>
+      {examples.map((item,i)=><details className="case-detail" key={item.title} open={i===0}>
+        <summary>{item.title} · {item.lang}</summary>
+        <pre tabIndex={0}><code>{item.code}</code></pre>
+        <p>{item.note}</p>
+      </details>)}
+    </section>
+    <section className="case-shell case-section" id="outputs">
+      <p className="case-kicker">04 / DELIVERABLES AND DECISIONS</p>
+      <h2>Structured data that can support commercial decisions.</h2>
+      <div className="case-flow">
+        <article className="case-card"><span className="case-index">GA4 / VERIFIED SOURCE</span><h3>10 Python reporting modules</h3><p>Daily acquisition, device conversion, buyer geography, landing pages, event funnel, products, campaign attribution, new versus returning, promotions and tracking audit.</p></article>
+        <article className="case-card"><span className="case-index">GSC / VERIFIED SOURCE</span><h3>30 documented output categories</h3><p>Queries, pages, devices, search types, brand segmentation, monthly keyword movement and selected URL inspections. Some categories contain API-coverage notes instead of underlying extracted metrics.</p></article>
+        <article className="case-card"><span className="case-index">GOOGLE ADS / DOCUMENTED SCRIPT</span><h3>20 reporting categories</h3><p>JavaScript Ads Scripts retrieve campaign and creative-level dimensions, save separate CSV files to a timestamped Drive folder and record export status in a manifest.</p></article>
+        <article className="case-card"><span className="case-index">BING / PYTHON CLIENT</span><h3>10 configured endpoints</h3><p>Search, query, page, crawl, sitemap and link-report endpoints are represented in a fault-isolated JSON API client. Endpoint coverage and successful rows require manifests to validate.</p></article>
       </div>
-      <p style={{fontSize:13}}>This is an excerpt of real aggregation logic, not a live API execution. The complete script supplies <code>get_daily_query()</code>. Missing calendar months and Search Console API coverage still require validation.</p>
+      <div className="case-disclaimer" style={{marginTop:24}}><strong style={{color:'#f4e2c3'}}>What is verified, and what is not.</strong><div>These counts represent scripts, designed output categories or configured endpoints. They are not counts of successful exports. The inspected code uses a rolling 365-day period, which differs from the original 12 complete calendar months plus November MTD requirement. GA4 event counts are not a sequential user funnel, and platform attribution metrics are not automatically interchangeable.</div></div>
     </section>
-    <section className="flow-feature">
-      <span className="overline">ENGINEERING / VALIDATION</span>
-      <h2>Practical reliability improvements.</h2>
-      <p>The code review identified opportunities for explicit success/empty/error statuses, retry behaviour for URL inspections, missing-month handling, fixed full-month date boundaries, API-to-summary reconciliation and accurate labelling of HTTPS checks. These are recommended improvements, not claims that they have all been deployed.</p>
-    </section>
-    <p style={{fontSize:13,opacity:.8}}>Evidence boundary: This is a high-level description of reviewed work, not a public execution of client scripts. No private analytics exports, customer records, client account identifiers, credentials or production source are included. No revenue uplift, confirmed completion of all planned datasets or independent validation of the GA4 extraction script is claimed.</p>
-    <p><Link href="/python-automation" style={{color:'#ddb682',textDecoration:'underline'}}>See related Python automation work →</Link></p>
+    <footer className="case-shell case-footer"><p className="case-kicker">THE VALUE / ECOMMERCE ENGINEERING</p><h2>Turning fragmented data into a foundation for better decisions.</h2><p className="case-section-intro">The workflow supports SEO prioritisation, acquisition quality reviews, advertising effectiveness, tracking diagnostics and customer analysis, while keeping missing fields visible. Business results require validated extracts and reconciliation rather than assumptions.</p><p><Link href="/python-automation">See related Python engineering →</Link></p><p><Link href="/">Return to portfolio →</Link></p></footer>
   </main>;
 }
