@@ -2,6 +2,17 @@
 
 Entries record changes from 22 October 2026 onwards. Earlier repository history remains available in Git commits and pull requests.
 
+## 2026-11-19 - Cinematic Shopify B2B Modernisation case study
+
+- **Scope:** Public personal portfolio route `/b2b-modernisation` in `bonvallite/developer-portfolio`, branch `feature/cinematic-b2b-case-study-20261119` based on the current deployed portfolio branch. No Shopify theme, merchant settings, or customer records were modified.
+- **Affected files:** `app/b2b-modernisation/page.tsx`, `app/b2b-modernisation/CinematicB2B.tsx`, `app/b2b-modernisation/cinematic.css`, `tests/b2b-cinematic.test.mjs`, and `CHANGELOG.md`.
+- **Why:** Present an evidence-led five-chapter business transformation rather than a list of theme or app features while retaining the approved charcoal-and-gold editorial identity.
+- **Experience:** Original cinematic hero and five chapters: app dependency, four contextual catalogues, fictional product price laboratory with company eligibility gate, six-step approval journey, and historical business-impact reporting. Shopify Forms, manual approval, Notifications HTML/Liquid, and email-code sign-in are documented. Retail campaigns remain separate.
+- **Evidence:** Legacy `wholesale`, `wg_wholesale`, and `WholesalePA1` order-tag records are deduplicated and use adjusted exported order values less refund snapshots. Optional broader view includes qualifying customer wholesale-tag evidence. Native B2B net sales and counts come from Shopify Analytics January-October 2026. Definitions differ and may overlap; do not add the series. July implementation is user-reported, exact date unverified. The A$10,000-per-month after-July tab is hypothetical, not actual sales.
+- **Privacy and dependencies:** No merchant name, customer IDs, real catalogue discount rates, secret settings, remote icon libraries, animation packages, or integration credentials added. Product prices are fictional. Comments describe sourcing and safeguards.
+- **Validation:** Automated regression checks cover chapters, pricing, data boundaries, SEO and reduced motion. GitHub CI safety checks, TypeScript, build and Vercel preview/production statuses must be verified separately.
+
+
 ## 2026-11-18 - Add authorised webmail login link to contact section
 
 - **Scope:** Public JR Vallite portfolio only, not Shopify theme code; GitHub `bonvallite/developer-portfolio` on `feature/b2b-markets-case-study-20261118` (PR #36).
