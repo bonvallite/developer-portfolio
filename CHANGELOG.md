@@ -6,7 +6,7 @@
 - **Reason:** The 18 November privacy-led cleanup intentionally removed these links and the original name-specific résumé PDF. The site owner explicitly requested their return.
 - **Change:** Restore the archived résumé under a neutral filename; display résumé links in homepage navigation, contact and Experience; restore previously used LinkedIn, Google Developer and Wikipedia destinations; add an authorised-user webmail login at `https://webmail.jrvallite.com/`, separate from public email enquiries to `hello@jrvallite.com`.
 - **Privacy:** Public profile links and the historic résumé may still identify the portfolio owner. The original document's details have not been rewritten, and its internal email may be out of date. Preserve name-free SEO metadata and existing sensitive-information guards.
-- **Validation:** Compared source against historical commit `caf282f`, confirmed existing historic PDF Git blob `a7d4648`, and reviewed current source. CI, restored file tree and deployment checks to follow.
+- **Validation:** Compared source against historical commit `caf282f`, confirmed historic PDF Git blob `a7d4648` and verified the newly restored path points to that exact 323,929-byte blob in Git tree `5a9eb8b`. Confirmed the four contact/profile destinations, separate webmail shortcut and retained domain email in source. CI and Vercel deployment checks to follow.
 
 
 ## 2026-11-19 - Correct public wordmark to JRV
