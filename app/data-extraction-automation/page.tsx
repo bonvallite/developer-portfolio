@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 // Search Console properties, advertising account identifiers or raw exports.
 // Reported capabilities describe source-review findings, not a live API demo.
 export const metadata: Metadata = {
-  title: 'Google Search Console & Ads API Automation | Ecommerce Analytics',
-  description: 'Python and JavaScript API extraction workflows for SEO, advertising and ecommerce reporting, including pagination, OAuth, CSV exports and measurement limitations.',
+  title: '12-Month GA4, Search Console & Google Ads Data Extraction',
+  description: '12-month reporting workflow across GA4, Search Console and Google Ads, with distinct datasets for acquisition, organic search, paid campaigns and conversions.',
   alternates: { canonical: '/data-extraction-automation' },
 };
 
@@ -14,22 +14,25 @@ export const metadata: Metadata = {
 // Keep credentials and employer data out of public examples.
 const monthlyKeywordCode = "def fetch_monthly_keywords():\n    monthly = {}\n    for r in get_daily_query():\n        month = r[\"keys\"][0][:7]\n        q = r[\"keys\"][1]\n        key = (q, month)\n        clicks = r.get(\"clicks\", 0)\n        impr = r.get(\"impressions\", 0)\n        pos = r.get(\"position\", 0.0)\n        if key not in monthly:\n            monthly[key] = {\"clicks\": 0, \"impr\": 0, \"pos_impr_sum\": 0.0}\n        monthly[key][\"clicks\"] += clicks\n        monthly[key][\"impr\"] += impr\n        monthly[key][\"pos_impr_sum\"] += pos * max(impr, 1)\n\n    by_query = {}\n    for (q, month), d in monthly.items():\n        avg_pos = round(d[\"pos_impr_sum\"] / max(d[\"impr\"], 1), 2)\n        ctr = round(d[\"clicks\"] / d[\"impr\"], 6) if d[\"impr\"] > 0 else 0.0\n        by_query.setdefault(q, []).append((month, d[\"clicks\"], d[\"impr\"], ctr, avg_pos))\n\n    out = []\n    for q, series in sorted(by_query.items()):\n        series.sort(key=lambda item: item[0])\n        prev_pos = None\n        for month, clicks, impr, ctr, avg_pos in series:\n            pos_delta = round(prev_pos - avg_pos, 2) if prev_pos is not None else \"\"\n            out.append([month, q, clicks, impr, ctr, avg_pos, prev_pos if prev_pos is not None else \"\", pos_delta])\n            prev_pos = avg_pos\n    return out";
 
+// Three data sources serve distinct questions. GSC Python and Google Ads JavaScript
+// were source-reviewed; GA4 Google Cloud API authentication was owner-reported.
+// Do not imply all three connectors run from one Python script or are fully validated.
 const sources = [
   { name: 'Google Search Console', language: 'Python', implementation: 'OAuth credentials and token refresh, reusable Search Analytics requests, paginated CSV exports, query/page/device breakdowns and URL inspection sampling.', value: 'Understand organic discoverability, branded versus non-branded demand, page and collection visibility, device differences, keyword movement and indexing priorities.' },
-  { name: 'Google Ads', language: 'JavaScript', implementation: 'Programmatic Google Ads reporting through scripted requests and structured exports for campaign and conversion analysis.', value: 'Compare spend, paid-search demand and conversion signals to inform campaign optimisation and budget allocation.' },
-  { name: 'GA4 and Shopify', language: 'Measurement review', implementation: 'Cross-platform funnel and reporting reconciliation, including diagnosing differences between ecommerce orders and analytics purchase events.', value: 'Identify tracking gaps and separate traffic growth from revenue-generating visits before prioritising CRO work.' },
+  { name: 'Google Ads', language: 'JavaScript / GAQL', implementation: 'Google Ads Scripts define 20 reporting categories with 24 CSV output targets spanning campaigns, ad groups, creative assets, keywords, search terms, devices, locations, conversions and budgets.', value: 'Evaluate paid traffic quality, advertising cost, conversion value and campaign efficiency for budgeting and optimisation.' },
+  { name: 'Google Analytics 4 (GA4)', language: 'Google Cloud API / reporting', implementation: 'Configured GA4 API access and authentication through Google Cloud for a 12-month reporting workflow. GA4 extraction source code was not provided for independent review.', value: 'Study acquisition channels, traffic, device behaviour and ecommerce events; compare tracked conversions with Shopify orders while respecting attribution differences.' },
 ];
 
 export default function DataExtractionAutomationPage() {
   return <main className="container" style={{maxWidth:960,paddingTop:72,paddingBottom:100}}>
     <Link href="/" style={{textDecoration:'underline'}}>← Back to portfolio</Link>
     <p className="overline" style={{marginTop:48}}>CASE STUDY / PYTHON / JAVASCRIPT / ECOMMERCE DATA</p>
-    <h1>From API extracts to ecommerce decisions.</h1>
-    <p>Built and reviewed scripted reporting workflows that turn SEO and advertising platform data into reusable datasets. The objective is not simply to download metrics: it is to help teams understand which searches and channels attract customers, where measurement is incomplete and what deserves optimisation effort.</p>
+    <h1>12 months of ecommerce data. Three Google platforms.</h1>
+    <p>Developed a 12-month reporting workflow across Google Analytics 4 (GA4), Google Search Console and Google Ads. It is designed to extract multiple separate datasets, not just summary dashboard screenshots, so ecommerce teams can examine traffic, organic discovery, campaign spend, conversion signals and measurement gaps over time.</p>
     <section className="flow-feature">
       <span className="overline">DELIVERY APPROACH</span>
-      <h2>Authenticate → extract → organise → validate → analyse</h2>
-      <p>Python and JavaScript workflows retrieve structured platform results, paginate where supported and export records for detailed analysis. Reused extraction functions and cached result sets reduce repeated requests. CSV outputs support further joins, trend comparisons and stakeholder reporting.</p>
+      <h2>Authenticate → extract 12-month data → export distinct datasets → analyse</h2>
+      <p>The reporting approach combines Python API work (including Search Console), Google Cloud API access for GA4, and JavaScript Google Ads Scripts. Each source has its own dimensions and output datasets, for example daily organic queries and pages, advertising campaigns and search terms, and GA4 acquisition and ecommerce measurements. CSV exports make the underlying records available for monthly trends, cross-platform comparisons and deeper business reporting. Successful execution and complete dataset coverage must be validated separately.</p>
     </section>
     {sources.map((source) => <section key={source.name} className="flow-feature">
       <span className="overline">{source.language.toUpperCase()}</span>
@@ -39,7 +42,7 @@ export default function DataExtractionAutomationPage() {
     </section>)}
     <section className="flow-feature">
       <span className="overline">SEARCH CONSOLE / REPORTING DESIGN</span>
-      <h2>Thirty planned outputs, with explicit coverage limits.</h2>
+      <h2>Thirty planned Search Console outputs, with explicit coverage limits.</h2>
       <p>The reviewed Search Console script organises 30 reporting outputs, including performance trends, pages, queries, devices, search intent segments, monthly keyword positions and a sample of up to 250 high-impression URLs for URL inspection. Some outputs are API-limit explanations rather than extracted datasets and must not be counted as successful data pulls.</p>
       <p>Daily and monthly comparisons should use clearly specified reporting windows. Search Console query exports are not guaranteed to contain every anonymised or low-frequency query; pagination does not remove API coverage limits. Indexing checks should be described as sampled diagnostics.</p>
     </section>
@@ -63,7 +66,7 @@ export default function DataExtractionAutomationPage() {
       <h2>Practical reliability improvements.</h2>
       <p>The code review identified opportunities for explicit success/empty/error statuses, retry behaviour for URL inspections, missing-month handling, fixed full-month date boundaries, API-to-summary reconciliation and accurate labelling of HTTPS checks. These are recommended improvements, not claims that they have all been deployed.</p>
     </section>
-    <p style={{fontSize:13,opacity:.8}}>Evidence boundary: This is a high-level description of reviewed work, not a public execution of client scripts. No private analytics exports, customer records, client account identifiers, credentials or production source are included. No revenue uplift, complete dataset coverage or GA4 extraction-script validation is claimed.</p>
+    <p style={{fontSize:13,opacity:.8}}>Evidence boundary: This is a high-level description of reviewed work, not a public execution of client scripts. No private analytics exports, customer records, client account identifiers, credentials or production source are included. No revenue uplift, confirmed completion of all planned datasets or independent validation of the GA4 extraction script is claimed.</p>
     <p><Link href="/python-automation" style={{color:'#ddb682',textDecoration:'underline'}}>See related Python automation work →</Link></p>
   </main>;
 }
