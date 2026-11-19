@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import RotationArchive from './RotationArchive';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Layers3, GitBranch, ShieldCheck, Network } from 'lucide-react';
@@ -34,6 +35,9 @@ export default function Home() {
   return <main>
     <header className="header container"><a className="brand" href="#home"><strong>EC.</strong><span>SHOPIFY COMMERCE ENGINEERING</span></a><nav aria-label="Main navigation"><a href="#services">Services</a><a href="#work">Projects</a><a href="#skills">Skills</a><Link href="/experience">Experience</Link><a href="#about">About</a><a className="nav-contact" href="#contact">Contact <ArrowUpRight size={15}/></a></nav></header>
     <section id="home" className="hero container"><div className="eyebrow"><span className="spark"/> SHOPIFY DEVELOPMENT · ECOMMERCE MANAGEMENT · CRO</div><h1>Shopify expertise that connects<br/><em>development, operations and growth.</em></h1><div className="hero-bottom hero-bottom-photo"><div className="hero-content"><p>I build, manage and optimise ecommerce experiences, from custom Shopify storefronts and B2B workflows to API integrations, automation, analytics and conversion improvements. Explore the work, technical approach and experience behind each solution.</p><div className="actions"><a className="button primary" href="#hiring">Hiring a Shopify specialist <ArrowUpRight size={18}/></a><a className="button secondary" href="#client-enquiries">Need a Shopify project delivered? <ArrowRight size={18}/></a></div></div><figure className="hero-portrait"><Image src="/photos/commerce-developer-laptop.jpg" alt="Shopify developer working with a laptop" width={967} height={1450} sizes="(max-width: 700px) 100vw, 340px" priority/></figure></div><div className="hero-tags"><span>SHOPIFY DEVELOPMENT</span><span>ECOMMERCE MANAGEMENT</span><span>CONVERSION RATE OPTIMISATION</span><span>CUSTOM SHOPIFY APPS</span><span>API INTEGRATIONS</span></div></section>
+    {/* The interactive storefront book is a secondary hero. Preserve the primary,
+        SEO-led H1, hiring CTAs and established homepage service flow. */}
+    <RotationArchive/>
     {/* Stage 3 service cards link to individual, indexed service pages and preserve evidence-led app development claims. */}
     {/* Stage 1: separate employer and client entry points while keeping the service-led, name-free identity. */}
     <section id="hiring" className="section container"><div className="section-head"><div><span className="overline">FOR EMPLOYERS & RECRUITERS</span><h2>Hands-on Shopify expertise, from implementation to operations<span className="dot">.</span></h2></div><p>For ecommerce teams seeking technical ownership across storefront development, B2B workflows, integrations, reporting and conversion optimisation.</p></div><div className="hiring-services-cta"><p>Review documented work, practical responsibilities and the engineering approach before discussing a role.</p><Link className="button primary" href="/experience">Review professional experience <ArrowUpRight size={16}/></Link></div></section>
