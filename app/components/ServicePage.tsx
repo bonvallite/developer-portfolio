@@ -5,8 +5,10 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 // copy and links to existing case studies. Do not add personal-name SEO or unverified
 // outcomes. Contact CTA returns to the homepage's existing contact choices.
 // Keep the privacy notice accessible from service pages, not just the homepage.
-// Cross-link the four existing service routes without introducing unverified schema claims.
+// Cross-link the four existing service routes. Minimal WebPage JSON-LD repeats only
+// visible route content and the explicit canonical path; never include identity claims.
 export type ServiceContent = {
+  path: string;
   label: string;
   heading: string;
   lead: string;
@@ -17,8 +19,17 @@ export type ServiceContent = {
 };
 
 export default function ServicePage({ content }: { content: ServiceContent }) {
+  // Serialize JSON as inert script data, escaping HTML-significant characters.
+  const webPageSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: content.heading,
+    description: content.lead,
+    url: `https://www.jrvallite.com${content.path}`,
+  }).replace(/</g, '\\u003c');
   return (
     <main className="service-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: webPageSchema }} />
       <header className="container service-header">
         <Link href="/" className="service-back"><ArrowLeft size={17} /> Back to portfolio</Link>
         <Link href="/#contact" className="button secondary">Discuss a role or project <ArrowUpRight size={16} /></Link>
