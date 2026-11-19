@@ -4,7 +4,7 @@ Service-led portfolio covering Shopify development, ecommerce management, conver
 
 ## Current public identity and contact
 
-The site displays **EC.** as the wordmark, short for Shopify Commerce Engineering, while intentionally retaining the approved **{JRV}** browser-tab favicon in `app/icon.svg`. Do not change the icon to EC. or publish the owner's personal name in page metadata. The public enquiry mailbox is **hello@jrvallite.com** for both role and project requests and for privacy enquiries. Keep the `mailto:` links in `app/page.tsx` and `app/privacy/page.tsx` aligned. Historical references, repository account details, and dated documentation are not rewritten retroactively.
+The approved public wordmark is **JRV**, matching the approved **{JRV}** browser-tab favicon in `app/icon.svg`. Shopify Commerce Engineering describes the services, not a separate brand. Do not reintroduce the former EC. monogram or publish the owner's full personal name in page metadata. The public enquiry mailbox is **hello@jrvallite.com** for both role and project requests and for privacy enquiries. Keep the `mailto:` links in `app/page.tsx` and `app/privacy/page.tsx` aligned. Historical references, repository account details, and dated documentation are not rewritten retroactively.
 
 
 
