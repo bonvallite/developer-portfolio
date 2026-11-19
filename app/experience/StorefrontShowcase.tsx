@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import type { KeyboardEvent } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import StorefrontPreview from './StorefrontPreview';
 
@@ -21,7 +22,7 @@ export default function StorefrontShowcase({ stores }: { stores: ReadonlyArray<S
 
   // Keyboard shortcuts are scoped to the focused gallery, not the whole page,
   // so arrow navigation never interferes with normal document scrolling.
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === 'ArrowRight') { event.preventDefault(); navigate(active + 1); }
     if (event.key === 'ArrowLeft') { event.preventDefault(); navigate(active - 1); }
     if (event.key === 'Home') { event.preventDefault(); navigate(0); }
