@@ -39,7 +39,7 @@ export default function CartonCloudIntegrationCaseStudy() {
   return (
     <main>
       <header className="header container">
-        <Link className="brand" href="/"><strong>EC.</strong><span>SHOPIFY COMMERCE ENGINEERING</span></Link>
+        <Link className="brand" href="/"><strong>JRV</strong><span>SHOPIFY COMMERCE ENGINEERING</span></Link>
         <nav aria-label="Page navigation"><Link href="/#work">Projects</Link><Link href="/experience">Experience</Link></nav>
       </header>
       <section className="hero container" style={{paddingBottom:70}}>
