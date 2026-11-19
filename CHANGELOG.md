@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-19 - Restore owner-requested résumé, professional profiles and webmail shortcut
+- **Target:** `bonvallite/developer-portfolio`, `fix/restore-jrv-professional-links-webmail-resume` based on `main`.
+- **Affected files:** `app/page.tsx`, `app/experience/page.tsx`, `public/JRV-Resume.pdf` (restored unchanged from historical Git blob), `app/globals.css`, `README.md`, `CHANGELOG.md`.
+- **Reason:** The 18 November privacy-led cleanup intentionally removed these links and the original name-specific résumé PDF. The site owner explicitly requested their return.
+- **Change:** Restore the archived résumé under a neutral filename; display résumé links in homepage navigation, contact and Experience; restore previously used LinkedIn, Google Developer and Wikipedia destinations; add an authorised-user webmail login at `https://webmail.jrvallite.com/`, separate from public email enquiries to `hello@jrvallite.com`.
+- **Privacy:** Public profile links and the historic résumé may still identify the portfolio owner. The original document's details have not been rewritten, and its internal email may be out of date. Preserve name-free SEO metadata and existing sensitive-information guards.
+- **Validation:** Compared source against historical commit `caf282f`, confirmed existing historic PDF Git blob `a7d4648`, and reviewed current source. CI, restored file tree and deployment checks to follow.
+
+
 ## 2026-11-19 - Correct public wordmark to JRV
 - **Target:** `bonvallite/developer-portfolio`, branch `fix/replace-ec-wordmark-with-jrv-20261119`.
 - **Affected files:** `app/page.tsx`, `app/layout.tsx`, `app/cartoncloud-integration/page.tsx`, `app/conversion-audit/page.tsx`, `app/RotationArchive.tsx`, `README.md`, `CHANGELOG.md`.
