@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-19 - Reconcile case study with current production homepage and professional links
+
+- **Target:** `bonvallite/developer-portfolio`, PR #39; `main` commit `2456b99b564b906dde2de29c5a9bd94e9abacf26`.
+- **Files:** `app/page.tsx`, `app/experience/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Preserved newer homepage rotation, restored JRV identity, professional links and résumé, new B2B pages, while adding the analytics case study to the latest project evidence layout. Reconciled both changelog histories.
+- **Reason:** Avoid overwriting unrelated work during release.
+- **Validation:** Full CI required on reconciled branch. No theme files or customer records changed.
+
 ## 2026-11-19 - Complete local-browser QA for analytics case study
 
 - **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, PR #39. No production merge or manual Vercel deployment.
@@ -74,6 +82,42 @@
 - **Inline documentation:** Added context and confidentiality notes in the case study and homepage, and kept reusable skill and README aligned.
 - **Validation:** Reviewed source descriptions and repository contents prior to writes; code execution, CI, safety scan, Next.js build and Vercel preview verification must be reported after remote checks. Do not infer successful business exports or production release.
 - **Release:** Review branch only; no merge or production deployment authorised.
+
+
+## 2026-11-19 - Restore owner-requested résumé, professional profiles and webmail shortcut
+- **Target:** `bonvallite/developer-portfolio`, `fix/restore-jrv-professional-links-webmail-resume` based on `main`.
+- **Affected files:** `app/page.tsx`, `app/experience/page.tsx`, `public/JRV-Resume.pdf` (restored unchanged from historical Git blob), `app/globals.css`, `README.md`, `CHANGELOG.md`.
+- **Reason:** The 18 November privacy-led cleanup intentionally removed these links and the original name-specific résumé PDF. The site owner explicitly requested their return.
+- **Change:** Restore the archived résumé under a neutral filename; display résumé links in homepage navigation, contact and Experience; restore previously used LinkedIn, Google Developer and Wikipedia destinations; add an authorised-user webmail login at `https://webmail.jrvallite.com/`, separate from public email enquiries to `hello@jrvallite.com`.
+- **Privacy:** Public profile links and the historic résumé may still identify the portfolio owner. The original document's details have not been rewritten, and its internal email may be out of date. Preserve name-free SEO metadata and existing sensitive-information guards.
+- **Validation:** Compared source against historical commit `caf282f`, confirmed historic PDF Git blob `a7d4648` and verified the newly restored path points to that exact 323,929-byte blob in Git tree `5a9eb8b`. Confirmed the four contact/profile destinations, separate webmail shortcut and retained domain email in source. CI and Vercel deployment checks to follow.
+
+
+
+## 2026-11-19 - Cinematic Shopify B2B modernisation case study
+- **Branch:** `feature/cinematic-b2b-final-mainline-20261119`, based on current `main` to preserve later portfolio/SEO fixes.
+- **Files:** `app/b2b-modernisation/page.tsx`, `app/b2b-modernisation/CinematicB2B.tsx`, `app/b2b-modernisation/cinematic.css`, `app/page.tsx`, `tests/b2b-cinematic.test.mjs`, `CHANGELOG.md`.
+- **Change:** Five cinematic charcoal-and-gold chapters: before/after, contextual Markets/Catalogues, fictional price laboratory and eligibility switch, six-step buyer workflow, and historical business impact. Added a homepage case study link.
+- **Reporting:** Legacy exact `wholesale`, `wg_wholesale`, `WholesalePA1` order tags are deduplicated and use exported eligible order values less refund snapshots; broader customer-tag evidence is optional. Shopify native B2B net sales is a separate accounting definition, never summed with legacy. July go-live is user-reported, not independently dated. A$10,000 incremental monthly scenario is explicitly hypothetical.
+- **Commercial comparison:** AOV and returning customer rate figures are supplied as distinct customer cohort data and kept separate from native B2B ShopifyQL history. No verified causal conversion, revenue, or app-saving claims.
+- **Docs and accessibility:** Existing global theme stays unchanged. Route CSS is scoped, responsive, keyboard-focused, reduced-motion aware; interaction comments explain limitations. No new packages, credentials, private customer identities, or real merchant catalogue prices.
+- **Verification:** Automated checks cover chapters, data boundaries, SEO and reduced motion; GitHub publication safety, test suites, TypeScript and Next.js production build must pass before merge/release. Vercel publication is subject to platform deployment quota.
+
+
+## 2026-11-19 - Correct public wordmark to JRV
+- **Target:** `bonvallite/developer-portfolio`, branch `fix/replace-ec-wordmark-with-jrv-20261119`.
+- **Affected files:** `app/page.tsx`, `app/layout.tsx`, `app/cartoncloud-integration/page.tsx`, `app/conversion-audit/page.tsx`, `app/RotationArchive.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change and reason:** Replaced the mistaken EC. wordmark with user-confirmed JRV throughout visible navigation and archive elements. Aligned footer and site metadata with JRV while retaining Shopify Commerce Engineering as a descriptive service label. Preserved the original `{JRV}` favicon and public contact email `hello@jrvallite.com`.
+- **Validation:** Reviewed each affected source file and its comments before editing; CI and deployment verification to follow the commit.
+
+
+## 2026-11-19 - EC. public branding, {JRV} favicon and domain email
+- **Target:** `bonvallite/developer-portfolio`, branch `fix/brand-ec-jrv-favicon-contact-email-20261119`, Next.js/Vercel portfolio.
+- **Affected files:** `app/page.tsx`, `app/privacy/page.tsx`, `app/layout.tsx`, `README.md`, `scripts/public-safety-allowlist.json`, `CHANGELOG.md`.
+- **Change:** Confirmed EC. is the public website wordmark; retained the original approved {JRV} gold-on-charcoal browser favicon unchanged in `app/icon.svg`. Replaced three homepage role/project mailto destinations and one privacy enquiry mailto destination from the retired personal Gmail address to `hello@jrvallite.com`. Updated nearby source comments and current-brand documentation.
+- **Reason:** Keep the visible company-style identity and contact address consistent, while preserving the separately approved favicon and privacy-led SEO.
+- **Validation:** Audited public Next.js routes, root layout, existing favicon and contact links; verified the four old mailto destinations before replacement. Initial GitHub safety scan flagged the new public domain email; the exact-match safety allowlist was updated to the newly approved address. GitHub Actions, build and live Vercel verification recorded separately following commit.
+- **Release:** Changes staged for PR; do not claim production until Vercel confirms the matching commit as READY.
 
 
 ## 2026-11-19 - Rebase homepage discovery link onto current production source

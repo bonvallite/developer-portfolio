@@ -2,9 +2,20 @@
 
 Service-led portfolio covering Shopify development, ecommerce management, conversion rate optimisation, custom API integrations, and storefront performance. Public pages intentionally avoid personal-name SEO.
 
+## Current public identity and contact
+
+The approved public wordmark is **JRV**, matching the approved **{JRV}** browser-tab favicon in `app/icon.svg`. Shopify Commerce Engineering describes the services, not a separate brand. Do not reintroduce the former EC. monogram or publish the owner's full personal name in page metadata. The public enquiry mailbox is **hello@jrvallite.com** for both role and project requests and for privacy enquiries. Keep the `mailto:` links in `app/page.tsx` and `app/privacy/page.tsx` aligned. Historical references, repository account details, and dated documentation are not rewritten retroactively.
 
 
 
+
+
+
+## Professional profiles, résumé and mailbox access (restored 19 November 2026)
+
+At the owner's request, the homepage contact section links to the original public LinkedIn, Google Developer and Wikipedia contribution profiles, and provides a separate authorised-mailbox login shortcut at `https://webmail.jrvallite.com/`. This is a **login link**, not the public contact destination. Enquiries continue to use `hello@jrvallite.com`.
+
+The `/JRV-Resume.pdf` download is a neutral URL referring to the owner's originally published 2026 résumé, restored from historical Git object `a7d4648238f748f625004890bb8aac4b5443915b`. The original document may contain an older email address or other identifying information; it is not automatically updated by changing the website. Publication of the résumé and personal profile links changes the prior 18 November privacy cleanup. Keep page titles and metadata service-led; do not infer that the linked personal profiles are independent credentials or endorsements.
 
 ## Ecommerce API extraction case study
 

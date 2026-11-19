@@ -82,7 +82,7 @@ export default function RotationArchive() {
           const backVisible = index === currentSheet - 1;
           return <div key={index} className={`rotation-sheet${flipped ? ' is-flipped' : ''}`} style={{zIndex:flipped ? index + 1 : sheetCount - index}}>
             <div className={`rotation-face rotation-face--front${index === 0 ? ' rotation-cover' : ''}`} aria-hidden={!frontVisible} inert={!frontVisible}>
-              {index === 0 ? <div className="rotation-cover-content"><span>EC. / WORK ARCHIVE</span><h3>SHOPIFY<br/>WORK<br/>ARCHIVE</h3><p>Storefront UX · B2B · Integrations · CRO</p><span>OPEN TO EXPLORE THE WORK</span></div> : frontVisible ? <ReferencePage index={index === 1 ? 1 : 3}/> : null}
+              {index === 0 ? <div className="rotation-cover-content"><span>JRV / WORK ARCHIVE</span><h3>SHOPIFY<br/>WORK<br/>ARCHIVE</h3><p>Storefront UX · B2B · Integrations · CRO</p><span>OPEN TO EXPLORE THE WORK</span></div> : frontVisible ? <ReferencePage index={index === 1 ? 1 : 3}/> : null}
               {frontVisible && <button className="rotation-turn-surface" type="button" aria-label={index === 0 ? 'Open the book' : 'Turn to next page'} onClick={() => faceClick(index,'front')}/>}
             </div>
             <div className={`rotation-face rotation-face--back${index === sheetCount - 1 ? ' rotation-cover rotation-back-cover' : ''}`} aria-hidden={!backVisible} inert={!backVisible}>

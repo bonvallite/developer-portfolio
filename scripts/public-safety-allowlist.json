@@ -1,7 +1,7 @@
 {
-  "comment": "Values intentionally public in this repository. Entries must be exact literals, never wildcards. The GTM container ID is public by design; keep all other GA4/GTM IDs blocked unless explicitly approved.",
+  "comment": "Values intentionally public in this repository. Entries must be exact literals, never wildcards. Only the current public role/project/privacy contact mailbox is exempted; all other email addresses are still scanned. The GTM container ID is public by design; keep all other GA4/GTM IDs blocked unless explicitly approved.",
   "allow": [
-    "bonvallite@gmail.com",
+    "hello@jrvallite.com",
     "GTM-KVJVH4VM"
   ]
 }
