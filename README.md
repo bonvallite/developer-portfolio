@@ -11,6 +11,12 @@ The approved public wordmark is **JRV**, matching the approved **{JRV}** browser
 
 
 
+## Professional profiles, résumé and mailbox access (restored 19 November 2026)
+
+At the owner's request, the homepage contact section links to the original public LinkedIn, Google Developer and Wikipedia contribution profiles, and provides a separate authorised-mailbox login shortcut at `https://webmail.jrvallite.com/`. This is a **login link**, not the public contact destination. Enquiries continue to use `hello@jrvallite.com`.
+
+The `/JRV-Resume.pdf` download is a neutral URL referring to the owner's originally published 2026 résumé, restored from historical Git object `a7d4648238f748f625004890bb8aac4b5443915b`. The original document may contain an older email address or other identifying information; it is not automatically updated by changing the website. Publication of the résumé and personal profile links changes the prior 18 November privacy cleanup. Keep page titles and metadata service-led; do not infer that the linked personal profiles are independent credentials or endorsements.
+
 ## Portfolio analytics: Google Tag Manager
 
 The Next.js root layout (`app/layout.tsx`) installs Google Tag Manager container **`GTM-KVJVH4VM`** sitewide, using the owner's supplied asynchronous `gtm.js` URL and `window.dataLayer` / `gtag('js', new Date())` initialisation **directly in a single explicit `<head>` section**. These two native script elements reproduce Google's manual head snippet, rather than using a Next.js `beforeInteractive` script queue, which preview HTML showed outside the head. The asynchronous external script and immediate inline initialiser are emitted on the initial HTML for every route. Do not repeat them in page components. The container ID is public and is not a secret. The repository's publication safety scanner has an exact-value exception for this ID only in `scripts/public-safety-allowlist.json`; all other GTM/GA4 IDs continue to be flagged.

@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-19 - Restore owner-requested résumé, professional profiles and webmail shortcut
+- **Target:** `bonvallite/developer-portfolio`, `fix/restore-jrv-professional-links-webmail-resume` based on `main`.
+- **Affected files:** `app/page.tsx`, `app/experience/page.tsx`, `public/JRV-Resume.pdf` (restored unchanged from historical Git blob), `app/globals.css`, `README.md`, `CHANGELOG.md`.
+- **Reason:** The 18 November privacy-led cleanup intentionally removed these links and the original name-specific résumé PDF. The site owner explicitly requested their return.
+- **Change:** Restore the archived résumé under a neutral filename; display résumé links in homepage navigation, contact and Experience; restore previously used LinkedIn, Google Developer and Wikipedia destinations; add an authorised-user webmail login at `https://webmail.jrvallite.com/`, separate from public email enquiries to `hello@jrvallite.com`.
+- **Privacy:** Public profile links and the historic résumé may still identify the portfolio owner. The original document's details have not been rewritten, and its internal email may be out of date. Preserve name-free SEO metadata and existing sensitive-information guards.
+- **Validation:** Compared source against historical commit `caf282f`, confirmed historic PDF Git blob `a7d4648` and verified the newly restored path points to that exact 323,929-byte blob in Git tree `5a9eb8b`. Confirmed the four contact/profile destinations, separate webmail shortcut and retained domain email in source. CI and Vercel deployment checks to follow.
+
+
+
 ## 2026-11-19 - Cinematic Shopify B2B modernisation case study
 - **Branch:** `feature/cinematic-b2b-final-mainline-20261119`, based on current `main` to preserve later portfolio/SEO fixes.
 - **Files:** `app/b2b-modernisation/page.tsx`, `app/b2b-modernisation/CinematicB2B.tsx`, `app/b2b-modernisation/cinematic.css`, `app/page.tsx`, `tests/b2b-cinematic.test.mjs`, `CHANGELOG.md`.

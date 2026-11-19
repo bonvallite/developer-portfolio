@@ -362,3 +362,11 @@
 .storefront-screen.is-ready img,.rotation-image.is-ready img{opacity:1}
 @keyframes pa-preview-skeleton{from{background-position:100% 0}to{background-position:-100% 0}}
 @media(prefers-reduced-motion:reduce){.storefront-screen,.rotation-image{animation:none!important}.storefront-screen img,.rotation-image img{transition:none!important}}
+
+/* Owner-requested mailbox login shortcut, deliberately separate from the
+   public enquiry CTAs. The link targets an external authenticated service,
+   not an embedded form or credential collector. */
+.webmail-shortcut{margin:18px 0 0;color:#b6b4ae;font-size:12px;line-height:1.6}
+.webmail-shortcut a{display:inline-flex;align-items:center;gap:5px;color:#d9b47c;text-decoration:underline;text-underline-offset:3px}
+.webmail-shortcut a:hover{color:#f4dfbc}
+.webmail-shortcut a:focus-visible{outline:2px solid #d9b47c;outline-offset:3px}
