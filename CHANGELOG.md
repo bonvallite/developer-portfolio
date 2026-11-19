@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-19 - Publish sanitised Python source and interactive cinematic case study (GitHub only)
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39, no approved production merge.
+- **Affected files:** `public/case-studies/ecommerce-analytics/sanitised-python-source-archive.md`, `app/data-extraction-automation/interactive-lab.tsx`, `app/data-extraction-automation/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Published the full content of 17 owner-uploaded Python scripts in a public, sanitised Markdown archive; added a five-stage educational walkthrough, selectable Python code examples and explanations, and a CSS-only cinematic pipeline visual. Linked the archive from the interactive case study and documented the important limits.
+- **Why:** Communicate the real engineering process from business requirements to API-based delivery, and make substantial Python work inspectable without publishing private client identifiers or raw datasets. Keep the page lightweight and accessible.
+- **Documentation:** Added source-provenance and confidentiality comments in the code; updated README to reflect that the sanitised scripts are now publicly available rather than withheld.
+- **Sanitisation:** Replaced the GA4 property ID, Search Console site/property, employer brand search expressions and Windows user paths with example values. No OAuth client secrets, access tokens or raw customer data were uploaded. The source is educational and not configured to run against live systems as provided.
+- **Validation:** Confirmed GitHub content readback for the case-study page, interactive component and archive; scanned those files for known private identifiers; confirmed 17 Python sections in the source archive. TypeScript, npm tests, public-safety script, production build and browser QA remain **unverified** in this session. GitHub commits can automatically trigger Vercel previews even though no direct Vercel operation was requested.
+- **Release:** Draft PR only; no merge to main.
+
 ## 2026-11-19 - Rebuild extraction case study as problem-to-solution story (GitHub only)
 
 - **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39. No merge or manual Vercel action.
