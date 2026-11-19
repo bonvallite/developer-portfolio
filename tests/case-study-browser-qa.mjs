@@ -13,7 +13,7 @@ const viewports = [
 ];
 
 await mkdir(output, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const results = [];
 try {
   for (const viewport of viewports) {
