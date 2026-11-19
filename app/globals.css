@@ -204,3 +204,7 @@
 .case-context-grid a:hover{color:#fff0d1}
 .case-context-grid a:focus-visible{outline:2px solid #e2be8a;outline-offset:4px}
 @media(max-width:720px){.case-context-grid{grid-template-columns:1fr}.case-context-grid article{padding:21px}}
+
+/* Stage 1 homepage hero: balance the longer service-led headline on desktop and mobile without changing headings on other pages. */
+#home.hero h1 { font-size: clamp(38px, 4.8vw, 68px); line-height: 1.12; letter-spacing: -2.2px; max-width: 1100px; }
+@media (max-width: 700px) { #home.hero h1 { font-size: clamp(32px, 8.5vw, 46px); line-height: 1.15; letter-spacing: -1.4px; } }
