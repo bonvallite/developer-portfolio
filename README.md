@@ -2,6 +2,11 @@
 
 Service-led portfolio covering Shopify development, ecommerce management, conversion rate optimisation, custom API integrations, and storefront performance. Public pages intentionally avoid personal-name SEO.
 
+## Current public identity and contact
+
+The site displays **EC.** as the wordmark, short for Shopify Commerce Engineering, while intentionally retaining the approved **{JRV}** browser-tab favicon in `app/icon.svg`. Do not change the icon to EC. or publish the owner's personal name in page metadata. The public enquiry mailbox is **hello@jrvallite.com** for both role and project requests and for privacy enquiries. Keep the `mailto:` links in `app/page.tsx` and `app/privacy/page.tsx` aligned. Historical references, repository account details, and dated documentation are not rewritten retroactively.
+
+
 
 
 
