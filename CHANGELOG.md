@@ -2,10 +2,10 @@
 
 ## 2026-11-19 - EC. public branding, {JRV} favicon and domain email
 - **Target:** `bonvallite/developer-portfolio`, branch `fix/brand-ec-jrv-favicon-contact-email-20261119`, Next.js/Vercel portfolio.
-- **Affected files:** `app/page.tsx`, `app/privacy/page.tsx`, `app/layout.tsx`, `README.md`, `CHANGELOG.md`.
+- **Affected files:** `app/page.tsx`, `app/privacy/page.tsx`, `app/layout.tsx`, `README.md`, `scripts/public-safety-allowlist.json`, `CHANGELOG.md`.
 - **Change:** Confirmed EC. is the public website wordmark; retained the original approved {JRV} gold-on-charcoal browser favicon unchanged in `app/icon.svg`. Replaced three homepage role/project mailto destinations and one privacy enquiry mailto destination from the retired personal Gmail address to `hello@jrvallite.com`. Updated nearby source comments and current-brand documentation.
 - **Reason:** Keep the visible company-style identity and contact address consistent, while preserving the separately approved favicon and privacy-led SEO.
-- **Validation:** Audited public Next.js routes, root layout, existing favicon and contact links; verified the four old mailto destinations before replacement. GitHub Actions, build and live Vercel verification recorded separately following commit.
+- **Validation:** Audited public Next.js routes, root layout, existing favicon and contact links; verified the four old mailto destinations before replacement. Initial GitHub safety scan flagged the new public domain email; the exact-match safety allowlist was updated to the newly approved address. GitHub Actions, build and live Vercel verification recorded separately following commit.
 - **Release:** Changes staged for PR; do not claim production until Vercel confirms the matching commit as READY.
 
 
