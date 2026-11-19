@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowUpRight, Code2, ShoppingBag, Workflow, BarChart3, Shiel
 // Skills-led metadata avoids publishing the portfolio owner's personal name.
 export const metadata: Metadata = {title:'Shopify Ecommerce Experience & Case Studies',description:'Shopify theme development, ecommerce operations, CRO analysis, B2B workflows and custom integration case studies.',alternates:{canonical:'/experience'}};
 // Only live storefront references belong in this public list; retired destinations are excluded.
-const stores = [
+const stores: [string, string][] = [
  ['Poseidon Animal Health','https://poseidonanimalhealth.com.au/'],['Eve Curls','https://www.evecurls.com/'],['Jace Industries','https://jaceindustries.com/'],['Colossal Diamond Tools','https://colossaldiamondtools.com/'],['Rene Ruiz Collection','https://reneruizcollection.com/'],['Urban August','https://urbanaugust.com/'],['Warehouse-Lighting','https://www.warehouse-lighting.com/'],['OSOYOO','https://osoyoo.com/'],['Axlrodd','https://axlrodd.com/'],['Tronus Footwear','https://tronusfootwear.com/']
 ];
 
