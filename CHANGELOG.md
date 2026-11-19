@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-19 - Rebuild extraction case study as problem-to-solution story (GitHub only)
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39. No merge or manual Vercel action.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `CHANGELOG.md`.
+- **Change:** Replaced the text-heavy case study with a five-stage editorial narrative, platform favicon/source architecture, lightweight native HTML interactive code disclosures, output catalogue, clear CTA links and responsive dark/gold styling. Updated GA4 statements using the 10 source-reviewed Python modules. Added Bing as a documented extraction platform, with Shopify/Klaviyo kept distinct from verified API scripts.
+- **Reason:** Show how an original 12-month business reporting brief became a documented multi-platform data engineering workflow, without consuming client-side UI resources or publishing client data.
+- **Inline documentation:** Records public-safe code provenance, external favicon loading, source limits, and distinction between Shopify GraphQL / Bash skills and unverified involvement in this particular extraction.
+- **Validation:** GitHub source inspection and type-oriented static review before write. Full local tests, safety scanner, TypeScript compilation, browser QA and any Vercel build have not been run here. Feature branch only. Note that automatic Vercel integration may still create a preview from GitHub commits.
+
 ## 2026-11-19 - Clarify 12-month cross-platform extraction purpose
 
 - **Target:** `bonvallite/developer-portfolio`, review branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
