@@ -1,8 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
-// Public wordmark: EC. (Shopify Commerce Engineering). The approved {JRV}
-// browser favicon is intentionally different and remains in app/icon.svg,
+// Public wordmark: JRV. The approved {JRV} browser favicon matches
+// the brand and remains in app/icon.svg,
 // using the site's gold-on-charcoal palette.
 // Next.js discovers this self-contained, transparent-corner favicon automatically.
 // Do not add a competing metadata.icons entry or a legacy favicon.ico.
@@ -10,13 +10,13 @@ import { Analytics } from '@vercel/analytics/next';
 // Keep canonical URLs aligned with the www domain; avoid Person schema.
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.jrvallite.com'),
-  title: { default: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps', template: '%s | Shopify Commerce Engineering' },
+  title: { default: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps', template: '%s | JRV' },
   description: 'Shopify development, ecommerce management, conversion rate optimisation, custom apps and API integrations. Explore practical projects and technical expertise.',
   keywords: ['Shopify developer', 'Shopify expert', 'ecommerce manager', 'Shopify CRO specialist', 'Shopify app developer', 'Shopify API integration', 'Shopify B2B developer'],
   // Do not set a root canonical: it would be inherited by case-study routes.
   // The homepage owns its canonical; service pages will use their own URLs.
   // Avoid a sitewide Open Graph URL that would incorrectly identify all subpages as home.
-  openGraph: { type: 'website', siteName: 'Shopify Commerce Engineering', title: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps', description: 'Shopify storefront engineering, ecommerce operations, CRO, custom integrations and automation.' },
+  openGraph: { type: 'website', siteName: 'JRV | Shopify Commerce Engineering', title: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps', description: 'Shopify storefront engineering, ecommerce operations, CRO, custom integrations and automation.' },
   robots: { index: true, follow: true },
 };
 // The root layout owns one sitewide Microsoft Clarity installation, as a native
