@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-19 - Rebase homepage discovery link onto current production source
+
+- **Target:** `bonvallite/developer-portfolio`, feature branch `feat/gift-packaging-homepage-link-current-20261119`, based on `main` commit `8c8828c`.
+- **Affected files:** `app/page.tsx`, `CHANGELOG.md`.
+- **Change:** Added a selected-work homepage callout linking to the existing independent fictional `/gift-packaging-reference` demo, preserving newer homepage changes made after the original PR #40 branch.
+- **Reason:** Make the published gift packaging demonstration discoverable to employers and clients without overwriting 17 newer commits on `main`.
+- **Inline documentation:** Comment beside the callout explains its independent authorship and lack of merchant checkout/payment access.
+- **Validation:** Exact insertion anchor and internal link confirmed by source inspection. GitHub Actions, Next.js build, safety checks, Vercel preview and browser/mobile navigation to be verified after push.
+- **Release/recovery:** Review branch only; revert this scoped commit to remove the homepage link while retaining the independent demo route.
+
+
 ## 2026-11-18 - Align Fieldstone gift packaging demo with portfolio palette
 
 - **Target:** `bonvallite/developer-portfolio`, review branch `feat/fieldstone-gift-packaging-20261118`, Vercel preview only.
