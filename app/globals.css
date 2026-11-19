@@ -212,7 +212,7 @@
 
 /* /experience public-site previews: use independent, lazily loaded screenshot
    thumbnails rather than copying client assets. Browser viewport and image
-   output dimensions are defined in app/experience/page.tsx. */
+   output dimensions are defined in app/experience/StorefrontPreview.tsx. */
 .storefront-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:28px}
 .storefront-featured-preview{margin-top:24px}
 .storefront-preview-card{background:#1c252d;border:1px solid #424d56;border-radius:14px;padding:20px;min-width:0}
@@ -228,3 +228,12 @@
 .storefront-device.mobile .storefront-screen{max-width:190px;margin:0 auto;border-width:5px 4px;border-radius:18px;aspect-ratio:390/844}
 @media(max-width:850px){.storefront-preview-grid{grid-template-columns:1fr}}
 @media(max-width:460px){.storefront-preview-card{padding:14px}.storefront-preview-pair{grid-template-columns:minmax(0,1.6fr) minmax(95px,1fr);gap:9px}.storefront-device>.overline{font-size:9px}.storefront-preview-head h3{font-size:17px}}
+
+/* Fallback stays inside the allocated screenshot aspect ratio to avoid layout
+   shift if the third-party screenshot service cannot produce an image. */
+.storefront-shot-unavailable{height:100%;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:12px;color:#d7dee2;background:linear-gradient(145deg,#283640,#18222a)}
+.storefront-shot-unavailable p{font-size:12px;line-height:1.5;margin:0;overflow-wrap:anywhere}
+.storefront-shot-unavailable a{font-size:12px;color:#e2be8a;text-decoration:underline;text-underline-offset:3px}
+.storefront-shot-unavailable a:focus-visible{outline:2px solid #e2be8a;outline-offset:3px}
+.storefront-device.mobile .storefront-shot-unavailable{padding:7px;gap:7px}
+.storefront-device.mobile .storefront-shot-unavailable p,.storefront-device.mobile .storefront-shot-unavailable a{font-size:10px}
