@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-19 - Showcase ecommerce API extraction and data value
+
+- **Target:** `bonvallite/developer-portfolio`, review branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `app/page.tsx`, `app/python-automation/page.tsx`, `app/experience/page.tsx`, `skills/python-automation-portfolio/SKILL.md`, `README.md`, `CHANGELOG.md`.
+- **Change:** Added a public-safe case study of Python Google Search Console API exports and JavaScript Google Ads reporting scripts; described authentication, pagination, CSV exports, data limitations and value for ecommerce SEO, paid media and conversion measurement. Linked it from projects, skills, Python and experience sections; extended reusable documentation.
+- **Reason:** Make demonstrated scripting, technical depth and the practical value of resulting datasets visible to potential employers and clients.
+- **Inline documentation:** Added context and confidentiality notes in the case study and homepage, and kept reusable skill and README aligned.
+- **Validation:** Reviewed source descriptions and repository contents prior to writes; code execution, CI, safety scan, Next.js build and Vercel preview verification must be reported after remote checks. Do not infer successful business exports or production release.
+- **Release:** Review branch only; no merge or production deployment authorised.
+
+
 ## 2026-11-18 - Align Fieldstone gift packaging demo with portfolio palette
 
 - **Target:** `bonvallite/developer-portfolio`, review branch `feat/fieldstone-gift-packaging-20261118`, Vercel preview only.
