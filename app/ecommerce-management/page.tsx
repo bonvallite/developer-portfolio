@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 const content: ServiceContent = {
+  // Keep this path aligned with this route's canonical metadata.
+  path: '/ecommerce-management',
   "label": "ECOMMERCE MANAGER / SHOPIFY OPERATIONS",
   "heading": "Ecommerce Management for Shopify operations and growth",
   "lead": "Hands-on ecommerce operations with the technical depth to diagnose storefront problems, maintain product information, review performance, and coordinate improvements.",
