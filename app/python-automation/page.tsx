@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'Python Automation & Reusable Skills | Developer Portfolio',
-  description: 'Public-safe Python automation, offline fictional FAQ retrieval, Samsung Health CSV ingestion and Jupyter notebook review.',
+  description: 'Public-safe Python automation, offline fictional FAQ retrieval, CSV ingestion, Jupyter notebook review and ecommerce API extraction case studies.',
   alternates: { canonical: '/python-automation' },
 };
 
@@ -13,6 +13,10 @@ export default function PythonAutomationPage() {
     <p className="overline" style={{marginTop:48}}>PYTHON / AUTOMATION / AI PROTOTYPES</p>
     <h1>Python automation, from notebooks to reusable workflows.</h1>
     <p>Independent, public-safe examples of data ingestion, CSV processing, source-grounded FAQ retrieval and technical documentation. No actual health records, private company datasets or production credentials are published.</p>
+    {/* The analytics case study describes reviewed work only, not public employer scripts. */}
+    <h2>Ecommerce SEO and advertising data extraction</h2>
+    <p>Python Google Search Console API workflows and JavaScript Google Ads reporting scripts demonstrate OAuth, paginated retrieval, CSV exports and the business purpose of search and conversion datasets. Review notes make API coverage and validation limits explicit.</p>
+    <p><Link href="/data-extraction-automation" style={{color:'#ddb682',textDecoration:'underline'}}>Explore ecommerce API extraction case study →</Link></p>
     <h2>Samsung Health CSV merger</h2>
     <p>A local Python and Pandas utility that reads Samsung export CSVs, handles a common extra-title-row format, retains source provenance and writes an error report. Mixed datasets remain distinct measurements; concatenation is not a time-aligned health analysis.</p>
     <p><a href={github + '/tree/main/projects/samsung-health-csv-merger'} target="_blank" rel="noopener noreferrer">Explore the Python merger source →</a></p>
