@@ -2,6 +2,10 @@
 
 This manual workflow captures public homepage viewports for the 12 stores referenced on `/experience`. It does **not** publish images or change production.
 
+## Runner compatibility
+
+The first run on 19 November 2026 (run 44488642173) failed before capture: `ubuntu-latest` resolved to Ubuntu 26.04, while Playwright 1.56.1 rejected Chromium dependency installation on that OS. The workflow now explicitly uses `ubuntu-24.04` with the same pinned Playwright release. Re-run the workflow to confirm browser installation and actual captures; a passing Vercel build does not test GitHub Actions browser installation.
+
 ## Run
 
 Open **Actions → Capture storefront homepage previews → Run workflow**, select `all` or an individual store, and run. Download the resulting `storefront-captures-<run-id>` artefact. Each site is captured at desktop 1280×800 and mobile 390×844. The `manifest.json` lists failures and observed page metadata.
