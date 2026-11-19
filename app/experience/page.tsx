@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import StorefrontPreview from './StorefrontPreview';
 import { ArrowLeft, ArrowUpRight, Code2, ShoppingBag, Workflow, BarChart3, ShieldCheck, Network } from 'lucide-react';
 
 // Skills-led metadata avoids publishing the portfolio owner's personal name.
@@ -8,23 +9,6 @@ export const metadata: Metadata = {title:'Shopify Ecommerce Experience & Case St
 const stores = [
  ['Poseidon Animal Health','https://poseidonanimalhealth.com.au/'],['Eve Curls','https://www.evecurls.com/'],['Jace Industries','https://jaceindustries.com/'],['Colossal Diamond Tools','https://colossaldiamondtools.com/'],['Rene Ruiz Collection','https://reneruizcollection.com/'],['Urban August','https://urbanaugust.com/'],['Warehouse-Lighting','https://www.warehouse-lighting.com/'],['Skull Seeker','https://www.skullseeker.com/'],['OSOYOO','https://osoyoo.com/'],['Axlrodd','https://axlrodd.com/'],['Tronus Footwear','https://tronusfootwear.com/']
 ];
-
-// mShots captures the public homepage at real desktop/mobile viewport dimensions.
-// These third-party previews may be cached, temporarily unavailable, or different
-// from the site's current appearance. They do not embed client theme assets.
-function storefrontShot(url: string, device: 'desktop' | 'mobile') {
-  const viewport = device === 'desktop' ? { width: 1280, height: 800 } : { width: 390, height: 844 };
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?vpw=${viewport.width}&vph=${viewport.height}&w=${viewport.width}&h=${viewport.height}`;
-}
-function StorefrontPreview({name, url}: {name: string; url: string}) {
-  return <article className="storefront-preview-card">
-    <div className="storefront-preview-head"><h3>{name}</h3><a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${name} website`}>Visit website <ArrowUpRight size={15}/></a></div>
-    <div className="storefront-preview-pair">
-      <div className="storefront-device desktop"><span className="overline">DESKTOP / 1280 PX VIEWPORT</span><div className="storefront-screen"><img src={storefrontShot(url,'desktop')} alt={`Desktop homepage preview of ${name}`} loading="lazy" decoding="async" referrerPolicy="no-referrer"/></div></div>
-      <div className="storefront-device mobile"><span className="overline">MOBILE / 390 PX VIEWPORT</span><div className="storefront-screen"><img src={storefrontShot(url,'mobile')} alt={`Mobile homepage preview of ${name}`} loading="lazy" decoding="async" referrerPolicy="no-referrer"/></div></div>
-    </div>
-  </article>;
-}
 
 const work = [
  {title:'Storefront development and maintenance',icon:Code2,body:'Liquid components, responsive templates, landing pages, accessibility and performance troubleshooting. Work ranges from targeted bug fixes to structured theme improvements.'},
