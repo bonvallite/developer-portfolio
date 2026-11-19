@@ -6,6 +6,10 @@ Service-led portfolio covering Shopify development, ecommerce management, conver
 
 
 
+## Ecommerce API extraction case study
+
+The public-safe [SEO and advertising extraction case study](./app/data-extraction-automation/page.tsx) explains the reviewed Python Search Console API reporting and JavaScript Google Ads scripting work, including OAuth refresh, pagination, cached requests, structured CSV output, sampled URL inspection and analytical value for ecommerce SEO/CRO decisions. Its 30 planned GSC outputs include API-limitation notes rather than 30 confirmed datasets. This page does not include client scripts, customer records, private exports or performance claims. The [Python automation page](./app/python-automation/page.tsx) and [reusable workflow skill](./skills/python-automation-portfolio/SKILL.md) link to the case study. Verify source files and a complete validated output inventory before claiming every export succeeded.
+
 ## Portfolio analytics: Google Tag Manager
 
 The Next.js root layout (`app/layout.tsx`) installs Google Tag Manager container **`GTM-KVJVH4VM`** sitewide, using the owner's supplied asynchronous `gtm.js` URL and `window.dataLayer` / `gtag('js', new Date())` initialisation **directly in a single explicit `<head>` section**. These two native script elements reproduce Google's manual head snippet, rather than using a Next.js `beforeInteractive` script queue, which preview HTML showed outside the head. The asynchronous external script and immediate inline initialiser are emitted on the initial HTML for every route. Do not repeat them in page components. The container ID is public and is not a secret. The repository's publication safety scanner has an exact-value exception for this ID only in `scripts/public-safety-allowlist.json`; all other GTM/GA4 IDs continue to be flagged.
