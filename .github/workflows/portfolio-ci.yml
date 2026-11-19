@@ -1,7 +1,7 @@
 name: Portfolio checks
 on:
   push:
-    branches: [main, feature/google-analytics-api-portfolio-20261119]
+    branches: [main]
   pull_request:
 permissions:
   contents: read
