@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-19 - Cinematic Shopify B2B modernisation case study
+- **Branch:** `feature/cinematic-b2b-final-mainline-20261119`, based on current `main` to preserve later portfolio/SEO fixes.
+- **Files:** `app/b2b-modernisation/page.tsx`, `app/b2b-modernisation/CinematicB2B.tsx`, `app/b2b-modernisation/cinematic.css`, `app/page.tsx`, `tests/b2b-cinematic.test.mjs`, `CHANGELOG.md`.
+- **Change:** Five cinematic charcoal-and-gold chapters: before/after, contextual Markets/Catalogues, fictional price laboratory and eligibility switch, six-step buyer workflow, and historical business impact. Added a homepage case study link.
+- **Reporting:** Legacy exact `wholesale`, `wg_wholesale`, `WholesalePA1` order tags are deduplicated and use exported eligible order values less refund snapshots; broader customer-tag evidence is optional. Shopify native B2B net sales is a separate accounting definition, never summed with legacy. July go-live is user-reported, not independently dated. A$10,000 incremental monthly scenario is explicitly hypothetical.
+- **Commercial comparison:** AOV and returning customer rate figures are supplied as distinct customer cohort data and kept separate from native B2B ShopifyQL history. No verified causal conversion, revenue, or app-saving claims.
+- **Docs and accessibility:** Existing global theme stays unchanged. Route CSS is scoped, responsive, keyboard-focused, reduced-motion aware; interaction comments explain limitations. No new packages, credentials, private customer identities, or real merchant catalogue prices.
+- **Verification:** Automated checks cover chapters, data boundaries, SEO and reduced motion; GitHub publication safety, test suites, TypeScript and Next.js production build must pass before merge/release. Vercel publication is subject to platform deployment quota.
+
+
 ## 2026-11-19 - Correct public wordmark to JRV
 - **Target:** `bonvallite/developer-portfolio`, branch `fix/replace-ec-wordmark-with-jrv-20261119`.
 - **Affected files:** `app/page.tsx`, `app/layout.tsx`, `app/cartoncloud-integration/page.tsx`, `app/conversion-audit/page.tsx`, `app/RotationArchive.tsx`, `README.md`, `CHANGELOG.md`.
