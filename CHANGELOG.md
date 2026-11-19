@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-19 - Clarify 12-month cross-platform extraction purpose
+
+- **Target:** `bonvallite/developer-portfolio`, review branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `app/page.tsx`, `CHANGELOG.md`.
+- **Change:** Repositioned the case study as a 12-month, multi-dataset workflow covering GA4, Search Console and Google Ads, and revised the featured project description. Documented distinct platform methods and dataset types rather than implying a single Python script implements all three.
+- **Reason:** Explain the business purpose of extracting detailed underlying data rather than screenshots or dashboard summaries.
+- **Documentation:** Updated inline comments separating independently inspected GSC Python and Ads JavaScript sources from user-reported GA4 API configuration. Preserved confidentiality and limitations.
+- **Validation:** Source and saved content checked; latest Vercel preview build and CI must be confirmed before release. No production merge.
+
+
 ## 2026-11-19 - Display Python ranking calculation on Vercel case study
 
 - **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, Vercel preview only.
