@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-19 - Restore portfolio CI trigger and confirm merge blocker
+
+- **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39.
+- **Affected files:** `.github/workflows/portfolio-ci.yml`, `CHANGELOG.md`.
+- **Change:** Restored the standard `main`-only push trigger while retaining the existing `pull_request` trigger. The temporary feature-branch push trigger had been used to obtain a complete GitHub Actions validation run.
+- **Reason:** Keep normal CI conventions and avoid ongoing duplicate branch push workflows after successful verification.
+- **Validation:** GitHub Actions run #44520783303 passed the safety, SEO, JavaScript unit, Python unit, TypeScript and Next.js build checks on commit `0e753407`. Archive readback contains 17 Python files and a targeted scan found no personal Windows paths, email addresses, or known employer identifiers. GitHub PR API currently reports `mergeable_state: dirty`, so this branch is **not merge-ready**; conflicts against `main` still require resolution. No production merge was performed.
+
 ## 2026-11-19 - Publish sanitised Python source and interactive cinematic case study (GitHub only)
 
 - **Target:** `bonvallite/developer-portfolio`, branch `feature/google-analytics-api-portfolio-20261119`, draft PR #39, no approved production merge.
