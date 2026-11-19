@@ -35,7 +35,8 @@ jobs:
     # Run only for this case-study PR; the rest of the site's CI stays unchanged.
     if: github.event_name == 'pull_request' && github.head_ref == 'feature/google-analytics-api-portfolio-20261119'
     needs: validate
-    runs-on: ubuntu-latest
+    # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
