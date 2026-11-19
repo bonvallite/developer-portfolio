@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-19 - Cinematic Shopify B2B modernisation case study
+- **Branch:** `feature/cinematic-b2b-mainline-20261119`, created from the newest `main` rather than the older B2B feature stack, to preserve all newer homepage and SEO work.
+- **Files:** `app/b2b-modernisation/page.tsx`, `app/b2b-modernisation/CinematicB2B.tsx`, `app/b2b-modernisation/cinematic.css`, `app/page.tsx`, `tests/b2b-cinematic.test.mjs`, `CHANGELOG.md`.
+- **What:** New five-chapter charcoal-and-gold cinematic case study with before/after wholesale workflow, interactive Markets/Catalogues architecture, fictional price and company-eligibility laboratory, six-step customer journey, and legacy wholesale/native B2B reporting views. Added homepage CTA to case study.
+- **Reporting safeguards:** `wholesale`/`wg_wholesale`/`WholesalePA1` exact tagged order values use deduplicated export snapshots; a separate optional customer-tag cohort is labelled broader. Shopify Analytics native B2B net sales are a different accounting base and are never summed with legacy. July implementation is user-reported and the A$10,000/month post-July model is hypothetical. Supplied customer AOV/cohort metrics are distinguished from ShopifyQL.
+- **Why:** Demonstrate technical, operational, and commercial thinking without invented attributable growth claims or confidential customer data.
+- **Docs and dependencies:** Existing global style system is unchanged; local route CSS is scoped and supports keyboard focus, mobile and reduced motion. No new npm packages or external graphics. Inline code comments explain eligibility assumptions and metrics provenance.
+- **Validation:** Added static regression tests; GitHub PR CI (publication safety, JavaScript, Python, TypeScript, Next.js build) and Vercel deployment status to verify before release.
+
+
 ## 2026-11-19 - EC. public branding, {JRV} favicon and domain email
 - **Target:** `bonvallite/developer-portfolio`, branch `fix/brand-ec-jrv-favicon-contact-email-20261119`, Next.js/Vercel portfolio.
 - **Affected files:** `app/page.tsx`, `app/privacy/page.tsx`, `app/layout.tsx`, `README.md`, `scripts/public-safety-allowlist.json`, `CHANGELOG.md`.
