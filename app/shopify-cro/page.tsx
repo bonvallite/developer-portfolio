@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 const content: ServiceContent = {
+  // Keep this path aligned with this route's canonical metadata.
+  path: '/shopify-cro',
   "label": "SHOPIFY CRO / CONVERSION RATE OPTIMISATION",
   "heading": "Shopify CRO Specialist for better customer journeys",
   "lead": "Understand where customers drop out, investigate the underlying experience, and prioritise changes that make Shopify storefronts clearer and easier to use.",
