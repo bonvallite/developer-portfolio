@@ -23,7 +23,7 @@ test('historical native and tagged series remain separate, scenario always label
   assert.match(view,/broader:5747\.16/);
   assert.match(view,/native:3984\.25/);
   assert.match(view,/i<=6\?m\.native:monthly\[6\]\.native\+\(i-6\)\*10000/);
-  assert.match(view,/not actual Shopify sales result/i);
+  assert.match(view,/not an actual Shopify sales result/i);
   assert.match(view,/must not be added together/i);
   assert.match(view,/exact launch date/i);
 });
