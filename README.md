@@ -219,3 +219,8 @@ The document's authorship metadata reflects the actual résumé owner, `Jomar Rh
 
 The existing `resume-data.ts` remains the shared career data source. Verify PDF extracted-text order, Word ZIP/core-properties integrity, both HTTP content types, and `noindex` response metadata after updates.
 
+
+### ATS-friendly URL and file naming
+
+Use `/resume/ats` for the ATS-friendly HTML preview and `/resume/ats/pdf` or `/resume/ats/word` for direct downloads. Those files are named `JRV-Resume-ATS-Friendly-2026.pdf` and `.docx`, respectively. Existing `/resume/modern` paths remain aliases for compatibility, with the same content and filename. The classic URLs remain `/resume/classic`, `/resume/classic/pdf`, and `/resume/classic/word`.
+
