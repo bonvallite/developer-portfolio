@@ -15,6 +15,7 @@ Rebuild the public JRV commerce engineering portfolio as a wide, immersive, prof
 
 - **Homepage:** replaced the dense legacy homepage and remote-image-heavy opening with a server-rendered cinematic story and CSS-only system visual. The layout uses wide responsive containers, charcoal surfaces, muted gold accents and purposeful motion disabled for reduced-motion users.
 - **Project evidence:** four prominent, carefully labelled case studies, each presenting a challenge, response and link to a real case-study or an independently developed fictional demo.
+- **Service pages:** redesign the four SEO-indexed Shopify services with shared responsive hero artwork, engineering story and direct contextual enquiries; keep each service's original factual copy and canonical URL.
 - **Interactive journey:** a four-stage process explorer explains discovery, design, engineering and measurement without requiring a large animation framework.
 - **Audience pathways:** dedicated employer and business routes; approved résumé and professional profile links remain accessible but are no longer dominant distractions from the main enquiry flow.
 - **Direct enquiry:** a project/role composer builds a local mailto draft. An alternate copy-email button is available. It does not submit content to the website or store a visitor's brief. A restrained CTA dock appears on internal case-study and service pages.
@@ -39,7 +40,7 @@ Rebuild the public JRV commerce engineering portfolio as a wide, immersive, prof
 ## Acceptance criteria
 
 - Standard GitHub Actions: source-level SEO, safety scan, JS and Python unit tests, TypeScript, Next.js build.
-- Browser QA on 1600×960, 1366×768, 768×1024 and 390×844: no horizontal overflow or JavaScript exceptions; hero, projects, service links, interaction tabs, direct enquiry and mobile navigation work.
+- Browser QA on 1600×960, 1366×768, 768×1024 and 390×844: no horizontal overflow or JavaScript exceptions; hero, projects, service links, interaction tabs, direct enquiry and mobile navigation work. For all four service routes, confirm H1, evidence links, direct mailto and no horizontal overflow on wide and mobile screens; capture representative service screenshots.
 - A fresh browser must make **no optional GTM/Clarity/Vercel Analytics requests** before accepting, or after rejecting consent.
 - Verify heading hierarchy, canonical, metadata, sitemap and noindex on the intended downloads.
 - Run Lighthouse / PageSpeed Insights on the release preview and production, separately for mobile and desktop. Target good Core Web Vitals (LCP ≤ 2.5s, INP ≤ 200ms, CLS ≤ 0.1); do not report them as achieved without measurements.
