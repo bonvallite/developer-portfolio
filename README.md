@@ -199,3 +199,12 @@ Shopify documentation: [Managing markets](https://help.shopify.com/en/manual/mar
 ## Editorial homepage storytelling demo
 
 The public-safe [/editorial-homepage-demo](./app/editorial-homepage-demo/page.tsx) is a single, independent premium commerce homepage. It combines a story carousel, occasion-based browsing, fictional collection filtering, a local demo bag, an educational marbling slider, and a sample postcode interaction in a responsive design. It is not client theme code or a copy of the original brand. [Read the case study and author-supplied 28-day Core Web Vitals benchmark](./projects/editorial-homepage-demo/README.md). Production measurements are clearly separated from the unmeasured React prototype.
+
+### Online résumé designs
+
+Two owner-approved public designs share one canonical data module (`app/resume/resume-data.ts`) and use American English. The original-inspired teal Classic layout and modern editorial layout are available at `/resume/classic` and `/resume/modern`, with a comparison page at `/resume`.
+
+PDF and editable DOCX endpoints are generated on demand: `/resume/classic/pdf`, `/resume/classic/word`, `/resume/modern/pdf`, and `/resume/modern/word`. Route generators live in `app/resume/resume-export.ts`; adjust the canonical data before modifying any generated format. The classic design approximates the original aesthetic; it is not a byte-identical copy of the prior document.
+
+The old `/JRV-Resume.pdf` remains unchanged as backward-compatible legacy access and an identical Git backup is at `backups/resumes/JRV-Resume-2026-Original.pdf`. The new resume routes are `noindex` (not private) and may display expressly approved personal information. Verify all four downloadable formats following every change.
+
