@@ -43,10 +43,10 @@ const services = [
   },
   {
     id: '02', tag: 'DATA / PYTHON / JAVASCRIPT', title: 'From scattered metrics to clearer decisions.',
-    intro: 'A reporting architecture, interactive diagram, source-safe code explorer and fictional analytics dashboard.',
+    intro: 'A Python analytics pipeline, interactive funnel, module explorer and synthetic acquisition dashboard.',
     challenge: 'Multiple platforms define and export different underlying records.',
     response: 'Source-specific retrieval patterns, structured CSV outputs and a transparent record of limitations.',
-    href: '/data-extraction-automation#visual-demo', link: 'Try the interactive data demo', icon: ChartNoAxesCombined,
+    href: '/analytics-lab', link: 'Try the Python analytics lab', icon: ChartNoAxesCombined,
     visual: 'analytics', note: 'Real engineering patterns, fictional dashboard data',
   },
   {
