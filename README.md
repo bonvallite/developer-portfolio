@@ -224,3 +224,7 @@ The existing `resume-data.ts` remains the shared career data source. Verify PDF 
 
 Use `/resume/ats` for the ATS-friendly HTML preview and `/resume/ats/pdf` or `/resume/ats/word` for direct downloads. Those files are named `JRV-Resume-ATS-Friendly-2026.pdf` and `.docx`, respectively. Existing `/resume/modern` paths remain aliases for compatibility, with the same content and filename. The classic URLs remain `/resume/classic`, `/resume/classic/pdf`, and `/resume/classic/word`.
 
+
+## Resume visual refresh (20 November 2026)
+
+Both `/resume/classic` and `/resume/ats` use a legible single-column printable layout and responsive width, with two clearly differentiated styles: restrained deep-teal Classic and minimal slate ATS. Their on-demand PDFs and Word documents share `resume-data.ts` and corresponding typography. The Classic PDF no longer draws a sidebar over body copy. Verify the GitHub CI build, PDF text extraction, DOCX structural integrity, and production routes before marking the release live.

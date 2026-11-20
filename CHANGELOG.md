@@ -8,6 +8,14 @@
 - **Reason:** The deployed case study has valid metadata and a canonical but was missing from sitemap discovery. Avoid overwriting newer changes.
 - **Validation:** Source inspection confirmed the missing route and valid canonical. CI and Vercel preview checks are required before merge; no production files changed in this branch.
 
+## 2026-11-20 - Resume presentation and export overhaul
+- **Target:** `bonvallite/developer-portfolio`; branch `design/resume-editorial-refresh-20261120`.
+- **Affected:** `app/resume/page.tsx`, `app/resume/resume.css`, `app/resume/resume-export.ts`, `README.md`, `CHANGELOG.md`.
+- **Why:** Both résumé variants lacked considered typography and spacing; Classic PDF placed a decorative sidebar across the body text region, and mobile previews were forced to a wide desktop minimum.
+- **Change:** Rebuilt HTML preview spacing and responsive layout, established distinct deep-teal Classic and restrained ATS visual identities, replaced PDF's overlapping sidebar with a full-width editorial header, added safe continuation-page headers and folios, improved Word typography, preserved readable bullet markers in generated PDF text, and clarified résumé chooser copy. All versions retain the existing approved shared career data.
+- **Validation:** Source inspected; automated tests, type checking, production build and live-route verification pending.
+
+
 ## 2026-11-20 - Complete ATS-friendly download URL and filename
 
 - **Files:** `app/resume/page.tsx`, `app/resume/[design]/page.tsx`, `app/resume/[design]/[format]/route.ts`, `scripts/check-seo-publication.mjs`, `README.md`, `CHANGELOG.md`.
