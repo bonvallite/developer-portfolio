@@ -32,7 +32,8 @@ const services = [
   { number: '04', title: 'Custom apps & integrations', summary: 'APIs, webhooks, serverless processing, Shopify Flow and operational systems designed for reliable handover.', href: '/shopify-app-development', link: 'Explore integrations', icon: Network },
 ];
 
-// Flagship stories lead with B2B, reward automation and integrations; analytics remains discoverable.\nconst cases = [
+// Four flagship case studies: rewards, analytics, integrations and B2B.
+const cases = [
   {
     id: '01', tag: 'AUTOMATION / CUSTOMER EXPERIENCE', title: 'A smarter way to reward every order.',
     intro: 'Spend & Save: a clear customer-facing milestone journey, with a separate post-checkout fulfilment workflow.',
