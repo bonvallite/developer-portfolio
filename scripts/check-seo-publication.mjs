@@ -29,6 +29,13 @@ assert.doesNotMatch(layout, /alternates:\s*\{\s*canonical:/, 'Root canonical mus
 assert.match(homepage, /canonical:\s*'\/'/);
 assert.match(robots, /sitemap\.xml/);
 
+// The published analytics engineering case study must stay indexable and in
+// the sitemap after future SEO or portfolio changes.
+const analyticsCaseStudy = read('app/data-extraction-automation/page.tsx');
+assert.ok(sitemap.includes("'/data-extraction-automation'"), 'Analytics case study absent from sitemap');
+assert.ok(analyticsCaseStudy.includes("canonical: '/data-extraction-automation'"), 'Analytics case study canonical mismatch');
+assert.match(analyticsCaseStudy, /export const metadata/);
+
 for (const route of routes) {
   const source = read(toFile(route));
   assert.match(source, /export const metadata/);

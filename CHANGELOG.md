@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-20 - Add analytics case study to the XML sitemap
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, `fix/analytics-case-study-sitemap-20261120` (from latest `main`).
+- **Files:** `app/sitemap.ts`, `scripts/check-seo-publication.mjs`, `app/data-extraction-automation/page.tsx`, and `CHANGELOG.md`.
+- **Change:** Add the publicly released `/data-extraction-automation` page to the sitemap; introduce a regression check for its sitemap inclusion and self-referencing canonical. Correct case-study inline comments to reflect the published sanitised code archive and its limitations.
+- **Reason:** The deployed case study has valid metadata and a canonical but was missing from sitemap discovery. Avoid overwriting newer changes.
+- **Validation:** Source inspection confirmed the missing route and valid canonical. CI and Vercel preview checks are required before merge; no production files changed in this branch.
+
 ## 2026-11-20 - Resume presentation and export overhaul
 - **Target:** `bonvallite/developer-portfolio`; branch `design/resume-editorial-refresh-20261120`.
 - **Affected:** `app/resume/page.tsx`, `app/resume/resume.css`, `app/resume/resume-export.ts`, `README.md`, `CHANGELOG.md`.

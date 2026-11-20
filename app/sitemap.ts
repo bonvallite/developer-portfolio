@@ -3,14 +3,15 @@ import type { MetadataRoute } from 'next';
 // Curate public pages that explain Shopify capabilities and documented projects.
 // Only include paths that correspond to existing, indexable site routes.
 // Include the published privacy notice so crawlers can discover it.
-// Service routes and the privacy notice declare self-referencing canonicals.
+// Service routes, the analytics engineering case study, and the privacy notice
+// declare self-referencing canonicals. Keep newly published case studies listed.
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     '/', '/shopify-developer', '/ecommerce-management', '/shopify-cro', '/shopify-app-development',
     '/experience', '/cartoncloud-integration', '/conversion-audit',
     '/shipping-integration', '/shopify-flow', '/b2b-demo', '/eve-curls',
     '/editorial-homepage-demo', '/chilled-delivery-demo', '/engineering-standards',
-    '/css-lab', '/python-automation', '/privacy',
+    '/css-lab', '/python-automation', '/data-extraction-automation', '/privacy',
   ];
   return paths.map((path) => ({
     url: new URL(path, 'https://www.jrvallite.com').toString(),
