@@ -1,6 +1,9 @@
-// Server-only downloadable résumé generators. No third-party runtime dependencies.
-// PDF uses standard Type 1 fonts and text operators; DOCX is a minimal standards-compliant ZIP.
-// Both are generated from resume-data.ts so dates and contact details cannot drift.
+// Server-only résumé exports, using one source of approved career information.
+// The ATS-friendly document uses a single text column, common fonts, and
+// conventional section headings. Classic retains the legacy-inspired styling.
+// PDF Info and DOCX core properties identify the document owner and actual
+// export service, never a fictitious human editor or third-party application.
+// Validate text extraction, reading order, format and metadata after release.
 import { deflateRawSync } from 'node:zlib';
 import { contact, summary, skills, experience, projects, education } from './resume-data';
 export type Design = 'classic' | 'modern';
@@ -37,10 +40,10 @@ export function pdf(design:Design):Uint8Array{
  function rect(x:number,yy:number,w:number,h:number,col:string){cmds.push(rgb(col)+' rg '+x+' '+yy+' '+w+' '+h+' re f');}
  function drawText(x:number,yy:number,t:string,size:number,bold=false,color=dark){cmds.push(rgb(color)+' rg BT /'+(bold?'F2':'F1')+' '+size+' Tf 1 0 0 1 '+x+' '+yy+' Tm ('+esc(t)+') Tj ET');}
  function init(){cmds=[];y=modern?743:740;count++;
-  if(modern){rect(42,767,528,2,accent);drawText(44,779,'JRV   /   RESUME   /   2026',8,true,accent);}
+  if(modern){ /* ATS version: no page decoration, columns, icons or graphics. */ }
   else{rect(0,689,612,103,'#177d87');rect(430,44,140,635,'#e8f4f5');drawText(42,773,'JRV  |  SHOPIFY & ECOMMERCE',9,true,'#ffffff');}
  }
- function finish(){drawText(44,31,'JRV  |  '+(modern?'Modern':'Classic')+' Resume  |  '+count,8,false,modern?'#9b8061':'#287984');pages.push(cmds);init();}
+ function finish(){if(!modern)drawText(44,31,'JRV  |  Classic Resume  |  '+count,8,false,'#287984');pages.push(cmds);init();}
  init();
  let first=true;
  for(const row of lines()){
@@ -58,14 +61,22 @@ export function pdf(design:Design):Uint8Array{
   if(isHead)y-=10;
   const chunks=split(row.t,max),gap=12.6;
   if(y-chunks.length*gap < 55)finish();
-  if(isHead){rect(x,y-7,3,11,accent);drawText(x+11,y,row.t,size,true,accent);y-=20;continue;}
+  if(isHead){if(!modern)rect(x,y-7,3,11,accent);drawText(x+(modern?0:11),y,row.t,size,true,modern?dark:accent);y-=20;continue;}
   for(const s of chunks){drawText(x+(row.kind==='bullet'?9:0),y,s,size,row.bold||false,row.kind==='small'?'#5f6970':dark);y-=gap;}
   y-=row.kind==='bullet'?3:isSub?3:6;
  }
- drawText(44,31,'JRV  |  '+(modern?'Modern':'Classic')+' Resume  |  '+count,8,false,accent);
+ if(!modern)drawText(44,31,'JRV  |  Classic Resume  |  '+count,8,false,accent);
  pages.push(cmds);
  const objects:string[]=[];
  const add=(s:string)=>{objects.push(s);return objects.length;};
+ // Metadata attributes actual ownership and production to JRV; no invented editor.
+ const meta=(s:string)=>'('+esc(s)+')';
+ const info=add('<< /Title '+meta(contact.name+' - '+(modern?'ATS-Friendly':'Classic')+' Resume 2026')+
+  ' /Author '+meta(contact.name)+
+  ' /Subject '+meta('Shopify Developer and Ecommerce Manager - Professional Resume')+
+  ' /Keywords '+meta('Shopify, Ecommerce, CRO, Systems Integration')+
+  ' /Creator '+meta('JRV Portfolio Resume Export')+
+  ' /Producer '+meta('JRV Portfolio Resume Export')+' >>');
  const root=add('');const kids=add('');const font1=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');const font2=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>');
  const ids:number[]=[];
  for(const page of pages){
@@ -77,9 +88,9 @@ export function pdf(design:Design):Uint8Array{
  }
  objects[root-1]='<< /Type /Catalog /Pages '+kids+' 0 R >>';
  objects[kids-1]='<< /Type /Pages /Kids ['+ids.map(x=>x+' 0 R').join(' ')+'] /Count '+ids.length+' >>';
- let data='%PDF-1.4\n%JRV RESUME\n',offsets=[0];let byteLen=encoder.encode(data).length;
+ let data='%PDF-1.4\n',offsets=[0];let byteLen=encoder.encode(data).length;
  for(let i=0;i<objects.length;i++){offsets.push(byteLen);const s=(i+1)+' 0 obj\n'+objects[i]+'\nendobj\n';data+=s;byteLen+=encoder.encode(s).length;}
- const xref=byteLen;data+='xref\n0 '+(objects.length+1)+'\n0000000000 65535 f \n'+offsets.slice(1).map(n=>String(n).padStart(10,'0')+' 00000 n \n').join('')+'trailer\n<< /Size '+(objects.length+1)+' /Root '+root+' 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+ const xref=byteLen;data+='xref\n0 '+(objects.length+1)+'\n0000000000 65535 f \n'+offsets.slice(1).map(n=>String(n).padStart(10,'0')+' 00000 n \n').join('')+'trailer\n<< /Size '+(objects.length+1)+' /Root '+root+' 0 R /Info '+info+' 0 R >>\nstartxref\n'+xref+'\n%%EOF';
  return encoder.encode(data);
 }
 function crc32(data:Uint8Array){let c=0xffffffff;for(const b of data){c^=b;for(let j=0;j<8;j++)c=(c>>>1)^((c&1)?0xedb88320:0);}return (c^0xffffffff)>>>0;}
@@ -96,7 +107,7 @@ function zip(files:{name:string;body:string}[]):Uint8Array{
  const chunks=[...locals,...central,end],buf=new Uint8Array(chunks.reduce((n,b)=>n+b.length,0));let p=0;for(const b of chunks){buf.set(b,p);p+=b.length;}return buf;
 }
 export function docx(design:Design):Uint8Array{
- const isClassic=design==='classic',accent=isClassic?'167D87':'A77D4E';
+ const isClassic=design==='classic',accent=isClassic?'167D87':'233039';
  const pars=lines().map(r=>{
   const style=r.kind==='title'?'Title':r.kind==='head'?'Heading1':r.kind==='sub'?'Heading2':'Normal';
   const bold=r.bold?'<w:b/>':'';
@@ -109,9 +120,18 @@ export function docx(design:Design):Uint8Array{
   '<w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:rPr><w:b/><w:sz w:val="21"/></w:rPr><w:pPr><w:spacing w:before="100" w:after="70"/></w:pPr></w:style></w:styles>';
  const doc='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+pars+'<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="900" w:right="1000" w:bottom="900" w:left="1000"/></w:sectPr></w:body></w:document>';
  return zip([
- {name:'[Content_Types].xml',body:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>'},
- {name:'_rels/.rels',body:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'},
+ {name:'[Content_Types].xml',body:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/><Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/></Types>'},
+ {name:'_rels/.rels',body:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/></Relationships>'},
  {name:'word/_rels/document.xml.rels',body:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
- {name:'word/document.xml',body:doc},{name:'word/styles.xml',body:styles}
+ {name:'word/document.xml',body:doc},{name:'word/styles.xml',body:styles},
+ {name:'docProps/core.xml',body:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+  '<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+  '<dc:title>'+xml(contact.name+' - '+(isClassic?'Classic':'ATS-Friendly')+' Resume 2026')+'</dc:title>'+
+  '<dc:subject>Professional resume - Shopify Developer and Ecommerce Manager</dc:subject>'+
+  '<dc:creator>'+xml(contact.name)+'</dc:creator>'+
+  '<cp:lastModifiedBy>'+xml(contact.name)+'</cp:lastModifiedBy>'+
+  '<cp:keywords>Shopify, Ecommerce, CRO, Systems Integration</cp:keywords></cp:coreProperties>'},
+ {name:'docProps/app.xml',body:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+  '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"><Application>JRV Portfolio Resume Export</Application></Properties>'}
  ]);
 }

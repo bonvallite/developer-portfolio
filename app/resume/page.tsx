@@ -1,8 +1,51 @@
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, FileDown, FilePenLine } from 'lucide-react';
-// The public résumé downloads are generated on demand from resume-data.ts.
-// Older /JRV-Resume.pdf stays available as a separate archived-format URL.
-export default function ResumeIndex(){return <main className="resume-index"><div className="resume-index-wrap"><Link href="/" className="resume-back"><ArrowLeft size={16}/> Back to JRV portfolio</Link><p className="resume-eyebrow">JRV / DOCUMENTS / 2026</p><h1>Two designs.<br/><em>One career.</em></h1><p className="resume-lead">Explore the same verified career history in two distinctive layouts. Both versions use American English and include Peter Augustus from February 2026 and independent Shopify work through February 2026.</p><section className="resume-choice-grid" aria-label="Choose a resume design">
-  <article className="resume-choice-card"><div className="resume-thumb classic-thumb" aria-hidden="true"><div className="thumb-head">JRV<br/><small>SHOPIFY & ECOMMERCE</small></div><div className="thumb-columns"><div><b>Professional profile</b><i/><i/><i className="short"/><b>Experience</b><i/><i/><i/><i className="short"/></div><aside><b>Core capabilities</b><i/><i/><i/><i/></aside></div></div><p className="resume-eyebrow">01 / ORIGINAL-INSPIRED</p><h2>Classic · Teal</h2><p>The original résumé's teal identity and sidebar-inspired composition, refreshed for today's roles.</p><div className="resume-downloads"><Link className="resume-action" href="/resume/classic">Preview design <ArrowUpRight size={15}/></Link><a href="/resume/classic/pdf" className="resume-action ghost"><FileDown size={15}/> PDF</a><a href="/resume/classic/word" className="resume-action ghost"><FilePenLine size={15}/> Word</a></div></article>
-  <article className="resume-choice-card"><div className="resume-thumb modern-thumb" aria-hidden="true"><small>JRV · PROFESSIONAL PROFILE</small><h3>JOMAR RHANDY<br/>C. VALLITE</h3><p>SHOPIFY DEVELOPER / ECOMMERCE MANAGER</p><hr/><b>PROFESSIONAL EXPERIENCE</b><i/><i/><i className="short"/><b>TECHNICAL PROJECTS</b><i/><i/><i className="short"/></div><p className="resume-eyebrow">02 / CONTEMPORARY</p><h2>Modern · Editorial</h2><p>A restrained single-column layout emphasizing Shopify engineering, integrations, and ecommerce leadership.</p><div className="resume-downloads"><Link className="resume-action" href="/resume/modern">Preview design <ArrowUpRight size={15}/></Link><a href="/resume/modern/pdf" className="resume-action ghost"><FileDown size={15}/> PDF</a><a href="/resume/modern/word" className="resume-action ghost"><FilePenLine size={15}/> Word</a></div></article>
- </section><p className="resume-privacy-note">These public downloads contain contact details approved for publication. The pages are marked noindex, but anyone with their URLs can access them.</p></div></main>;}
+import { ArrowLeft, ArrowUpRight, Download, FileText, FilePenLine } from 'lucide-react';
+
+// Only two primary downloads are offered. The ATS-friendly version uses a
+// standard, single-column reading order; Classic retains the teal design.
+// Word files and online previews remain secondary, accessible links.
+// Career content is defined once in resume-data.ts. No generator names appear
+// in either the user-facing page or the exported file's descriptive metadata.
+const choices = [
+  {
+    label: 'ATS-Friendly Résumé',
+    number: '01',
+    route: 'modern',
+    note: 'Recommended for online job applications',
+    description: 'A clean, single-column layout with selectable text, conventional headings, and no tables or graphics in the downloadable document.',
+    className: 'modern',
+  },
+  {
+    label: 'Classic Résumé',
+    number: '02',
+    route: 'classic',
+    note: 'Traditional résumé design',
+    description: 'An original-inspired teal layout for direct applications, introductions, and sharing with employers.',
+    className: 'classic',
+  },
+] as const;
+
+export default function ResumeIndex() {
+ return <main className="resume-index"><div className="resume-index-wrap">
+  <Link href="/" className="resume-back"><ArrowLeft size={16}/> Back to JRV portfolio</Link>
+  <p className="resume-eyebrow">JRV / RÉSUMÉS</p>
+  <h1>Your next role.<br/><em>Two ways to apply.</em></h1>
+  <p className="resume-lead">Choose a résumé format. Both reflect the same current experience and use American English.</p>
+  <section className="resume-choice-grid" aria-label="Download a résumé">
+   {choices.map((item) => <article className="resume-choice-card resume-download-card" key={item.route}>
+     <span className="resume-choice-number">{item.number} / {item.note}</span>
+     <div className={'resume-choice-icon '+item.className}><FileText size={26} aria-hidden="true"/></div>
+     <h2>{item.label}</h2>
+     <p>{item.description}</p>
+     <a className="resume-action resume-action-primary" href={'/resume/'+item.route+'/pdf'}>
+       <Download size={17} aria-hidden="true"/> Download {item.route==='modern'?'ATS-Friendly':'Classic'} Résumé
+     </a>
+     <div className="resume-secondary-links">
+       <Link href={'/resume/'+item.route}>View online <ArrowUpRight size={14}/></Link>
+       <a href={'/resume/'+item.route+'/word'}><FilePenLine size={14}/> Editable Word</a>
+     </div>
+   </article>)}
+  </section>
+  <p className="resume-privacy-note">The online previews and files are public and contain contact details. Search engines are requested not to index these pages or downloads, but the links are not private.</p>
+ </div></main>;
+}

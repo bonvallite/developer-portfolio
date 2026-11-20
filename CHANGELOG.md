@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-20 - Simplify résumé downloads and attribute document metadata accurately
+
+- **Affected files:** `app/resume/page.tsx`, `app/resume/resume.css`, `app/resume/resume-export.ts`, `app/resume/layout.tsx`, `app/resume/[design]/page.tsx`, `app/resume/[design]/[format]/route.ts`, `README.md`, `CHANGELOG.md`.
+- **Purpose:** Give employers two unambiguous primary PDF buttons: ATS-Friendly Resume and Classic Resume. Keep browser previews and editable Word options as secondary actions.
+- **ATS file:** Conventional single-column, real text and standard headings. Removed PDF decorative rule, header ornaments and heading bars from the ATS variant. Keep the Classic teal variant distinct.
+- **Document properties:** PDF Info now includes the user's approved name as Author and uses the truthful JRV Portfolio Resume Export service as Creator/Producer. DOCX package contains a core-properties Author and Last Modified By set to the owner, descriptive Title, Subject and Keywords, and an application property describing the actual export service. Do not invent a named human editor, Microsoft Word, Adobe or another tool as document producer.
+- **Privacy:** No new AI-platform provenance strings or source paths included in downloadable documents. This is not a claim that an AI-assisted drafting process never occurred; the repository revision history is unchanged. Continue `noindex, noarchive` on public download files and résumé pages.
+- **Compatibility:** Existing paths `/resume/modern/pdf`, `/resume/classic/pdf`, and Word/preview variants remain valid. Legacy `public/JRV-Resume.pdf` and original archived backup remain untouched.
+- **Validation:** GitHub source and tests, TypeScript and production build, live export response status, file signatures, PDF metadata and text content, and DOCX metadata checks required before marking production complete. ATS-friendliness is a design objective, not a guarantee from every ATS provider.
+
+
 ## 2026-11-20 - Publish classic and modern resume options (American English)
 
 - **Files:** `app/resume/resume-data.ts`, `app/resume/resume-export.ts`, `app/resume/resume.css`, `app/resume/layout.tsx`, `app/resume/page.tsx`, `app/resume/[design]/page.tsx`, `app/resume/[design]/[format]/route.ts`, `app/page.tsx`, `app/experience/page.tsx`, `README.md`, `CHANGELOG.md`.
