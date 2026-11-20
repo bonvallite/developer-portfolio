@@ -1,101 +1,212 @@
 import Link from 'next/link';
-import RotationArchive from './RotationArchive';
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import { ArrowUpRight, ArrowRight, Code2, Workflow, ShoppingBag, BarChart3, Layers3, GitBranch, ShieldCheck, Network } from 'lucide-react';
-// Target service-led hiring searches; keep personal-name PDFs and visible name references out.
-// Keep this canonical scoped to the homepage, never inherited by other routes.
-export const metadata: Metadata = { alternates: { canonical: '/' }, openGraph: { url: 'https://www.jrvallite.com/' } };
-// Project 02 documents separate custom application and API integration work.
-// Public case-study content and diagram are illustrative; no client source or IDs.
-const projects = [
-  { number:'01', category:'SHOPIFY / B2B', title:'Weight-based B2B purchasing', description:'Designed weight-based wholesale workflows and built an independent interactive pricing simulator using fictional data.', technologies:['Shopify Markets','B2B Catalogues','Shopify Flow'], icon:Layers3 },
-  { number:'02', category:'CUSTOM APP / SERVERLESS API', title:'Shopify delivery app + CartonCloud integration', description:'I built both the Cloudflare Worker delivery app and the Shopify–CartonCloud integration for fulfilment, tracking and estimated delivery-date synchronisation.', technologies:['Custom App','Cloudflare Workers','Shopify APIs','Webhooks'], icon:GitBranch },
-  { number:'03', category:'PRODUCT DATA / UX', title:'Structured product metadata', description:'Implemented structured product attributes, including product-specific grading data, descriptions and imagery, using metafields and custom Shopify theme components.', technologies:['Metafields','Liquid','Shopify Themes'], icon:ShoppingBag },
-  { number:'04', category:'DATA / ANALYTICS', title:'Conversion and tracking diagnostics', description:'Investigated measurement gaps between Shopify and GA4, reviewed event instrumentation and helped identify improvements to ecommerce reporting.', technologies:['GA4','Google Tag Manager','Analytics'], icon:BarChart3 },
-  { number:'05', category:'PYTHON / JAVASCRIPT / ANALYTICS', title:'12-month ecommerce analytics pipeline', description:'Built Python API reporting workflows and JavaScript Ads Scripts to organise analytics, search and advertising datasets for commercial review.', technologies:['Python','Google Search Console API','Google Ads Scripts','CSV'], icon:BarChart3 },
-]; 
-// Stage 3 case-study summaries describe scope and evidence, not unverified business impact.
-const projectEvidence: Record<string, { challenge: string; contribution: string; evidence: string; href: string; label: string }> = {
-  '01': { challenge: 'Wholesale purchasing needs clear weight-based rules.', contribution: 'Designed purchasing logic and a standalone fictional-data simulator.', evidence: 'Interactive workflow demonstration', href: '/b2b-demo', label: 'Try B2B workflow' },
-  '02': { challenge: 'Fulfilment events need reliable synchronisation with Shopify.', contribution: 'Developed a serverless app and webhook-based integration architecture.', evidence: 'Documented integration case study', href: '/cartoncloud-integration', label: 'Review integration' },
-  '03': { challenge: 'Product-specific attributes need consistent storefront presentation.', contribution: 'Structured metafields and custom theme components for product information.', evidence: 'Technical approach and storefront experience', href: '/experience', label: 'Review relevant experience' },
-  '04': { challenge: 'Inconsistent event reporting makes conversion diagnosis harder.', contribution: 'Investigated Shopify and GA4 measurement differences and tracking quality.', evidence: 'Conversion audit methodology', href: '/conversion-audit', label: 'Review conversion audit' },
-  '05': { challenge: 'A multi-channel reporting brief needed source-level historical records rather than dashboard summaries.', contribution: 'Designed Google API extraction workflows, source-specific CSV outputs, error handling and a sanitised educational code archive.', evidence: 'Interactive technical case study and Python source explorer', href: '/data-extraction-automation', label: 'Explore analytics pipeline' },
+import {
+  ArrowRight, ArrowUpRight, Braces, BriefcaseBusiness, ChartNoAxesCombined,
+  CircleCheck, Code2, Layers3, Mail, MoveUpRight, Network, ShieldCheck,
+  ShoppingBag, Sparkles, Workflow,
+} from 'lucide-react';
+import HomeJourney from './components/HomeJourney';
+import LeadComposer from './components/LeadComposer';
+import './cinematic-home.css';
+
+// 2026-11-20 cinematic rebuild. Public copy is service-led and intentionally
+// avoids personal-name SEO, private account identifiers and invented outcomes.
+// Project descriptions distinguish demonstrated interfaces from verified work.
+// The previous site remains recoverable at backup/2026-11-20-pre-cinematic-rebuild.
+export const metadata: Metadata = {
+  title: 'Shopify Developer, Ecommerce Management & CRO | JRV',
+  description: 'Shopify development, ecommerce operations, conversion optimisation and custom integrations. Explore responsive storefronts, B2B workflows, APIs and interactive technical case studies.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: 'https://www.jrvallite.com/',
+    title: 'Shopify Development & Ecommerce Engineering | JRV',
+    description: 'Building considered Shopify experiences, connected workflows and conversion-focused commerce systems.',
+  },
 };
-const capabilities = [
-  { title:'Commerce engineering', body:'Shopify Liquid, B2B, Markets, Flow, metafields and theme architecture.', icon:ShoppingBag },
-  { title:'API integrations', body:'REST, GraphQL, OAuth, webhooks and serverless workflows.', icon:Workflow },
-  { title:'UI/UX design & development', body:'Figma-to-Shopify implementation, custom homepage architecture, responsive layouts, user journeys, clear calls to action and accessible storefront components.', icon:Code2 },
-  { title:'Optimisation and data', body:'Project ownership, Shopify Analytics, Klaviyo, GA4, Clarity, Hotjar, behavioural analysis and conversion optimisation.', icon:BarChart3 },
+
+const services = [
+  { number: '01', title: 'Shopify development', summary: 'Liquid, Online Store 2.0, responsive storefronts, collection and product-page experience, and maintainable theme systems.', href: '/shopify-developer', link: 'Explore development', icon: Code2 },
+  { number: '02', title: 'Ecommerce management', summary: 'Product operations, B2B catalogues, merchandising, promotions, reporting and the daily details that keep a store moving.', href: '/ecommerce-management', link: 'Explore management', icon: ShoppingBag },
+  { number: '03', title: 'Conversion optimisation', summary: 'Customer-journey diagnostics, analytics quality, discoverability, technical SEO and evidence-led prioritisation.', href: '/shopify-cro', link: 'Explore CRO', icon: ChartNoAxesCombined },
+  { number: '04', title: 'Custom apps & integrations', summary: 'APIs, webhooks, serverless processing, Shopify Flow and operational systems designed for reliable handover.', href: '/shopify-app-development', link: 'Explore integrations', icon: Network },
 ];
-// The quality and skills sections link to /engineering-standards. Keep their
-// summaries aligned with ENGINEERING_STANDARDS.md and its completion criteria.
-// The conversion feature links to the maintained case study and its public PDF;
-// keep internal metrics and audit attachments outside this public repository.
-// Public wordmark is JRV (the user's approved identity); keep the {JRV}
-// favicon at app/icon.svg as the corresponding browser-tab mark. Contact goes to
-// hello@jrvallite.com, not a personal Gmail account.
+
+const cases = [
+  {
+    id: '01', tag: 'AUTOMATION / CUSTOMER EXPERIENCE', title: 'A smarter way to reward every order.',
+    intro: 'Spend & Save: a clear customer-facing milestone journey, with a separate post-checkout fulfilment workflow.',
+    challenge: 'Give shoppers meaningful progress without promising a cart gift that has not been added yet.',
+    response: 'An interactive ladder demo explains how cart visuals, rules and Shopify Flow work together.',
+    href: '/projects/spend-and-save', link: 'Explore the reward journey', icon: Layers3,
+    visual: 'rewards', note: 'Conceptual rules and a fictional demonstration',
+  },
+  {
+    id: '02', tag: 'DATA / PYTHON / JAVASCRIPT', title: 'From scattered metrics to clearer decisions.',
+    intro: 'A reporting architecture, interactive diagram, source-safe code explorer and fictional analytics dashboard.',
+    challenge: 'Multiple platforms define and export different underlying records.',
+    response: 'Source-specific retrieval patterns, structured CSV outputs and a transparent record of limitations.',
+    href: '/data-extraction-automation#visual-demo', link: 'Try the interactive data demo', icon: ChartNoAxesCombined,
+    visual: 'analytics', note: 'Real engineering patterns, fictional dashboard data',
+  },
+  {
+    id: '03', tag: 'INTEGRATIONS / SERVERLESS', title: 'Commerce does not stop at checkout.',
+    intro: 'Shopify operational flows connected to delivery estimates, warehouse signals and tracking status.',
+    challenge: 'Systems need to exchange updates reliably, without duplicate events or brittle manual steps.',
+    response: 'A documented architecture for authentication, webhook processing and recoverable synchronisation.',
+    href: '/cartoncloud-integration', link: 'Explore the integration', icon: Workflow,
+    visual: 'integration', note: 'Architectural case study; no production secrets',
+  },
+  {
+    id: '04', tag: 'B2B / STOREFRONT SYSTEMS', title: 'Wholesale buying, without the guesswork.',
+    intro: 'Explore a modern B2B purchasing experience with understandable pricing tiers and weight-based logic.',
+    challenge: 'Business buying decisions often involve catalogue rules and complex quantity requirements.',
+    response: 'A fictional-data experience designed to make purchasing rules easier to navigate and validate.',
+    href: '/b2b-modernisation', link: 'See the B2B experience', icon: ShoppingBag,
+    visual: 'b2b', note: 'Independent interactive demonstration',
+  },
+] as const;
+
+const tenets = [
+  ['01', 'Think commercially', 'An elegant screen matters, but so do merchandising, operational reality and the path to a decision.'],
+  ['02', 'Engineer carefully', 'Readable systems, accessible interactions, fallback states and documented dependencies make improvements sustainable.'],
+  ['03', 'Respect the evidence', 'Measured outcomes and fictional demonstrations stay separate. No client records or invented success metrics.'],
+] as const;
+
+// WebSite schema documents the public brand and professional service themes,
+// not the owner's private identity or an unverified corporate organisation.
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'JRV | Shopify Commerce Engineering',
+  url: 'https://www.jrvallite.com/',
+  description: 'Shopify development, ecommerce management, conversion optimisation and custom commerce integrations.',
+}).replace(/</g, '\\u003c');
+
+function CaseVisual({ mode }: { mode: typeof cases[number]['visual'] }) {
+  return <div className={'jrv2-case-visual jrv2-case-visual-' + mode} aria-hidden="true">
+    {mode === 'rewards' && <div className="jrv2-visual-rewards"><div className="jrv2-ui-meta">CART REWARD PROGRESSION <span>VISUAL DEMO</span></div><div className="jrv2-reward-line"><i/><i/><i/></div><div className="jrv2-reward-steps"><span>$150</span><span>$200</span><span>$300</span></div><div className="jrv2-ui-foot">MILESTONES → ORDER AUTOMATION</div></div>}
+    {mode === 'analytics' && <div className="jrv2-visual-analytics"><div className="jrv2-ui-meta">REPORTING PIPELINE <span>CSV / MANIFEST</span></div><div className="jrv2-micro-bars">{[30,48,41,72,55,78,66,91,70,86].map((height,index)=><i key={index} style={{height:height+'%'}} />)}</div><div className="jrv2-ui-foot">DATA SOURCES → CHECKS → HANDOVER</div></div>}
+    {mode === 'integration' && <div className="jrv2-visual-integration"><div className="jrv2-ui-meta">SYSTEM INTEGRATION <span>EVENT-DRIVEN</span></div><div className="jrv2-system-link"><span>SHOPIFY</span><i/><span>WORKER</span><i/><span>WAREHOUSE</span></div><div className="jrv2-ui-foot">WEBHOOKS / STATUS / RETRIES</div></div>}
+    {mode === 'b2b' && <div className="jrv2-visual-b2b"><div className="jrv2-ui-meta">B2B PURCHASE JOURNEY <span>FICTIONAL</span></div><div className="jrv2-tier-stack"><span><b>01</b> CATALOGUE</span><span><b>02</b> WEIGHT RULES</span><span><b>03</b> CHECKOUT</span></div><div className="jrv2-ui-foot">BUSINESS BUYING / CLEARER RULES</div></div>}
+  </div>;
+}
+
 export default function Home() {
-  return <main>
-    <header className="header container"><a className="brand" href="#home"><strong>JRV</strong><span>SHOPIFY COMMERCE ENGINEERING</span></a><nav aria-label="Main navigation"><a href="#services">Services</a><a href="#work">Projects</a><a href="#skills">Skills</a><Link href="/experience">Experience</Link><a href="#about">About</a><a href="/resume" target="_blank" rel="noopener noreferrer">Résumé designs</a><a className="nav-contact" href="#contact">Contact <ArrowUpRight size={15}/></a></nav></header>
-    <section id="home" className="hero container"><div className="eyebrow"><span className="spark"/> SHOPIFY DEVELOPMENT · ECOMMERCE MANAGEMENT · CRO</div><h1>Shopify storefronts, systems and growth.<br/><em>Built to work together.</em></h1><div className="hero-bottom hero-bottom-photo"><div className="hero-content"><p>I develop Shopify storefronts and practical commerce systems, from responsive homepage and product-page experiences to B2B purchasing rules, custom apps, warehouse integrations and data-led CRO. Explore real project responsibilities, interactive demonstrations and the engineering decisions behind the work.</p><div className="actions"><Link className="button primary" href="/experience">See my Shopify experience <ArrowUpRight size={18}/></Link><a className="button secondary" href="#contact">Discuss a role or project <ArrowRight size={18}/></a></div></div><figure className="hero-portrait"><Image src="/photos/commerce-developer-laptop.jpg" alt="Shopify developer working with a laptop" width={967} height={1450} sizes="(max-width: 700px) 100vw, 340px" priority/></figure></div><div className="hero-tags"><span>SHOPIFY DEVELOPMENT</span><span>ECOMMERCE MANAGEMENT</span><span>CONVERSION RATE OPTIMISATION</span><span>CUSTOM SHOPIFY APPS</span><span>API INTEGRATIONS</span></div></section>
-    {/* Secondary interactive showcase supports the service-led H1 with concrete
-        portfolio references and case-study CTAs; avoid unsupported sales claims. */}
-    <RotationArchive/>
-    {/* Stage 3 service cards link to individual, indexed service pages and preserve evidence-led app development claims. */}
-    {/* Stage 1: separate employer and client entry points while keeping the service-led, name-free identity. */}
-    <section id="hiring" className="section container"><div className="section-head"><div><span className="overline">FOR EMPLOYERS & RECRUITERS</span><h2>Hands-on Shopify expertise, from implementation to operations<span className="dot">.</span></h2></div><p>For ecommerce teams seeking technical ownership across storefront development, B2B workflows, integrations, reporting and conversion optimisation.</p></div><div className="hiring-services-cta"><p>Review documented work, practical responsibilities and the engineering approach before discussing a role.</p><Link className="button primary" href="/experience">Review professional experience <ArrowUpRight size={16}/></Link></div></section>
-    <section id="client-enquiries" className="section container"><div className="section-head"><div><span className="overline">FOR ECOMMERCE BUSINESSES</span><h2>Practical Shopify solutions for defined business challenges<span className="dot">.</span></h2></div><p>Get support with theme development, storefront UX, B2B purchasing, integrations, operational automation or conversion diagnostics. Start with the challenge, requirements and desired outcome.</p></div><div className="hiring-services-cta"><p>Explore the relevant service and project evidence, then share the scope of your enquiry.</p><a className="button secondary" href="mailto:hello@jrvallite.com?subject=Shopify%20project%20enquiry&body=Business%20or%20store%3A%0AProject%20challenge%3A%0AScope%20and%20desired%20outcome%3A%0ATimeline%3A%0ANext%20step%3A%0A">Enquire about a project <ArrowUpRight size={16}/></a></div></section>
-    {/* Service detail routes remain shared evidence for both audiences. */}
-    <section id="services" className="section container hiring-services"><div className="section-head"><div><span className="overline">SHOPIFY SERVICES / HIRING</span><h2>Shopify expertise for build, manage and optimise work<span className="dot">.</span></h2></div><p>Support for ecommerce teams hiring technical Shopify expertise or commissioning a defined project.</p></div><div className="hiring-services-grid"><article><span className="overline">01 / DEVELOPMENT</span><h3>Shopify Developer</h3><p>Liquid, Online Store 2.0 themes, product pages, responsive sections, B2B, and storefront performance improvements.</p><Link href="/shopify-developer">Explore Shopify development <ArrowUpRight size={16}/></Link></article><article><span className="overline">02 / OPERATIONS</span><h3>Ecommerce Manager</h3><p>Product catalogues, promotions, merchandising, shipping workflows, Shopify reporting, and store maintenance.</p><Link href="/ecommerce-management">Explore ecommerce management <ArrowUpRight size={16}/></Link></article><article><span className="overline">03 / OPTIMISATION</span><h3>Shopify CRO Specialist</h3><p>Conversion funnel diagnosis, GA4 and Shopify Analytics, user behaviour review, and conversion-focused UX changes.</p><Link href="/shopify-cro">Explore Shopify CRO <ArrowUpRight size={16}/></Link></article><article><span className="overline">04 / INTEGRATIONS</span><h3>Custom Shopify Apps &amp; APIs</h3><p>Custom integration engineering with Shopify APIs, OAuth, webhooks, Cloudflare Workers, and fulfilment automation.</p><Link href="/shopify-app-development">Explore custom Shopify integrations <ArrowUpRight size={16}/></Link></article></div><div className="hiring-services-cta"><p>Hiring for an ongoing ecommerce role or need help with a defined Shopify build?</p><a className="button primary" href="#contact">Discuss requirements <ArrowUpRight size={16}/></a></div></section>
-    {/* Put professional ownership and experience before the longer project gallery. */}
-    <section className="container experience-teaser"><div><span className="overline">PROFESSIONAL EXPERIENCE</span><h2>Development skills with operational context.</h2><p>Experience across Shopify theme customisation, product and catalogue management, wholesale workflows, fulfilment integrations, technical SEO, analytics diagnostics and conversion-focused improvements. Review responsibilities and case studies without exposing private client information.</p></div><Link href="/experience" className="button secondary">Explore experience <ArrowUpRight size={17}/></Link></section>
-    {/* Stage 2: evidence-led proof points describe deliverables and validation methods, not invented conversion or revenue gains. Keep the linked case studies current. */}
-    <section className="section container" aria-labelledby="proof-heading"><div className="section-head"><div><span className="overline">HOW THE WORK IS VERIFIED</span><h2 id="proof-heading">Practical delivery, backed by clear evidence<span className="dot">.</span></h2></div><p>Explore working examples, documented engineering decisions and measurement-focused problem solving, without unsupported performance claims.</p></div><div className="hiring-services-grid"><article><span className="overline">BUILD / TEST</span><h3>Interactive B2B workflow</h3><p>Explore a fictional-data simulator that demonstrates weight-based purchasing logic and the customer experience.</p><Link href="/b2b-demo">Try the B2B demo <ArrowUpRight size={16}/></Link></article><article><span className="overline">INTEGRATE / DOCUMENT</span><h3>Fulfilment integration case study</h3><p>Review the architecture and responsibilities of a Shopify app and serverless fulfilment integration, without exposing client credentials or source.</p><Link href="/cartoncloud-integration">Read the integration case study <ArrowUpRight size={16}/></Link></article><article><span className="overline">MEASURE / IMPROVE</span><h3>Conversion diagnostics</h3><p>See how tracking, funnel analysis and storefront usability inform prioritised optimisation work.</p><Link href="/shopify-cro">Explore the CRO approach <ArrowUpRight size={16}/></Link></article><article><span className="overline">ENGINEER / MAINTAIN</span><h3>Delivery standards</h3><p>Review the documented approach to implementation, maintainability, verification and safe changes.</p><Link href="/engineering-standards">Review engineering standards <ArrowUpRight size={16}/></Link></article></div></section>
-    <section id="work" className="section container"><div className="section-head"><div><span className="overline">01 / SELECTED WORK</span><h2>Featured projects<span className="dot">.</span></h2></div><p>Practical engineering solutions focused on better operations and customer experiences.</p></div><div className="projects">{projects.map(p=>{const detail=projectEvidence[p.number];return <article className="project" key={p.number}><div className="project-top"><span>{p.number} / {p.category}</span><p.icon size={24}/></div><div className="project-art" aria-hidden="true"><div><p.icon size={53} strokeWidth={1.2}/></div></div><h3>{p.title}</h3><p>{p.description}</p><p><strong>Challenge:</strong> {detail.challenge}</p><p><strong>My contribution:</strong> {detail.contribution}</p><p><strong>Evidence:</strong> {detail.evidence}</p><div className="chips">{p.technologies.map(t=><span key={t}>{t}</span>)}</div><Link href={detail.href} className="button secondary" style={{display:"inline-flex",marginTop:20}}>{detail.label} <ArrowUpRight size={16}/></Link></article>})}</div>{/* Spend & Save demo: cart progress is display-only; gifts are simulated
-          as post-checkout order edits, never inserted in the basket. */}
-      <div className="flow-feature"><span className="overline">INTERACTIVE DEMO / SHOPIFY REWARDS AUTOMATION</span><h3>Spend & Save: from cart progress to complimentary gifts.</h3><p>Build a demonstration basket, unlock reward milestones, edit the merchant metaobject settings, then step through the post-checkout Shopify Flow and customer email. Includes the engineering architecture and a hypothetical AOV calculator.</p><Link href="/projects/spend-and-save" className="button secondary">Explore the interactive Spend & Save demo <ArrowRight size={17}/></Link></div>
-      {/* Cinematic B2B case study: fictional catalogue pricing and separate
-          legacy/native histories; never present modelled growth as actual sales. */}
-      <div className="flow-feature"><span className="overline">CASE STUDY / SHOPIFY B2B MODERNISATION</span><h3>Wholesale pricing without the extra layer.</h3><p>Explore the move from app-dependent wholesale pricing to native Shopify Markets, Catalogues and company purchasing contexts. Try the interactive price laboratory and see the historic wholesale-to-B2B reporting journey.</p><Link href="/b2b-modernisation" className="button secondary">Explore the interactive B2B case study <ArrowRight size={17}/></Link></div><div className="flow-feature"><span className="overline">CASE STUDY / INTERNATIONAL SHOPIFY MARKETS</span><h3>Eve Curls: six European markets, one ecosystem.</h3><p>Six-market Shopify architecture for Eve Curls across the UK, Switzerland, the Netherlands, Italy, France and Spain: Currency, Catalogs, Discounts, Online Store/Theme, Checkout and Accounts, and Domain/Language in one commerce ecosystem. Explore an independently created six-country interactive demo.</p><Link href="/eve-curls" className="button secondary">Explore European Markets demo <ArrowRight size={17}/></Link></div><div className="flow-feature"><span className="overline">CASE STUDY / CONVERSION OPTIMISATION</span><h3>From landing page to checkout: closing conversion leaks.</h3><p>Follow the Shopify conversion journey through GA4, Shopify Analytics, and Microsoft Clarity. Explore the diagnosis, implementation work, reported cart and checkout QA, and a downloadable nine-slide case study.</p><Link href="/conversion-audit" className="button secondary">Explore conversion audit <ArrowRight size={17}/></Link></div><div className="flow-feature"><span className="overline">LIVE STOREFRONT / CUSTOM UI/UX</span><h3>Custom Shopify homepage architecture.</h3><p>A published commerce homepage built with modular sections alongside an established Shopify theme. The case study explores mobile-first discovery, product navigation, promotional storytelling, delivery reassurance and maintainable theme-editor design. Source examples are independently authored; client implementation is not reproduced.</p><Link href="/editorial-homepage-demo" className="button primary" style={{display:"inline-flex",marginRight:12,marginTop:10}}>Explore interactive homepage <ArrowUpRight size={17}/></Link><Link href="/experience#custom-homepage" className="button secondary">Explore homepage case study <ArrowRight size={17}/></Link></div><div className="flow-feature"><span className="overline">CASE STUDY / SHIPPING INTEGRATIONS</span><h3>Recharge, Zapiet and Shopify shipping rules.</h3><p>How systematic debugging resolved conflicting cold-chain shipping configurations across delivery zones, subscription and one-time purchases, and checkout thresholds. Includes evidence limits and a public-safe validation approach.</p><Link href="/shipping-integration" className="button secondary">Explore shipping case study <ArrowRight size={17}/></Link></div><div className="flow-feature"><span className="overline">INTERACTIVE DEMO / CHILLED DELIVERY</span><h3>Australian postcode and cold-chain delivery.</h3><p>Explore a fictional JavaScript postcode calculator that illustrates dispatch scheduling, carrier movement through weekends, final-mile delivery days and sample shipping estimates. Includes four Australian test postcodes and links to the source code.</p><Link href="/chilled-delivery-demo" className="button secondary">Try delivery calculator <ArrowRight size={17}/></Link></div>{/* Independently authored fictional gift packaging demo. This link stays within
-        the portfolio, with no live merchant cart, checkout, or payment processing. */}
-    <div className="flow-feature"><span className="overline">INTERACTIVE DEMO / CART UX</span><h3>Gift packaging from minicart to checkout.</h3><p>Explore a working fictional ecommerce journey with optional paid presentation packaging, a one-per-order quantity guard, empty-cart protection, simulated checkout, and an example order email. Independently authored in HTML, CSS, and JavaScript.</p><Link href="/gift-packaging-reference" className="button secondary">Try gift packaging demo <ArrowRight size={17}/></Link></div><div className="flow-feature"><span className="overline">INTERACTIVE DEMO / HTML + CSS</span><h3>Advanced CSS: interactive engineering lab.</h3><p>Explore independently authored CSS examples covering specificity, layout, positioning, responsive design, and the box model. Experiment with live sizing and visibility controls, then test your understanding with an eight-question practice set.</p><Link href="/css-lab" className="button secondary">Explore CSS engineering lab <ArrowRight size={17}/></Link></div><div className="flow-feature"><span className="overline">DEEP DIVE / PYTHON</span><h3>Python automation, tested.</h3><p>A tested Pandas CSV-merging tool, Jupyter training reviews and an interactive, source-safe case study of Python API reporting and JavaScript Google Ads exports.</p><Link href="/python-automation" className="button secondary">Explore Python automation <ArrowRight size={17}/></Link></div><div className="flow-feature"><span className="overline">DEEP DIVE / SHOPIFY FLOW</span><h3>Commerce automation, explained.</h3><p>Explore three generalised technical case studies: operations reporting, loyalty-tier rewards and gift-with-purchase processing.</p><Link href="/shopify-flow" className="button secondary">Explore automation case studies <ArrowRight size={17}/></Link></div><p className="disclaimer">Project descriptions are high-level. Proprietary client code, credentials and private data are not disclosed.</p></section>
-    <section id="engineering-quality" className="section container quality-section"><div className="section-head"><div><span className="overline">02 / ENGINEERING QUALITY</span><h2>Built to be tested.<br/><span className="quiet">Built to be understood.</span></h2></div><p>Open-source demonstrations of how I approach code quality, delivery, reliability and responsible publishing.</p></div><div className="quality-grid"><article><span className="overline">AUTOMATED VALIDATION</span><h3>Tests & continuous integration</h3><p>Unit tests, TypeScript checks and production builds run through the repository's GitHub Actions workflow.</p><a href="https://github.com/bonvallite/developer-portfolio/actions/workflows/portfolio-ci.yml" target="_blank" rel="noopener noreferrer">Review CI workflow <ArrowUpRight size={16}/></a></article><article><span className="overline">RELIABLE INTEGRATIONS</span><h3>Webhook engineering</h3><p>Illustrative examples cover signature verification, concurrent-event deduplication, bounded retries and safe fulfilment state transitions.</p><a href="https://github.com/bonvallite/developer-portfolio/tree/main/examples" target="_blank" rel="noopener noreferrer">Explore code library <ArrowUpRight size={16}/></a></article><article><span className="overline">PUBLICATION SAFETY</span><h3>Security-conscious publishing</h3><p>A repository safety scan checks for common secret formats and identifiers. Public examples use fictional data, not client source code.</p><a href="https://github.com/bonvallite/developer-portfolio/blob/main/scripts/check-public-safety.mjs" target="_blank" rel="noopener noreferrer">Inspect safety checks <ArrowUpRight size={16}/></a></article><article><span className="overline">DOCUMENTATION & CHANGE CONTROL</span><h3>Documentation is part of delivery</h3><p>Read before editing. Keep inline explanations accurate, log every change and verify the saved result. Clear records make systems easier to maintain and hand over.</p><Link href="/engineering-standards">Explore my engineering standard <ArrowRight size={16}/></Link></article></div><div className="quality-demo"><div><span className="overline">INTERACTIVE DEMONSTRATION</span><h3>Weight-based B2B pricing simulator</h3><p>Try a fictional wholesale basket and explore order-weight eligibility calculations. The demo is independent of any live client store.</p></div><Link className="button primary" href="/b2b-demo">Try the simulator <ArrowRight size={17}/></Link></div></section>
-    <section id="expertise" className="stripe"><div className="section container"><div className="section-head"><div><span className="overline">03 / CAPABILITIES</span><h2>Where I add value<span className="dot">.</span></h2></div></div><div className="capabilities">{capabilities.map((c,i)=><article key={c.title}><span className="count">0{i+1}</span><c.icon size={28} strokeWidth={1.5}/><h3>{c.title}</h3><p>{c.body}</p></article>)}</div></div></section>
-    <section id="skills" className="section container skills-section">
-      <div className="section-head"><div><span className="overline">04 / TECHNICAL SKILLS</span><h2>Skills across the<br/><span className="quiet">commerce stack.</span></h2></div><p>Storefront engineering, integrations, automation, growth technology and dependable delivery.</p></div>
-      <div className="skills-grid">
-        <article><h3>UI/UX Design & Development</h3><p>Figma-to-Shopify design implementation, mobile-first layouts, custom landing pages, customer-journey mapping, visual hierarchy, navigation, accessibility, responsive components and conversion-focused calls to action. <a href="/experience#custom-homepage" style={{color:"#ddb682",textDecoration:"underline"}}>View custom homepage case study</a>.</p></article>
-        <article><h3>Shopify Development</h3><p>Liquid, HTML, CSS, JavaScript, responsive UI, Online Store 2.0, custom sections, blocks, templates, product pages, checkout and cart improvements, Shopify B2B and third-party integrations.</p></article>
-        <article><h3>APIs & Automation</h3><p>GraphQL, REST, OAuth 2.0, webhooks, Shopify Flow, JavaScript and TypeScript, Python (Pandas, Jupyter, CSV automation), serverless integrations, fulfilment and ERP connectivity, Git workflows, debugging and operational automation.</p></article>
-        <article><h3>Growth & Commerce Operations</h3><p>Conversion optimisation, catalogue and inventory management, Shopify SEO/AEO, technical performance, discounts, bundles, promotions, shopping feeds and sales-channel troubleshooting.</p></article>
-        <article><h3>Analytics & Collaboration</h3><p>Shopify Analytics, Google Analytics 4, Google Search Console API, Google Ads Scripts, Python reporting, Klaviyo analytics, Microsoft Clarity, Hotjar, heatmaps, session recordings, bounce and exit-page analysis, interaction points, funnel diagnostics, data-driven prioritisation, technical scoping and stakeholder collaboration.</p></article>
+  return <main className="jrv2-page">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schema }} />
+    <a href="#main-content" className="jrv2-skip">Skip to main content</a>
+    <div className="jrv2-topline"><div className="jrv2-wrap"><span>JRV / COMMERCE ENGINEERING</span><span>SHOPIFY · SYSTEMS · EXPERIENCE</span></div></div>
+    <header className="jrv2-header">
+      <div className="jrv2-wrap jrv2-header-inner">
+        <a href="#home" className="jrv2-wordmark" aria-label="JRV portfolio, back to top"><span>{'{JRV}'}</span><small>SHOPIFY COMMERCE ENGINEERING</small></a>
+        <nav aria-label="Primary navigation" className="jrv2-main-nav">
+          <a href="#work">Selected work</a><a href="#services">Expertise</a><a href="#approach">Approach</a>
+          <Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link>
+        </nav>
+        <a href="#contact" className="jrv2-header-cta">Start a conversation <ArrowUpRight size={15} aria-hidden="true" /></a>
+        <details className="jrv2-mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="#work">Selected work</a><a href="#services">Expertise</a><a href="#approach">Approach</a><Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link><a href="#contact">Get in touch</a></nav></details>
       </div>
-      <div className="skills-strategy"><h3>End-to-end ownership & data-driven decisions</h3><p>I take ownership of projects from identifying a problem through implementation and evaluation. I use Shopify Analytics, Klaviyo, Google Analytics, Microsoft Clarity and Hotjar to investigate conversion funnels, bounce and exit pages, heatmaps, session behaviour and interaction points. Findings guide UX changes, technical fixes and prioritisation, with results assessed against available evidence rather than assumed.</p><h3>Engineering approach</h3><p>I build and maintain Shopify storefront features and integrations, investigate bugs and incidents, improve code maintainability, and review API behaviour, deprecations and tracking reliability. I work with stakeholders to translate business requirements into testable technical solutions and document changes clearly. Inline documentation, dated changelogs and verified validation are essential parts of my delivery standard. <Link href="/engineering-standards" style={{color:"#ddb682",textDecoration:"underline"}}>Read how I document and verify changes</Link>.</p><p className="skills-note">Shopify app architecture, CLI, App Bridge, Polaris, React Router, SQL and App Store publishing are areas for further confirmation before they are presented as production experience.</p></div>
-    </section>
-    {/* Distinguish documented CERT-course attendance from the separately supplied undersea-cable session invitation. The latter establishes event details, not the owner's attendance. Keep the signed certificate private. */}
-    <section id="certifications" className="section container credential-section">
-      <div className="section-head"><div><span className="overline">CYBERSECURITY / PROFESSIONAL DEVELOPMENT</span><h2>Always learning<span className="dot">.</span></h2></div><p>Cybersecurity training and industry session information that complement practical software engineering, automation and reliable integrations.</p></div>
-      <article className="credential-card">
-        <div className="credential-mark"><ShieldCheck size={32} aria-hidden="true"/></div>
-        <div className="credential-body"><span className="overline">CERTIFICATE OF ATTENDANCE · 12 HOURS</span><h3>Cybersecurity: Foundation of CERT Operations</h3><p>Training recorded on the certificate as “Foundations of CERT Operations”. Issued through DICT Region XII & Mainland BARMM (ICT Literacy and Competency Development Bureau), 5–6 December 2023.</p><Link href="/experience#training">View training details <ArrowUpRight size={16}/></Link></div>
-      </article>
-      <article className="credential-card">
-        <div className="credential-mark"><Network size={32} aria-hidden="true"/></div>
-        <div className="credential-body"><span className="overline">CYBERSECURITY INDUSTRY SESSION / EVENT ANNOUNCEMENT</span><h3>No Fiber, No Cyber: Safeguarding the World's Undersea Cables</h3><p>A session announced by the U.S.–Philippines Joint Cybersecurity Working Group with APTelecom, exploring submarine cable infrastructure, security, maintenance challenges and resilience. Scheduled for Thursday 16 November, 2–4 p.m. Philippine Time, in Ortigas.</p><Link href="/experience#undersea-cables-session">View session details <ArrowUpRight size={16}/></Link></div>
-      </article>
-    </section>
-    <section id="about" className="section about container"><div><span className="overline">05 / ABOUT</span><h2>Technical depth.<br/><span className="quiet">Commercial perspective.</span></h2><figure className="about-photo"><Image src="/photos/commerce-professional-portrait.jpg" alt="Ecommerce engineering specialist in a professional portrait" width={966} height={1450} sizes="(max-width: 650px) 85vw, 290px" loading="lazy"/></figure></div><div><p>I work at the intersection of ecommerce, software integrations and business operations. I focus on reliable systems that reduce manual work, connect platforms and improve the customer experience.</p><p>My experience spans Shopify theme customisation, wholesale purchasing workflows, fulfilment automation, technical SEO, conversion optimisation and analytics diagnostics. I collaborate with business owners, designers, marketers and operations teams to deliver practical improvements.</p><div className="stack"><span>LIQUID</span><span>JAVASCRIPT</span><span>REST / GRAPHQL</span><span>CLOUDFLARE</span><span>SHOPIFY FLOW</span><span>GA4 / GTM</span></div></div></section>
-    {/* The experience summary appears before the project gallery; do not repeat it here. */}
-    {/* Home workspace details are intentionally omitted from public hiring SEO. */}
-    <section id="contact" className="contact"><div className="container"><span className="overline">07 / CONTACT</span><h2>Have a challenge<br/>worth <em>solving?</em></h2><p>For Shopify developer and ecommerce manager roles, CRO audits, theme work, or custom API projects, describe the scope and preferred next step. Enquiries are welcome from ecommerce businesses and hiring teams.</p><div className="actions">{/* Stage 4: role and project email links provide optional, distinct enquiry prompts without a third-party form or personal-name disclosure. */}<a className="button primary" href="mailto:hello@jrvallite.com?subject=Shopify%20role%20enquiry&body=Role%20title%3A%0ACompany%3A%0AEmployment%20type%20and%20location%3A%0AKey%20responsibilities%3A%0ANext%20step%3A%0A">Discuss a role <ArrowUpRight size={18}/></a><a className="button secondary" href="mailto:hello@jrvallite.com?subject=Shopify%20project%20enquiry&body=Business%20or%20store%3A%0AProject%20challenge%3A%0AScope%20and%20desired%20outcome%3A%0ATimeline%3A%0ANext%20step%3A%0A">Discuss a project <ArrowUpRight size={18}/></a><a className="button secondary" href="https://api.whatsapp.com/send?phone=639075480000&text=Hello%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="Message me on WhatsApp about a project">Message me on WhatsApp <ArrowUpRight size={18}/></a>{/* These owner-supplied professional profile links were removed in the 18 Nov privacy cleanup.
-  Restore them at the owner's explicit request without changing the site's name-free metadata.
-  External destinations are public profiles, not endorsements or verification of credentials. */}
-<a className="button secondary" href="/resume" target="_blank" rel="noopener noreferrer">Choose résumé design <ArrowUpRight size={18}/></a>
-<a className="button secondary" href="https://www.linkedin.com/in/bonvallite/" target="_blank" rel="noopener noreferrer">LinkedIn profile <ArrowUpRight size={18}/></a>
-<a className="button secondary" href="https://g.dev/bonvallite" target="_blank" rel="noopener noreferrer">Google Developer profile <ArrowUpRight size={18}/></a>
-<a className="button secondary" href="https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite" target="_blank" rel="noopener noreferrer">Wikipedia contributions <ArrowUpRight size={18}/></a></div><p className="webmail-shortcut">Mailbox access for authorised users: <a href="https://webmail.jrvallite.com/" target="_blank" rel="noopener noreferrer nofollow">Webmail login <ArrowUpRight size={14}/></a></p></div></section>
-    <footer className="footer container"><span>© {new Date().getFullYear()} JRV · SHOPIFY COMMERCE ENGINEERING</span><span>BUILT WITH NEXT.JS · DEPLOYED WITH VERCEL</span><Link href="/privacy">PRIVACY & ANALYTICS</Link><a href="#home">BACK TO TOP ↑</a></footer>
+    </header>
+
+    <div id="main-content">
+      <section className="jrv2-hero" id="home" aria-labelledby="jrv2-title">
+        <div className="jrv2-hero-grid" aria-hidden="true" />
+        <div className="jrv2-wrap jrv2-hero-inner">
+          <div className="jrv2-hero-copy">
+            <div className="jrv2-eyebrow"><span className="jrv2-pulse" aria-hidden="true" /> SHOPIFY DEVELOPMENT / ECOMMERCE MANAGEMENT / CRO</div>
+            <h1 id="jrv2-title">Build better<br/><span>commerce.</span></h1>
+            <p className="jrv2-hero-lead">From the first tap to the final fulfilment update, I design and engineer Shopify experiences, connected workflows and measurable improvements.</p>
+            <p className="jrv2-hero-support">Storefront development. Custom integrations. B2B systems. Analytics and conversion thinking. One connected approach.</p>
+            <div className="jrv2-hero-actions"><a className="jrv2-cta jrv2-cta-primary" href="#contact">Let's talk about your project <ArrowUpRight size={17} aria-hidden="true"/></a><a className="jrv2-cta jrv2-cta-ghost" href="#work">Explore selected work <ArrowRight size={17} aria-hidden="true"/></a></div>
+            <div className="jrv2-hero-proof"><span><CircleCheck size={16} aria-hidden="true"/> Documented case studies</span><span><CircleCheck size={16} aria-hidden="true"/> Interactive demos</span><span><CircleCheck size={16} aria-hidden="true"/> Evidence-led practice</span></div>
+          </div>
+          <div className="jrv2-hero-showcase" aria-label="Illustration of a connected Shopify commerce system">
+            <div className="jrv2-console">
+              <div className="jrv2-console-top"><span className="jrv2-console-dots" aria-hidden="true"><i/><i/><i/></span><b>JRV / SYSTEM VIEW</b><span>01 — 04</span></div>
+              <div className="jrv2-console-body">
+                <div className="jrv2-console-label">THE COMMERCE ENGINE</div>
+                <h2>Connected by<br/><em>design.</em></h2>
+                <div className="jrv2-console-nodes">
+                  <div><Code2 size={17} aria-hidden="true"/><span>STOREFRONT</span><b>EXPERIENCE</b></div>
+                  <i className="jrv2-node-connector" aria-hidden="true"/>
+                  <div><Workflow size={17} aria-hidden="true"/><span>AUTOMATION</span><b>WORKFLOWS</b></div>
+                  <i className="jrv2-node-connector" aria-hidden="true"/>
+                  <div><ChartNoAxesCombined size={17} aria-hidden="true"/><span>ANALYTICS</span><b>DECISIONS</b></div>
+                </div>
+                <div className="jrv2-console-code"><span>THE METHOD</span><div>01 <b>Understand</b> the problem</div><div>02 <b>Design</b> the system</div><div>03 <b>Build</b> with care</div><div>04 <b>Review</b> the evidence</div></div>
+              </div>
+              <div className="jrv2-console-bottom"><span>INTERACTIVE WORK / REAL-WORLD CONSTRAINTS</span><span>● <b>DOCUMENTED</b></span></div>
+            </div>
+            <span className="jrv2-hero-orbit jrv2-hero-orbit-one" aria-hidden="true"/><span className="jrv2-hero-orbit jrv2-hero-orbit-two" aria-hidden="true"/>
+          </div>
+        </div>
+        <div className="jrv2-wrap jrv2-scroll-note"><span>SCROLL TO EXPLORE</span><span aria-hidden="true">↓</span></div>
+      </section>
+
+      <div className="jrv2-capability-strip" aria-label="Core skills and technologies"><div className="jrv2-wrap"><span>SHOPIFY & LIQUID</span><i/><span>JAVASCRIPT</span><i/><span>API ENGINEERING</span><i/><span>B2B COMMERCE</span><i/><span>TECHNICAL SEO</span><i/><span>CONVERSION OPTIMISATION</span></div></div>
+
+      <section className="jrv2-section jrv2-work" id="work" aria-labelledby="jrv2-work-title">
+        <div className="jrv2-wrap">
+          <div className="jrv2-section-head"><div><span className="jrv2-overline">01 / SELECTED WORK</span><h2 id="jrv2-work-title">Proof in the <em>process.</em></h2></div><p>Not a gallery of pretty screens. Explore the problems, architecture, design choices and working demonstrations behind the projects.</p></div>
+          <div className="jrv2-case-grid">
+            {cases.map((item, index) => <article className={'jrv2-case jrv2-case-' + (index+1)} key={item.id}>
+              <div className="jrv2-case-heading"><span>{item.id} / {item.tag}</span><item.icon size={22} strokeWidth={1.5} aria-hidden="true"/></div>
+              <CaseVisual mode={item.visual}/>
+              <div className="jrv2-case-content">
+                <h3>{item.title}</h3><p className="jrv2-case-lede">{item.intro}</p>
+                <div className="jrv2-case-story"><div><span>THE CHALLENGE</span><p>{item.challenge}</p></div><div><span>THE RESPONSE</span><p>{item.response}</p></div></div>
+                <div className="jrv2-case-bottom"><span className="jrv2-case-note">{item.note}</span><Link href={item.href} className="jrv2-case-link">{item.link} <MoveUpRight size={16} aria-hidden="true"/></Link></div>
+              </div>
+            </article>)}
+          </div>
+          <div className="jrv2-work-after"><p>See responsive storefront concepts, documented integrations and more technical evidence in the full portfolio.</p><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
+        </div>
+      </section>
+
+      <section className="jrv2-section jrv2-services" id="services" aria-labelledby="jrv2-services-title">
+        <div className="jrv2-wrap">
+          <div className="jrv2-section-head"><div><span className="jrv2-overline">02 / EXPERTISE</span><h2 id="jrv2-services-title">Built for the <em>whole journey.</em></h2></div><p>Hire for a defined challenge or a broader commerce engineering role. Each area is backed by technical work you can examine.</p></div>
+          <div className="jrv2-services-grid">{services.map(s=><article key={s.number} className="jrv2-service"><div className="jrv2-service-top"><span>{s.number} / SERVICE</span><s.icon size={26} strokeWidth={1.5} aria-hidden="true" /></div><h3>{s.title}</h3><p>{s.summary}</p><Link href={s.href}>{s.link} <ArrowUpRight size={17} aria-hidden="true" /></Link></article>)}</div>
+          <div className="jrv2-service-bridge"><span>NEED HELP DECIDING WHERE TO START?</span><a href="#contact">Share your challenge <ArrowRight size={17} aria-hidden="true"/></a></div>
+        </div>
+      </section>
+
+      <section className="jrv2-section jrv2-approach" id="approach" aria-labelledby="jrv2-approach-title">
+        <div className="jrv2-wrap">
+          <div className="jrv2-section-head"><div><span className="jrv2-overline">03 / A CONNECTED APPROACH</span><h2 id="jrv2-approach-title">Good engineering<br/>has a <em>story.</em></h2></div><p>Every effective Shopify improvement has a before, a decision, an implementation and an outcome worth checking.</p></div>
+          <HomeJourney />
+        </div>
+      </section>
+
+      <section className="jrv2-section jrv2-principles" id="engineering-quality" aria-labelledby="jrv2-principles-title">
+        <div className="jrv2-wrap"><div className="jrv2-section-head"><div><span className="jrv2-overline">04 / HOW I WORK</span><h2 id="jrv2-principles-title">Details make the <em>difference.</em></h2></div><p>Performance, accessibility, privacy and reliability are engineering decisions, not decoration added at the end.</p></div>
+          <div className="jrv2-tenets">{tenets.map(item=><article key={item[0]}><span>{item[0]}</span><h3>{item[1]}</h3><p>{item[2]}</p></article>)}</div>
+          <div className="jrv2-evidence-ribbon"><ShieldCheck size={24} aria-hidden="true"/><p>Source-safe case studies, fictional demonstration data, regression checks and honest limitations.</p><Link href="/engineering-standards">Review engineering standards <ArrowUpRight size={16} aria-hidden="true"/></Link></div>
+        </div>
+      </section>
+
+      <section className="jrv2-section jrv2-audience" id="hiring" aria-labelledby="jrv2-audience-title">
+        <div className="jrv2-wrap"><div className="jrv2-audience-header"><span className="jrv2-overline">05 / TWO WAYS TO WORK TOGETHER</span><h2 id="jrv2-audience-title">The right expertise.<br/><em>For the right challenge.</em></h2></div>
+          <div className="jrv2-audience-grid">
+            <article id="client-enquiries"><div className="jrv2-audience-label"><BriefcaseBusiness size={21} aria-hidden="true"/> ECOMMERCE BUSINESSES</div><h3>Have a store challenge?</h3><p>Need theme improvements, a more effective buying journey, custom app work, B2B logic or clearer analytics? Begin with the requirement.</p><a href="#contact">Discuss your project <ArrowUpRight size={18} aria-hidden="true"/></a></article>
+            <article><div className="jrv2-audience-label"><Sparkles size={21} aria-hidden="true"/> EMPLOYERS & RECRUITERS</div><h3>Building your team?</h3><p>Looking for Shopify development, ecommerce management, CRO or integrations expertise? Review the experience and see the technical examples.</p><Link href="/resume">Explore résumé designs <ArrowUpRight size={18} aria-hidden="true"/></Link><Link href="/experience" className="jrv2-audience-secondary">Professional experience <ArrowRight size={16} aria-hidden="true"/></Link></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="jrv2-section jrv2-about" id="about" aria-labelledby="jrv2-about-title">
+        <div className="jrv2-wrap jrv2-about-layout"><div><span className="jrv2-overline">06 / ABOUT THE PRACTICE</span><h2 id="jrv2-about-title">Technical depth.<br/><em>Commercial perspective.</em></h2></div><div><p>I work across the layers of ecommerce that customers see and the systems that keep a business running. That means storefront design, B2B logic, fulfilment automation, analytics diagnostics and ongoing improvement.</p><p>The aim is straightforward: reduce unnecessary complexity, build useful experiences and leave the next person with something they can maintain.</p><Link href="/experience" className="jrv2-text-link">Explore responsibilities and experience <ArrowUpRight size={17} aria-hidden="true"/></Link><div className="jrv2-about-tags" id="skills"><span>LIQUID</span><span>TYPESCRIPT</span><span>REACT</span><span>SHOPIFY FLOW</span><span>APIS / WEBHOOKS</span><span>ANALYTICS</span></div></div></div>
+      </section>
+
+      <section className="jrv2-contact-section" id="contact" aria-labelledby="jrv2-contact-title"><div className="jrv2-wrap">
+        <div className="jrv2-contact-heading"><span className="jrv2-overline">07 / YOUR NEXT MOVE</span><h2 id="jrv2-contact-title">Let's make your next<br/><em>move matter.</em></h2><p>From targeted Shopify improvements to bigger commerce systems, start with a practical conversation.</p></div>
+        <LeadComposer />
+      </div></section>
+    </div>
+    <footer className="jrv2-footer"><div className="jrv2-wrap">
+      <div className="jrv2-footer-top"><div><a className="jrv2-wordmark" href="#home" aria-label="JRV, back to top"><span>{'{JRV}'}</span></a><p>Commerce engineering for thoughtful Shopify experiences and reliable operations.</p></div><div className="jrv2-footer-links"><div><strong>EXPLORE</strong><Link href="/experience">Experience</Link><Link href="/editorial-homepage-demo">Storefront demo</Link><Link href="/data-extraction-automation">Data engineering</Link><Link href="/shopify-flow">Shopify Flow</Link></div><div><strong>CONNECT</strong><a href="mailto:hello@jrvallite.com">Email</a><Link href="/resume">Résumé designs</Link><a href="https://www.linkedin.com/in/bonvallite/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://g.dev/bonvallite" target="_blank" rel="noopener noreferrer">Google Developer</a><a href="https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite" target="_blank" rel="noopener noreferrer">Wikipedia contributions</a></div><div><strong>ACCOUNT / LEGAL</strong><Link href="/privacy">Privacy & analytics</Link><Link href="/experience#training">Professional training</Link><a href="https://webmail.jrvallite.com/" target="_blank" rel="noopener noreferrer nofollow">Webmail login</a></div></div></div>
+      <div className="jrv2-footer-bottom"><span>© {new Date().getFullYear()} JRV / SHOPIFY COMMERCE ENGINEERING</span><span>NO CLIENT DATA IN THE DEMOS</span><a href="#home">BACK TO TOP ↑</a></div>
+    </div></footer>
   </main>;
 }
