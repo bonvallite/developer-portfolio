@@ -119,7 +119,7 @@ export default function Home() {
             <h1 id="jrv2-title">I build Shopify stores.<br/><span>And the systems behind them.</span></h1>
             <p className="jrv2-hero-lead">Senior Shopify Developer & eCommerce Manager, combining technical engineering, operations and commercial thinking.</p>
             <p className="jrv2-hero-support">Storefront development. Custom integrations. B2B systems. Analytics and conversion thinking. One connected approach.</p>
-            <div className="jrv2-hero-actions"><a className="jrv2-cta jrv2-cta-primary" href="#work">Explore my work <ArrowUpRight size={17} aria-hidden="true"/></a><a className="jrv2-cta jrv2-cta-ghost" href="/resume">Download CV <ArrowRight size={17} aria-hidden="true"/></a></div>
+            <div className="jrv2-hero-actions"><a className="jrv2-cta jrv2-cta-primary" href="#work">Explore my work <ArrowUpRight size={17} aria-hidden="true"/></a><a className="jrv2-cta jrv2-cta-ghost" href="/resume">View résumé options <ArrowRight size={17} aria-hidden="true"/></a></div>
             <div className="jrv2-hero-proof"><span><CircleCheck size={16} aria-hidden="true"/> Documented case studies</span><span><CircleCheck size={16} aria-hidden="true"/> Interactive demos</span><span><CircleCheck size={16} aria-hidden="true"/> Evidence-led practice</span></div>
           </div>
           <div className="jrv2-hero-showcase" aria-label="Illustration of a connected Shopify commerce system">
