@@ -63,6 +63,7 @@ const formatMoney = (n:number) => 'A$' + n.toLocaleString('en-AU',{minimumFracti
 export default function CinematicB2B(){
   const [marketIndex,setMarketIndex]=useState(0);
   const [eligible,setEligible]=useState(true);
+  const [quantity,setQuantity]=useState(12);
   const [journeyStep,setJourneyStep]=useState(0);
   const [historyMode,setHistoryMode]=useState<HistoryMode>('legacy');
   const [includeCustomerTags,setIncludeCustomerTags]=useState(false);
@@ -72,6 +73,10 @@ export default function CinematicB2B(){
   const requested = markets[marketIndex];
   const qualifies = marketIndex===0 || eligible;
   const applied = qualifies ? requested : markets[0];
+  // Fictional subtotal and savings are derived from the selected context, never from a client catalogue.
+  const retailSubtotal = markets[0].price * quantity;
+  const simulatedSubtotal = applied.price * quantity;
+  const simulatedSavings = retailSubtotal - simulatedSubtotal;
   const historyValue = (i:number) => {
     const m=monthly[i];
     if(historyMode==='legacy')return includeCustomerTags?m.broader:m.legacy;
@@ -189,7 +194,7 @@ export default function CinematicB2B(){
     <section id="price-lab" className="cb2b-section cb2b-wrap" aria-labelledby="price-title">
       <p className="cb2b-kicker">CHAPTER 03 / THE PRICE LABORATORY</p>
       <h2 id="price-title">See where the price <em>comes from.</em></h2>
-      <p className="cb2b-section-lede">Choose a market, then change company eligibility. The same fictional product responds to the buying context. No client pricing or confidential catalogue settings are used.</p>
+      <p className="cb2b-section-lede">Choose a market, then change company eligibility. The same fictional product responds to the buying context. No client pricing or confidential catalogue settings are used. Adjust the sample quantity to see the illustrative subtotal and retail comparison.</p>
       <div className="cb2b-lab">
         <div className="cb2b-lab-controls">
           <p className="cb2b-control-label">SELECT THE BUYING CONTEXT</p>
@@ -197,6 +202,8 @@ export default function CinematicB2B(){
             {markets.map((m,i)=><button key={m.name} type="button" onClick={()=>setMarketIndex(i)} aria-pressed={marketIndex===i}><strong>{m.name}</strong><small>{m.catalogue}</small></button>)}
           </div>
           <label className="cb2b-eligibility"><input type="checkbox" checked={eligible} onChange={e=>setEligible(e.target.checked)}/><span>Signed in and purchasing for an eligible company location</span></label>
+          <label className="cb2b-quantity-control" htmlFor="cb2b-quantity">Sample order quantity <strong>{quantity} units</strong></label>
+          <input id="cb2b-quantity" className="cb2b-quantity-range" type="range" min="1" max="50" step="1" value={quantity} onChange={e=>setQuantity(Number(e.target.value))}/>
           <div className="cb2b-rules" aria-live="polite">
             <p><span>01</span>{eligible?'Company purchasing eligibility can be checked':'No eligible company purchasing context'}</p>
             <p><span>02</span>{qualifies?requested.name+' market selected':'Wholesale context not available'}</p>
@@ -210,6 +217,7 @@ export default function CinematicB2B(){
           <h3>Sample Ceramic Cup</h3>
           <p>One product · Four pricing contexts</p>
           <div className="cb2b-product-price"><strong>{formatMoney(applied.price)}</strong><span>{applied.name}<br/>{applied.catalogue}</span></div>
+          <div className="cb2b-order-summary" aria-live="polite"><div><span>Illustrative subtotal · {quantity} units</span><strong>{formatMoney(simulatedSubtotal)}</strong></div><div><span>Compared with retail</span><strong>{formatMoney(simulatedSavings)} saved</strong></div></div>
           <span className="cb2b-product-badge">{!qualifies?'Retail fallback · demo':marketIndex===0?'Retail price':'Eligible company price'}</span>
           <p className="cb2b-product-explain" aria-live="polite">{!qualifies?'A wholesale market selection alone is not an entitlement. Without eligible company purchasing context, the demonstration displays retail pricing.':marketIndex===0?'The retail catalogue supplies the normal product price.':'The matched company market supplies the fictional trade price from '+applied.catalogue+'; no additional cart-pricing application is involved.'}</p>
         </div>
