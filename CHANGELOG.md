@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-20 - Archive original résumé before approved US English revision
+
+- **Target:** `bonvallite/developer-portfolio`, branch `backup/resume-original-before-us-2026`.
+- **Files:** `backups/resumes/JRV-Resume-2026-Original.pdf`, `CHANGELOG.md`, `README.md`.
+- **Change:** Preserved the exact 323,929-byte original public résumé at `backups/resumes/JRV-Resume-2026-Original.pdf` by reusing existing Git blob `a7d4648238f748f625004890bb8aac4b5443915b`. The active `public/JRV-Resume.pdf` remains unchanged until the approved 2026 American English two-page PDF can be uploaded and verified.
+- **Why:** Maintain an explicitly named recovery copy in addition to Git history before replacing the public download.
+- **Privacy:** The archived original can contain identifying and out-of-date contact details. This backup is in the public repository, not linked from the website; GitHub repository access can still expose it.
+- **Validation:** Verified original file path, blob SHA and file size from latest main Git tree, then created the archive path using that same blob with no content modifications. Website and production PDF replacement remain pending.
+
+
 ## 2026-11-19 - Reconcile case study with current production homepage and professional links
 
 - **Target:** `bonvallite/developer-portfolio`, PR #39; `main` commit `2456b99b564b906dde2de29c5a9bd94e9abacf26`.
