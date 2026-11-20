@@ -22,7 +22,7 @@ test('cinematic homepage includes one service-led hero and clear navigation targ
   }
   assert.match(home, /Start a conversation/);
   assert.match(home, /Explore my work/);
-  assert.match(home, /Download CV/);
+  assert.match(home, /View résumé options/);
   assert.match(home, /<LeadComposer\s*\/>/);
   assert.match(home, /<HomeJourney\s*\/>/);
 });
