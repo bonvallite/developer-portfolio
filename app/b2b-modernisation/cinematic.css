@@ -188,3 +188,16 @@
 .cb2b .cb2b-order-summary>div{display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:12px;color:#c7dfde}
 .cb2b .cb2b-order-summary strong{color:#f28c52;font-size:17px;font-variant-numeric:tabular-nums;text-align:right}
 @media(max-width:480px){.cb2b .cb2b-order-summary>div{align-items:flex-start;flex-direction:column;gap:4px}}
+
+/* 20 Nov 2026: selected-context architecture path reuses the pricing lab state.
+   Animated connector is decorative; text nodes remain accessible and reduced-motion safe. */
+.cb2b .cb2b-live-path{display:grid;grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr) 26px minmax(0,1fr);align-items:stretch;gap:9px;margin:22px 0 13px}
+.cb2b .cb2b-live-node{min-width:0;border:1px solid #35656b;background:#122a32;border-radius:9px;padding:15px 12px;display:flex;flex-direction:column;gap:8px}
+.cb2b .cb2b-live-node span{font-size:9px;letter-spacing:1.1px;color:#8fd9d1}
+.cb2b .cb2b-live-node strong{font-size:13px;line-height:1.45;color:#eaf4f3;overflow-wrap:anywhere}
+.cb2b .cb2b-live-node.is-result{border-color:#f28c52;background:#30251f}
+.cb2b .cb2b-live-node.is-result span{color:#ffb187}
+.cb2b .cb2b-live-arrow{align-self:center;text-align:center;color:#38c7bc;font-size:23px;animation:cb2b-path-pulse 2.4s ease-in-out infinite}
+@keyframes cb2b-path-pulse{0%,100%{opacity:.5;transform:translateX(0)}50%{opacity:1;transform:translateX(3px)}}
+@media(max-width:700px){.cb2b .cb2b-live-path{grid-template-columns:1fr;gap:5px}.cb2b .cb2b-live-arrow{transform:rotate(90deg);font-size:19px}.cb2b .cb2b-live-arrow{animation:none}}
+@media(prefers-reduced-motion:reduce){.cb2b .cb2b-live-arrow{animation:none!important}}
