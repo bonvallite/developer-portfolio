@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-20 - Add visible architecture diagram and functional analytics dashboard demo
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, `feature/analytics-visual-demo-20261120`, based on latest `main` at branch creation.
+- **Affected files:** `app/data-extraction-automation/page.tsx`, `app/data-extraction-automation/visual-demo.tsx`, `app/data-extraction-automation/visual-demo.css`, `tests/case-study-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, `README.md`, `CHANGELOG.md`.
+- **Change:** Add clearly visible, clickable architecture diagram covering six platforms and four processing stages, plus a realistic responsive fictional reporting dashboard with source-specific KPI cards, trend bars, CSV tables, a sample-period selector, and a client-side fictional CSV download. Promote “Try interactive demo” as the hero CTA. Keep the existing architecture explanation, walkthrough, and 17-file code explorer.
+- **Why:** The published case study only had a static text-heavy platform diagram and code explorer; users could not find a tangible reporting mock-up or testable end-to-end visual flow.
+- **Privacy and fidelity:** All dashboard data and exports are explicit fictional local fixtures. No live tokens, customer metrics, employer APIs, or claims of verified exports. The Shopify sample is a separate illustrative reporting handover, not verified GraphQL extraction.
+- **Validation:** Added browser assertions for all six source nodes, pipeline stages, data switching, period selection and fictional CSV download across desktop, tablet and mobile. GitHub Actions and Vercel preview validation required before release.
+
 ## 2026-11-20 - Classic résumé editorial layout refinement
 - **Repository and branch:** `bonvallite/developer-portfolio`, `design/classic-resume-refinement-20261120`.
 - **Affected files:** `app/resume/resume.css`, `app/resume/resume-export.ts`, `README.md`, `CHANGELOG.md`.
