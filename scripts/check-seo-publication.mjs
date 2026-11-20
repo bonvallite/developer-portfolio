@@ -68,7 +68,7 @@ for (const file of allRoutes) {
     // only these fixed, owner-approved variants are valid public targets.
     // Check their real route files and handler exports instead of bypassing
     // internal-link checks for arbitrary dynamic URLs.
-    const resume = target.match(/^\/resume\/(classic|modern)(?:\/(pdf|word))?$/);
+    const resume = target.match(/^\/resume\/(classic|modern|ats)(?:\/(pdf|word))?$/);
     if (resume) {
       const expected = resume[2] ? 'app/resume/[design]/[format]/route.ts' : 'app/resume/[design]/page.tsx';
       assert.ok(existsSync(join(root, expected)), file + ' links to missing path ' + target);
