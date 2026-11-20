@@ -66,3 +66,9 @@ Working branch: `feature/ember-teal-interactive-portfolio` (derived from the cin
 Updated `app/b2b-modernisation/CinematicB2B.tsx` and `app/b2b-modernisation/cinematic.css` on `feature/ember-teal-interactive-portfolio`. Existing market selector, company eligibility simulation, six-step buying journey, and evidence-bound historical chart are preserved. Added an accessible 1–50 unit range input and live fictional subtotal and retail-comparison savings, calculated from the currently applied catalogue context. The route-scoped CSS adds Ember & Teal treatment, responsive subtotal layout, and focus-visible styles. These calculations are explanatory UI only; Shopify enforces real company entitlement and checkout prices.
 
 **Validation:** GitHub accepted both file commits. Automated tests, TypeScript, production build, browser accessibility checks, and Vercel preview have not yet been run or confirmed. Do not merge or publish before those checks. No customer records, production prices or confidential source were added.
+
+## Stage 3: Linked B2B architecture diagram (20 November 2026)
+
+Updated `app/b2b-modernisation/CinematicB2B.tsx` and `app/b2b-modernisation/cinematic.css` to show a selected-context three-node architecture (buyer identity, eligibility, applied catalogue). Diagram derives directly from the existing market/eligibility state and reflects retail fallback in the fictional demo. Responsive CSS stacks nodes on narrow screens, while decorative arrows animate only when reduced-motion is not requested. Inline source documentation explains state sharing and the Shopify entitlement boundary.
+
+**Validation status:** GitHub accepted the source and CSS commits; no automated build, browser QA or production release has been verified. Confirm colour contrast and mobile arrow rendering during preview review.
