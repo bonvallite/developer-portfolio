@@ -9,7 +9,7 @@ import HomeJourney from './components/HomeJourney';
 import LeadComposer from './components/LeadComposer';
 import './cinematic-home.css';
 
-// 2026-11-20 cinematic rebuild. Public copy is service-led and intentionally
+// 2026-11-20 Ember & Teal iteration. Public copy is service-led and intentionally
 // avoids personal-name SEO, private account identifiers and invented outcomes.
 // Project descriptions distinguish demonstrated interfaces from verified work.
 // The previous site remains recoverable at backup/2026-11-20-pre-cinematic-rebuild.
@@ -32,7 +32,7 @@ const services = [
   { number: '04', title: 'Custom apps & integrations', summary: 'APIs, webhooks, serverless processing, Shopify Flow and operational systems designed for reliable handover.', href: '/shopify-app-development', link: 'Explore integrations', icon: Network },
 ];
 
-const cases = [
+// Flagship stories lead with B2B, reward automation and integrations; analytics remains discoverable.\nconst cases = [
   {
     id: '01', tag: 'AUTOMATION / CUSTOMER EXPERIENCE', title: 'A smarter way to reward every order.',
     intro: 'Spend & Save: a clear customer-facing milestone journey, with a separate post-checkout fulfilment workflow.',
@@ -114,11 +114,11 @@ export default function Home() {
         <div className="jrv2-hero-grid" aria-hidden="true" />
         <div className="jrv2-wrap jrv2-hero-inner">
           <div className="jrv2-hero-copy">
-            <div className="jrv2-eyebrow"><span className="jrv2-pulse" aria-hidden="true" /> SHOPIFY DEVELOPMENT / ECOMMERCE MANAGEMENT / CRO</div>
-            <h1 id="jrv2-title">Build better<br/><span>commerce.</span></h1>
-            <p className="jrv2-hero-lead">From the first tap to the final fulfilment update, I design and engineer Shopify experiences, connected workflows and measurable improvements.</p>
+            <div className="jrv2-eyebrow"><span className="jrv2-pulse" aria-hidden="true" /> 9 YEARS OF SHOPIFY & ECOMMERCE EXPERIENCE</div>
+            <h1 id="jrv2-title">I build Shopify stores.<br/><span>And the systems behind them.</span></h1>
+            <p className="jrv2-hero-lead">Senior Shopify Developer & eCommerce Manager, combining technical engineering, operations and commercial thinking.</p>
             <p className="jrv2-hero-support">Storefront development. Custom integrations. B2B systems. Analytics and conversion thinking. One connected approach.</p>
-            <div className="jrv2-hero-actions"><a className="jrv2-cta jrv2-cta-primary" href="#contact">Let's talk about your project <ArrowUpRight size={17} aria-hidden="true"/></a><a className="jrv2-cta jrv2-cta-ghost" href="#work">Explore selected work <ArrowRight size={17} aria-hidden="true"/></a></div>
+            <div className="jrv2-hero-actions"><a className="jrv2-cta jrv2-cta-primary" href="#work">Explore my work <ArrowUpRight size={17} aria-hidden="true"/></a><a className="jrv2-cta jrv2-cta-ghost" href="/resume">Download CV <ArrowRight size={17} aria-hidden="true"/></a></div>
             <div className="jrv2-hero-proof"><span><CircleCheck size={16} aria-hidden="true"/> Documented case studies</span><span><CircleCheck size={16} aria-hidden="true"/> Interactive demos</span><span><CircleCheck size={16} aria-hidden="true"/> Evidence-led practice</span></div>
           </div>
           <div className="jrv2-hero-showcase" aria-label="Illustration of a connected Shopify commerce system">
