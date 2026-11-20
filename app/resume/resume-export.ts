@@ -1,7 +1,7 @@
 // Server-only résumé exports, using one source of approved career information.
 // Both downloadable designs use a legible single-column reading order and
-// predictable page margins. ATS avoids decoration; Classic applies teal
-// editorial accents without covering content or relying on visual sidebars.
+// predictable page margins. ATS avoids decoration; Classic uses an ivory
+// editorial masthead, teal typography and subtle gold rules without overlays.
 // PDF Info and DOCX core properties identify the document owner and actual
 // export service, never a fictitious human editor or third-party application.
 // Validate text extraction, reading order, format and metadata after release.
@@ -47,7 +47,7 @@ export function pdf(design:Design):Uint8Array{
  function init(){cmds=[];y=744;count++;
   if(count===1){
    if(modern){rule(44,758,524,'#283746');}
-   else{rect(0,661,612,131,'#125b61');rect(0,655,612,6,'#d9b47c');}
+   else{rect(0,776,612,16,'#125b61');rect(44,637,524,1,'#cfdbd8');rect(44,635,62,3,'#c5a06b');drawText(44,759,'JRV  /  PROFESSIONAL PROFILE',8,true,'#125b61');}
   }else{
    rule(44,760,524,accent);
    drawText(44,769,'JRV  /  PROFESSIONAL RESUME',8,true,accent);
@@ -59,11 +59,11 @@ export function pdf(design:Design):Uint8Array{
  for(const row of lines()){
   const isTitle=row.kind==='title',isHead=row.kind==='head',isSub=row.kind==='sub';
   if(isTitle){
-    y=modern?722:748;
-    drawText(44,y,row.t,modern?22:21,true,modern?dark:'#ffffff');
+    y=modern?722:726;
+    drawText(44,y,row.t,modern?22:25,true,modern?dark:'#173c41');
     y-=27;continue;
   }
-  const inClassicHeader=!modern&&count===1&&y>661&&!isHead;
+  // Classic uses dark text on white throughout; only the masthead ribbon is filled.
   const size=row.kind==='small'?8.7:isHead?10.1:isSub?10.2:row.kind==='bullet'?9.4:9.6;
   const max=modern?105:101;
   const chunks=split(row.t,max),gap=13.1;
@@ -76,7 +76,7 @@ export function pdf(design:Design):Uint8Array{
     y-=20;continue;
   }
   for(const chunk of chunks){
-    const color=inClassicHeader?'#ffffff':row.kind==='small'?'#53616b':dark;
+    const color=row.kind==='small'?'#53616b':(!modern&&isSub&&count===1?'#125b61':dark);
     drawText(44+(row.kind==='bullet'?11:0),y,chunk,size,Boolean(row.bold),color);
     y-=gap;
   }
