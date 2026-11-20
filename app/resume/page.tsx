@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Download, FileText, FilePenLine } from 'lucide-react';
 
 // Only two primary downloads are offered. The ATS-friendly version uses a
-// standard, single-column reading order; Classic retains the teal design.
+// standard, single-column reading order; Classic uses teal editorial accents.
 // Word files and online previews remain secondary, accessible links.
 // Career content is defined once in resume-data.ts. Exports accurately credit
 // the owner as author and the JRV portfolio as the document export service.
@@ -12,15 +12,15 @@ const choices = [
     number: '01',
     route: 'ats',
     note: 'Recommended for online job applications',
-    description: 'A clean, single-column layout with selectable text, conventional headings, and no tables or graphics in the downloadable document.',
+    description: 'A clear, single-column résumé with strong experience hierarchy and conventional headings, designed for online applications and ATS parsing.',
     className: 'modern',
   },
   {
     label: 'Classic Résumé',
     number: '02',
     route: 'classic',
-    note: 'Traditional résumé design',
-    description: 'An original-inspired teal layout for direct applications, introductions, and sharing with employers.',
+    note: 'Editorial résumé for direct sharing',
+    description: 'A refined teal-and-white editorial layout with restrained typography, generous spacing, and printable single-column content.',
     className: 'classic',
   },
 ] as const;
@@ -30,7 +30,7 @@ export default function ResumeIndex() {
   <Link href="/" className="resume-back"><ArrowLeft size={16}/> Back to JRV portfolio</Link>
   <p className="resume-eyebrow">JRV / RÉSUMÉS</p>
   <h1>Your next role.<br/><em>Two ways to apply.</em></h1>
-  <p className="resume-lead">Choose a résumé format. Both reflect the same current experience and use American English.</p>
+  <p className="resume-lead">Two professionally typeset presentations of the same experience. Choose the understated ATS format for application portals, or the editorial Classic for direct introductions. Both use American English.</p>
   <section className="resume-choice-grid" aria-label="Download a résumé">
    {choices.map((item) => <article className="resume-choice-card resume-download-card" key={item.route}>
      <span className="resume-choice-number">{item.number} / {item.note}</span>
