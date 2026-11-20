@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-20 - Publish classic and modern resume options (American English)
+
+- **Files:** `app/resume/resume-data.ts`, `app/resume/resume-export.ts`, `app/resume/resume.css`, `app/resume/layout.tsx`, `app/resume/page.tsx`, `app/resume/[design]/page.tsx`, `app/resume/[design]/[format]/route.ts`, `app/page.tsx`, `app/experience/page.tsx`, `README.md`, `CHANGELOG.md`.
+- **Change:** Add two accessible on-site resume layouts (original-inspired Classic / modern editorial), generate public PDF and editable DOCX downloads on demand from one shared career-data module, and update portfolio navigation to present both choices.
+- **Content:** American English; independent Shopify role January 2019–February 2026; Peter Augustus February 2026–present; owner-approved public email and telephone.
+- **Privacy:** Resume preview routes have explicit `noindex` metadata and downloadable files emit `X-Robots-Tag: noindex, noarchive`. This is a discoverability signal, not access control. Public-facing search metadata remains skills-led.
+- **Preservation:** The original `public/JRV-Resume.pdf` and separately archived `backups/resumes/JRV-Resume-2026-Original.pdf` remain unchanged for recovery and old links. New downloads are served under `/resume/{classic|modern}/{pdf|word}`.
+- **Validation:** Require GitHub CI (publication-safety scan, tests, TypeScript and production build) and live HTTP, PDF/DOCX format and correct-content checks before claiming release.
+
+
 ## 2026-11-20 - Archive original résumé before approved US English revision
 
 - **Target:** `bonvallite/developer-portfolio`, branch `backup/resume-original-before-us-2026`.
