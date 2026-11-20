@@ -2,6 +2,10 @@
 
 Service-led portfolio covering Shopify development, ecommerce management, conversion rate optimisation, custom API integrations, and storefront performance. Public pages intentionally avoid personal-name SEO.
 
+## Résumé backup and public PDF release
+
+The original 2026 PDF is archived byte-for-byte at `backups/resumes/JRV-Resume-2026-Original.pdf` (Git blob `a7d4648238f748f625004890bb8aac4b5443915b`). It is not linked from the homepage, but this repository and its history are public and the archive may contain personal details and obsolete contact information. Once the approved American English revision is uploaded, the active public path must remain `public/JRV-Resume.pdf` so existing resume links continue working. Do not publish or state that the replacement is live until CI, Vercel production, and PDF content checks succeed.
+
 ## Current public identity and contact
 
 The approved public wordmark is **JRV**, matching the approved **{JRV}** browser-tab favicon in `app/icon.svg`. Shopify Commerce Engineering describes the services, not a separate brand. Do not reintroduce the former EC. monogram or publish the owner's full personal name in page metadata. The public enquiry mailbox is **hello@jrvallite.com** for both role and project requests and for privacy enquiries. Keep the `mailto:` links in `app/page.tsx` and `app/privacy/page.tsx` aligned. Historical references, repository account details, and dated documentation are not rewritten retroactively.
