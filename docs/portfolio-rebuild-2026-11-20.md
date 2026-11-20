@@ -54,3 +54,9 @@ The snapshot branch points at the complete Git-tracked pre-rebuild commit. To un
 ## Editorial guardrails
 
 Use Australian English, service-led SEO and the approved JRV identity. Do not invent testimonials, revenue improvements, customer counts, client logos, certifications or metrics. Preserve the user's explicitly requested professional links, résumé route and mailbox shortcut unless they direct otherwise.
+
+## Ember & Teal design iteration (20 November 2026)
+
+Working branch: `feature/ember-teal-interactive-portfolio` (derived from the cinematic redesign branch, not production). Homepage headline now foregrounds nine years of Shopify and ecommerce experience and a combined developer/manager role. The primary action leads to selected work, and the secondary action leads to the résumé route. Route-scoped CSS adopts obsidian, electric teal and ember orange with an editorial hero scale and updated focus accents. Existing case studies, privacy controls, consent flow, and reduced-motion behaviour are preserved.
+
+**Validation status:** Source changes committed through GitHub; automated tests, browser rendering, contrast audit and Vercel preview have not yet been verified. No production release. The interactive B2B simulator, project diagrams and real footage remain planned work and must not be represented as deployed. Check actual demo architecture and publication rights before adding project footage or outcomes.
