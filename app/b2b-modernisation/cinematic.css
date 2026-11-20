@@ -1,7 +1,7 @@
 /* Cinematic B2B case study, 19 Nov 2026.
    Scoped to .cb2b to avoid regressions on the portfolio homepage.
    No remote image dependency or animation package. Respect reduced motion,
-   keyboard focus, and native anchor links. The price lab is fictional. */
+   keyboard focus, and native anchor links. The price lab is fictional, including quantity and savings; no client catalogue prices. */
 .cb2b{--c-bg:#0b0e12;--c-gold:#d9b47c;--c-text:#f5efe5;--c-muted:#acafb5;--c-border:#554a38;color:var(--c-text);background:var(--c-bg);overflow:hidden;font-family:'DM Sans',sans-serif}
 .cb2b *{box-sizing:border-box}
 .cb2b a{text-decoration:none}
@@ -175,3 +175,16 @@
 @media(max-width:700px){.cb2b .cb2b-section{padding-top:57px;padding-bottom:57px}.cb2b .cb2b-before-after,.cb2b .cb2b-lab,.cb2b .cb2b-footer-grid{grid-template-columns:1fr}.cb2b .cb2b-footnotes{grid-template-columns:1fr}.cb2b .cb2b-outcomes{grid-template-columns:1fr}.cb2b .cb2b-arch-explainer{flex-direction:column;align-items:flex-start}.cb2b .cb2b-chapters{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin}.cb2b .cb2b-chapters a{flex-shrink:0}.cb2b .cb2b-bar-track{height:135px;padding:0 3px}}
 @media(max-width:480px){.cb2b .cb2b-topbar>span{display:none}.cb2b .cb2b-hero h1{font-size:41px}.cb2b .cb2b-metrics{gap:8px}.cb2b .cb2b-metrics strong{font-size:26px}.cb2b .cb2b-metrics span{font-size:8px}.cb2b .cb2b-market-grid{grid-template-columns:repeat(2,1fr)}.cb2b .cb2b-architecture{padding:16px}.cb2b .cb2b-steps{grid-template-columns:repeat(2,1fr)}.cb2b .cb2b-bar-grid{gap:2px}.cb2b .cb2b-bar-track{height:110px;padding:0 1px}.cb2b .cb2b-bar-label{font-size:9px}.cb2b .cb2b-history-detail{grid-template-columns:1fr;gap:6px}.cb2b .cb2b-compare-row{font-size:10px;padding:11px 8px;gap:5px}.cb2b .cb2b-aov-head>div{padding:12px}.cb2b .cb2b-hero-art{height:222px}}
 @media(prefers-reduced-motion:reduce){.cb2b *, .cb2b *::before, .cb2b *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* 20 Nov 2026: Ember & Teal flagship treatment and keyboard-accessible quantity control.
+   All monetary calculations are fictional and client-side; Shopify enforces real entitlements. */
+.cb2b{--c-bg:#0b1419;--c-gold:#38c7bc;--c-text:#eaf4f3;--c-muted:#a9c1c3;--c-border:#31505a;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}
+.cb2b h1,.cb2b h2,.cb2b h3{font-family:inherit}
+.cb2b button:focus-visible,.cb2b a:focus-visible,.cb2b input:focus-visible{outline-color:#f28c52}
+.cb2b .cb2b-quantity-control{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 10px;color:#d8eeed;font-size:13px}
+.cb2b .cb2b-quantity-control strong{color:#f28c52;font-variant-numeric:tabular-nums}
+.cb2b .cb2b-quantity-range{width:100%;accent-color:#38c7bc;cursor:pointer;margin-bottom:22px;min-height:28px}
+.cb2b .cb2b-order-summary{margin:18px 0;display:grid;gap:10px;padding:16px;background:#142d34;border:1px solid #35656b;border-radius:10px}
+.cb2b .cb2b-order-summary>div{display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:12px;color:#c7dfde}
+.cb2b .cb2b-order-summary strong{color:#f28c52;font-size:17px;font-variant-numeric:tabular-nums;text-align:right}
+@media(max-width:480px){.cb2b .cb2b-order-summary>div{align-items:flex-start;flex-direction:column;gap:4px}}
