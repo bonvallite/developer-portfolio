@@ -99,6 +99,7 @@ try {
         assert.equal(serviceResponse?.status(), 200, route + ': HTTP 200');
         await page.locator('.jrv-svc-hero-art').waitFor({ state: 'visible' });
         assert.equal(await page.locator('.service-hero h1').count(), 1, route + ': H1');
+        assert.equal(await page.locator('.jrv-quick-dock').count(), 0, route + ': no competing floating CTA');
         const serviceHref = await page.locator('.service-hero .button.primary').getAttribute('href');
         assert.ok(serviceHref?.startsWith('mailto:hello@jrvallite.com?'), route + ': direct enquiry');
         assert.ok(await page.locator('#examples .service-card-grid a').count() >= 1, route + ': project evidence');
