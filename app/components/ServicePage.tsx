@@ -40,7 +40,7 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
         <Link href="/" className="service-back"><ArrowLeft size={17} /> Back to portfolio</Link>
         <a href={enquiry} className="button secondary">Discuss a project <ArrowUpRight size={16} /></a>
       </header>
-      <section className="container service-hero"><div className="jrv-svc-hero-grid" aria-hidden="true"/>
+      <section className="container service-hero"><div className="jrv-svc-hero-grid" aria-hidden="true"/><div className="jrv-svc-hero-copy">
         <span className="overline">{content.label}</span>
         <h1>{content.heading}</h1>
         <p className="service-lead">{content.lead}</p>
@@ -48,7 +48,7 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
         <div className="actions">
           <a href={enquiry} className="button primary">Start a conversation <ArrowUpRight size={17} /></a>
           <a href="#examples" className="button secondary">Review relevant work <ArrowRight size={17} /></a>
-        </div>
+        </div></div>
         <div className="jrv-svc-hero-art" aria-label="Illustrative engineering process, from discovery to verification">
           <div className="jrv-svc-art-heading"><span>JRV / COMMERCE ENGINEERING</span><span>01 → 03</span></div>
           <div className="jrv-svc-art-body"><span className="overline">A CONNECTED APPROACH</span><h2>Clarity.<br/><em>Then action.</em></h2><div className="jrv-svc-art-steps"><div><b>01</b><strong>Understand</strong><small>Problem & scope</small></div><div><b>02</b><strong>Engineer</strong><small>Design & systems</small></div><div><b>03</b><strong>Verify</strong><small>Quality & evidence</small></div></div></div><div className="jrv-svc-art-footer">RESPONSIVE / RELIABLE / DOCUMENTED <CheckCircle2 size={16} aria-hidden="true"/></div>
