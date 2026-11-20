@@ -4,6 +4,8 @@
 // editorial masthead, teal typography and subtle gold rules without overlays.
 // PDF Info and DOCX core properties identify the document owner and actual
 // export service, never a fictitious human editor or third-party application.
+// Classic Word uses a Georgia title and subtle heading dividers; ATS Word stays
+// unchanged for conventional applicant-tracking compatibility.
 // Validate text extraction, reading order, format and metadata after release.
 import { deflateRawSync } from 'node:zlib';
 import { contact, summary, skills, experience, projects, education } from './resume-data';
@@ -132,8 +134,8 @@ export function docx(design:Design):Uint8Array{
  }).join('');
  const styles='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'+
   '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:rPr><w:rFonts w:ascii="Aptos" w:hAnsi="Aptos"/><w:sz w:val="20"/></w:rPr><w:pPr><w:spacing w:after="110"/></w:pPr></w:style>'+
-  '<w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:rPr><w:b/><w:color w:val="'+accent+'"/><w:sz w:val="42"/></w:rPr></w:style>'+
-  '<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:rPr><w:b/><w:color w:val="'+accent+'"/><w:sz w:val="22"/></w:rPr><w:pPr><w:spacing w:before="260" w:after="115"/></w:pPr></w:style>'+
+  '<w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:pPr><w:spacing w:before="'+(isClassic?'120':'0')+'" w:after="'+(isClassic?'170':'110')+'"/></w:pPr><w:rPr><w:rFonts w:ascii="'+(isClassic?'Georgia':'Aptos')+'" w:hAnsi="'+(isClassic?'Georgia':'Aptos')+'"/><w:b/><w:color w:val="'+accent+'"/><w:sz w:val="'+(isClassic?'50':'42')+'"/></w:rPr></w:style>'+
+  '<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:rPr><w:b/><w:color w:val="'+accent+'"/><w:sz w:val="22"/></w:rPr><w:pPr><w:keepNext/><w:spacing w:before="'+(isClassic?'310':'260')+'" w:after="115"/>'+(isClassic?'<w:pBdr><w:bottom w:val="single" w:sz="5" w:space="6" w:color="B8CCC8"/></w:pBdr>':'')+'</w:pPr></w:style>'+
   '<w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:rPr><w:b/><w:sz w:val="21"/></w:rPr><w:pPr><w:spacing w:before="150" w:after="75"/></w:pPr></w:style></w:styles>';
  const doc='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+pars+'<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="900" w:right="1000" w:bottom="900" w:left="1000"/></w:sectPr></w:body></w:document>';
  return zip([
