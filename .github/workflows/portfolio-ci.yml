@@ -32,8 +32,9 @@ jobs:
 
 
   case-study-browser-qa:
-    # Run browser QA only for explicitly reviewed analytics case-study PRs.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120')
+    # Run browser QA for reviewed case-study and cinematic redesign PRs.
+    # The broad unit, SEO and public-safety checks still run for every PR.
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio')
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -62,11 +63,16 @@ jobs:
           exit 1
       - name: Desktop tablet and mobile interaction checks
         run: node tests/case-study-browser-qa.mjs
+      - name: Cinematic homepage layout, privacy and conversion QA
+        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio'
+        run: node tests/homepage-browser-qa.mjs
       - name: Save case-study screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: case-study-browser-qa
-          path: artifacts/case-study-browser-qa/
+          path: |
+            artifacts/case-study-browser-qa/
+            artifacts/homepage-browser-qa/
           if-no-files-found: ignore
           retention-days: 7
