@@ -1,6 +1,7 @@
 // Server-only résumé exports, using one source of approved career information.
-// The ATS-friendly document uses a single text column, common fonts, and
-// conventional section headings. Classic retains the legacy-inspired styling.
+// Both downloadable designs use a legible single-column reading order and
+// predictable page margins. ATS avoids decoration; Classic applies teal
+// editorial accents without covering content or relying on visual sidebars.
 // PDF Info and DOCX core properties identify the document owner and actual
 // export service, never a fictitious human editor or third-party application.
 // Validate text extraction, reading order, format and metadata after release.
@@ -35,37 +36,53 @@ function split(text:string,max:number):string[]{
 }
 function rgb(hex:string){const n=parseInt(hex.replace('#',''),16);return [((n>>16)&255)/255,((n>>8)&255)/255,(n&255)/255].map(x=>x.toFixed(3)).join(' ');}
 export function pdf(design:Design):Uint8Array{
- const modern=design==='modern',accent=modern?'#a77d4e':'#167d87',dark='#1f2830';
- const pages:string[][]=[];let cmds:string[]=[];let y=752;let count=0;
+ const modern=design==='modern',accent=modern?'#273746':'#125b61',dark='#202b33';
+ const pages:string[][]=[];let cmds:string[]=[];let y=744;let count=0;
  function rect(x:number,yy:number,w:number,h:number,col:string){cmds.push(rgb(col)+' rg '+x+' '+yy+' '+w+' '+h+' re f');}
+ function rule(x:number,yy:number,w:number,col:string){rect(x,yy,w,1,col);}
  function drawText(x:number,yy:number,t:string,size:number,bold=false,color=dark){cmds.push(rgb(color)+' rg BT /'+(bold?'F2':'F1')+' '+size+' Tf 1 0 0 1 '+x+' '+yy+' Tm ('+esc(t)+') Tj ET');}
- function init(){cmds=[];y=modern?743:740;count++;
-  if(modern){ /* ATS version: no page decoration, columns, icons or graphics. */ }
-  else{rect(0,689,612,103,'#177d87');rect(430,44,140,635,'#e8f4f5');drawText(42,773,'JRV  |  SHOPIFY & ECOMMERCE',9,true,'#ffffff');}
- }
- function finish(){if(!modern)drawText(44,31,'JRV  |  Classic Resume  |  '+count,8,false,'#287984');pages.push(cmds);init();}
- init();
- let first=true;
- for(const row of lines()){
-  if(!first && (row.kind==='title'||row.kind==='sub') && y<92)finish();
-  if(row.kind==='title'){
-    y=modern?717:744;
-    if(!modern)drawText(42,y,esc(row.t),17,true,'#ffffff');
-    else drawText(44,y,row.t,19,true,dark);
-    y-=26;first=false;continue;
+ // Both exports use a single reading column. The old Classic export painted a
+ // decorative sidebar over the text area without positioning content inside it.
+ // A restrained full-width header replaces it and never obscures body text.
+ function init(){cmds=[];y=744;count++;
+  if(count===1){
+   if(modern){rule(44,758,524,'#283746');}
+   else{rect(0,661,612,131,'#125b61');rect(0,655,612,6,'#d9b47c');}
+  }else{
+   rule(44,760,524,accent);
+   drawText(44,769,'JRV  /  PROFESSIONAL RESUME',8,true,accent);
+   y=733;
   }
-  const isHead=row.kind==='head',isSub=row.kind==='sub';
-  const size=row.kind==='small'?8.4:isHead?10.3:isSub?10.1:row.kind==='bullet'?9.2:9.4;
-  const x=modern?44:42;
-  const max=modern?104:94;
-  if(isHead)y-=10;
-  const chunks=split(row.t,max),gap=12.6;
-  if(y-chunks.length*gap < 55)finish();
-  if(isHead){if(!modern)rect(x,y-7,3,11,accent);drawText(x+(modern?0:11),y,row.t,size,true,modern?dark:accent);y-=20;continue;}
-  for(const s of chunks){drawText(x+(row.kind==='bullet'?9:0),y,s,size,row.bold||false,row.kind==='small'?'#5f6970':dark);y-=gap;}
-  y-=row.kind==='bullet'?3:isSub?3:6;
  }
- if(!modern)drawText(44,31,'JRV  |  Classic Resume  |  '+count,8,false,accent);
+ function finish(){drawText(44,30,'JRV  /  '+(modern?'ATS-FRIENDLY':'CLASSIC')+'  /  '+count,8,false,accent);pages.push(cmds);init();}
+ init();
+ for(const row of lines()){
+  const isTitle=row.kind==='title',isHead=row.kind==='head',isSub=row.kind==='sub';
+  if(isTitle){
+    y=modern?722:748;
+    drawText(44,y,row.t,modern?22:21,true,modern?dark:'#ffffff');
+    y-=27;continue;
+  }
+  const inClassicHeader=!modern&&count===1&&y>661&&!isHead;
+  const size=row.kind==='small'?8.7:isHead?10.1:isSub?10.2:row.kind==='bullet'?9.4:9.6;
+  const max=modern?105:101;
+  const chunks=split(row.t,max),gap=13.1;
+  const reserve=(isHead?18:0)+chunks.length*gap+6;
+  if(y-reserve < 55)finish();
+  if(isHead){
+    y-=13;
+    rule(44,y-8,524,modern?'#d3dce1':'#a3cdca');
+    drawText(44,y,row.t,size,true,accent);
+    y-=20;continue;
+  }
+  for(const chunk of chunks){
+    const color=inClassicHeader?'#ffffff':row.kind==='small'?'#53616b':dark;
+    drawText(44+(row.kind==='bullet'?11:0),y,chunk,size,Boolean(row.bold),color);
+    y-=gap;
+  }
+  y-=row.kind==='bullet'?2:isSub?4:6;
+ }
+ drawText(44,30,'JRV  /  '+(modern?'ATS-FRIENDLY':'CLASSIC')+'  /  '+count,8,false,accent);
  pages.push(cmds);
  const objects:string[]=[];
  const add=(s:string)=>{objects.push(s);return objects.length;};
@@ -107,17 +124,17 @@ function zip(files:{name:string;body:string}[]):Uint8Array{
  const chunks=[...locals,...central,end],buf=new Uint8Array(chunks.reduce((n,b)=>n+b.length,0));let p=0;for(const b of chunks){buf.set(b,p);p+=b.length;}return buf;
 }
 export function docx(design:Design):Uint8Array{
- const isClassic=design==='classic',accent=isClassic?'167D87':'233039';
+ const isClassic=design==='classic',accent=isClassic?'125B61':'273746';
  const pars=lines().map(r=>{
   const style=r.kind==='title'?'Title':r.kind==='head'?'Heading1':r.kind==='sub'?'Heading2':'Normal';
   const bold=r.bold?'<w:b/>':'';
   return '<w:p><w:pPr><w:pStyle w:val="'+style+'"/></w:pPr><w:r><w:rPr>'+bold+'</w:rPr><w:t xml:space="preserve">'+xml(r.t)+'</w:t></w:r></w:p>';
  }).join('');
  const styles='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'+
-  '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:rPr><w:rFonts w:ascii="Aptos" w:hAnsi="Aptos"/><w:sz w:val="20"/></w:rPr><w:pPr><w:spacing w:after="100"/></w:pPr></w:style>'+
-  '<w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:rPr><w:b/><w:color w:val="'+accent+'"/><w:sz w:val="34"/></w:rPr></w:style>'+
-  '<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:rPr><w:b/><w:color w:val="'+accent+'"/><w:sz w:val="23"/></w:rPr><w:pPr><w:spacing w:before="220" w:after="100"/></w:pPr></w:style>'+
-  '<w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:rPr><w:b/><w:sz w:val="21"/></w:rPr><w:pPr><w:spacing w:before="100" w:after="70"/></w:pPr></w:style></w:styles>';
+  '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:rPr><w:rFonts w:ascii="Aptos" w:hAnsi="Aptos"/><w:sz w:val="20"/></w:rPr><w:pPr><w:spacing w:after="110"/></w:pPr></w:style>'+
+  '<w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:rPr><w:b/><w:color w:val="'+accent+'"/><w:sz w:val="42"/></w:rPr></w:style>'+
+  '<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:rPr><w:b/><w:color w:val="'+accent+'"/><w:sz w:val="22"/></w:rPr><w:pPr><w:spacing w:before="260" w:after="115"/></w:pPr></w:style>'+
+  '<w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:rPr><w:b/><w:sz w:val="21"/></w:rPr><w:pPr><w:spacing w:before="150" w:after="75"/></w:pPr></w:style></w:styles>';
  const doc='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+pars+'<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="900" w:right="1000" w:bottom="900" w:left="1000"/></w:sectPr></w:body></w:document>';
  return zip([
  {name:'[Content_Types].xml',body:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/><Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/></Types>'},
