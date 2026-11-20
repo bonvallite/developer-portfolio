@@ -371,3 +371,19 @@
 .webmail-shortcut a{display:inline-flex;align-items:center;gap:5px;color:#d9b47c;text-decoration:underline;text-underline-offset:3px}
 .webmail-shortcut a:hover{color:#f4dfbc}
 .webmail-shortcut a:focus-visible{outline:2px solid #d9b47c;outline-offset:3px}
+
+
+/* 20 November conversion route: unobtrusive enquiry dock on service and case
+   study pages. Hidden on homepage, privacy and résumé by QuickContactDock.
+   No dependency on analytics, cookies, third-party forms or JavaScript events. */
+.jrv-quick-dock{position:fixed;z-index:80;bottom:24px;right:24px;display:flex;align-items:center;gap:18px;max-width:620px;background:#181b20ed;border:1px solid #ae8c61;border-radius:10px;color:#f4e7d2;box-shadow:0 18px 50px #0007;padding:15px 18px;backdrop-filter:blur(12px)}
+.jrv-quick-dock>div{display:flex;flex-direction:column;gap:3px}
+.jrv-quick-dock strong{font-size:12px;color:#f0e3ce}
+.jrv-quick-dock span{font-size:11px;color:#a8acb5}
+.jrv-quick-dock>a:first-of-type{background:#d9b47c;color:#1b1710;padding:11px 13px;display:inline-flex;gap:8px;align-items:center;font-size:11px;font-weight:850;white-space:nowrap}
+.jrv-quick-dock>a:first-of-type:hover{background:#edd09e}
+.jrv-quick-dock .jrv-quick-dock-secondary{font-size:11px;color:#d9b47c;white-space:nowrap}
+.jrv-quick-dock a:focus-visible{outline:3px solid #f6d497;outline-offset:3px}
+@media(max-width:760px){.jrv-quick-dock{bottom:16px;right:14px;left:14px;justify-content:space-between;gap:10px;padding:11px}.jrv-quick-dock span,.jrv-quick-dock-secondary{display:none}.jrv-quick-dock strong{font-size:11px}.jrv-quick-dock>a:first-of-type{font-size:10px}}
+@media(max-width:380px){.jrv-quick-dock>div{display:none}.jrv-quick-dock{left:auto;max-width:260px}}
+@media(prefers-reduced-motion:reduce){.jrv-quick-dock *{transition:none!important}}
