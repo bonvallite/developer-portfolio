@@ -384,6 +384,7 @@
 .jrv-quick-dock>a:first-of-type:hover{background:#edd09e}
 .jrv-quick-dock .jrv-quick-dock-secondary{font-size:11px;color:#d9b47c;white-space:nowrap}
 .jrv-quick-dock a:focus-visible{outline:3px solid #f6d497;outline-offset:3px}
-@media(max-width:760px){.jrv-quick-dock{bottom:16px;right:14px;left:14px;justify-content:space-between;gap:10px;padding:11px}.jrv-quick-dock span,.jrv-quick-dock-secondary{display:none}.jrv-quick-dock strong{font-size:11px}.jrv-quick-dock>a:first-of-type{font-size:10px}}
+/* Keep the mobile dock above the persistent bottom-left privacy control. */
+@media(max-width:760px){.jrv-quick-dock{bottom:47px;right:14px;left:14px;justify-content:space-between;gap:10px;padding:11px}.jrv-quick-dock span,.jrv-quick-dock-secondary{display:none}.jrv-quick-dock strong{font-size:11px}.jrv-quick-dock>a:first-of-type{font-size:10px}}
 @media(max-width:380px){.jrv-quick-dock>div{display:none}.jrv-quick-dock{left:auto;max-width:260px}}
 @media(prefers-reduced-motion:reduce){.jrv-quick-dock *{transition:none!important}}
