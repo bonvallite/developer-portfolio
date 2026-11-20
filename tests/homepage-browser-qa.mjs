@@ -77,6 +77,14 @@ try {
     await page.locator('.jrv2-journey-tab').first().click();
     await page.getByRole('button', { name: 'I have a Shopify project' }).click();
     await page.locator('#jrv2-project-brief').fill('');
+    // The prior interaction checks scroll to the contact section. Reset the
+    // viewport before a full-page capture so sticky navigation is rendered at
+    // the page top, not superimposed over contact content in the artefact.
+    await page.evaluate(() => {
+      if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+    await page.waitForTimeout(120);
     await page.screenshot({ path: output + '/' + size.name + '.png', fullPage: true, animations: 'disabled' });
     assert.deepEqual(failures, [], size.name + ': JavaScript exceptions');
     summary.push(size.name + ' ' + size.width + 'x' + size.height + ': passed');
