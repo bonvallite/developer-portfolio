@@ -72,3 +72,9 @@ Updated `app/b2b-modernisation/CinematicB2B.tsx` and `app/b2b-modernisation/cine
 Updated `app/b2b-modernisation/CinematicB2B.tsx` and `app/b2b-modernisation/cinematic.css` to show a selected-context three-node architecture (buyer identity, eligibility, applied catalogue). Diagram derives directly from the existing market/eligibility state and reflects retail fallback in the fictional demo. Responsive CSS stacks nodes on narrow screens, while decorative arrows animate only when reduced-motion is not requested. Inline source documentation explains state sharing and the Shopify entitlement boundary.
 
 **Validation status:** GitHub accepted the source and CSS commits; no automated build, browser QA or production release has been verified. Confirm colour contrast and mobile arrow rendering during preview review.
+
+## Stage 5: Interactive Shopify–CartonCloud walkthrough (20 November 2026)
+
+Created `app/cartoncloud-integration/IntegrationLab.tsx` and `integration-lab.css`, then embedded the client component in `app/cartoncloud-integration/page.tsx`. The isolated educational demonstration provides six selectable processing stages, an optional simulated failure state, reset/next controls, and stage descriptions. Styling follows Ember & Teal with responsive single-column mobile layout, focus indicators and reduced-motion handling. All event data is fictional and local; the page does not contact Shopify, CartonCloud or the production Worker. The server-rendered case study metadata and evidence limitations are preserved.
+
+**Validation status:** GitHub commits accepted. TypeScript, automated tests, build, visual QA and Vercel preview have not been run or confirmed; no production deployment.
