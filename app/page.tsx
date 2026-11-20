@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
-  ArrowRight, ArrowUpRight, Braces, BriefcaseBusiness, ChartNoAxesCombined,
-  CircleCheck, Code2, Layers3, Mail, MoveUpRight, Network, ShieldCheck,
+  ArrowRight, ArrowUpRight, BriefcaseBusiness, ChartNoAxesCombined,
+  CircleCheck, Code2, Layers3, MoveUpRight, Network, ShieldCheck,
   ShoppingBag, Sparkles, Workflow,
 } from 'lucide-react';
 import HomeJourney from './components/HomeJourney';
@@ -14,7 +14,7 @@ import './cinematic-home.css';
 // Project descriptions distinguish demonstrated interfaces from verified work.
 // The previous site remains recoverable at backup/2026-11-20-pre-cinematic-rebuild.
 export const metadata: Metadata = {
-  title: 'Shopify Developer, Ecommerce Management & CRO | JRV',
+  title: 'Shopify Developer, Ecommerce Management & CRO',
   description: 'Shopify development, ecommerce operations, conversion optimisation and custom integrations. Explore responsive storefronts, B2B workflows, APIs and interactive technical case studies.',
   alternates: { canonical: '/' },
   openGraph: {
