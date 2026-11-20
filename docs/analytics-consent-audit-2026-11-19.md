@@ -33,3 +33,7 @@ Status: investigation; no vendor configuration or consent changes made.
 ## Release gate
 
 Do not assert compliance, install additional trackers, or silently disable existing analytics. Any consent-management change requires a separate tested implementation and review of regional requirements.
+
+## 20 November 2026 implementation follow-up
+
+This 19 November investigation was a historical snapshot. The 20 November cinematic rebuild proposes opt-in tracking in `app/components/ConsentManager.tsx`, removes the eager third-party scripts from `app/layout.tsx`, updates the privacy notice and includes regression and browser tests. This does not validate the published GTM container, provider retention, existing cookies, past traffic or third-party resource behaviour. See `docs/portfolio-rebuild-2026-11-20.md` and the release status in `CHANGELOG.md`.
