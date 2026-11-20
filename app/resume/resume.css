@@ -1,7 +1,8 @@
 /* Portfolio résumé gallery and printable previews.
    Scope all styles under resume-site so the main JRV portfolio is untouched.
-   Palette: classic teal and original-inspired sidebar; modern bronze editorial.
-   Both designs share resume-data.ts; browser printing removes navigation. */
+   Palette: Classic deep teal and warm-gold detail; ATS understated slate on white.
+   Both use a true single-column, responsive reading flow and shared resume-data.ts;
+   browser printing hides navigation and retains legible letter-size margins. */
 .resume-site{min-height:100vh;background:#0b0e12;color:#f6f2eb;font-family:'DM Sans',Arial,sans-serif}
 .resume-site a{text-decoration:none}
 .resume-index{padding:64px 24px 96px;min-height:100vh;background:radial-gradient(ellipse at 70% 5%,#76512e28,transparent 54%)}
