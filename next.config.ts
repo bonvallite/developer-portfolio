@@ -19,6 +19,22 @@ const nextConfig: NextConfig = {
           { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
         ],
       },
+      // Public résumé downloads remain accessible to hiring teams, but are not
+      // intended as search landing pages or personal-name SEO targets.
+      {
+        source: '/resume/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],
+      },
+      {
+        source: '/JRV-Resume.pdf',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],
+      },
+      // Source archive is a linked technical reference, not an organic
+      // acquisition page. Noindex is not access control or confidentiality.
+      {
+        source: '/case-studies/ecommerce-analytics/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],
+      },
     ];
   },
 };
