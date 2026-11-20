@@ -32,8 +32,8 @@ jobs:
 
 
   case-study-browser-qa:
-    # Run only for this case-study PR; the rest of the site's CI stays unchanged.
-    if: github.event_name == 'pull_request' && github.head_ref == 'feature/google-analytics-api-portfolio-20261119'
+    # Run browser QA only for explicitly reviewed analytics case-study PRs.
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120')
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04

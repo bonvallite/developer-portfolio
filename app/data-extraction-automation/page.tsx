@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import InteractiveLab from './interactive-lab';
+import VisualDemo from './visual-demo';
 
 // Public-safe, static editorial case study. No live APIs, credentials, customer
 // records, raw client exports or verified business-performance claims.
@@ -11,7 +12,7 @@ import InteractiveLab from './interactive-lab';
 // Do not claim Shopify GraphQL was part of these verified extractions.
 export const metadata: Metadata = {
   title: '12-Month Ecommerce Data Engineering | Analytics & API Automation',
-  description: 'A real-world reporting challenge turned into documented Python, JavaScript and Google API extraction workflows. Explore the architecture, source-safe code and reporting outcomes.',
+  description: 'Explore a visual ecommerce data architecture, interactive reporting mock-up and source-safe Python and JavaScript API extraction workflows.',
   alternates: { canonical: '/data-extraction-automation' },
 };
 
@@ -53,7 +54,7 @@ export default function DataExtractionAutomationPage() {
       <p className="case-kicker" style={{marginTop:50}}>ENGINEERING CASE STUDY / DATA PIPELINES / ECOMMERCE</p>
       <h1>One complex reporting request.<br/><span style={{color:'#d9b47c'}}>A repeatable data pipeline.</span></h1>
       <p className="case-lede">Turning a 12-month ecommerce performance brief into API-driven extraction workflows, traceable CSV datasets and an evidence-led reporting handover.</p>
-      <div className="case-actions"><a href="#architecture" className="case-button case-primary">View architecture ↗</a><a href="#source-lab" className="case-button">Explore code ↗</a><a href="#outputs" className="case-button">Review outputs ↗</a></div>
+      <div className="case-actions"><a href="#visual-demo" className="case-button case-primary">Try interactive demo ↗</a><a href="#architecture" className="case-button">View architecture ↗</a><a href="#source-lab" className="case-button">Explore code ↗</a><a href="#outputs" className="case-button">Review outputs ↗</a></div>
       <p className="case-caption">Python · JavaScript · Google Cloud · Search Console · GA4 · Google Ads · Bing · Shopify reporting</p>
       {/* Cinematic visual built from CSS only, without video or a large download.
           Decorative cards do not claim live API connections or measured uplift. */}
@@ -88,6 +89,9 @@ export default function DataExtractionAutomationPage() {
       <div className="case-tech" aria-label="Technologies used and related capabilities">{stack.map(tech=><span key={tech}>{tech}</span>)}</div>
       <p className="case-caption">Execution tooling: the supplied extraction source establishes Python and JavaScript. PowerShell was used in the documented Windows workflow. Bash and Shopify GraphQL remain relevant engineering capabilities, but their direct use in this data extraction has not been verified.</p>
     </section>
+    {/* The source diagram and reporting dashboard below are interactive fictional fixtures.
+        Keep this demonstration distinct from the verified source-code review above. */}
+    <VisualDemo />
     <div className="case-shell"><InteractiveLab /></div>
     <section className="case-shell case-section" id="outputs">
       <p className="case-kicker">04 / DELIVERABLES AND DECISIONS</p>
