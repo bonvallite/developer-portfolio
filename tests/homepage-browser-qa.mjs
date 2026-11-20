@@ -1,4 +1,4 @@
-// End-to-end browser QA for the JRV cinematic homepage rebuild.
+// End-to-end browser QA for the JRV cinematic Ember & Teal homepage rebuild.
 // Runs against a locally built Next.js app; no live client APIs or credentials.
 // Screenshots are review artefacts, not evidence of real performance metrics.
 import assert from 'node:assert/strict';
@@ -37,7 +37,7 @@ try {
 
     const response = await page.goto(baseURL + '/', { waitUntil: 'domcontentloaded', timeout: 45000 });
     assert.equal(response?.status(), 200, size.name + ': homepage HTTP 200');
-    await page.getByRole('heading', { name: /Build better commerce/ }).waitFor();
+    await page.getByRole('heading', { name: /I build Shopify stores/ }).waitFor();
     await page.locator('.jrv2-journey-tab').first().waitFor({ state: 'visible' });
     assert.equal(await page.locator('h1').count(), 1, 'One homepage H1');
     assert.equal(await page.locator('.jrv2-case').count(), 4, 'Four case-study stories');
