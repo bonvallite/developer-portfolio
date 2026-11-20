@@ -208,3 +208,14 @@ PDF and editable DOCX endpoints are generated on demand: `/resume/classic/pdf`, 
 
 The old `/JRV-Resume.pdf` remains unchanged as backward-compatible legacy access and an identical Git backup is at `backups/resumes/JRV-Resume-2026-Original.pdf`. The new resume routes are `noindex` (not private) and may display expressly approved personal information. Verify all four downloadable formats following every change.
 
+
+### Résumé downloads: primary actions and document properties
+
+The public résumé chooser at `/resume` has two prominent direct PDF actions: **ATS-Friendly Résumé** (`/resume/modern/pdf`, for backwards compatibility) and **Classic Résumé** (`/resume/classic/pdf`). Browser previews and editable Word files remain available through secondary links.
+
+The ATS export is a selectable-text, single-column document with standard section labels and no decorative PDF graphics. This improves automated parsing but cannot guarantee compatibility with every recruitment platform. The Classic format retains teal accents for direct applications.
+
+The document's authorship metadata reflects the actual résumé owner, `Jomar Rhandy C. Vallite`; its generator metadata accurately identifies the site's custom `JRV Portfolio Resume Export`, not Microsoft Word, Adobe or an AI platform. In DOCX the core-properties author and last-modified-by fields identify the owner; application metadata describes the export service. No private local file paths or internal source names are embedded in exported document properties. Git history still records changes and should not be represented as deleted or rewritten.
+
+The existing `resume-data.ts` remains the shared career data source. Verify PDF extracted-text order, Word ZIP/core-properties integrity, both HTTP content types, and `noindex` response metadata after updates.
+
