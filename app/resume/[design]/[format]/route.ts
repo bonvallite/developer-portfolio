@@ -14,7 +14,7 @@ export async function GET(_request:Request,{params}:{params:Promise<{design:stri
  const bytes=format==='pdf'?pdf(exportDesign):docx(exportDesign);
  return new Response(Buffer.from(bytes),{headers:{
   'Content-Type':format==='pdf'?'application/pdf':'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  'Content-Disposition': 'attachment; filename="JRV-Resume-'+(design==='classic'?'Classic':'Modern')+'-2026.'+(format==='pdf'?'pdf':'docx')+'"',
+  'Content-Disposition': 'attachment; filename="JRV-Resume-'+(design==='classic'?'Classic':'ATS-Friendly')+'-2026.'+(format==='pdf'?'pdf':'docx')+'"',
   'X-Robots-Tag':'noindex, noarchive',
   'Cache-Control':'public, max-age=3600',
   'Content-Length':String(bytes.length)
