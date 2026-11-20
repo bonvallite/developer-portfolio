@@ -1,5 +1,6 @@
 // Browser regression for the public-safe synthetic Python analytics lab.
 // Uses the same local Next.js server as other case-study QA. No real APIs.
+// Scope controls to their labelled groups because module and chart names overlap.
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {chromium} from 'playwright';
@@ -14,7 +15,7 @@ try{
   const response=await page.goto(base+'/analytics-lab',{waitUntil:'domcontentloaded',timeout:45000});
   assert.equal(response?.status(),200,v.name+': HTTP 200');
   await page.getByRole('heading',{name:/From raw data to/}).waitFor();
-  await page.getByRole('button',{name:'Purchase funnel'}).click();
+  await page.getByRole('group',{name:'Analytics chart'}).getByRole('button',{name:'Purchase funnel'}).click();
   assert.equal(await page.locator('.al-chart-row').count(),4,'four funnel stages');
   await page.getByRole('button',{name:'Acquisition channels'}).click();
   assert.equal(await page.locator('.al-chart-row').count(),4,'four acquisition channels');
