@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import CaseStudyContext from '../components/CaseStudyContext';
+import IntegrationLab from './IntegrationLab';
 import type { Metadata } from 'next';
 import {
   ArrowLeft, ArrowRight, ArrowUpRight, ArrowDownUp, Boxes, CheckCircle2, Clock3,
@@ -96,6 +97,9 @@ export default function CartonCloudIntegrationCaseStudy() {
           <p className="disclaimer">Conceptual visual only. No internal architecture diagram, payload, real order reference or secret is reproduced.</p>
         </div>
       </section>
+
+      {/* Interactive demonstration is an isolated, client-only simulation. */}
+      <IntegrationLab/>
 
       <section className="section container">
         <div className="section-head"><div><span className="overline">03 / ENGINEERING CONTRIBUTION</span><h2>Built beyond the storefront<span className="dot">.</span></h2></div></div>
