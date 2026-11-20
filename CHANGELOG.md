@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-20 - Classic résumé editorial layout refinement
+- **Repository and branch:** `bonvallite/developer-portfolio`, `design/classic-resume-refinement-20261120`.
+- **Affected files:** `app/resume/resume.css`, `app/resume/resume-export.ts`, `README.md`, `CHANGELOG.md`.
+- **Why:** The Classic résumé's full-width dark header and generic content treatment were visually heavy and insufficiently polished for direct employer presentation.
+- **Changes:** Replaced its HTML preview's solid teal masthead with ivory paper, a restrained teal ribbon, serif name, subtle gold rule, better contact hierarchy, role/dates separation, and section dividers. Aligned Classic PDF's first-page masthead with white-paper typography and teal accents, and gave Classic Word a serif title and understated section rules. ATS format and approved career content remain unchanged.
+- **Validation:** Source reviewed before editing; GitHub Actions checks, live deployment and rendered PDF/Word visual validation to be verified before claiming release complete.
+
+
 ## 2026-11-20 - Add analytics case study to the XML sitemap
 
 - **Repository and branch:** `bonvallite/developer-portfolio`, `fix/analytics-case-study-sitemap-20261120` (from latest `main`).
