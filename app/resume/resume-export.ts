@@ -61,7 +61,7 @@ export function pdf(design:Design):Uint8Array{
   if(isHead)y-=10;
   const chunks=split(row.t,max),gap=12.6;
   if(y-chunks.length*gap < 55)finish();
-  if(isHead){rect(x,y-7,3,11,accent);drawText(x+11,y,row.t,size,true,accent);y-=20;continue;}
+  if(isHead){if(!modern)rect(x,y-7,3,11,accent);drawText(x+(modern?0:11),y,row.t,size,true,modern?dark:accent);y-=20;continue;}
   for(const s of chunks){drawText(x+(row.kind==='bullet'?9:0),y,s,size,row.bold||false,row.kind==='small'?'#5f6970':dark);y-=gap;}
   y-=row.kind==='bullet'?3:isSub?3:6;
  }
