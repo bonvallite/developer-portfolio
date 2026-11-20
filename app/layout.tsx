@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import ConsentManager from './components/ConsentManager';
+import QuickContactDock from './components/QuickContactDock';
 
 // Public wordmark JRV. The approved {JRV} favicon remains app/icon.svg.
 // Canonical URLs are route-specific; the root must never canonicalise every
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-AU">
       <body>
         {children}
+        <QuickContactDock />
         <ConsentManager />
       </body>
     </html>
