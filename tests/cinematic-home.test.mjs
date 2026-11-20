@@ -1,4 +1,4 @@
-// Regression guard for the wide, cinematic JRV portfolio rebuild.
+// Regression guard for the cinematic Ember & Teal JRV portfolio and its four flagship labs.
 // Source checks complement (but do not replace) real rendered browser QA,
 // Lighthouse measurement, confidentiality review or accessibility testing.
 import test from 'node:test';
@@ -21,8 +21,8 @@ test('cinematic homepage includes one service-led hero and clear navigation targ
     assert.ok(home.includes('id="' + id + '"'), 'Missing section #' + id);
   }
   assert.match(home, /Start a conversation/);
-  assert.match(home, /Let.s talk about your project/);
-  assert.match(home, /Explore selected work/);
+  assert.match(home, /Explore my work/);
+  assert.match(home, /Download CV/);
   assert.match(home, /<LeadComposer\s*\/>/);
   assert.match(home, /<HomeJourney\s*\/>/);
 });
@@ -35,10 +35,11 @@ test('all four hiring and client service pages remain linked and routable', () =
 });
 
 test('selected evidence remains linked with honest fictional / verified distinctions', () => {
-  for (const route of ['/projects/spend-and-save', '/data-extraction-automation#visual-demo', '/cartoncloud-integration', '/b2b-modernisation', '/experience', '/resume']) {
+  for (const route of ['/projects/spend-and-save', '/analytics-lab', '/cartoncloud-integration', '/b2b-modernisation', '/experience', '/resume']) {
     assert.ok(home.includes(route), 'Case-study/hiring route missing ' + route);
   }
   assert.match(home, /fictional dashboard data/);
+  assert.ok(existsSync(new URL('../app/analytics-lab/page.tsx', import.meta.url)), 'Interactive Python lab missing');
   assert.match(home, /Independent interactive demonstration/);
   assert.doesNotMatch(home, /client secret|real customer email|million in revenue/i);
 });
