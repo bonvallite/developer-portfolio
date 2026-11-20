@@ -5,8 +5,10 @@ import InteractiveLab from './interactive-lab';
 // Public-safe, static editorial case study. No live APIs, credentials, customer
 // records, raw client exports or verified business-performance claims.
 // Platform favicons are illustrative identifiers loaded from Google favicon service.
-// Source-derived logic is abbreviated and sanitised; do not publish original
-// employer scripts or claim Shopify GraphQL was part of these verified exports.
+// Source-derived on-page examples are abbreviated and sanitised. The linked
+// source archive contains owner-supplied Python scripts with known identifiers
+// replaced; it is not production-ready or evidence of successful API exports.
+// Do not claim Shopify GraphQL was part of these verified extractions.
 export const metadata: Metadata = {
   title: '12-Month Ecommerce Data Engineering | Analytics & API Automation',
   description: 'A real-world reporting challenge turned into documented Python, JavaScript and Google API extraction workflows. Explore the architecture, source-safe code and reporting outcomes.',
