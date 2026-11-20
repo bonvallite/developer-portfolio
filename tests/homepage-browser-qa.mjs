@@ -87,6 +87,29 @@ try {
     await page.waitForTimeout(120);
     await page.screenshot({ path: output + '/' + size.name + '.png', fullPage: true, animations: 'disabled' });
     assert.deepEqual(failures, [], size.name + ': JavaScript exceptions');
+    // The four SEO landing pages share a newly styled server component.
+    // Audit their actual routes rather than treating homepage links as proof.
+    if (size.name === 'wide' || size.name === 'mobile') {
+      const routes = [
+        '/shopify-developer', '/ecommerce-management',
+        '/shopify-cro', '/shopify-app-development',
+      ];
+      for (const route of routes) {
+        const serviceResponse = await page.goto(baseURL + route, { waitUntil: 'domcontentloaded', timeout: 45000 });
+        assert.equal(serviceResponse?.status(), 200, route + ': HTTP 200');
+        await page.locator('.jrv-svc-hero-art').waitFor({ state: 'visible' });
+        assert.equal(await page.locator('.service-hero h1').count(), 1, route + ': H1');
+        const serviceHref = await page.locator('.service-hero .button.primary').getAttribute('href');
+        assert.ok(serviceHref?.startsWith('mailto:hello@jrvallite.com?'), route + ': direct enquiry');
+        assert.ok(await page.locator('#examples .service-card-grid a').count() >= 1, route + ': project evidence');
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3), false, route + ': horizontal overflow');
+        assert.deepEqual(trackingRequests, [], route + ': no requests after rejection');
+        if (route === '/shopify-developer') {
+          await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+          await page.screenshot({ path: output + '/service-' + size.name + '.png', fullPage: true, animations: 'disabled' });
+        }
+      }
+    }
     summary.push(size.name + ' ' + size.width + 'x' + size.height + ': passed');
 
     await context.close();
