@@ -10,7 +10,7 @@ const choices = [
   {
     label: 'ATS-Friendly Résumé',
     number: '01',
-    route: 'modern',
+    route: 'ats',
     note: 'Recommended for online job applications',
     description: 'A clean, single-column layout with selectable text, conventional headings, and no tables or graphics in the downloadable document.',
     className: 'modern',
@@ -38,7 +38,7 @@ export default function ResumeIndex() {
      <h2>{item.label}</h2>
      <p>{item.description}</p>
      <a className="resume-action resume-action-primary" href={'/resume/'+item.route+'/pdf'}>
-       <Download size={17} aria-hidden="true"/> Download {item.route==='modern'?'ATS-Friendly':'Classic'} Résumé
+       <Download size={17} aria-hidden="true"/> Download {item.route==='ats'?'ATS-Friendly':'Classic'} Résumé
      </a>
      <div className="resume-secondary-links">
        <Link href={'/resume/'+item.route}>View online <ArrowUpRight size={14}/></Link>
