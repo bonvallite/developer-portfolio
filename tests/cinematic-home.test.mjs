@@ -61,7 +61,8 @@ test('storytelling and lead capture are interactive without collecting visitor d
   assert.match(leads, /navigator\.clipboard\.writeText/);
   assert.match(leads, /maxLength=\{600\}/);
   assert.doesNotMatch(leads, /fetch\(|localStorage|analytics\.track|gtag\(/);
-  assert.match(dock, /pathname === '\/'/);
+  assert.match(dock, /handledRoutes\.has\(pathname\)/);
+  assert.match(dock, /window\.scrollY > Math\.max\(560/);
   assert.match(dock, /mailto:hello@jrvallite\.com/);
 });
 
