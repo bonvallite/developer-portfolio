@@ -52,7 +52,7 @@ try {
     const csvDownload = page.waitForEvent('download');
     await page.getByRole('button', { name: /Download fictional CSV/ }).click();
     const file = await csvDownload;
-    assert.match(file.suggestedFilename(), /^fictional_gsc_query_demo\\.csv$/);
+    assert.match(file.suggestedFilename(), /^fictional_gsc_query_demo\.csv$/);
     await file.delete();
     // Retain existing walkthrough, archive, client-error and width checks.
     await page.locator('.lab-nav button').nth(1).click();
