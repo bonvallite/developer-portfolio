@@ -228,3 +228,7 @@ Use `/resume/ats` for the ATS-friendly HTML preview and `/resume/ats/pdf` or `/r
 ## Resume visual refresh (20 November 2026)
 
 Both `/resume/classic` and `/resume/ats` use a legible single-column printable layout and responsive width, with two clearly differentiated styles: restrained deep-teal Classic and minimal slate ATS. Their on-demand PDFs and Word documents share `resume-data.ts` and corresponding typography. The Classic PDF no longer draws a sidebar over body copy. Verify the GitHub CI build, PDF text extraction, DOCX structural integrity, and production routes before marking the release live.
+
+## Classic résumé refinement (20 November 2026)
+
+The Classic-only visual refresh introduces an ivory, teal and soft-gold document identity for `/resume/classic`. It covers the web preview, PDF masthead and Word typography without altering the ATS version, shared résumé facts, export paths, or `noindex` controls. Before shipping, review the actual page breaks and downloadable file renders in addition to automated checks.

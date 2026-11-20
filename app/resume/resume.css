@@ -164,3 +164,160 @@
  .resume-paper section,.resume-job{break-inside:avoid}
  @page{size:letter;margin:0.35in}
 }
+
+/* 2026-11-20 Classic-only refinement.
+   A restrained ivory paper and deep-teal typography replace the heavy
+   full-width colour block. The top ribbon and inner rules remain printable.
+   ATS (.paper-modern) deliberately does not inherit these layout changes. */
+.resume-paper.paper-classic{
+  background:#fffdfa;
+  color:#23343b;
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.56;
+}
+.resume-paper.paper-classic .resume-paper-header{
+  position:relative;
+  color:#23343b;
+  background:#fffdfa;
+  border-top:11px solid #125b61;
+  padding:50px 62px 26px;
+  border-bottom:1px solid #d5dedb;
+}
+.resume-paper.paper-classic .resume-paper-header::after{
+  content:"";
+  position:absolute;
+  bottom:-2px;
+  left:62px;
+  width:62px;
+  height:3px;
+  background:#c5a06b;
+}
+.resume-paper.paper-classic .resume-monogram{
+  display:inline-block;
+  color:#125b61;
+  letter-spacing:2.8px;
+  font-size:10px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+.resume-paper.paper-classic .resume-paper-header h1{
+  font:700 clamp(28px,4vw,38px)/1.13 Georgia,'Times New Roman',serif;
+  letter-spacing:-.9px;
+  margin:0 0 13px;
+  color:#173c41;
+}
+.resume-paper.paper-classic .resume-paper-header h2{
+  color:#125b61;
+  font-size:13px;
+  letter-spacing:.65px;
+  text-transform:uppercase;
+  font-weight:800;
+  margin:0 0 6px;
+}
+.resume-paper.paper-classic .resume-paper-header p{
+  color:#657477;
+  font-size:12px;
+  margin:0;
+}
+.resume-paper.paper-classic .resume-contact{
+  margin-top:24px;
+  padding-top:14px;
+  border-top:1px solid #e5e8e4;
+  font-size:11px;
+  gap:7px 20px;
+}
+.resume-paper.paper-classic .resume-contact a{
+  color:#2c4c53;
+  text-decoration:none;
+  overflow-wrap:anywhere;
+}
+.resume-paper.paper-classic .resume-paper-grid{
+  padding:12px 62px 58px;
+}
+.resume-paper.paper-classic .resume-main-col section,
+.resume-paper.paper-classic .resume-sidebar section{
+  margin-bottom:27px;
+}
+.resume-paper.paper-classic h3{
+  color:#125b61;
+  font:bold 11px/1.4 Arial,Helvetica,sans-serif;
+  letter-spacing:1.6px;
+  border-bottom:1px solid #c4d6d3;
+  padding-bottom:9px;
+  margin:24px 0 14px;
+}
+.resume-paper.paper-classic .resume-job{
+  margin:0 0 23px;
+  padding:0 0 16px 0;
+  border-bottom:1px solid #ecede8;
+}
+.resume-paper.paper-classic .resume-job:last-child{
+  border-bottom:0;
+  padding-bottom:0;
+}
+.resume-paper.paper-classic .resume-job-top{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  align-items:flex-start;
+}
+.resume-paper.paper-classic .resume-job-top h4{
+  color:#1d3239;
+  font-size:13px;
+  font-weight:800;
+  margin:0;
+}
+.resume-paper.paper-classic .resume-job-top h4 span{
+  display:block;
+  color:#486268;
+  font-size:12px;
+  margin-top:2px;
+  line-height:1.4;
+}
+.resume-paper.paper-classic .resume-job-top small{
+  color:#708083;
+  font-size:10px;
+  letter-spacing:.3px;
+  margin:4px 0 2px;
+}
+.resume-paper.paper-classic li{
+  padding-left:2px;
+  margin-bottom:6px;
+}
+.resume-paper.paper-classic .resume-sidebar{
+  background:transparent;
+  border-top:1px solid #d3ddda;
+  padding:0;
+}
+.resume-paper.paper-classic .resume-sidebar ul{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px 28px;
+  padding-left:18px;
+}
+.resume-paper.paper-classic .resume-sidebar li{font-size:12px}
+.resume-paper.paper-classic a:focus-visible{
+  outline:2px solid #946b39;
+  outline-offset:3px;
+}
+@media(max-width:700px){
+ .resume-paper.paper-classic .resume-paper-header{
+   padding:28px 20px 24px;
+   border-top-width:8px;
+ }
+ .resume-paper.paper-classic .resume-paper-header::after{left:20px}
+ .resume-paper.paper-classic .resume-paper-header h1{font-size:clamp(24px,6vw,32px)}
+ .resume-paper.paper-classic .resume-paper-grid{padding:12px 20px 36px}
+ .resume-paper.paper-classic .resume-sidebar ul{grid-template-columns:1fr}
+}
+@media print{
+ .resume-paper.paper-classic{
+  background:#fff!important;
+  box-shadow:none!important;
+  max-width:none!important;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+ }
+ .resume-paper.paper-classic .resume-paper-header{padding-top:32px}
+ .resume-paper.paper-classic .resume-job{break-inside:avoid}
+}
