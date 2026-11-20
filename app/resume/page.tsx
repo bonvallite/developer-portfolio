@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowUpRight, Download, FileText, FilePenLine } from 'lucide
 // Only two primary downloads are offered. The ATS-friendly version uses a
 // standard, single-column reading order; Classic retains the teal design.
 // Word files and online previews remain secondary, accessible links.
-// Career content is defined once in resume-data.ts. No generator names appear
-// in either the user-facing page or the exported file's descriptive metadata.
+// Career content is defined once in resume-data.ts. Exports accurately credit
+// the owner as author and the JRV portfolio as the document export service.
 const choices = [
   {
     label: 'ATS-Friendly Résumé',
