@@ -78,3 +78,9 @@ Updated `app/b2b-modernisation/CinematicB2B.tsx` and `app/b2b-modernisation/cine
 Created `app/cartoncloud-integration/IntegrationLab.tsx` and `integration-lab.css`, then embedded the client component in `app/cartoncloud-integration/page.tsx`. The isolated educational demonstration provides six selectable processing stages, an optional simulated failure state, reset/next controls, and stage descriptions. Styling follows Ember & Teal with responsive single-column mobile layout, focus indicators and reduced-motion handling. All event data is fictional and local; the page does not contact Shopify, CartonCloud or the production Worker. The server-rendered case study metadata and evidence limitations are preserved.
 
 **Validation status:** GitHub commits accepted. TypeScript, automated tests, build, visual QA and Vercel preview have not been run or confirmed; no production deployment.
+
+## Stage 6: Python Analytics & CRO Lab (20 November 2026)
+
+Created `app/analytics-lab/page.tsx` and `app/analytics-lab/analytics-lab.css`. The client-side educational project provides an illustrated Shopify/GA4/GSC → Python → CSV → CRO pipeline, six selectable source-module explanations, synthetic purchase funnel and acquisition comparisons, editable Shopify–GA4 purchase-count reconciliation, and a browser-generated synthetic CSV download. No production API calls or confidential datasets. Updated `app/page.tsx` to feature `/analytics-lab` and repaired an escaped newline in the flagship case-study source comment. All charts are intentionally illustrative, not actual client results. The previously published sanitised Python source archive remains unchanged.
+
+**Validation:** GitHub commits confirmed. TypeScript, automated tests, browser QA, download verification and Vercel preview have not been run or verified. No merge or production release.
