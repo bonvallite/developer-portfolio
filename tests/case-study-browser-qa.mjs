@@ -37,6 +37,24 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3);
     assert.equal(overflow, false, viewport.name + ': horizontal overflow');
 
+    // The visual demonstration must be on the rendered page, not just in code.
+    await page.getByRole('heading', { name: /Explore the architecture. Test the reporting handover./ }).waitFor();
+    assert.equal(await page.locator('.pa-demo-source').count(), 6, 'Clickable source nodes');
+    assert.equal(await page.locator('.pa-demo-step').count(), 4, 'Selectable pipeline stages');
+    assert.equal(await page.locator('.pa-demo-kpi').count(), 3, 'Three fictional KPI cards');
+    await page.getByRole('button', { name: /Search Console/i }).click();
+    await page.getByText('gsc_query_demo.csv').waitFor();
+    assert.equal(await page.locator('.pa-demo-source.is-selected').count(), 1, 'Exactly one source selected');
+    await page.getByRole('button', { name: /03 · QUALITY Validate/i }).click();
+    await page.getByRole('heading', { name: 'Validate' }).waitFor();
+    await page.locator('.pa-demo-filter select').selectOption('quarter');
+    assert.equal(await page.locator('.pa-demo-filter select').inputValue(), 'quarter');
+    const csvDownload = page.waitForEvent('download');
+    await page.getByRole('button', { name: /Download fictional CSV/ }).click();
+    const file = await csvDownload;
+    assert.match(file.suggestedFilename(), /^fictional_gsc_query_demo\\.csv$/);
+    await file.delete();
+    // Retain existing walkthrough, archive, client-error and width checks.
     await page.locator('.lab-nav button').nth(1).click();
     await page.getByText('Authorise each platform', { exact: true }).waitFor();
     assert.equal(await page.locator('.lab-nav button').nth(1).getAttribute('aria-pressed'), 'true');
