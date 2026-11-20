@@ -4,13 +4,13 @@ import { ArrowLeft, ArrowUpRight, Download, FileText, FilePenLine } from 'lucide
 // Only two primary downloads are offered. The ATS-friendly version uses a
 // standard, single-column reading order; Classic retains the teal design.
 // Word files and online previews remain secondary, accessible links.
-// Career content is defined once in resume-data.ts. No generator names appear
-// in either the user-facing page or the exported file's descriptive metadata.
+// Career content is defined once in resume-data.ts. Exports accurately credit
+// the owner as author and the JRV portfolio as the document export service.
 const choices = [
   {
     label: 'ATS-Friendly Résumé',
     number: '01',
-    route: 'modern',
+    route: 'ats',
     note: 'Recommended for online job applications',
     description: 'A clean, single-column layout with selectable text, conventional headings, and no tables or graphics in the downloadable document.',
     className: 'modern',
@@ -38,7 +38,7 @@ export default function ResumeIndex() {
      <h2>{item.label}</h2>
      <p>{item.description}</p>
      <a className="resume-action resume-action-primary" href={'/resume/'+item.route+'/pdf'}>
-       <Download size={17} aria-hidden="true"/> Download {item.route==='modern'?'ATS-Friendly':'Classic'} Résumé
+       <Download size={17} aria-hidden="true"/> Download {item.route==='ats'?'ATS-Friendly':'Classic'} Résumé
      </a>
      <div className="resume-secondary-links">
        <Link href={'/resume/'+item.route}>View online <ArrowUpRight size={14}/></Link>

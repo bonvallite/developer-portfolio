@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, FileDown, FilePenLine, Printer } from 'lucide-react';
 import { contact, summary, skills, experience, projects, education } from '../resume-data';
-export function generateStaticParams(){return [{design:'classic'},{design:'modern'}];}
+export function generateStaticParams(){return [{design:'classic'},{design:'modern'},{design:'ats'}];}
 // Keep the two designs synchronized through a common data module, including
 // the owner-approved February 2026 career transition and American English.
 export default async function ResumePreview({params}:{params:Promise<{design:string}>}){
- const {design}=await params;if(design!=='classic'&&design!=='modern')notFound();
+ const {design}=await params;if(design!=='classic'&&design!=='modern'&&design!=='ats')notFound();
  const classic=design==='classic';
  return <main className={'resume-preview '+(classic?'is-classic':'is-modern')}><div className="resume-preview-tools"><Link href="/resume"><ArrowLeft size={15}/> Résumé downloads</Link><div><a href={'/resume/'+design+'/pdf'}><FileDown size={16}/> Download {classic?'Classic':'ATS-Friendly'} PDF</a><a href={'/resume/'+design+'/word'}><FilePenLine size={16}/> Editable Word</a><span className="resume-print-label"><Printer size={16}/> Browser Print / Save as PDF available</span></div></div>
  <article className={'resume-paper '+(classic?'paper-classic':'paper-modern')}>

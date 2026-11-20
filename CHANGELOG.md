@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-20 - Complete ATS-friendly download URL and filename
+
+- **Files:** `app/resume/page.tsx`, `app/resume/[design]/page.tsx`, `app/resume/[design]/[format]/route.ts`, `scripts/check-seo-publication.mjs`, `README.md`, `CHANGELOG.md`.
+- **Change:** Canonical public ATS paths are `/resume/ats`, `/resume/ats/pdf`, and `/resume/ats/word`; both files download as `JRV-Resume-ATS-Friendly-2026` with the appropriate extension. Legacy `/resume/modern` and its download URLs remain valid but now use the same ATS-friendly export and filename.
+- **Reason:** Remove ambiguous “Modern” filenames while preserving existing bookmarks and limiting the chooser to two unambiguous PDF download actions.
+- **Validation:** Check GitHub CI, all old and new HTTP routes, download content types, PDF author and creator properties and DOCX core-properties, and Vercel production aliases. `scripts/check-seo-publication.mjs` explicitly validates only permitted `classic|modern|ats` variants.
+
+
 ## 2026-11-20 - Simplify résumé downloads and attribute document metadata accurately
 
 - **Affected files:** `app/resume/page.tsx`, `app/resume/resume.css`, `app/resume/resume-export.ts`, `app/resume/layout.tsx`, `app/resume/[design]/page.tsx`, `app/resume/[design]/[format]/route.ts`, `README.md`, `CHANGELOG.md`.
