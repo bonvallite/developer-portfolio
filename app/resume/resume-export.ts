@@ -9,7 +9,7 @@ import { deflateRawSync } from 'node:zlib';
 import { contact, summary, skills, experience, projects, education } from './resume-data';
 export type Design = 'classic' | 'modern';
 const encoder = new TextEncoder();
-const esc = (s:string) => s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)').replace(/[\u2010-\u2015]/g,'-').replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"').replace(/[^\x20-\x7e]/g,' ');
+const esc = (s:string) => s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)').replace(/[\u2010-\u2015]/g,'-').replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"').replace(/\u2022/g,'-').replace(/[^\x20-\x7e]/g,' ');
 const xml = (s:string) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 type Line = {t:string;bold?:boolean;kind?:'title'|'sub'|'head'|'body'|'bullet'|'small'};
 function lines():Line[] {
