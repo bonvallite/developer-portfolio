@@ -180,6 +180,15 @@ export default function CinematicB2B(){
               <span>{m.label}</span><strong>{m.name}</strong><small>{m.catalogue}</small>
             </button>)}
           </div>
+          {/* Diagram uses the same selected market as the pricing lab. Lines are decorative; the steps remain text-accessible. */}
+          <div className="cb2b-live-path" aria-label="Selected catalogue pricing architecture">
+            <div className="cb2b-live-node"><span>01 / IDENTITY</span><strong>{marketIndex===0?'Retail shopper':eligible?'Eligible company buyer':'Unverified company buyer'}</strong></div>
+            <span className="cb2b-live-arrow" aria-hidden="true">→</span>
+            <div className="cb2b-live-node"><span>02 / ENTITLEMENT</span><strong>{qualifies?requested.name:'Retail fallback in demo'}</strong></div>
+            <span className="cb2b-live-arrow" aria-hidden="true">→</span>
+            <div className="cb2b-live-node is-result"><span>03 / PRICE SOURCE</span><strong>{applied.catalogue}</strong></div>
+          </div>
+          <p className="cb2b-small-note">Interactive architecture: change the market above or the eligibility checkbox in the pricing laboratory below to inspect the same simulated buying context. Real entitlement is enforced by Shopify.</p>
           <div className="cb2b-arch-explainer" aria-live="polite"><div><strong>{requested.name} · {requested.catalogue}</strong><p>{requested.explanation}</p></div><span>Native price control</span></div>
         </div>
         <div className="cb2b-footnotes">
