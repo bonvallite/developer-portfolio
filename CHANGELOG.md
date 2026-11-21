@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-21 - Improve CartonCloud enquiry pathways and remove remaining gold labels
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, draft PR #92 `feature/cartoncloud-event-studio-20261121`. No Shopify theme changes.
+- **Files:** `app/cartoncloud-integration/page.tsx`, `app/cartoncloud-integration/cartoncloud-showcase.css`, `tests/cartoncloud-event-studio-browser-qa.mjs`, `tests/cartoncloud-story.test.mjs`, `CARTONCLOUD_INTEGRATION.md`, and `CHANGELOG.md`.
+- **Change and reason:** Close the engineering case study with a relevant integration enquiry and a separate hiring pathway, rather than prioritising only further reading. Preserve the technical documentation and other-projects links. Use a fixed `mailto:` subject, readable 48px primary links, one-column tablet/phone presentation and clearly qualified claims. Replace legacy gold Tailwind labels with teal evidence styling and ember colouring for open verification, consistent with the cinematic JRV identity.
+- **Documentation:** Updated nearby page/stylesheet comments, source and responsive browser tests, and public integration documentation. No form, CRM, analytics tag, external API, new runtime dependency, client order, or private Worker data was introduced.
+- **Validation:** Inspected current PR and target sources, relevant CSS, browser/source assertions and documentation. Constructed changes against the verified original branch head; reviewed static preservation checks for the integration studio, evidence boundaries and other links. Added browser tests for the exact mailto/hiring destinations, action height, responsive grid and existing link retention, plus source safety checks. Fresh CI, screenshots and final-commit preview remain pending; prior green CI applies only to the preceding SHA.
+- **Release/recovery:** Retain this draft and do not merge or manually invoke Vercel. GitHub-connected pushes might independently attempt a preview. Manual visual and assistive-technology checks remain open. Revert through PR history if validation fails.
+
 ## 2026-11-20 - Back up and rebuild the cinematic JRV portfolio on a protected branch
 
 - **Scope:** `bonvallite/developer-portfolio`; backup `backup/2026-11-20-pre-cinematic-rebuild` at `cbb656e9`; proposed branch `redesign/2026-11-20-cinematic-portfolio`. Production unchanged until review.

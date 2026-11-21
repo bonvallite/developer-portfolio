@@ -1,0 +1,209 @@
+/*
+ * 21 November 2026 · JRV CartonCloud case-study shell.
+ * Single source of truth for the route's visual identity: obsidian,
+ * electric teal, ember-orange actions and accessible light type.
+ * Preserves existing SEO, case evidence, caveats, source links and content.
+ * Page-specific visual styling only: no network, media, or font dependencies.
+ * The closing enquiry uses a fixed mailto and internal hiring route only;
+ * no visitor form data is collected and no integration traffic is generated.
+ */
+.cc-page{
+  --cc-ink:#0b1419;--cc-panel:#122730;--cc-teal:#38c7bc;
+  --cc-ember:#f28c52;--cc-paper:#eaf4f3;
+  background:var(--cc-ink);color:var(--cc-paper);min-height:100vh;
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+.cc-page .header{
+  border-bottom:1px solid #33565d;
+  min-height:84px;background:#0b171d;
+}
+.cc-page .brand strong{color:#7be4d9}
+.cc-page .brand span{color:#a8c4c6}
+.cc-page .header nav{color:#c6dddc}
+.cc-page .header nav a:hover{color:#f8b28d}
+.cc-page .hero{
+  padding-top:82px;min-height:540px;
+  background:radial-gradient(ellipse at 90% 18%,#f28c5221,transparent 51%),
+    radial-gradient(ellipse at 8% 42%,#38c7bc19,transparent 59%);
+}
+.cc-page .eyebrow,.cc-page .overline,.cc-page .project-top,.cc-page .count{color:#7edbd2}
+.cc-page .spark{background:var(--cc-teal);box-shadow:0 0 0 5px #38c7bc24}
+.cc-page .hero h1{
+  max-width:1100px;font-size:clamp(52px,6.4vw,93px);
+  line-height:1.065;letter-spacing:-.055em;font-weight:650;
+}
+.cc-page .hero em{
+  background:linear-gradient(100deg,#b8fff6,#38c7bc 41%,#f28c52 94%);
+  background-clip:text;-webkit-background-clip:text;color:transparent;
+}
+.cc-page .hero-bottom{gap:25px;align-items:flex-start}
+.cc-page .hero-bottom p{font-size:17px;color:#b5cdcf;line-height:1.8;max-width:750px}
+.cc-page .hero .inline-flex{color:#a5d9d4}
+.cc-page .hero .inline-flex:hover{color:#f8b88e}
+/* Replace remaining legacy gold utilities with meaningful JRV teal evidence
+ * labels and ember colouring for the explicitly unresolved verification. */
+.cc-page .hero .cc-back-link{color:#a5d9d4}
+.cc-page .cc-evidence-accent{color:#82ddd3}
+.cc-page .cc-evidence-accent.is-open{color:#f7ad81}
+.cc-page .hero-tags{margin-top:28px;gap:8px;flex-wrap:wrap}
+.cc-page .hero-tags span{
+  border:1px solid #37666c;background:#14323c;color:#c6e2df;
+  border-radius:999px;padding:9px 13px;font-size:10px;
+}
+.cc-page .section{padding-top:74px;padding-bottom:83px}
+.cc-page .section-head h2{color:#f0f9f8;letter-spacing:-.045em}
+.cc-page .dot{color:var(--cc-ember)}
+.cc-page .stripe{
+  background:linear-gradient(145deg,#102530,#0c1b23);
+  border-top:1px solid #2e555e;border-bottom:1px solid #2e555e;
+}
+.cc-page .cc-challenges article{
+  border:1px solid #345d64;background:#152e36;
+  border-radius:12px;transition:border-color .2s;
+}
+.cc-page .cc-challenges article:hover{border-color:#4a9b90}
+.cc-page .cc-challenges article h3{color:#edf8f6}
+.cc-page .cc-challenges article p{color:#b3cbcd}
+.cc-page .cc-contributions{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;margin:24px 0 19px;
+}
+.cc-page .cc-contributions article{
+  min-width:0;padding:32px;border-radius:16px;border:1px solid #406a6c;
+  background:radial-gradient(ellipse at 95% 5%,#38c7bc18,transparent 50%),#112b33;
+  display:flex;flex-direction:column;gap:16px;
+}
+.cc-page .cc-contributions article:nth-child(2){
+  border-color:#a06d53;
+  background:radial-gradient(ellipse at 95% 5%,#f28c521a,transparent 53%),#172a30;
+}
+.cc-page .cc-contribution-index{
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+}
+.cc-page .cc-contribution-index span{color:#83d9cf;font-size:10px;letter-spacing:1.35px;font-weight:850}
+.cc-page .cc-contributions article:nth-child(2) .cc-contribution-index span{color:#f9b388}
+.cc-page .cc-contribution-index svg{color:#6ce1d5}
+.cc-page .cc-contributions article:nth-child(2) .cc-contribution-index svg{color:#f6ac80}
+.cc-page .cc-contributions h3{
+  font-size:clamp(25px,3vw,40px);letter-spacing:-.045em;line-height:1.08;
+  margin:4px 0 0;color:#f0fbfa;
+}
+.cc-page .cc-contributions p{font-size:14px;color:#bed1d1;line-height:1.75;margin:0}
+.cc-page .cc-contribution-terms{display:flex;flex-wrap:wrap;gap:7px}
+.cc-page .cc-contribution-terms span{
+  border:1px solid #37716f;background:#1d454a;
+  color:#e3faf6;font-size:11px;border-radius:999px;padding:7px 10px;
+}
+.cc-page .cc-contributions article:nth-child(2) .cc-contribution-terms span{
+  border-color:#8f705e;background:#41352f;color:#ffe1c9;
+}
+.cc-page .cc-contributions .cc-contribution-boundary{
+  border-top:1px solid #416269;padding-top:17px;margin-top:auto;
+  color:#a6c3c6;font-size:12px;
+}
+.cc-page .cc-explore-prompt{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) auto;
+  gap:18px;align-items:center;padding:23px 26px;border-radius:12px;
+  border:1px solid #4e8581;background:#172e37;
+}
+.cc-page .cc-explore-prompt>span{
+  color:#76d9d0;font-size:10px;letter-spacing:1px;font-weight:850;
+}
+.cc-page .cc-explore-prompt p{color:#d0e4e3;font-size:13px;line-height:1.65;margin:0}
+.cc-page .cc-explore-prompt a{
+  display:inline-flex;gap:8px;align-items:center;justify-content:center;
+  min-height:44px;padding:10px 14px;border-radius:7px;border:1px solid #f28c52;
+  background:#f28c52;color:#0a1a20;white-space:nowrap;
+  font-size:12px;font-weight:820;
+}
+.cc-page .cc-explore-prompt a:hover{background:#ffb082;border-color:#ffb082}
+.cc-page .quality-grid article{
+  background:#142b33;border-color:#385b62;border-radius:12px;
+}
+.cc-page .quality-grid svg{color:#69dcd0}
+.cc-page .quality-grid h3{color:#edf8f6}
+.cc-page .quality-grid p{color:#b1c8c9}
+.cc-page .disclaimer{color:#9cb9bd;line-height:1.7;font-size:12px}
+.cc-page .button{border-radius:7px}
+.cc-page .button.primary{background:#f28c52;border-color:#f28c52;color:#0b1a20}
+.cc-page .button.secondary{border:1px solid #5f9a93;background:#152f37;color:#e6f7f4}
+.cc-page .button.primary:hover{background:#ffb28a}
+.cc-page .button.secondary:hover{border-color:#38c7bc;background:#23434a}
+.cc-page .actions{gap:12px;flex-wrap:wrap}
+/* The end-of-story enquiry is deliberately navigation-only, with 48px primary
+ * targets and the route's existing keyboard focus rings; it is not a form. */
+.cc-page .cc-engage{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);
+  gap:clamp(22px,4vw,56px);align-items:center;margin:40px 0 25px;
+  padding:clamp(25px,4vw,48px);border:1px solid #4c807b;border-radius:16px;
+  background:radial-gradient(ellipse at 8% 70%,#38c7bc17,transparent 62%),
+    radial-gradient(ellipse at 95% 10%,#f28c5218,transparent 59%),#102831;
+}
+.cc-page .cc-engage-copy{min-width:0}
+.cc-page .cc-engage-copy h3{
+  font-size:clamp(29px,3.8vw,50px);line-height:1.13;letter-spacing:-.045em;
+  max-width:680px;color:#f1fbfa;margin:16px 0;
+}
+.cc-page .cc-engage-copy h3 em{font-style:normal;color:#f4a57a}
+.cc-page .cc-engage-copy>p{font-size:14px;line-height:1.75;color:#bfd6d5;max-width:640px;margin:0 0 12px}
+.cc-page .cc-engage-copy>small{display:block;font-size:11px;line-height:1.6;color:#a5c5c6}
+.cc-page .cc-engage-actions{display:grid;gap:11px;min-width:0}
+.cc-page .cc-engage-actions>.cc-engage-primary,
+.cc-page .cc-engage-actions>.cc-engage-secondary{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  min-height:48px;padding:12px 15px;border:1px solid #568d88;
+  border-radius:8px;text-align:center;font-size:13px;line-height:1.5;font-weight:770;
+}
+.cc-page .cc-engage-primary{background:#f28c52;border-color:#f28c52!important;color:#0a1c22}
+.cc-page .cc-engage-primary:hover{background:#ffb387;border-color:#ffb387!important}
+.cc-page .cc-engage-secondary{background:#1b3b43;color:#e9f9f7}
+.cc-page .cc-engage-secondary:hover{background:#27545c;border-color:#38c7bc}
+.cc-page .cc-engage-resources{
+  display:flex;flex-wrap:wrap;align-items:center;gap:11px 20px;
+  padding-top:13px;border-top:1px solid #395e64;
+}
+.cc-page .cc-engage-resources a{
+  display:inline-flex;align-items:center;gap:7px;min-height:36px;
+  font-size:12px;color:#a6e9de;text-decoration:underline;text-underline-offset:3px;
+}
+.cc-page .cc-engage-resources a:hover{color:#ffd0ad}
+.cc-page .case-context{border-top:1px solid #30555e}
+.cc-page .case-context h2,.cc-page .case-context h3{color:#ebf8f7}
+.cc-page .case-context p{color:#b5c9ca}
+.cc-page a:focus-visible,.cc-page button:focus-visible{outline:3px solid #f28c52;outline-offset:3px}
+@media(max-width:1080px){
+  .cc-page .cc-engage{grid-template-columns:1fr}
+  .cc-page .cc-explore-prompt{grid-template-columns:1fr 1.2fr}
+  .cc-page .cc-explore-prompt a{grid-column:1/-1;justify-self:start}
+}
+@media(max-width:760px){
+  .cc-page .hero{padding-top:55px;min-height:0}
+  .cc-page .hero h1{font-size:clamp(45px,8.1vw,69px)}
+  .cc-page .cc-contributions{grid-template-columns:1fr}
+  .cc-page .cc-contributions article{padding:25px}
+  .cc-page .cc-explore-prompt{grid-template-columns:1fr;padding:20px}
+  .cc-page .cc-explore-prompt a{grid-column:1}
+  .cc-page .section{padding-top:55px;padding-bottom:65px}
+}
+@media(max-width:490px){
+  .cc-page .cc-engage{padding:22px 18px;margin-top:30px}
+  .cc-page .cc-engage-copy h3{font-size:clamp(29px,8vw,39px)}
+  .cc-page .cc-engage-actions>a{width:100%}
+  .cc-page .cc-engage-resources{flex-direction:column;align-items:flex-start}
+  .cc-page .header{gap:12px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
+  .cc-page .brand strong{font-size:25px}
+  .cc-page .brand span{font-size:8px;letter-spacing:.6px}
+  .cc-page .header nav{gap:14px;font-size:11px}
+  /* Override the legacy global mobile nav that hides the second link. Both
+     Projects and Experience remain directly accessible in this case study. */
+  .cc-page .header nav a:nth-child(2){display:inline-flex}
+  .cc-page .hero h1{font-size:47px;line-height:1.06}
+  .cc-page .hero-bottom p{font-size:15px}
+  .cc-page .hero-tags{gap:6px}
+  .cc-page .hero-tags span{font-size:9px;padding:8px 10px}
+  .cc-page .cc-contributions h3{font-size:30px}
+  .cc-page .cc-explore-prompt a{white-space:normal;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .cc-page .cc-challenges article{transition:none}
+}
