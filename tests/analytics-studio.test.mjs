@@ -2,6 +2,7 @@
 // The technical inspector draws on an existing sanitised 17-file Python
 // archive. All displayed CSV rows, charts and reconciliation values remain
 // fictional. Source checks complement full browser tests, not replace them.
+// The contact section is static, uses a mailto URI, and adds no new lead API.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -26,6 +27,18 @@ test('Python lab connects a technical inspector to the existing interactive dash
   assert.match(page, /Compare events, not people/);
   assert.match(page, /not unique-user, time-ordered conversions/);
   assert.match(page, /No personal data, real client performance exports/);
+});
+
+test('closing analytics enquiry has distinct project and hiring destinations without a lead form', () => {
+  assert.match(page, /id="analytics-contact"/);
+  assert.match(page, /aria-labelledby="al-contact-title"/);
+  assert.match(page, /mailto:hello@jrvallite\\.com\\?subject=Ecommerce%20analytics%20and%20CRO%20project%20%7C%20JRV/);
+  assert.match(page, /Hiring\\? Review experience/);
+  assert.match(page, /href="\\/experience"/);
+  assert.match(page, /does not collect or submit your enquiry/);
+  assert.match(css, /\\.al-contact-actions/);
+  assert.match(css, /\\.al-contact\\{grid-template-columns:1fr\\}/);
+  assert.doesNotMatch(page, /<form|action=\\{?['"]?https?:|onSubmit=|XMLHttpRequest|sendBeacon\\(/);
 });
 
 test('five-stage workflow and real source archive references are demonstrable', () => {

@@ -7,6 +7,8 @@
  * Retains the existing dashboard and CSV download. All controls are keyboard
  * reachable; mobile tables scroll within their own frame, and reduced-motion
  * preferences disable decorative transitions.
+ * The final enquiry panel is route-scoped, low-payload and email-client only;
+ * it preserves visible focus and collapses to one column on small screens.
  */
 .al-page{
   --al-teal:#38c7bc;--al-ember:#f28c52;--al-ink:#0b1419;
@@ -203,6 +205,37 @@
 .al-lessons-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
 .al-lessons-actions a{display:inline-flex;align-items:center;gap:8px;border:1px solid #43857e;background:#163b3d;border-radius:8px;min-height:42px;padding:10px 14px;font-size:12px;color:#d8f8f3;font-weight:760}
 .al-lessons-actions a:hover{border-color:#f28c52;color:#ffd0ab}
+/* Contact is an accessible end-of-story decision, not a form or analytics widget.
+ * Reuse the same palette/typography as the interactive source studio. */
+.al-contact{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:clamp(24px,4vw,60px);
+  align-items:center;margin:0 0 72px;padding:clamp(28px,4vw,56px);
+  border:1px solid #497b75;border-radius:17px;
+  background:radial-gradient(ellipse at 90% 0%,#f28c521a,transparent 55%),
+    radial-gradient(ellipse at 3% 100%,#38c7bc18,transparent 60%),#102630;
+}
+.al-contact-copy{min-width:0}
+.al-contact h2{max-width:720px;margin:18px 0;font-size:clamp(33px,4.2vw,57px);line-height:1.12;letter-spacing:-.05em;color:#f0fbfa}
+.al-contact h2 em{font-style:normal;color:#f7a87e}
+.al-contact-copy>p:not(.al-contact-note){max-width:650px;color:#c4dcda;font-size:15px;line-height:1.8;margin:0}
+.al-contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+.al-contact-actions a{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:48px;padding:12px 17px;border:1px solid #538b87;border-radius:8px;
+  font-size:13px;font-weight:780;text-decoration:none;line-height:1.45;
+}
+.al-contact-actions .al-contact-primary{background:#f28c52;color:#102028;border-color:#f28c52}
+.al-contact-actions .al-contact-primary:hover{background:#ffb48a;border-color:#ffb48a}
+.al-contact-actions .al-contact-secondary{background:#193a42;color:#e5fbf6}
+.al-contact-actions .al-contact-secondary:hover{background:#28555a;border-color:#38c7bc}
+.al-contact .al-contact-note{font-size:11px;line-height:1.6;color:#a8c8ca;margin:14px 0 0}
+.al-contact-path{min-width:0;padding:22px 22px 19px;border:1px solid #42726d;border-radius:12px;background:#0c2029}
+.al-contact-path>span{color:#84e0d4;font-size:10px;font-weight:820;letter-spacing:1px}
+.al-contact-path ol{list-style:none;padding:0;margin:13px 0}
+.al-contact-path li{border-top:1px solid #315960;padding:14px 0 10px}
+.al-contact-path li strong{font-size:11px;font-weight:820;color:#f8b18b;letter-spacing:.7px}
+.al-contact-path li p{margin:5px 0 0;font-size:12px;line-height:1.6;color:#c2d6d6}
+.al-contact-path>small{display:block;color:#99babe;font-size:11px;line-height:1.6}
 .al-page .al-footer{border-top-color:#3c6a6d}
 .al-page button:focus-visible,.al-page a:focus-visible,.al-page input:focus-visible,.al-page pre:focus-visible{
   outline:3px solid #f28c52;outline-offset:3px;
@@ -214,6 +247,7 @@
   .al-studio-source-window pre{min-height:255px}
 }
 @media(max-width:950px){
+  .al-contact{grid-template-columns:1fr}
   .al-hero-grid{grid-template-columns:1fr}
   .al-page .al-hero{padding:65px 0 70px}
   .al-hero-proof{max-width:660px}
@@ -239,6 +273,11 @@
   .al-lessons-grid{grid-template-columns:1fr}
 }
 @media(max-width:490px){
+  .al-contact{padding:24px 18px;margin-bottom:46px}
+  .al-contact h2{font-size:clamp(31px,8.4vw,41px)}
+  .al-contact-actions{flex-direction:column}
+  .al-contact-actions a{width:100%}
+  .al-contact-path{padding:19px}
   .al-page .al-hero{padding:54px 0 57px}
   .al-page .al-hero h1{font-size:43px;line-height:1.065}
   .al-page .al-hero p{font-size:14px;line-height:1.7}

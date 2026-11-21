@@ -1,6 +1,8 @@
 // 21 November 2026: Playwright visual and interaction review for the Python
 // analytics studio. The only data are fictional local fixtures and already-
 // published sanitised Python snippets. No analytics API or merchant connection.
+// End-of-story contact links are checked without opening an email client or
+// submitting user content; tap targets and mobile reflow stay testable.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -88,6 +90,29 @@ try {
     const file = await download;
     assert.equal(file.suggestedFilename(), 'jrv-synthetic-acquisition.csv');
     await file.delete();
+
+    // The final section must provide distinct project and hiring paths with
+    // a simple mailto fallback. Never click mailto or transmit a test enquiry.
+    const contact = page.locator('#analytics-contact');
+    await contact.getByRole('heading', { name: /Make the numbers useful/ }).waitFor();
+    const enquiry = contact.getByRole('link', { name: 'Discuss an analytics project' });
+    const enquiryHref = await enquiry.getAttribute('href');
+    assert.equal(enquiryHref,
+      'mailto:hello@jrvallite.com?subject=Ecommerce%20analytics%20and%20CRO%20project%20%7C%20JRV',
+      viewport.name + ': contact uses a fixed local email draft, not a submission endpoint');
+    assert.equal(await contact.getByRole('link', { name: 'Hiring? Review experience' }).getAttribute('href'),
+      '/experience', viewport.name + ': hiring link stays internal');
+    assert.ok(await enquiry.evaluate(link => link.getBoundingClientRect().height) >= 44,
+      viewport.name + ': project enquiry target is at least 44px high');
+    assert.equal(await contact.getByRole('listitem').count(), 3,
+      viewport.name + ': three stages of the illustrative engagement pathway');
+    if (viewport.width <= 490) {
+      const contactColumns = await contact.evaluate(el =>
+        window.getComputedStyle(el).gridTemplateColumns.trim().split(/\\s+/).length);
+      assert.equal(contactColumns, 1, viewport.name + ': contact panel stacks on phones');
+    }
+    const experience = await page.request.get(base + '/experience');
+    assert.equal(experience.status(), 200, 'Hiring pathway resolves to the experience route');
 
     const archive = await page.request.get(base + '/case-studies/ecommerce-analytics/sanitised-python-source-archive.md');
     assert.equal(archive.status(), 200, 'Public sanitised source archive remains linked');

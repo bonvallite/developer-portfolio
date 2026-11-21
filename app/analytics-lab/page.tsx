@@ -6,6 +6,8 @@
  * the new inspector uses adapted excerpts, never executed in the browser.
  * The redesigned hero and studio are visual-only; existing dashboard maths,
  * CSV download, reconciliation limits, metadata and privacy stay unchanged.
+ * The final enquiry panel uses fixed mailto links and internal navigation only:
+ * no form submission, personal message capture or new tracking is introduced.
  */
 import {useState} from 'react';
 import Link from 'next/link';
@@ -84,6 +86,29 @@ export default function AnalyticsLab(){
        <article><span>03 / DATA CONFIDENCE</span><h3>Explain discrepancies instead of hiding them.</h3><p>Document time windows, definitions, consent, missing rows and unsuccessful API requests so analysis remains auditable.</p></article>
      </div>
      <div className="al-lessons-actions"><Link href="/data-extraction-automation#source-lab">Examine the detailed extraction case study <ArrowRight size={16} aria-hidden="true"/></Link><Link href="/python-automation">See other Python projects <ArrowRight size={16} aria-hidden="true"/></Link></div>
+   </section>
+   {/* The final step invites a conversation without creating a lead form.
+       Enquiries open the visitor's email client; the hiring link is internal. */}
+   <section id="analytics-contact" className="al-contact" aria-labelledby="al-contact-title">
+     <div className="al-contact-copy">
+       <span className="al-kicker">05 / WORK TOGETHER</span>
+       <h2 id="al-contact-title">Make the numbers useful. <em>Keep the evidence honest.</em></h2>
+       <p>Need dependable ecommerce reporting, analytics QA, or a clearer view of conversion friction? Discuss a practical workflow that connects data quality with decisions.</p>
+       <div className="al-contact-actions">
+         <a className="al-contact-primary" href="mailto:hello@jrvallite.com?subject=Ecommerce%20analytics%20and%20CRO%20project%20%7C%20JRV">Discuss an analytics project <ArrowRight size={17} aria-hidden="true"/></a>
+         <Link className="al-contact-secondary" href="/experience">Hiring? Review experience <ArrowRight size={17} aria-hidden="true"/></Link>
+       </div>
+       <p className="al-contact-note">Email opens in your own mail application. This page does not collect or submit your enquiry.</p>
+     </div>
+     <div className="al-contact-path" aria-label="Example engagement pathway">
+       <span>FROM BRIEF TO BETTER DECISIONS</span>
+       <ol>
+         <li><strong>01 / DEFINE</strong><p>Agree on business questions, reporting windows, and definitions.</p></li>
+         <li><strong>02 / VALIDATE</strong><p>Check source coverage, discrepancies, and data quality.</p></li>
+         <li><strong>03 / HAND OVER</strong><p>Document repeatable outputs and what the evidence cannot prove.</p></li>
+       </ol>
+       <small>Illustrative approach, not a claim of measured client results.</small>
+     </div>
    </section>
    <footer className="al-footer"><ShieldCheck size={19}/><p>No personal data, real client performance exports, access tokens or production identifiers are included. This is a demonstration, not a live reporting service.</p><Link href="/#work">Other projects <ArrowRight size={15}/></Link></footer>
   </div>
