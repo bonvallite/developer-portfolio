@@ -15,9 +15,11 @@ import './cinematic-home.css';
 // Featured case-study links and the public footer email carry optional,
 // consent-gated, fixed-value click markers without exposing URL or message data.
 // The previous site remains recoverable at backup/2026-11-20-pre-cinematic-rebuild.
+// 21 Nov 2026 crawl: concise homepage description keeps Shopify, CRO, B2B
+// and integration search intent while avoiding truncated search snippets.
 export const metadata: Metadata = {
   title: 'Shopify Developer, Ecommerce Management & CRO',
-  description: 'Shopify development, ecommerce operations, conversion optimisation and custom integrations. Explore responsive storefronts, B2B workflows, APIs and interactive technical case studies.',
+  description: 'Shopify developer for ecommerce teams. Explore Liquid storefronts, CRO, B2B workflows, custom apps and API integration case studies.',
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',

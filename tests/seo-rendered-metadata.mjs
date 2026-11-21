@@ -82,4 +82,57 @@ for (const phrase of [
 assert.ok(b2bHtml.includes('href="/b2b-modernisation"'),
   'B2B demo must link to its distinct architecture case study');
 
-console.log('Rendered flagship metadata and XML sitemap regression: PASSED');
+// 21 Nov post-release crawl: seven titles and five descriptions exceeded
+// the crawler's suggested snippet lengths. Assert on rendered HTML rather
+// than source literals so the root Next.js branding suffix is counted.
+// Noindex résumé pages intentionally stay out of search and the sitemap.
+const auditedSnippets = [
+  ['/', 'Shopify Developer, Ecommerce Management & CRO', ['Shopify', 'CRO', 'B2B']],
+  ['/b2b-modernisation', 'Shopify B2B Modernisation | Markets & Catalogues', ['Shopify', 'B2B', 'Catalogues']],
+  ['/cartoncloud-integration', 'Shopify CartonCloud Integration & Delivery App', ['Shopify', 'CartonCloud', 'fulfilment']],
+  ['/data-extraction-automation', 'Ecommerce Data Engineering | Python & APIs', ['ecommerce', 'Python', 'API']],
+  ['/eve-curls', 'Shopify Markets | European Localisation Case Study', ['Shopify', 'European', 'fictional']],
+  ['/python-automation', 'Python Automation for Ecommerce & Data Workflows', ['Python', 'CSV', 'ecommerce']],
+  ['/shipping-integration', 'Shopify Cold-Chain Shipping & Subscriptions', ['Shopify', 'Recharge', 'Zapiet']],
+  ['/shopify-flow', 'Shopify Flow: Rewards & Operations Automation', ['Shopify', 'loyalty', 'automation']],
+  ['/shopify-developer', 'Shopify Developer | Liquid, Themes & B2B', ['Shopify', 'Liquid', 'B2B']],
+];
+const seenRenderedTitles = new Set();
+const seenRenderedDescriptions = new Set();
+for (const [path, expectedBaseTitle, requiredDescriptionTerms] of auditedSnippets) {
+  const html = await readPage(path);
+  const renderedTitle = (html.split('<title>')[1]?.split('</title>')[0] || '').replaceAll('&amp;', '&');
+  const description = attr(findTag(html, 'meta', 'name', 'description') || '', 'content');
+  const canonical = attr(findTag(html, 'link', 'rel', 'canonical') || '', 'href');
+  const expectedTitle = expectedBaseTitle + (path === '/' ? '' : ' | JRV');
+  assert.equal(renderedTitle, expectedTitle, path + ': unexpected title or brand suffix');
+  assert.ok(renderedTitle.length >= 30 && renderedTitle.length <= 60,
+    path + ': rendered title should be 30–60 characters, got ' + renderedTitle.length);
+  assert.ok(description.length >= 70 && description.length <= 160,
+    path + ': rendered description should be 70–160 characters, got ' + description.length);
+  // Next.js may serialise the homepage canonical with or without the final
+  // slash; comparing parsed URLs checks identity without rewriting metadata.
+  assert.equal(new URL(canonical).href, new URL('https://www.jrvallite.com' + path).href,
+    path + ': canonical changed');
+  assert.ok(!seenRenderedTitles.has(renderedTitle), path + ': duplicated title');
+  assert.ok(!seenRenderedDescriptions.has(description), path + ': duplicated description');
+  seenRenderedTitles.add(renderedTitle);
+  seenRenderedDescriptions.add(description);
+  for (const term of requiredDescriptionTerms) {
+    assert.ok(description.toLowerCase().includes(term.toLowerCase()),
+      path + ': search-intent keyword missing from description: ' + term);
+  }
+  if (path === '/shopify-developer') {
+    const ogDescription = attr(findTag(html, 'meta', 'property', 'og:description') || '', 'content');
+    assert.equal(ogDescription, description, 'Shopify service description must match Open Graph');
+  }
+}
+for (const path of ['/resume', '/resume/ats', '/resume/classic']) {
+  const html = await readPage(path);
+  const robots = attr(findTag(html, 'meta', 'name', 'robots') || '', 'content');
+  assert.match(robots, /noindex/, path + ': public résumé privacy noindex must remain');
+  assert.ok(!xml.includes('<loc>https://www.jrvallite.com' + path + '</loc>'),
+    path + ': intentionally noindex résumé route appeared in sitemap');
+}
+
+console.log('Rendered metadata, concise SEO snippets and XML sitemap regression: PASSED');

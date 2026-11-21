@@ -3,11 +3,13 @@ import ServicePage, { type ServiceContent } from '../components/ServicePage';
 
 // Search intent and canonical URL are unique to this service route.
 // Do not add personal identity schema or claim externally published App Store apps.
+// 21 Nov crawl: the concise service description is mirrored in Open Graph
+// so search and sharing snippets agree; the canonical and keywords stay put.
 export const metadata: Metadata = {
   title: "Shopify Developer | Liquid, Themes & B2B",
-  description: "Shopify theme development, Liquid, custom storefront sections, product pages, B2B workflows and technical troubleshooting, supported by practical project examples.",
+  description: "Shopify development for Liquid themes, custom storefront sections, product pages, B2B workflows and technical troubleshooting. Explore the projects.",
   alternates: { canonical: '/shopify-developer' },
-  openGraph: { title: "Shopify Developer | Liquid, Themes & B2B", description: "Shopify theme development, Liquid, custom storefront sections, product pages, B2B workflows and technical troubleshooting, supported by practical project examples.", url: 'https://www.jrvallite.com/shopify-developer' },
+  openGraph: { title: "Shopify Developer | Liquid, Themes & B2B", description: "Shopify development for Liquid themes, custom storefront sections, product pages, B2B workflows and technical troubleshooting. Explore the projects.", url: 'https://www.jrvallite.com/shopify-developer' },
 };
 
 const content: ServiceContent = {
