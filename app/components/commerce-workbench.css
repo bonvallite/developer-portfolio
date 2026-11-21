@@ -1,0 +1,210 @@
+/*
+ * JRV / PROJECT STUDIO · 21 November 2026
+ * Route-specific presentation for the real React-controlled hero previews.
+ * Fictional data, no network calls, no third-party imagery or new fonts.
+ * Ember orange highlights actions; electric teal indicates the active system.
+ * The existing page-wide reduced-motion rule disables animated transitions.
+ */
+.jrv2-workbench{
+  --wb-teal:#38c7bc;--wb-orange:#f28c52;--wb-fg:#eaf4f3;--wb-muted:#acc7c8;
+  min-width:0;isolation:isolate;border:1px solid #4b817c;
+  background:radial-gradient(ellipse at 92% 0%,#38c7bc20,transparent 48%),linear-gradient(145deg,#1a343b,#0c1c24 58%,#09151d);
+  box-shadow:0 30px 100px #0009,0 0 80px #38c7bc14;
+  animation:none;transform:none;border-radius:17px;
+}
+.jrv2-workbench .jrv2-console-top{
+  background:#0c1c24d9;color:#a5c0c2;border-bottom-color:#36555c;
+  font-size:10px;padding:14px 20px;
+}
+.jrv2-workbench .jrv2-console-top b{color:#eaf4f3;letter-spacing:1.5px}
+.jrv2-workbench .jrv2-console-dots i{background:var(--wb-orange)}
+.jrv2-workbench .jrv2-console-dots i:nth-child(2){background:var(--wb-teal);opacity:1}
+.jrv2-workbench .jrv2-console-dots i:nth-child(3){background:#b9c7cc;opacity:.75}
+.jrv2-workbench-tabs{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  border-bottom:1px solid #33515a;background:#10232b;
+}
+.jrv2-workbench-tab{
+  min-width:0;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:15px 7px 14px;background:transparent;color:#a9c0c1;border:0;
+  border-right:1px solid #29424c;border-bottom:3px solid transparent;
+  font-size:10px;font-weight:850;letter-spacing:1.05px;cursor:pointer;
+}
+.jrv2-workbench-tab:last-child{border-right:0}
+.jrv2-workbench-tab:hover{background:#193640;color:#ecfcfb}
+.jrv2-workbench-tab.is-active{
+  color:#eaf4f3;background:#173540;border-bottom-color:var(--wb-orange);
+}
+.jrv2-workbench-tab.is-active svg{color:var(--wb-orange)}
+.jrv2-workbench-body{padding:29px clamp(18px,2.7vw,36px) 25px}
+.jrv2-workbench .jrv2-console-body:after{background:radial-gradient(circle,#38c7bc1f,transparent 65%);z-index:-1}
+.jrv2-workbench-copy{max-width:560px;position:relative;z-index:1}
+.jrv2-workbench .jrv2-console-label{color:var(--wb-teal);letter-spacing:1.8px;font-size:10px}
+.jrv2-workbench .jrv2-workbench-copy h2{
+  font-size:clamp(27px,2.45vw,38px);line-height:1.06;letter-spacing:-1.2px;
+  margin:11px 0 10px;font-weight:730;color:#f1faf9;
+}
+.jrv2-workbench-copy p{
+  color:#b2c6c9;font-size:12px;line-height:1.67;margin:0 0 20px;
+}
+.jrv2-workbench-stage{
+  min-height:262px;position:relative;border:1px solid #315661;border-radius:12px;
+  background:radial-gradient(circle at 90% 15%,#ef874d12,transparent 42%),#091820;
+  padding:20px;overflow:hidden;
+}
+.jrv2-workbench-stage:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(#54d4c80a 1px,transparent 1px),linear-gradient(90deg,#54d4c80a 1px,transparent 1px);
+  background-size:28px 28px;opacity:.6;
+}
+.jrv2-workbench-stage>div{position:relative;z-index:1;min-width:0}
+.jrv2-lab-metric{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 10px;margin-bottom:21px}
+.jrv2-lab-metric>span{font-size:9px;letter-spacing:1.45px;font-weight:800;color:var(--wb-muted)}
+.jrv2-lab-metric strong{grid-column:2;grid-row:1/span 2;font-size:32px;letter-spacing:-1.3px;color:#fff}
+.jrv2-lab-metric small{font-size:10px;color:#e4a078}
+.jrv2-lab-progress{height:9px;border-radius:999px;overflow:hidden;background:#29444c;border:1px solid #3a656b}
+.jrv2-lab-progress>span{
+  display:block;height:100%;border-radius:inherit;
+  background:linear-gradient(90deg,var(--wb-teal),var(--wb-orange));
+  transition:width .36s ease;
+}
+.jrv2-lab-milestones{list-style:none;margin:12px 0 15px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.jrv2-lab-milestones li{
+  min-width:0;border:1px solid #30515b;border-radius:7px;padding:9px 7px;
+  color:#a9c0c1;display:flex;align-items:center;gap:7px;background:#10242b;
+}
+.jrv2-lab-milestones li.is-earned{border-color:#4eac9f;color:#edfbf9;background:#143238}
+.jrv2-lab-milestones li>span{
+  flex:0 0 auto;display:grid;place-items:center;min-width:28px;height:26px;
+  padding:0 3px;border-radius:5px;background:#233b45;color:#c8d9d9;font-weight:850;font-size:9px;
+}
+.jrv2-lab-milestones li.is-earned>span{background:#38c7bc;color:#071c20}
+.jrv2-lab-milestones strong{font-size:9px;line-height:1.4;font-weight:780}
+.jrv2-lab-status{
+  display:block;min-height:19px;color:#c6dadd;font-size:11px;line-height:1.55;
+}
+.jrv2-lab-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.jrv2-lab-actions button{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:36px;padding:8px 14px;border:1px solid var(--wb-orange);
+  border-radius:6px;background:var(--wb-orange);color:#0a1a1d;cursor:pointer;
+  font-weight:850;font-size:11px;
+}
+.jrv2-lab-actions button:hover{background:#ffab79;border-color:#ffab79}
+.jrv2-lab-actions button.is-quiet{background:#162a33;border-color:#4a6c72;color:#d9eeee}
+.jrv2-lab-actions button.is-quiet:hover{background:#25414b}
+.jrv2-lab-actions button:disabled{opacity:.45;cursor:not-allowed}
+.jrv2-lab-source-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.jrv2-lab-source-tabs button{
+  padding:7px 11px;border:1px solid #3c626c;border-radius:5px;
+  background:#132a34;color:#b7cccf;font-size:10px;font-weight:780;cursor:pointer;
+}
+.jrv2-lab-source-tabs button:hover{border-color:var(--wb-teal)}
+.jrv2-lab-source-tabs button.is-active{background:#265a5c;border-color:var(--wb-teal);color:#f0fffc}
+.jrv2-lab-chart-head{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#e4f7f4;margin:9px 0 4px}
+.jrv2-lab-chart-head strong{font-size:11px}
+.jrv2-lab-chart-head span{font-size:9px;letter-spacing:1.1px;color:#f6ad80}
+.jrv2-lab-chart{
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;
+  height:144px;padding:6px 2px 0;border-bottom:1px solid #456771;margin-bottom:12px;
+}
+.jrv2-lab-chart-column{min-width:0;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:4px;height:100%}
+.jrv2-lab-chart-column span{font-size:9px;color:#e7d2bd}
+.jrv2-lab-chart-column i{
+  display:block;width:100%;max-width:40px;max-height:103px;min-height:6px;
+  flex-shrink:1;border-radius:5px 5px 0 0;
+  background:linear-gradient(180deg,var(--wb-teal),#1d5f69);
+  transition:height .3s ease;
+}
+.jrv2-lab-chart-column:nth-child(4n) i{background:linear-gradient(180deg,var(--wb-orange),#874b34)}
+.jrv2-lab-chart-column small{color:#8da4aa;font-size:8px}
+.jrv2-lab-event-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:13px 0 21px}
+.jrv2-lab-event-node{
+  min-width:0;min-height:123px;padding:13px 8px;border:1px solid #385762;
+  background:#142b33;border-radius:8px;display:flex;flex-direction:column;
+  align-items:flex-start;gap:8px;position:relative;
+}
+.jrv2-lab-event-node:after{
+  content:"";width:5px;height:5px;border-radius:50%;
+  position:absolute;right:8px;top:12px;background:#4b6971;
+}
+.jrv2-lab-event-node.is-current{border-color:var(--wb-orange);background:#2e3030}
+.jrv2-lab-event-node.is-current:after{background:var(--wb-orange);box-shadow:0 0 0 4px #f28c521b}
+.jrv2-lab-event-node.is-complete{border-color:#2f998e}
+.jrv2-lab-event-node.is-complete:after{background:#38c7bc}
+.jrv2-lab-event-node>span{font-size:10px;font-weight:850;color:#79bdb7}
+.jrv2-lab-event-node strong{font-size:12px;color:#f0f8f7}
+.jrv2-lab-event-node small{font-size:10px;line-height:1.4;color:#b2c9cb}
+.jrv2-lab-cuts{display:grid;gap:9px;margin:2px 0 14px}
+.jrv2-lab-cut{
+  display:flex;align-items:center;justify-content:space-between;gap:13px;
+  border:1px solid #36545b;border-radius:7px;padding:9px 11px;background:#132832;
+}
+.jrv2-lab-cut>span{display:grid;gap:3px}
+.jrv2-lab-cut strong{font-size:11px;color:#f0f8f7}
+.jrv2-lab-cut small{font-size:10px;color:#9bb9bb}
+.jrv2-lab-quantity{display:flex;align-items:center;gap:8px}
+.jrv2-lab-quantity button{
+  display:grid;place-items:center;width:32px;height:32px;border:1px solid #3f7c79;
+  background:#173c41;color:#e8f8f4;border-radius:5px;cursor:pointer;
+}
+.jrv2-lab-quantity button:hover{border-color:var(--wb-orange);color:#ffb58b}
+.jrv2-lab-quantity button:disabled{opacity:.35;cursor:not-allowed}
+.jrv2-lab-quantity output{min-width:17px;text-align:center;font-size:13px;font-weight:780;color:#fff}
+.jrv2-lab-b2b-summary{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:0 0 14px;
+}
+.jrv2-lab-b2b-summary>span{
+  min-width:0;display:grid;gap:7px;min-height:64px;padding:9px;
+  border:1px solid #35545c;border-radius:6px;background:#11272f;
+  color:#9ec0c2;font-size:8px;letter-spacing:.7px;font-weight:780;
+}
+.jrv2-lab-b2b-summary strong{color:#f0fcf9;font-size:14px;letter-spacing:-.4px;white-space:nowrap}
+.jrv2-lab-b2b-summary>span:last-child{border-color:#a36f51;background:#322a29}
+.jrv2-lab-b2b-summary>span:last-child strong{color:#ffb58b}
+.jrv2-workbench-footer{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  flex-wrap:wrap;margin-top:17px;
+}
+.jrv2-workbench-footer>span{font-size:9px;letter-spacing:1.1px;color:#86aaac;font-weight:750}
+.jrv2-workbench-footer a{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:#ffb48c;font-weight:840}
+.jrv2-workbench-footer a:hover{color:#fcd2bc;text-decoration:underline;text-underline-offset:4px}
+.jrv2-workbench .jrv2-console-bottom{background:#0b2029;border-top-color:#33545d;color:#a0b9bc}
+.jrv2-workbench .jrv2-console-bottom b{color:#38c7bc}
+@media(max-width:970px){
+  .jrv2-workbench{max-width:760px;margin-inline:auto}
+}
+@media(max-width:720px){
+  .jrv2-workbench .jrv2-console-top{padding:12px 14px}
+  .jrv2-workbench .jrv2-console-top>span:last-child{font-size:8px;text-align:right}
+  .jrv2-workbench-tab{padding:12px 3px;font-size:9px;letter-spacing:.4px;gap:4px}
+  .jrv2-workbench-tab svg{width:13px;height:13px}
+  .jrv2-workbench-body{padding:22px 17px}
+  .jrv2-workbench .jrv2-workbench-copy h2{font-size:clamp(25px,5.3vw,34px);letter-spacing:-.6px}
+  .jrv2-workbench-stage{padding:14px}
+  .jrv2-lab-event-node{min-height:110px;padding:10px 6px}
+  .jrv2-lab-event-node strong{font-size:10px}
+  .jrv2-lab-event-node small{font-size:9px}
+}
+@media(max-width:490px){
+  .jrv2-workbench .jrv2-console-top{font-size:9px;gap:6px}
+  .jrv2-workbench-tab{flex-direction:column;gap:5px;font-size:8px;letter-spacing:.15px}
+  .jrv2-workbench .jrv2-workbench-copy h2{font-size:26px}
+  .jrv2-workbench-copy p{font-size:11px}
+  .jrv2-lab-metric strong{font-size:26px}
+  .jrv2-lab-milestones{gap:4px}
+  .jrv2-lab-milestones li{padding:7px 3px;flex-direction:column;align-items:center;gap:5px;text-align:center}
+  .jrv2-lab-milestones strong{font-size:8px}
+  .jrv2-lab-event-track{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .jrv2-lab-event-node{min-height:93px}
+  .jrv2-lab-event-node small{font-size:9px}
+  .jrv2-lab-b2b-summary{gap:5px}
+  .jrv2-lab-b2b-summary>span{padding:7px 5px;font-size:7px}
+  .jrv2-lab-b2b-summary strong{font-size:12px}
+  .jrv2-lab-chart{gap:5px;height:135px}
+  .jrv2-workbench-footer{align-items:flex-start;flex-direction:column}
+  .jrv2-workbench .jrv2-console-bottom>span:first-child{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .jrv2-workbench,.jrv2-workbench *{animation:none!important;transition:none!important;transform:none!important}
+}
