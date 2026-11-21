@@ -52,7 +52,10 @@ try {
     });
     await addWagyu.click();
     await addWagyu.click();
-    await page.locator('.ss-cart-total').getByText('A$170').waitFor();
+    // The original shopper uses en-AU Intl currency ($170); the explanatory
+    // architecture labels amounts A$170. Both represent AUD and must agree.
+    assert.match(await page.locator('.ss-cart-total strong').innerText(), /\$\s?170/,
+      viewport.name + ': fictional shopper subtotal is AUD 170');
     await map.getByText('A$170 qualifies for the first illustrative gift. Gifts are still absent from the basket.').waitFor();
     assert.equal(await page.locator('.ss-order-row.ss-gift').count(), 0,
       viewport.name + ': the cart cannot directly add complimentary order lines');
