@@ -108,7 +108,7 @@ try {
       viewport.name + ': three stages of the illustrative engagement pathway');
     if (viewport.width <= 490) {
       const contactColumns = await contact.evaluate(el =>
-        window.getComputedStyle(el).gridTemplateColumns.trim().split(/\\s+/).length);
+        window.getComputedStyle(el).gridTemplateColumns.trim().split(/\s+/).length);
       assert.equal(contactColumns, 1, viewport.name + ': contact panel stacks on phones');
     }
     const experience = await page.request.get(base + '/experience');

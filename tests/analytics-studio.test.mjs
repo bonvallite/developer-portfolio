@@ -30,15 +30,17 @@ test('Python lab connects a technical inspector to the existing interactive dash
 });
 
 test('closing analytics enquiry has distinct project and hiring destinations without a lead form', () => {
-  assert.match(page, /id="analytics-contact"/);
-  assert.match(page, /aria-labelledby="al-contact-title"/);
-  assert.match(page, /mailto:hello@jrvallite\\.com\\?subject=Ecommerce%20analytics%20and%20CRO%20project%20%7C%20JRV/);
-  assert.match(page, /Hiring\\? Review experience/);
-  assert.match(page, /href="\\/experience"/);
-  assert.match(page, /does not collect or submit your enquiry/);
-  assert.match(css, /\\.al-contact-actions/);
-  assert.match(css, /\\.al-contact\\{grid-template-columns:1fr\\}/);
-  assert.doesNotMatch(page, /<form|action=\\{?['"]?https?:|onSubmit=|XMLHttpRequest|sendBeacon\\(/);
+  assert.ok(page.includes('id="analytics-contact"'));
+  assert.ok(page.includes('aria-labelledby="al-contact-title"'));
+  assert.ok(page.includes('mailto:hello@jrvallite.com?subject=Ecommerce%20analytics%20and%20CRO%20project%20%7C%20JRV'));
+  assert.ok(page.includes('Hiring? Review experience'));
+  assert.ok(page.includes('href="/experience"'));
+  assert.ok(page.includes('does not collect or submit your enquiry'));
+  assert.ok(css.includes('.al-contact-actions'));
+  assert.ok(css.includes('.al-contact{grid-template-columns:1fr}'));
+  for (const unsafe of ['<form', 'onSubmit=', 'XMLHttpRequest', 'sendBeacon(']) {
+    assert.ok(!page.includes(unsafe), 'Unexpected lead collection pattern: ' + unsafe);
+  }
 });
 
 test('five-stage workflow and real source archive references are demonstrable', () => {
