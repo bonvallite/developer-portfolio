@@ -7,6 +7,8 @@ import { readFileSync, existsSync } from 'node:fs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const home = read('app/page.tsx');
+const studio = read('app/components/CommerceWorkbench.tsx');
+const studioCss = read('app/components/commerce-workbench.css');
 const css = read('app/cinematic-home.css');
 const globalCss = read('app/globals.css');
 const journey = read('app/components/HomeJourney.tsx');
@@ -45,13 +47,36 @@ test('selected evidence remains linked with honest fictional / verified distinct
 });
 
 test('homepage is fast-first and animates without large external hero payloads', () => {
-  assert.match(home, /jrv2-console/);
+  assert.match(home, /<CommerceWorkbench\s*\/>/);
+  assert.match(studio, /jrv2-console jrv2-workbench/);
   assert.doesNotMatch(home, /<Image\b|<video\b|<iframe\b|<RotationArchive\b/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /max-width:720px/);
   assert.match(css, /max-width:490px/);
   assert.doesNotMatch(globalCss, /fonts\.googleapis\.com/);
   assert.doesNotMatch(home, /fonts\.googleapis\.com|google\.com\/s2\/favicons/);
+  assert.doesNotMatch(studio, /fetch\(|sendBeacon\(|localStorage|sessionStorage|gtag\(/);
+  assert.match(studioCss, /prefers-reduced-motion:reduce/);
+});
+
+test('project studio demonstrates four genuine, fictional client-side interactions', () => {
+  for (const route of ['/projects/spend-and-save', '/analytics-lab', '/cartoncloud-integration', '/b2b-modernisation']) {
+    assert.ok(studio.includes(route), 'Studio deep link missing: ' + route);
+  }
+  assert.match(studio, /useState<Demo>\('rewards'\)/);
+  assert.match(studio, /aria-pressed=\{mode === project\.key\}/);
+  assert.match(studio, /aria-valuenow=\{Math\.min\(basket, 300\)\}/);
+  assert.match(studio, /setDataSource\(key\)/);
+  assert.match(studio, /setEventStep\(index => \(index \+ 1\) % eventSteps\.length\)/);
+  assert.match(studio, /const weight = cutA \* 750 \+ cutB \* 1200/);
+  assert.match(studio, /const subtotal = cutA \* 2800 \+ cutB \* 3000/);
+  assert.match(studio, /const saving = Math\.round\(subtotal \* discount \/ 100\)/);
+  assert.match(studio, /FICTIONAL DATASET/);
+  assert.match(studio, /NOT A LIVE STORE/);
+  assert.match(studio, /aria-live="polite"/);
+  assert.match(home, /jrv2-case-stack/);
+  assert.match(studioCss, /--wb-orange:#f28c52/);
+  assert.match(studioCss, /--wb-teal:#38c7bc/);
 });
 
 test('storytelling and lead capture are interactive without collecting visitor data', () => {
