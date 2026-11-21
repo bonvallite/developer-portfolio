@@ -1,29 +1,224 @@
-/* 20 Nov 2026: public-only CartonCloud interactive diagram. No external assets,
-   network calls or event data. All controls keyboard-accessible. */
-.jrv-integration-lab{max-width:1180px;margin:0 auto;padding:76px 28px;color:#eaf4f3}
-.jrv-integration-lab *{box-sizing:border-box}
-.jrv-integration-lab__intro>span,.jrv-integration-lab__detail>span{color:#38c7bc;font-size:11px;letter-spacing:.12em}
-.jrv-integration-lab__intro h2{font-size:clamp(32px,4vw,54px);line-height:1.08;letter-spacing:-.04em;margin:14px 0}
-.jrv-integration-lab__intro p{max-width:760px;color:#bdd0d1;line-height:1.75}
-.jrv-integration-lab__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;margin-top:30px}
-.jrv-integration-lab__steps{display:grid;gap:8px}
-.jrv-integration-lab__steps button{background:#162b32;color:#eaf4f3;border:1px solid #34555c;border-radius:10px;padding:15px;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.jrv-integration-lab__steps button span{color:#38c7bc;font-size:11px}
-.jrv-integration-lab__steps button strong{font-size:13px;flex:1}
-.jrv-integration-lab__steps button.is-selected{border-color:#f28c52;background:#263338;transform:translateX(4px)}
-.jrv-integration-lab__detail{background:radial-gradient(ellipse at top right,#38c7bc14,transparent 65%),#12232b;border:1px solid #35656b;border-radius:14px;padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:16px}
-.jrv-integration-lab__detail h3{font-size:clamp(24px,3vw,34px);letter-spacing:-.035em}
-.jrv-integration-lab__detail>p,.jrv-integration-lab__event p{color:#bdd0d1;font-size:14px;line-height:1.75}
-.jrv-integration-lab__event{display:flex;gap:14px;padding:18px;border:1px solid #36565b;border-radius:10px;background:#162b32}
-.jrv-integration-lab__event svg{flex-shrink:0;color:#f28c52}
-.jrv-integration-lab__event strong{font-size:11px;letter-spacing:.08em}
-.jrv-integration-lab__toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:#eaf4f3}
-.jrv-integration-lab__toggle input{accent-color:#38c7bc;width:18px;height:18px}
-.jrv-integration-lab__actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
-.jrv-integration-lab__actions button{display:inline-flex;align-items:center;gap:9px;padding:12px 16px;border-radius:8px;border:1px solid #38c7bc;background:#17383d;color:#eaf4f3;cursor:pointer;font-weight:600}
-.jrv-integration-lab__actions button:first-child{background:#f28c52;border-color:#f28c52;color:#0b1419}
-.jrv-integration-lab__actions button:disabled{opacity:.5;cursor:not-allowed}
-.jrv-integration-lab button:focus-visible,.jrv-integration-lab input:focus-visible{outline:2px solid #f28c52;outline-offset:3px}
-.jrv-integration-lab__caveat{font-size:12px;color:#a9c1c3;line-height:1.7;margin-top:20px}
-@media(max-width:740px){.jrv-integration-lab{padding:54px 20px}.jrv-integration-lab__grid{grid-template-columns:1fr}.jrv-integration-lab__steps button.is-selected{transform:none}}
-@media(prefers-reduced-motion:reduce){.jrv-integration-lab *{transition:none!important;animation:none!important}}
+/*
+ * 21 November 2026 · JRV integration event studio.
+ * Deliberately fictional React-only demonstration. Four-system architecture,
+ * three selectable incident scenarios, six processing stages and a safe
+ * pseudocode inspector. No images, external fonts, network calls, or tracking.
+ * Ember-orange indicates the current action or stopped path; electric teal
+ * marks healthy example stages. Reduced-motion users see instant changes.
+ */
+.jrv-integration-lab{
+  max-width:1300px;margin:0 auto;padding:80px 28px 92px;color:#eaf4f3;
+  --cc-teal:#38c7bc;--cc-orange:#f28c52;--cc-ink:#0b1419;
+}
+.jrv-integration-lab *{box-sizing:border-box;min-width:0}
+.jrv-integration-lab__intro{max-width:940px;margin-bottom:28px}
+.jrv-integration-lab__intro>span{color:var(--cc-teal);font-size:11px;letter-spacing:.16em;font-weight:800}
+.jrv-integration-lab__intro h2{
+  margin:16px 0 14px;font-size:clamp(34px,4.9vw,65px);
+  letter-spacing:-.055em;line-height:1.08;font-weight:710;color:#f0fbfa;
+}
+.jrv-integration-lab__intro>p{font-size:16px;line-height:1.8;color:#b1c9cc;max-width:800px}
+.jrv-integration-lab__shell{
+  border:1px solid #4d827c;border-radius:18px;overflow:hidden;
+  background:radial-gradient(ellipse at 94% 6%,#38c7bc1b,transparent 50%),
+    linear-gradient(145deg,#102832,#0b1a23 60%,#09161c);
+  box-shadow:0 34px 86px #0007;
+}
+.jrv-integration-lab__topbar,.jrv-integration-lab__bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:16px 23px;background:#071921cc;
+  border-bottom:1px solid #31535b;color:#a4bfc1;font-size:10px;letter-spacing:1.1px;
+}
+.jrv-integration-lab__topbar strong{color:#eaf4f3;font-size:10px;letter-spacing:1.3px}
+.jrv-integration-lab__dots{display:flex;gap:4px;margin-right:5px}
+.jrv-integration-lab__dots i{width:8px;height:8px;background:var(--cc-orange);border-radius:50%}
+.jrv-integration-lab__dots i:nth-child(2){background:var(--cc-teal)}
+.jrv-integration-lab__dots i:nth-child(3){background:#a9c7c8}
+.jrv-integration-lab__systems{
+  list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;padding:27px 26px 25px;margin:0;
+}
+.jrv-integration-lab__systems li{
+  position:relative;display:flex;align-items:flex-start;flex-direction:column;
+  gap:10px;padding:18px;min-height:156px;border:1px solid #38646a;
+  border-radius:11px;background:#112e35;
+}
+.jrv-integration-lab__systems li:nth-child(2){border-color:#63968e;background:#153a3c}
+.jrv-integration-lab__systems li:nth-child(3){border-color:#54767b}
+.jrv-integration-lab__systems li>svg:not(.jrv-integration-lab__system-arrow){color:#70dcd0}
+.jrv-integration-lab__systems li:nth-child(2)>svg:not(.jrv-integration-lab__system-arrow){color:#f8a87c}
+.jrv-integration-lab__system-label{color:#88c8c4;font-size:9px;letter-spacing:1px;font-weight:850}
+.jrv-integration-lab__systems strong{font-size:16px;line-height:1.25;color:#f2fbfa}
+.jrv-integration-lab__systems small{color:#abc5c8;font-size:11px;line-height:1.45}
+.jrv-integration-lab__system-arrow{
+  position:absolute;right:-20px;top:44%;z-index:1;
+  padding:2px;border-radius:50%;background:#10252d;color:var(--cc-orange);
+}
+.jrv-integration-lab__scenario{
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:23px 26px;border-top:1px solid #2f525b;border-bottom:1px solid #2f525b;
+  background:#0c222b;
+}
+.jrv-integration-lab__scenario>div:first-child>span{
+  color:#88d7cd;font-size:10px;font-weight:850;letter-spacing:1.1px;
+}
+.jrv-integration-lab__scenario p{margin:7px 0 0;color:#a8c2c4;font-size:12px;line-height:1.5}
+.jrv-integration-lab__scenario>div:last-child{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.jrv-integration-lab__scenario button{
+  padding:10px 12px;border-radius:7px;background:#132d37;border:1px solid #476970;
+  color:#d2e8e8;cursor:pointer;font:750 11px ui-sans-serif,system-ui,sans-serif;
+}
+.jrv-integration-lab__scenario button:hover{border-color:var(--cc-teal);background:#1b4245}
+.jrv-integration-lab__scenario button.is-active{
+  border-color:var(--cc-orange);background:#3e3531;color:#ffd3b6;
+}
+.jrv-integration-lab__timeline{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:8px;padding:22px 26px;
+}
+.jrv-integration-lab__timeline button{
+  padding:13px 10px;display:flex;flex-direction:column;
+  text-align:left;align-items:flex-start;gap:7px;min-height:105px;
+  border:1px solid #31545c;border-radius:8px;
+  background:#102a32;color:#b9cfd0;cursor:pointer;
+}
+.jrv-integration-lab__timeline-num{color:#7dc4c0;font-size:10px;font-weight:800}
+.jrv-integration-lab__timeline strong{font-size:12px;line-height:1.2;color:#eaf6f5}
+.jrv-integration-lab__timeline small{font-size:9px;letter-spacing:1px;color:#91aeaf;font-weight:850}
+.jrv-integration-lab__timeline button.is-selected{
+  background:#26363a;border-color:var(--cc-orange);
+}
+.jrv-integration-lab__timeline button.is-selected .jrv-integration-lab__timeline-num{color:#ffc49d}
+.jrv-integration-lab__timeline button.is-stopped{background:#402b29;border-color:#f28c52}
+.jrv-integration-lab__timeline button.is-stopped small{color:#ffb18c}
+.jrv-integration-lab__timeline button.is-passed{border-color:#348c86;background:#173437}
+.jrv-integration-lab__timeline button.is-passed small{color:#64cdc3}
+.jrv-integration-lab__timeline button:disabled{opacity:.44;cursor:not-allowed}
+.jrv-integration-lab__grid{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.93fr);
+  padding:0 26px 26px;gap:14px;align-items:stretch;
+}
+.jrv-integration-lab__detail{
+  padding:28px;border:1px solid #38656c;border-radius:12px;
+  background:radial-gradient(ellipse at 90% 0%,#38c7bc13,transparent 55%),#142d35;
+  display:flex;flex-direction:column;gap:14px;
+}
+.jrv-integration-lab__detail>span{font-size:10px;letter-spacing:1.15px;color:#85dad2;font-weight:850}
+.jrv-integration-lab__detail h3{
+  font-size:clamp(28px,2.7vw,39px);line-height:1.12;
+  letter-spacing:-.045em;font-weight:740;color:#f0fbfa;
+  margin:0;
+}
+.jrv-integration-lab__detail>p{font-size:14px;line-height:1.75;color:#bad0d3;margin:0}
+.jrv-integration-lab__event{
+  display:flex;gap:12px;padding:17px;
+  border:1px solid #39786f;border-radius:10px;background:#173b3c;
+}
+.jrv-integration-lab__event>svg{flex-shrink:0;color:var(--cc-teal)}
+.jrv-integration-lab__event strong{font-size:10px;letter-spacing:.7px;color:#e4faf6}
+.jrv-integration-lab__event p{color:#b5d1d0;font-size:12px;line-height:1.65;margin:8px 0 0}
+.jrv-integration-lab__event.is-failure{background:#382c2b;border-color:#bd775b}
+.jrv-integration-lab__event.is-failure>svg{color:var(--cc-orange)}
+.jrv-integration-lab__event.is-failure strong{color:#ffcead}
+.jrv-integration-lab__recovery{
+  border-left:3px solid var(--cc-orange);padding:12px 15px;
+  background:#302d2e;border-radius:7px;
+}
+.jrv-integration-lab__recovery strong{font-size:12px;color:#ffd5b8}
+.jrv-integration-lab__recovery p{margin:7px 0 0;font-size:12px;color:#e1d1cb;line-height:1.6}
+.jrv-integration-lab__actions{
+  display:flex;gap:9px;flex-wrap:wrap;margin-top:auto;padding-top:8px;
+}
+.jrv-integration-lab__actions button{
+  min-height:39px;padding:10px 14px;display:inline-flex;gap:8px;align-items:center;
+  justify-content:center;border-radius:7px;background:var(--cc-orange);
+  border:1px solid var(--cc-orange);color:#0b1a1d;font:800 12px ui-sans-serif,system-ui,sans-serif;
+  cursor:pointer;
+}
+.jrv-integration-lab__actions button:hover{background:#ffad7a;border-color:#ffad7a}
+.jrv-integration-lab__actions button.is-quiet{
+  background:#17363b;border-color:#48807c;color:#eaf8f6;
+}
+.jrv-integration-lab__actions button.is-quiet:hover{background:#245156}
+.jrv-integration-lab__actions button:disabled{opacity:.42;cursor:not-allowed}
+.jrv-integration-lab__inspector{
+  border:1px solid #34555e;border-radius:12px;overflow:hidden;
+  background:#07181f;display:flex;flex-direction:column;
+}
+.jrv-integration-lab__inspector-top{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:17px;border-bottom:1px solid #294b55;
+}
+.jrv-integration-lab__inspector-top span:first-child{
+  display:flex;align-items:center;gap:8px;
+  color:#86ddd3;font-size:10px;font-weight:850;letter-spacing:.65px;
+}
+.jrv-integration-lab__inspector-top span:last-child{
+  color:#f5ac83;font-size:9px;font-weight:850;letter-spacing:.7px;
+}
+.jrv-integration-lab__inspector pre{
+  margin:0;flex:1;padding:29px 20px;font:12px/1.85 ui-monospace,SFMono-Regular,Consolas,monospace;
+  color:#daedeb;white-space:pre-wrap;overflow-wrap:anywhere;
+}
+.jrv-integration-lab__inspector-status{
+  padding:16px 18px;border-top:1px solid #284b54;background:#0c242e;
+}
+.jrv-integration-lab__inspector-status span{
+  font-size:9px;letter-spacing:1.4px;color:#f0a87c;font-weight:850;
+}
+.jrv-integration-lab__inspector-status p{color:#a9c5c6;font-size:11px;line-height:1.6;margin:8px 0 0}
+.jrv-integration-lab__bottom{
+  border-bottom:0;border-top:1px solid #31535b;
+  font-size:9px;color:#8eb0b2;flex-wrap:wrap;
+}
+.jrv-integration-lab__bottom span:last-child{color:#a9e2d9}
+.jrv-integration-lab__caveat{
+  max-width:1100px;font-size:12px;color:#a9c2c4;
+  line-height:1.8;margin:22px 0 0;
+}
+.jrv-integration-lab button:focus-visible{
+  outline:3px solid var(--cc-orange);outline-offset:3px;
+}
+@media(max-width:1080px){
+  .jrv-integration-lab__systems{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .jrv-integration-lab__systems li:nth-child(2) .jrv-integration-lab__system-arrow{display:none}
+  .jrv-integration-lab__timeline{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .jrv-integration-lab__scenario{align-items:flex-start;flex-direction:column}
+  .jrv-integration-lab__scenario>div:last-child{justify-content:flex-start}
+}
+@media(max-width:760px){
+  .jrv-integration-lab{padding:58px 20px 68px}
+  .jrv-integration-lab__grid{grid-template-columns:1fr}
+  .jrv-integration-lab__systems{gap:9px;padding:18px}
+  .jrv-integration-lab__timeline{padding:18px}
+  .jrv-integration-lab__grid{padding:0 18px 18px}
+}
+@media(max-width:490px){
+  .jrv-integration-lab{padding:45px 16px 60px}
+  .jrv-integration-lab__intro h2{font-size:36px}
+  .jrv-integration-lab__intro>p{font-size:14px}
+  .jrv-integration-lab__topbar{padding:13px;gap:8px}
+  .jrv-integration-lab__topbar strong{font-size:9px;letter-spacing:.6px}
+  .jrv-integration-lab__topbar>span:last-child{display:none}
+  .jrv-integration-lab__systems{padding:13px}
+  .jrv-integration-lab__systems li{padding:12px;gap:8px;min-height:135px}
+  .jrv-integration-lab__systems strong{font-size:13px}
+  .jrv-integration-lab__systems small{font-size:10px}
+  .jrv-integration-lab__system-label{font-size:8px}
+  .jrv-integration-lab__scenario{padding:16px}
+  .jrv-integration-lab__scenario button{font-size:10px;padding:9px}
+  .jrv-integration-lab__timeline{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:14px}
+  .jrv-integration-lab__timeline button{padding:9px 7px;min-height:91px}
+  .jrv-integration-lab__timeline strong{font-size:10px}
+  .jrv-integration-lab__timeline small{font-size:8px;letter-spacing:.3px}
+  .jrv-integration-lab__grid{padding:0 13px 13px;gap:9px}
+  .jrv-integration-lab__detail{padding:18px}
+  .jrv-integration-lab__detail h3{font-size:29px}
+  .jrv-integration-lab__inspector pre{padding:18px 12px;font-size:10px}
+  .jrv-integration-lab__bottom{padding:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .jrv-integration-lab *, .jrv-integration-lab *::before, .jrv-integration-lab *::after{
+    transition:none!important;animation:none!important;transform:none!important;
+  }
+}

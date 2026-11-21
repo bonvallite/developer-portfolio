@@ -92,6 +92,13 @@ test('storytelling and lead capture are interactive without collecting visitor d
   assert.match(dock, /mailto:hello@jrvallite\.com/);
 });
 
+// Guard that choosing another approach stage announces its heading only,
+// rather than re-reading the entire decorative workflow to screen readers.
+test('journey only announces its selected step heading when changed', () => {
+  assert.match(journey, /<h3 aria-live="polite" aria-atomic="true">\{active\.title\}<\/h3>/);
+  assert.doesNotMatch(journey, /<div className="jrv2-journey-display" aria-live=/);
+});
+
 test('common response headers reduce referrer, framing and device exposure', () => {
   assert.match(headers, /'Referrer-Policy', value: 'no-referrer'/);
   assert.match(headers, /'X-Content-Type-Options', value: 'nosniff'/);

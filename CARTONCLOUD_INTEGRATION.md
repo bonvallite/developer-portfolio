@@ -70,6 +70,12 @@ The screenshot itself is excluded because it shows production order identifiers 
 5. Check timezone, date formatting and customer-facing ETA wording.
 6. Document the currently deployed Worker version, integration ownership and rollback procedure in the private operational runbook.
 
+## Public portfolio enquiry and hiring routes
+
+The results section offers a direct fixed `mailto:` link for Shopify app and API integration enquiries, an internal `/experience` hiring link, retained documentation, and other portfolio projects. No visitor form, CRM, API submission, tracking event, customer record or private Worker code is added. Email delivery remains the visitor's mail-client responsibility, not an action performed by the portfolio.
+
+The route-scoped visual presentation retains JRV obsidian, electric teal and ember orange. Evidence labels are teal; the unresolved verification item is orange. On tablet and phone widths the panel becomes one column. The primary action remains at least 48px high with a visible focus ring. The GitHub browser suite checks link destinations, touch-target height, responsive columns, and the existing simulator and privacy opt-out. A final Vercel preview and manual screen-reader/touch review are still required before release.
+
 ## Public showcase
 
 See [the CartonCloud case study](./app/cartoncloud-integration/page.tsx) in the Next.js portfolio, subject to deployment validation. All diagrams and terminology are independently reconstructed from the project description; no private implementation or live customer data is supplied.

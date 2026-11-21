@@ -1,5 +1,55 @@
 # Portfolio changelog
 
+## 2026-11-22 - Assemble combined JRV release candidate and reconcile browser checks
+
+- **Target:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, derived from main `ac519c363bb303249adc911d0600679857df4a8d`. Draft only, no production publication.
+- **Affected files:** 21 code/test/documentation files copied exactly from PRs #83, #92, #93 and #94; `.github/workflows/portfolio-ci.yml`; `CHANGELOG.md`; `docs/portfolio-release-candidate-2026-11-22.md`.
+- **What and why:** Verify all four cinematic portfolio updates in a single integrated build before publication. The source PRs individually pass but change the same CI workflow and changelog; this release candidate unites browser checks without overwriting unrelated main code.
+- **Inline documentation:** Existing comments remain intact in the exact source blobs. Added explanatory comments in the shared CI job, and release-candidate notes with exact SHA provenance, limitations and manual acceptance criteria.
+- **Validation:** Checked latest main, source PR file lists and blob SHAs, unique non-overlapping source paths, preserved validation/safety steps and screenshot paths. Fresh GitHub Actions and exact-commit Vercel integrated preview are pending.
+- **Release:** Keep all original PRs open and this candidate unmerged until CI, visual, responsive, privacy, accessibility and performance reviews pass and final publication is approved. No private Shopify theme or Worker code edited.
+
+## 2026-11-21 - Preserve focused homepage screen-reader announcements after homepage redesign
+
+- **Target:** Public portfolio repository `bonvallite/developer-portfolio`; branch `fix/home-journey-screen-reader-announcements`, PR #83. No Shopify theme files changed.
+- **Affected files:** `app/components/HomeJourney.tsx`, `tests/cinematic-home.test.mjs`, `tests/homepage-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, and `CHANGELOG.md`.
+- **Change:** Integrate the existing PR #83 accessibility fix with the latest `main` homepage, preserving its newer four-mode interactive project studio and existing SEO/privacy checks. Move the journey's polite atomic announcement from the entire display to its selected H3, while leaving the descriptive and diagram content readable normally. Add source and Enter/Space browser regression checks at four viewport widths; include accessibility-fix PRs in the existing browser QA job.
+- **Why:** The previous parent live region could repeatedly announce an entire decorative workflow on a step change, and PR #83's earlier code conflicted with subsequently merged homepage and CI improvements.
+- **Inline documentation:** Updated `HomeJourney.tsx` and both affected test comments to explain live announcement ownership and how keyboard behaviour is verified. Updated the CI job comment to reflect the newly included branch family.
+- **Validation:** Reviewed the original PR #83 diff, current main sources, test coverage and CI workflow. Inspected exact file replacements against current main before constructing the merge; the refreshed GitHub Actions checks are pending until the new PR head is published. Prior PR #83 commit `aec1540` passed its GitHub validation and desktop/tablet/mobile browser checks before `main` advanced, but that evidence does not validate the new merged head.
+- **Open checks:** Require fresh green GitHub Actions results and saved screenshots on the new head. Actual NVDA/VoiceOver speech needs manual testing; a source test alone cannot certify screen-reader output. No new Vercel API call or production deployment is requested during the daily quota restriction. Vercel Git integration could independently attempt a preview on push.
+- **Release and recovery:** Keep this PR unmerged until revalidation and review. Revert via the PR branch history; production `main` and domain aliases are unchanged by this branch operation.
+
+## 2026-11-21 - Improve CartonCloud enquiry pathways and remove remaining gold labels
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, draft PR #92 `feature/cartoncloud-event-studio-20261121`. No Shopify theme changes.
+- **Files:** `app/cartoncloud-integration/page.tsx`, `app/cartoncloud-integration/cartoncloud-showcase.css`, `tests/cartoncloud-event-studio-browser-qa.mjs`, `tests/cartoncloud-story.test.mjs`, `CARTONCLOUD_INTEGRATION.md`, and `CHANGELOG.md`.
+- **Change and reason:** Close the engineering case study with a relevant integration enquiry and a separate hiring pathway, rather than prioritising only further reading. Preserve the technical documentation and other-projects links. Use a fixed `mailto:` subject, readable 48px primary links, one-column tablet/phone presentation and clearly qualified claims. Replace legacy gold Tailwind labels with teal evidence styling and ember colouring for open verification, consistent with the cinematic JRV identity.
+- **Documentation:** Updated nearby page/stylesheet comments, source and responsive browser tests, and public integration documentation. No form, CRM, analytics tag, external API, new runtime dependency, client order, or private Worker data was introduced.
+- **Validation:** Inspected current PR and target sources, relevant CSS, browser/source assertions and documentation. Constructed changes against the verified original branch head; reviewed static preservation checks for the integration studio, evidence boundaries and other links. Added browser tests for the exact mailto/hiring destinations, action height, responsive grid and existing link retention, plus source safety checks. Fresh CI, screenshots and final-commit preview remain pending; prior green CI applies only to the preceding SHA.
+- **Release/recovery:** Retain this draft and do not merge or manually invoke Vercel. GitHub-connected pushes might independently attempt a preview. Manual visual and assistive-technology checks remain open. Revert through PR history if validation fails.
+
+## 2026-11-21 - Add project and hiring enquiry pathways to Python Analytics Lab
+
+- **Target / branch:** `bonvallite/developer-portfolio`, `feature/python-analytics-story-studio-20261121`, draft PR #93. No Shopify theme or live portfolio release.
+- **Affected files:** `app/analytics-lab/page.tsx`, `app/analytics-lab/analytics-studio.css`, `tests/analytics-lab-browser-qa.mjs`, `tests/analytics-studio.test.mjs`, `CHANGELOG.md`.
+- **What changed:** Add a purpose-built, two-audience end-of-story enquiry panel: a fixed `mailto:hello@jrvallite.com` analytics/CRO project enquiry, a direct internal `/experience` hiring path, and an illustrative three-step definition/validation/handover summary. Use route-only teal/ember/obsidian styling with 48px minimum link targets, responsive one-column mobile layout, and clear fictional-evidence boundaries. Preserve existing archive links, CSV download, reconciliation, privacy note, and other-projects footer link.
+- **Why:** The lab previously finished with technical reading links and an "Other projects" footer, leaving employers and prospective clients without a dedicated, obvious next step.
+- **Inline documentation:** Update React's file and panel comments and CSS scope/constraints; document contact safety and responsive assertions in both browser and source tests.
+- **Validation performed:** Inspected the current PR #93, page, route/legacy CSS, source and Playwright tests, existing documentation, and changelog. Prepared exact, unique replacements and static preservation checks on the verified branch head. Re-read the saved tests, corrected the browser grid parser to match whitespace, and simplified source assertions to literal link/route checks before relying on CI. New GitHub Actions tests, screenshots, and any release preview are pending the final commit; previous successful CI cannot validate a new SHA.
+- **Security and disclosure:** No form, tracking listener, external script, CRM, analytics API, client data, or new dependency. The email link is a browser `mailto:` action and does not claim delivery or lead collection. The three-step pathway is illustrative, not a verified project outcome.
+- **Release / recovery:** Keep PR #93 draft and unmerged. Do not call Vercel until the deployment allowance and final-commit preview plan permit it. Revert via PR commit if checks fail; current `main` and production aliases remain unchanged. Github-connected pushes may independently request a Vercel preview.
+
+## 2026-11-21 - Improve mobile B2B demonstration context controls
+
+- **Target / branch:** Public JRV portfolio, `bonvallite/developer-portfolio`, `feature/b2b-entitlement-story-20261121` (PR #94). No Shopify theme changes or deployment.
+- **Affected files:** `app/b2b-modernisation/b2b-showcase.css`, `tests/b2b-entitlement-story-browser-qa.mjs`, `docs/b2b-portfolio-story-2026-11-21.md`, `CHANGELOG.md`.
+- **What changed:** Replace tiny 8px context-switch text with 12px and 44px-high interactive targets; reflow the four fictional retail/B2B contexts into a two-by-two grid at phone widths of 480px and below. Improve caption legibility and add browser assertions for computed sizes, overflow, grid shape and Space-key activation.
+- **Why:** Improve the visual consistency, readability, and motor accessibility of the B2B hero on narrow phones without changing shared pricing or entitlement state.
+- **Inline documentation:** Explain the min-size decision and responsive rule in route-scoped CSS; explain actual runtime assertions in the Playwright test and update the source-linked project documentation.
+- **Validation:** Inspected the existing component, legacy and overriding styles, test suite, source notes, and current branch. Constructed changes against the exact branch head with unique patch markers and static preservation assertions. Re-read the saved browser suite and corrected its CSS grid-column parser to match whitespace instead of a literal backslash sequence before accepting the result. Fresh GitHub Actions browser/CI checks remain pending until the new commit runs; the old green run applies only to the prior SHA.
+- **Release boundary:** Keep PR #94 as draft and unmerged. Vercel previews and production remain on hold until the external deployment quota allows a final-commit preview. The GitHub integration may independently attempt previews on branch updates. Manual device/assistive-technology validation and comparison to CI screenshots remain open.
+
 ## 2026-11-20 - Back up and rebuild the cinematic JRV portfolio on a protected branch
 
 - **Scope:** `bonvallite/developer-portfolio`; backup `backup/2026-11-20-pre-cinematic-rebuild` at `cbb656e9`; proposed branch `redesign/2026-11-20-cinematic-portfolio`. Production unchanged until review.
