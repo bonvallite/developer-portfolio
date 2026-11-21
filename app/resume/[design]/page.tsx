@@ -5,10 +5,12 @@ import { contact, summary, skills, experience, projects, education } from '../re
 export function generateStaticParams(){return [{design:'classic'},{design:'modern'},{design:'ats'}];}
 // Keep the two designs synchronized through a common data module, including
 // the owner-approved February 2026 career transition and American English.
+// PDF/Word links declare only whitelisted design/format markers for optional
+// consent-gated click counting; no résumé content is included in events.
 export default async function ResumePreview({params}:{params:Promise<{design:string}>}){
  const {design}=await params;if(design!=='classic'&&design!=='modern'&&design!=='ats')notFound();
  const classic=design==='classic';
- return <main className={'resume-preview '+(classic?'is-classic':'is-modern')}><div className="resume-preview-tools"><Link href="/resume"><ArrowLeft size={15}/> Résumé downloads</Link><div><a href={'/resume/'+design+'/pdf'}><FileDown size={16}/> Download {classic?'Classic':'ATS-Friendly'} PDF</a><a href={'/resume/'+design+'/word'}><FilePenLine size={16}/> Editable Word</a><span className="resume-print-label"><Printer size={16}/> Browser Print / Save as PDF available</span></div></div>
+ return <main className={'resume-preview '+(classic?'is-classic':'is-modern')}><div className="resume-preview-tools"><Link href="/resume"><ArrowLeft size={15}/> Résumé downloads</Link><div><a href={'/resume/'+design+'/pdf'} data-jrv-track="resume" data-jrv-design={classic ? 'classic' : 'ats'} data-jrv-format="pdf"><FileDown size={16}/> Download {classic?'Classic':'ATS-Friendly'} PDF</a><a href={'/resume/'+design+'/word'} data-jrv-track="resume" data-jrv-design={classic ? 'classic' : 'ats'} data-jrv-format="word"><FilePenLine size={16}/> Editable Word</a><span className="resume-print-label"><Printer size={16}/> Browser Print / Save as PDF available</span></div></div>
  <article className={'resume-paper '+(classic?'paper-classic':'paper-modern')}>
   <header className="resume-paper-header"><span className="resume-monogram">JRV</span><h1>{contact.name}</h1><h2>{contact.title}</h2><p>{contact.focus}</p><div className="resume-contact"><a href={'mailto:'+contact.email}>{contact.email}</a><a href={'tel:'+contact.phone.replace(/\s/g,'')}>{contact.phone}</a><a href={'https://'+contact.portfolio}>{contact.portfolio}</a><a href={'https://'+contact.linkedin}>{contact.linkedin}</a></div></header>
   <div className="resume-paper-grid"><div className="resume-main-col">
