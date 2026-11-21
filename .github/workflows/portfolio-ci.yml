@@ -39,10 +39,10 @@ jobs:
 
 
   case-study-browser-qa:
-    # Run browser QA for reviewed case studies, cinematic redesigns,
-    # privacy-sensitive analytics and content-audit fixes. Unit/SEO/safety
-    # checks still run for all pull requests.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-'))
+    # Run browser QA for reviewed case studies, cinematic projects, privacy
+    # changes, content-audit fixes and interactive homepage studio PRs.
+    # Unit/SEO/safety checks still run for all pull requests.
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-'))
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -72,7 +72,7 @@ jobs:
       - name: Desktop tablet and mobile interaction checks
         run: node tests/case-study-browser-qa.mjs
       - name: Cinematic homepage layout, privacy and conversion QA
-        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-')
+        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-')
         run: node tests/homepage-browser-qa.mjs
       # Check consent rejection, acceptance and withdrawal on real browser links
       # using only fictional text and no external analytics/lead submissions.
