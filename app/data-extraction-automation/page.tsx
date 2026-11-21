@@ -10,8 +10,10 @@ import VisualDemo from './visual-demo';
 // source archive contains owner-supplied Python scripts with known identifiers
 // replaced; it is not production-ready or evidence of successful API exports.
 // Do not claim Shopify GraphQL was part of these verified extractions.
+// 21 Nov crawl: the shorter title accommodates the root ' | JRV' suffix;
+// the longer case study still explains the 12-month historical brief.
 export const metadata: Metadata = {
-  title: '12-Month Ecommerce Data Engineering | Analytics & API Automation',
+  title: 'Ecommerce Data Engineering | Python & APIs',
   description: 'Explore a visual ecommerce data architecture, interactive reporting mock-up and source-safe Python and JavaScript API extraction workflows.',
   alternates: { canonical: '/data-extraction-automation' },
 };
