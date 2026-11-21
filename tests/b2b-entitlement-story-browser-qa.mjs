@@ -55,7 +55,7 @@ try {
         viewport.name + ': context label clips horizontally');
     }
     const gridColumns = await heroControls.evaluate(group =>
-      window.getComputedStyle(group).gridTemplateColumns.trim().split(/\\s+/).length
+      window.getComputedStyle(group).gridTemplateColumns.trim().split(/\s+/).length
     );
     assert.equal(gridColumns, viewport.width <= 480 ? 2 : 4,
       viewport.name + ': expected legible context-grid reflow');
