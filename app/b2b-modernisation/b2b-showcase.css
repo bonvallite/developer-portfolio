@@ -190,6 +190,13 @@
 .cb2b .cb2b-footer p:not(.cb2b-kicker){color:#bfd5d5}
 .cb2b .cb2b-related-link{color:#9de4db}
 .cb2b .cb2b-related-link:hover{color:#ffb88e}
+/* Keyboard-visible focus is specified here as well as in the inherited CSS
+ * so the new interactive contexts remain accessible if legacy styles change. */
+.cb2b .cb2b-hero-switch button:focus-visible,
+.cb2b .cb2b-system button:focus-visible,
+.cb2b .cb2b-system-code pre:focus-visible{
+  outline:3px solid #f28c52;outline-offset:3px;
+}
 /* Source inspector: selecting technical stages never changes merchant data. */
 .cb2b .cb2b-system-lead{margin:45px 0 23px}
 .cb2b .cb2b-system-lead>span{font-size:10px;letter-spacing:1.25px;color:#88e4d9;font-weight:850}
