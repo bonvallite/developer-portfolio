@@ -97,7 +97,10 @@ try {
     await quantities.nth(1).fill('2');
     await quantities.nth(2).fill('0');
     await page.getByText('5.40 kg', { exact: true }).waitFor();
-    await page.getByText('$163.40', { exact: false }).waitFor();
+    // Restrict the calculation assertion to the live order summary; the
+    // explanatory worked example intentionally repeats the same price.
+    await page.locator('section[aria-live="polite"]')
+      .getByText('Total: $163.40', { exact: true }).waitFor();
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3),
       false, viewport.name + ': B2B simulator horizontal overflow');
 
