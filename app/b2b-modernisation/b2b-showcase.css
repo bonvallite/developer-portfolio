@@ -81,9 +81,11 @@
   display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
   gap:5px;margin-top:18px;padding:0;border:0;
 }
+/* These are actual context controls, not decorative micro-labels. Preserve
+ * a readable 12px label and at least a 44px touch target at every viewport. */
 .cb2b .cb2b-hero-switch button{
-  min-width:0;min-height:38px;padding:8px 4px;
-  color:#cce5e4;font-size:9px;letter-spacing:.15px;font-weight:800;
+  min-width:0;min-height:44px;padding:10px 6px;
+  color:#cce5e4;font-size:12px;letter-spacing:.15px;font-weight:800;
   border:1px solid #4c7479;border-radius:6px;
   background:#102b36;cursor:pointer;
 }
@@ -91,7 +93,7 @@
 .cb2b .cb2b-hero-switch button[aria-pressed=true]{
   border-color:#f28c52;background:#44312b;color:#ffdfc7;
 }
-.cb2b .cb2b-hero-caption{color:#a5c5c6;font-size:10px;line-height:1.55;margin:12px 0 0}
+.cb2b .cb2b-hero-caption{color:#b8d3d3;font-size:12px;line-height:1.6;margin:12px 0 0}
 .cb2b .cb2b-metrics{border-bottom-color:#385e66;gap:16px}
 .cb2b .cb2b-metrics strong{color:#f3b288}
 .cb2b .cb2b-metrics span{color:#b0cbcb}
@@ -311,7 +313,9 @@
  .cb2b .cb2b-float-card{padding:18px}
  .cb2b .cb2b-float-card>strong{font-size:27px}
  .cb2b .cb2b-float-card>strong em{font-size:37px}
- .cb2b .cb2b-hero-switch button{font-size:8px}
+ /* Two columns retain legible labels and 44px targets on narrow phones.
+  * The four desktop contexts remain in a single row above this breakpoint. */
+ .cb2b .cb2b-float-card>div.cb2b-hero-switch{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
  .cb2b .cb2b-system-chrome{padding:13px;gap:5px}
  .cb2b .cb2b-system-chrome strong{font-size:9px;letter-spacing:.5px}
  .cb2b .cb2b-system-chrome>span:last-child{display:none}

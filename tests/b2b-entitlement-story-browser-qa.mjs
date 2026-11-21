@@ -2,6 +2,8 @@
 // Never connects to Shopify, company accounts, catalogues or checkout. Tests
 // verify that hero market selection, architecture, entitlement and price lab
 // respond to one shared React state; also capture three viewport screenshots.
+// The context selector is an interactive control: check readable type, minimum
+// touch-target size, two-column mobile reflow, and keyboard activation.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -36,6 +38,27 @@ try {
     const heroControls = hero.getByRole('group', { name: 'Choose hero pricing context' });
     assert.equal(await heroControls.getByRole('button').count(), 4,
       viewport.name + ': four selectable fictional markets');
+    // Protect against the old 8px phone labels and 38px context controls.
+    // Check the rendered CSS rather than relying only on stylesheet source.
+    const controlMetrics = await heroControls.getByRole('button').evaluateAll(buttons =>
+      buttons.map(button => {
+        const box = button.getBoundingClientRect();
+        const style = window.getComputedStyle(button);
+        return { height: box.height, fontSize: Number.parseFloat(style.fontSize),
+          scrollWidth: button.scrollWidth, clientWidth: button.clientWidth };
+      })
+    );
+    for (const metric of controlMetrics) {
+      assert.ok(metric.height >= 44, viewport.name + ': context target smaller than 44px');
+      assert.ok(metric.fontSize >= 12, viewport.name + ': context label smaller than 12px');
+      assert.ok(metric.scrollWidth <= metric.clientWidth + 1,
+        viewport.name + ': context label clips horizontally');
+    }
+    const gridColumns = await heroControls.evaluate(group =>
+      window.getComputedStyle(group).gridTemplateColumns.trim().split(/\\s+/).length
+    );
+    assert.equal(gridColumns, viewport.width <= 480 ? 2 : 4,
+      viewport.name + ': expected legible context-grid reflow');
     const inspector = page.getByLabel('Interactive Shopify B2B architecture inspector');
     await inspector.waitFor({ state: 'visible' });
     assert.equal(await inspector.locator('.cb2b-system-stages button').count(), 4,
@@ -43,6 +66,12 @@ try {
 
     // Hero selection controls the same state that drives catalogue resolution,
     // sample pricing and the new inspector. No company ID or API is involved.
+    // Native buttons must remain keyboard operable after the reflow.
+    const keyboardContext = heroControls.getByRole('button', { name: 'B2B 01' });
+    await keyboardContext.focus();
+    await page.keyboard.press('Space');
+    assert.equal(await keyboardContext.getAttribute('aria-pressed'), 'true',
+      viewport.name + ': keyboard activates an illustrative company context');
     await heroControls.getByRole('button', { name: 'B2B 02' }).click();
     assert.equal(await heroControls.getByRole('button', { name: 'B2B 02' }).getAttribute('aria-pressed'),
       'true', viewport.name + ': selected hero market');
