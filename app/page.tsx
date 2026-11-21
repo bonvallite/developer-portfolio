@@ -12,6 +12,8 @@ import './cinematic-home.css';
 // 2026-11-20 Ember & Teal iteration. Public copy is service-led and intentionally
 // avoids personal-name SEO, private account identifiers and invented outcomes.
 // Project descriptions distinguish demonstrated interfaces from verified work.
+// Featured case-study links and the public footer email carry optional,
+// consent-gated, fixed-value click markers without exposing URL or message data.
 // The previous site remains recoverable at backup/2026-11-20-pre-cinematic-rebuild.
 export const metadata: Metadata = {
   title: 'Shopify Developer, Ecommerce Management & CRO',
@@ -157,7 +159,7 @@ export default function Home() {
               <div className="jrv2-case-content">
                 <h3>{item.title}</h3><p className="jrv2-case-lede">{item.intro}</p>
                 <div className="jrv2-case-story"><div><span>THE CHALLENGE</span><p>{item.challenge}</p></div><div><span>THE RESPONSE</span><p>{item.response}</p></div></div>
-                <div className="jrv2-case-bottom"><span className="jrv2-case-note">{item.note}</span><Link href={item.href} className="jrv2-case-link">{item.link} <MoveUpRight size={16} aria-hidden="true"/></Link></div>
+                <div className="jrv2-case-bottom"><span className="jrv2-case-note">{item.note}</span><Link href={item.href} className="jrv2-case-link" data-jrv-track="case" data-jrv-case={item.visual}>{item.link} <MoveUpRight size={16} aria-hidden="true"/></Link></div>
               </div>
             </article>)}
           </div>
@@ -206,7 +208,7 @@ export default function Home() {
       </div></section>
     </div>
     <footer className="jrv2-footer"><div className="jrv2-wrap">
-      <div className="jrv2-footer-top"><div><a className="jrv2-wordmark" href="#home" aria-label="JRV, back to top"><span>{'{JRV}'}</span></a><p>Commerce engineering for thoughtful Shopify experiences and reliable operations.</p></div><div className="jrv2-footer-links"><div><strong>EXPLORE</strong><Link href="/experience">Experience</Link><Link href="/editorial-homepage-demo">Storefront demo</Link><Link href="/data-extraction-automation">Data engineering</Link><Link href="/shopify-flow">Shopify Flow</Link></div><div><strong>CONNECT</strong><a href="mailto:hello@jrvallite.com">Email</a><Link href="/resume">Résumé designs</Link><a href="https://www.linkedin.com/in/bonvallite/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://g.dev/bonvallite" target="_blank" rel="noopener noreferrer">Google Developer</a><a href="https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite" target="_blank" rel="noopener noreferrer">Wikipedia contributions</a></div><div><strong>ACCOUNT / LEGAL</strong><Link href="/privacy">Privacy & analytics</Link><Link href="/experience#training">Professional training</Link><a href="https://webmail.jrvallite.com/" target="_blank" rel="noopener noreferrer nofollow">Webmail login</a></div></div></div>
+      <div className="jrv2-footer-top"><div><a className="jrv2-wordmark" href="#home" aria-label="JRV, back to top"><span>{'{JRV}'}</span></a><p>Commerce engineering for thoughtful Shopify experiences and reliable operations.</p></div><div className="jrv2-footer-links"><div><strong>EXPLORE</strong><Link href="/experience">Experience</Link><Link href="/editorial-homepage-demo">Storefront demo</Link><Link href="/data-extraction-automation">Data engineering</Link><Link href="/shopify-flow">Shopify Flow</Link></div><div><strong>CONNECT</strong><a href="mailto:hello@jrvallite.com" data-jrv-track="email" data-jrv-intent="general" data-jrv-source="footer">Email</a><Link href="/resume">Résumé designs</Link><a href="https://www.linkedin.com/in/bonvallite/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://g.dev/bonvallite" target="_blank" rel="noopener noreferrer">Google Developer</a><a href="https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite" target="_blank" rel="noopener noreferrer">Wikipedia contributions</a></div><div><strong>ACCOUNT / LEGAL</strong><Link href="/privacy">Privacy & analytics</Link><Link href="/experience#training">Professional training</Link><a href="https://webmail.jrvallite.com/" target="_blank" rel="noopener noreferrer nofollow">Webmail login</a></div></div></div>
       <div className="jrv2-footer-bottom"><span>© {new Date().getFullYear()} JRV / SHOPIFY COMMERCE ENGINEERING</span><span>NO CLIENT DATA IN THE DEMOS</span><a href="#home">BACK TO TOP ↑</a></div>
     </div></footer>
   </main>;
