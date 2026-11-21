@@ -106,6 +106,16 @@ try {
       .getByRole('button', { name: 'Purchase funnel' }).click();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3);
     assert.equal(overflow, false, viewport.name + ': no page-wide horizontal overflow');
+    if (viewport.width <= 490) {
+      const code = await studio.locator('.al-studio-source-window pre').evaluate(el => ({
+        whitespace: getComputedStyle(el).whiteSpace,
+        width: el.clientWidth,
+        contentWidth: el.scrollWidth,
+      }));
+      assert.equal(code.whitespace, 'pre-wrap', 'Python code must wrap on narrow phones');
+      assert.ok(code.contentWidth <= code.width + 3,
+        'Python source content should be visible without sideways mobile scrolling');
+    }
     assert.deepEqual(errors, [], viewport.name + ': no client runtime errors');
     await page.evaluate(() => {
       if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
