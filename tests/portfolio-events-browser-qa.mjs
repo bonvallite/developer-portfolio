@@ -44,6 +44,9 @@ try {
     const fictionalBrief = 'Fictional QA brief: never log this visitor-entered text.';
     await page.locator('#jrv2-project-brief').fill(fictionalBrief);
     const draft = page.getByRole('link', { name: /Open email draft/ });
+    const visibleHref = await draft.getAttribute('href');
+    assert.equal(visibleHref?.includes(encodeURIComponent(fictionalBrief)), false,
+      size.name + ': typed brief must not be present in a click-tracked link URL');
 
     // A click before accepting and another after rejecting create no event.
     await draft.click();
