@@ -35,7 +35,7 @@ test('event studio stops at invalid sender or failed Shopify write', () => {
   assert.match(studio, /setStep\(stopAt === null \? index : Math\.min\(index, stopAt\)\)/);
   assert.match(studio, /Inspect safe recovery/);
   assert.match(studio, /No downstream write or success notification is represented/);
-  assert.match(studio, /not a live API trace/i);
+  assert.match(studio, /not deployed Worker source or a live API trace/i);
   assert.match(studio, /aria-pressed=\{scenario === option\.key\}/);
   assert.match(studio, /aria-live="polite" aria-atomic="true"/);
 });
