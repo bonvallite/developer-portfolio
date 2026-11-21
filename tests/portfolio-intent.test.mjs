@@ -33,6 +33,9 @@ test('all first-party contact and download paths use fixed event markers', () =>
   const resumes = read('app/resume/page.tsx');
   const preview = read('app/resume/[design]/page.tsx');
   assert.match(lead, /data-jrv-track="email"/);
+  assert.match(lead, /href=\{safeMailto\} onClick=\{openDraft\}/);
+  assert.match(lead, /window\.location\.assign\(mailto\)/);
+  assert.match(lead, /if \(event\.defaultPrevented \|\| !brief\.trim\(\)\) return/);
   assert.match(lead, /data-jrv-source="homepage_form"/);
   assert.match(service, /data-jrv-source="service_page"/);
   assert.match(dock, /data-jrv-source="case_dock"/);
