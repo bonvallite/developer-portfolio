@@ -39,9 +39,9 @@ jobs:
 
 
   case-study-browser-qa:
-    # Run browser QA for reviewed case studies and cinematic/Ember & Teal redesign PRs.
-    # The broad unit, SEO and public-safety checks still run for every PR.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio')
+    # Run browser QA for reviewed case studies, cinematic redesigns and
+    # privacy-sensitive enquiry analytics PRs. Unit/SEO/safety run for all PRs.
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-'))
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -71,8 +71,13 @@ jobs:
       - name: Desktop tablet and mobile interaction checks
         run: node tests/case-study-browser-qa.mjs
       - name: Cinematic homepage layout, privacy and conversion QA
-        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio'
+        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-')
         run: node tests/homepage-browser-qa.mjs
+      # Check consent rejection, acceptance and withdrawal on real browser links
+      # using only fictional text and no external analytics/lead submissions.
+      - name: Consent-first portfolio event privacy QA
+        if: startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-')
+        run: node tests/portfolio-events-browser-qa.mjs
       - name: Python analytics lab desktop tablet and mobile QA
         if: github.head_ref == 'feature/ember-teal-interactive-portfolio'
         run: node tests/analytics-lab-browser-qa.mjs

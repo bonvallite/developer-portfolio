@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowUpRight, Download, FileText, FilePenLine } from 'lucide
 // Only two primary downloads are offered. The ATS-friendly version uses a
 // standard, single-column reading order; Classic uses teal editorial accents.
 // Word files and online previews remain secondary, accessible links.
+// Downloads expose only approved design/format click markers for optional
+// consent-gated measurement; they do not imply a completed download or hire.
 // Career content is defined once in resume-data.ts. Exports accurately credit
 // the owner as author and the JRV portfolio as the document export service.
 const choices = [
@@ -37,12 +39,12 @@ export default function ResumeIndex() {
      <div className={'resume-choice-icon '+item.className}><FileText size={26} aria-hidden="true"/></div>
      <h2>{item.label}</h2>
      <p>{item.description}</p>
-     <a className="resume-action resume-action-primary" href={'/resume/'+item.route+'/pdf'}>
+     <a className="resume-action resume-action-primary" href={'/resume/'+item.route+'/pdf'} data-jrv-track="resume" data-jrv-design={item.route} data-jrv-format="pdf">
        <Download size={17} aria-hidden="true"/> Download {item.route==='ats'?'ATS-Friendly':'Classic'} Résumé
      </a>
      <div className="resume-secondary-links">
        <Link href={'/resume/'+item.route}>View online <ArrowUpRight size={14}/></Link>
-       <a href={'/resume/'+item.route+'/word'}><FilePenLine size={14}/> Editable Word</a>
+       <a href={'/resume/'+item.route+'/word'} data-jrv-track="resume" data-jrv-design={item.route} data-jrv-format="word"><FilePenLine size={14}/> Editable Word</a>
      </div>
    </article>)}
   </section>

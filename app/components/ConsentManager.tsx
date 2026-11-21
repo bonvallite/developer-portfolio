@@ -3,10 +3,13 @@
 import { useEffect, useState } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 import './consent-manager.css';
+import { reportPortfolioClick } from './portfolio-intent-events';
 
 // Optional analytics are OFF until the visitor explicitly accepts.
 // The choice is stored only in this browser. This manager does not collect
 // contact forms, customer records or session recordings by itself.
+// Explicit portfolio link markers can produce fixed, non-PII click-intent
+// events through GTM only after consent. No clicks are confirmed enquiries.
 // Reversing an accepted choice reloads the page because already-loaded external
 // vendor scripts cannot be reliably unloaded in a running document.
 const storageKey = 'jrv-optional-analytics-consent-v1';
@@ -50,6 +53,20 @@ export default function ConsentManager() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    // Delegation covers server-rendered links and client-side route transitions
+    // without turning every portfolio page into a client component. Never read
+    // link hrefs or submitted text: mailto URLs may contain visitor messages.
+    const onTrackedClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const link = target.closest('a[data-jrv-track]');
+      if (link) reportPortfolioClick(link);
+    };
+    document.addEventListener('click', onTrackedClick, true);
+    return () => document.removeEventListener('click', onTrackedClick, true);
+  }, []);
+
+  useEffect(() => {
     let previous: string | null = null;
     try { previous = window.localStorage.getItem(storageKey); } catch { /* Storage may be blocked. */ }
     const stored: Choice = previous === 'accepted' ? 'accepted' : previous === 'rejected' ? 'rejected' : 'unresolved';
@@ -78,7 +95,7 @@ export default function ConsentManager() {
   return <>
     {choice === 'accepted' && <Analytics />}
     {open && <section className="jrv-consent" aria-label="Optional website analytics preferences">
-      <div><strong>Your privacy. Your choice.</strong><p>Essential site functions work without analytics. With your permission, this portfolio loads Google Tag Manager, Microsoft Clarity and Vercel Analytics. No optional analytics runs before you opt in. <a href="/privacy">Read the privacy notice</a>.</p></div>
+      <div><strong>Your privacy. Your choice.</strong><p>Essential site functions work without analytics. With your permission, this portfolio loads Google Tag Manager, Microsoft Clarity and Vercel Analytics, and may count clicks on enquiry emails, résumé downloads and featured projects. Clicks are not confirmed enquiries. No optional analytics runs before you opt in. <a href="/privacy">Read the privacy notice</a>.</p></div>
       <div className="jrv-consent-actions">
         <button type="button" onClick={() => choose('rejected')}>Reject optional</button>
         <button type="button" className="jrv-consent-accept" onClick={() => choose('accepted')}>Allow analytics</button>
