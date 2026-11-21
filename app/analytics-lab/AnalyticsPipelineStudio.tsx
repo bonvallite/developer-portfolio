@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight, BookOpenText, Braces, CheckCircle2, Code2,
-  Database, Download, FileCheck2, GitBranch, ShieldCheck,
+  Database, FileCheck2, ShieldCheck,
 } from 'lucide-react';
 
 // A public educational inspector, not a Python runtime or data connector.
