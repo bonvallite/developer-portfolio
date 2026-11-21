@@ -21,11 +21,14 @@ allowlist and consent gate live in app/components/portfolio-intent-events.ts.
   form input, visitor-entered project briefs, link text or résumé content.
 - It pushes fixed fields to the existing consent-gated GTM dataLayer and
   makes no network requests itself. No GTM-to-GA4 forwarding is guaranteed.
-- WARNING: a mailto link itself may contain a visitor-entered brief in its
-  address. An existing GA4 enhanced-measurement setting, GTM automatic click
-  listener or third-party script might capture that URL. Review the actual
-  published GTM configuration before assuming upstream vendor data are safe.
-  The site's custom events alone cannot certify a zero-leak claim.
+- The homepage contact composer keeps any visitor-entered brief out of the
+  anchor's DOM href. It inserts that text only when handing a draft to the
+  user's email application. This reduces exposure through automatic link-URL
+  capture without preventing the normal email-draft journey.
+- WARNING: the GA4 stream has enhanced outbound-click and file-download
+  measurement enabled. Third-party click tags and vendor scripts may capture
+  additional link/browser information. Inspect published GTM and GA4 settings
+  before claiming that upstream processing is free of personal information.
 
 ## Fixed event contract
 
