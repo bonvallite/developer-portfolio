@@ -29,8 +29,16 @@ try {
       waitUntil: 'domcontentloaded', timeout: 45000,
     });
     assert.equal(response?.status(), 200, viewport.name + ': portfolio route returns 200');
+    // A fresh visitor receives a consent choice. Reject optional analytics
+    // before visual QA: no tracking is needed and screenshots should show
+    // the case-study design rather than the consent banner obscuring the hero.
+    const consent = page.locator('.jrv-consent');
+    await consent.waitFor({ state: 'visible' });
+    await page.getByRole('button', { name: 'Reject optional' }).click();
+    await consent.waitFor({ state: 'hidden' });
     await page.locator('.ss-system').waitFor({ state: 'visible' });
     assert.equal(await page.locator('h1').count(), 1, 'One clear case-study H1');
+    await page.getByRole('heading', { name: 'One offer. Three perspectives.' }).waitFor();
     assert.equal(await page.locator('.ss-hero-journey li').count(), 4,
       viewport.name + ': four distinct stages in the visual hero');
     assert.equal(await page.locator('.ss-system-node').count(), 4,
@@ -80,6 +88,14 @@ try {
     await map.getByText('A confirmation preview is available. No real email has been sent.').waitFor();
     await page.locator('.ss-email').waitFor({ state: 'visible' });
     assert.match(await page.locator('.ss-email').innerText(), /No email was actually sent/);
+
+    // Preserve a second visual proof with the completed simulated order edit
+    // and customer notification preview, before testing merchant configuration.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await page.screenshot({
+      path: output + '/' + viewport.name + '-flow.png',
+      fullPage: true, animations: 'disabled',
+    });
 
     // A fictional merchant rule edit changes the map's live values. It does
     // not publish anything to Shopify or update an actual store metaobject.
