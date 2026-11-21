@@ -5,9 +5,15 @@
  * The customer-facing cart NEVER adds gifts. The after-checkout Flow simulation
  * adds complimentary order lines only after a successful order-edit step.
  * No credentials, customer records or live Shopify theme source are used.
+ * 21 Nov 2026: the hero sequence and interactive architecture inspector
+ * explain the cross-system dependencies without claiming to run real Flow.
+ * spend-save-visual.css overrides legacy warm-gold illustration colours with
+ * the JRV teal/ember identity; tested eligibility and fulfilment stay intact.
  */
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import SpendSaveSystemMap from './SpendSaveSystemMap';
+import './spend-save-visual.css';
 import { getRewardProgress, getEligibleGifts, validateThresholds } from '../../../lib/spend-save-rules.mjs';
 import { ArrowLeft, ArrowRight, CheckCircle2, Gift, ShoppingBag, Workflow, Database, Code2, Mail, RotateCcw, Sparkles } from 'lucide-react';
 
@@ -62,7 +68,7 @@ export default function SpendSaveCaseStudy() {
     }
   };
   const add = (id: string) => { setBasket(prev => [...prev,id]); setStage(-1); };
-  return <main className="ss-page">
+  return <main className="ss-page ss-cinematic">
     <div className="ss-container">
       <header className="ss-nav"><Link href="/#work"><ArrowLeft size={17}/> Back to projects</Link><span>JRV / COMMERCE ENGINEERING</span></header>
       <section className="ss-hero">
@@ -70,6 +76,12 @@ export default function SpendSaveCaseStudy() {
         <h1>Turn the next reward into <em>a reason to explore.</em></h1>
         <p>A premium Spend & Save journey, from the first cart milestone to automated post-checkout gifting and a customer confirmation email. Explore both the shopper experience and the engineering behind it.</p>
         <div className="ss-actions"><a className="ss-primary" href="#demo">Try the experience <ArrowRight size={17}/></a><a className="ss-secondary" href="#architecture">Explore the architecture <Code2 size={17}/></a></div>
+        <ol className="ss-hero-journey" aria-label="How the reward promotion works">
+          <li><span>01 / STOREFRONT</span><strong>Make rewards visible</strong><small>Liquid and JavaScript explain the next milestone.</small></li>
+          <li><span>02 / CHECKOUT</span><strong>Confirm the purchase</strong><small>Shipping eligibility is checked separately.</small></li>
+          <li><span>03 / SHOPIFY FLOW</span><strong>Fulfil eligible gifts</strong><small>The order edit happens only after payment.</small></li>
+          <li><span>04 / CUSTOMER</span><strong>Explain the result</strong><small>Confirmation follows a successful edit.</small></li>
+        </ol>
         <div className="ss-note">Independent, interactive educational reconstruction. Product prices, order details and workflow execution are simulated. No real orders, emails or Shopify changes occur.</div>
       </section>
       <section className="ss-chapters" aria-label="Case study journey">
@@ -103,13 +115,20 @@ export default function SpendSaveCaseStudy() {
         <div className="ss-flow-grid"><div className="ss-flow-steps"><div className="ss-panel-kicker">SIMULATED WORKFLOW</div>{flowStages.map((s,i)=><div key={s} className={'ss-flow-step '+(stage>=i?'ss-active':'')}><span>{String(i+1).padStart(2,'0')}</span><strong>{s}</strong>{stage>=i&&<CheckCircle2 size={18}/>}</div>)}<button type="button" className="ss-primary ss-full" disabled={!eligible} onClick={()=>setStage(s=>Math.min(flowStages.length-1,Math.max(-1,s)+1))}>{stage<0?'Start Flow simulation':stage>=flowStages.length-1?'Flow complete':'Run next step'} <ArrowRight size={16}/></button>{!eligible&&<p className="ss-note">Add enough products to reach the first gift threshold, then simulate checkout.</p>}</div>
         <div className="ss-order"><div className="ss-panel-kicker">DEMONSTRATION ORDER · NOT A REAL ORDER</div>{stage>=0&&<div className="ss-stage-explainer" aria-live="polite"><span>WORKFLOW STAGE {String(stage+1).padStart(2,'0')} / {flowStages.length}</span><strong>{flowStages[stage]}</strong><p>{flowDescriptions[stage]}</p></div>}<h3>Order #DEMO-001</h3><div className="ss-order-row"><span>Purchased products ({basket.length})</span><strong>{money(total)}</strong></div>{orderEditCommitted&&eligibleGifts.length>0&&<><div className="ss-order-row ss-gift"><span>2 × Wagyu Burger Patties</span><strong>FREE</strong></div>{rewardProgress.finalGiftUnlocked&&<div className="ss-order-row ss-gift"><span>Angus Rib Fillet gift</span><strong>FREE</strong></div>}</>}<div className="ss-order-row"><span>Shipping</span><strong>{rewardProgress.freeShippingUnlocked?'Free (illustrative)':'Calculated at checkout'}</strong></div><div className="ss-order-row ss-total"><span>Amount paid for products</span><strong>{money(total)}</strong></div><p className="ss-note">{flowDone?'Simulated order edit complete. Customer email preview is now available.':stage===-2?'No gift qualifies at this subtotal. The workflow ends without an order edit.':'Gift lines appear only after the simulated order edit is committed.'}</p>{flowDone&&<div className="ss-email"><Mail size={21}/><div><span>CUSTOMER EMAIL · PREVIEW ONLY</span><h4>Your complimentary gifts are confirmed</h4><p>Thank you for your order. Your complimentary {rewardProgress.finalGiftUnlocked?'Wagyu patties and Angus Rib Fillet':'Wagyu patties'} have been added to your order at no additional charge.</p><small>No email was actually sent.</small></div></div>}</div></div>
       </section>
-      <section id="architecture" className="ss-architecture"><div className="ss-section-title"><span>BEHIND THE EXPERIENCE</span><h2>Clear responsibilities. One source of truth.</h2></div><div className="ss-architecture-grid"><article><Database/><h3>Shopify metaobject</h3><p>One active configuration holds reward thresholds, labels and promotional terms.</p></article><article><Code2/><h3>Liquid / CSS / JavaScript</h3><p>Storefront components render the offer, track cart progress and encourage discovery. They never edit orders.</p></article><article><Workflow/><h3>Post-checkout Flow</h3><p>Order-paid trigger → eligibility → duplicate protection → complimentary variant order edit → commit → customer notification.</p></article><article><Gift/><h3>Customer confidence</h3><p>Clear messaging explains when gifts are added and confirms them only after the order edit succeeds.</p></article></div><p className="ss-note">Implementation detail: Shopify shipping eligibility is enforced at checkout, independently of post-checkout Flow. The precise production workflow and gift variant references require verification against the merchant's configuration.</p></section>
+      <section id="architecture" className="ss-architecture">
+        <div className="ss-section-title"><span>BEHIND THE EXPERIENCE / LIVE SYSTEM MAP</span><h2>Inspect the boundaries, not just the interface.</h2><p>Choose a layer to see its purpose, illustrative logic and live fictional state from the basket and Flow simulation above.</p></div>
+        <SpendSaveSystemMap subtotal={total} thresholds={thresholds}
+          flowStage={stage} orderEditCommitted={orderEditCommitted} notificationReady={flowDone}/>
+        <p className="ss-note">The illustrated shipping benefit must be enforced at checkout, independently of post-checkout Flow. Product eligibility, order-edit permissions and actual gift references require merchant-side verification.</p>
+      </section>
       <section className="ss-opportunity"><div className="ss-section-title"><span>THE COMMERCIAL QUESTION</span><h2>What could an AOV improvement mean?</h2><p>Explore hypothetical outcomes. This is a planning model, not a measured sales result.</p></div><div className="ss-calc"><label>Monthly orders <strong>{orders}</strong><input type="range" min="50" max="1000" step="50" value={orders} onChange={e=>setOrders(Number(e.target.value))}/></label><label>Baseline AOV <strong>{money(baseline)}</strong><input type="range" min="50" max="300" step="10" value={baseline} onChange={e=>setBaseline(Number(e.target.value))}/></label><label>Hypothetical uplift <strong>{uplift}%</strong><input type="range" min="0" max="30" value={uplift} onChange={e=>setUplift(Number(e.target.value))}/></label><div className="ss-results"><div><span>MODELLED AOV</span><strong>{money(baseline*(1+uplift/100))}</strong></div><div><span>MODELLED EXTRA REVENUE / MONTH</span><strong>{money(orders*baseline*uplift/100)}</strong></div></div></div><p className="ss-note">Assumes order volume remains constant. Excludes gift costs, shipping subsidies, discounts, returns and margin. A proper CRO assessment also measures contribution profit.</p></section>
       <footer className="ss-footer"><Link href="/#work"><ArrowLeft size={16}/> All projects</Link><a href="mailto:hello@jrvallite.com">Discuss a Shopify project <ArrowRight size={16}/></a></footer>
     </div>
     <style jsx global>{`
-      /* 20 Nov 2026: Ember & Teal reward-flow explainer. Stage selection is
-         illustrative; paid-order edits and emails never execute here. */
+      /* 20 Nov 2026 original fictional reward-flow explainer. On 21 Nov, the
+         route-specific spend-save-visual.css adds the JRV teal/ember treatment,
+         an architecture inspector and a top-level process overview. Existing
+         inline layout and reward interactions remain deliberately preserved. */
       .ss-page{background:#0b1419;color:#eaf4f3}
       .ss-page .ss-stage-explainer{padding:18px;margin:18px 0;background:#142b32;border:1px solid #38c7bc;border-radius:12px;display:grid;gap:8px}
       .ss-page .ss-stage-explainer span{font-size:10px;letter-spacing:.12em;color:#38c7bc}
