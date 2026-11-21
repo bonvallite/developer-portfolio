@@ -251,3 +251,30 @@
   .jrv2-case-stack{margin-bottom:18px}
   .jrv2-case-stack b{font-size:9px}
 }
+
+/* Screenshot review at 1600, 1366 and 390 px, 21 Nov:
+   A larger legacy H1 wrapped over five desktop lines and hid the project
+   studio's value. Keep a crisp three-line desktop statement while retaining
+   legibility on mobile; make the four tabs genuinely fit a phone viewport.
+   The page-wide button font inheritance otherwise overrules tab font sizes. */
+.jrv2-page .jrv2-hero h1{
+  font-size:clamp(43px,3.85vw,61px);line-height:1.065;
+  letter-spacing:-.054em;
+}
+.jrv2-page .jrv2-workbench-tab{font-size:11px;line-height:1.2}
+@media(max-width:970px){
+  .jrv2-page .jrv2-hero h1{font-size:clamp(43px,5.6vw,61px)}
+}
+@media(max-width:720px){
+  .jrv2-page .jrv2-workbench-tab{font-size:10px;letter-spacing:.2px}
+}
+@media(max-width:490px){
+  .jrv2-page .jrv2-hero-inner{padding-top:52px}
+  .jrv2-page .jrv2-hero h1{font-size:40px;line-height:1.055}
+  .jrv2-page .jrv2-hero-lead{font-size:17px;line-height:1.5}
+  .jrv2-page .jrv2-workbench-tab{font-size:8px;line-height:1.15;letter-spacing:.05px}
+  .jrv2-workbench .jrv2-console-top>span:last-child{display:none}
+  .jrv2-workbench .jrv2-console-top b{
+    white-space:nowrap;letter-spacing:1.1px;font-size:10px;
+  }
+}
