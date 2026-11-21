@@ -8,6 +8,8 @@ import {
   Store, UsersRound, Workflow
 } from 'lucide-react';
 import './cinematic.css';
+import './b2b-showcase.css';
+import B2BEntitlementInspector from './B2BEntitlementInspector';
 
 // PUBLIC CASE STUDY GUARDRAILS
 // This interface uses fictional product/catalogue prices and conceptual market names.
@@ -16,6 +18,10 @@ import './cinematic.css';
 // differ and may overlap: never add them as one revenue total.
 // The alternative growth tab is modelled, not merchant revenue. July 2026 is the
 // reported implementation month, not a verified cut-over date.
+// 21 Nov visual revision: the interactive hero, architecture inspector and
+// pricing lab share existing fictional market, eligibility and quantity state.
+// Inspectors show architecture and pseudocode, not live Shopify auth or prices.
+// b2b-showcase.css intentionally overrides legacy gold-only route styles.
 // Source: adjusted historical reporting export, SEG_Monthly (18 Nov 2026)
 // and read-only ShopifyQL, Jan–Oct 2026. No client records, IDs, or real rates.
 
@@ -112,19 +118,24 @@ export default function CinematicB2B(){
           <h1>Wholesale pricing, without the <em>extra layer.</em></h1>
           <p className="cb2b-lede">From app-dependent wholesale pricing to a more controlled, native Shopify B2B experience. One storefront. Distinct buying contexts. Catalogue-led pricing.</p>
           <div className="cb2b-hero-cta">
-            <a href="#challenge" className="cb2b-btn cb2b-btn-primary">Explore the transformation <ArrowRight size={16}/></a>
+            <a href="#transformation" className="cb2b-btn cb2b-btn-primary">Explore the architecture <ArrowRight size={16}/></a>
             <a href="#price-lab" className="cb2b-btn cb2b-btn-ghost">Try the price laboratory <ArrowUpRight size={16}/></a>
           </div>
           <div className="cb2b-hero-tags"><span>MARKETS</span><span>CATALOGUES</span><span>COMPANY ACCOUNTS</span></div>
         </div>
-        <div className="cb2b-hero-art" aria-hidden="true">
-          <span className="cb2b-orbit cb2b-orbit-one"/><span className="cb2b-orbit cb2b-orbit-two"/>
+        <div className="cb2b-hero-art" role="group" aria-label="Interactive fictional company catalogue pricing preview">
+          <span className="cb2b-orbit cb2b-orbit-one" aria-hidden="true"/><span className="cb2b-orbit cb2b-orbit-two" aria-hidden="true"/>
           <div className="cb2b-float-card">
-            <small>ONE STOREFRONT / FOUR CONTEXTS</small>
-            <strong>Market-led<br/>pricing</strong>
-            <div>Customer eligibility <b>Verified</b></div>
-            <div>Price source <b>Catalogue</b></div>
-            <div>Governance <b>Native Shopify</b></div>
+            <div className="cb2b-hero-preview-top"><small>ONE STOREFRONT / FOUR CONTEXTS</small><span>LIVE FICTIONAL DEMO</span></div>
+            <strong>{requested.name}<br/><em>{formatMoney(applied.price)}</em></strong>
+            <div className="cb2b-hero-preview-line"><span>Company access</span><b>{marketIndex===0?'Not required':eligible?'Demo approved':'Not approved'}</b></div>
+            <div className="cb2b-hero-preview-line"><span>Price source</span><b>{applied.catalogue}</b></div>
+            <div className="cb2b-hero-preview-line"><span>Compared with retail</span><b>{formatMoney(markets[0].price-applied.price)} / unit</b></div>
+            <div className="cb2b-hero-switch" role="group" aria-label="Choose hero pricing context">
+              {markets.map((market,index)=><button type="button" key={market.name}
+                aria-pressed={marketIndex===index} onClick={()=>setMarketIndex(index)}>{index===0?'RETAIL':'B2B '+String(index).padStart(2,'0')}</button>)}
+            </div>
+            <p className="cb2b-hero-caption">Select a context. The architecture and price lab update together. No Shopify price is changed.</p>
           </div>
         </div>
       </div>
@@ -196,7 +207,15 @@ export default function CinematicB2B(){
           <div><Check size={16}/><span>Shopify Advanced supports three active B2B market catalogue assignments in this design.</span></div>
           <div><Check size={16}/><span>Company location and signed-in purchasing context determine entitlement.</span></div>
         </div>
-        <p className="cb2b-small-note">Retail seasonal campaigns remain a separate merchandising layer, not an extra wholesale catalogue or B2B tier.</p>
+        <div className="cb2b-system-lead">
+          <span>INTERACTIVE ARCHITECTURE / CODE WALKTHROUGH</span>
+          <h3>Follow the decision from application to checkout.</h3>
+          <p>Select a technical layer and change the fictional company-access setting. The same market, entitlement and sample price flow through this inspector, the hero preview, and the pricing lab.</p>
+        </div>
+        <B2BEntitlementInspector marketIndex={marketIndex} requested={requested}
+          applied={applied} eligible={eligible} quantity={quantity}
+          retailUnitPrice={markets[0].price} onEligibilityChange={setEligible}/>
+        <p className="cb2b-small-note">Retail seasonal campaigns remain a separate merchandising layer, not an extra wholesale catalogue or B2B tier. The inspector uses illustrative pseudocode, not copied merchant configuration or verified checkout logic.</p>
       </div>
     </section>
 

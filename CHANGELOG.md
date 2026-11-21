@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-21 - Improve mobile B2B demonstration context controls
+
+- **Target / branch:** Public JRV portfolio, `bonvallite/developer-portfolio`, `feature/b2b-entitlement-story-20261121` (PR #94). No Shopify theme changes or deployment.
+- **Affected files:** `app/b2b-modernisation/b2b-showcase.css`, `tests/b2b-entitlement-story-browser-qa.mjs`, `docs/b2b-portfolio-story-2026-11-21.md`, `CHANGELOG.md`.
+- **What changed:** Replace tiny 8px context-switch text with 12px and 44px-high interactive targets; reflow the four fictional retail/B2B contexts into a two-by-two grid at phone widths of 480px and below. Improve caption legibility and add browser assertions for computed sizes, overflow, grid shape and Space-key activation.
+- **Why:** Improve the visual consistency, readability, and motor accessibility of the B2B hero on narrow phones without changing shared pricing or entitlement state.
+- **Inline documentation:** Explain the min-size decision and responsive rule in route-scoped CSS; explain actual runtime assertions in the Playwright test and update the source-linked project documentation.
+- **Validation:** Inspected the existing component, legacy and overriding styles, test suite, source notes, and current branch. Constructed changes against the exact branch head with unique patch markers and static preservation assertions. Re-read the saved browser suite and corrected its CSS grid-column parser to match whitespace instead of a literal backslash sequence before accepting the result. Fresh GitHub Actions browser/CI checks remain pending until the new commit runs; the old green run applies only to the prior SHA.
+- **Release boundary:** Keep PR #94 as draft and unmerged. Vercel previews and production remain on hold until the external deployment quota allows a final-commit preview. The GitHub integration may independently attempt previews on branch updates. Manual device/assistive-technology validation and comparison to CI screenshots remain open.
+
 ## 2026-11-20 - Back up and rebuild the cinematic JRV portfolio on a protected branch
 
 - **Scope:** `bonvallite/developer-portfolio`; backup `backup/2026-11-20-pre-cinematic-rebuild` at `cbb656e9`; proposed branch `redesign/2026-11-20-cinematic-portfolio`. Production unchanged until review.
