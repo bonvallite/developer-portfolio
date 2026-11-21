@@ -61,4 +61,25 @@ for (const check of checks) {
 }
 assert.equal(xml.includes('<loc>https://www.jrvallite.com/resume</loc>'), false,
   'Resume is noindex and must stay out of the sitemap');
+// Audit 21 Nov: the CSS lab was in the sitemap but lacked an internal link,
+// while the weight-based B2B demo had insufficient server-visible context.
+// Guard rendered HTML so crawl visibility cannot regress silently.
+const experienceHtml = await readPage('/experience');
+assert.ok(experienceHtml.includes('href="/css-lab"'),
+  'The experience page must link directly to the CSS learning lab');
+const cssLabHtml = await readPage('/css-lab');
+assert.ok(cssLabHtml.includes('CSS, beyond the'), 'CSS lab heading must render on the server');
+const b2bHtml = await readPage('/b2b-demo');
+for (const phrase of [
+  'How the weight-based calculation works',
+  'What a real Shopify B2B build needs',
+  'Worked example:',
+  '5.4 kg',
+  'The page deliberately stops at a testable calculation',
+]) {
+  assert.ok(b2bHtml.includes(phrase), '/b2b-demo must render explanation: ' + phrase);
+}
+assert.ok(b2bHtml.includes('href="/b2b-modernisation"'),
+  'B2B demo must link to its distinct architecture case study');
+
 console.log('Rendered flagship metadata and XML sitemap regression: PASSED');
