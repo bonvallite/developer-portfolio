@@ -32,6 +32,8 @@ try {
     const studio = page.locator('.jrv-integration-lab');
     await studio.waitFor({ state: 'visible' });
     assert.equal(await page.locator('h1').count(), 1, 'A single case-study heading');
+    assert.equal(await page.getByRole('link', { name: 'Experience', exact: true }).isVisible(), true,
+      viewport.name + ': professional experience navigation must remain visible');
     assert.equal(await page.locator('.cc-contributions article').count(), 2,
       'Separate, clearly described app and API integration contributions');
     assert.equal(await studio.locator('.jrv-integration-lab__systems li').count(), 4,
