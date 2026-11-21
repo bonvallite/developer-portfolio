@@ -1,6 +1,7 @@
 // End-to-end browser QA for the JRV cinematic Ember & Teal homepage rebuild.
 // Runs against a locally built Next.js app; no live client APIs or credentials.
 // Screenshots are review artefacts, not evidence of real performance metrics.
+// The project studio must genuinely respond to visitor actions at every size.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -52,6 +53,79 @@ try {
     await page.getByRole('button', { name: 'Reject optional' }).click();
     await consent.waitFor({ state: 'hidden' });
     assert.deepEqual(trackingRequests, [], size.name + ': tracking requested after rejection');
+
+    // Interactive project studio is real local UI, not four decorative cards.
+    // Verify every mode, keyboard selection, and a deterministic fictional
+    // result without contacting Shopify, warehouse systems, or analytics.
+    const studio = page.locator('.jrv2-workbench');
+    assert.equal(await studio.count(), 1, size.name + ': interactive studio present');
+    assert.equal(await studio.locator('.jrv2-workbench-tab').count(), 4,
+      size.name + ': four visible project modes');
+    // A previous narrow-screen screenshot showed mode labels extending beyond
+    // their buttons despite the page having no horizontal scrollbar.
+    const tabBounds = await studio.locator('.jrv2-workbench-tab').evaluateAll(buttons =>
+      buttons.map(button => {
+        const box = button.getBoundingClientRect();
+        const label = button.querySelector('span')?.getBoundingClientRect();
+        return { left: box.left, right: box.right, labelLeft: label?.left,
+          labelRight: label?.right };
+      })
+    );
+    for (const bounds of tabBounds) {
+      assert.ok(bounds.labelLeft !== undefined && bounds.labelRight !== undefined &&
+        bounds.labelLeft >= bounds.left - 1 && bounds.labelRight <= bounds.right + 1,
+        size.name + ': project mode label escapes its own button');
+    }
+    // The redesigned headline should not dominate the entire first screen.
+    if (size.width >= 970) {
+      const headlineLines = await page.locator('#jrv2-title').evaluate(heading => {
+        const styles = window.getComputedStyle(heading);
+        return heading.getBoundingClientRect().height / parseFloat(styles.lineHeight);
+      });
+      assert.ok(headlineLines <= 3.2, size.name + ': desktop headline is excessively tall');
+    }
+
+    assert.equal(await studio.locator('.jrv2-workbench-copy h2[aria-live="polite"]').count(), 1,
+      size.name + ': focused screen reader announcement');
+    assert.equal(await studio.getByRole('button', { name: 'REWARDS' }).getAttribute('aria-pressed'),
+      'true', size.name + ': reward preview starts selected');
+    assert.equal(await studio.getByRole('progressbar').getAttribute('aria-valuenow'), '175');
+    await studio.getByRole('button', { name: 'Add $50' }).click();
+    assert.equal(await studio.getByRole('progressbar').getAttribute('aria-valuenow'), '225');
+    await studio.getByText('Add $75 to reach additional gift.').waitFor();
+    await studio.getByRole('button', { name: 'Reset' }).click();
+    assert.equal(await studio.getByRole('progressbar').getAttribute('aria-valuenow'), '175');
+
+    await studio.getByRole('button', { name: 'DATA LAB' }).click();
+    await studio.getByRole('button', { name: 'GA4' }).click();
+    await studio.getByText('Sessions / sample week').waitFor();
+    assert.equal(await studio.getByRole('button', { name: 'GA4' }).getAttribute('aria-pressed'),
+      'true');
+    assert.match(await studio.getByRole('img').getAttribute('aria-label') || '',
+      /Fictional sessions over seven periods/);
+
+    await studio.getByRole('button', { name: 'WEBHOOKS' }).click();
+    await studio.getByRole('button', { name: 'Advance event' }).click();
+    await studio.getByRole('button', { name: 'Advance event' }).click();
+    await studio.getByText('Simulated step 3 of 4: Tracking event mapped.').waitFor();
+    await studio.getByRole('button', { name: 'Reset' }).click();
+    await studio.getByText('Simulated step 1 of 4: Order event prepared.').waitFor();
+
+    const wholesale = studio.getByRole('button', { name: 'WHOLESALE' });
+    await wholesale.focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await wholesale.getAttribute('aria-pressed'), 'true',
+      size.name + ': keyboard activates wholesale preview');
+    await studio.getByText('5.40 kg', { exact: true }).waitFor();
+    await studio.getByText('$163.40', { exact: true }).waitFor();
+    await studio.getByRole('button', { name: 'Add one Demo Cut A' }).click();
+    await studio.getByText('6.15 kg', { exact: true }).waitFor();
+    await studio.getByText('$190.00', { exact: true }).waitFor();
+    assert.equal(await studio.locator('.jrv2-workbench-footer a').getAttribute('href'),
+      '/b2b-modernisation');
+
+    await studio.getByRole('button', { name: 'REWARDS' }).click();
+    assert.equal(await studio.getByRole('progressbar').getAttribute('aria-valuenow'), '175');
 
     await page.locator('.jrv2-journey-tab').nth(1).click();
     await page.getByText('Make complex feel clear.').waitFor();

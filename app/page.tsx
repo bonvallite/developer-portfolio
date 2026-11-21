@@ -6,8 +6,10 @@ import {
   ShoppingBag, Sparkles, Workflow,
 } from 'lucide-react';
 import HomeJourney from './components/HomeJourney';
+import CommerceWorkbench from './components/CommerceWorkbench';
 import LeadComposer from './components/LeadComposer';
 import './cinematic-home.css';
+import './components/commerce-workbench.css';
 
 // 2026-11-20 Ember & Teal iteration. Public copy is service-led and intentionally
 // avoids personal-name SEO, private account identifiers and invented outcomes.
@@ -15,6 +17,9 @@ import './cinematic-home.css';
 // Featured case-study links and the public footer email carry optional,
 // consent-gated, fixed-value click markers without exposing URL or message data.
 // The previous site remains recoverable at backup/2026-11-20-pre-cinematic-rebuild.
+// 21 Nov visual upgrade: replace the static hero console with a working,
+// accessible four-project studio. Existing case studies, canonical metadata,
+// CTA routes, synthetic-data boundaries, and privacy settings are unchanged.
 // 21 Nov 2026 crawl: concise homepage description keeps Shopify, CRO, B2B
 // and integration search intent while avoiding truncated search snippets.
 export const metadata: Metadata = {
@@ -45,6 +50,7 @@ const cases = [
     response: 'An interactive ladder demo explains how cart visuals, rules and Shopify Flow work together.',
     href: '/projects/spend-and-save', link: 'Explore the reward journey', icon: Layers3,
     visual: 'rewards', note: 'Conceptual rules and a fictional demonstration',
+    stack: ['Liquid', 'JavaScript', 'Shopify Flow'],
   },
   {
     id: '02', tag: 'DATA / PYTHON / JAVASCRIPT', title: 'From scattered metrics to clearer decisions.',
@@ -53,6 +59,7 @@ const cases = [
     response: 'Source-specific retrieval patterns, structured CSV outputs and a transparent record of limitations.',
     href: '/analytics-lab', link: 'Try the Python analytics lab', icon: ChartNoAxesCombined,
     visual: 'analytics', note: 'Real engineering patterns, fictional dashboard data',
+    stack: ['Python', 'GA4', 'Data validation'],
   },
   {
     id: '03', tag: 'INTEGRATIONS / SERVERLESS', title: 'Commerce does not stop at checkout.',
@@ -61,6 +68,7 @@ const cases = [
     response: 'A documented architecture for authentication, webhook processing and recoverable synchronisation.',
     href: '/cartoncloud-integration', link: 'Explore the integration', icon: Workflow,
     visual: 'integration', note: 'Architectural case study; no production secrets',
+    stack: ['Cloudflare Workers', 'Webhooks', 'Shopify APIs'],
   },
   {
     id: '04', tag: 'B2B / STOREFRONT SYSTEMS', title: 'Wholesale buying, without the guesswork.',
@@ -69,6 +77,7 @@ const cases = [
     response: 'A fictional-data experience designed to make purchasing rules easier to navigate and validate.',
     href: '/b2b-modernisation', link: 'See the B2B experience', icon: ShoppingBag,
     visual: 'b2b', note: 'Independent interactive demonstration',
+    stack: ['Shopify B2B', 'Catalogues', 'UI engineering'],
   },
 ] as const;
 
@@ -126,23 +135,8 @@ export default function Home() {
             <div className="jrv2-hero-actions"><a className="jrv2-cta jrv2-cta-primary" href="#work">Explore my work <ArrowUpRight size={17} aria-hidden="true"/></a><a className="jrv2-cta jrv2-cta-ghost" href="/resume">View résumé options <ArrowRight size={17} aria-hidden="true"/></a></div>
             <div className="jrv2-hero-proof"><span><CircleCheck size={16} aria-hidden="true"/> Documented case studies</span><span><CircleCheck size={16} aria-hidden="true"/> Interactive demos</span><span><CircleCheck size={16} aria-hidden="true"/> Evidence-led practice</span></div>
           </div>
-          <div className="jrv2-hero-showcase" aria-label="Illustration of a connected Shopify commerce system">
-            <div className="jrv2-console">
-              <div className="jrv2-console-top"><span className="jrv2-console-dots" aria-hidden="true"><i/><i/><i/></span><b>JRV / SYSTEM VIEW</b><span>01 — 04</span></div>
-              <div className="jrv2-console-body">
-                <div className="jrv2-console-label">THE COMMERCE ENGINE</div>
-                <h2>Connected by<br/><em>design.</em></h2>
-                <div className="jrv2-console-nodes">
-                  <div><Code2 size={17} aria-hidden="true"/><span>STOREFRONT</span><b>EXPERIENCE</b></div>
-                  <i className="jrv2-node-connector" aria-hidden="true"/>
-                  <div><Workflow size={17} aria-hidden="true"/><span>AUTOMATION</span><b>WORKFLOWS</b></div>
-                  <i className="jrv2-node-connector" aria-hidden="true"/>
-                  <div><ChartNoAxesCombined size={17} aria-hidden="true"/><span>ANALYTICS</span><b>DECISIONS</b></div>
-                </div>
-                <div className="jrv2-console-code"><span>THE METHOD</span><div>01 <b>Understand</b> the problem</div><div>02 <b>Design</b> the system</div><div>03 <b>Build</b> with care</div><div>04 <b>Review</b> the evidence</div></div>
-              </div>
-              <div className="jrv2-console-bottom"><span>INTERACTIVE WORK / REAL-WORLD CONSTRAINTS</span><span>● <b>DOCUMENTED</b></span></div>
-            </div>
+          <div className="jrv2-hero-showcase" id="studio" aria-label="Explore four interactive portfolio project previews">
+            <CommerceWorkbench />
             <span className="jrv2-hero-orbit jrv2-hero-orbit-one" aria-hidden="true"/><span className="jrv2-hero-orbit jrv2-hero-orbit-two" aria-hidden="true"/>
           </div>
         </div>
@@ -153,13 +147,14 @@ export default function Home() {
 
       <section className="jrv2-section jrv2-work" id="work" aria-labelledby="jrv2-work-title">
         <div className="jrv2-wrap">
-          <div className="jrv2-section-head"><div><span className="jrv2-overline">01 / SELECTED WORK</span><h2 id="jrv2-work-title">Proof in the <em>process.</em></h2></div><p>Not a gallery of pretty screens. Explore the problems, architecture, design choices and working demonstrations behind the projects.</p></div>
+          <div className="jrv2-section-head"><div><span className="jrv2-overline">01 / SELECTED WORK</span><h2 id="jrv2-work-title">Proof in the <em>process.</em></h2></div><p>Try the four working previews in the studio above, then explore the problems, architecture, implementation choices, and demonstrations behind each project.</p></div>
           <div className="jrv2-case-grid">
             {cases.map((item, index) => <article className={'jrv2-case jrv2-case-' + (index+1)} key={item.id}>
               <div className="jrv2-case-heading"><span>{item.id} / {item.tag}</span><item.icon size={22} strokeWidth={1.5} aria-hidden="true"/></div>
               <CaseVisual mode={item.visual}/>
               <div className="jrv2-case-content">
                 <h3>{item.title}</h3><p className="jrv2-case-lede">{item.intro}</p>
+                <div className="jrv2-case-stack" aria-label="Project technologies"><span>TECH STACK</span>{item.stack.map(technology => <b key={technology}>{technology}</b>)}</div>
                 <div className="jrv2-case-story"><div><span>THE CHALLENGE</span><p>{item.challenge}</p></div><div><span>THE RESPONSE</span><p>{item.response}</p></div></div>
                 <div className="jrv2-case-bottom"><span className="jrv2-case-note">{item.note}</span><Link href={item.href} className="jrv2-case-link" data-jrv-track="case" data-jrv-case={item.visual}>{item.link} <MoveUpRight size={16} aria-hidden="true"/></Link></div>
               </div>
