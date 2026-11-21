@@ -24,6 +24,7 @@ test('interactive map reflects shopper and Flow state without live integration',
   assert.match(page, /<SpendSaveSystemMap subtotal=\{total\} thresholds=\{thresholds\}/);
   assert.match(page, /flowStage=\{stage\} orderEditCommitted=\{orderEditCommitted\} notificationReady=\{flowDone\}/);
   assert.match(page, /ss-hero-journey/);
+  assert.match(page, /One offer\. Three perspectives\./);
   assert.match(inspector, /useState<StageKey>\('storefront'\)/);
   assert.match(inspector, /aria-pressed=\{selected === item\.key\}/);
   assert.match(inspector, /aria-live="polite" aria-atomic="true"/);
