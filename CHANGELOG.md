@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-21 - Add project and hiring enquiry pathways to Python Analytics Lab
+
+- **Target / branch:** `bonvallite/developer-portfolio`, `feature/python-analytics-story-studio-20261121`, draft PR #93. No Shopify theme or live portfolio release.
+- **Affected files:** `app/analytics-lab/page.tsx`, `app/analytics-lab/analytics-studio.css`, `tests/analytics-lab-browser-qa.mjs`, `tests/analytics-studio.test.mjs`, `CHANGELOG.md`.
+- **What changed:** Add a purpose-built, two-audience end-of-story enquiry panel: a fixed `mailto:hello@jrvallite.com` analytics/CRO project enquiry, a direct internal `/experience` hiring path, and an illustrative three-step definition/validation/handover summary. Use route-only teal/ember/obsidian styling with 48px minimum link targets, responsive one-column mobile layout, and clear fictional-evidence boundaries. Preserve existing archive links, CSV download, reconciliation, privacy note, and other-projects footer link.
+- **Why:** The lab previously finished with technical reading links and an "Other projects" footer, leaving employers and prospective clients without a dedicated, obvious next step.
+- **Inline documentation:** Update React's file and panel comments and CSS scope/constraints; document contact safety and responsive assertions in both browser and source tests.
+- **Validation performed:** Inspected the current PR #93, page, route/legacy CSS, source and Playwright tests, existing documentation, and changelog. Prepared exact, unique replacements and static preservation checks on the verified branch head. Re-read the saved tests, corrected the browser grid parser to match whitespace, and simplified source assertions to literal link/route checks before relying on CI. New GitHub Actions tests, screenshots, and any release preview are pending the final commit; previous successful CI cannot validate a new SHA.
+- **Security and disclosure:** No form, tracking listener, external script, CRM, analytics API, client data, or new dependency. The email link is a browser `mailto:` action and does not claim delivery or lead collection. The three-step pathway is illustrative, not a verified project outcome.
+- **Release / recovery:** Keep PR #93 draft and unmerged. Do not call Vercel until the deployment allowance and final-commit preview plan permit it. Revert via PR commit if checks fail; current `main` and production aliases remain unchanged. Github-connected pushes may independently request a Vercel preview.
+
 ## 2026-11-20 - Back up and rebuild the cinematic JRV portfolio on a protected branch
 
 - **Scope:** `bonvallite/developer-portfolio`; backup `backup/2026-11-20-pre-cinematic-rebuild` at `cbb656e9`; proposed branch `redesign/2026-11-20-cinematic-portfolio`. Production unchanged until review.
