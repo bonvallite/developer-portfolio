@@ -8,6 +8,8 @@ import './cinematic-service.css';
 // copy and links to existing case studies. Do not add personal-name SEO or unverified
 // outcomes. Contact CTA returns to the homepage's existing contact choices.
 // Keep the privacy notice accessible from service pages, not just the homepage.
+// Enquiry links carry fixed click-intent markers; the global consent manager
+// gates events and never reads their mailto URLs or visitor-entered text.
 // Cross-link the four existing service routes. Minimal WebPage JSON-LD repeats only
 // visible route content and the explicit canonical path; never include identity claims.
 export type ServiceContent = {
@@ -38,7 +40,7 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: webPageSchema }} />
       <header className="container service-header"><span className="jrv-svc-wordmark">{'{JRV}'}</span>
         <Link href="/" className="service-back"><ArrowLeft size={17} /> Back to portfolio</Link>
-        <a href={enquiry} className="button secondary">Discuss a project <ArrowUpRight size={16} /></a>
+        <a href={enquiry} className="button secondary" data-jrv-track="email" data-jrv-intent="project" data-jrv-source="service_page">Discuss a project <ArrowUpRight size={16} /></a>
       </header>
       <section className="container service-hero"><div className="jrv-svc-hero-grid" aria-hidden="true"/><div className="jrv-svc-hero-copy">
         <span className="overline">{content.label}</span>
@@ -46,7 +48,7 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
         <p className="service-lead">{content.lead}</p>
         <p className="service-audience">{content.audience}</p>
         <div className="actions">
-          <a href={enquiry} className="button primary">Start a conversation <ArrowUpRight size={17} /></a>
+          <a href={enquiry} className="button primary" data-jrv-track="email" data-jrv-intent="project" data-jrv-source="service_page">Start a conversation <ArrowUpRight size={17} /></a>
           <a href="#examples" className="button secondary">Review relevant work <ArrowRight size={17} /></a>
         </div></div>
         <div className="jrv-svc-hero-art" aria-label="Illustrative engineering process, from discovery to verification">
