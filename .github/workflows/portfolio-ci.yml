@@ -42,7 +42,7 @@ jobs:
     # Run browser QA for reviewed case studies, cinematic projects, privacy
     # changes, content-audit fixes and interactive homepage/case-study PRs.
     # Unit/SEO/safety checks still run for all pull requests.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-'))
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || startsWith(github.head_ref, 'feature/python-analytics-story-studio-'))
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -84,8 +84,10 @@ jobs:
       - name: Consent-first portfolio event privacy QA
         if: startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-')
         run: node tests/portfolio-events-browser-qa.mjs
+      # Re-run genuine source-inspector, fictional funnel, CSV and mobile
+      # interactions for the Python lab visual case-study branch.
       - name: Python analytics lab desktop tablet and mobile QA
-        if: github.head_ref == 'feature/ember-teal-interactive-portfolio'
+        if: github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/python-analytics-story-studio-')
         run: node tests/analytics-lab-browser-qa.mjs
       - name: Save case-study screenshots
         if: always()
