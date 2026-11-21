@@ -40,9 +40,9 @@ jobs:
 
   case-study-browser-qa:
     # Run browser QA for reviewed case studies, cinematic projects, privacy
-    # changes, content-audit fixes and interactive homepage/case-study PRs.
-    # Unit/SEO/safety checks still run for all pull requests.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-'))
+    # changes, content-audit fixes, homepage accessibility and interactive
+    # case-study PRs. Unit/SEO/safety checks run for all pull requests.
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || startsWith(github.head_ref, 'fix/home-journey-'))
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -72,7 +72,7 @@ jobs:
       - name: Desktop tablet and mobile interaction checks
         run: node tests/case-study-browser-qa.mjs
       - name: Cinematic homepage layout, privacy and conversion QA
-        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-')
+        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'fix/home-journey-')
         run: node tests/homepage-browser-qa.mjs
       # The Spend & Save case study connects shopper, merchant, post-checkout
       # Flow commit and notification states through a safe architecture map.

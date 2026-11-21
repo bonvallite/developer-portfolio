@@ -127,9 +127,26 @@ try {
     await studio.getByRole('button', { name: 'REWARDS' }).click();
     assert.equal(await studio.getByRole('progressbar').getAttribute('aria-valuenow'), '175');
 
-    await page.locator('.jrv2-journey-tab').nth(1).click();
-    await page.getByText('Make complex feel clear.').waitFor();
+    // Only the selected heading is a live announcement. Keyboard activation
+    // remains available on every viewport without reading the whole diagram.
+    const journeyTabs = page.locator('.jrv2-journey-tab');
+    const journeyLiveRegions = page.locator('.jrv2-journey [aria-live]');
+    assert.equal(await journeyLiveRegions.count(), 1, size.name + ': one journey live region');
+    assert.equal(await journeyLiveRegions.first().evaluate(element => element.tagName), 'H3',
+      size.name + ': selected step heading owns the live announcement');
+    assert.equal(await journeyLiveRegions.first().getAttribute('aria-live'), 'polite');
+    assert.equal(await journeyLiveRegions.first().getAttribute('aria-atomic'), 'true');
+
+    await journeyTabs.nth(1).focus();
+    await page.keyboard.press('Enter');
+    await page.getByRole('heading', { name: 'Make complex feel clear.' }).waitFor();
+    assert.equal(await journeyTabs.nth(1).getAttribute('aria-pressed'), 'true');
     assert.equal(await page.locator('.jrv2-journey-tab.is-active').count(), 1);
+    await journeyTabs.nth(2).focus();
+    await page.keyboard.press('Space');
+    await page.getByRole('heading', { name: 'Build for the real world.' }).waitFor();
+    assert.equal(await journeyTabs.nth(2).getAttribute('aria-pressed'), 'true');
+    assert.equal(await journeyLiveRegions.first().textContent(), 'Build for the real world.');
 
     await page.getByRole('button', { name: 'I am hiring' }).click();
     await page.locator('#jrv2-project-brief').fill('Fictional browser QA test only.');

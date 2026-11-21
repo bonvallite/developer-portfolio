@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-21 - Preserve focused homepage screen-reader announcements after homepage redesign
+
+- **Target:** Public portfolio repository `bonvallite/developer-portfolio`; branch `fix/home-journey-screen-reader-announcements`, PR #83. No Shopify theme files changed.
+- **Affected files:** `app/components/HomeJourney.tsx`, `tests/cinematic-home.test.mjs`, `tests/homepage-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, and `CHANGELOG.md`.
+- **Change:** Integrate the existing PR #83 accessibility fix with the latest `main` homepage, preserving its newer four-mode interactive project studio and existing SEO/privacy checks. Move the journey's polite atomic announcement from the entire display to its selected H3, while leaving the descriptive and diagram content readable normally. Add source and Enter/Space browser regression checks at four viewport widths; include accessibility-fix PRs in the existing browser QA job.
+- **Why:** The previous parent live region could repeatedly announce an entire decorative workflow on a step change, and PR #83's earlier code conflicted with subsequently merged homepage and CI improvements.
+- **Inline documentation:** Updated `HomeJourney.tsx` and both affected test comments to explain live announcement ownership and how keyboard behaviour is verified. Updated the CI job comment to reflect the newly included branch family.
+- **Validation:** Reviewed the original PR #83 diff, current main sources, test coverage and CI workflow. Inspected exact file replacements against current main before constructing the merge; the refreshed GitHub Actions checks are pending until the new PR head is published. Prior PR #83 commit `aec1540` passed its GitHub validation and desktop/tablet/mobile browser checks before `main` advanced, but that evidence does not validate the new merged head.
+- **Open checks:** Require fresh green GitHub Actions results and saved screenshots on the new head. Actual NVDA/VoiceOver speech needs manual testing; a source test alone cannot certify screen-reader output. No new Vercel API call or production deployment is requested during the daily quota restriction. Vercel Git integration could independently attempt a preview on push.
+- **Release and recovery:** Keep this PR unmerged until revalidation and review. Revert via the PR branch history; production `main` and domain aliases are unchanged by this branch operation.
+
 ## 2026-11-20 - Back up and rebuild the cinematic JRV portfolio on a protected branch
 
 - **Scope:** `bonvallite/developer-portfolio`; backup `backup/2026-11-20-pre-cinematic-rebuild` at `cbb656e9`; proposed branch `redesign/2026-11-20-cinematic-portfolio`. Production unchanged until review.
