@@ -6,8 +6,8 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 // Progressive enhancement for the homepage's four-part delivery story.
 // No remote calls, visitor tracking, client details or fabricated performance data.
 // A complete first step is rendered before hydration.
-// Only the selected step heading is announced to assistive technology; the
-// surrounding diagram and descriptive content remain available on navigation.
+// Only the selected step heading is announced on change. Other step content
+// stays in the normal reading order without duplicating a large live region.
 const journey = [
   {
     number: '01', key: 'DISCOVER', title: 'Find the real friction.',

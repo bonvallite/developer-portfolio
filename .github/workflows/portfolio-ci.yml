@@ -29,12 +29,20 @@ jobs:
           python -m unittest discover -s tests/python -v
       - run: npx tsc --noEmit
       - run: npm run build
+      # Verify the actual Next.js HTML and sitemap; source-only checks cannot
+      # detect inherited titles on client-side case studies or rendering regressions.
+      # Uses a locally built server and no visitor data, secrets or live requests.
+      - name: Rendered flagship SEO metadata and sitemap
+        run: |
+          npm run start -- -p 3100 > /tmp/jrv-seo-next.log 2>&1 &
+          node tests/seo-rendered-metadata.mjs
 
 
   case-study-browser-qa:
-    # Run browser QA for reviewed case studies, cinematic redesign PRs and
-    # homepage-journey accessibility fixes; unit/SEO/safety checks run for all PRs.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'fix/home-journey-'))
+    # Run browser QA for reviewed case studies, cinematic projects, privacy
+    # changes, content-audit fixes, homepage accessibility and interactive
+    # case-study PRs. Unit/SEO/safety checks run for all pull requests.
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || startsWith(github.head_ref, 'fix/home-journey-'))
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -64,8 +72,18 @@ jobs:
       - name: Desktop tablet and mobile interaction checks
         run: node tests/case-study-browser-qa.mjs
       - name: Cinematic homepage layout, privacy and conversion QA
-        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'fix/home-journey-')
+        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'fix/home-journey-')
         run: node tests/homepage-browser-qa.mjs
+      # The Spend & Save case study connects shopper, merchant, post-checkout
+      # Flow commit and notification states through a safe architecture map.
+      - name: Spend and Save visual case-study and Flow browser QA
+        if: startsWith(github.head_ref, 'feature/spend-save-architecture-story-')
+        run: node tests/spend-save-visual-browser-qa.mjs
+      # Check consent rejection, acceptance and withdrawal on real browser links
+      # using only fictional text and no external analytics/lead submissions.
+      - name: Consent-first portfolio event privacy QA
+        if: startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-')
+        run: node tests/portfolio-events-browser-qa.mjs
       - name: Python analytics lab desktop tablet and mobile QA
         if: github.head_ref == 'feature/ember-teal-interactive-portfolio'
         run: node tests/analytics-lab-browser-qa.mjs
@@ -78,5 +96,6 @@ jobs:
             artifacts/case-study-browser-qa/
             artifacts/homepage-browser-qa/
             artifacts/analytics-lab-browser-qa/
+            artifacts/spend-save-visual-browser-qa/
           if-no-files-found: ignore
           retention-days: 7

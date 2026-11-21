@@ -50,6 +50,40 @@ for (const route of routes) {
   assert.match(source, /ServicePage content=\{content\}/);
 }
 
+// 21 Nov 2026 live audit: the flagship interactive case studies had inherited
+// identical root titles and descriptions, and three flagship pages were missing
+// from the sitemap. Guard both the metadata implementation and its publication.
+const flagshipClientRoutes = [
+  ['/analytics-lab', 'app/analytics-lab/layout.tsx'],
+  ['/projects/spend-and-save', 'app/projects/spend-and-save/layout.tsx'],
+];
+const flagshipTitles = new Set();
+const flagshipDescriptions = new Set();
+for (const [route, file] of flagshipClientRoutes) {
+  assert.ok(sitemap.includes("'" + route + "'"), route + ' absent from sitemap');
+  assert.ok(existsSync(join(root, 'app' + route + '/page.tsx')), route + ' page missing');
+  assert.ok(existsSync(join(root, file)), route + ' missing metadata server layout');
+  const source = read(file);
+  assert.match(source, /export const metadata/, route + ' missing route metadata');
+  assert.ok(source.includes("canonical: '" + route + "'"), route + ' canonical mismatch');
+  assert.ok(source.includes("url: 'https://www.jrvallite.com" + route + "'"),
+    route + ' Open Graph URL mismatch');
+  const title = source.match(/const title = '([^']+)'/)?.[1];
+  const description = source.match(/const description = '([^']+)'/)?.[1];
+  assert.ok(title && title.length >= 20 && title.length <= 65, route + ' title missing or excessive');
+  assert.ok(description && description.length >= 70 && description.length <= 160,
+    route + ' meta description missing or excessive');
+  assert.ok(!flagshipTitles.has(title), route + ' duplicates another flagship title');
+  assert.ok(!flagshipDescriptions.has(description), route + ' duplicates another flagship description');
+  flagshipTitles.add(title);
+  flagshipDescriptions.add(description);
+}
+const b2bModernisation = read('app/b2b-modernisation/page.tsx');
+assert.ok(sitemap.includes("'/b2b-modernisation'"), 'Flagship B2B case study absent from sitemap');
+assert.ok(b2bModernisation.includes("canonical: '/b2b-modernisation'"), 'B2B case study canonical mismatch');
+assert.match(b2bModernisation, /export const metadata/);
+assert.ok(!sitemap.includes("'/resume'"), 'Intentionally noindex résumé route in sitemap');
+
 // Build identifier rules from fragments instead of a searchable personal-name literal.
 const given = ['Jo', 'mar'].join('');
 const family = ['Val', 'lite'].join('');

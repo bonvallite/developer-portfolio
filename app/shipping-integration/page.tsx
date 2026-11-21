@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import CaseStudyContext from '../components/CaseStudyContext';
 
+// 21 Nov crawl: the title targets Shopify cold-chain delivery and
+// subscription work without exceeding the root branding title budget.
 export const metadata = {
-  title: 'Cold-chain shipping and subscription checkout | Developer portfolio',
+  title: 'Shopify Cold-Chain Shipping & Subscriptions',
   description: 'Shopify shipping integration case study covering Recharge subscriptions, Zapiet delivery zones, mixed carts and checkout rate validation.',
   alternates: { canonical: '/shipping-integration' },
 };

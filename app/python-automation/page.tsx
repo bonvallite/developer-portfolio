@@ -1,7 +1,9 @@
 import Link from 'next/link';
 
+// 21 Nov crawl: prioritise Python automation and ecommerce workflows in
+// the search title; the root layout adds a single ' | JRV' brand suffix.
 export const metadata = {
-  title: 'Python Automation & Reusable Skills | Developer Portfolio',
+  title: 'Python Automation for Ecommerce & Data Workflows',
   description: 'Public-safe Python automation, offline fictional FAQ retrieval, CSV ingestion, Jupyter notebook review and ecommerce API extraction case studies.',
   alternates: { canonical: '/python-automation' },
 };
