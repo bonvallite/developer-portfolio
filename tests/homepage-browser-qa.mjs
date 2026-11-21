@@ -1,0 +1,121 @@
+// End-to-end browser QA for the JRV cinematic Ember & Teal homepage rebuild.
+// Runs against a locally built Next.js app; no live client APIs or credentials.
+// Screenshots are review artefacts, not evidence of real performance metrics.
+import assert from 'node:assert/strict';
+import { mkdir } from 'node:fs/promises';
+import { chromium } from 'playwright';
+
+const baseURL = process.env.HOMEPAGE_BASE_URL || 'http://127.0.0.1:3100';
+const output = 'artifacts/homepage-browser-qa';
+const viewports = [
+  { name: 'wide', width: 1600, height: 960 },
+  { name: 'desktop', width: 1366, height: 768 },
+  { name: 'tablet', width: 768, height: 1024 },
+  { name: 'mobile', width: 390, height: 844 },
+];
+
+await mkdir(output, { recursive: true });
+const browser = await chromium.launch({ channel: 'chrome', headless: true });
+const summary = [];
+
+try {
+  for (const size of viewports) {
+    const context = await browser.newContext({
+      viewport: { width: size.width, height: size.height },
+      reducedMotion: size.name === 'mobile' ? 'reduce' : 'no-preference',
+      acceptDownloads: true,
+    });
+    const page = await context.newPage();
+    const failures = [];
+    const trackingRequests = [];
+    page.on('pageerror', err => failures.push(err.message));
+    page.on('request', req => {
+      if (/googletagmanager\.com|clarity\.ms\/tag|vercel-insights\.com|\/_vercel\/insights/.test(req.url())) {
+        trackingRequests.push(req.url());
+      }
+    });
+
+    const response = await page.goto(baseURL + '/', { waitUntil: 'domcontentloaded', timeout: 45000 });
+    assert.equal(response?.status(), 200, size.name + ': homepage HTTP 200');
+    await page.getByRole('heading', { name: /I build Shopify stores/ }).waitFor();
+    await page.locator('.jrv2-journey-tab').first().waitFor({ state: 'visible' });
+    assert.equal(await page.locator('h1').count(), 1, 'One homepage H1');
+    assert.equal(await page.locator('.jrv2-case').count(), 4, 'Four case-study stories');
+    assert.equal(await page.locator('.jrv2-service').count(), 4, 'Four linked services');
+    assert.ok(await page.locator('.jrv2-hero-actions a').count() >= 2, 'Prominent hero actions');
+    assert.equal(await page.locator('.jrv2-console').count(), 1, 'Visual commerce engine');
+
+    const consent = page.locator('.jrv-consent');
+    await consent.waitFor({ state: 'visible' });
+    // No optional third-party tracking may start in a fresh browser before consent.
+    assert.deepEqual(trackingRequests, [], size.name + ': optional tracking requested before consent');
+    await page.getByRole('button', { name: 'Reject optional' }).click();
+    await consent.waitFor({ state: 'hidden' });
+    assert.deepEqual(trackingRequests, [], size.name + ': tracking requested after rejection');
+
+    await page.locator('.jrv2-journey-tab').nth(1).click();
+    await page.getByText('Make complex feel clear.').waitFor();
+    assert.equal(await page.locator('.jrv2-journey-tab.is-active').count(), 1);
+
+    await page.getByRole('button', { name: 'I am hiring' }).click();
+    await page.locator('#jrv2-project-brief').fill('Fictional browser QA test only.');
+    const emailHref = await page.getByRole('link', { name: /Open email draft/ }).getAttribute('href');
+    assert.ok(emailHref?.startsWith('mailto:hello@jrvallite.com?'), 'No third-party lead form');
+    assert.ok(emailHref?.includes('Fictional%20browser%20QA%20test%20only.'), 'Enquiry stays in local email draft');
+
+    if (size.width < 970) {
+      const menu = page.locator('.jrv2-mobile-menu');
+      await menu.locator('summary').click();
+      assert.equal(await menu.getAttribute('open'), '', 'Mobile navigation opens');
+      await menu.locator('summary').click();
+    }
+
+    const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3);
+    assert.equal(horizontalOverflow, false, size.name + ': horizontal overflow');
+
+    // Keep user-facing screenshots at their initial interactive state.
+    await page.locator('.jrv2-journey-tab').first().click();
+    await page.getByRole('button', { name: 'I have a Shopify project' }).click();
+    await page.locator('#jrv2-project-brief').fill('');
+    // The prior interaction checks scroll to the contact section. Reset the
+    // viewport before a full-page capture so sticky navigation is rendered at
+    // the page top, not superimposed over contact content in the artefact.
+    await page.evaluate(() => {
+      if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+    await page.waitForTimeout(120);
+    await page.screenshot({ path: output + '/' + size.name + '.png', fullPage: true, animations: 'disabled' });
+    assert.deepEqual(failures, [], size.name + ': JavaScript exceptions');
+    // The four SEO landing pages share a newly styled server component.
+    // Audit their actual routes rather than treating homepage links as proof.
+    if (size.name === 'wide' || size.name === 'mobile') {
+      const routes = [
+        '/shopify-developer', '/ecommerce-management',
+        '/shopify-cro', '/shopify-app-development',
+      ];
+      for (const route of routes) {
+        const serviceResponse = await page.goto(baseURL + route, { waitUntil: 'domcontentloaded', timeout: 45000 });
+        assert.equal(serviceResponse?.status(), 200, route + ': HTTP 200');
+        await page.locator('.jrv-svc-hero-art').waitFor({ state: 'visible' });
+        assert.equal(await page.locator('.service-hero h1').count(), 1, route + ': H1');
+        assert.equal(await page.locator('.jrv-quick-dock').count(), 0, route + ': no competing floating CTA');
+        const serviceHref = await page.locator('.service-hero .button.primary').getAttribute('href');
+        assert.ok(serviceHref?.startsWith('mailto:hello@jrvallite.com?'), route + ': direct enquiry');
+        assert.ok(await page.locator('#examples .service-card-grid a').count() >= 1, route + ': project evidence');
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3), false, route + ': horizontal overflow');
+        assert.deepEqual(trackingRequests, [], route + ': no requests after rejection');
+        if (route === '/shopify-developer') {
+          await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+          await page.screenshot({ path: output + '/service-' + size.name + '.png', fullPage: true, animations: 'disabled' });
+        }
+      }
+    }
+    summary.push(size.name + ' ' + size.width + 'x' + size.height + ': passed');
+
+    await context.close();
+  }
+  console.log('Cinematic homepage browser QA PASSED:\n' + summary.join('\n'));
+} finally {
+  await browser.close();
+}

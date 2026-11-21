@@ -153,3 +153,9 @@ TRIGGER: Order paid
 - Shopify theme: **not edited**.
 - Live Shopify Flow: **not inspected or changed**.
 - Automated tests, production integration and email delivery: **not verified**.
+
+## Portfolio Stage 4 enhancement, 20 November 2026
+
+Updated `app/projects/spend-and-save/page.tsx` on `feature/ember-teal-interactive-portfolio`: the six-stage fictional post-checkout Flow now has a live explanatory panel driven by the existing stage state. The simulation continues to reveal gift order lines only after the commit stage and the email preview only at the notification stage. The demonstration checkout respects `prefers-reduced-motion` for scrolling. Added scoped Ember & Teal styling and focus-visible treatment. No Shopify theme, Shopify Flow, live order, or email was changed.
+
+**Verification:** GitHub source commit confirmed. Automated tests, TypeScript checks, visual QA and Vercel preview have not yet been run or verified; no production release.

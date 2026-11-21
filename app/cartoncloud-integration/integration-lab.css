@@ -1,0 +1,29 @@
+/* 20 Nov 2026: public-only CartonCloud interactive diagram. No external assets,
+   network calls or event data. All controls keyboard-accessible. */
+.jrv-integration-lab{max-width:1180px;margin:0 auto;padding:76px 28px;color:#eaf4f3}
+.jrv-integration-lab *{box-sizing:border-box}
+.jrv-integration-lab__intro>span,.jrv-integration-lab__detail>span{color:#38c7bc;font-size:11px;letter-spacing:.12em}
+.jrv-integration-lab__intro h2{font-size:clamp(32px,4vw,54px);line-height:1.08;letter-spacing:-.04em;margin:14px 0}
+.jrv-integration-lab__intro p{max-width:760px;color:#bdd0d1;line-height:1.75}
+.jrv-integration-lab__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;margin-top:30px}
+.jrv-integration-lab__steps{display:grid;gap:8px}
+.jrv-integration-lab__steps button{background:#162b32;color:#eaf4f3;border:1px solid #34555c;border-radius:10px;padding:15px;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.jrv-integration-lab__steps button span{color:#38c7bc;font-size:11px}
+.jrv-integration-lab__steps button strong{font-size:13px;flex:1}
+.jrv-integration-lab__steps button.is-selected{border-color:#f28c52;background:#263338;transform:translateX(4px)}
+.jrv-integration-lab__detail{background:radial-gradient(ellipse at top right,#38c7bc14,transparent 65%),#12232b;border:1px solid #35656b;border-radius:14px;padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:16px}
+.jrv-integration-lab__detail h3{font-size:clamp(24px,3vw,34px);letter-spacing:-.035em}
+.jrv-integration-lab__detail>p,.jrv-integration-lab__event p{color:#bdd0d1;font-size:14px;line-height:1.75}
+.jrv-integration-lab__event{display:flex;gap:14px;padding:18px;border:1px solid #36565b;border-radius:10px;background:#162b32}
+.jrv-integration-lab__event svg{flex-shrink:0;color:#f28c52}
+.jrv-integration-lab__event strong{font-size:11px;letter-spacing:.08em}
+.jrv-integration-lab__toggle{display:flex;align-items:center;gap:10px;font-size:13px;color:#eaf4f3}
+.jrv-integration-lab__toggle input{accent-color:#38c7bc;width:18px;height:18px}
+.jrv-integration-lab__actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.jrv-integration-lab__actions button{display:inline-flex;align-items:center;gap:9px;padding:12px 16px;border-radius:8px;border:1px solid #38c7bc;background:#17383d;color:#eaf4f3;cursor:pointer;font-weight:600}
+.jrv-integration-lab__actions button:first-child{background:#f28c52;border-color:#f28c52;color:#0b1419}
+.jrv-integration-lab__actions button:disabled{opacity:.5;cursor:not-allowed}
+.jrv-integration-lab button:focus-visible,.jrv-integration-lab input:focus-visible{outline:2px solid #f28c52;outline-offset:3px}
+.jrv-integration-lab__caveat{font-size:12px;color:#a9c1c3;line-height:1.7;margin-top:20px}
+@media(max-width:740px){.jrv-integration-lab{padding:54px 20px}.jrv-integration-lab__grid{grid-template-columns:1fr}.jrv-integration-lab__steps button.is-selected{transform:none}}
+@media(prefers-reduced-motion:reduce){.jrv-integration-lab *{transition:none!important;animation:none!important}}

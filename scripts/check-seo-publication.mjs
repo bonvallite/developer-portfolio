@@ -44,7 +44,9 @@ for (const route of routes) {
   assert.ok(source.includes("canonical: '" + route + "'"), route + ' canonical mismatch');
   assert.ok(source.includes("https://www.jrvallite.com" + route), route + ' Open Graph URL missing');
   assert.ok(sitemap.includes("'" + route + "'"), route + ' absent from sitemap');
-  assert.ok(homepage.includes('href="' + route + '"'), route + ' not linked from homepage');
+  // The cinematic homepage renders service links from a typed data array;
+  // verify either the data declaration or a direct JSX link.
+  assert.ok(homepage.includes("href: '" + route + "'") || homepage.includes('href="' + route + '"'), route + ' not linked from homepage');
   assert.match(source, /ServicePage content=\{content\}/);
 }
 
