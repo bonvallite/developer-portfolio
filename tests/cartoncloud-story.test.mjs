@@ -1,6 +1,7 @@
 // 21 November 2026 regression for a public-safe Shopify–CartonCloud story.
 // The event studio is an explanatory React simulation. Source tests guard the
 // failure-state gates and evidence language; browser tests cover interactions.
+// Closing project/hiring links are static; no lead API or form is introduced.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -23,6 +24,23 @@ test('CartonCloud case study separates application and integration evidence', ()
   assert.match(page, /id="event-studio"|href="#event-studio"/);
   assert.match(page, /\/#work/);
   assert.match(page, /CARTONCLOUD_INTEGRATION\.md/);
+});
+
+test('CartonCloud story offers safe and relevant project and hiring follow-up', () => {
+  assert.ok(page.includes('id="integration-contact"'));
+  assert.ok(page.includes('aria-labelledby="cc-engage-title"'));
+  assert.ok(page.includes('mailto:hello@jrvallite.com?subject=Shopify%20integration%20project%20%7C%20JRV'));
+  assert.ok(page.includes('Hiring? Review experience'));
+  assert.ok(page.includes('href="/experience"'));
+  assert.ok(page.includes('Read technical documentation'));
+  assert.ok(page.includes('Explore other projects'));
+  assert.ok(page.includes('not guaranteed operational results'));
+  assert.ok(routeCss.includes('.cc-page .cc-engage-actions'));
+  assert.ok(routeCss.includes('.cc-page .cc-engage{grid-template-columns:1fr}'));
+  assert.ok(routeCss.includes('.cc-page .cc-evidence-accent.is-open'));
+  for (const disallowed of ['text-[#d8b27c]', 'text-[#d9b47c]', '<form', 'onSubmit=', 'sendBeacon(', 'XMLHttpRequest']) {
+    assert.ok(!page.includes(disallowed), 'Outdated styling or lead collection pattern: ' + disallowed);
+  }
 });
 
 test('event studio stops at invalid sender or failed Shopify write', () => {

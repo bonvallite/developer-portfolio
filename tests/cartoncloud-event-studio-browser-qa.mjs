@@ -1,6 +1,8 @@
 // Visual, keyboard and state-machine regression for the public CartonCloud
 // showcase. Only fictional examples are interacted with. Never submit
 // merchant webhooks, call Shopify/CartonCloud, or send tracking data.
+// Final enquiry tests only inspect href, accessible labels and layout;
+// they never open a mail client or send test submissions.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -74,6 +76,27 @@ try {
     await studio.getByText('ILLUSTRATIVE PATH COMPLETE').waitFor();
     await studio.getByRole('button', { name: 'Reset trace' }).click();
     await studio.getByRole('heading', { name: 'Shopify event received' }).waitFor();
+
+    // The CTA remains accessible, private and responsive without sending email.
+    const contact = page.locator('#integration-contact');
+    await contact.getByRole('heading', { name: /Build the bridge/ }).waitFor();
+    const contactAction = contact.getByRole('link', { name: 'Discuss a Shopify integration' });
+    assert.equal(await contactAction.getAttribute('href'),
+      'mailto:hello@jrvallite.com?subject=Shopify%20integration%20project%20%7C%20JRV',
+      viewport.name + ': fixed email destination without user-submitted form data');
+    assert.ok(await contactAction.evaluate(el => el.getBoundingClientRect().height) >= 44,
+      viewport.name + ': integration CTA is a usable touch target');
+    assert.equal(await contact.getByRole('link', { name: 'Hiring? Review experience' }).getAttribute('href'),
+      '/experience', viewport.name + ': hiring destination remains internal');
+    assert.equal(await contact.getByRole('link', { name: 'Read technical documentation' }).getAttribute('rel'),
+      'noopener noreferrer', viewport.name + ': technical docs link stays safe');
+    if (viewport.width <= 1080) {
+      const columns = await contact.evaluate(el =>
+        window.getComputedStyle(el).gridTemplateColumns.trim().split(/\s+/).length);
+      assert.equal(columns, 1, viewport.name + ': integration CTA stacks on tablet/phone');
+    }
+    assert.equal(await page.getByRole('link', { name: 'Explore other projects' }).count(), 1,
+      viewport.name + ': retained other-projects pathway');
 
     // Keep the privacy opt-out; the screenshots should showcase the actual
     // page instead of a cookie panel obscuring the integration diagram.

@@ -4,6 +4,8 @@
  * electric teal, ember-orange actions and accessible light type.
  * Preserves existing SEO, case evidence, caveats, source links and content.
  * Page-specific visual styling only: no network, media, or font dependencies.
+ * The closing enquiry uses a fixed mailto and internal hiring route only;
+ * no visitor form data is collected and no integration traffic is generated.
  */
 .cc-page{
   --cc-ink:#0b1419;--cc-panel:#122730;--cc-teal:#38c7bc;
@@ -38,6 +40,11 @@
 .cc-page .hero-bottom p{font-size:17px;color:#b5cdcf;line-height:1.8;max-width:750px}
 .cc-page .hero .inline-flex{color:#a5d9d4}
 .cc-page .hero .inline-flex:hover{color:#f8b88e}
+/* Replace remaining legacy gold utilities with meaningful JRV teal evidence
+ * labels and ember colouring for the explicitly unresolved verification. */
+.cc-page .hero .cc-back-link{color:#a5d9d4}
+.cc-page .cc-evidence-accent{color:#82ddd3}
+.cc-page .cc-evidence-accent.is-open{color:#f7ad81}
 .cc-page .hero-tags{margin-top:28px;gap:8px;flex-wrap:wrap}
 .cc-page .hero-tags span{
   border:1px solid #37666c;background:#14323c;color:#c6e2df;
@@ -123,11 +130,49 @@
 .cc-page .button.primary:hover{background:#ffb28a}
 .cc-page .button.secondary:hover{border-color:#38c7bc;background:#23434a}
 .cc-page .actions{gap:12px;flex-wrap:wrap}
+/* The end-of-story enquiry is deliberately navigation-only, with 48px primary
+ * targets and the route's existing keyboard focus rings; it is not a form. */
+.cc-page .cc-engage{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);
+  gap:clamp(22px,4vw,56px);align-items:center;margin:40px 0 25px;
+  padding:clamp(25px,4vw,48px);border:1px solid #4c807b;border-radius:16px;
+  background:radial-gradient(ellipse at 8% 70%,#38c7bc17,transparent 62%),
+    radial-gradient(ellipse at 95% 10%,#f28c5218,transparent 59%),#102831;
+}
+.cc-page .cc-engage-copy{min-width:0}
+.cc-page .cc-engage-copy h3{
+  font-size:clamp(29px,3.8vw,50px);line-height:1.13;letter-spacing:-.045em;
+  max-width:680px;color:#f1fbfa;margin:16px 0;
+}
+.cc-page .cc-engage-copy h3 em{font-style:normal;color:#f4a57a}
+.cc-page .cc-engage-copy>p{font-size:14px;line-height:1.75;color:#bfd6d5;max-width:640px;margin:0 0 12px}
+.cc-page .cc-engage-copy>small{display:block;font-size:11px;line-height:1.6;color:#a5c5c6}
+.cc-page .cc-engage-actions{display:grid;gap:11px;min-width:0}
+.cc-page .cc-engage-actions>.cc-engage-primary,
+.cc-page .cc-engage-actions>.cc-engage-secondary{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  min-height:48px;padding:12px 15px;border:1px solid #568d88;
+  border-radius:8px;text-align:center;font-size:13px;line-height:1.5;font-weight:770;
+}
+.cc-page .cc-engage-primary{background:#f28c52;border-color:#f28c52!important;color:#0a1c22}
+.cc-page .cc-engage-primary:hover{background:#ffb387;border-color:#ffb387!important}
+.cc-page .cc-engage-secondary{background:#1b3b43;color:#e9f9f7}
+.cc-page .cc-engage-secondary:hover{background:#27545c;border-color:#38c7bc}
+.cc-page .cc-engage-resources{
+  display:flex;flex-wrap:wrap;align-items:center;gap:11px 20px;
+  padding-top:13px;border-top:1px solid #395e64;
+}
+.cc-page .cc-engage-resources a{
+  display:inline-flex;align-items:center;gap:7px;min-height:36px;
+  font-size:12px;color:#a6e9de;text-decoration:underline;text-underline-offset:3px;
+}
+.cc-page .cc-engage-resources a:hover{color:#ffd0ad}
 .cc-page .case-context{border-top:1px solid #30555e}
 .cc-page .case-context h2,.cc-page .case-context h3{color:#ebf8f7}
 .cc-page .case-context p{color:#b5c9ca}
 .cc-page a:focus-visible,.cc-page button:focus-visible{outline:3px solid #f28c52;outline-offset:3px}
 @media(max-width:1080px){
+  .cc-page .cc-engage{grid-template-columns:1fr}
   .cc-page .cc-explore-prompt{grid-template-columns:1fr 1.2fr}
   .cc-page .cc-explore-prompt a{grid-column:1/-1;justify-self:start}
 }
@@ -141,6 +186,10 @@
   .cc-page .section{padding-top:55px;padding-bottom:65px}
 }
 @media(max-width:490px){
+  .cc-page .cc-engage{padding:22px 18px;margin-top:30px}
+  .cc-page .cc-engage-copy h3{font-size:clamp(29px,8vw,39px)}
+  .cc-page .cc-engage-actions>a{width:100%}
+  .cc-page .cc-engage-resources{flex-direction:column;align-items:flex-start}
   .cc-page .header{gap:12px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
   .cc-page .brand strong{font-size:25px}
   .cc-page .brand span{font-size:8px;letter-spacing:.6px}

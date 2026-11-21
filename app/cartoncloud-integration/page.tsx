@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 // 21 Nov 2026: separate app and API-integration work remains explicit in the
 // two contribution panels. The new interactive diagram models a hypothetical
 // workflow and failure gates, not a real production network trace.
+// The closing links use a fixed email subject and internal hiring navigation;
+// there is no enquiry collection, extra API, or visitor message in the DOM.
 const engineering = [
   { title: 'API orchestration', description: 'Connect commerce fulfilments to a warehouse system using authenticated REST calls and a serverless integration layer.', icon: GitBranch },
   { title: 'Data normalisation', description: 'Translate provider-specific tracking and delivery states into a consistent set of Shopify-facing fields and events.', icon: Database },
@@ -40,7 +42,7 @@ export default function CartonCloudIntegrationCaseStudy() {
         <nav aria-label="Page navigation"><Link href="/#work">Projects</Link><Link href="/experience">Experience</Link></nav>
       </header>
       <section className="hero container" style={{paddingBottom:70}}>
-        <Link href="/#work" className="inline-flex items-center gap-2 text-sm text-[#d8b27c]"><ArrowLeft size={16}/> Back to selected work</Link>
+        <Link href="/#work" className="inline-flex items-center gap-2 text-sm cc-back-link"><ArrowLeft size={16}/> Back to selected work</Link>
         <div className="eyebrow mt-12"><span className="spark"/> CUSTOM APP / SHOPIFY + CARTONCLOUD</div>
         <h1>I built the app.<br/><em>I built the integration.</em></h1>
         <div className="hero-bottom">
@@ -102,9 +104,9 @@ export default function CartonCloudIntegrationCaseStudy() {
       <section className="section container" style={{paddingTop:0}}>
         <div className="section-head"><div><span className="overline">05 / EVIDENCE & QA</span><h2>What the logs actually prove<span className="dot">.</span></h2></div></div>
         <div className="border border-[#42433f] bg-[#151a1b] rounded-lg overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#333b3a] px-6 py-5"><div className="flex items-center gap-3 text-[#d9b47c]"><Workflow size={21}/><strong>Integration validation timeline</strong></div><span className="text-xs text-[#979da2]">Public-safe evidence summary, not a live log feed</span></div>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#333b3a] px-6 py-5"><div className="flex items-center gap-3 cc-evidence-accent"><Workflow size={21}/><strong>Integration validation timeline</strong></div><span className="text-xs text-[#979da2]">Public-safe evidence summary, not a live log feed</span></div>
           {checks.map((check,i) => <div key={check.title} className="grid md:grid-cols-[175px_1fr] gap-3 px-6 py-6 border-b border-[#303638] last:border-b-0">
-            <div className="flex items-start gap-2 text-sm text-[#d9b47c]">{i === 2 ? <AlertTriangle size={18} className="shrink-0 mt-1"/> : <CheckCircle2 size={18} className="shrink-0 mt-1"/>}<span>{check.label}</span></div>
+            <div className={'flex items-start gap-2 text-sm cc-evidence-accent'+(i===2?' is-open':'')}>{i === 2 ? <AlertTriangle size={18} className="shrink-0 mt-1"/> : <CheckCircle2 size={18} className="shrink-0 mt-1"/>}<span>{check.label}</span></div>
             <div><h3 className="text-lg mb-2">{check.title}</h3><p className="text-[#abb0b6] text-sm leading-7">{check.description}</p></div>
           </div>)}
         </div>
@@ -119,7 +121,24 @@ export default function CartonCloudIntegrationCaseStudy() {
             <div><h3 className="text-2xl mb-4">What I delivered</h3><p className="text-[#afb1b9] leading-8">Both a custom serverless delivery app and the Shopify–CartonCloud integration it operates, including order/fulfilment lookups, tracking-state handling and delivery-date update paths. This reduced the need to treat the two platforms as isolated sources when investigating orders. No quantified time saving is claimed.</p></div>
             <div><h3 className="text-2xl mb-4">What reliable operation still demands</h3><p className="text-[#afb1b9] leading-8">Permission validation, durable idempotency, bounded retries, observable write failures and sampling across dispatch, transit and delivered orders. The project is described as implemented and tested in part; current full-production synchronisation has not been freshly verified.</p></div>
           </div>
-          <div className="actions mt-10"><Link className="button primary" href="/#work">Explore other projects <ArrowRight size={17}/></Link><a className="button secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/bonvallite/developer-portfolio/blob/main/CARTONCLOUD_INTEGRATION.md">Read technical documentation <ArrowUpRight size={17}/></a></div>
+          {/* Two direct next steps after the systems story. Mailto opens the
+              visitor's email application; no visitor data is captured. */}
+          <section id="integration-contact" className="cc-engage" aria-labelledby="cc-engage-title">
+            <div className="cc-engage-copy">
+              <span className="overline">WORK WITH JRV / SHOPIFY INTEGRATIONS</span>
+              <h3 id="cc-engage-title">Build the bridge. <em>Plan for the failure paths.</em></h3>
+              <p>Need a Shopify app, a reliable webhook workflow, or clearer fulfilment data? Start with the system boundaries, constraints, and the evidence required to make it maintainable.</p>
+              <small>This portfolio demonstrates an approach, not guaranteed operational results.</small>
+            </div>
+            <div className="cc-engage-actions">
+              <a className="cc-engage-primary" href="mailto:hello@jrvallite.com?subject=Shopify%20integration%20project%20%7C%20JRV">Discuss a Shopify integration <ArrowRight size={17} aria-hidden="true"/></a>
+              <Link className="cc-engage-secondary" href="/experience">Hiring? Review experience <ArrowRight size={17} aria-hidden="true"/></Link>
+              <div className="cc-engage-resources">
+                <a href="https://github.com/bonvallite/developer-portfolio/blob/main/CARTONCLOUD_INTEGRATION.md" target="_blank" rel="noopener noreferrer">Read technical documentation <ArrowUpRight size={15} aria-hidden="true"/></a>
+                <Link href="/#work">Explore other projects <ArrowRight size={15} aria-hidden="true"/></Link>
+              </div>
+            </div>
+          </section>
           <p className="disclaimer">Portfolio documentation only. This page does not provide credentials, production Worker code, tracking URLs, raw customer records or employer-owned configuration.</p>
         </div>
       </section>
