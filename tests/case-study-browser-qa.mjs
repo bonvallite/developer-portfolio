@@ -1,4 +1,4 @@
-// Browser QA for the public analytics case study.
+// Browser QA for public analytics, CSS learning and fictional B2B case studies.
 // Runs against a local Next.js server. No analytics credentials or Vercel deployment.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
@@ -73,6 +73,34 @@ try {
     assert.equal(archive.status(), 200, 'Sanitised archive');
     assert.match(await archive.text(), /gsc_07_finish_19_21_24\.py/);
     await page.screenshot({ path: output + '/' + viewport.name + '-full.png', fullPage: true, animations: 'disabled' });
+
+    // 21 Nov SEO/content audit: the educational CSS lab must be reachable from
+    // a relevant skills page, and the fictional B2B calculator must remain
+    // functional beside its expanded, server-visible pricing explanation.
+    const experienceResponse = await page.goto(baseURL + '/experience', { waitUntil: 'domcontentloaded' });
+    assert.equal(experienceResponse?.status(), 200, 'Experience route returns HTTP 200');
+    const cssLabLink = page.getByRole('link', { name: /Try the interactive CSS lab/ });
+    await cssLabLink.waitFor({ state: 'visible' });
+    await cssLabLink.click();
+    await page.getByRole('heading', { level: 1, name: /CSS, beyond the/ }).waitFor();
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3),
+      false, viewport.name + ': CSS lab horizontal overflow');
+
+    const b2bResponse = await page.goto(baseURL + '/b2b-demo', { waitUntil: 'domcontentloaded' });
+    assert.equal(b2bResponse?.status(), 200, 'B2B simulator returns HTTP 200');
+    await page.getByRole('heading', { level: 2, name: 'How the weight-based calculation works' }).waitFor();
+    await page.getByRole('heading', { level: 2, name: 'What a real Shopify B2B build needs' }).waitFor();
+    await page.getByRole('link', { name: 'B2B modernisation case study' }).waitFor();
+    const quantities = page.getByRole('spinbutton', { name: 'Quantity' });
+    assert.equal(await quantities.count(), 3, 'Three fictional catalogue quantity inputs');
+    await quantities.nth(0).fill('4');
+    await quantities.nth(1).fill('2');
+    await quantities.nth(2).fill('0');
+    await page.getByText('5.40 kg', { exact: true }).waitFor();
+    await page.getByText('$163.40', { exact: false }).waitFor();
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3),
+      false, viewport.name + ': B2B simulator horizontal overflow');
+
     assert.deepEqual(errors, [], viewport.name + ': JavaScript runtime errors');
     results.push(viewport.name + ' (' + viewport.width + 'x' + viewport.height + '): passed');
     await context.close();
