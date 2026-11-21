@@ -39,9 +39,10 @@ jobs:
 
 
   case-study-browser-qa:
-    # Run browser QA for reviewed case studies, cinematic redesigns and
-    # privacy-sensitive enquiry analytics PRs. Unit/SEO/safety run for all PRs.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-'))
+    # Run browser QA for reviewed case studies, cinematic redesigns,
+    # privacy-sensitive analytics and content-audit fixes. Unit/SEO/safety
+    # checks still run for all pull requests.
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-'))
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
