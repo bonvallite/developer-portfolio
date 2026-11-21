@@ -61,7 +61,11 @@ try {
     await page.locator('#jrv2-project-brief').fill('Fictional browser QA test only.');
     const emailHref = await page.getByRole('link', { name: /Open email draft/ }).getAttribute('href');
     assert.ok(emailHref?.startsWith('mailto:hello@jrvallite.com?'), 'No third-party lead form');
-    assert.ok(emailHref?.includes('Fictional%20browser%20QA%20test%20only.'), 'Enquiry stays in local email draft');
+    // Optional text is intentionally absent from the DOM href so automatic
+    // vendor link-click listeners cannot read a visitor's typed brief there.
+    assert.equal(emailHref?.includes('Fictional%20browser%20QA%20test%20only.'), false,
+      'Visitor-entered brief must not appear in the mailto anchor href');
+    assert.ok(emailHref?.includes('Company%3A'), 'Static role enquiry template remains available');
 
     if (size.width < 970) {
       const menu = page.locator('.jrv2-mobile-menu');
