@@ -37,7 +37,7 @@ const titles = new Set();
 const descriptions = new Set();
 for (const check of checks) {
   const html = await readPage(check.path);
-  const title = html.split('<title>')[1]?.split('</title>')[0] || '';
+  const title = (html.split('<title>')[1]?.split('</title>')[0] || '').replaceAll('&amp;', '&');
   const description = attr(findTag(html, 'meta', 'name', 'description') || '', 'content');
   const canonical = attr(findTag(html, 'link', 'rel', 'canonical') || '', 'href');
   const openGraphUrl = attr(findTag(html, 'meta', 'property', 'og:url') || '', 'content');
