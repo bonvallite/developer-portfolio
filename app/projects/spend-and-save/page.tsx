@@ -7,6 +7,7 @@
  * No credentials, customer records or live Shopify theme source are used.
  * 21 Nov 2026: the hero sequence and interactive architecture inspector
  * explain the cross-system dependencies without claiming to run real Flow.
+ * Shopper, merchant and engineering are three distinct interactive views.
  * spend-save-visual.css overrides legacy warm-gold illustration colours with
  * the JRV teal/ember identity; tested eligibility and fulfilment stay intact.
  */
@@ -90,7 +91,7 @@ export default function SpendSaveCaseStudy() {
         <article><span>03 / FULFIL</span><h2>Automate after checkout</h2><p>Flow adds qualifying gifts to the order and confirms the update by email.</p></article>
       </section>
       <section id="demo" className="ss-demo">
-        <div className="ss-section-title"><span>THE EXPERIENCE</span><h2>One offer. Two journeys.</h2><p>Switch between shopper, merchant and engineering perspectives. The same reward thresholds power every view.</p></div>
+        <div className="ss-section-title"><span>THE EXPERIENCE</span><h2>One offer. Three perspectives.</h2><p>Switch between shopper, merchant and engineering perspectives. The same reward thresholds power every view.</p></div>
         <div className="ss-tabs" role="tablist" aria-label="Experience mode">
           {(['shopper','merchant','engineering'] as const).map(t => <button key={t} type="button" role="tab" aria-selected={tab===t} onClick={()=>setTab(t)}>{t==='shopper'?'01 Shopper':t==='merchant'?'02 Merchant':'03 Engineering'}</button>)}
         </div>
