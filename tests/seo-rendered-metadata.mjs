@@ -90,7 +90,7 @@ const auditedSnippets = [
   ['/', 'Shopify Developer, Ecommerce Management & CRO', ['Shopify', 'CRO', 'B2B']],
   ['/b2b-modernisation', 'Shopify B2B Modernisation | Markets & Catalogues', ['Shopify', 'B2B', 'Catalogues']],
   ['/cartoncloud-integration', 'Shopify CartonCloud Integration & Delivery App', ['Shopify', 'CartonCloud', 'fulfilment']],
-  ['/data-extraction-automation', 'Ecommerce Data Engineering | Python & APIs', ['ecommerce', 'Python', 'GA4']],
+  ['/data-extraction-automation', 'Ecommerce Data Engineering | Python & APIs', ['ecommerce', 'Python', 'API']],
   ['/eve-curls', 'Shopify Markets | European Localisation Case Study', ['Shopify', 'European', 'fictional']],
   ['/python-automation', 'Python Automation for Ecommerce & Data Workflows', ['Python', 'CSV', 'ecommerce']],
   ['/shipping-integration', 'Shopify Cold-Chain Shipping & Subscriptions', ['Shopify', 'Recharge', 'Zapiet']],
