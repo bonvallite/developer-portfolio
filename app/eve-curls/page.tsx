@@ -5,9 +5,11 @@ import type { Metadata } from 'next';
 import { ArrowLeft, ArrowUpRight, Globe2, Languages, Coins, PackageSearch, PanelsTopLeft, Waypoints, ShieldCheck, BadgePercent, CreditCard } from 'lucide-react';
 import MarketPreview from './MarketPreview';
 
+// 21 Nov crawl: shorten the snippet while retaining the six-market scope
+// and the fictional demonstration disclaimer from the published case study.
 export const metadata: Metadata = {
-  title: 'Shopify Markets & European Ecommerce Localisation Case Study',
-  description: 'International Shopify Markets architecture case study covering six European markets, regional languages, currencies, catalogues, domains, theme customisations and a fictional interactive demo.',
+  title: 'Shopify Markets | European Localisation Case Study',
+  description: 'Explore Shopify Markets across six European markets, with languages, currencies, catalogues, domains, theme changes and a fictional interactive demo.',
   alternates: { canonical: '/eve-curls' },
 };
 
