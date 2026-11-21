@@ -53,9 +53,27 @@ try {
     await consent.waitFor({ state: 'hidden' });
     assert.deepEqual(trackingRequests, [], size.name + ': tracking requested after rejection');
 
-    await page.locator('.jrv2-journey-tab').nth(1).click();
-    await page.getByText('Make complex feel clear.').waitFor();
+    // The selected step alone is the live announcement region. A large parent
+    // live region would repeatedly announce the entire illustration on updates.
+    const journeyTabs = page.locator('.jrv2-journey-tab');
+    const journeyLiveRegions = page.locator('.jrv2-journey [aria-live]');
+    assert.equal(await journeyLiveRegions.count(), 1, size.name + ': one journey live region');
+    assert.equal(await journeyLiveRegions.first().evaluate(element => element.tagName), 'H3',
+      size.name + ': only the selected step heading is announced');
+    assert.equal(await journeyLiveRegions.first().getAttribute('aria-live'), 'polite');
+    assert.equal(await journeyLiveRegions.first().getAttribute('aria-atomic'), 'true');
+
+    // A keyboard visitor can select steps with both Enter and Space.
+    await journeyTabs.nth(1).focus();
+    await page.keyboard.press('Enter');
+    await page.getByRole('heading', { name: 'Make complex feel clear.' }).waitFor();
+    assert.equal(await journeyTabs.nth(1).getAttribute('aria-pressed'), 'true');
     assert.equal(await page.locator('.jrv2-journey-tab.is-active').count(), 1);
+    await journeyTabs.nth(2).focus();
+    await page.keyboard.press('Space');
+    await page.getByRole('heading', { name: 'Build for the real world.' }).waitFor();
+    assert.equal(await journeyTabs.nth(2).getAttribute('aria-pressed'), 'true');
+    assert.equal(await journeyLiveRegions.first().textContent(), 'Build for the real world.');
 
     await page.getByRole('button', { name: 'I am hiring' }).click();
     await page.locator('#jrv2-project-brief').fill('Fictional browser QA test only.');
