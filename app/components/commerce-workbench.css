@@ -208,3 +208,46 @@
 @media(prefers-reduced-motion:reduce){
   .jrv2-workbench,.jrv2-workbench *{animation:none!important;transition:none!important;transform:none!important}
 }
+
+/* The four static case-card illustrations are navigation previews, not live
+   dashboards. Align their accents with the interactive studio and distinguish
+   technology evidence from visual decoration. */
+.jrv2-page .jrv2-case-visual{
+  border-color:#315d65;
+  background:radial-gradient(circle at 83% 10%,#f28c521f,transparent 57%),#0b1e26;
+}
+.jrv2-page .jrv2-ui-meta{color:#9ae9e0}
+.jrv2-page .jrv2-ui-foot{color:#a2c4c3}
+.jrv2-page .jrv2-reward-line{
+  background:linear-gradient(90deg,#38c7bc 68%,#365459 68%);
+}
+.jrv2-page .jrv2-reward-line i{
+  background:#38c7bc;border-color:#0f2830;box-shadow:0 0 0 1px #38c7bc;
+}
+.jrv2-page .jrv2-reward-line i:last-child{background:#365459;box-shadow:0 0 0 1px #587e80}
+.jrv2-page .jrv2-reward-steps{color:#eaf4f3}
+.jrv2-page .jrv2-micro-bars{border-bottom-color:#406d70}
+.jrv2-page .jrv2-micro-bars i{background:linear-gradient(#38c7bc,#1f6a72)}
+.jrv2-page .jrv2-micro-bars i:nth-child(3n){background:linear-gradient(#f28c52,#8e5139)}
+.jrv2-page .jrv2-system-link span{
+  color:#d6f2ef;background:#142f37;border-color:#3b8381;
+}
+.jrv2-page .jrv2-tier-stack span{
+  border-color:#377079;background:#17343d;color:#cde9e5;
+}
+.jrv2-page .jrv2-tier-stack b{color:#f8ac80}
+.jrv2-case-stack{
+  display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:-5px 0 22px;
+}
+.jrv2-case-stack span{
+  margin-right:5px;color:#9abebd;font-size:9px;letter-spacing:1.1px;
+  font-weight:850;
+}
+.jrv2-case-stack b{
+  border:1px solid #3f6770;border-radius:999px;background:#1c343c;
+  color:#d4eeeb;font-size:10px;font-weight:680;padding:6px 9px;
+}
+@media(max-width:490px){
+  .jrv2-case-stack{margin-bottom:18px}
+  .jrv2-case-stack b{font-size:9px}
+}
