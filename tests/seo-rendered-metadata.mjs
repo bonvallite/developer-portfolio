@@ -110,7 +110,10 @@ for (const [path, expectedBaseTitle, requiredDescriptionTerms] of auditedSnippet
     path + ': rendered title should be 30–60 characters, got ' + renderedTitle.length);
   assert.ok(description.length >= 70 && description.length <= 160,
     path + ': rendered description should be 70–160 characters, got ' + description.length);
-  assert.equal(canonical, 'https://www.jrvallite.com' + path, path + ': canonical changed');
+  // Next.js may serialise the homepage canonical with or without the final
+  // slash; comparing parsed URLs checks identity without rewriting metadata.
+  assert.equal(new URL(canonical).href, new URL('https://www.jrvallite.com' + path).href,
+    path + ': canonical changed');
   assert.ok(!seenRenderedTitles.has(renderedTitle), path + ': duplicated title');
   assert.ok(!seenRenderedDescriptions.has(description), path + ': duplicated description');
   seenRenderedTitles.add(renderedTitle);
