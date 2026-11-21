@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import { ArrowUpRight, Copy, Mail, ShieldCheck } from 'lucide-react';
 
-// No lead database, third-party form or analytics event is created here.
-// The brief is held only in React memory and inserted into the visitor's own
-// email application when they click the explicit email-draft action.
+// No lead database, third-party form, or tracking of visitor-entered text.
+// The brief stays in React memory and is passed to the visitor's email app.
+// The email link carries only a fixed intent/source marker for the global,
+// optional consent-gated click counter; clicking is not a sent enquiry.
 const mailbox = 'hello@jrvallite.com';
 const choices = {
   project: {
@@ -55,7 +56,7 @@ export default function LeadComposer() {
       <textarea id="jrv2-project-brief" value={brief} onChange={event => setBrief(event.target.value)}
         rows={3} maxLength={600} placeholder="Tell me what you need help with. Do not include passwords, customer information or confidential data." />
       <div className="jrv2-lead-actions">
-        <a className="jrv2-cta jrv2-cta-primary" href={mailto}><Mail size={18} aria-hidden="true" /> Open email draft <ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a className="jrv2-cta jrv2-cta-primary" href={mailto} data-jrv-track="email" data-jrv-intent={intent === 'role' ? 'hiring' : 'project'} data-jrv-source="homepage_form"><Mail size={18} aria-hidden="true" /> Open email draft <ArrowUpRight size={18} aria-hidden="true" /></a>
         <button type="button" className="jrv2-copy" onClick={copyEmail}><Copy size={16} aria-hidden="true" /> Copy email</button>
       </div>
       <p className="jrv2-lead-email" aria-live="polite">{copyStatus === 'copied' ? 'Copied: ' : copyStatus === 'unavailable' ? 'Copy unavailable. Email: ' : 'Or email directly: '}<strong>{mailbox}</strong></p>
