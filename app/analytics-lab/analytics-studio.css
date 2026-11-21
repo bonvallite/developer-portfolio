@@ -262,7 +262,9 @@
   .al-studio-example-tabs button>span{font-size:10px}
   .al-studio-example-tabs button small{font-size:9px}
   .al-studio-source-title,.al-studio-output-head{padding:13px 11px}
-  .al-studio-source-window pre{font-size:10px;padding:18px 10px}
+  /* At phone width, retain Python indentation and expose long conditions by
+     wrapping inside the code pane rather than clipping the line off-screen. */
+  .al-studio-source-window pre{font-size:10px;padding:18px 10px;white-space:pre-wrap;overflow-wrap:anywhere}
   .al-page .al-chart{padding:15px}
   .al-page .al-chart-row{gap:8px}
   .al-hero-tags span{font-size:8px}
