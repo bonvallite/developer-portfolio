@@ -61,6 +61,30 @@ try {
     assert.equal(await studio.count(), 1, size.name + ': interactive studio present');
     assert.equal(await studio.locator('.jrv2-workbench-tab').count(), 4,
       size.name + ': four visible project modes');
+    // A previous narrow-screen screenshot showed mode labels extending beyond
+    // their buttons despite the page having no horizontal scrollbar.
+    const tabBounds = await studio.locator('.jrv2-workbench-tab').evaluateAll(buttons =>
+      buttons.map(button => {
+        const box = button.getBoundingClientRect();
+        const label = button.querySelector('span')?.getBoundingClientRect();
+        return { left: box.left, right: box.right, labelLeft: label?.left,
+          labelRight: label?.right };
+      })
+    );
+    for (const bounds of tabBounds) {
+      assert.ok(bounds.labelLeft !== undefined && bounds.labelRight !== undefined &&
+        bounds.labelLeft >= bounds.left - 1 && bounds.labelRight <= bounds.right + 1,
+        size.name + ': project mode label escapes its own button');
+    }
+    // The redesigned headline should not dominate the entire first screen.
+    if (size.width >= 970) {
+      const headlineLines = await page.locator('#jrv2-title').evaluate(heading => {
+        const styles = window.getComputedStyle(heading);
+        return heading.getBoundingClientRect().height / parseFloat(styles.lineHeight);
+      });
+      assert.ok(headlineLines <= 3.2, size.name + ': desktop headline is excessively tall');
+    }
+
     assert.equal(await studio.locator('.jrv2-workbench-copy h2[aria-live="polite"]').count(), 1,
       size.name + ': focused screen reader announcement');
     assert.equal(await studio.getByRole('button', { name: 'REWARDS' }).getAttribute('aria-pressed'),
