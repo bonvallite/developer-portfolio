@@ -6,6 +6,8 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 // Progressive enhancement for the homepage's four-part delivery story.
 // No remote calls, visitor tracking, client details or fabricated performance data.
 // A complete first step is rendered before hydration.
+// Only the selected step heading is announced to assistive technology; the
+// surrounding diagram and descriptive content remain available on navigation.
 const journey = [
   {
     number: '01', key: 'DISCOVER', title: 'Find the real friction.',
@@ -48,10 +50,10 @@ export default function HomeJourney() {
         </button>
       )}
     </div>
-    <div className="jrv2-journey-display" aria-live="polite">
+    <div className="jrv2-journey-display">
       <div className="jrv2-journey-story">
         <span className="jrv2-overline">THE APPROACH / {active.number}</span>
-        <h3>{active.title}</h3>
+        <h3 aria-live="polite" aria-atomic="true">{active.title}</h3>
         <p>{active.problem}</p>
         <div className="jrv2-journey-result"><CheckCircle2 size={21} aria-hidden="true" /><span><strong>Deliverable</strong>{active.outcome}</span></div>
         <a href="/#contact" className="jrv2-text-link">Discuss your project <ArrowUpRight size={17} aria-hidden="true" /></a>
