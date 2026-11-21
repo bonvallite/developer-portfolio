@@ -7,9 +7,12 @@ import {
   Cloud, Database, GitBranch, ShieldCheck, Truck, Workflow, AlertTriangle
 } from 'lucide-react';
 
+// 21 Nov crawl: keep CartonCloud, Shopify and delivery-app intent within
+// the rendered title budget, and describe integration scope without promising
+// complete order sync or measured delivery accuracy.
 export const metadata: Metadata = {
-  title: 'Custom Shopify delivery app and CartonCloud integration | Developer portfolio',
-  description: 'Custom Shopify API and Cloudflare Worker integration case study covering fulfilment, tracking updates and estimated delivery dates with clearly stated validation limits.',
+  title: 'Shopify CartonCloud Integration & Delivery App',
+  description: 'Explore a Shopify and CartonCloud API integration using Cloudflare Workers for fulfilment, tracking and delivery estimates, with validation limits.',
   alternates: { canonical: '/cartoncloud-integration' },
 };
 
