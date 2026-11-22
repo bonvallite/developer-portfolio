@@ -5,10 +5,10 @@
  * endorsement, continuing employment, or measured commercial outcomes.
  *
  * Capture run 44490966868 (19 November 2026) supplied 22 public homepage
- * screenshots. Draft PR #96 now prefers 21 locally hosted, checksum-verified
- * WebPs; the incomplete Axlrodd desktop view is excluded. On an image error,
- * fall back to a cached public thumbnail and then the live-site link.
- * Owner publication-rights and visual review are required before release.
+ * screenshots. PR #96 published 21 locally hosted, checksum-verified WebPs.
+ * Missing or failed captures show a direct live-site link rather than
+ * requesting a third-party screenshot. The incomplete Axlrodd desktop view
+ * stays excluded; promotional overlays require continued visual review.
  *
  * A retired Skull Seeker website was intentionally excluded by the owner.
  * Keep this list and scripts/capture-storefronts.mjs in sync.
@@ -36,8 +36,8 @@ export const secondaryStorefronts = storefronts.slice(1);
 
 // Browser-capture filenames are derived from the approved public site names.
 // All but one dated 19 Nov captures are eligible for the local WebP archive.
-// The Axlrodd desktop screenshot was almost empty; use the remote thumbnail
-// or live homepage rather than pretend a complete screenshot exists.
+// The Axlrodd desktop screenshot was almost empty; offer the live homepage
+// rather than inventing a screenshot or requesting a remote thumbnail.
 export function approvedStaticStorefrontShot(name: string, device: 'desktop'|'mobile'): string | null {
   if (!storefronts.some(([label]) => label === name)) return null;
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

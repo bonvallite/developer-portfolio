@@ -16,7 +16,9 @@ export const metadata: Metadata = {
     siteName: 'JRV | Shopify Commerce Engineering',
     title: 'Shopify Developer & Ecommerce Manager | CRO & Custom Apps',
     description: 'Shopify storefront engineering, ecommerce operations, CRO, custom integrations and automation.',
+    // The app/opengraph-image.tsx file creates the self-hosted branded image.
   },
+  twitter: { card: 'summary_large_image', images: ['/opengraph-image'] },
   robots: { index: true, follow: true },
 };
 

@@ -4,8 +4,8 @@
    remain useful without hydration. Brand: shared JRV obsidian / electric teal / ember orange. Retired gold decorative hues now use cool-brand shades. Keep contrast and reduced-motion behaviour.
    22 Nov: hero audience choices reuse existing routes, CSS-only, and replace
    non-interactive proof badges; no additional downloads or tracking.
-   22 Nov: the published-storefront gallery uses existing lazy public
-   thumbnail components with JRV Obsidian/Teal/Ember framing. */
+   22 Nov: the gallery uses lazy same-origin WebPs with direct live-site
+   fallbacks and JRV Obsidian/Teal/Ember framing. */
 .jrv2-page{--jrv-bg:#0b1419;--jrv-paper:#eaf4f3;--jrv-teal:#38c7bc;--jrv-muted:#a9c1c3;--jrv-border:#343841;--jrv-panel:#162b32;background:var(--jrv-bg);color:var(--jrv-paper);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow:visible;min-height:100vh}
 .jrv2-page h1,.jrv2-page h2,.jrv2-page h3{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 .jrv2-page a,.jrv2-page button{transition:background-color .18s,border-color .18s,color .18s,transform .18s}
