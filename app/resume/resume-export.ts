@@ -1,7 +1,7 @@
 // Server-only résumé exports, using one source of approved career information.
 // Both downloadable designs use a legible single-column reading order and
 // predictable page margins. ATS avoids decoration; Classic uses an ivory
-// editorial masthead, teal typography and subtle gold rules without overlays.
+// editorial masthead, teal typography and subtle JRV ember rules without overlays.
 // PDF Info and DOCX core properties identify the document owner and actual
 // export service, never a fictitious human editor or third-party application.
 // Classic Word uses a Georgia title and subtle heading dividers; ATS Word stays
@@ -49,7 +49,7 @@ export function pdf(design:Design):Uint8Array{
  function init(){cmds=[];y=744;count++;
   if(count===1){
    if(modern){rule(44,758,524,'#283746');}
-   else{rect(0,776,612,16,'#125b61');rect(44,637,524,1,'#cfdbd8');rect(44,635,62,3,'#c5a06b');drawText(44,759,'JRV  /  PROFESSIONAL PROFILE',8,true,'#125b61');}
+   else{rect(0,776,612,16,'#125b61');rect(44,637,524,1,'#cfdbd8');rect(44,635,62,3,'#f28c52');drawText(44,759,'JRV  /  PROFESSIONAL PROFILE',8,true,'#125b61');}
   }else{
    rule(44,760,524,accent);
    drawText(44,769,'JRV  /  PROFESSIONAL RESUME',8,true,accent);

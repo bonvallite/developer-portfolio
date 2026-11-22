@@ -2,11 +2,13 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
   ArrowRight, ArrowUpRight, BriefcaseBusiness, ChartNoAxesCombined,
-  CircleCheck, Code2, Layers3, MoveUpRight, Network, ShieldCheck,
+  Code2, Layers3, MoveUpRight, Network, ShieldCheck,
   ShoppingBag, Sparkles, Workflow,
 } from 'lucide-react';
 import HomeJourney from './components/HomeJourney';
 import CommerceWorkbench from './components/CommerceWorkbench';
+import StorefrontShowcase from './experience/StorefrontShowcase';
+import { storefronts } from './data/storefronts';
 import LeadComposer from './components/LeadComposer';
 import './cinematic-home.css';
 import './components/commerce-workbench.css';
@@ -20,8 +22,16 @@ import './components/commerce-workbench.css';
 // 21 Nov visual upgrade: replace the static hero console with a working,
 // accessible four-project studio. Existing case studies, canonical metadata,
 // CTA routes, synthetic-data boundaries, and privacy settings are unchanged.
+// 22 Nov 2026: restore all eleven public storefront references, homepage
+// previews and a static link list. The existing image service is lazy,
+// cached and has a visible fallback. References do not imply endorsement,
+// exclusive design credit or measured outcomes.
 // 21 Nov 2026 crawl: concise homepage description keeps Shopify, CRO, B2B
 // and integration search intent while avoiding truncated search snippets.
+// 22 Nov 2026 audience journey: replace generic hero proof badges with two
+// direct client/hiring paths. They reuse existing homepage contact and
+// experience routes, not a new form or visitor analytics. All four project
+// demos, source-safe evidence and existing public SEO metadata remain intact.
 export const metadata: Metadata = {
   title: 'Shopify Developer, Ecommerce Management & CRO',
   description: 'Shopify developer for ecommerce teams. Explore Liquid storefronts, CRO, B2B workflows, custom apps and API integration case studies.',
@@ -115,11 +125,11 @@ export default function Home() {
       <div className="jrv2-wrap jrv2-header-inner">
         <a href="#home" className="jrv2-wordmark" aria-label="JRV portfolio, back to top"><span>{'{JRV}'}</span><small>SHOPIFY COMMERCE ENGINEERING</small></a>
         <nav aria-label="Primary navigation" className="jrv2-main-nav">
-          <a href="#work">Selected work</a><a href="#services">Expertise</a><a href="#approach">Approach</a>
+          <a href="#work">Projects</a><a href="#websites">Websites</a><a href="#services">Expertise</a><a href="#approach">Approach</a>
           <Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link>
         </nav>
         <a href="#contact" className="jrv2-header-cta">Start a conversation <ArrowUpRight size={15} aria-hidden="true" /></a>
-        <details className="jrv2-mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="#work">Selected work</a><a href="#services">Expertise</a><a href="#approach">Approach</a><Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link><a href="#contact">Get in touch</a></nav></details>
+        <details className="jrv2-mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#websites">Websites</a><a href="#services">Expertise</a><a href="#approach">Approach</a><Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link><a href="#contact">Get in touch</a></nav></details>
       </div>
     </header>
 
@@ -130,10 +140,24 @@ export default function Home() {
           <div className="jrv2-hero-copy">
             <div className="jrv2-eyebrow"><span className="jrv2-pulse" aria-hidden="true" /> 9 YEARS OF SHOPIFY & ECOMMERCE EXPERIENCE</div>
             <h1 id="jrv2-title">I build Shopify stores.<br/><span>And the systems behind them.</span></h1>
-            <p className="jrv2-hero-lead">Senior Shopify Developer & eCommerce Manager, combining technical engineering, operations and commercial thinking.</p>
-            <p className="jrv2-hero-support">Storefront development. Custom integrations. B2B systems. Analytics and conversion thinking. One connected approach.</p>
+            <p className="jrv2-hero-lead">Shopify development and ecommerce management, from conversion-focused storefronts to the systems that keep orders moving.</p>
+            <p className="jrv2-hero-support">Liquid and JavaScript. B2B buying. Python analytics. Custom apps, APIs and Cloudflare Workers. Explore working demonstrations and documented engineering decisions.</p>
             <div className="jrv2-hero-actions"><a className="jrv2-cta jrv2-cta-primary" href="#work">Explore my work <ArrowUpRight size={17} aria-hidden="true"/></a><a className="jrv2-cta jrv2-cta-ghost" href="/resume">View résumé options <ArrowRight size={17} aria-hidden="true"/></a></div>
-            <div className="jrv2-hero-proof"><span><CircleCheck size={16} aria-hidden="true"/> Documented case studies</span><span><CircleCheck size={16} aria-hidden="true"/> Interactive demos</span><span><CircleCheck size={16} aria-hidden="true"/> Evidence-led practice</span></div>
+            {/* Choose a visitor goal immediately, without competing lead forms.
+                Project enquiries use the existing consent-safe homepage contact;
+                hiring teams can inspect public experience and case evidence. */}
+            <nav className="jrv2-hero-paths" aria-label="Choose how to work together">
+              <a href="#contact" className="jrv2-hero-path">
+                <BriefcaseBusiness size={22} aria-hidden="true" />
+                <span className="jrv2-hero-path-text"><small>ECOMMERCE TEAMS</small><strong>Discuss a Shopify challenge</strong><span>Storefronts · CRO · B2B · automation</span></span>
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+              <Link href="/experience" className="jrv2-hero-path">
+                <Sparkles size={22} aria-hidden="true" />
+                <span className="jrv2-hero-path-text"><small>HIRING TEAMS</small><strong>Review Shopify experience</strong><span>Technical work · practical responsibilities</span></span>
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </Link>
+            </nav>
           </div>
           <div className="jrv2-hero-showcase" id="studio" aria-label="Explore four interactive portfolio project previews">
             <CommerceWorkbench />
@@ -161,6 +185,39 @@ export default function Home() {
             </article>)}
           </div>
           <div className="jrv2-work-after"><p>See responsive storefront concepts, documented integrations and more technical evidence in the full portfolio.</p><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
+        </div>
+      </section>
+
+
+      {/* Public storefront references are separate from the four fictional
+          interactive engineering labs. One active desktop/mobile pair at a
+          time prefers locally hosted 19 Nov 2026 WebPs, then a cached remote
+          thumbnail, then a link to the live site. Keep the 11-link index. */}
+      <section className="jrv2-section jrv2-websites" id="websites" aria-labelledby="jrv2-websites-title">
+        <div className="jrv2-wrap">
+          <div className="jrv2-section-head"><div>
+            <span className="jrv2-overline">01B / PUBLISHED STOREFRONTS</span>
+            <h2 id="jrv2-websites-title">Websites I've built <em>and worked on.</em></h2>
+          </div><p>Eleven public storefronts I have helped build, manage or improve. Browse desktop and mobile homepage previews, then explore the live sites.</p></div>
+          <StorefrontShowcase stores={storefronts}/>
+          <div className="jrv2-websites-list" aria-labelledby="jrv2-websites-index-title">
+            <div className="jrv2-websites-index-head">
+              <h3 id="jrv2-websites-index-title">All 11 websites</h3>
+              <span>VISIT THE PUBLISHED HOMEPAGES</span>
+            </div>
+            <div className="jrv2-websites-links">
+              {storefronts.map(([name, url], index) =>
+                <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={'Visit ' + name + ' homepage in a new tab'}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{name}</strong>
+                  <ArrowUpRight size={16} aria-hidden="true"/>
+                </a>)}
+            </div>
+          </div>
+          <div className="jrv2-websites-after">
+            <p>These are self-reported contributions, not client endorsements or claims of exclusive authorship. Homepage previews were captured on 19 November 2026 and may show promotions or overlays. The gallery prefers locally hosted images with cached-thumbnail and live-site fallbacks; current homepages may look different.</p>
+            <Link href="/experience#storefronts">See the experience and homepage case study <ArrowUpRight size={16} aria-hidden="true"/></Link>
+          </div>
         </div>
       </section>
 

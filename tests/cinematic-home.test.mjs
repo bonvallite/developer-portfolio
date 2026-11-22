@@ -1,9 +1,12 @@
 // Regression guard for the cinematic Ember & Teal JRV portfolio and its four flagship labs.
 // Source checks complement (but do not replace) real rendered browser QA,
 // Lighthouse measurement, confidentiality review or accessibility testing.
+// Audience shortcuts must be clear, direct and consent-safe on the first
+// screen, without removing either the project studio or résumé route.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const home = read('app/page.tsx');
@@ -92,6 +95,13 @@ test('storytelling and lead capture are interactive without collecting visitor d
   assert.match(dock, /mailto:hello@jrvallite\.com/);
 });
 
+// Guard that choosing another approach stage announces its heading only,
+// rather than re-reading the entire decorative workflow to screen readers.
+test('journey only announces its selected step heading when changed', () => {
+  assert.match(journey, /<h3 aria-live="polite" aria-atomic="true">\{active\.title\}<\/h3>/);
+  assert.doesNotMatch(journey, /<div className="jrv2-journey-display" aria-live=/);
+});
+
 test('common response headers reduce referrer, framing and device exposure', () => {
   assert.match(headers, /'Referrer-Policy', value: 'no-referrer'/);
   assert.match(headers, /'X-Content-Type-Options', value: 'nosniff'/);
@@ -99,4 +109,89 @@ test('common response headers reduce referrer, framing and device exposure', () 
   assert.match(headers, /'Permissions-Policy'/);
   assert.match(headers, /source: '\/resume\/:path\*'/);
   assert.match(headers, /source: '\/case-studies\/ecommerce-analytics\/:path\*'/);
+});
+
+test('first-screen visitor paths make Shopify project and hiring goals explicit', () => {
+  for (const fragment of [
+    'aria-label="Choose how to work together"',
+    'className="jrv2-hero-paths"',
+    '<a href="#contact" className="jrv2-hero-path">',
+    '<Link href="/experience" className="jrv2-hero-path">',
+    'ECOMMERCE TEAMS', 'HIRING TEAMS',
+    'Discuss a Shopify challenge', 'Review Shopify experience',
+    'Cloudflare Workers', 'Python analytics', 'Custom apps',
+  ]) {
+    assert.ok(home.includes(fragment), 'Homepage hero missing audience or capability: ' + fragment);
+  }
+  assert.ok(home.indexOf('jrv2-hero-paths') < home.indexOf('id="work"'),
+    'First-screen audience paths must precede selected work');
+  for (const forbidden of ['jrv2-hero-proof', '<form', 'fetch(', 'sendBeacon(']) {
+    assert.ok(!home.includes(forbidden), 'Unexpected hero decoration or data submission: ' + forbidden);
+  }
+  for (const fragment of [
+    '.jrv2-hero-paths{', '.jrv2-hero-path{',
+    'grid-template-columns:minmax(0,1fr)',
+    'min-height:75px', '.jrv2-hero-path:hover',
+  ]) {
+    assert.ok(css.includes(fragment), 'Missing responsive or interactive path CSS: ' + fragment);
+  }
+});
+
+test('published storefronts are visible on the cinematic homepage and shared with experience', () => {
+  const list = read('app/data/storefronts.ts');
+  const experience = read('app/experience/page.tsx');
+  const gallery = read('app/experience/StorefrontShowcase.tsx');
+  const image = read('app/experience/StorefrontPreview.tsx');
+  const captures = read('scripts/capture-storefronts.mjs');
+  const entries = [...list.matchAll(/^\s*\['([^']+)',\s*'(https:\/\/[^']+)'\],?$/gm)];
+  assert.equal(entries.length, 11, 'Eleven owner-approved live storefronts');
+  assert.equal(new Set(entries.map(x => x[1])).size, 11, 'Storefront names unique');
+  assert.equal(new Set(entries.map(x => x[2])).size, 11, 'Storefront URLs unique');
+  for (const [, name, url] of entries) {
+    assert.ok(captures.includes("'" + name + "'"), name + ': capture workflow missing');
+    assert.ok(home.includes('storefronts.map(([name, url], index)'), name + ': public homepage list missing');
+    assert.match(url, /^https:\/\//);
+  }
+  assert.ok(!list.includes("['Skull Seeker'"), 'Retired site must stay excluded');
+  assert.ok(home.includes('id="websites"') && home.includes('<StorefrontShowcase stores={storefronts}/>'));
+  assert.ok(home.includes('href="#websites"'));
+  assert.ok(home.includes('All 11 websites'));
+  assert.ok(home.includes('Homepage previews were captured on 19 November 2026'));
+  assert.ok(home.includes('locally hosted images with cached-thumbnail and live-site fallbacks'));
+  assert.doesNotMatch(home, /Previews are public snapshots from an independent service/);
+  assert.ok(list.includes('21 locally hosted, checksum-verified'));
+  assert.ok(home.includes('href="/experience#storefronts"'));
+  assert.ok(experience.includes('id="storefronts"'));
+  assert.ok(experience.includes('<StorefrontShowcase stores={secondaryStorefronts}/>'));
+  assert.ok(experience.includes('StorefrontPreview name="Peter Augustus"'));
+  assert.ok(gallery.includes('StorefrontPreview name={name} url={url}'));
+  assert.ok(image.includes('loading="lazy"') && image.includes('onError={recoverImage}') && image.includes('approvedStaticStorefrontShot'));
+  assert.ok(image.includes('View live site'), 'Screenshot errors must preserve navigation');
+  assert.ok(image.includes("previous === 'static' ? 'remote' : 'failed'"), 'Local to cached to live-site fallback');
+  assert.ok(list.includes("slug === 'axlrodd' && device === 'desktop'"), 'Exclude incomplete captured desktop view');
+  assert.ok(css.includes('.jrv2-websites-links{'));
+  assert.ok(css.includes('grid-template-columns:minmax(0,1fr)'));
+  assert.ok(globalCss.includes('.cinematic-showcase'));
+  assert.ok(globalCss.includes('background:var(--jrv-surface)'));
+});
+
+test('all 21 imported public homepage captures match archived source checksums', () => {
+  // The importer was temporary and must not survive into the release branch.
+  assert.ok(!existsSync(new URL('../.github/workflows/import-storefront-captures.yml', import.meta.url)),
+    'Do not retain the temporary contents-write capture workflow');
+  const provenance = JSON.parse(read('public/portfolio/storefronts/capture-provenance.json'));
+  assert.equal(provenance.sourceRun, 44490966868, 'Screenshots must come from the known public capture run');
+  assert.equal(provenance.assets.length, 21, 'Only reviewed screenshot positions should be published');
+  assert.match(provenance.excluded, /axlrodd-desktop/);
+  const filenames = new Set();
+  for (const image of provenance.assets) {
+    assert.match(image.filename, /^[a-z0-9-]+-(?:desktop|mobile)\.webp$/);
+    assert.ok(!filenames.has(image.filename), 'Duplicate homepage preview file');
+    filenames.add(image.filename);
+    const file = readFileSync(new URL('../public/portfolio/storefronts/' + image.filename, import.meta.url));
+    assert.equal(file.length, image.size, image.filename + ': unexpected image size');
+    assert.equal(createHash('sha256').update(file).digest('hex'), image.sha256,
+      image.filename + ': changed screenshot requires provenance/visual review');
+  }
+  assert.ok(!filenames.has('axlrodd-desktop.webp'), 'Incomplete Axlrodd desktop capture must remain excluded');
 });

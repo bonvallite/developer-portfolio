@@ -1,16 +1,16 @@
 /* Portfolio résumé gallery and printable previews.
    Scope all styles under resume-site so the main JRV portfolio is untouched.
-   Palette: Classic deep teal and warm-gold detail; ATS understated slate on white.
+   Palette: JRV obsidian/teal/ember gallery; Classic deep teal with ember detail, ATS understated slate on white.
    Both use a true single-column, responsive reading flow and shared resume-data.ts;
    browser printing hides navigation and retains legible letter-size margins. */
-.resume-site{min-height:100vh;background:#0b0e12;color:#f6f2eb;font-family:'DM Sans',Arial,sans-serif}
+.resume-site{min-height:100vh;background:#0b1419;color:#f6f2eb;font-family:'DM Sans',Arial,sans-serif}
 .resume-site a{text-decoration:none}
 .resume-index{padding:64px 24px 96px;min-height:100vh;background:radial-gradient(ellipse at 70% 5%,#76512e28,transparent 54%)}
 .resume-index-wrap{max-width:1050px;margin:auto}
 .resume-back,.resume-preview-tools a{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:#b4aaa1}
-.resume-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.3px;text-transform:uppercase;color:#d4ae7c;margin:48px 0 20px}
+.resume-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.3px;text-transform:uppercase;color:#8ce3da;margin:48px 0 20px}
 .resume-index h1{font-size:clamp(48px,7vw,87px);line-height:1.05;letter-spacing:-4px;font-weight:600;margin:0 0 25px}
-.resume-index h1 em{font-style:normal;color:#d9b47c}
+.resume-index h1 em{font-style:normal;color:#f28c52}
 .resume-lead{max-width:710px;color:#b5b2b6;font-size:16px;line-height:1.8}
 .resume-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px;margin-top:60px}
 .resume-choice-card{border:1px solid #66534155;border-radius:15px;padding:26px;background:#191b20}
@@ -24,18 +24,18 @@
 .thumb-columns>div{padding:18px 25px}.thumb-columns aside{padding:18px 12px;background:#eaf4f6}
 .resume-thumb b{font-size:9px;display:block;color:#167c85;margin:5px 0 9px}
 .resume-thumb i{display:block;height:4px;background:#abb6bd;border-radius:2px;margin:6px 0;width:90%}.resume-thumb i.short{width:55%}
-.modern-thumb{padding:25px 30px}.modern-thumb>small{font-size:9px;color:#a77d4e;letter-spacing:2px;font-weight:700}
+.modern-thumb{padding:25px 30px}.modern-thumb>small{font-size:9px;color:#17636b;letter-spacing:2px;font-weight:700}
 .modern-thumb h3{font-family:Georgia,serif;font-size:26px;line-height:1.2;letter-spacing:-1px;margin:13px 0}
 .modern-thumb p{font-size:8px;letter-spacing:1px;color:#636a6b}
-.modern-thumb hr{border:0;border-top:1px solid #cfb595;margin:16px 0}
-.modern-thumb b{color:#a77d4e}
+.modern-thumb hr{border:0;border-top:1px solid #abd8d4;margin:16px 0}
+.modern-thumb b{color:#17636b}
 .resume-downloads{display:flex;flex-wrap:wrap;gap:9px;margin-top:19px}
-.resume-action{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 14px;background:#d8b47c;border:1px solid #d8b47c;color:#101519;font-size:12px;font-weight:700;border-radius:5px}
-.resume-action.ghost{background:transparent;color:#e6d2b7;border-color:#715f4c}
+.resume-action{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 14px;background:#f28c52;border:1px solid #f28c52;color:#101519;font-size:12px;font-weight:700;border-radius:5px}
+.resume-action.ghost{background:transparent;color:#b7dad6;border-color:#365b63}
 .resume-privacy-note{color:#8c8e93;font-size:11px;line-height:1.6;margin-top:34px}
 .resume-preview{padding:24px 20px 70px;min-height:100vh;background:#17191d}
 .resume-preview-tools{max-width:940px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 auto 24px}
-.resume-preview-tools>div{display:flex;flex-wrap:wrap;gap:7px}.resume-preview-tools>div>a{padding:9px 11px;border:1px solid #655740;color:#eddfc8;border-radius:5px}
+.resume-preview-tools>div{display:flex;flex-wrap:wrap;gap:7px}.resume-preview-tools>div>a{padding:9px 11px;border:1px solid #365b63;color:#eddfc8;border-radius:5px}
 .resume-print-label{color:#a8a8ad;font-size:11px;padding:12px 0;display:inline-flex;align-items:center;gap:7px}
 .resume-paper{max-width:810px;min-height:1100px;margin:auto;background:#fff;color:#233039;box-shadow:0 25px 60px #0005;font:13px/1.55 Arial,sans-serif}
 .resume-paper-header{padding:45px 54px 24px}
@@ -47,7 +47,7 @@
 .resume-contact a{color:inherit}
 .resume-paper-grid{display:grid;grid-template-columns:minmax(0,1fr) 235px;gap:24px;padding:0 36px 45px 54px}
 .resume-main-col{min-width:0}.resume-main-col section{margin:0 0 23px}
-.resume-paper h3{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#a77d4e;margin:17px 0 11px}
+.resume-paper h3{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#17636b;margin:17px 0 11px}
 .resume-paper h4{font-size:12px;margin:0 0 4px;line-height:1.5}
 .resume-paper h4 span{font-weight:400}
 .resume-paper .resume-job{margin-bottom:17px;break-inside:avoid}
@@ -55,16 +55,16 @@
 .resume-paper p{margin:5px 0 9px}.resume-paper ul{margin:9px 0;padding-left:18px}.resume-paper li{margin-bottom:5px}
 .resume-sidebar{background:#f4f0eb;padding:12px 18px;min-width:0}
 .resume-sidebar li{font-size:11px;margin-bottom:10px}
-.resume-sidebar a{overflow-wrap:anywhere;color:#8a683f}
+.resume-sidebar a{overflow-wrap:anywhere;color:#1a5f65}
 .resume-paper.paper-classic .resume-paper-header{background:#167b85;color:#fff;padding:38px 54px 35px}
 .resume-paper.paper-classic .resume-monogram{color:#d0f0f0}
 .resume-paper.paper-classic .resume-paper-grid{padding-top:24px}
 .resume-paper.paper-classic .resume-sidebar{background:#e8f3f4}
 .resume-paper.paper-classic h3{color:#167b85}
 .resume-paper.paper-classic .resume-sidebar a{color:#166671}
-.resume-paper.paper-modern .resume-paper-header{border-top:5px solid #a77d4e;padding-top:34px}
+.resume-paper.paper-modern .resume-paper-header{border-top:5px solid #17636b;padding-top:34px}
 .resume-paper.paper-modern .resume-paper-grid{display:flex;flex-direction:column;gap:0}
-.resume-paper.paper-modern .resume-sidebar{background:#fff;display:grid;grid-template-columns:2fr 1fr;gap:25px;padding:0;border-top:1px solid #d9c6b0}
+.resume-paper.paper-modern .resume-sidebar{background:#fff;display:grid;grid-template-columns:2fr 1fr;gap:25px;padding:0;border-top:1px solid #cbdfdc}
 .resume-paper.paper-modern .resume-sidebar ul{columns:2}
 .resume-preview-footnote{text-align:center;color:#8f8f91;font-size:11px;margin:19px}
 @media(max-width:700px){.resume-index{padding:30px 16px 70px}.resume-choice-grid{grid-template-columns:1fr;margin-top:35px}.resume-choice-card{padding:17px}.resume-choice-card>p:not(.resume-eyebrow){min-height:0}.resume-preview{padding:12px 5px 60px}.resume-preview-tools{display:block;padding:10px}.resume-preview-tools>div{margin-top:15px}.resume-paper{min-width:620px;transform-origin:top left;max-width:100%;overflow:hidden;font-size:12px}.resume-paper-grid{grid-template-columns:minmax(0,1fr) 165px;padding-left:28px;padding-right:12px;gap:12px}.resume-paper-header{padding:24px 28px}.resume-paper.paper-classic .resume-paper-header{padding:24px 28px}.resume-paper.paper-modern .resume-paper-grid{padding-left:28px;padding-right:28px}.resume-print-label{display:none}}
@@ -75,15 +75,15 @@
 .resume-index-wrap{max-width:950px}
 .resume-choice-grid{gap:20px;margin-top:43px}
 .resume-download-card{padding:32px;background:#181a1f;border-color:#63564170}
-.resume-choice-number{display:block;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#c6ad8a;font-weight:700;min-height:30px}
-.resume-choice-icon{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#b8987130;color:#d7b384;margin:18px 0 20px}
+.resume-choice-number{display:block;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#8ce3da;font-weight:700;min-height:30px}
+.resume-choice-icon{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#38c7bc30;color:#8ce3da;margin:18px 0 20px}
 .resume-choice-icon.classic{background:#167d872e;color:#68c4c7}
 .resume-download-card h2{margin:0 0 14px;font-size:27px;letter-spacing:-.7px}
 .resume-download-card>p{margin:0 0 26px;min-height:90px}
 .resume-action-primary{display:flex;width:100%;min-height:52px;font-size:13px;padding:12px 14px;text-align:center}
 .resume-secondary-links{display:flex;gap:19px;align-items:center;flex-wrap:wrap;margin-top:22px}
 .resume-secondary-links a{display:inline-flex;gap:6px;align-items:center;color:#c6c2bd;font-size:12px}
-.resume-secondary-links a:hover{color:#eed6ae}
+.resume-secondary-links a:hover{color:#b9eee7}
 @media(max-width:700px){.resume-download-card{padding:25px}.resume-download-card>p{min-height:0}}
 
 /* 2026-11-20 redesign: both previews are actual printable documents, not
@@ -96,8 +96,8 @@
 .resume-index h1{font-size:clamp(42px,5.9vw,70px);letter-spacing:-2.4px;line-height:1.09;max-width:780px}
 .resume-lead{font-size:16px;color:#d0cbc4;line-height:1.65}
 .resume-choice-grid{margin-top:38px;gap:22px}
-.resume-download-card{padding:32px;border:1px solid #635b4d;background:#1a1d20;border-radius:12px;box-shadow:0 16px 50px #0002;display:flex;flex-direction:column;min-height:370px}
-.resume-choice-number{min-height:0;line-height:1.5;color:#e1c09a}
+.resume-download-card{padding:32px;border:1px solid #365b63;background:#1a1d20;border-radius:12px;box-shadow:0 16px 50px #0002;display:flex;flex-direction:column;min-height:370px}
+.resume-choice-number{min-height:0;line-height:1.5;color:#8ce3da}
 .resume-choice-icon{margin:23px 0 17px;border-radius:50%;width:50px;height:50px}
 .resume-download-card h2{font-size:30px;line-height:1.15}
 .resume-download-card>p{min-height:0;flex:1;font-size:14px;line-height:1.7;color:#d1ceca}
@@ -127,14 +127,14 @@
 .resume-sidebar ul{display:grid;grid-template-columns:1fr 1fr;gap:5px 24px;padding-left:18px}
 .resume-sidebar li{font-size:12px;margin:0;line-height:1.5}
 .resume-sidebar a{color:#364f60}
-.resume-paper.paper-classic .resume-paper-header{background:#125b61;padding:45px 62px 34px;color:#fff;border-top:7px solid #d9b47c}
+.resume-paper.paper-classic .resume-paper-header{background:#125b61;padding:45px 62px 34px;color:#fff;border-top:7px solid #f28c52}
 .resume-paper.paper-classic .resume-monogram{color:#d6e8e7}
 .resume-paper.paper-classic .resume-paper-grid{display:block;padding:15px 62px 55px}
 .resume-paper.paper-classic .resume-sidebar{background:transparent;padding:0;border:0}
 .resume-paper.paper-classic h3{color:#125b61;border-bottom-color:#9bc4c3}
 .resume-paper.paper-classic .resume-sidebar a{color:#125b61}
 .resume-paper.paper-modern .resume-paper-header{border-top:0;background:#fff;padding:49px 62px 26px;border-bottom:2px solid #1d2730}
-.resume-paper.paper-modern .resume-monogram{color:#946b39}
+.resume-paper.paper-modern .resume-monogram{color:#17636b}
 .resume-paper.paper-modern .resume-paper-header h1{color:#1e2730}
 .resume-paper.paper-modern .resume-paper-grid{display:block;padding:14px 62px 55px}
 .resume-paper.paper-modern .resume-sidebar{display:block;background:transparent;padding:0;border:0}
@@ -190,7 +190,7 @@
   left:62px;
   width:62px;
   height:3px;
-  background:#c5a06b;
+  background:#f28c52;
 }
 .resume-paper.paper-classic .resume-monogram{
   display:inline-block;
@@ -297,7 +297,7 @@
 }
 .resume-paper.paper-classic .resume-sidebar li{font-size:12px}
 .resume-paper.paper-classic a:focus-visible{
-  outline:2px solid #946b39;
+  outline:2px solid #17636b;
   outline-offset:3px;
 }
 @media(max-width:700px){

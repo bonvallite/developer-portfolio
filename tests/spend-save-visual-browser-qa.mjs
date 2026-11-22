@@ -1,6 +1,8 @@
 // Public Spend & Save cinematic case-study browser QA.
 // Uses fictional basket amounts, local React-only state and no merchant APIs,
 // credentials, email delivery, Shopify checkout or Google Analytics events.
+// Project and hiring contact paths are inspected but never activated; no
+// synthetic enquiry is sent from the browser QA.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -105,6 +107,24 @@ try {
     await map.locator('.ss-system-node').first().click();
     await map.getByText('Example thresholds: A$160 gift, A$200 shipping, A$300 final gift.').waitFor();
 
+    // After the hypothetical AOV calculator, finish with a documented
+    // engineering takeaway and two independent, public-safe next steps.
+    const ending = page.locator('#reward-enquiry');
+    await ending.getByRole('heading', { name: /The reward is visible/ }).waitFor();
+    assert.equal(await ending.locator('ol li').count(), 3,
+      viewport.name + ': three separated implementation boundaries');
+    const projectLink = ending.getByRole('link', { name: /Discuss a rewards workflow/ });
+    const hiringLink = ending.getByRole('link', { name: /Hiring\? Review experience/ });
+    assert.equal(await projectLink.getAttribute('href'),
+      'mailto:hello@jrvallite.com?subject=Shopify%20rewards%20and%20Flow%20project%20%7C%20JRV',
+      viewport.name + ': project email is a fixed, direct mailto');
+    assert.equal(await hiringLink.getAttribute('href'), '/experience',
+      viewport.name + ': hiring path uses existing public experience');
+    const targetBox = await projectLink.boundingBox();
+    assert.ok(targetBox && targetBox.height >= 44,
+      viewport.name + ': project enquiry has a usable touch target');
+    assert.match(await ending.innerText(), /No enquiry is collected here/);
+    assert.match(await ending.innerText(), /fictional, not proof of measured uplift/);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 3),
       false, viewport.name + ': no horizontal overflow');
     assert.deepEqual(errors, [], viewport.name + ': no JavaScript errors');

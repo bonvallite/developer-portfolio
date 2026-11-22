@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],
       },
       // Legacy URL remains discouraged from indexing during the redirect;
-      // the original static PDF is removed from the current main Git tree.
+      // the original static PDF is no longer part of this release candidate.
       {
         source: '/JRV-Resume.pdf',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],

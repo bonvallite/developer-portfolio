@@ -18,7 +18,7 @@ export default function PythonAutomationPage() {
     {/* The analytics case study describes reviewed work only, not public employer scripts. */}
     <h2>Ecommerce SEO and advertising data extraction</h2>
     <p>Python Google Search Console API workflows and JavaScript Google Ads reporting scripts demonstrate OAuth, paginated retrieval, CSV exports and the business purpose of search and conversion datasets. Review notes make API coverage and validation limits explicit.</p>
-    <p><Link href="/data-extraction-automation" style={{color:'#ddb682',textDecoration:'underline'}}>Explore ecommerce API extraction case study →</Link></p>
+    <p><Link href="/data-extraction-automation" style={{color:'#38c7bc',textDecoration:'underline'}}>Explore ecommerce API extraction case study →</Link></p>
     <h2>Samsung Health CSV merger</h2>
     <p>A local Python and Pandas utility that reads Samsung export CSVs, handles a common extra-title-row format, retains source provenance and writes an error report. Mixed datasets remain distinct measurements; concatenation is not a time-aligned health analysis.</p>
     <p><a href={github + '/tree/main/projects/samsung-health-csv-merger'} target="_blank" rel="noopener noreferrer">Explore the Python merger source →</a></p>

@@ -9,7 +9,9 @@ type Store = readonly [name: string, url: string];
 
 // Client-controlled navigation is deliberately manual: no autoplay, scroll
 // hijacking, third-party animation dependencies or fabricated static images.
-// The current screenshot component retains its live-site fallback.
+// Locally optimised 19 November 2026 homepage captures are preferred. The
+// screenshot component also retains remote-thumbnail and live-site fallbacks.
+// Images show dated public homepages, not endorsements or measured outcomes.
 export default function StorefrontShowcase({ stores }: { stores: ReadonlyArray<Store> }) {
   const [active, setActive] = useState(0);
   const [motionKey, setMotionKey] = useState(0);
@@ -57,7 +59,7 @@ export default function StorefrontShowcase({ stores }: { stores: ReadonlyArray<S
         {stores.map(([label], index) =>
           <button key={label} type="button" className={index === active ? 'active' : ''} aria-pressed={index === active} onClick={() => navigate(index)}><span className="cinematic-index-number">{String(index + 1).padStart(2, '0')}</span>{label}<ArrowUpRight size={14} aria-hidden="true"/></button>)}
       </div>
-      <p className="cinematic-showcase-hint">Use the arrows or choose a store. While the gallery is focused, Left/Right and Home/End also work. Captures may be delayed or cached.</p>
+      <p className="cinematic-showcase-hint">Use the arrows or choose a store. While the gallery is focused, Left/Right and Home/End also work. Locally hosted captures were taken 19 November 2026 and may show dated promotions or overlays. Other screenshots may be cached.</p>
     </section>
   );
 }

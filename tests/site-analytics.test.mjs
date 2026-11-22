@@ -8,6 +8,7 @@ import { readFileSync } from 'node:fs';
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const layout = read('../app/layout.tsx');
 const manager = read('../app/components/ConsentManager.tsx');
+const consentCss = read('../app/components/consent-manager.css');
 const privacy = read('../app/privacy/page.tsx');
 const allow = JSON.parse(read('../scripts/public-safety-allowlist.json')).allow;
 
@@ -31,6 +32,14 @@ test('optional GTM, Clarity and Vercel Analytics are only activated with explici
   assert.match(manager, /clarity\.ms\/tag\/zekmhvjftc/);
   assert.equal((manager.match(/GTM-KVJVH4VM/g) ?? []).length, 1);
   assert.equal((manager.match(/zekmhvjftc/g) ?? []).length, 1);
+});
+
+// Settings must remain accessible after rejection, not just in the initial modal.
+test('privacy settings expose expansion state and readable mobile geometry', () => {
+  assert.match(manager, /aria-expanded=\{open\}/);
+  assert.match(consentCss, /\.jrv-consent-settings\{[^}]*min-height:44px/);
+  assert.match(consentCss, /\.jrv-consent-settings\{[^}]*font-size:12px/);
+  assert.match(consentCss, /prefers-reduced-motion:reduce/);
 });
 
 test('consent documentation reflects the actual opt-in architecture', () => {

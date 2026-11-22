@@ -1,6 +1,8 @@
 // Source-level regression for the Spend & Save presentation and disclosure.
 // The live simulator is separately exercised in Playwright across viewports.
 // This portfolio never executes merchant order edits or sends customer emails.
+// The final enquiry must explain engineering scope without promising results,
+// and route to a fixed mailto or a public hiring page (never to a data form).
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
@@ -44,4 +46,28 @@ test('Ember and Teal styling is local, responsive and motion-conscious', () => {
   assert.match(styles, /max-width:620px/);
   assert.match(styles, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(styles, /https?:\/\/|url\(/);
+});
+
+test('the final reward case study links the engineering narrative to project and hiring next steps', () => {
+  assert.ok(page.includes('id="reward-enquiry" className="ss-engage"'));
+  assert.ok(page.includes('id="ss-engage-title"'));
+  assert.ok(page.includes('The engineering earns the trust'));
+  for (const boundary of ['01 / SHOPPER', '02 / MERCHANT', '03 / AUTOMATION']) {
+    assert.ok(page.includes(boundary), 'Missing implementation boundary: ' + boundary);
+  }
+  assert.ok(page.includes('mailto:hello@jrvallite.com?subject=Shopify%20rewards%20and%20Flow%20project%20%7C%20JRV'));
+  assert.ok(page.includes('href="/experience">Hiring? Review experience'));
+  assert.ok(page.includes('No enquiry is collected here'));
+  assert.ok(page.includes('not proof of measured uplift'));
+  for (const forbidden of ['<form', 'fetch(', 'sendBeacon(']) {
+    assert.ok(!page.includes(forbidden), 'Unexpected network or form hook: ' + forbidden);
+  }
+  for (const selector of [
+    '.ss-cinematic .ss-engage{',
+    '.ss-cinematic .ss-engage-primary{',
+    'grid-template-columns:minmax(0,1fr)',
+    '.ss-cinematic .ss-engage-actions a{width:100%',
+  ]) {
+    assert.ok(styles.includes(selector), 'Missing accessible/responsive panel styling: ' + selector);
+  }
 });

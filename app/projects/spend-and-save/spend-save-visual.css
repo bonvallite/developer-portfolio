@@ -4,7 +4,12 @@
  * simulated shopper, merchant and Flow screens into the JRV Ember & Teal
  * portfolio language without changing reward calculations or order states.
  * All diagrams and code samples remain fictional and client-side only.
- * Kept separate from the older inline demonstration styles intentionally.
+ * Loaded after spend-save-base.css. The baseline declarations are now static
+ * rather than injected at the end of the client page; keep the import order
+ * to avoid an unstyled initial layout and unnecessary layout movement.
+ * 22 November: the end-of-story enquiry uses the same JRV teal/Ember tokens
+ * with a two-column evidence/decision layout that becomes one column on
+ * mobile. It does not add third-party fonts, forms, or tracking.
  */
 .ss-page.ss-cinematic{
   --ss-ink:#0b1419;--ss-deep:#10232c;--ss-panel:#142b34;
@@ -184,6 +189,79 @@
   font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
 }
 .ss-cinematic .ss-system-code>p{padding:14px 19px;margin:0;color:#91b2b7;border-top:1px solid #294c57;font-size:10px;line-height:1.55}
+/* End-of-story contact panel: fictional engineering proof first, then two
+ * clear actions. Route-scoped to avoid disrupting the other technical labs. */
+.ss-cinematic .ss-engage{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr);
+  gap:clamp(22px,4vw,54px);align-items:center;
+  margin:0 0 62px;padding:clamp(26px,4vw,52px);
+  border:1px solid #497b75;border-radius:17px;
+  background:radial-gradient(ellipse at 90% 0%,#f28c5219,transparent 58%),
+    radial-gradient(ellipse at 7% 95%,#38c7bc15,transparent 63%),#102630;
+}
+.ss-cinematic .ss-engage-copy{min-width:0}
+.ss-cinematic .ss-engage-kicker,.ss-cinematic .ss-engage-insight>span{
+  color:var(--jrv-teal);font-size:10px;font-weight:840;
+  letter-spacing:1.35px;line-height:1.6;
+}
+.ss-cinematic .ss-engage h2{
+  margin:17px 0 19px;max-width:750px;
+  color:var(--jrv-fg);font-size:clamp(32px,4.2vw,56px);
+  line-height:1.1;letter-spacing:-.05em;
+}
+.ss-cinematic .ss-engage h2 em{font-style:normal;color:var(--jrv-ember)}
+.ss-cinematic .ss-engage-copy>p:not(.ss-engage-note){
+  max-width:680px;margin:0;color:#c5d9d9;font-size:15px;line-height:1.8;
+}
+.ss-cinematic .ss-engage-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.ss-cinematic .ss-engage-actions a{
+  min-height:48px;display:inline-flex;align-items:center;justify-content:center;
+  gap:10px;padding:12px 18px;border-radius:8px;border:1px solid #538b87;
+  font-size:13px;font-weight:780;line-height:1.4;text-decoration:none;
+  transition:background-color .18s,border-color .18s;
+}
+.ss-cinematic .ss-engage-primary{
+  background:var(--jrv-ember);color:var(--jrv-bg);
+  border-color:var(--jrv-ember)!important;
+}
+.ss-cinematic .ss-engage-primary:hover{
+  background:var(--jrv-ember-light);border-color:var(--jrv-ember-light)!important;
+}
+.ss-cinematic .ss-engage-secondary{background:#193a42;color:#e8faf7}
+.ss-cinematic .ss-engage-secondary:hover{background:#26535a;border-color:var(--jrv-teal)}
+.ss-cinematic .ss-engage-note{font-size:11px;line-height:1.7;color:#a6c5c7;margin:15px 0 0}
+.ss-cinematic .ss-engage-insight{
+  min-width:0;padding:clamp(19px,2.4vw,27px);
+  border:1px solid #42726d;border-radius:12px;background:#0c2029;
+}
+.ss-cinematic .ss-engage-insight h3{
+  color:#eaf8f6;font-size:clamp(20px,2vw,27px);
+  line-height:1.25;letter-spacing:-.03em;margin:11px 0 18px;
+}
+.ss-cinematic .ss-engage-insight ol{padding:0;margin:0 0 15px;list-style:none}
+.ss-cinematic .ss-engage-insight li{padding:14px 0;border-top:1px solid #315960}
+.ss-cinematic .ss-engage-insight li strong{
+  display:block;color:#f8b18b;font-size:11px;letter-spacing:.6px;
+}
+.ss-cinematic .ss-engage-insight li p{
+  margin:7px 0 0;font-size:12px;line-height:1.7;color:#c2d6d6;
+}
+.ss-cinematic .ss-engage-insight small{
+  display:block;color:#9dbdc0;font-size:11px;line-height:1.7;
+}
+@media(max-width:900px){
+  .ss-cinematic .ss-engage{grid-template-columns:minmax(0,1fr);gap:26px}
+}
+@media(max-width:620px){
+  .ss-cinematic .ss-engage{padding:23px 18px;margin-bottom:40px}
+  .ss-cinematic .ss-engage h2{font-size:clamp(32px,9vw,43px)}
+  .ss-cinematic .ss-engage-actions{flex-direction:column}
+  .ss-cinematic .ss-engage-actions a{width:100%;justify-content:space-between}
+  .ss-cinematic .ss-engage-insight{padding:19px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ss-cinematic .ss-engage-actions a{transition:none}
+}
 @media(max-width:900px){
   .ss-cinematic .ss-hero-journey{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ss-cinematic .ss-hero-journey li:nth-child(2):after{display:none}

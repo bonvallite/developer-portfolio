@@ -1,15 +1,17 @@
-/* Sitewide optional analytics consent. No remote CSS, fonts or imagery.
-   Both choice buttons remain keyboard-accessible and work without a form. */
-.jrv-consent{position:fixed;z-index:200;left:20px;right:20px;bottom:20px;max-width:1030px;margin:auto;border:1px solid #ad8b5f;background:#16191eeF;box-shadow:0 25px 85px #000a;color:#f5ead7;border-radius:10px;display:flex;align-items:center;gap:25px;justify-content:space-between;padding:22px 24px;backdrop-filter:blur(16px)}
+/* Sitewide optional analytics consent. All choices are optional and keyboard-accessible.
+   The privacy control is a minimum 44px target with readable mobile typography.
+   Styling uses JRV obsidian, teal and ember; no external fonts or assets. */
+.jrv-consent{position:fixed;z-index:200;left:20px;right:20px;bottom:20px;max-width:1030px;margin:auto;border:1px solid #508c86;background:#0d222bf2;box-shadow:0 25px 85px #000a;color:#eaf8f6;border-radius:10px;display:flex;align-items:center;gap:25px;justify-content:space-between;padding:22px 24px;backdrop-filter:blur(16px)}
 .jrv-consent strong{display:block;font-size:15px;margin-bottom:7px;letter-spacing:-.2px}
-.jrv-consent p{margin:0;font-size:12px;line-height:1.65;color:#c0c1c6;max-width:700px}
-.jrv-consent a{color:#e5c690;text-decoration:underline;text-underline-offset:3px}
+.jrv-consent p{margin:0;font-size:12px;line-height:1.65;color:#c2d8d7;max-width:700px}
+.jrv-consent a{color:#a1eadc;text-decoration:underline;text-underline-offset:3px}
 .jrv-consent-actions{display:flex;gap:10px;flex-shrink:0}
-.jrv-consent-actions button{min-height:45px;padding:10px 16px;border:1px solid #76674f;background:#2a2c30;color:#f6ebd7;font-size:12px;font-weight:750;cursor:pointer}
-.jrv-consent-actions button.jrv-consent-accept{background:#dbb981;color:#22190d;border-color:#dbb981}
-.jrv-consent-settings{position:fixed;z-index:190;bottom:0;left:0;border:1px solid #736144;border-bottom:0;border-left:0;background:#14191ee8;color:#d9bf94;border-radius:0 8px 0 0;padding:7px 11px;font-size:10px;cursor:pointer}
-.jrv-consent-settings:hover{background:#2a2b2c}
-.jrv-consent button:focus-visible,.jrv-consent-settings:focus-visible{outline:3px solid #f7d99f;outline-offset:3px}
-@media(max-width:800px){.jrv-consent{flex-direction:column;align-items:stretch;gap:15px;left:12px;right:12px;bottom:30px;padding:18px}.jrv-consent-actions{width:100%}.jrv-consent-actions button{flex:1}.jrv-consent-settings{font-size:9px;padding:6px 9px}}
+.jrv-consent-actions button{min-height:45px;padding:10px 16px;border:1px solid #527e7e;background:#173941;color:#eaf8f6;font-size:13px;font-weight:750;cursor:pointer}
+.jrv-consent-actions button.jrv-consent-accept{background:#f28c52;color:#13242b;border-color:#f28c52}
+/* Kept available after rejection, with a 44px target and non-obscuring inset. */
+.jrv-consent-settings{position:fixed;z-index:190;bottom:8px;left:8px;min-height:44px;min-width:124px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #518e89;background:#102731f2;color:#e1f8f4;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:750;line-height:1.35;cursor:pointer}
+.jrv-consent-settings:hover{background:#1d4750}
+.jrv-consent button:focus-visible,.jrv-consent-settings:focus-visible{outline:3px solid #f28c52;outline-offset:3px}
+@media(max-width:800px){.jrv-consent{flex-direction:column;align-items:stretch;gap:15px;left:12px;right:12px;bottom:30px;padding:18px}.jrv-consent-actions{width:100%}.jrv-consent-actions button{flex:1}.jrv-consent-settings{min-height:44px;font-size:12px;padding:10px 14px;bottom:8px;left:8px}}
 @media(max-width:390px){.jrv-consent-actions{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.jrv-consent,.jrv-consent-settings{transition:none}}

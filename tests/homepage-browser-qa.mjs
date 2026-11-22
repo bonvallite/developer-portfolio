@@ -2,6 +2,12 @@
 // Runs against a locally built Next.js app; no live client APIs or credentials.
 // Screenshots are review artefacts, not evidence of real performance metrics.
 // The project studio must genuinely respond to visitor actions at every size.
+// Restored website previews are selected without triggering live-site navigation
+// or requiring a third-party thumbnail to load successfully.
+// The privacy preferences control must have a 44px touch target and report its
+// expanded state; reopening/rejecting must not enable analytics.
+// The goal-led hero routes are native links to existing contact and experience
+// pages. Validate both at four sizes and never submit user information.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -42,8 +48,42 @@ try {
     await page.locator('.jrv2-journey-tab').first().waitFor({ state: 'visible' });
     assert.equal(await page.locator('h1').count(), 1, 'One homepage H1');
     assert.equal(await page.locator('.jrv2-case').count(), 4, 'Four case-study stories');
+    // Website references are present without waiting on remote image delivery.
+    const showcase = page.locator('#websites .cinematic-showcase');
+    const liveSites = page.locator('#websites .jrv2-websites-links a');
+    assert.equal(await liveSites.count(), 11, size.name + ': eleven published homepage links');
+    assert.equal(await showcase.count(), 1, size.name + ': restored desktop/mobile preview gallery');
+    const choices = showcase.locator('.cinematic-showcase-index button');
+    assert.equal(await choices.count(), 11, size.name + ': all approved sites selectable');
+    await showcase.getByRole('button', { name: 'Show Eve Curls' }).click();
+    assert.equal((await showcase.locator('.cinematic-showcase-current').innerText()).trim(), 'Eve Curls');
+    assert.equal(await showcase.locator('.storefront-device').count(), 2,
+      size.name + ': one desktop/mobile device pair per selected storefront');
+    await showcase.getByRole('button', { name: 'Show Peter Augustus' }).click();
+    assert.equal((await showcase.locator('.cinematic-showcase-current').innerText()).trim(), 'Peter Augustus');
+    const siteTarget = await liveSites.first().boundingBox();
+    assert.ok(siteTarget && siteTarget.height >= 44,
+      size.name + ': published website CTA provides an accessible touch target');
+    assert.ok((await liveSites.first().getAttribute('href'))?.startsWith('https://www.peteraugustus.com.au/'));
+
     assert.equal(await page.locator('.jrv2-service').count(), 4, 'Four linked services');
     assert.ok(await page.locator('.jrv2-hero-actions a').count() >= 2, 'Prominent hero actions');
+    // Two purposeful visitor journeys begin before the selected project list:
+    // owners can reach direct contact, while hiring teams reach experience.
+    const goalPaths = page.getByRole('navigation', { name: 'Choose how to work together' });
+    assert.equal(await goalPaths.locator('a').count(), 2,
+      size.name + ': exactly two first-screen visitor paths');
+    const clientRoute = goalPaths.getByRole('link', { name: /Discuss a Shopify challenge/ });
+    const hiringRoute = goalPaths.getByRole('link', { name: /Review Shopify experience/ });
+    assert.equal(await clientRoute.getAttribute('href'), '#contact',
+      size.name + ': ecommerce team route leads to contact');
+    assert.equal(await hiringRoute.getAttribute('href'), '/experience',
+      size.name + ': hiring route leads to experience');
+    for (const link of [clientRoute, hiringRoute]) {
+      const target = await link.boundingBox();
+      assert.ok(target && target.height >= 44,
+        size.name + ': first-screen audience link must be touch accessible');
+    }
     assert.equal(await page.locator('.jrv2-console').count(), 1, 'Visual commerce engine');
 
     const consent = page.locator('.jrv-consent');
@@ -53,6 +93,28 @@ try {
     await page.getByRole('button', { name: 'Reject optional' }).click();
     await consent.waitFor({ state: 'hidden' });
     assert.deepEqual(trackingRequests, [], size.name + ': tracking requested after rejection');
+    // Prevent a regression to the old 9px phone label and small hit target.
+    const settings = page.getByRole('button', { name: 'Change analytics privacy choices' });
+    const settingsMetrics = await settings.evaluate(el => {
+      const rect = el.getBoundingClientRect();
+      return { width: rect.width, height: rect.height,
+        font: Number.parseFloat(window.getComputedStyle(el).fontSize),
+        visible: rect.left >= 0 && rect.top >= 0 &&
+          rect.right <= window.innerWidth && rect.bottom <= window.innerHeight };
+    });
+    assert.ok(settingsMetrics.width >= 44 && settingsMetrics.height >= 44,
+      size.name + ': settings must provide a minimum 44px target');
+    assert.ok(settingsMetrics.font >= 12 && settingsMetrics.visible,
+      size.name + ': settings label must remain legible and on-screen');
+    assert.equal(await settings.getAttribute('aria-expanded'), 'false');
+    await settings.focus();
+    await page.keyboard.press('Enter');
+    await consent.waitFor({ state: 'visible' });
+    assert.equal(await settings.getAttribute('aria-expanded'), 'true');
+    await page.getByRole('button', { name: 'Reject optional' }).click();
+    await consent.waitFor({ state: 'hidden' });
+    assert.equal(await settings.getAttribute('aria-expanded'), 'false');
+    assert.deepEqual(trackingRequests, [], size.name + ': re-rejection never requests analytics');
 
     // Interactive project studio is real local UI, not four decorative cards.
     // Verify every mode, keyboard selection, and a deterministic fictional
@@ -127,9 +189,26 @@ try {
     await studio.getByRole('button', { name: 'REWARDS' }).click();
     assert.equal(await studio.getByRole('progressbar').getAttribute('aria-valuenow'), '175');
 
-    await page.locator('.jrv2-journey-tab').nth(1).click();
-    await page.getByText('Make complex feel clear.').waitFor();
+    // Only the selected heading is a live announcement. Keyboard activation
+    // remains available on every viewport without reading the whole diagram.
+    const journeyTabs = page.locator('.jrv2-journey-tab');
+    const journeyLiveRegions = page.locator('.jrv2-journey [aria-live]');
+    assert.equal(await journeyLiveRegions.count(), 1, size.name + ': one journey live region');
+    assert.equal(await journeyLiveRegions.first().evaluate(element => element.tagName), 'H3',
+      size.name + ': selected step heading owns the live announcement');
+    assert.equal(await journeyLiveRegions.first().getAttribute('aria-live'), 'polite');
+    assert.equal(await journeyLiveRegions.first().getAttribute('aria-atomic'), 'true');
+
+    await journeyTabs.nth(1).focus();
+    await page.keyboard.press('Enter');
+    await page.getByRole('heading', { name: 'Make complex feel clear.' }).waitFor();
+    assert.equal(await journeyTabs.nth(1).getAttribute('aria-pressed'), 'true');
     assert.equal(await page.locator('.jrv2-journey-tab.is-active').count(), 1);
+    await journeyTabs.nth(2).focus();
+    await page.keyboard.press('Space');
+    await page.getByRole('heading', { name: 'Build for the real world.' }).waitFor();
+    assert.equal(await journeyTabs.nth(2).getAttribute('aria-pressed'), 'true');
+    assert.equal(await journeyLiveRegions.first().textContent(), 'Build for the real world.');
 
     await page.getByRole('button', { name: 'I am hiring' }).click();
     await page.locator('#jrv2-project-brief').fill('Fictional browser QA test only.');
