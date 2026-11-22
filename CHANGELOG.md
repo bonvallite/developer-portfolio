@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-22 - Fix escaped source assertions in conversion-ending regression
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release`, PR #96. No production or Shopify theme changes.
+- **Files:** `tests/spend-save-presentation.test.mjs`, `CHANGELOG.md`.
+- **Change and reason:** The just-added source assertions used over-escaped regular expressions. Replace only those assertions with exact-string checks for the three engineering boundaries, fixed mailto and hiring links, disclosure, absence of forms/network calls, and scoped responsive CTA styles. Leave original reward/Flow tests intact.
+- **Validation:** Reviewed the exact committed test source and checked test structure and expected strings; an exact-commit GitHub run must pass before reporting the feature as validated. No runtime or CSS changes were made.
+- **Release:** Draft only; published résumé privacy hotfix and production remain unchanged.
+
 ## 2026-11-22 - Give the Spend & Save engineering story a clear conversion ending
 
 - **Repository/branch:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. Not a Shopify theme change and no production publication.
