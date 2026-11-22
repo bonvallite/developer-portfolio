@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Harden generated résumé caches and test public crawler controls
+
+- **Target:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release` PR #96; Shopify theme and production untouched.
+- **Affected files:** `app/resume/[design]/[format]/route.ts`, `tests/seo-rendered-metadata.mjs`, `docs/portfolio-release-candidate-2026-11-22.md`, and `CHANGELOG.md`.
+- **Change:** Keep both ATS and Classic résumé formats and legacy compatibility path available, but avoid shared/browser caching of dynamically generated PDF and Word files by returning `Cache-Control: private, no-store`. Align handler robots directives with noindex/nofollow/noarchive. Expand local rendered-SEO regression to inspect HTTP response headers and download format metadata, preserving indexability of the homepage and case studies and noindex for résumé routes and attachments.
+- **Reason:** The generated downloads contain explicitly public contact details but previously permitted public caching for 3600 seconds. Preview deployments are broadly noindex for platform reasons, so local app-level tests are required to catch incorrect production SEO rules.
+- **Documentation:** Updated route handler's explanatory comments, rendered test comments and release guide; preserved historic README and binary documents.
+- **Validation:** Audited exact branch's route handler, Next.js headers, sitemap, robots, rendered SEO test, and fetched actual Vercel preview HTTP headers. Confirmed public and backed-up legacy files have identical Git blob hashes. Applied checked patches only to four text files. Fresh GitHub Actions source/build/rendered tests and the final-commit preview must pass; owner approval is still needed before removing any historic résumé assets or changing vendor analytics.
+- **Release boundary:** PR #96 remains draft and unmerged; no production alias changes. `noindex` and cache controls are discoverability/storage signals, not access restrictions.
+
 ## 2026-11-22 - Move Spend & Save baseline CSS out of client page for stable first paint
 
 - **Repository and branch:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release` PR #96. No Shopify theme edits or production deployment.

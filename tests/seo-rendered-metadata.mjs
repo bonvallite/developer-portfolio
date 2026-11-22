@@ -2,6 +2,9 @@
 // Runs with Node against the local Next.js server, without third-party crawlers.
 // Source-only checks are insufficient: client pages require metadata from their
 // server layouts, and the sitemap must contain the published canonical routes.
+// Test the locally built Next.js site, not a Vercel preview: the platform
+// deliberately adds noindex to previews, irrespective of production metadata.
+// Generated résumé attachments are public but must not enter shared caches.
 import assert from 'node:assert/strict';
 
 const base = process.env.SEO_TEST_BASE_URL || 'http://127.0.0.1:3100';
@@ -135,4 +138,52 @@ for (const path of ['/resume', '/resume/ats', '/resume/classic']) {
     path + ': intentionally noindex résumé route appeared in sitemap');
 }
 
-console.log('Rendered metadata, concise SEO snippets and XML sitemap regression: PASSED');
+
+// Release-specific crawler-header guard: public service and portfolio pages
+// must stay indexable at source. Vercel adds noindex on *preview* deployments;
+// this local Next.js build is the correct place to assess app-level headers.
+for (const path of ['/', '/privacy', '/analytics-lab', '/projects/spend-and-save',
+  '/b2b-modernisation', '/cartoncloud-integration']) {
+  const response = await fetch(base + path, { method: 'HEAD' });
+  assert.equal(response.status, 200, path + ': indexable route HEAD status');
+  assert.doesNotMatch(response.headers.get('x-robots-tag') || '', /\bnoindex\b/i,
+    path + ': indexable route incorrectly emits noindex');
+}
+
+// Résumé pages and attachments are intentionally accessible for hiring, but
+// must request noindex. Content remains public and is not protected by this.
+// Generated PDF/Word responses should not be stored in shared edge caches.
+for (const path of ['/resume', '/resume/ats', '/resume/classic']) {
+  const response = await fetch(base + path, { method: 'HEAD' });
+  assert.equal(response.status, 200, path + ': résumé HEAD status');
+  assert.match(response.headers.get('x-robots-tag') || '', /\bnoindex\b/i,
+    path + ': missing X-Robots-Tag noindex');
+}
+for (const format of ['pdf', 'word']) {
+  for (const design of ['ats', 'classic']) {
+    const path = '/resume/' + design + '/' + format;
+    const response = await fetch(base + path, { method: 'HEAD' });
+    assert.equal(response.status, 200, path + ': generated document HEAD status');
+    assert.match(response.headers.get('x-robots-tag') || '', /\bnoindex\b/i,
+      path + ': generated document missing noindex');
+    assert.match(response.headers.get('x-robots-tag') || '', /\bnoarchive\b/i,
+      path + ': generated document missing noarchive');
+    assert.match(response.headers.get('cache-control') || '', /\bprivate\b/i,
+      path + ': generated document permits shared caching');
+    assert.match(response.headers.get('cache-control') || '', /\bno-store\b/i,
+      path + ': generated document permits browser caching');
+    assert.match(response.headers.get('content-disposition') || '', /\battachment\b/i,
+      path + ': generated document is not offered as a download');
+    assert.match(response.headers.get('content-type') || '',
+      format === 'pdf' ? /^application\/pdf/i : /^application\/vnd\.openxmlformats-officedocument\.wordprocessingml\.document/i,
+      path + ': wrong document MIME type');
+  }
+}
+// The legacy PDF is deliberately retained for existing direct links. It is
+// public, not secret, and must remain excluded from search indexing.
+const legacyPdf = await fetch(base + '/JRV-Resume.pdf', { method: 'HEAD' });
+assert.equal(legacyPdf.status, 200, 'Legacy résumé compatibility file missing');
+assert.match(legacyPdf.headers.get('x-robots-tag') || '', /\bnoindex\b/i,
+  'Legacy résumé file must be requested not to index');
+
+console.log('Rendered metadata, résumé download cache controls, crawler headers and sitemap regression: PASSED');

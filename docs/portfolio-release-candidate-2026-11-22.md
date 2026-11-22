@@ -51,6 +51,13 @@ The Spend & Save page still emitted a large legacy `<style jsx global>` block **
 
 The next exact-commit GitHub performance lab must compare the desktop/mobile shift readings with the original 0.5883/0.2308 values. If they remain elevated, investigate other first-render changes and collect element-level layout-shift attribution. **Do not claim that the issue is resolved based on a CSS refactor alone.** The final Vercel preview and standard browser QA must also pass. Do not confuse loopback timing with live-site speeds.
 
+## Verified résumé discoverability and cache policy (22 November 2026)
+
+- Both currently published résumé formats remain directly accessible at `/resume/ats` and `/resume/classic`, including downloadable PDF and editable Word versions. The original legacy PDF remains accessible under `/JRV-Resume.pdf` for backward compatibility. The repository contains an identical original file in `backups/resumes/`; the public site and public Git tree are **not private storage**.
+- Direct checks on the previous ready Vercel preview returned HTTP 200 and `X-Robots-Tag: noindex` for the résumé HTML routes and downloads. The site's Next.js configuration also applies noindex to the legacy PDF. Existing generated PDF/Word handlers returned `Cache-Control: public, max-age=3600`, even though the files contain career identity and contact details. These generated responses are now configured `private, no-store` while retaining the same routes, content, and attachment filenames. The binary backup and legacy static PDF were **not altered**.
+- The local rendered-SEO regression now checks that the home page, case studies and privacy page do **not** emit app-level noindex, while all résumé routes and file handlers do; it also checks PDF/Word MIME types, attachment disposition and private/no-store cache headers. Vercel deliberately adds `noindex` to preview deployments, which is separate from production indexing. Neither noindex nor no-store removes old Git history, search caches, direct links or copies of downloaded files.
+- The existing README explicitly says the legacy PDF is retained for old links, pending an approved updated replacement. Do not delete or redirect it, or claim complete privacy removal, without reviewing existing links and obtaining owner approval. No identifying résumé text or downloadable file content was changed in this release candidate.
+
 ## Preview acceptance gates
 
 - [ ] GitHub Actions are green **on the integration SHA** and actually run all seven browser test commands.
