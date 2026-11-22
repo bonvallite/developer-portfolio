@@ -2,6 +2,8 @@
 // Runs against a locally built Next.js app; no live client APIs or credentials.
 // Screenshots are review artefacts, not evidence of real performance metrics.
 // The project studio must genuinely respond to visitor actions at every size.
+// The privacy preferences control must have a 44px touch target and report its
+// expanded state; reopening/rejecting must not enable analytics.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -53,6 +55,28 @@ try {
     await page.getByRole('button', { name: 'Reject optional' }).click();
     await consent.waitFor({ state: 'hidden' });
     assert.deepEqual(trackingRequests, [], size.name + ': tracking requested after rejection');
+    // Prevent a regression to the old 9px phone label and small hit target.
+    const settings = page.getByRole('button', { name: 'Change analytics privacy choices' });
+    const settingsMetrics = await settings.evaluate(el => {
+      const rect = el.getBoundingClientRect();
+      return { width: rect.width, height: rect.height,
+        font: Number.parseFloat(window.getComputedStyle(el).fontSize),
+        visible: rect.left >= 0 && rect.top >= 0 &&
+          rect.right <= window.innerWidth && rect.bottom <= window.innerHeight };
+    });
+    assert.ok(settingsMetrics.width >= 44 && settingsMetrics.height >= 44,
+      size.name + ': settings must provide a minimum 44px target');
+    assert.ok(settingsMetrics.font >= 12 && settingsMetrics.visible,
+      size.name + ': settings label must remain legible and on-screen');
+    assert.equal(await settings.getAttribute('aria-expanded'), 'false');
+    await settings.focus();
+    await page.keyboard.press('Enter');
+    await consent.waitFor({ state: 'visible' });
+    assert.equal(await settings.getAttribute('aria-expanded'), 'true');
+    await page.getByRole('button', { name: 'Reject optional' }).click();
+    await consent.waitFor({ state: 'hidden' });
+    assert.equal(await settings.getAttribute('aria-expanded'), 'false');
+    assert.deepEqual(trackingRequests, [], size.name + ': re-rejection never requests analytics');
 
     // Interactive project studio is real local UI, not four decorative cards.
     // Verify every mode, keyboard selection, and a deterministic fictional

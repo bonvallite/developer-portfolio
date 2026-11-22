@@ -22,6 +22,12 @@ The combined tree intentionally preserves all other files from main, including S
 
 Instead of overwriting `.github/workflows/portfolio-ci.yml` with any PR's older copy, all individual browser checks are enabled for this integration branch: general case-study, homepage accessibility, Spend & Save, CartonCloud normal/failed event scenarios, Python Analytics Lab, B2B entitlement, and consent-first privacy tests. Existing unit, Python, TypeScript, build, SEO and public-safety checks are preserved. Desktop/tablet/mobile screenshots are collected from the relevant test artefact paths.
 
+## Mobile privacy settings correction (22 November 2026)
+
+The full-page 390px screenshot showed a persistent `Privacy choices` button with 9px text and a sub-44px hit target. Its route-independent CSS now uses 12px text, a 44px minimum height, a visible focus ring, a small viewport inset and JRV teal/ember/obsidian colours. The control exposes `aria-expanded` when the optional preferences panel is shown. The existing consent state, opt-in requirement, vendor loading rules, and rejection behaviour remain unchanged.
+
+Unit and browser tests now verify the styles, actual computed target size, viewport containment, keyboard opening, ARIA expansion, re-rejection and absence of tracking requests after rejection. Screenshots and the Vercel preview generated for the previous `a05ed676` commit must not be treated as visual proof of this updated control. A fresh CI run and new exact-head preview are required.
+
 ## Preview acceptance gates
 
 - [ ] GitHub Actions are green **on the integration SHA** and actually run all seven browser test commands.

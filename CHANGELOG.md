@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Fix mobile consent-control size and align privacy palette
+
+- **Target:** `bonvallite/developer-portfolio`, integration branch `integration/2026-11-22-cinematic-release`, draft PR #96. No Shopify theme edit or production release.
+- **Affected files:** `app/components/consent-manager.css`, `app/components/ConsentManager.tsx`, `tests/homepage-browser-qa.mjs`, `tests/site-analytics.test.mjs`, `docs/portfolio-release-candidate-2026-11-22.md`, and `CHANGELOG.md`.
+- **Change:** Make the persistent Privacy choices tab at least 44px high with 12px text and visible focus at every viewport; update consent styling to JRV obsidian/teal/ember and expose the panel's `aria-expanded` state. Does not change opt-in logic, rejection, or tracking vendor configuration.
+- **Reason:** Real GitHub 390px screenshots show a difficult-to-read 9px setting with a smaller-than-recommended touch target.
+- **Documentation:** Updated CSS/component comments, test comments, and the release-candidate notes; preserved all historical documentation.
+- **Validation:** Reviewed existing code, screenshot archive and unit/browser tests. Added static target/ARIA checks and browser checks for computed size, viewport placement, keyboard reopening and re-rejection with no optional tracking. Fresh GitHub Actions and Vercel visual preview must be validated on the new SHA. Manual assistive technology checks and publisher privacy review remain open.
+- **Release boundary:** PR #96 remains draft and unmerged; production and custom aliases unchanged. The existing public backup résumé privacy-review item is intentionally not edited.
+
 ## 2026-11-22 - Assemble combined JRV release candidate and reconcile browser checks
 
 - **Target:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, derived from main `ac519c363bb303249adc911d0600679857df4a8d`. Draft only, no production publication.

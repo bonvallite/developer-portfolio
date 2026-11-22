@@ -10,6 +10,7 @@ import { reportPortfolioClick } from './portfolio-intent-events';
 // contact forms, customer records or session recordings by itself.
 // Explicit portfolio link markers can produce fixed, non-PII click-intent
 // events through GTM only after consent. No clicks are confirmed enquiries.
+// The always-available privacy settings button exposes whether its panel is expanded.
 // Reversing an accepted choice reloads the page because already-loaded external
 // vendor scripts cannot be reliably unloaded in a running document.
 const storageKey = 'jrv-optional-analytics-consent-v1';
@@ -101,6 +102,6 @@ export default function ConsentManager() {
         <button type="button" className="jrv-consent-accept" onClick={() => choose('accepted')}>Allow analytics</button>
       </div>
     </section>}
-    <button type="button" className="jrv-consent-settings" onClick={() => setOpen(value => !value)} aria-label="Change analytics privacy choices">Privacy choices</button>
+    <button type="button" className="jrv-consent-settings" onClick={() => setOpen(value => !value)} aria-label="Change analytics privacy choices" aria-expanded={open}>Privacy choices</button>
   </>;
 }
