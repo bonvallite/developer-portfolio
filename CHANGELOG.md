@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-23 - Correct post-release palette test for published engineering heading
+
+- **Branch / release:** `main`, after published PR #100 merge `d8d2df7` and documentation release-record commit `3e31af9`. The approved interactive showcase is live and verified on `www.jrvallite.com`.
+- **Affected files:** `tests/portfolio-palette.test.mjs`, `CHANGELOG.md`. The permanent `docs/JRV_DESIGN_SYSTEM.md` v1.11 remains the current published source of truth, with no token changes.
+- **Why:** Post-release source documentation correctly renamed rule 12 from `Dedicated systems engineering flagship (draft only)` to `Published systems engineering flagship`. A unit test still required the former literal text and failed, although 198 other unit tests passed and the deployed runtime logic was unchanged.
+- **Fix:** Update the test to require the **published** rule, v1.11 release record and approved PR #100 merge evidence. Keep palette token checks, all UI behaviours, and source files otherwise unchanged.
+- **Validation:** Exact-commit GitHub Actions and production Vercel build **pending** after this corrective commit. Do not treat failed run `45081779549` as passed. Source of deployed feature `ae4e1b2` previously passed all unit/responsive CI and production commit `d8d2df7` passed source validation.
+- **No Shopify theme, Cloudflare Worker, CartonCloud, notification, customer order or marketing platform changes.**
+
+
 ## 2026-11-23 - Publish Shopify App Engineering, ETA metafields and Shopify email/SMS fallback
 
 - **Release:** User approved publishing the previously reviewed Draft PR #100 to production on 23 November 2026. PR #100 is now **merged** into `main` as `d8d2df7c9a6ddaf9551a7e2d2f8c3d052b6fe287`, source commit `ae4e1b29635ef5e8d838909f1e6ab1c72480508b`. Previous entries below describe genuine historical preview/draft milestones; their status is superseded by this release.
