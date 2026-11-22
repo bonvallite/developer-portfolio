@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Verify authenticated Vercel preview HTML and sitemap (draft branch)
+
+- **Branch:** `feature/commerce-integration-lab-20261122`, PR #98; production and main unchanged.
+- **Files:** `CHANGELOG.md`, `docs/commerce-integration-lab-2026-11-22.md`. Documentation-only QA evidence and GitHub Actions trigger diagnostic.
+- **Verified directly on preview commit `814d802`:** Homepage HTTP 200 with unique `#systems-lab` section, both CartonCloud links and four original `.jrv2-case-heading` cards; the new engineering route HTTP 200 with `noindex, nofollow`, self-canonical and sections for architecture, last-mile, write-back, OAuth and code; the earlier case-study route HTTP 200 with its existing canonical; `/sitemap.xml` HTTP 200 with 22 URLs, including the earlier CartonCloud route and excluding the new draft route; `/robots.txt` HTTP 200. Security response headers include frame denial, MIME nosniff and no-referrer. Vercel deployment READY.
+- **Not yet proven:** Live browser interactions, JavaScript page-error monitoring, WCAG accessibility checks, actual responsive screenshots and complete GitHub Actions suite on latest feature commit. Connector-side HTTP inspection cannot replace Playwright.
+- **CI diagnostic:** Earlier low-level Git-ref commits and closing/reopening the draft PR did not produce fresh Actions runs. Commit final evidence through the GitHub Contents API so the normal push webhook can attempt to trigger the configured PR checks. Report workflow status separately; no claims before an actual run.
+- **Safety:** No source, production, tracking, customer data or external provider calls changed.
+
+
 ## 2026-11-22 - Audit preview and add rendered-SEO release guard (draft only)
 
 - **Branch/PR:** `feature/commerce-integration-lab-20261122`, Draft PR #98. Do not merge into main or publish to jrvallite.com.
