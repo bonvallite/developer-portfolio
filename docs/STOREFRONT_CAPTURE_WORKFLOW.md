@@ -1,10 +1,16 @@
 # Verified storefront screenshot workflow
 
-This manual workflow captures public homepage viewports for 11 active storefronts (10 in the experience reference grid, plus the featured Peter Augustus site) on `/experience`. It does **not** publish images or change production.
+This manual workflow captures public homepage viewports for 11 active storefronts (10 in the experience reference grid, plus the featured Peter Augustus site). The same full 11-site list is presented on the cinematic homepage at `/#websites`. It does **not** publish images or change production.
 
 ## Runner compatibility
 
-The first run on 19 November 2026 (run 44488642173) failed before capture: `ubuntu-latest` resolved to Ubuntu 26.04, while Playwright 1.56.1 rejected Chromium dependency installation on that OS. The workflow now explicitly uses `ubuntu-24.04` with the same pinned Playwright release. Re-run the workflow to confirm browser installation and actual captures; a passing Vercel build does not test GitHub Actions browser installation.
+The first run on 19 November 2026 (run 44488642173) failed before capture: `ubuntu-latest` resolved to Ubuntu 26.04, while Playwright 1.56.1 rejected Chromium dependency installation on that OS. The workflow now explicitly uses `ubuntu-24.04` with the same pinned Playwright release. Runner compatibility was recovered in later runs. A passing Vercel build alone does not test GitHub Actions browser installation.
+
+## Recovered capture evidence (19 November 2026)
+
+GitHub Actions run **`44490966868`** produced the downloadable artefact `storefront-captures-44490966868` (about 6.3 MB). Its `manifest.json` contains 24 attempted image captures: **22 marked successful across the 11 active websites**, and two failures for the retired Skull Seeker URL (DNS resolution error). The 22 files are PNGs at **1280 × 800 desktop** and **390 × 844 mobile**; capture times were between 08:59 and 09:00 UTC on 19 November 2026.
+
+The recovered screenshots were reviewed together: several correctly show homepage heroes and navigation, while some also show timed Black Friday promotions, cookie/signup overlays, and one nearly empty dark desktop loading state. This confirms **provenance, not publication-quality approval**. Do not automatically copy all 22 into `public/` or claim that every screenshot is an exact current representation. Keep the gallery's live-site fallback for missing or problematic thumbnails.
 
 ## Run
 
@@ -28,7 +34,7 @@ Review every PNG for correct site, visible homepage, correct mobile rendering, c
 4. Update `app/experience/StorefrontPreview.tsx` to use those static paths only after both device assets for a store are approved and present. Preserve the fallback link if either image is unavailable.
 5. Run tests, safety checks, type check and build, then use the normal PR and Vercel preview review process.
 
-The public page currently uses third-party WordPress mShots previews and displays a live-link fallback when a thumbnail request fails. This manual workflow is a proposed way to replace those dynamic previews; static files have **not** been published by this change.
+The homepage and experience page currently use third-party WordPress mShots previews with lazy loading and a live-site fallback when thumbnails fail. The restored captures are audit artefacts, **not** committed static assets. A reviewer must validate appearance, client rights and compression before static publication; the source request can initially show a generating-preview placeholder.
 
 ## Capture limitations
 

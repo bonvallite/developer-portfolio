@@ -3,7 +3,9 @@
    Decorative motion is disabled for reduced-motion visitors; content and CTAs
    remain useful without hydration. Brand: shared JRV obsidian / electric teal / ember orange. Retired gold decorative hues now use cool-brand shades. Keep contrast and reduced-motion behaviour.
    22 Nov: hero audience choices reuse existing routes, CSS-only, and replace
-   non-interactive proof badges; no additional downloads or tracking. */
+   non-interactive proof badges; no additional downloads or tracking.
+   22 Nov: the published-storefront gallery uses existing lazy public
+   thumbnail components with JRV Obsidian/Teal/Ember framing. */
 .jrv2-page{--jrv-bg:#0b1419;--jrv-paper:#eaf4f3;--jrv-teal:#38c7bc;--jrv-muted:#a9c1c3;--jrv-border:#343841;--jrv-panel:#162b32;background:var(--jrv-bg);color:var(--jrv-paper);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow:visible;min-height:100vh}
 .jrv2-page h1,.jrv2-page h2,.jrv2-page h3{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 .jrv2-page a,.jrv2-page button{transition:background-color .18s,border-color .18s,color .18s,transform .18s}
@@ -369,3 +371,32 @@
 .jrv2-case{border-color:#31505a;background:linear-gradient(165deg,#192f37,#101c23)}
 .jrv2-case:hover{border-color:#38c7bc}
 .jrv2-page a:focus-visible,.jrv2-page button:focus-visible,.jrv2-page textarea:focus-visible,.jrv2-page summary:focus-visible{outline-color:#f28c52}
+
+/* Site-built gallery sits after four engineering case studies. Only the
+ * selected desktop/mobile pair requests public thumbnails, while the eleven
+ * live-site links are readable and keyboard-accessible immediately. */
+.jrv2-websites{background:linear-gradient(165deg,#0b1419,#102630 55%,#0b1419);border-top:1px solid #365b6360;border-bottom:1px solid #365b6360}
+.jrv2-websites .jrv2-section-head p{max-width:510px}
+.jrv2-websites .cinematic-showcase{margin:0 0 27px;border-color:var(--jrv-border);background:linear-gradient(155deg,#16343c,#0c202a 65%,#0b1419)}
+.jrv2-websites .cinematic-showcase-top .overline{color:var(--jrv-teal);letter-spacing:1.2px;font-size:10px;font-weight:790}
+.jrv2-websites .cinematic-showcase-slide .storefront-preview-card{background:linear-gradient(145deg,var(--jrv-surface),var(--jrv-bg));border-color:var(--jrv-border)}
+.jrv2-websites .storefront-preview-head h3{color:var(--jrv-fg)}
+.jrv2-websites .cinematic-showcase-navigation button{min-height:44px}
+.jrv2-websites-list{margin-top:29px}
+.jrv2-websites-index-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:14px}
+.jrv2-websites-index-head h3{font-size:clamp(21px,2.8vw,31px);margin:0;letter-spacing:-.04em}
+.jrv2-websites-index-head>span{font-size:10px;letter-spacing:1.2px;color:var(--jrv-teal);font-weight:750}
+.jrv2-websites-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.jrv2-websites-links a{display:flex;align-items:center;gap:10px;min-height:53px;min-width:0;padding:10px 13px;border:1px solid var(--jrv-border);background:var(--jrv-surface);border-radius:9px;text-decoration:none;color:var(--jrv-fg)}
+.jrv2-websites-links a:hover{border-color:var(--jrv-teal);background:#1a4049}
+.jrv2-websites-links a>span{font-size:10px;color:var(--jrv-teal);font-variant-numeric:tabular-nums}
+.jrv2-websites-links a strong{font-size:12px;font-weight:650;line-height:1.35;min-width:0;overflow-wrap:anywhere}
+.jrv2-websites-links a svg{margin-left:auto;flex:0 0 auto;color:var(--jrv-ember)}
+.jrv2-websites-after{display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:27px}
+.jrv2-websites-after p{max-width:720px;font-size:12px;line-height:1.8;color:var(--jrv-muted);margin:0}
+.jrv2-websites-after a{display:inline-flex;align-items:center;gap:9px;color:var(--jrv-teal-light);font-size:13px;font-weight:750;text-decoration:underline;text-underline-offset:4px}
+.jrv2-websites a:focus-visible,.jrv2-websites button:focus-visible{outline:2px solid var(--jrv-focus);outline-offset:3px}
+@media(max-width:1050px){.jrv2-websites-links{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.jrv2-websites-links{grid-template-columns:repeat(2,minmax(0,1fr))}.jrv2-websites-after{align-items:flex-start;flex-direction:column;gap:14px}}
+@media(max-width:490px){.jrv2-websites-links{grid-template-columns:minmax(0,1fr)}.jrv2-websites-index-head{align-items:flex-start;flex-direction:column;gap:6px}}
+@media(prefers-reduced-motion:reduce){.jrv2-websites a{transition:none!important}}

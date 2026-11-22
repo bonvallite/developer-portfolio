@@ -135,3 +135,35 @@ test('first-screen visitor paths make Shopify project and hiring goals explicit'
     assert.ok(css.includes(fragment), 'Missing responsive or interactive path CSS: ' + fragment);
   }
 });
+
+test('published storefronts are visible on the cinematic homepage and shared with experience', () => {
+  const list = read('app/data/storefronts.ts');
+  const experience = read('app/experience/page.tsx');
+  const gallery = read('app/experience/StorefrontShowcase.tsx');
+  const image = read('app/experience/StorefrontPreview.tsx');
+  const captures = read('scripts/capture-storefronts.mjs');
+  const entries = [...list.matchAll(/^\s*\['([^']+)',\s*'(https:\/\/[^']+)'\],?$/gm)];
+  assert.equal(entries.length, 11, 'Eleven owner-approved live storefronts');
+  assert.equal(new Set(entries.map(x => x[1])).size, 11, 'Storefront names unique');
+  assert.equal(new Set(entries.map(x => x[2])).size, 11, 'Storefront URLs unique');
+  for (const [, name, url] of entries) {
+    assert.ok(captures.includes("'" + name + "'"), name + ': capture workflow missing');
+    assert.ok(home.includes('storefronts.map(([name, url], index)'), name + ': public homepage list missing');
+    assert.match(url, /^https:\/\//);
+  }
+  assert.ok(!list.includes("['Skull Seeker'"), 'Retired site must stay excluded');
+  assert.ok(home.includes('id="websites"') && home.includes('<StorefrontShowcase stores={storefronts}/>'));
+  assert.ok(home.includes('href="#websites"'));
+  assert.ok(home.includes('All 11 websites'));
+  assert.ok(home.includes('href="/experience#storefronts"'));
+  assert.ok(experience.includes('id="storefronts"'));
+  assert.ok(experience.includes('<StorefrontShowcase stores={secondaryStorefronts}/>'));
+  assert.ok(experience.includes('StorefrontPreview name="Peter Augustus"'));
+  assert.ok(gallery.includes('StorefrontPreview name={name} url={url}'));
+  assert.ok(image.includes('loading="lazy"') && image.includes('onError={() => setFailed(true)}'));
+  assert.ok(image.includes('View live site'), 'Screenshot errors must preserve navigation');
+  assert.ok(css.includes('.jrv2-websites-links{'));
+  assert.ok(css.includes('grid-template-columns:minmax(0,1fr)'));
+  assert.ok(globalCss.includes('.cinematic-showcase'));
+  assert.ok(globalCss.includes('background:var(--jrv-surface)'));
+});

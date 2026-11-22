@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Restore the 11-site storefront homepage gallery and unify project framing
+
+- **Repo and branch:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. No Shopify theme or production edit.
+- **Files:** `app/data/storefronts.ts` (new), `app/page.tsx`, `app/experience/page.tsx`, `app/cinematic-home.css`, `app/globals.css`, `tests/cinematic-home.test.mjs`, `tests/homepage-browser-qa.mjs`, `tests/portfolio-palette.test.mjs`, `README.md`, `docs/JRV_DESIGN_SYSTEM.md`, `docs/STOREFRONT_CAPTURE_WORKFLOW.md`, `docs/portfolio-release-candidate-2026-11-22.md` and `CHANGELOG.md`.
+- **Problem and result:** The cinematic rebuild prioritised four engineering demonstrations but no longer showed the list of published websites and their homepage previews on the homepage. Restored an interactive 11-site desktop/mobile gallery and all 11 direct website links after selected work, with a new primary-navigation shortcut. The experience page still has Peter Augustus' dedicated custom-homepage case study and the other ten references; the retired Skull Seeker website remains excluded.
+- **Visual and source documentation:** Reused the existing accessible StorefrontShowcase and lazy screenshot component with live-site fallback. Updated gallery surfaces, older experience cards and legacy flow-page background to the documented Obsidian/Teal/Ember palette; all flagship project demos remain in the established colour system. Updated CSS/JSX comments, the living design system (version 1.3 and dated history), README, capture provenance, and release note. Preserved the existing palette hex values.
+- **Capture provenance and limits:** Recovered run `44490966868` archive (22 successful images for 11 active stores). A visual contact-sheet check found actual desktop/mobile homepages but also timed promotions, overlays and an incomplete loading view. These snapshots are **not** claimed as publication-approved static assets or independent authorship/attribution evidence; the public gallery continues using cached mShots thumbnails and explicit fallbacks.
+- **Validation:** Audited the exact branch source and original gallery, all 11 approved names/links, capture manifest, existing theme CSS, responsive homepage tests and current design-system rules. Added checks for shared site registry, gallery access, 11 linked homepages, source capture parity, selected preview frames, navigation and responsive/colour behaviour. Exact-head GitHub Actions, Vercel preview and manual mobile/desktop review must still pass before release.
+- **Release gate:** Keep PR #96 draft. Do not erase published résumé privacy hotfix, misstate SEO/CRO results or introduce client code. Publication rights, third-party thumbnail reliability and GTM/Clarity audit remain open.
+
 ## 2026-11-22 - Put distinct Shopify client and hiring routes on the homepage first screen
 
 - **Repository and branch:** `bonvallite/developer-portfolio`, draft PR #96 at `integration/2026-11-22-cinematic-release`. No changes to the Peter Augustus Shopify theme or live portfolio.

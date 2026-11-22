@@ -115,3 +115,20 @@ test('contributor instructions always point back to the living JRV design system
       path + ': missing maintained brand design-system reference');
   }
 });
+
+test('restored website gallery and experience cards share the maintained JRV palette', () => {
+  const siteHome = read('app/page.tsx');
+  const global = read('app/globals.css');
+  const home = read('app/cinematic-home.css');
+  const names = ['--jrv-bg', '--jrv-surface', '--jrv-teal', '--jrv-ember', '--jrv-focus'];
+  for (const token of names) {
+    assert.ok(global.includes(token + ':'), token + ': canonical source missing');
+    assert.ok(home.includes('var(' + token + ')') || token === '--jrv-bg',
+      token + ': gallery must reuse the shared site colour family');
+  }
+  assert.ok(siteHome.includes('jrv2-websites'));
+  assert.ok(home.includes('.jrv2-websites .cinematic-showcase'));
+  assert.ok(global.includes('.flow-page{min-height:100vh;background:var(--jrv-bg)}'));
+  assert.ok(global.includes('.experience-grid article{border:1px solid var(--jrv-border);background:var(--jrv-surface);'));
+  assert.ok(global.includes('.cinematic-showcase-slide .storefront-preview-card{position:relative;background:linear-gradient(150deg,var(--jrv-surface),var(--jrv-bg))'));
+});

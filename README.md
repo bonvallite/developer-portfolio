@@ -4,6 +4,14 @@ Service-led portfolio covering Shopify development, ecommerce management, conver
 
 **For future design or colour changes:** Start with the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md). Read it before editing UI and update its palette, affected areas, and dated history whenever a design-system rule changes; keep the CSS tokens, inline comments and `CHANGELOG.md` in sync. The dated November palette note is evidence of the earlier rollout, not the living guide.
 
+## Published storefronts and homepage previews (22 November 2026, draft)
+
+The cinematic homepage now contains [Websites I've built and worked on](./app/page.tsx) at `/#websites`: **11 active public storefront references**, with direct links to every live homepage and a manually controlled gallery showing a desktop/mobile view of one selected site at a time. Peter Augustus, Eve Curls, Poseidon Animal Health and Jace Industries remain prominent examples; seven additional sites are included. The experience page retains the detailed Peter Augustus homepage case study plus the 10 other storefront references. The previously retired Skull Seeker URL stays excluded.
+
+A real GitHub Actions capture artefact from **19 November 2026** (run `44490966868`) contains **22 successfully captured screenshots** for the active 11, with two additional failed captures for the retired Skull Seeker URL. These captures have been visually inspected as a contact sheet, but some contain timed promotions, overlays or incomplete loading, so they are **not** asserted to be verified static production assets. The public gallery still requests independent WordPress mShots thumbnails with lazy loading and an accessible direct-live-site fallback. See [capture workflow and publication requirements](./docs/STOREFRONT_CAPTURE_WORKFLOW.md) for static asset approval, provenance and quality limits.
+
+All gallery UI surfaces and the older experience-page cards now follow the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md) palette. No original client Liquid, customer data, financial uplift, endorsements or exclusive authorship claims are published. These changes remain on draft PR #96.
+
 ## 20 November 2026 cinematic rebuild and backup
 
 The Git-tracked site was backed up **before editing** at branch [`backup/2026-11-20-pre-cinematic-rebuild`](https://github.com/bonvallite/developer-portfolio/tree/backup/2026-11-20-pre-cinematic-rebuild), commit `cbb656e9`. The preview rebuild lives on `redesign/2026-11-20-cinematic-portfolio` and must pass automated/visual QA before replacing production. The backup branch is public along with this repository; it is not a private archive or a backup of DNS and environment settings.

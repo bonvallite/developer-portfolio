@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import HomeJourney from './components/HomeJourney';
 import CommerceWorkbench from './components/CommerceWorkbench';
+import StorefrontShowcase from './experience/StorefrontShowcase';
+import { storefronts } from './data/storefronts';
 import LeadComposer from './components/LeadComposer';
 import './cinematic-home.css';
 import './components/commerce-workbench.css';
@@ -20,6 +22,10 @@ import './components/commerce-workbench.css';
 // 21 Nov visual upgrade: replace the static hero console with a working,
 // accessible four-project studio. Existing case studies, canonical metadata,
 // CTA routes, synthetic-data boundaries, and privacy settings are unchanged.
+// 22 Nov 2026: restore all eleven public storefront references, homepage
+// previews and a static link list. The existing image service is lazy,
+// cached and has a visible fallback. References do not imply endorsement,
+// exclusive design credit or measured outcomes.
 // 21 Nov 2026 crawl: concise homepage description keeps Shopify, CRO, B2B
 // and integration search intent while avoiding truncated search snippets.
 // 22 Nov 2026 audience journey: replace generic hero proof badges with two
@@ -119,11 +125,11 @@ export default function Home() {
       <div className="jrv2-wrap jrv2-header-inner">
         <a href="#home" className="jrv2-wordmark" aria-label="JRV portfolio, back to top"><span>{'{JRV}'}</span><small>SHOPIFY COMMERCE ENGINEERING</small></a>
         <nav aria-label="Primary navigation" className="jrv2-main-nav">
-          <a href="#work">Selected work</a><a href="#services">Expertise</a><a href="#approach">Approach</a>
+          <a href="#work">Projects</a><a href="#websites">Websites</a><a href="#services">Expertise</a><a href="#approach">Approach</a>
           <Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link>
         </nav>
         <a href="#contact" className="jrv2-header-cta">Start a conversation <ArrowUpRight size={15} aria-hidden="true" /></a>
-        <details className="jrv2-mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="#work">Selected work</a><a href="#services">Expertise</a><a href="#approach">Approach</a><Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link><a href="#contact">Get in touch</a></nav></details>
+        <details className="jrv2-mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#websites">Websites</a><a href="#services">Expertise</a><a href="#approach">Approach</a><Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link><a href="#contact">Get in touch</a></nav></details>
       </div>
     </header>
 
@@ -179,6 +185,38 @@ export default function Home() {
             </article>)}
           </div>
           <div className="jrv2-work-after"><p>See responsive storefront concepts, documented integrations and more technical evidence in the full portfolio.</p><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
+        </div>
+      </section>
+
+
+      {/* Public storefront references are separate from the four fictional
+          interactive engineering labs. The gallery shows one active desktop/
+          mobile homepage pair at a time, with live links and fallbacks. */}
+      <section className="jrv2-section jrv2-websites" id="websites" aria-labelledby="jrv2-websites-title">
+        <div className="jrv2-wrap">
+          <div className="jrv2-section-head"><div>
+            <span className="jrv2-overline">01B / PUBLISHED STOREFRONTS</span>
+            <h2 id="jrv2-websites-title">Websites I've built <em>and worked on.</em></h2>
+          </div><p>Eleven public storefronts I have helped build, manage or improve. Browse desktop and mobile homepage previews, then explore the live sites.</p></div>
+          <StorefrontShowcase stores={storefronts}/>
+          <div className="jrv2-websites-list" aria-labelledby="jrv2-websites-index-title">
+            <div className="jrv2-websites-index-head">
+              <h3 id="jrv2-websites-index-title">All 11 websites</h3>
+              <span>VISIT THE PUBLISHED HOMEPAGES</span>
+            </div>
+            <div className="jrv2-websites-links">
+              {storefronts.map(([name, url], index) =>
+                <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={'Visit ' + name + ' homepage in a new tab'}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{name}</strong>
+                  <ArrowUpRight size={16} aria-hidden="true"/>
+                </a>)}
+            </div>
+          </div>
+          <div className="jrv2-websites-after">
+            <p>These are self-reported contributions, not client endorsements or claims of exclusive design ownership. Previews are public snapshots from an independent service and may be delayed or cached; current homepages may look different.</p>
+            <Link href="/experience#storefronts">See the experience and homepage case study <ArrowUpRight size={16} aria-hidden="true"/></Link>
+          </div>
         </div>
       </section>
 
