@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Verify imported website previews, lock project palettes and remove temporary write workflow
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. No Shopify theme change or production publication.
+- **Assets imported:** GitHub Actions `44995532587` completed successfully and created asset commit `4a0d040b` from public capture run `44490966868`. The tree now has 21 optimised desktop/mobile WebP previews (about 285 KB combined with manifest) and `public/portfolio/storefronts/capture-provenance.json`. The captured Axlrodd desktop screen was incomplete and remains excluded.
+- **Files affected by cleanup:** Removed `.github/workflows/import-storefront-captures.yml` (temporary `contents:write` privilege). Updated `tests/cinematic-home.test.mjs`, `tests/portfolio-palette.test.mjs`, `app/experience/StorefrontShowcase.tsx`, `README.md`, `docs/JRV_DESIGN_SYSTEM.md`, `docs/STOREFRONT_CAPTURE_WORKFLOW.md`, `docs/portfolio-release-candidate-2026-11-22.md`, and `CHANGELOG.md`.
+- **Why:** Preserve real homepage previews with known provenance while leaving no elevated-write importer in the portfolio release. Prevent future changes silently deleting/corrupting the screenshot archive or dropping the JRV Obsidian `#0B1419`, Teal `#38C7BC`, Ember `#F28C52` palette from any of the four flagship projects.
+- **Inline documentation:** Updated the gallery source comments and dated-capture text, living design-system file map/history (v1.4), README, screenshot workflow and release record. Old entries remain as historical records.
+- **Validation:** Verified GitHub importer success and 22 expected repo entries (21 WebP + provenance), provenance source run and SHA-256 file values, exclusion of invalid Axlrodd desktop, and Vercel exact image responses: Peter Augustus/Eve Curls/Tronus return `200 image/webp`, the excluded image `404` as expected. Added source regression to verify all 21 image byte hashes and no temporary workflow, plus canonical project colour assertions. New exact-head GitHub CI, responsive screenshots, Vercel preview and external screenshot publication-rights review remain required before a production release.
+- **Publication scope:** PR #96 remains draft; current `main` retains the published original-résumé PDF retirement. No portfolio release is authorised by this cleanup.
+
 ## 2026-11-22 - Stage provenance-checked local website screenshots with safe fallbacks
 
 - **Repository/branch:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release`, PR #96. No production publication or Shopify theme edit.

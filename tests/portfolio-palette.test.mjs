@@ -132,3 +132,20 @@ test('restored website gallery and experience cards share the maintained JRV pal
   assert.ok(global.includes('.experience-grid article{border:1px solid var(--jrv-border);background:var(--jrv-surface);'));
   assert.ok(global.includes('.cinematic-showcase-slide .storefront-preview-card{position:relative;background:linear-gradient(150deg,var(--jrv-surface),var(--jrv-bg))'));
 });
+
+test('four flagship engineering project styles retain the same JRV brand family', () => {
+  const projects = [
+    'app/projects/spend-and-save/spend-save-visual.css',
+    'app/analytics-lab/analytics-studio.css',
+    'app/cartoncloud-integration/cartoncloud-showcase.css',
+    'app/b2b-modernisation/b2b-showcase.css',
+  ];
+  for (const path of projects) {
+    const css = read(path).toLowerCase();
+    for (const colour of ['#0b1419', '#38c7bc', '#f28c52']) {
+      assert.ok(css.includes(colour), path + ': lost canonical brand colour ' + colour);
+    }
+  }
+  assert.ok(read('docs/JRV_DESIGN_SYSTEM.md').includes(
+    '11. **Published website references:**'));
+});

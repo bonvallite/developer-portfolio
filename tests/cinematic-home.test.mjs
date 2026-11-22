@@ -6,6 +6,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const home = read('app/page.tsx');
@@ -168,4 +169,25 @@ test('published storefronts are visible on the cinematic homepage and shared wit
   assert.ok(css.includes('grid-template-columns:minmax(0,1fr)'));
   assert.ok(globalCss.includes('.cinematic-showcase'));
   assert.ok(globalCss.includes('background:var(--jrv-surface)'));
+});
+
+test('all 21 imported public homepage captures match archived source checksums', () => {
+  // The importer was temporary and must not survive into the release branch.
+  assert.ok(!existsSync(new URL('../.github/workflows/import-storefront-captures.yml', import.meta.url)),
+    'Do not retain the temporary contents-write capture workflow');
+  const provenance = JSON.parse(read('public/portfolio/storefronts/capture-provenance.json'));
+  assert.equal(provenance.sourceRun, 44490966868, 'Screenshots must come from the known public capture run');
+  assert.equal(provenance.assets.length, 21, 'Only reviewed screenshot positions should be published');
+  assert.match(provenance.excluded, /axlrodd-desktop/);
+  const filenames = new Set();
+  for (const image of provenance.assets) {
+    assert.match(image.filename, /^[a-z0-9-]+-(?:desktop|mobile)\.webp$/);
+    assert.ok(!filenames.has(image.filename), 'Duplicate homepage preview file');
+    filenames.add(image.filename);
+    const file = readFileSync(new URL('../public/portfolio/storefronts/' + image.filename, import.meta.url));
+    assert.equal(file.length, image.size, image.filename + ': unexpected image size');
+    assert.equal(createHash('sha256').update(file).digest('hex'), image.sha256,
+      image.filename + ': changed screenshot requires provenance/visual review');
+  }
+  assert.ok(!filenames.has('axlrodd-desktop.webp'), 'Incomplete Axlrodd desktop capture must remain excluded');
 });
