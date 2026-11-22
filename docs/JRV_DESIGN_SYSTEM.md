@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.6, established 22 November 2026; updated with production publication and final release evidence  
+**Version:** 1.10 (draft Shopify customer channel fallback), established 23 November 2026; version 1.6 remains the published production baseline  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Published on `jrvallite.com` through PR #96 on 22 November 2026. GitHub merge `2c95f43c`; Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY, with both `www.jrvallite.com` and `jrvallite.com` aliases assigned. Code-level safety and CI checks passed; independent client image rights, third-party analytics settings, field performance and spoken screen-reader behaviour were not certified.
 
@@ -42,12 +42,15 @@ The `:root` CSS custom properties in `app/globals.css` are the **runtime source 
 10. **Project-page identity:** All flagship engineering demos retain Obsidian backgrounds (`#0B1419`), Electric Teal (`#38C7BC`) to communicate systems, and Ember (`#F28C52`) for actions. Shared legacy `.flow-page` backgrounds and the experience gallery now use `--jrv-bg` and `--jrv-surface`; distinctive light ecommerce/print layouts remain intentional exceptions. Maintain contrast and accessibility, not exact colour on every decorative element.
 11. **Published website references:** Keep the full active storefront list in `app/data/storefronts.ts` and the capture script aligned. Show a responsive, user-controlled desktop/mobile gallery and individually accessible live-homepage links on `/#websites`, plus the detailed `/experience` case study. Preserve the owner's retired-site exclusion. Website names and images illustrate self-reported contributions, not endorsements, exclusive ownership or verified uplift. Prefer owner-reviewed, locally hosted dated WebP captures; if a local capture is absent, fall back to a cached public snapshot, then a live-site link. Never fabricate a screenshot, mislabel dated visuals as current, or silently publish an incomplete capture.
 
+12. **Dedicated systems engineering flagship (draft only):** A separate homepage section introduces the public-safe Shopify app, Cloudflare Workers/Workers KV and CartonCloud integration case study without displacing the eleven published website previews or four existing project cards. Reuse Obsidian / Electric Teal / Ember in conceptual CSS-only diagrams, preserve reduced motion and accessible CTAs, and keep fictional API demonstrations clearly labelled. This feature remains unmerged until independent publication approval. Vercel **preview** builds remain `noindex,nofollow` and exclude the new route from their sitemap; the owner-approved future **production** build will have its own self canonical, unique app-engineering metadata and sitemap entry while preserving the older CartonCloud route. Do not interpret staged source metadata as permission to merge.
+
 ## Maintained file map
 
 | Area | Relevant source and review point |
 | --- | --- |
 | Global visual tokens, base navigation and footer | `app/globals.css` |
 | Cinematic homepage and shared component accents | `app/page.tsx`, `app/cinematic-home.css`, `app/components/commerce-workbench.css`, `app/components/consent-manager.css`; verify first-screen client/hiring paths and the new `#websites` gallery |
+| Draft custom app / systems flagship, notification journey and interactive route | `app/page.tsx`, `app/components/FeaturedSystemsLab.tsx`, `app/components/featured-systems-lab.css`, `app/projects/commerce-integration-engineering/*` (including `CustomerCommunicationLab.tsx`), `lib/commerce-integration-demo.mjs`; verify the 11-site gallery, four original cards, fictional email/SMS previews, no real customer data and all simulation safety boundaries |
 | Shopify service routes | `app/components/cinematic-service.css` |
 | Analytics, B2B, and CartonCloud case studies | `app/analytics-lab/*.css`, `app/b2b-modernisation/*.css`, `app/cartoncloud-integration/*.css` |
 | Spend & Save and data pipeline | `app/projects/spend-and-save/page.tsx`, `app/projects/spend-and-save/*.css`, `app/data-extraction-automation/*`; inspect the project/hiring closing panel |
@@ -82,6 +85,14 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 
 | 22 November 2026 | 1.5 | Correct the public homepage gallery's provenance copy and source comments so 21 first-party-hosted dated WebPs are not mischaracterised as third-party-only captures. Inspect exact-head CI desktop/mobile galleries and flagship case-study palette screenshots. No palette tokens, layout, assets or runtime image logic changed. | Draft PR #96; visual source run `44995892908` at `d5b9b936`; post-copy CI and preview required. Not published at that point. |
 | 22 November 2026 | 1.6 | Record completed production publication, exact-head CI, website preview gallery, 11 site links, four project colour families and remaining external review limitations. No changes to brand tokens or runtime code. | PR #96 merged as `2c95f43c`; final source CI `44997913434` passed; Vercel deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` READY and aliases assigned. |
+
+| 22 November 2026 | 1.7 | Draft a separate custom Shopify app engineering flagship after the published 11-site gallery, retaining the original four selected-work cards and existing CartonCloud case study. Reuse the established Obsidian/Teal/Ember palette and add educational browser-only systems diagrams. No new global CSS tokens or changes to the published favicon. | New draft integration branch `integration/commerce-systems-latest-main-20261122`; source CI `45026760172` passed at `afee9c51`, including wide/mobile visual screenshots and colour QA. **Not published**. |
+
+| 22 November 2026 | 1.8 | Clarify the draft systems page's environment-aware publication rule: Vercel previews remain noindex and omit its sitemap URL; a separately approved production merge enables a self-canonical indexable page without retiring the original integration case study. No palette or component styling changed. | Draft PR #100 SEO staging; GitHub Actions `45028014444` and `45028021908` passed at `8634961`; preview HTTP confirmed noindex and sitemap exclusion. No production release. |
+
+| 22 November 2026 | 1.9 | Add a dedicated Worker ETA → typed Shopify order metafields → reported five-minute customer email/SMS → later fulfilment/tracking presentation to the draft engineering case study. The actual five-minute schedule and SMS provider are not verified in Worker source, and sample messages use fictional values only. Retain the canonical JRV Obsidian/Teal/Ember palette with a pale email preview and mobile-stacked layout; no new global tokens or favicon changes. | Draft PR #100; `aecd1ff` passed complete GitHub Actions run `45029976900`, including 1440/768/390 responsive interaction checks and desktop/mobile screenshot review. No production release. |
+
+| 23 November 2026 | 1.10 | Correct the customer notification illustration: the merchant reports Shopify uses email when present, otherwise SMS if a mobile number is available and no email exists. Remove the independent SMS toggle and show recipient-channel fallback as an automatic routing decision in the ETA and fulfilment previews. Maintain JRV colour tokens, responsive layout, and clear evidence boundaries; do not involve Klaviyo or send messages. | Draft PR #100; unit/browser QA and Vercel review pending. Published v1.6 remains unchanged. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

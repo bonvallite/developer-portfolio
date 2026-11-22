@@ -64,6 +64,58 @@ for (const check of checks) {
 }
 assert.equal(xml.includes('<loc>https://www.jrvallite.com/resume</loc>'), false,
   'Resume is noindex and must stay out of the sitemap');
+
+// 22 Nov 2026: The PR remains draft, but its final production build is
+// staged with distinct indexable metadata and a curated sitemap entry.
+// Vercel preview builds must instead stay noindex and omit this URL.
+// This local Next.js CI build intentionally runs without VERCEL_ENV=preview.
+// Preserve all 11 site previews and the original integration case study.
+const integratedHome = await readPage('/');
+assert.ok(integratedHome.includes('id="systems-lab"'),
+  'New server-rendered systems engineering section must appear on homepage');
+assert.ok(integratedHome.includes('href="/projects/commerce-integration-engineering"'),
+  'Homepage must link to engineering lab');
+assert.ok(integratedHome.includes('href="/cartoncloud-integration"'),
+  'Original CartonCloud case study must remain linked');
+assert.ok(integratedHome.includes('id="websites"'),
+  'Approved eleven-website gallery must remain on homepage');
+assert.equal((integratedHome.match(/class="jrv2-case-heading"/g) || []).length, 4,
+  'All four original selected-work cards must remain');
+const integratedLab = await readPage('/projects/commerce-integration-engineering');
+const engineeringRobots = attr(findTag(integratedLab, 'meta', 'name', 'robots') || '', 'content');
+assert.doesNotMatch(engineeringRobots, /noindex/i,
+  'Production-ready local build must allow indexing (Vercel preview differs)');
+const engineeringTitle = (integratedLab.split('<title>')[1]?.split('</title>')[0] || '').replaceAll('&amp;', '&');
+const engineeringDescription = attr(findTag(integratedLab, 'meta', 'name', 'description') || '', 'content');
+const engineeringCanonical = attr(findTag(integratedLab, 'link', 'rel', 'canonical') || '', 'href');
+const engineeringOpenGraph = attr(findTag(integratedLab, 'meta', 'property', 'og:url') || '', 'content');
+assert.equal(engineeringTitle, 'Custom Shopify App Engineering | Cloudflare Workers | JRV',
+  'New app engineering case title must remain focused and distinct');
+assert.ok(engineeringTitle.length >= 30 && engineeringTitle.length <= 60,
+  'App engineering title must fit normal search snippet budgets');
+assert.ok(engineeringDescription.length >= 70 && engineeringDescription.length <= 160,
+  'App engineering description must remain informative but concise');
+for (const term of ['Shopify app', 'Cloudflare Workers', 'Workers KV', 'fulfilment', 'last-mile']) {
+  assert.ok(engineeringDescription.toLowerCase().includes(term.toLowerCase()),
+    'Missing targeted app-development concept: ' + term);
+}
+assert.equal(engineeringCanonical,
+  'https://www.jrvallite.com/projects/commerce-integration-engineering',
+  'App engineering case study must be self-canonical');
+assert.equal(engineeringOpenGraph, engineeringCanonical,
+  'App engineering OG URL must match canonical');
+assert.ok(xml.includes('<loc>' + engineeringCanonical + '</loc>'),
+  'New engineering study must enter production sitemap on publication');
+const originalCaseHtml = await readPage('/cartoncloud-integration');
+const originalCaseTitle = (originalCaseHtml.split('<title>')[1]?.split('</title>')[0] || '').replaceAll('&amp;', '&');
+const originalCaseCanonical = attr(findTag(originalCaseHtml, 'link', 'rel', 'canonical') || '', 'href');
+assert.notEqual(engineeringTitle, originalCaseTitle,
+  'App engineering and CartonCloud integration pages must have distinct titles');
+assert.equal(originalCaseCanonical, 'https://www.jrvallite.com/cartoncloud-integration',
+  'The original integration route must retain its canonical');
+assert.ok(xml.includes('<loc>' + originalCaseCanonical + '</loc>'),
+  'Original integration story must remain indexed in production sitemap');
+
 // Audit 21 Nov: the CSS lab was in the sitemap but lacked an internal link,
 // while the weight-based B2B demo had insufficient server-visible context.
 // Guard rendered HTML so crawl visibility cannot regress silently.
@@ -143,7 +195,8 @@ for (const path of ['/resume', '/resume/ats', '/resume/classic']) {
 // must stay indexable at source. Vercel adds noindex on *preview* deployments;
 // this local Next.js build is the correct place to assess app-level headers.
 for (const path of ['/', '/privacy', '/analytics-lab', '/projects/spend-and-save',
-  '/b2b-modernisation', '/cartoncloud-integration']) {
+  '/b2b-modernisation', '/cartoncloud-integration',
+  '/projects/commerce-integration-engineering']) {
   const response = await fetch(base + path, { method: 'HEAD' });
   assert.equal(response.status, 200, path + ': indexable route HEAD status');
   assert.doesNotMatch(response.headers.get('x-robots-tag') || '', /\bnoindex\b/i,

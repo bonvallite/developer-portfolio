@@ -36,6 +36,28 @@ assert.ok(sitemap.includes("'/data-extraction-automation'"), 'Analytics case stu
 assert.ok(analyticsCaseStudy.includes("canonical: '/data-extraction-automation'"), 'Analytics case study canonical mismatch');
 assert.match(analyticsCaseStudy, /export const metadata/);
 
+// 22 Nov 2026: prepare distinct, production-only SEO for the new app
+// engineering case study while leaving older CartonCloud content untouched.
+// Preview protection is driven by VERCEL_ENV and must not rely only on
+// Vercel's platform-level preview X-Robots-Tag fallback.
+const engineeringPath = '/projects/commerce-integration-engineering';
+const engineeringSource = read('app' + engineeringPath + '/page.tsx');
+const originalIntegrationSource = read('app/cartoncloud-integration/page.tsx');
+assert.ok(sitemap.includes("'"+engineeringPath+"'"),
+  'New engineering case study must have an explicit sitemap path');
+assert.ok(sitemap.includes("...(!isVercelPreview ?"),
+  'Engineering route must be excluded from Vercel preview sitemap');
+assert.ok(engineeringSource.includes("process.env.VERCEL_ENV === 'preview'"),
+  'Engineering metadata must detect protected Vercel previews');
+assert.ok(engineeringSource.includes("robots: { index: !isVercelPreview, follow: !isVercelPreview }"),
+  'Engineering preview must noindex; production may index on owner-approved merge');
+assert.ok(engineeringSource.includes("canonical: '" + engineeringPath + "'"),
+  'Engineering canonical is missing or incorrect');
+assert.ok(engineeringSource.includes("url: 'https://www.jrvallite.com"+engineeringPath+"'"),
+  'Engineering OG URL must be self canonical');
+assert.ok(originalIntegrationSource.includes("canonical: '/cartoncloud-integration'"),
+  'Existing CartonCloud canonical must remain unchanged');
+
 for (const route of routes) {
   const source = read(toFile(route));
   assert.match(source, /export const metadata/);

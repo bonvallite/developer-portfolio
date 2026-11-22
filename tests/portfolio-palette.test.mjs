@@ -149,3 +149,25 @@ test('four flagship engineering project styles retain the same JRV brand family'
   assert.ok(read('docs/JRV_DESIGN_SYSTEM.md').includes(
     '11. **Published website references:**'));
 });
+
+test('new Shopify systems flagship uses the maintained JRV palette and preserves the published gallery', () => {
+  const featured = read('app/components/featured-systems-lab.css');
+  const component = read('app/components/FeaturedSystemsLab.tsx');
+  const caseCss = read('app/projects/commerce-integration-engineering/engineering-lab.css').toLowerCase();
+  const siteHome = read('app/page.tsx');
+  const guide = read('docs/JRV_DESIGN_SYSTEM.md');
+  for (const token of ['--jrv-bg','--jrv-teal','--jrv-ember']) {
+    assert.ok(featured.includes('var(' + token + ')'),
+      token + ': flagship should share canonical site tokens');
+  }
+  for (const hex of ['#0b1419','#38c7bc','#f28c52']) {
+    assert.ok(caseCss.includes(hex), hex + ': engineering route should match JRV palette');
+  }
+  assert.match(featured,/prefers-reduced-motion:reduce/);
+  assert.match(component,/fictional|Fictional/);
+  assert.match(siteHome,/<FeaturedSystemsLab\s*\/>/);
+  assert.match(siteHome,/<StorefrontShowcase stores=\{storefronts\}\s*\/>/);
+  assert.ok(siteHome.indexOf('<StorefrontShowcase stores={storefronts}/>') < siteHome.indexOf('<FeaturedSystemsLab />'),
+    'The published website gallery remains ahead of the systems flagship');
+  assert.match(guide,/12\. \*\*Dedicated systems engineering flagship/);
+});

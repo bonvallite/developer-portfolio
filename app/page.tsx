@@ -8,6 +8,7 @@ import {
 import HomeJourney from './components/HomeJourney';
 import CommerceWorkbench from './components/CommerceWorkbench';
 import StorefrontShowcase from './experience/StorefrontShowcase';
+import FeaturedSystemsLab from './components/FeaturedSystemsLab';
 import { storefronts } from './data/storefronts';
 import LeadComposer from './components/LeadComposer';
 import './cinematic-home.css';
@@ -32,6 +33,10 @@ import './components/commerce-workbench.css';
 // direct client/hiring paths. They reuse existing homepage contact and
 // experience routes, not a new form or visitor analytics. All four project
 // demos, source-safe evidence and existing public SEO metadata remain intact.
+// 22 Nov 2026: integration preview combines the published 11-site gallery with
+// a separate, fictional-data Shopify app systems section. The four original
+// case studies, current homepage navigation and all website previews remain.
+// It is staged on a draft branch, not the production main deployment.
 export const metadata: Metadata = {
   title: 'Shopify Developer, Ecommerce Management & CRO',
   description: 'Shopify developer for ecommerce teams. Explore Liquid storefronts, CRO, B2B workflows, custom apps and API integration case studies.',
@@ -125,11 +130,11 @@ export default function Home() {
       <div className="jrv2-wrap jrv2-header-inner">
         <a href="#home" className="jrv2-wordmark" aria-label="JRV portfolio, back to top"><span>{'{JRV}'}</span><small>SHOPIFY COMMERCE ENGINEERING</small></a>
         <nav aria-label="Primary navigation" className="jrv2-main-nav">
-          <a href="#work">Projects</a><a href="#websites">Websites</a><a href="#services">Expertise</a><a href="#approach">Approach</a>
+          <a href="#work">Projects</a><a href="#websites">Websites</a><a href="#systems-lab">Systems</a><a href="#services">Expertise</a><a href="#approach">Approach</a>
           <Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link>
         </nav>
         <a href="#contact" className="jrv2-header-cta">Start a conversation <ArrowUpRight size={15} aria-hidden="true" /></a>
-        <details className="jrv2-mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#websites">Websites</a><a href="#services">Expertise</a><a href="#approach">Approach</a><Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link><a href="#contact">Get in touch</a></nav></details>
+        <details className="jrv2-mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#websites">Websites</a><a href="#systems-lab">Systems</a><a href="#services">Expertise</a><a href="#approach">Approach</a><Link href="/experience">Experience</Link><Link href="/resume">Résumé</Link><a href="#contact">Get in touch</a></nav></details>
       </div>
     </header>
 
@@ -221,6 +226,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Keep all eleven published homepage previews above the new engineering
+          flagship. The new project is a separate draft-only addition, not a
+          replacement for the earlier CartonCloud case study or selected work. */}
+      <FeaturedSystemsLab />
+
       <section className="jrv2-section jrv2-services" id="services" aria-labelledby="jrv2-services-title">
         <div className="jrv2-wrap">
           <div className="jrv2-section-head"><div><span className="jrv2-overline">02 / EXPERTISE</span><h2 id="jrv2-services-title">Built for the <em>whole journey.</em></h2></div><p>Hire for a defined challenge or a broader commerce engineering role. Each area is backed by technical work you can examine.</p></div>
@@ -262,7 +272,7 @@ export default function Home() {
       </div></section>
     </div>
     <footer className="jrv2-footer"><div className="jrv2-wrap">
-      <div className="jrv2-footer-top"><div><a className="jrv2-wordmark" href="#home" aria-label="JRV, back to top"><span>{'{JRV}'}</span></a><p>Commerce engineering for thoughtful Shopify experiences and reliable operations.</p></div><div className="jrv2-footer-links"><div><strong>EXPLORE</strong><Link href="/experience">Experience</Link><Link href="/editorial-homepage-demo">Storefront demo</Link><Link href="/data-extraction-automation">Data engineering</Link><Link href="/shopify-flow">Shopify Flow</Link></div><div><strong>CONNECT</strong><a href="mailto:hello@jrvallite.com" data-jrv-track="email" data-jrv-intent="general" data-jrv-source="footer">Email</a><Link href="/resume">Résumé designs</Link><a href="https://www.linkedin.com/in/bonvallite/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://g.dev/bonvallite" target="_blank" rel="noopener noreferrer">Google Developer</a><a href="https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite" target="_blank" rel="noopener noreferrer">Wikipedia contributions</a></div><div><strong>ACCOUNT / LEGAL</strong><Link href="/privacy">Privacy & analytics</Link><Link href="/experience#training">Professional training</Link><a href="https://webmail.jrvallite.com/" target="_blank" rel="noopener noreferrer nofollow">Webmail login</a></div></div></div>
+      <div className="jrv2-footer-top"><div><a className="jrv2-wordmark" href="#home" aria-label="JRV, back to top"><span>{'{JRV}'}</span></a><p>Commerce engineering for thoughtful Shopify experiences and reliable operations.</p></div><div className="jrv2-footer-links"><div><strong>EXPLORE</strong><Link href="/experience">Experience</Link><Link href="/projects/commerce-integration-engineering">Systems engineering lab</Link><Link href="/editorial-homepage-demo">Storefront demo</Link><Link href="/data-extraction-automation">Data engineering</Link><Link href="/shopify-flow">Shopify Flow</Link></div><div><strong>CONNECT</strong><a href="mailto:hello@jrvallite.com" data-jrv-track="email" data-jrv-intent="general" data-jrv-source="footer">Email</a><Link href="/resume">Résumé designs</Link><a href="https://www.linkedin.com/in/bonvallite/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://g.dev/bonvallite" target="_blank" rel="noopener noreferrer">Google Developer</a><a href="https://en.wikipedia.org/wiki/Special:Contributions/Bonvallite" target="_blank" rel="noopener noreferrer">Wikipedia contributions</a></div><div><strong>ACCOUNT / LEGAL</strong><Link href="/privacy">Privacy & analytics</Link><Link href="/experience#training">Professional training</Link><a href="https://webmail.jrvallite.com/" target="_blank" rel="noopener noreferrer nofollow">Webmail login</a></div></div></div>
       <div className="jrv2-footer-bottom"><span>© {new Date().getFullYear()} JRV / SHOPIFY COMMERCE ENGINEERING</span><span>NO CLIENT DATA IN THE DEMOS</span><a href="#home">BACK TO TOP ↑</a></div>
     </div></footer>
   </main>;
