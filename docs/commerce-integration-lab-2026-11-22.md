@@ -167,3 +167,11 @@ After the prior protected-page fetch timed out, subsequent Vercel-authenticated 
 Preview response headers include `x-frame-options: DENY`, `x-content-type-options: nosniff` and `referrer-policy: no-referrer` on the new case study. These are HTTP-level checks only: JavaScript hydration, interactions, screenshots, Core Web Vitals, WCAG and end-to-end provider behaviour require separate evidence.
 
 **GitHub Actions remediation attempt:** The final documentation commit was made through the GitHub Contents API rather than a low-level ref update, to test whether the normal push event restores automated PR checks. The result must be verified from GitHub Actions; a Vercel build alone does not imply browser QA passed. The PR remains draft and `main` and production are untouched.
+
+## 22 November 2026: make the draft branch independently CI-testable
+
+GitHub Actions has not reported a new run on PR #98 since low-level Git-ref commits started updating the draft. A normal GitHub Contents API documentation push also did not yield a run because the workflow's `push.branches` filter only allowed `main`, and the PR synchronize event has not appeared. We are adding a **narrowly scoped feature-branch push trigger** without changing the main-branch trigger or production deployment logic.
+
+On `feature/commerce-integration-lab-20261122`, run both the normal validation job (SEO source guard, safety scan, Node and Python tests, TypeScript, Next.js build and rendered-SEO checks) and existing Chrome/Playwright browser job (homepage, case-study, commerce-lab and screenshots). The browser-job and step conditions accept both the original pull-request event and this one explicit feature-branch push event.
+
+This is a **preview-only test workflow change**. Do not use GitHub Actions success on another commit as proof of this branch's readiness. It is not permission to merge, publish the draft SEO route or promote any Vercel deployment.

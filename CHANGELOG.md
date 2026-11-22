@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Enable feature-branch CI trigger for draft commerce lab
+
+- **Branch:** `feature/commerce-integration-lab-20261122`; draft PR #98. Live production and `main` unchanged.
+- **Files:** `.github/workflows/portfolio-ci.yml`, `docs/commerce-integration-lab-2026-11-22.md`, `CHANGELOG.md`.
+- **Change:** Extend the workflow push branch filter to the single approved draft feature branch. Run the normal validation and existing Playwright browser suite on that branch push, including the specific homepage and commerce lab steps, without relying exclusively on a PR synchronize webhook. Maintain the original pull-request and main-branch conditions.
+- **Why:** Low-level Git-ref writes and subsequent Contents API change have not produced a fresh Actions run for the latest draft commit, leaving browser QA unverified despite Vercel's successful builds and authenticated HTTP checks.
+- **Validation:** Ready-to-run CI configuration; actual Actions result pending. No client-facing code changed, no Shopify theme/Worker edited, no secret or live API access added.
+- **Release rule:** Do not merge or publish until the new workflow result and visual review are satisfactory.
+
+
 ## 2026-11-22 - Verify authenticated Vercel preview HTML and sitemap (draft branch)
 
 - **Branch:** `feature/commerce-integration-lab-20261122`, PR #98; production and main unchanged.
