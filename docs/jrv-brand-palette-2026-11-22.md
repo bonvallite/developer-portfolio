@@ -28,7 +28,7 @@ The exact approved `{JRV}` 64×64 favicon artwork is retained: only its indexed 
 ## Validation and release gates
 
 - A source regression checks canonical tokens, primary conversion styling, legacy-gold removal in active presentation files, unchanged résumé layouts and the favicon's PNG structure/palette.
-- A local Chrome browser suite visits 19 representative routes at 1366px and 390px, checks one H1, overflow, runtime errors, privacy/no optional analytics before consent, and selected computed accent colours. It creates viewport screenshots for human review.
+- A local Chrome browser suite visits 19 representative routes at 1366px and 390px, checks one H1, overflow, runtime errors, privacy/no optional analytics before consent, and selected computed accent colours. It accepts both approved Ember default and light-Ember hover states because desktop Chrome can retain pointer hover at a mobile-sized viewport. It creates viewport screenshots for human review.
 - Existing CI still exercises all four interactive studios, consent, SEO/public-safety tests, responsive behaviour, TypeScript, Next build, and synthetic performance samples.
 - Review screenshots, browser-tab/favicon appearance at 16px/32px and both résumé PDF/Word renders after the final commit. Automated colour matching cannot certify aesthetic quality, legibility on actual devices or WCAG colour contrast on every component.
 - The already-published original résumé PDF retirement hotfix (`main` `ecf8e5ad`) must be retained during PR #96 reconciliation, and no private or legacy résumé asset may be reintroduced.

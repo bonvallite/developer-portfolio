@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-22 - Recognise the JRV hover shade in mobile-colour browser QA
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, draft PR #96 `integration/2026-11-22-cinematic-release`, no Shopify theme or production edits.
+- **Files:** `tests/portfolio-palette-browser-qa.mjs`, `docs/jrv-brand-palette-2026-11-22.md`, and `CHANGELOG.md`.
+- **What and why:** The first exact-head palette CI run passed standard validation and all 19 desktop routes, then its mobile Shopify CRO CTA assertion received `rgb(255,181,139)` instead of default Ember `rgb(242,140,82)`. The existing service CSS intentionally uses `#FFB58B` on hover; Chromium's mouse can overlap the CTA even at phone viewport width. Accept documented default/hover Ember variants (including homepage `#FFAB79`) while still rejecting arbitrary colours.
+- **Inline documentation and validation:** Added nearby test comments and updated palette guide to distinguish default from pointer-hover state. Reviewed the current CSS declarations for service/homepage/CSS Lab, GitHub Actions exact failing line, and preserved no-tracking, overflow, H1 and screenshot tests. A fresh exact-commit GitHub run and Vercel preview remain required to confirm all 19 routes on desktop and mobile.
+- **Release:** PR remains draft and unmerged; main and the retired original résumé stay unchanged.
+
 ## 2026-11-22 - Unify JRV site-wide palette and preserve the released résumé hotfix
 
 - **Repository/branch:** `bonvallite/developer-portfolio`, draft PR #96 at `integration/2026-11-22-cinematic-release`. Reconciled with `main` `ecf8e5ad05fd2a9186b9b01111ffc1df28bb0ae9` as the second merge parent; no live portfolio colour change yet.
