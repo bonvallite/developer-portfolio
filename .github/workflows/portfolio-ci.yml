@@ -42,7 +42,7 @@ jobs:
     # Run browser QA for reviewed case studies, cinematic projects, privacy
     # changes, content-audit fixes and interactive homepage/case-study PRs.
     # Unit/SEO/safety checks still run for all pull requests.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-'))
+    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || github.head_ref == 'feature/commerce-integration-lab-20261122')
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -79,6 +79,11 @@ jobs:
       - name: Spend and Save visual case-study and Flow browser QA
         if: startsWith(github.head_ref, 'feature/spend-save-architecture-story-')
         run: node tests/spend-save-visual-browser-qa.mjs
+      # New serverless commerce engineering lab must remain completely local,
+      # accessible, responsive, and independent of production integrations.
+      - name: Commerce integration lab interactive browser QA
+        if: github.head_ref == 'feature/commerce-integration-lab-20261122'
+        run: node tests/commerce-integration-browser-qa.mjs
       # Check consent rejection, acceptance and withdrawal on real browser links
       # using only fictional text and no external analytics/lead submissions.
       - name: Consent-first portfolio event privacy QA
@@ -97,5 +102,6 @@ jobs:
             artifacts/homepage-browser-qa/
             artifacts/analytics-lab-browser-qa/
             artifacts/spend-save-visual-browser-qa/
+            artifacts/commerce-integration-lab/
           if-no-files-found: ignore
           retention-days: 7

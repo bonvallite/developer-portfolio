@@ -1,5 +1,18 @@
 # Portfolio changelog
 
+## 2026-11-22 - Build isolated serverless commerce engineering lab on an unpublished branch
+
+- **Repository/branch:** `bonvallite/developer-portfolio`; `feature/commerce-integration-lab-20261122`, created from `main` commit `ecf8e5ad05fd2a9186b9b01111ffc1df28bb0ae9`. No change to `main` or production is part of this commit.
+- **Files added:** `app/projects/commerce-integration-engineering/page.tsx`, `SystemsLab.tsx`, `CodeExplorer.tsx`, `engineering-lab.css`; `lib/commerce-integration-demo.mjs`, `lib/commerce-integration-demo.d.mts`; `tests/commerce-integration-demo.test.mjs`, `tests/commerce-integration-browser-qa.mjs`; `.github/workflows/portfolio-ci.yml`; `docs/commerce-integration-lab-2026-11-22.md`. Update `CHANGELOG.md`.
+- **What changed:** Add a standalone, cinematic, interactive JRV case study of a non-embedded custom Shopify app with Cloudflare Workers and Workers KV, three selectable event workflows, a six-node architecture, illustrative delivery and carton calculations, an incoming carrier status simulator with failure scenarios, Shopify app OAuth/KV inspector, and seven educational code tabs. The new page is `noindex` and intentionally unlinked from the existing homepage and sitemap.
+- **Why:** Demonstrate app development, authentication, JavaScript, serverless architecture, REST and GraphQL APIs, logistics calculations, event processing and operational thinking while retaining the original CartonCloud case study.
+- **Colour governance:** Obsidian `#0b1419`, electric teal `#38c7bc`, ember `#f28c52`, paper `#eaf4f3`, muted `#a9c1c3`, panel `#14242c` and borders `#355058`. Values align with the current `app/cinematic-home.css` identity, with new route-specific `cie-` selectors. No new global colour styles.
+- **Safety and source boundary:** All diagrams, event payloads, dates and code examples are independently authored fictional reconstructions. No production Worker source, staff/customer information, merchant zone tables, API secrets, real tracking, private URLs or connected network operations. The production handoff is explained as a Shopify fulfilment event, not an unverified direct Production API call.
+- **Inline documentation:** Added file-level and model-level notes explaining ownership, illustrative rules, no-network constraints, route scoping, authentication limitations, source evidence and privacy. Full design and integration notes live in `docs/commerce-integration-lab-2026-11-22.md`.
+- **Validation:** Source tests and three-viewport browser QA are wired into the draft PR's GitHub CI; results pending. Code and tests prepared for GitHub CI. Full `npm test`, `npm run check:safety`, `node scripts/check-seo-publication.mjs`, `npx tsc --noEmit`, `npm run build`, and desktop/mobile browser QA are **pending** until run on this branch. The environment used for development cannot clone public GitHub or install Next.js dependencies, so no successful build is claimed without CI evidence.
+- **Release/recovery:** Unpublished feature branch only. Existing homepage `app/page.tsx`, original `app/cartoncloud-integration/*`, service pages, `app/sitemap.ts`, Shopify, Cloudflare, and Vercel production remain unchanged. Review the working preview before any merge or homepage link.
+
+
 ## 2026-11-22 - Owner-approved production hotfix: retire original résumé PDF only
 
 - **Repository and branch:** `bonvallite/developer-portfolio`, `hotfix/2026-11-22-retire-original-resume`, derived from `main` `ac519c363bb303249adc911d0600679857df4a8d`. This narrow hotfix is separate from draft integrated portfolio PR #96 and does not include its feature changes.
