@@ -1,4 +1,4 @@
-// JRV palette end-to-end QA for the integrated release candidate.
+// JRV palette QA for all public sitemap routes and approved resume views.
 // Runs only on a local built Next.js site. No screenshots are captured from
 // private client systems. The light editorial storefront and printable résumé
 // designs keep separate reading surfaces but share JRV accent colours.
@@ -31,6 +31,13 @@ const cases = [
   { path: '/analytics-lab', slug: 'analytics-lab' },
   { path: '/cartoncloud-integration', slug: 'cartoncloud' },
   { path: '/b2b-modernisation', slug: 'b2b' },
+  // These six sitemap pages were not in the previous palette browser sweep.
+  { path: '/experience', slug: 'experience' },
+  { path: '/conversion-audit', slug: 'conversion-audit' },
+  { path: '/shipping-integration', slug: 'shipping-integration' },
+  { path: '/shopify-flow', slug: 'shopify-flow' },
+  { path: '/chilled-delivery-demo', slug: 'chilled-delivery' },
+  { path: '/engineering-standards', slug: 'engineering-standards' },
 ];
 const viewports = [
   { name: 'desktop', width: 1366, height: 768 },

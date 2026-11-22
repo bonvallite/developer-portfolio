@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Stage gallery privacy and portfolio release hardening (draft)
+
+- **Repository and release:** `bonvallite/developer-portfolio`, branch `fix/portfolio-hardening-20261122`, from `main` at `90ea2d30`. This work is not merged and does not change production, Shopify themes or live Workers.
+- **Screenshots and privacy:** `app/experience/StorefrontPreview.tsx`, `StorefrontShowcase.tsx`, `app/data/storefronts.ts`, `app/page.tsx`, `app/experience/page.tsx`, `app/privacy/page.tsx`, `app/globals.css`, and `app/cinematic-home.css` preserve 11 site references and 21 provenance-checked local WebPs while removing automatic WordPress screenshot service requests. Failed/missing images use accessible in-frame links; Axlrodd desktop remains unavailable, and the older Peter Augustus pop-up-obscured image has not been modified.
+- **Social sharing:** New `app/opengraph-image.tsx` renders a 1200 × 630 first-party JRV social image without external images, fonts or identifying personal names; `app/layout.tsx` declares a large-image Twitter card. The image uses Obsidian `#0B1419`, Electric Teal `#38C7BC`, Ember `#F28C52`.
+- **Tests/CI:** `tests/cinematic-home.test.mjs` forbids remote screenshot code, `tests/homepage-browser-qa.mjs` checks Axlrodd's live-link fallback and no screenshot service requests on four viewports, `tests/seo-rendered-metadata.mjs` verifies the generated first-party PNG and OG tag, and `tests/portfolio-palette-browser-qa.mjs` adds six previously uncovered sitemap routes (desktop and mobile). `.github/workflows/portfolio-ci.yml` now runs all browser suites on every PR, avoiding hard-coded branch-name exceptions.
+- **Documentation:** README, `docs/STOREFRONT_CAPTURE_WORKFLOW.md`, maintained `docs/JRV_DESIGN_SYSTEM.md` v1.7, affected inline comments and this changelog updated. CSS colour tokens remain unchanged.
+- **Outstanding safeguards:** GitHub `main` has no enforced ruleset. Repository administrator must require pull requests, enforce `validate` and `case-study-browser-qa` checks, and block force pushes/deletions. Recapture Peter Augustus only with an unobscured, rights-checked public homepage and update provenance/hashes together. Independently review GTM/Clarity settings, screenshot permissions, real-device screen readers and field performance.
+- **Validation:** Exact-head source/build/SEO/browser results and Vercel preview are required. Keep as a draft PR; no merge without approval.
+
 ## 2026-11-22 - Publish cinematic portfolio, 11-site gallery and maintained JRV palette
 
 - **Release:** Owner authorised the final release review; integrated PR #96 merged into `main` as `2c95f43c`, publishing to `www.jrvallite.com` and `jrvallite.com`. Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY with both custom-domain aliases assigned.
