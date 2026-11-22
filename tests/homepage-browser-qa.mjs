@@ -2,6 +2,10 @@
 // Runs against a locally built Next.js app; no live client APIs or credentials.
 // Screenshots are review artefacts, not evidence of real performance metrics.
 // The project studio must genuinely respond to visitor actions at every size.
+// Homepage now has a fifth, independently featured engineering story, but
+// the original four studio modes/cards remain unchanged for safe comparison.
+// Verify both case-study links, preview route availability and responsive
+// layout without triggering live integration or optional analytics.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -43,6 +47,29 @@ try {
     assert.equal(await page.locator('h1').count(), 1, 'One homepage H1');
     assert.equal(await page.locator('.jrv2-case').count(), 4, 'Four case-study stories');
     assert.equal(await page.locator('.jrv2-service').count(), 4, 'Four linked services');
+
+    // New systems-engineering flagship is a separate homepage section, not
+    // a replacement for the established four interactive project previews.
+    const featured = page.locator('#systems-lab');
+    assert.equal(await featured.count(), 1, size.name + ': one featured engineering section');
+    assert.equal(await featured.locator('h2').count(), 1, size.name + ': section heading');
+    assert.equal(await featured.locator('.jrv2-flagship-node').count(), 3,
+      size.name + ': Shopify, Cloudflare Worker and CartonCloud conceptual nodes');
+    assert.equal(await featured.locator('.jrv2-flagship-wire').count(), 2,
+      size.name + ': conceptual event and REST connectors');
+    assert.equal(await featured.getByRole('link', { name: /Explore the interactive case study/ }).getAttribute('href'),
+      '/projects/commerce-integration-engineering', 'Featured CTA links to the new lab');
+    assert.equal(await featured.getByRole('link', { name: /Earlier integration case study/ }).getAttribute('href'),
+      '/cartoncloud-integration', 'Original case study remains available');
+    assert.equal(await page.locator('.jrv2-case a[href="/cartoncloud-integration"]').count(), 1,
+      'Existing integration card remains present');
+    assert.equal(await page.locator('nav[aria-label="Primary navigation"] a[href="#systems-lab"]').count(), 1,
+      'Desktop navigation includes featured section');
+    assert.equal(await page.locator('nav[aria-label="Mobile navigation"] a[href="#systems-lab"]').count(), 1,
+      'Mobile navigation includes featured section');
+    const demoResponse = await page.request.get(baseURL + '/projects/commerce-integration-engineering');
+    assert.equal(demoResponse.status(), 200, 'New engineering route resolves from homepage');
+
     assert.ok(await page.locator('.jrv2-hero-actions a').count() >= 2, 'Prominent hero actions');
     assert.equal(await page.locator('.jrv2-console').count(), 1, 'Visual commerce engine');
 

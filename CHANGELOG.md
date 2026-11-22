@@ -1,5 +1,18 @@
 # Portfolio changelog
 
+## 2026-11-22 - Stage featured Shopify app engineering lab on homepage (draft PR only)
+
+- **Repository and branch:** bonvallite/developer-portfolio, feature/commerce-integration-lab-20261122, draft PR #98. No merge to main or change to the production domain.
+- **Files:** app/page.tsx; new app/components/FeaturedSystemsLab.tsx; new app/components/featured-systems-lab.css; tests/homepage-browser-qa.mjs; .github/workflows/portfolio-ci.yml; docs/commerce-integration-lab-2026-11-22.md; CHANGELOG.md.
+- **What:** Add a fully separate featured engineering showcase immediately after Selected Work, with a cinematic, responsive conceptual architecture panel, direct CTA to /projects/commerce-integration-engineering, and a second CTA to /cartoncloud-integration. Include a Systems lab anchor in desktop and mobile navigation and a footer link to the new project. The existing four selected-work cards and four-mode interactive hero studio remain unchanged.
+- **Why:** Let reviewers see the new custom Shopify app/Cloudflare/Workers KV engineering showcase from the index while preserving the earlier case study and protecting the live portfolio.
+- **Brand:** Use current JRV obsidian #0b1419, teal #38c7bc and ember #f28c52; self-contained styling scoped to jrv2-page and decorative motion that honours reduced-motion visitors. No third-party artwork.
+- **Fidelity/safety:** The Worker hosts the non-embedded Shopify app backend; KV stores OAuth state/tokens; the carrier callback and Shopify Admin API write-back are represented conceptually. No external API requests, secret values, client records, false guaranteed notification claims, or new production endpoints.
+- **Documentation:** New component-level comments and CSS header explain responsibilities, dependencies, privacy, scope and animation. Existing homepage comments and project documentation revised to reflect the new preview-only section. Older changelog entries remain as historical records.
+- **Validation:** New browser assertions cover homepage section, navigation, both case-study links, three conceptual nodes, and continued four-card/four-mode studio; the CI workflow now runs homepage QA on this feature branch. Tests, build and responsive screenshots **pending for the new commit** until the actual workflow reports success.
+- **Release control:** The app lab remains noindex and outside the sitemap for preview; do not merge or publish until SEO/indexability review and final approval. The original CartonCloud case study is not retired.
+
+
 ## 2026-11-22 - Extend draft commerce lab with last-mile route and Shopify app write-back demos
 
 - **Repository and branch:** `bonvallite/developer-portfolio`, `feature/commerce-integration-lab-20261122`; draft PR #98 remains unmerged.

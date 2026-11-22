@@ -4,7 +4,7 @@
 **Repository:** `bonvallite/developer-portfolio`  
 **Feature branch:** `feature/commerce-integration-lab-20261122`  
 **New route:** `/projects/commerce-integration-engineering`  
-**Release decision:** Do not merge, link from homepage, publish, or retire `/cartoncloud-integration` without an additional owner review.
+**Release decision:** The owner approved a **preview-branch-only homepage section and link** on 22 November 2026. Do not merge, publish to the production domain, or retire the original CartonCloud case study without an additional owner review.
 
 ## Purpose
 
@@ -53,10 +53,10 @@ The feature has no `fetch` calls in browser components. Optional site-wide analy
 
 ## Integration and migration contract
 
-- Current homepage `app/page.tsx` is not modified.
+- **Current state (22 November):** The homepage is modified only on the draft feature branch to add a featured systems engineering section, navigation anchors and a footer link. The four existing project cards and four-mode hero studio are retained. Production main is unchanged.
 - Current old case-study `app/cartoncloud-integration/*` is not modified.
 - Existing service `app/shopify-app-development/page.tsx` is not modified.
-- New route is intentionally excluded from `app/sitemap.ts` and has `robots: noindex, nofollow`? **Actual implementation:** `robots: {index:false,follow:false}`. Do not add sitemap or homepage links until approved.
+- The new route remains excluded from the sitemap and has robots index:false, follow:false. It is now linked from the **preview branch homepage only**. Review metadata, sitemap inclusion and canonical strategy as a publication gate before any merge.
 - At approval, review canonical URLs and consider a permanent redirect from the previous route only after verifying search performance and replacement completeness.
 
 ## Validation contract
@@ -64,7 +64,7 @@ The feature has no `fetch` calls in browser components. Optional site-wide analy
 1. Review exact remote branch file contents after saving.
 2. Run `npm test`, `npm run check:safety`, `node scripts/check-seo-publication.mjs`, `npx tsc --noEmit`, `npm run build`.
 3. Run desktop/tablet/mobile visual and accessibility checks for new controls, reduced motion, page overflow, source-code tabs, keyboard support and screen readers.
-4. Confirm no changes to root route, old case study, sitemap or production backend.
+4. Confirm only the approved feature-branch homepage section, navigation and footer changes, with no unrelated homepage modifications, original case-study changes, sitemap changes or production-backend changes.
 5. Record CI results as **pending** until actually obtained; never claim browser tests on source inspection alone.
 
 ## Open engineering caveats
@@ -80,8 +80,8 @@ The feature has no `fetch` calls in browser components. Optional site-wide analy
 - **Verified test commit:** `9ca6756906c6e2f3de05894360866bac79a99e5d`
 - **Source checks:** publication safety, SEO source guard, npm unit tests, Python tests, TypeScript typecheck, Next.js build, rendered SEO and sitemap: all passed.
 - **Browser checks:** generic case-study QA and dedicated commerce integration lab QA passed. The latter exercised three integrations, state/closure and weight calculations, mocked failed webhook behaviour, masked KV/OAuth flow, code tabs and responsive overflow at 1440x900, 768x1024 and 390x844. Screenshot artifact was uploaded.
-- **Still pending:** owner visual review, explicit future homepage integration, final canonical migration decision and live third-party production end-to-end verification. The successful browser simulation does not certify production delivery operations.
-- **Publication:** no `main` merge and no production deployment. Vercel branch preview only, while the new route remains noindex and unlinked.
+- **Still pending:** owner visual review of the new preview-only homepage integration, final canonical migration decision, and live third-party production end-to-end verification. The successful browser simulation does not certify production delivery operations.
+- **Publication:** no main merge and no production deployment. The new homepage section and link exist only in the feature-branch preview. The case-study route remains noindex for draft review.
 
 ## 22 November 2026: zone-aware last-mile and app write-back refinements
 
@@ -120,3 +120,24 @@ All styles remain scoped to `.cie-page`; no modifications to the homepage, origi
 ### Validation for refinement
 
 Updated regression tests cover zone comparison, last-mile closure dates, NSW/VIC overrides, SA special schedules and the write-back console's state transitions and failure scenarios. **New CI results pending**, until the new branch commit has run. Existing first-version successful CI is not evidence for this refinement.
+
+## 22 November 2026: approved preview homepage feature
+
+The user requested the next phase after confirming that the independent systems case study did not yet appear in the homepage. This authorises a homepage link and its own featured section on the **draft feature branch only**. It does not approve merging, publishing, or retiring the previous CartonCloud page.
+
+### Files and purpose
+
+- app/page.tsx: import and render FeaturedSystemsLab after the Selected Work grid, add a Systems lab anchor to desktop and mobile menus, and add a new footer project link. Preserve all four studio modes and original case studies.
+- app/components/FeaturedSystemsLab.tsx (new): premium editorial header, proof of technology, direct CTA to the interactive systems case study, separate CTA to the original CartonCloud case study, and a conceptual event diagram.
+- app/components/featured-systems-lab.css (new): route-scoped cinematic design using JRV obsidian (#0b1419), teal (#38c7bc), ember (#f28c52), mobile-stacked diagram, decorative motion and reduced-motion support.
+- tests/homepage-browser-qa.mjs: verify the feature section, original case study, dual links, all four existing projects, both navigation anchors, and the new route.
+- .github/workflows/portfolio-ci.yml: run the full homepage browser QA on this feature branch as well as the commerce-lab test. The existing consent, source-safety, build and type checks remain active.
+- docs/commerce-integration-lab-2026-11-22.md and CHANGELOG.md: record preview-only publication boundaries and validation status.
+
+### Architecture fidelity and safety
+
+The homepage illustration shows Shopify order events reaching Cloudflare Workers, which hosts the non-embedded app backend and uses Workers KV for OAuth persistence. The Worker makes CartonCloud consignment requests, receives tracking callbacks, and uses app-authorised Shopify Admin API calls for fulfilment and order write-back. A native customer notification may be requested but is not guaranteed. It does not invent a separate app server or make live provider calls. All material is conceptual and client/customer data is omitted.
+
+### Release and validation
+
+The new project remains noindex and outside the sitemap while under review. The original CartonCloud case study and the four working homepage previews remain visible alongside the new featured section. No production changes are authorised. The full code and visual regression tests are pending a fresh run on the new commit; prior green CI applies only to earlier commits. Before a future production merge, decide on noindex removal, sitemap publication, canonical URLs and whether to preserve or redirect the original case study.

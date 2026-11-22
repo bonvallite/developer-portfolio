@@ -71,8 +71,10 @@ jobs:
           exit 1
       - name: Desktop tablet and mobile interaction checks
         run: node tests/case-study-browser-qa.mjs
+      # The draft systems-lab branch also changes the homepage, so exercise
+      # its responsive layout, original four modes, consent and both case links.
       - name: Cinematic homepage layout, privacy and conversion QA
-        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-')
+        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || github.head_ref == 'feature/commerce-integration-lab-20261122'
         run: node tests/homepage-browser-qa.mjs
       # The Spend & Save case study connects shopper, merchant, post-checkout
       # Flow commit and notification states through a safe architecture map.
