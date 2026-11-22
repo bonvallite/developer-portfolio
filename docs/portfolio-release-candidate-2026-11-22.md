@@ -62,9 +62,17 @@ The next exact-commit GitHub performance lab must compare the desktop/mobile shi
 
 The owner has explicitly authorised retiring the original legacy 2026 PDF from the current public website and GitHub branch while keeping **both** ATS-Friendly and Classic designs available. Draft PR #96 deletes the identical old copies at `public/JRV-Resume.pdf` and `backups/resumes/JRV-Resume-2026-Original.pdf`. Older links to `/JRV-Resume.pdf` now receive a permanent redirect to `/resume`, where users can choose either approved format. The new PDF/Word generators, source data, private no-store cache rules, noindex metadata, and download paths remain unchanged.
 
-This is **only a draft-branch change until production approval**. The prior paragraphs above describe the pre-retirement state. Historical Git commits, older public branches, previous Vercel deployments, third-party copies and downloaded files are **not erased**. The new source guard checks the absence of both original binaries in the current tree and the redirect configuration; rendered SEO tests verify GET/HEAD redirects and retained links to both ATS and Classic formats.
+The original résumé retirement is already live through PR #97. The prior paragraphs above describe its pre-retirement state; the broader portfolio release remains draft. Historical Git commits, older public branches, previous Vercel deployments, third-party copies and downloaded files are **not erased**. The new source guard checks the absence of both original binaries in the current tree and the redirect configuration; rendered SEO tests verify GET/HEAD redirects and retained links to both ATS and Classic formats.
 
 Required before release: successful exact-commit CI, READY Vercel preview, HTTP redirect (not PDF) for the old route, both updated résumé downloads, and normal site QA. Analytics vendor/container configuration remains a separate publication review.
+
+## Published main reconciliation and palette review (22 November 2026)
+
+Production `main` already includes owner-approved original résumé retirement (`ecf8e5ad`, PR #97). This integrated draft merges that production commit as a second parent so the original PDF and public backup remain removed and legacy bookmarks redirect to `/resume`. Earlier sections describe the pre-retirement baseline; the privacy hotfix is now live, but the broader portfolio changes remain draft.
+
+The [colour guide](./jrv-brand-palette-2026-11-22.md) records the unified obsidian, electric teal, Ember and light foreground system, including the 64px indexed favicon palette change. The original PNG pixel data and transparency are preserved. Added source tests to prevent legacy brand gold and a local Chrome browser suite for **19 routes at 1366px and 390px** to check computed accents, H1s, responsive overflow, JS errors, and no optional analytics before consent, with screenshots.
+
+Do not interpret automated colours as a complete contrast/accessibility certificate, real-user speed, or a substitute for manual visual and 16px/32px favicon checks. External analytics vendor audits, publication rights, and explicit approval to release PR #96 remain open.
 
 ## Preview acceptance gates
 

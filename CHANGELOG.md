@@ -1,5 +1,25 @@
 # Portfolio changelog
 
+## 2026-11-22 - Unify JRV site-wide palette and preserve the released résumé hotfix
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, draft PR #96 at `integration/2026-11-22-cinematic-release`. Reconciled with `main` `ecf8e5ad05fd2a9186b9b01111ffc1df28bb0ae9` as the second merge parent; no live portfolio colour change yet.
+- **Presentation files:** `app/globals.css`, `app/cinematic-home.css`, `app/components/cinematic-service.css`, `app/data-extraction-automation/page.tsx`, `app/data-extraction-automation/visual-demo.css`, `app/css-lab/css-lab.module.css`, `app/b2b-demo/page.tsx`, `app/python-automation/page.tsx`, `app/privacy/page.tsx`, `app/projects/spend-and-save/spend-save-base.css`, `app/b2b-modernisation/cinematic.css`, `app/b2b-modernisation/b2b-showcase.css`, `app/resume/resume.css`, `app/resume/resume-export.ts`, `app/editorial-homepage-demo/demo.module.css`, `public/portfolio/eve-curls-markets.svg`, `app/icon.svg`.
+- **Tests/documentation:** Added `tests/portfolio-palette.test.mjs`, `tests/portfolio-palette-browser-qa.mjs`, and `docs/jrv-brand-palette-2026-11-22.md`. Updated `.github/workflows/portfolio-ci.yml`, `README.md`, `docs/portfolio-release-candidate-2026-11-22.md` and this changelog.
+- **Changes:** Replace previous gold/bronze on older site routes, diagrams and components with shared obsidian `#0B1419`, electric teal `#38C7BC`, ember `#F28C52`, accessible cool light text and deep-teal surfaces. The lightweight editorial demo remains light; ATS/Classic retain their separate printable layouts and readable dark-teal elements. No fictional values, business logic, consent, routing or operational secrets changed.
+- **Favicon:** Recoloured only the indexed PNG palette of the approved 64×64 JRV favicon; CRC checks passed, IDAT pixels and tRNS alpha were byte-identical. Preserved the existing JRV monogram and transparent corners.
+- **Documentation:** Updated relevant CSS and source comments, public README current/historical notes and the design guide, keeping dated historical records accurate.
+- **Validation:** Audited legacy theme colour sources, normalised presentation values, checked icon format/palette CRC, retained prior client-only simulations, added Node palette and 19-route desktop/mobile browser assertions and CI screenshot artefacts. Full fresh GitHub CI, responsive screenshots and Vercel final preview must pass before declaring the visual change ready.
+- **Release controls:** Live legacy résumé retirement from PR #97 is retained and cannot be undone through this draft. Do not merge or publish PR #96 before consent vendor, accessibility and external rights reviews.
+
+## 2026-11-22 - Owner-approved production hotfix: retire original résumé PDF only
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, `hotfix/2026-11-22-retire-original-resume`, derived from `main` `ac519c363bb303249adc911d0600679857df4a8d`. This narrow hotfix is separate from draft integrated portfolio PR #96 and does not include its feature changes.
+- **Affected files:** Remove `public/JRV-Resume.pdf` and `backups/resumes/JRV-Resume-2026-Original.pdf` (both historic blob `a7d4648238f748f625004890bb8aac4b5443915b`). Update `next.config.ts`, `README.md`, `scripts/check-seo-publication.mjs`, `tests/seo-rendered-metadata.mjs` and `CHANGELOG.md`.
+- **What and why:** The owner explicitly approved retiring the older original PDF from the public website and current Git branch while retaining ATS-Friendly and Classic online/PDF/Word versions. Make `/JRV-Resume.pdf` redirect permanently to `/resume` to preserve old bookmarks without serving the older contact information.
+- **Inline documentation:** Added Next.js route comments; clarified README current/public scope; added source and rendered redirect tests. Preserved existing history and source conventions.
+- **Validation:** Reviewed both original binary path SHA values in GitHub directory metadata and confirmed the production main base. This hotfix uses the exact inspected redirect/README/source-guard changes with a main-compatible rendered regression, leaving the current generated résumé code untouched. GitHub CI, Vercel preview and final production verification must be completed on the hotfix commit before marking the live website updated.
+- **Limitations:** Deleting files from new/current main commits does not erase earlier public Git history, backup branches, old Vercel deployments, search caches or downloaded copies. ATS and Classic still contain explicitly published personal details and are noindex, not private. This is not a Shopify theme change or an approval to release the pending full portfolio redesign.
+
 ## 2026-11-22 - Retire original résumé PDF from current draft on owner's approval
 
 - **Target:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. Production main and Shopify themes unchanged.

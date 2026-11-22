@@ -10,9 +10,9 @@ The [rebuild plan, confidentiality review and recovery instructions](./docs/port
 
 ## Owner-approved retirement of the original résumé PDF (22 November 2026)
 
-The original 2026 résumé previously existed at `public/JRV-Resume.pdf` and `backups/resumes/JRV-Resume-2026-Original.pdf` (Git blob `a7d4648238f748f625004890bb8aac4b5443915b`). With the owner's explicit approval, **both binaries have been deleted from the current draft integration tree**. The old URL `/JRV-Resume.pdf` permanently redirects to the résumé chooser at `/resume`, preserving old bookmarks without serving the original document. ATS-Friendly and Classic HTML previews, downloadable PDFs, and Word exports remain intentionally available, with noindex and private/no-store controls.
+The original 2026 résumé previously existed at `public/JRV-Resume.pdf` and `backups/resumes/JRV-Resume-2026-Original.pdf` (Git blob `a7d4648238f748f625004890bb8aac4b5443915b`). With the owner's explicit approval, **both binaries are absent from the published main branch and draft integration tree**. The old URL `/JRV-Resume.pdf` permanently redirects to the résumé chooser at `/resume`, preserving old bookmarks without serving the original document. ATS-Friendly and Classic HTML previews, downloadable PDFs, and Word exports remain intentionally available, with noindex and private/no-store controls.
 
-**Publication scope:** This removal is in draft PR #96, not yet on `jrvallite.com`. The original may still be reachable in earlier commits, public backup branches, old Vercel deployments, search caches and downloaded copies. Current-tree deletion is not history erasure. Keep both approved résumé options and their contact details intact until any separate owner decision.
+**Publication scope:** The owner-approved original-résumé retirement was already published through PR #97, production commit `ecf8e5ad`. The other cinematic and integration changes remain draft PR #96. The original may still be reachable in earlier commits, public backup branches, old Vercel deployments, search caches and downloaded copies. Current-tree deletion is not history erasure. Keep both approved résumé options and their contact details intact until any separate owner decision.
 
 ## Current public identity and contact
 
@@ -27,7 +27,7 @@ The approved public wordmark is **JRV**, matching the approved **{JRV}** browser
 
 At the owner's request, the public homepage footer links to the approved LinkedIn, Google Developer and Wikipedia contribution profiles, and provides a separate authorised-mailbox login shortcut at `https://webmail.jrvallite.com/`. This is a **login link**, not the public contact destination. Enquiries continue to use `hello@jrvallite.com`.
 
-**Historical note (19 November):** The original 2026 résumé was then served at `/JRV-Resume.pdf`, restored from a historical Git object. On 22 November, the owner approved retiring its original binary from the draft site. The URL now redirects to `/resume`, but old Git objects, branches and caches may still retain the document. Keep titles and metadata service-led; do not infer that linked profiles are independent credentials or endorsements.
+**Historical note (19 November):** The original 2026 résumé was then served at `/JRV-Resume.pdf`, restored from a historical Git object. On 22 November, the owner approved retiring its original binary from the public site through PR #97. The URL now redirects to `/resume`, but old Git objects, branches and caches may still retain the document. Keep titles and metadata service-led; do not infer that linked profiles are independent credentials or endorsements.
 
 ## Ecommerce API extraction case study
 
@@ -39,9 +39,15 @@ As part of the 20 November rebuild, `app/layout.tsx` no longer emits GTM, Micros
 
 The public GTM ID remains intentionally allowlisted; never publish other live account credentials or GTM/GA4 identifiers. Published GTM container contents and vendor retention still require a separate audit before privacy compliance claims. The [privacy notice](./app/privacy/page.tsx), [source-level tests](./tests/site-analytics.test.mjs), and [browser tests](./tests/homepage-browser-qa.mjs) should agree with this behaviour. The latter checks a fresh browser for optional requests before consent. Other third-party sites or downloaded source files remain separate risks.
 
+## Shared JRV colour system (22 November 2026, draft)
+
+The shared portfolio palette is **obsidian `#0B1419`**, **electric teal `#38C7BC`**, **ember orange `#F28C52`**, deep-teal surfaces and cool light text. `app/globals.css` defines the canonical tokens; teal conveys evidence and links, while ember highlights primary conversion actions and keyboard focus. The homepage, service pages, older case studies, interactive labs, résumé gallery and favicon now use the same brand family.
+
+The editorial storefront deliberately remains a light ecommerce composition. ATS retains printable white paper, and Classic retains a teal masthead with Ember accents. These remain distinct demos instead of losing readability or turning every screen dark. Functional data, pricing examples, SEO, lead collection/consent rules and existing résumé paths are unchanged. See the [palette guide](./docs/jrv-brand-palette-2026-11-22.md) and [Chrome route QA](./tests/portfolio-palette-browser-qa.mjs). This visual release remains unpublished until PR #96 is reviewed and merged.
+
 ## Site favicon
 
-The favicon retains the owner's selected **option 6** `{JRV}` code monogram and its original 64 × 64 artwork. On **24 October 2026** its former cyan-on-navy colours were adjusted to the actual portfolio colours: **warm gold `#D9B47C` on charcoal `#0B0E12`**, with supporting bronze highlights. Only the indexed PNG's colour palette and corner transparency changed; the letterform and pixel positions remain unchanged. The original light outside-corner pixels now have transparent alpha, avoiding white corners in browser tabs. This was a colour-alignment refinement, not a new logo selection.
+The favicon retains the owner's selected **option 6** `{JRV}` code monogram and its original 64 × 64 artwork. On **24 October 2026**, the earlier favicon was recoloured gold-on-charcoal. On **22 November 2026**, the same approved artwork was recoloured again to **electric teal `#38C7BC` on obsidian `#0B1419`**, with cool-teal highlights. The 64 × 64 indexed PNG keeps exactly the same pixel index data and alpha bytes; only its palette and palette CRC changed. The letterform and geometry are preserved, with no new fonts, requests or competing favicon files. This update remains in draft PR #96 until approved for production.
 
 `app/icon.svg` is the sole canonical Next.js App Router favicon convention file. It embeds a validated indexed 64 × 64 PNG inside a self-contained SVG wrapper, without external images, scripts or fonts. The original chosen PNG had previously replaced an incorrectly embedded JPEG. `app/layout.tsx` documents the automatic favicon registration; do not add `metadata.icons`, `app/favicon.ico` or a competing public favicon.
 
@@ -206,7 +212,7 @@ Two owner-approved public designs share one canonical data module (`app/resume/r
 
 PDF and editable DOCX endpoints are generated on demand: `/resume/classic/pdf`, `/resume/classic/word`, `/resume/modern/pdf`, and `/resume/modern/word`. Route generators live in `app/resume/resume-export.ts`; adjust the canonical data before modifying any generated format. The classic design approximates the original aesthetic; it is not a byte-identical copy of the prior document.
 
-The retired `/JRV-Resume.pdf` URL now redirects to `/resume`; the original public binary and matching backup have been removed from the current draft Git tree. Both new résumé routes stay `noindex` (not private), retain approved personal details and have distinct PDF/Word options. Verify all four downloadable formats, and remember old commits and backup branches remain public.
+The retired `/JRV-Resume.pdf` URL now redirects to `/resume`; the original public binary and matching backup are absent from the published Git tree and this draft. Both new résumé routes stay `noindex` (not private), retain approved personal details and have distinct PDF/Word options. Verify all four downloadable formats, and remember old commits and backup branches remain public.
 
 
 ### Résumé downloads: primary actions and document properties

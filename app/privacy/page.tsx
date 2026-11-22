@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return <main className="container" style={{ paddingTop: 85, paddingBottom: 110, maxWidth: 850, lineHeight: 1.85 }}>
-    <Link href="/" style={{ color: '#e0bf8a' }}>← Back to JRV portfolio</Link>
+    <Link href="/" style={{ color: '#8ce3da' }}>← Back to JRV portfolio</Link>
     <h1 style={{ fontSize: 'clamp(40px,6vw,67px)', letterSpacing: '-2px', lineHeight: 1.12 }}>Privacy and analytics</h1>
     <p>This portfolio showcases Shopify development, ecommerce operations, conversion optimisation and technical projects. Functional pages and public demonstrations work without optional analytics.</p>
 
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
     <p>This notice does not certify zero-risk privacy or confidentiality. Source files and historic versions in a public repository are separate from the production website, and an indexing request cannot erase copies or search caches.</p>
 
     <h2>Questions and requests</h2>
-    <p>For questions about this portfolio&apos;s analytics or a direct enquiry, email <a href="mailto:hello@jrvallite.com?subject=Portfolio%20privacy%20enquiry" style={{ color: '#e0bf8a', textDecoration: 'underline' }}>hello@jrvallite.com</a>.</p>
+    <p>For questions about this portfolio&apos;s analytics or a direct enquiry, email <a href="mailto:hello@jrvallite.com?subject=Portfolio%20privacy%20enquiry" style={{ color: '#8ce3da', textDecoration: 'underline' }}>hello@jrvallite.com</a>.</p>
     <p><small>Implementation updated 21 November 2026. Upstream service settings, retention policies, third-party click tracking and Tag Manager configuration require separate verification.</small></p>
   </main>;
 }

@@ -102,6 +102,11 @@ jobs:
       - name: Local browser navigation metrics (synthetic, informational)
         if: github.head_ref == 'integration/2026-11-22-cinematic-release'
         run: node tests/performance-lab-browser-qa.mjs
+      # Cross-route brand consistency with accessible light surfaces in
+      # editorial/printable demos. Browser tests never opt in to analytics.
+      - name: Unified JRV colour system desktop and mobile browser QA
+        if: github.head_ref == 'integration/2026-11-22-cinematic-release'
+        run: node tests/portfolio-palette-browser-qa.mjs
       - name: Save case-study screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -115,5 +120,6 @@ jobs:
             artifacts/cartoncloud-event-studio-qa/
             artifacts/b2b-entitlement-story-qa/
             artifacts/performance-lab/
+            artifacts/portfolio-palette-qa/
           if-no-files-found: ignore
           retention-days: 7

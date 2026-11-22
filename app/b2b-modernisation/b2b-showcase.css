@@ -4,7 +4,7 @@
  * case study, and new architectural decision inspector. Shares the same
  * existing market/eligibility/quantity state across three views; does not
  * authenticate buyers, modify Shopify pricing, or execute pseudocode.
- * Overrides original gold-only cinematic.css with agreed obsidian, electric
+ * Complements the original cinematic.css, now using agreed obsidian, electric
  * teal and ember orange. No new fonts, images, media, or third-party requests.
  * Historical source cohorts and their evidence caveats remain unchanged.
  */
