@@ -7,6 +7,7 @@ import {
 import { ArchitectureLab, CalculationLab, EventLab, OAuthLab } from './SystemsLab';
 import CodeExplorer from './CodeExplorer';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
+import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
 
 // 22 Nov 2026 / draft PR #100: production-ready SEO metadata is staged for
@@ -15,9 +16,12 @@ import './engineering-lab.css';
 // Keep a distinct canonical and description from /cartoncloud-integration;
 // the older case study stays available and never redirects automatically.
 // All interactive demos use fictional data and no live provider API calls.
+// This release candidate also shows typed order metafields and a fictional
+// customer communication timeline. The five-minute email/SMS process is
+// merchant-reported and not a verified Worker scheduling/sending function.
 const isVercelPreview = process.env.VERCEL_ENV === 'preview';
 const title = 'Custom Shopify App Engineering | Cloudflare Workers';
-const description = 'Interactive Shopify app engineering with Cloudflare Workers, Workers KV, webhooks, fulfilment tracking, last-mile delivery and order updates.';
+const description = 'Interactive Shopify app engineering: Cloudflare Workers, Workers KV, fulfilment tracking, last-mile delivery, and simulated email/SMS workflows.';
 export const metadata: Metadata = {
   title,
   description,
@@ -52,6 +56,7 @@ export default function CommerceIntegrationEngineering() {
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
+          <a href="#communications">Customer messages</a>
           <a href="#code">Code</a>
           <Link href="/cartoncloud-integration" className="cie-back-small">Earlier case study <ArrowUpRight size={14} /></Link>
         </nav>
@@ -129,10 +134,24 @@ export default function CommerceIntegrationEngineering() {
             <div className="cie-section-header">
               <p className="cie-kicker">03 / SHOPIFY APPLICATION WRITE-BACK</p>
               <h2>The app doesn't just connect.<br /><em>It updates the order.</em></h2>
-              <p>Follow a CartonCloud callback through the Cloudflare-hosted Shopify app backend, authorised Shopify Admin API operations, fulfilment tracking, order metafields, and the native customer notification decision. Compare missing links, callback replays and failures.</p>
+              <p>Follow a CartonCloud callback through the Cloudflare-hosted Shopify app backend, authorised Shopify Admin API operations, fulfilment tracking, order metafields, and the native customer notification decision. Compare missing links, callback replays and failures. The early delivery ETA is a separate order-created path, shown next.</p>
             </div>
             <ShopifyWritebackLab />
           </div>
+        </section>
+        {/* 22 Nov 2026: The owner-supplied customer message demonstrates a
+            separate ETA-to-notification handoff that was absent from the
+            previous diagrams. The Worker saves typed custom.* order metafields
+            on orders/create; the reported five-minute email/SMS delay is a
+            store configuration not implemented in the reviewed Worker source.
+            Tracking and native Shopify update requests occur later. */}
+        <section className="cie-section cie-shell" id="communications">
+          <div className="cie-section-header">
+            <p className="cie-kicker">03B / ETA → CUSTOMER COMMUNICATION</p>
+            <h2>The date arrives first.<br /><em>The tracking link comes later.</em></h2>
+            <p>Show how postcode-based delivery dates move from the Cloudflare Worker to Shopify order metafields and then to customer-facing email and SMS examples. The five-minute notice is a reported store-side configuration, not a Worker sending function, and a tracking notification is not proof an email was delivered.</p>
+          </div>
+          <CustomerCommunicationLab />
         </section>
         <section className="cie-section cie-shell" id="event-trace">
           <div className="cie-section-header">

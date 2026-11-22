@@ -1,6 +1,8 @@
 // Visual and functional QA for the standalone, fictional commerce systems lab.
 // No production integration API, customer record, token or email is accessed.
 // This is intentionally independent of the homepage and prior case-study route.
+// 22 Nov: includes fictional ETA email/SMS timing and later Shopify tracking;
+// no real customer message, phone number or store notification is accessed.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -92,6 +94,57 @@ try {
     for(let i=0;i<5;i++) await writeback.getByRole('button',{name:/Start simulation|Next write-back step/}).click();
     await writeback.locator('.cie-writeback-fields').getByText('delivery_status_raw').waitFor();
     await writeback.getByText(/does not guarantee complete webhook deduplication/).first().waitFor();
+
+
+    // The owner's reported five-minute ETA email/SMS communication is a
+    // separate store orchestration step, never an email from worker.js.
+    // Verify the typed metafield journey, message gates and fictional copies.
+    const messages=page.locator('.cie-communications');
+    await messages.waitFor({state:'visible'});
+    assert.equal(await messages.locator('.cie-communication-stage').count(),4,
+      viewport.name+': four distinct order/communication stages');
+    await messages.locator('.cie-communication-stage').nth(0).click();
+    await messages.getByText('The Worker has not written delivery metadata yet.').waitFor();
+    assert.equal(await messages.locator('.cie-communication-field').count(),0);
+    await messages.locator('.cie-communication-stage').nth(1).click();
+    await messages.locator('.cie-communication-field').getByText('custom.estimated_delivery_date_iso').waitFor();
+    await messages.getByText('Waiting for the five-minute notice').waitFor();
+    await messages.locator('.cie-communication-stage').nth(2).click();
+    await messages.getByRole('button',{name:'ETA email'}).click();
+    await messages.getByRole('heading',{name:'Your estimated delivery date'}).waitFor();
+    assert.equal(await messages.locator('.cie-customer-email-tracking').count(),0,
+      'No invented tracking link before fulfilment');
+    await messages.getByRole('button',{name:'SMS'}).click();
+    await messages.locator('.cie-sms-display').getByText(/Tracking details will follow after fulfilment/).waitFor();
+    await messages.locator('.cie-communication-controls').getByRole('checkbox',{name:/Include reported SMS channel/}).uncheck();
+    await messages.getByText('SMS disabled or not yet scheduled').waitFor();
+    await messages.locator('.cie-communication-controls').getByRole('checkbox',{name:/Include reported SMS channel/}).check();
+    await messages.locator('.cie-communication-stage').nth(3).click();
+    await messages.getByRole('button',{name:'Shipping email'}).click();
+    await messages.getByRole('heading',{name:'Your order is on the way'}).waitFor();
+    await messages.getByText(/Tracking reference: DEMO-TRACK-041/).waitFor();
+    await messages.locator('.cie-communication-controls').getByRole('checkbox',{name:/Tracking reference available/}).uncheck();
+    await messages.getByText('Tracking link not yet available').waitFor();
+    assert.equal(await messages.getByText(/Tracking reference: DEMO-TRACK-041/).count(),0,
+      'No fabricated tracking number before carrier data exists');
+    await messages.locator('.cie-communication-controls').getByRole('checkbox',{name:/GraphQL ETA metafield write succeeds/}).uncheck();
+    await messages.getByText('The ETA write was not confirmed. No estimated date is shown.').waitFor();
+    assert.equal(await messages.locator('.cie-communication-field').count(),0,
+      'No metafields after failed GraphQL write');
+    await messages.locator('.cie-communication-stage').nth(2).click();
+    await messages.getByRole('button',{name:'ETA email'}).click();
+    await messages.getByText('ETA write failed').first().waitFor();
+    await messages.locator('.cie-communication-controls').getByRole('checkbox',{name:/GraphQL ETA metafield write succeeds/}).check();
+    await messages.getByRole('heading',{name:'Your estimated delivery date'}).waitFor();
+    assert.match(await messages.locator('.cie-customer-email').innerText(),/DEMO-W/,
+      'Only fictional route identifiers shown');
+
+    // Public-safe examples explain the order field types and that Worker
+    // does not implement the reported store-side notification timing.
+    await page.locator('.cie-code-tabs').getByRole('button',{name:'ETA order metafields'}).click();
+    await page.locator('.cie-editor-body').getByText(/estimated_delivery_date_iso/).waitFor();
+    await page.locator('.cie-code-tabs').getByRole('button',{name:'Customer message gating'}).click();
+    await page.locator('.cie-editor-body').getByText(/minutes >= 5/).waitFor();
 
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+3),
       false,viewport.name+' no horizontal overflow');

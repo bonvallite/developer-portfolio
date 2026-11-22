@@ -27,3 +27,24 @@ export function calculateDemoShipment(input:{
 }):{eligible:boolean;weightKg:number;cartons:number;capacityKg:number;excludedItems:number;physicalItems:number};
 export function mapDemoCarrierStatus(rawStatus:string):{status:string;label:string};
 export function formatDemoDate(iso:string|null):string;
+
+// The notification sequence is a browser-only model. Shopify/other store-side
+// automation owns any real waiting, email or SMS sending; Worker owns the
+// typed order metafields and later fulfilment tracking updates.
+export type DemoCommunicationStage = 'order'|'saved'|'eta-notice'|'fulfilled';
+export const DEMO_COMMUNICATION_STAGES:ReadonlyArray<{
+  readonly id:DemoCommunicationStage;
+  readonly label:string;readonly offset:string;readonly detail:string;
+}>;
+export function calculateDemoCommunication(input?:{
+  zoneId?:string;orderedAt?:string;stage?:DemoCommunicationStage;
+  estimateSaved?:boolean;trackingReady?:boolean;smsEnabled?:boolean;
+}):{
+  stage:DemoCommunicationStage;stageIndex:number;
+  eta:ReturnType<typeof calculateDemoEta>;
+  orderMetafields:Array<{key:string;type:string;value:string}>;
+  estimateSaved:boolean;etaNoticeReady:boolean;smsNoticeReady:boolean;
+  shippingConfirmationReady:boolean;trackingReady:boolean;
+  trackingReference:string|null;nativeTrackingNoticeRequested:boolean;
+  orderReference:string;notificationWaitMinutes:number;isIllustrative:boolean;
+};

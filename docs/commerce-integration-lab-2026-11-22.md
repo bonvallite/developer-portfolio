@@ -1,3 +1,5 @@
+> **Updated customer communication scope · 22 November 2026:** The draft now adds an ETA-to-email/SMS customer journey, based on the owner's customer message example. The Worker-confirmed component is the typed order-metafield write and later tracking update. Five-minute scheduling, email templates and SMS delivery are merchant-reported and remain unverified in the inspected Worker source. No live messaging configuration is changed.
+
 > **Current staged release candidate · 22 November 2026:** `integration/commerce-systems-latest-main-20261122` / Draft PR #100. The new app-engineering page now has **environment-aware SEO staging**: Vercel previews are `noindex,nofollow` and omit the route from their sitemaps, while the future owner-approved production build will use unique indexable metadata and its own sitemap entry. The original `/cartoncloud-integration` remains separately indexable, linked and unredirected. The original Draft PR #98 documentation below is historical. **No production publication or merge has been authorised.**
 
 # Commerce integration engineering lab (draft / unpublished)
@@ -250,3 +252,34 @@ Authenticated Vercel preview HTTP checks for this commit showed `/` 200 with 11-
 - **Unchanged:** Current `main`, production domain, older CartonCloud story, eleven-site gallery, four original projects, JRV palette, Shopify theme, Cloudflare Worker, CartonCloud live data and notification settings.
 
 **Final publication boundary:** Draft PR #100 remains unmerged. Only explicit owner approval can authorise merging and production release.
+
+## 22 November 2026: customer-facing ETA, five-minute message and tracking (new draft lab)
+
+The owner supplied an example **shipping confirmation** showing an estimated delivery date, delivery zone, postcode and a CartonCloud tracking reference, and reported a **five-minute customer email delay**, SMS updates and a fast post-order calculation. This is an essential business outcome of the integration, but it comprises **two distinct technical paths** and an external customer-messaging layer. The draft now makes those differences explicit.
+
+### Evidence and architecture
+
+**Worker code verified from the private user-supplied `worker.js`:**
+- `orders/create` is received at the dedicated delivery estimate endpoint, with webhook HMAC validation when the configured secret exists. The handler extracts shipping postcode and order creation/processing time, calculates destination-specific cold-chain ETA, and calls `saveDeliveryEstimateMetafields`.
+- `saveDeliveryEstimateMetafields` sends the Shopify Admin GraphQL `metafieldsSet` mutation with typed `custom` **order metafields**: `estimated_delivery_date` (single line), `estimated_delivery_date_iso` (date), `delivery_day_name`, `delivery_zone`, `delivery_postcode`, `delivery_breakdown` (multiline), fee, subscription cut-off, and holiday flags/details when applicable. It checks GraphQL `userErrors`. These are **metafields, not metaobjects**; whether their definitions exist in Shopify Admin is not established here.
+- Later `fulfillments/create` and authenticated CartonCloud callbacks concern consignment/tracking. Tracking information can be missing until the carrier supplies it. `fulfillmentTrackingInfoUpdate` optionally sends `notifyCustomer` to Shopify; this is a request to Shopify and does not certify email or SMS delivery. Delivery-status order metafields and fulfilment events have their own later mutations.
+- The code reviewed contains **no five-minute scheduler, separate mail-send call, SMS provider integration or notification-template source**. Payment timing is the owner's reported business sequence; `orders/create` does not by itself certify payment status.
+
+**Merchant-reported customer experience, not Worker-confirmed:** A fast post-order calculation makes the expected date available on the order; an email is reportedly delayed approximately **five minutes** so ETA metafields can populate. SMS is another reported channel. The sender/timer, actual Liquid/notification templates, SMS provider, opt-in logic, and message delivery receipts need a separate audit before making specific production guarantees. The example `Your order is on the way` is shown as **shipping confirmation after fulfilment**, with tracking shown only if carrier information is available. The earlier ETA notice is kept distinct to avoid misleading visitors that a tracking link always exists five minutes after payment.
+
+### What the visitor can do
+
+The new `CustomerCommunicationLab.tsx` section appears between the Shopify write-back console and the carrier event-trace lab. Visitors choose the **Order created → Worker ETA saved → T+5-minute reported notice → Later fulfilment/tracking** stages, switch between fictional Queensland route examples, and inspect the exact `custom.*` field names and declared types that a message template could consume. The email mock-up reflects the owner's sample structure with the ETA, zone, postcode, refrigerated delivery caution, and (later) a tracking reference, all **replaced by entirely invented values**. A separate SMS text bubble shows how a customer update might read.
+
+Visitors can turn off the ETA field write, tracking availability, or SMS channel to see that missing fields cannot be presented as confirmed delivery information and tracking URLs must not be fabricated. The browser does not send a message, contact Shopify/CartonCloud, or access a customer's order. The five-minute timer is a **reported store delay** represented as a stage, not an actual scheduled job.
+
+### Files, privacy and tests
+
+- New `app/projects/commerce-integration-engineering/CustomerCommunicationLab.tsx` (local React demonstration).
+- Updated project `page.tsx`, `engineering-lab.css`, `CodeExplorer.tsx`, `lib/commerce-integration-demo.mjs` and its TypeScript declarations.
+- Updated `app/components/FeaturedSystemsLab.tsx` homepage description and `tests/commerce-integration-demo.test.mjs`, `tests/commerce-integration-browser-qa.mjs` with ETA-save, 5-minute notification, SMS, tracking-later and failure-path checks.
+- Updated maintained design guide v1.9 and `CHANGELOG.md`. No live Worker, Shopify theme, Shopify Flow, notification settings, fulfilment, customer record, real postcode table, production site, redirect or sitemap policy changed.
+
+The private example's actual order reference, postal address, delivery zone membership, tracking reference, logo and contact address are **not copied to public source**. An externally configured message journey is deliberately labelled as merchant-reported rather than a verified function of `worker.js`.
+
+**Validation status:** New exact-head GitHub CI, Vercel preview, responsive screenshots and browser interactions need to pass before this draft change can be called tested.

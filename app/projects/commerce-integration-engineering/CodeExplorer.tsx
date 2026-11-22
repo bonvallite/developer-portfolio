@@ -2,9 +2,11 @@
 /**
  * Public-safe, hand-authored engineering code inspector.
  * Examples are educational reconstructions, not production Worker source.
+ * The ETA metafield names/types are backed by the inspected Worker; five-minute
+ * email timing and SMS are user-reported store configuration, not Worker sends.
  */
 import { useState } from 'react';
-import { Check, ClipboardCopy, Code2, Database, LockKeyhole, Truck, Workflow } from 'lucide-react';
+import { Check, ClipboardCopy, Code2, Database, LockKeyhole, Mail, MessageSquareText, Truck, Workflow } from 'lucide-react';
 
 const SNIPPETS = [
  { title:'Webhook router', tag:'JAVASCRIPT', icon:Workflow,
@@ -108,6 +110,46 @@ const SNIPPETS = [
     '};',
     '// Passed to a metafieldsSet GraphQL mutation,',
     '// which must check userErrors before reporting success.'
+   ].join('\n')
+ },
+ // 22 Nov 2026: new separate order-created ETA -> customer notice examples.
+ // Real Worker field names/types were reviewed; these are fabricated values,
+ // not extracted customer data or working notification templates.
+ { title:'ETA order metafields', tag:'ORDER DATA', icon:Database,
+   context:'The Worker writes typed custom order metafields through the app’s authenticated Admin GraphQL call. These are metafields on the order, not metaobjects. Values and the email view below are fictional.',
+   code:[
+    '// Educational field set. Real order and postcode omitted.',
+    'const fields = [',
+    '  {namespace:"custom", key:"estimated_delivery_date",',
+    '   type:"single_line_text_field", value:"Wed, 25 Nov 2026"},',
+    '  {namespace:"custom", key:"estimated_delivery_date_iso",',
+    '   type:"date", value:"2026-11-25"},',
+    '  {namespace:"custom", key:"delivery_zone",',
+    '   type:"single_line_text_field", value:"EXAMPLE WEDNESDAY ZONE"},',
+    '  {namespace:"custom", key:"delivery_postcode",',
+    '   type:"single_line_text_field", value:"DEMO-W"}',
+    '];',
+    '// Add a valid Shopify order ownerId to each item,',
+    '// then call metafieldsSet and inspect userErrors.',
+    '// Saving data does not itself send a customer email.'
+   ].join('\n')
+ },
+ { title:'Customer message gating', tag:'REPORTED NOTIFICATIONS', icon:MessageSquareText,
+   context:'A reported five-minute store notification uses ETA fields from the Worker; fulfilment and carrier tracking are later events. Email/SMS scheduling and delivery are separate store/provider responsibilities, not code verified in the Worker.',
+   code:[
+    '// Conceptual policy only: NO email, SMS or external calls.',
+    'function chooseDemoMessage({minutes, etaSaved, fulfilled, hasTracking}) {',
+    '  if (fulfilled) return {',
+    '    type:"shipping_confirmation",',
+    '    includeTracking:Boolean(hasTracking)',
+    '  };',
+    '  if (minutes >= 5 && etaSaved) return {',
+    '    type:"estimated_delivery_email", includeTracking:false',
+    '  };',
+    '  return {type:"waiting"};',
+    '}',
+    '// Actual Shopify notification templates and SMS provider',
+    '// require a separate audit; none was read or copied.'
    ].join('\n')
  },
  { title:'Status mapping', tag:'NORMALISATION', icon:Workflow,

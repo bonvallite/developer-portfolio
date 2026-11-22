@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.8 (draft SEO release candidate), established 22 November 2026; version 1.6 remains the published production baseline  
+**Version:** 1.9 (draft customer communication reconstruction), established 22 November 2026; version 1.6 remains the published production baseline  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Published on `jrvallite.com` through PR #96 on 22 November 2026. GitHub merge `2c95f43c`; Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY, with both `www.jrvallite.com` and `jrvallite.com` aliases assigned. Code-level safety and CI checks passed; independent client image rights, third-party analytics settings, field performance and spoken screen-reader behaviour were not certified.
 
@@ -50,7 +50,7 @@ The `:root` CSS custom properties in `app/globals.css` are the **runtime source 
 | --- | --- |
 | Global visual tokens, base navigation and footer | `app/globals.css` |
 | Cinematic homepage and shared component accents | `app/page.tsx`, `app/cinematic-home.css`, `app/components/commerce-workbench.css`, `app/components/consent-manager.css`; verify first-screen client/hiring paths and the new `#websites` gallery |
-| Draft custom app / systems flagship and interactive route | `app/page.tsx`, `app/components/FeaturedSystemsLab.tsx`, `app/components/featured-systems-lab.css`, `app/projects/commerce-integration-engineering/*`, `lib/commerce-integration-demo.mjs`; verify the site gallery, four original cards and all simulation safety boundaries |
+| Draft custom app / systems flagship, notification journey and interactive route | `app/page.tsx`, `app/components/FeaturedSystemsLab.tsx`, `app/components/featured-systems-lab.css`, `app/projects/commerce-integration-engineering/*` (including `CustomerCommunicationLab.tsx`), `lib/commerce-integration-demo.mjs`; verify the 11-site gallery, four original cards, fictional email/SMS previews, no real customer data and all simulation safety boundaries |
 | Shopify service routes | `app/components/cinematic-service.css` |
 | Analytics, B2B, and CartonCloud case studies | `app/analytics-lab/*.css`, `app/b2b-modernisation/*.css`, `app/cartoncloud-integration/*.css` |
 | Spend & Save and data pipeline | `app/projects/spend-and-save/page.tsx`, `app/projects/spend-and-save/*.css`, `app/data-extraction-automation/*`; inspect the project/hiring closing panel |
@@ -89,6 +89,8 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | 22 November 2026 | 1.7 | Draft a separate custom Shopify app engineering flagship after the published 11-site gallery, retaining the original four selected-work cards and existing CartonCloud case study. Reuse the established Obsidian/Teal/Ember palette and add educational browser-only systems diagrams. No new global CSS tokens or changes to the published favicon. | New draft integration branch `integration/commerce-systems-latest-main-20261122`; source CI `45026760172` passed at `afee9c51`, including wide/mobile visual screenshots and colour QA. **Not published**. |
 
 | 22 November 2026 | 1.8 | Clarify the draft systems page's environment-aware publication rule: Vercel previews remain noindex and omit its sitemap URL; a separately approved production merge enables a self-canonical indexable page without retiring the original integration case study. No palette or component styling changed. | Draft PR #100 SEO staging; GitHub Actions `45028014444` and `45028021908` passed at `8634961`; preview HTTP confirmed noindex and sitemap exclusion. No production release. |
+
+| 22 November 2026 | 1.9 | Add a dedicated Worker ETA → typed Shopify order metafields → reported five-minute customer email/SMS → later fulfilment/tracking presentation to the draft engineering case study. The actual five-minute schedule and SMS provider are not verified in Worker source, and sample messages use fictional values only. Retain the canonical JRV Obsidian/Teal/Ember palette with a pale email preview and mobile-stacked layout; no new global tokens or favicon changes. | Draft PR #100, newly added component and CI regression checks; exact-commit validation pending. No production release. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

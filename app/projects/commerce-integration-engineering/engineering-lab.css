@@ -254,3 +254,89 @@
 .cie-email-preview p{font-size:13px;line-height:1.7;margin-bottom:13px}
 @media(max-width:1050px){.cie-writeback{grid-template-columns:1fr}.cie-writeback-controls{border-right:0;border-bottom:1px solid #47646b;padding-right:0;padding-bottom:20px}.cie-lastmile-intro{grid-template-columns:1fr}}
 @media(max-width:680px){.cie-mile-options{grid-template-columns:1fr}.cie-mile-calendar{gap:4px}.cie-mile-calendar>div{padding:10px 2px}.cie-mile-stages{grid-template-columns:repeat(2,minmax(0,1fr))}.cie-writeback-snapshot{grid-template-columns:1fr}.cie-writeback-route>div{padding:10px 3px}.cie-writeback-route>div span{font-size:9px}.cie-writeback-route>svg{width:12px}.cie-writeback{padding:17px}.cie-lastmile{padding:17px}}
+
+
+
+/*
+ * 22 Nov 2026: customer ETA / notification journey, scoped to .cie-page.
+ * Uses the existing Obsidian/Teal/Ember identity and a pale email-preview
+ * panel for legibility. All stages are browser-only, not real notifications.
+ * Mobile timeline and panels stack, motion-free for prefers-reduced-motion.
+ */
+.cie-communications{border:1px solid #46656a;background:linear-gradient(145deg,#172d35,#0e1d25);border-radius:14px;padding:clamp(17px,2.4vw,31px);box-shadow:0 25px 65px #0004}
+.cie-communications-top{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(230px,.87fr);gap:clamp(20px,3vw,46px);margin-bottom:24px}
+.cie-communications-top h3{font-size:clamp(25px,3.2vw,40px);letter-spacing:-.05em;line-height:1.12;margin:17px 0}
+.cie-communications-top>div:first-child>p{color:#c3d4d4;line-height:1.75;font-size:13px;max-width:650px}
+.cie-communication-controls{border:1px solid #47636c;background:#0e242c;padding:18px;border-radius:9px;display:grid;gap:12px}
+.cie-communication-controls>label:first-child{font-size:11px;font-weight:850;color:#d2e9e7}
+.cie-communication-controls select{color:#ebf6f4;background:#10232b;border:1px solid #5f7981;border-radius:5px;padding:11px 12px;width:100%;font-size:12px}
+.cie-communication-controls .cie-check{font-size:11px;line-height:1.5;align-items:flex-start}
+.cie-communication-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:19px}
+.cie-communication-stage{display:flex;align-items:flex-start;gap:10px;background:#10232b;border:1px solid #45636a;color:#e9f2f1;border-radius:9px;padding:16px 11px;min-width:0;text-align:left}
+.cie-communication-stage.is-active{background:#203d40;border-color:#f28c52;box-shadow:inset 0 3px #f28c52}
+.cie-communication-stage:hover,.cie-communication-channel-tabs button:hover{border-color:#38c7bc}
+.cie-communication-stage-count{flex-shrink:0;border:1px solid #5c8287;color:#38c7bc;background:#162f34;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;font-weight:850;font-size:11px}
+.cie-communication-stage.is-active .cie-communication-stage-count{background:#f28c52;color:#102129;border-color:#f28c52}
+.cie-communication-stage-copy{display:grid;gap:6px;min-width:0;flex:1}
+.cie-communication-stage-copy small{font-size:10px;color:#6bd6ce;font-weight:850}
+.cie-communication-stage-copy strong{font-size:12px;line-height:1.4}
+.cie-communication-stage-copy>span{font-size:10px;line-height:1.6;color:#b0c6c7}
+.cie-communication-stage>svg{flex-shrink:0;width:14px;color:#f28c52;margin-top:4px}
+.cie-communications-grid{display:grid;grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);gap:13px}
+.cie-communication-data,.cie-communication-preview{background:#0f242c;border:1px solid #3e6169;border-radius:10px;min-width:0;padding:clamp(16px,2.1vw,25px)}
+.cie-communication-panel-head h4{color:#f0f5ef;font-size:clamp(18px,2.1vw,25px);line-height:1.28;letter-spacing:-.03em;margin:11px 0}
+.cie-communication-panel-head p{color:#b1c9ce;font-size:11px;line-height:1.7;margin:0 0 17px}
+.cie-communication-panel-head code,.cie-communications-disclosure code{color:#8be3cf;font-size:.95em}
+.cie-communication-order{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;margin:19px 0 13px;border-top:1px solid #42616b;padding-top:15px}
+.cie-communication-order span{display:flex;align-items:center;gap:7px;color:#c6dfdc;font-size:9px;letter-spacing:.04em;font-weight:850}
+.cie-communication-order>span:last-child{color:#f8b486}
+.cie-communication-fields{min-height:230px;display:grid;align-content:start;gap:7px}
+.cie-communication-field{display:grid;gap:7px;background:#18333b;border-left:2px solid #38c7bc;padding:11px 12px;min-width:0}
+.cie-communication-field>div{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;overflow-wrap:anywhere}
+.cie-communication-field code{font:10px/1.4 ui-monospace,monospace;color:#ace7df}
+.cie-communication-field span{font-size:9px;color:#aabfc5}
+.cie-communication-field strong{font-size:11px;color:#f2f7f4;line-height:1.5;font-weight:750;overflow-wrap:anywhere}
+.cie-communication-empty{min-height:180px;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:11px;text-align:center;padding:20px;color:#acc2c7;border:1px dashed #52757a;background:#152d35;border-radius:7px}
+.cie-communication-empty>svg{color:#f28c52}.cie-communication-empty p{font-size:12px;line-height:1.65;max-width:370px;margin:0}
+.cie-communication-empty strong{font-size:13px;color:#e4f3ef}
+.cie-communication-layer{display:grid;gap:8px;margin-top:15px;border:1px solid #6e6b54;background:#292d2a;border-radius:7px;padding:14px 16px}
+.cie-communication-layer>span{display:flex;gap:8px;align-items:center;color:#f5bd8b;font-size:10px;letter-spacing:.07em;font-weight:850}
+.cie-communication-layer strong{font-size:23px;letter-spacing:-.04em;color:#f8e4ca}
+.cie-communication-layer small{font-size:11px;line-height:1.65;color:#c9c7bd}
+.cie-communication-channel-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 13px}
+.cie-communication-channel-tabs button{display:flex;align-items:center;justify-content:center;gap:7px;flex:1;min-width:99px;border:1px solid #50737a;background:#152f36;color:#d4e5e7;border-radius:5px;padding:11px 10px;font-size:10px;font-weight:800}
+.cie-communication-channel-tabs button.is-active{color:#0c1b1d;background:#f28c52;border-color:#f28c52}
+.cie-customer-message{border:1px solid #9c7b5d;border-radius:10px;overflow:hidden;background:#f4f0eb;color:#1d3338;min-height:405px}
+.cie-customer-message-status{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#e4e2dc;padding:12px 16px;border-bottom:1px solid #d4cabe}
+.cie-customer-message-status span{font-size:9px;font-weight:850;letter-spacing:.09em;color:#38575e}
+.cie-customer-message-status strong{font-size:9px;font-weight:850;color:#6b594a;text-align:right}
+.cie-customer-email{padding:clamp(17px,2.3vw,28px);font-family:Arial,Helvetica,sans-serif}
+.cie-customer-email-brand{display:flex;align-items:center;justify-content:space-between;gap:9px;border-bottom:1px solid #cbc3b7;padding-bottom:15px;margin-bottom:17px}
+.cie-customer-email-brand span{font-size:11px;letter-spacing:.08em;font-weight:900;color:#304853}
+.cie-customer-email-brand strong{font-size:10px;color:#786f61}
+.cie-customer-email h4{font-size:clamp(19px,2.5vw,29px);color:#263c45;line-height:1.2;letter-spacing:-.04em;margin:0 0 14px}
+.cie-customer-email>p{font-size:12px;line-height:1.75;color:#3f535a;margin:0 0 15px}
+.cie-customer-email-eta{background:#fff;border-left:4px solid #38a89e;padding:15px 18px;margin:18px 0}
+.cie-customer-email-eta>span{font-size:9px;color:#57717a;font-weight:900;letter-spacing:.1em}
+.cie-customer-email-eta>strong{display:block;font-size:clamp(20px,2.5vw,28px);margin:10px 0;color:#223d46}
+.cie-customer-email-eta dl{display:grid;grid-template-columns:115px minmax(0,1fr);gap:8px;margin:15px 0 0;font-size:11px}
+.cie-customer-email-eta dt{color:#6b7a7e}.cie-customer-email-eta dd{margin:0;color:#354b52;font-weight:800;overflow-wrap:anywhere}
+.cie-customer-email-tracking{display:grid;gap:5px;border:1px solid #d1bdae;background:#faf6ef;padding:14px;margin:15px 0}
+.cie-customer-email-tracking strong{font-size:12px;color:#2c454b}
+.cie-customer-email-tracking span{font-size:11px;color:#627277;line-height:1.5}
+.cie-customer-email .cie-customer-email-fineprint{font-size:10px;line-height:1.7;color:#647579;margin-top:18px}
+.cie-customer-email-missing{font-weight:700;color:#8c604e!important}
+.cie-sms-display{display:grid;align-content:center;gap:18px;padding:28px 20px;min-height:350px;background:linear-gradient(145deg,#f5f2ed,#e9ece9)}
+.cie-sms-display>.cie-sms-sender{font-size:10px;font-weight:850;letter-spacing:.1em;text-align:center;color:#677c80}
+.cie-sms-display p{padding:20px 19px;background:#d9e6dc;color:#244e3e;border-radius:15px 15px 5px 15px;font-size:14px;line-height:1.6;max-width:90%;justify-self:end;margin:0}
+.cie-sms-display small{color:#5a6c70;font-size:10px;text-align:center}
+.cie-communication-waiting{margin:17px;min-height:305px}
+.cie-communication-observations{display:grid;gap:5px;margin-top:13px;border-left:2px solid #f28c52;padding-left:13px}
+.cie-communication-observations span{color:#f3d3b7;font-size:10px;font-weight:850;letter-spacing:.06em}
+.cie-communication-observations small{color:#a6c0c2;font-size:11px;line-height:1.6}
+.cie-communications-disclosure{display:flex;align-items:flex-start;gap:12px;border:1px solid #385c60;border-radius:9px;background:#10242b;padding:16px 18px;margin-top:17px}
+.cie-communications-disclosure svg{flex-shrink:0;color:#38c7bc}
+.cie-communications-disclosure p{font-size:11px;line-height:1.8;color:#bfd2d3;margin:0}
+@media(max-width:1140px){.cie-communications-top,.cie-communications-grid{grid-template-columns:1fr}}
+@media(max-width:830px){.cie-communication-timeline{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.cie-communications{padding:17px}.cie-communication-timeline{grid-template-columns:1fr}.cie-communication-stage{align-items:center}.cie-communication-stage-copy>span{font-size:10px}.cie-communication-channel-tabs button{min-width:0;flex:1}.cie-customer-email-eta dl{grid-template-columns:1fr}.cie-customer-email-brand{align-items:flex-start;flex-direction:column}}

@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   DEMO_ZONES, CARRIER_STATUS_MAP, calculateDemoEta,
-  calculateDemoShipment, formatDemoDate, mapDemoCarrierStatus
+  calculateDemoShipment, formatDemoDate, mapDemoCarrierStatus,
+  DEMO_COMMUNICATION_STAGES, calculateDemoCommunication
 } from '../lib/commerce-integration-demo.mjs';
 
 // These validate ONLY deterministic, public-safe illustrations. They are not
@@ -119,4 +120,69 @@ test('special South Australia schedule remains separate from route-mode calculat
   const result=calculateDemoEta({zoneId:'sa',orderedAt:'2026-11-23T10:00'});
   assert.equal(result.deliveryMode,'special-schedule');
   assert.equal(result.transitReadyISO,null);
+});
+
+test('order-created demo shows no ETA fields or customer notices before Worker save',()=>{
+  const x=calculateDemoCommunication({stage:'order'});
+  assert.equal(x.estimateSaved,false);
+  assert.deepEqual(x.orderMetafields,[]);
+  assert.equal(x.etaNoticeReady,false);
+  assert.equal(x.shippingConfirmationReady,false);
+  assert.equal(x.trackingReference,null);
+  assert.equal(x.smsNoticeReady,false);
+});
+test('Worker order ETA appears as typed Shopify order metafields, not a metaobject',()=>{
+  const x=calculateDemoCommunication({stage:'saved',zoneId:'qld-wed'});
+  const fields=Object.fromEntries(x.orderMetafields.map(item=>[item.key,item]));
+  assert.equal(x.estimateSaved,true);
+  assert.equal(x.eta.deliveryISO,'2026-11-25');
+  assert.equal(fields['custom.estimated_delivery_date_iso'].value,'2026-11-25');
+  assert.equal(fields['custom.estimated_delivery_date_iso'].type,'date');
+  assert.equal(fields['custom.estimated_delivery_date'].type,'single_line_text_field');
+  assert.equal(fields['custom.delivery_zone'].value,x.eta.zoneLabel);
+  assert.equal(fields['custom.delivery_postcode'].value,'DEMO-W');
+  assert.equal(fields['custom.delivery_breakdown'].type,'multi_line_text_field');
+  assert.equal(x.etaNoticeReady,false,'save is not itself an email send');
+});
+test('reported five-minute ETA email and SMS cannot surface a future tracking URL',()=>{
+  const x=calculateDemoCommunication({stage:'eta-notice',trackingReady:true,smsEnabled:true});
+  assert.equal(DEMO_COMMUNICATION_STAGES[2].offset,'T+5 min reported');
+  assert.equal(x.etaNoticeReady,true);
+  assert.equal(x.smsNoticeReady,true);
+  assert.equal(x.trackingReady,false);
+  assert.equal(x.trackingReference,null);
+  assert.equal(x.nativeTrackingNoticeRequested,false);
+  assert.equal(x.shippingConfirmationReady,false);
+});
+test('fulfilment and carrier response can expose tracking but do not prove email receipt',()=>{
+  const x=calculateDemoCommunication({stage:'fulfilled',trackingReady:true});
+  assert.equal(x.shippingConfirmationReady,true);
+  assert.equal(x.trackingReady,true);
+  assert.equal(x.trackingReference,'DEMO-TRACK-041');
+  assert.equal(x.nativeTrackingNoticeRequested,true);
+  assert.equal(x.isIllustrative,true);
+});
+test('missing carrier tracking cannot be fabricated in a shipping confirmation',()=>{
+  const x=calculateDemoCommunication({stage:'fulfilled',trackingReady:false});
+  assert.equal(x.shippingConfirmationReady,true);
+  assert.equal(x.trackingReady,false);
+  assert.equal(x.trackingReference,null);
+  assert.equal(x.nativeTrackingNoticeRequested,false);
+});
+test('failed ETA metafield mutation blocks ETA email and SMS but not independent fulfilment',()=>{
+  const eta=calculateDemoCommunication({stage:'eta-notice',estimateSaved:false});
+  assert.deepEqual(eta.orderMetafields,[]);
+  assert.equal(eta.etaNoticeReady,false);
+  assert.equal(eta.smsNoticeReady,false);
+  const shipped=calculateDemoCommunication({stage:'fulfilled',estimateSaved:false,trackingReady:true});
+  assert.equal(shipped.shippingConfirmationReady,true);
+  assert.equal(shipped.trackingReady,true);
+  assert.deepEqual(shipped.orderMetafields,[]);
+});
+test('SMS channel toggle and invalid stages are handled deliberately',()=>{
+  const x=calculateDemoCommunication({stage:'eta-notice',smsEnabled:false});
+  assert.equal(x.etaNoticeReady,true);
+  assert.equal(x.smsNoticeReady,false);
+  assert.throws(()=>calculateDemoCommunication({stage:'unknown'}),/Unknown demonstration/);
+  assert.throws(()=>calculateDemoCommunication({zoneId:'secret-zone'}),/Unknown demonstration delivery/);
 });
