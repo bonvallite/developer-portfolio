@@ -74,6 +74,14 @@ The [colour guide](./jrv-brand-palette-2026-11-22.md) records the unified obsidi
 
 Do not interpret automated colours as a complete contrast/accessibility certificate, real-user speed, or a substitute for manual visual and 16px/32px favicon checks. External analytics vendor audits, publication rights, and explicit approval to release PR #96 remain open.
 
+## Conversion storytelling, Spend & Save (22 November 2026)
+
+The original interactive reward case study successfully demonstrated fictional shopper, merchant, and Flow boundaries but ended with only a generic email link. An end-of-story panel now connects the customer-facing progress experience to merchant-controlled configuration, checkout shipping responsibility, a safely committed order edit, and conditional customer notification. It offers **two distinct next steps**: a fixed-subject `mailto:hello@jrvallite.com` for project enquiries and `/experience` for hiring. The footer leads to existing homepage contact choices. This is a **navigation and storytelling change**, not a lead-capture form, Shopify theme edit, analytics feature, or actual performance claim.
+
+The styles reuse JRV Ember/Teal values, remain scoped to `/projects/spend-and-save`, and collapse to one column at phone widths. Unit/browser assertions check the three implementation boundaries, fixed links, 44px-plus touch target, fictional-data disclosure, and no horizontal overflow. The existing tests for gift calculation, post-checkout Flow gates and email preview remain intact. The living design guide documents the repeatable conversion-ending pattern.
+
+**Pending:** Validate the exact new GitHub commit, review end-of-page desktop/tablet/mobile screenshots, confirm production-ready preview and source/rights decisions before separately approving draft PR #96. No new enquiries are stored or sent by the site.
+
 ## Preview acceptance gates
 
 - [ ] GitHub Actions are green **on the integration SHA** and actually run all seven browser test commands.

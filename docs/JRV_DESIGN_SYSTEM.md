@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.0, established 22 November 2026  
+**Version:** 1.1, established 22 November 2026; updated with conversion-story guidance  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Draft PR #96. This palette is not on the production `jrvallite.com` website until the PR is separately approved and published.
 
@@ -37,6 +37,7 @@ The `:root` CSS custom properties in `app/globals.css` are the **runtime source 
 5. **Operational status:** Real errors and warnings must remain distinguishable from healthy/success states. Do not recolour an error as positive teal just for uniformity.
 6. **Intentional light contexts:** The standalone editorial storefront is a **light ecommerce design demonstration**, not a dark portfolio page. ATS résumé uses plain white print paper; Classic uses a deep-teal masthead and Ember trim. Keep both PDF and Word downloads readable. Do not recolour user-provided photography.
 7. **Brand mark:** Keep the owner-approved 64×64 indexed `{JRV}` artwork. A palette edit must preserve the approved shape, pixel indices, and corner transparency; verify PNG checksums, 16px/32px appearance, and the rendered icon.
+8. **Case-study endings and conversion:** After demonstrating a technical system, explain what the implementation must validate, then offer a direct project-enquiry path and a separate hiring/experience path. Use route-scoped Ember/Teal controls, visible focus and mobile-sized targets. Do not imply that fictional calculations demonstrate measured commercial results or submit personal details to a new form.
 
 ## Maintained file map
 
@@ -46,7 +47,7 @@ The `:root` CSS custom properties in `app/globals.css` are the **runtime source 
 | Cinematic homepage and shared component accents | `app/cinematic-home.css`, `app/components/commerce-workbench.css`, `app/components/consent-manager.css` |
 | Shopify service routes | `app/components/cinematic-service.css` |
 | Analytics, B2B, and CartonCloud case studies | `app/analytics-lab/*.css`, `app/b2b-modernisation/*.css`, `app/cartoncloud-integration/*.css` |
-| Spend & Save and data pipeline | `app/projects/spend-and-save/*.css`, `app/data-extraction-automation/*` |
+| Spend & Save and data pipeline | `app/projects/spend-and-save/page.tsx`, `app/projects/spend-and-save/*.css`, `app/data-extraction-automation/*`; inspect the project/hiring closing panel |
 | CSS Lab and editorial storefront | `app/css-lab/css-lab.module.css`, `app/editorial-homepage-demo/demo.module.css` |
 | Résumé gallery and exported documents | `app/resume/resume.css`, `app/resume/resume-export.ts` |
 | Favicon and diagrams | `app/icon.svg`, `public/portfolio/eve-curls-markets.svg` |
@@ -70,6 +71,7 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | Date | Version | Decision and affected areas | PR / verification / release |
 | --- | --- | --- | --- |
 | 22 November 2026 | 1.0 | Establish Obsidian / Electric Teal / Ember; document ten canonical CSS tokens, allowed light contexts, favicon and contribution policy. | Draft PR #96, initial palette commit `c6950c48`, responsive CI `ff7e05de`. Not published. |
+| 22 November 2026 | 1.1 | Establish a shared conversion-story ending: scope and evidence boundaries, direct project enquiry, and a separate hiring path. First use on Spend & Save, without new brand tokens or visitor tracking. | Draft PR #96; exact-commit source and responsive browser checks required. Not published. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

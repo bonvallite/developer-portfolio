@@ -1,6 +1,8 @@
 // Source-level regression for the Spend & Save presentation and disclosure.
 // The live simulator is separately exercised in Playwright across viewports.
 // This portfolio never executes merchant order edits or sends customer emails.
+// The final enquiry must explain engineering scope without promising results,
+// and route to a fixed mailto or a public hiring page (never to a data form).
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
@@ -44,4 +46,22 @@ test('Ember and Teal styling is local, responsive and motion-conscious', () => {
   assert.match(styles, /max-width:620px/);
   assert.match(styles, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(styles, /https?:\/\/|url\(/);
+});
+
+test('the final reward case study links the engineering narrative to project and hiring next steps', () => {
+  assert.match(page, /id="reward-enquiry" className="ss-engage"/);
+  assert.match(page, /id="ss-engage-title"/);
+  assert.match(page, /The engineering earns the trust/);
+  assert.match(page, /01 \/ SHOPPER/);
+  assert.match(page, /02 \/ MERCHANT/);
+  assert.match(page, /03 \/ AUTOMATION/);
+  assert.match(page, /mailto:hello@jrvallite\\.com\\?subject=Shopify%20rewards%20and%20Flow%20project%20%7C%20JRV/);
+  assert.match(page, /href="\/experience">Hiring\\? Review experience/);
+  assert.match(page, /No enquiry is collected here/);
+  assert.match(page, /not proof of measured uplift/);
+  assert.doesNotMatch(page, /<form\\b|fetch\\(|sendBeacon\\(/);
+  assert.match(styles, /\\.ss-cinematic \\.ss-engage\\{/);
+  assert.match(styles, /\\.ss-cinematic \\.ss-engage-primary\\{/);
+  assert.match(styles, /grid-template-columns:minmax\\(0,1fr\\)/);
+  assert.match(styles, /\\.ss-engage-actions a\\{width:100%/);
 });

@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Give the Spend & Save engineering story a clear conversion ending
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. Not a Shopify theme change and no production publication.
+- **Files:** `app/projects/spend-and-save/page.tsx`, `app/projects/spend-and-save/spend-save-visual.css`, `tests/spend-save-presentation.test.mjs`, `tests/spend-save-visual-browser-qa.mjs`, `docs/JRV_DESIGN_SYSTEM.md`, `docs/portfolio-release-candidate-2026-11-22.md`, and `CHANGELOG.md`.
+- **What and why:** The original case study taught cart reward progression, metaobject rules, post-checkout Shopify Flow and a hypothetical AOV calculation, but ended with only a generic email link. Added a three-boundary summary and two distinct contact/hiring paths to help technical readers understand how the skill applies to a real role or Shopify project. Primary uses a fixed-subject mailto and secondary links to existing `/experience`. The footer returns to homepage contact choices.
+- **Visual and inline documentation:** Added route-scoped two-column Ember/Teal layout, single-column tablet/mobile adaptation, minimum 48px calls to action, existing focus behaviour and reduced-motion respect. Updated JSX/CSS/test comments. Updated living design-system guidance to version 1.1 and appended its dated history; no changes to canonical colour tokens.
+- **Security and evidence:** Fictional prices and modelled uplift remain clearly disclosed. No customer information, client credentials, form submission, extra tracking, app API requests, fulfilment edits or changes to actual order/email behaviour. Preserved previously approved original-résumé retirement.
+- **Validation:** Reviewed current source comments, reward rules and step-gating tests, the existing 1440px/tablet/390px Playwright flow, the maintained design guide and the exact integration branch head. Added assertions for the closing message, separate project/hiring links, no lead form, touch targets and responsive overflow. Fresh GitHub CI and preview inspection must pass on the new commit before calling visual QA complete.
+- **Release boundary:** PR #96 remains draft and unmerged, and production stays unchanged. Wider GTM/Clarity, source-publication and assistive-technology checks remain open.
+
 ## 2026-11-22 - Establish the permanent JRV design-system document and update contract
 
 - **Repository/branch:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release` (PR #96). No production release or Shopify theme changes.

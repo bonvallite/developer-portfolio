@@ -12,6 +12,9 @@
  * time instead of injecting a large style block after the component's content.
  * spend-save-visual.css overrides legacy warm-gold illustration colours with
  * the JRV teal/ember identity; tested eligibility and fulfilment stay intact.
+ * 22 Nov: an end-of-story conversion panel connects the fictional shopper,
+ * merchant and Flow boundaries to two direct next steps (project or hiring).
+ * No lead form, real integration, visitor-data capture or new tracking calls.
  */
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
@@ -126,7 +129,32 @@ export default function SpendSaveCaseStudy() {
         <p className="ss-note">The illustrated shipping benefit must be enforced at checkout, independently of post-checkout Flow. Product eligibility, order-edit permissions and actual gift references require merchant-side verification.</p>
       </section>
       <section className="ss-opportunity"><div className="ss-section-title"><span>THE COMMERCIAL QUESTION</span><h2>What could an AOV improvement mean?</h2><p>Explore hypothetical outcomes. This is a planning model, not a measured sales result.</p></div><div className="ss-calc"><label>Monthly orders <strong>{orders}</strong><input type="range" min="50" max="1000" step="50" value={orders} onChange={e=>setOrders(Number(e.target.value))}/></label><label>Baseline AOV <strong>{money(baseline)}</strong><input type="range" min="50" max="300" step="10" value={baseline} onChange={e=>setBaseline(Number(e.target.value))}/></label><label>Hypothetical uplift <strong>{uplift}%</strong><input type="range" min="0" max="30" value={uplift} onChange={e=>setUplift(Number(e.target.value))}/></label><div className="ss-results"><div><span>MODELLED AOV</span><strong>{money(baseline*(1+uplift/100))}</strong></div><div><span>MODELLED EXTRA REVENUE / MONTH</span><strong>{money(orders*baseline*uplift/100)}</strong></div></div></div><p className="ss-note">Assumes order volume remains constant. Excludes gift costs, shipping subsidies, discounts, returns and margin. A proper CRO assessment also measures contribution profit.</p></section>
-      <footer className="ss-footer"><Link href="/#work"><ArrowLeft size={16}/> All projects</Link><a href="mailto:hello@jrvallite.com">Discuss a Shopify project <ArrowRight size={16}/></a></footer>
+      {/* An end-of-story decision, not a new checkout or lead-capture workflow.
+          This case study only models rewards; every production dependency still
+          needs merchant-side verification, and emails are opened by the visitor. */}
+      <section id="reward-enquiry" className="ss-engage" aria-labelledby="ss-engage-title">
+        <div className="ss-engage-copy">
+          <span className="ss-engage-kicker">AFTER THE DEMO / NEXT STEP</span>
+          <h2 id="ss-engage-title">The reward is visible. <em>The engineering earns the trust.</em></h2>
+          <p>A progress bar explains the offer, but a dependable rewards programme also needs merchant-owned rules, checkout shipping logic, paid-order validation, safe gift order edits, and a confirmation only after a successful commit.</p>
+          <div className="ss-engage-actions">
+            <a className="ss-engage-primary" href="mailto:hello@jrvallite.com?subject=Shopify%20rewards%20and%20Flow%20project%20%7C%20JRV">Discuss a rewards workflow <ArrowRight size={17} aria-hidden="true"/></a>
+            <Link className="ss-engage-secondary" href="/experience">Hiring? Review experience <ArrowRight size={17} aria-hidden="true"/></Link>
+          </div>
+          <p className="ss-engage-note">Email opens in your own mail application. No enquiry is collected here. The amounts and workflow shown above are fictional, not proof of measured uplift.</p>
+        </div>
+        <aside className="ss-engage-insight" aria-labelledby="ss-engage-insight-title">
+          <span>WHAT THE IMPLEMENTATION MUST CONNECT</span>
+          <h3 id="ss-engage-insight-title">Three boundaries. One clear experience.</h3>
+          <ol>
+            <li><strong>01 / SHOPPER</strong><p>Explain cart eligibility without claiming gifts have already been added.</p></li>
+            <li><strong>02 / MERCHANT</strong><p>Keep reward rules editable and enforce shipping benefits through checkout.</p></li>
+            <li><strong>03 / AUTOMATION</strong><p>Validate paid orders, commit eligible gifts, and then permit confirmation.</p></li>
+          </ol>
+          <small>The studio is an educational simulation. Actual Shopify Flow permissions, duplicate prevention and gift references need implementation-specific testing.</small>
+        </aside>
+      </section>
+      <footer className="ss-footer"><Link href="/#work"><ArrowLeft size={16}/> All projects</Link><Link href="/#contact">More contact options <ArrowRight size={16}/></Link></footer>
     </div>
     {/* Original baseline styles now load from static CSS before first paint. */}
   </main>;
