@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-22 - Full CI and responsive QA passed for draft commerce showcase
+
+- **Validated commit:** `3b70540b592e81a36a321e3b0a7efed8fc720986`; GitHub Actions run `45025686267`, both validation and browser jobs passed.
+- **Files in this documentation-only evidence commit:** `docs/commerce-integration-lab-2026-11-22.md`, `CHANGELOG.md`. No application, Worker or Shopify-theme source changed.
+- **Source, type and build validation:** SEO and public-safety scans, JavaScript and Python tests, TypeScript, Next.js build, and rendered metadata/sitemap checks all passed.
+- **Interactive visual validation:** Existing case-study browser tests (desktop/tablet/mobile), homepage browser tests (1600/1366/768/390 px), and dedicated commerce lab tests (1440/768/390 px) all passed. Twelve screenshot artefacts were uploaded; desktop/mobile review revealed no obvious regression in the JRV colour and layout.
+- **Preview deployment:** Vercel branch deployment at `developer-portfolio-mgxsg2x8j-my-dojo.vercel.app` READY for the validated code commit. The new route remains noindex and outside the public sitemap; both new and original CartonCloud pages are linked only on the draft homepage.
+- **Why:** Close the outstanding test-evidence gap and maintain an accurate audit trail without claiming unperformed production integration tests.
+- **Status:** Draft PR #98; unmerged; production `main` and live `jrvallite.com` unchanged. A future approved release must revisit new-route indexability/canonical, sitemap, and any old-page retirement.
+
+
 ## 2026-11-22 - Enable feature-branch CI trigger for draft commerce lab
 
 - **Branch:** `feature/commerce-integration-lab-20261122`; draft PR #98. Live production and `main` unchanged.

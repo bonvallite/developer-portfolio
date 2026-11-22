@@ -175,3 +175,21 @@ GitHub Actions has not reported a new run on PR #98 since low-level Git-ref comm
 On `feature/commerce-integration-lab-20261122`, run both the normal validation job (SEO source guard, safety scan, Node and Python tests, TypeScript, Next.js build and rendered-SEO checks) and existing Chrome/Playwright browser job (homepage, case-study, commerce-lab and screenshots). The browser-job and step conditions accept both the original pull-request event and this one explicit feature-branch push event.
 
 This is a **preview-only test workflow change**. Do not use GitHub Actions success on another commit as proof of this branch's readiness. It is not permission to merge, publish the draft SEO route or promote any Vercel deployment.
+
+## 22 November 2026: complete validation and screenshot review (pass)
+
+**Validated code commit:** `3b70540b592e81a36a321e3b0a7efed8fc720986`  
+**GitHub Actions:** https://github.com/bonvallite/developer-portfolio/actions/runs/45025686267  
+**Outcome:** Both `validate` and `case-study-browser-qa` jobs **PASSED**.
+
+The previously missing workflow trigger was solved by adding `feature/commerce-integration-lab-20261122` to the `push.branches` list and allowing the full browser job and its homepage and commerce-lab steps to run on that specific feature-branch push. The main branch and original PR-trigger path were retained. The run verified:
+
+- SEO publication and privacy source checks, public-safety scan, Node unit tests, Python tests, TypeScript, Next.js build and rendered metadata/sitemap tests all **passed**.
+- General case-study Chromium interaction checks: **desktop 1440×900, tablet 768×1024, mobile 390×844 passed**.
+- Homepage Chromium checks: **wide 1600×960, desktop 1366×768, tablet 768×1024, mobile 390×844 passed**. The browser tests cover the separate featured system section, links to old and new case studies, unchanged four-mode studio and project cards, navigation, consent behaviour and horizontal layout.
+- Dedicated commerce-engineering browser checks: **desktop 1440×900, tablet 768×1024, mobile 390×844 passed**. Verified fictional last-mile zone comparisons, shipping and delivery estimations, calculation resets, blocked webhook authentication, shipping metadata, notification request semantics, OAuth/Workers KV stages and public-safe code explorer behaviour.
+- Screenshot artefacts uploaded in one `case-study-browser-qa` archive (12 PNGs across homepage, general case studies and commerce lab; about 25 MB compressed). Reviewed desktop and mobile image contact sheets. Consistent JRV obsidian/teal/ember styling; no obvious layout regression. The preview includes the expected consent panel on first visit.
+- Vercel Next.js feature-branch deployment for the verified commit is **READY** at `https://developer-portfolio-mgxsg2x8j-my-dojo.vercel.app/`.
+- Authenticated HTTP verification for the immediately preceding application commit additionally confirmed the homepage and both case studies return 200, the new route serves `noindex,nofollow`, and the 22-entry sitemap excludes it while retaining the earlier case study.
+
+**Release decision:** This is a successfully tested **draft preview**, not production. PR #98 remains unmerged. No changes to `jrvallite.com`, the private Cloudflare Worker, Shopify theme, CartonCloud or customer records. Owner may separately approve a production publication after checking preview and choosing when to remove noindex and add the new route to the sitemap. A successful synthetic demo does not establish live provider delivery guarantees.
