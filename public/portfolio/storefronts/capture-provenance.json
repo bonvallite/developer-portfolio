@@ -1,0 +1,197 @@
+{
+  "sourceRun": 44490966868,
+  "captured": "2026-11-19",
+  "source": "Public homepages; self-reported work, not endorsements",
+  "excluded": "axlrodd-desktop (incomplete screenshot)",
+  "assets": [
+    {
+      "slug": "peter-augustus",
+      "device": "desktop",
+      "name": "Peter Augustus",
+      "filename": "peter-augustus-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:06.176Z",
+      "size": 12942,
+      "sha256": "aadd9adf802d3b6c9457fc266c56372c53479fab684ccff650562b78b437473e"
+    },
+    {
+      "slug": "peter-augustus",
+      "device": "mobile",
+      "name": "Peter Augustus",
+      "filename": "peter-augustus-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:09.107Z",
+      "size": 5032,
+      "sha256": "cbbd732d27029f6e3d6f6036bd6d295e1ecb31e16ecc805a4b2909b00c70e32a"
+    },
+    {
+      "slug": "poseidon-animal-health",
+      "device": "desktop",
+      "name": "Poseidon Animal Health",
+      "filename": "poseidon-animal-health-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:11.848Z",
+      "size": 17422,
+      "sha256": "06214b0d8924388e92d263de08d441a1207aada12e37872af57fce327dbbfc44"
+    },
+    {
+      "slug": "poseidon-animal-health",
+      "device": "mobile",
+      "name": "Poseidon Animal Health",
+      "filename": "poseidon-animal-health-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:15.040Z",
+      "size": 9316,
+      "sha256": "f93d6331f8811a452ec2906d9de928d17ff91dfaf1e9a3a7717bb99d533d317e"
+    },
+    {
+      "slug": "eve-curls",
+      "device": "desktop",
+      "name": "Eve Curls",
+      "filename": "eve-curls-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:17.931Z",
+      "size": 20026,
+      "sha256": "ebf75c2303326d6239f20512c62e9c2ebd1a8cdbe698a818d23ae30985656024"
+    },
+    {
+      "slug": "eve-curls",
+      "device": "mobile",
+      "name": "Eve Curls",
+      "filename": "eve-curls-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:21.178Z",
+      "size": 10574,
+      "sha256": "095cc9eb87598a6c2b097c7554e0c897d0c79a808d63a16683011ffe03546dd2"
+    },
+    {
+      "slug": "jace-industries",
+      "device": "desktop",
+      "name": "Jace Industries",
+      "filename": "jace-industries-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:24.088Z",
+      "size": 21754,
+      "sha256": "378eafa183eeb5d00e69e0286045850dc3e0b87b2dfb748583b1d878738c9969"
+    },
+    {
+      "slug": "jace-industries",
+      "device": "mobile",
+      "name": "Jace Industries",
+      "filename": "jace-industries-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:26.620Z",
+      "size": 10594,
+      "sha256": "75dd4a2b3bf3ada1f083f83a8b57c9a8d8b1e9faaf22fed7185b91b9bf003779"
+    },
+    {
+      "slug": "colossal-diamond-tools",
+      "device": "desktop",
+      "name": "Colossal Diamond Tools",
+      "filename": "colossal-diamond-tools-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:29.224Z",
+      "size": 12070,
+      "sha256": "c2bfa756185ab497b87a20bc98b0195785ceb7072632d93b1561ee7ca6ec739d"
+    },
+    {
+      "slug": "colossal-diamond-tools",
+      "device": "mobile",
+      "name": "Colossal Diamond Tools",
+      "filename": "colossal-diamond-tools-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:31.945Z",
+      "size": 7760,
+      "sha256": "e0cbf64db18a365a54b308888c05211077258ca8f537ebe9ccd4d7aeef2c736b"
+    },
+    {
+      "slug": "rene-ruiz-collection",
+      "device": "desktop",
+      "name": "Rene Ruiz Collection",
+      "filename": "rene-ruiz-collection-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:34.277Z",
+      "size": 11560,
+      "sha256": "9b91699196624211182c4ddbf87fd1b6157fbe374a30d07787d113a495fe1e15"
+    },
+    {
+      "slug": "rene-ruiz-collection",
+      "device": "mobile",
+      "name": "Rene Ruiz Collection",
+      "filename": "rene-ruiz-collection-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:36.644Z",
+      "size": 6614,
+      "sha256": "29327ca2c1c1b09e22185cf2743b26e1d4fe8611597ccceac7aac85573e903b4"
+    },
+    {
+      "slug": "urban-august",
+      "device": "desktop",
+      "name": "Urban August",
+      "filename": "urban-august-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:38.951Z",
+      "size": 14720,
+      "sha256": "7de1334ad975375838b93c8dce43702236c5ee74adef0cccf237cad53e5404aa"
+    },
+    {
+      "slug": "urban-august",
+      "device": "mobile",
+      "name": "Urban August",
+      "filename": "urban-august-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:41.776Z",
+      "size": 6542,
+      "sha256": "f513aff6499217b9b1bb2198aee3aa6ee8b3660d3c883c6752fa48e89cef7d42"
+    },
+    {
+      "slug": "warehouse-lighting",
+      "device": "desktop",
+      "name": "Warehouse-Lighting",
+      "filename": "warehouse-lighting-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:44.311Z",
+      "size": 30574,
+      "sha256": "19d67eeac368c024524370469307f2ba8ea53e7385a59d33aec85fb74107dee8"
+    },
+    {
+      "slug": "warehouse-lighting",
+      "device": "mobile",
+      "name": "Warehouse-Lighting",
+      "filename": "warehouse-lighting-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:47.037Z",
+      "size": 14498,
+      "sha256": "e25681437af3dda57f3c7e672ff4caebe1ac9872aafd2b5e9cce7bb42b1a2042"
+    },
+    {
+      "slug": "osoyoo",
+      "device": "desktop",
+      "name": "OSOYOO",
+      "filename": "osoyoo-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:49.703Z",
+      "size": 24842,
+      "sha256": "5545c4cba9e0fa2d746082ed04938fc1b4a0f8a846ca59a12ca51aba576ee690"
+    },
+    {
+      "slug": "osoyoo",
+      "device": "mobile",
+      "name": "OSOYOO",
+      "filename": "osoyoo-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:52.004Z",
+      "size": 16070,
+      "sha256": "646757e3a3475629a7a2629db3f6d61707ae5226e299cba3b0097074f80b9475"
+    },
+    {
+      "slug": "axlrodd",
+      "device": "mobile",
+      "name": "Axlrodd",
+      "filename": "axlrodd-mobile.webp",
+      "capturedAt": "2026-11-19T08:59:56.500Z",
+      "size": 5186,
+      "sha256": "5d089951879105800f3f544401cf0850b913695cc678f76c531c9b94a2cfee25"
+    },
+    {
+      "slug": "tronus-footwear",
+      "device": "desktop",
+      "name": "Tronus Footwear",
+      "filename": "tronus-footwear-desktop.webp",
+      "capturedAt": "2026-11-19T08:59:58.728Z",
+      "size": 11616,
+      "sha256": "cd8c008ade946ccdc15b6866e825719efcf410e7294c0aeafc87bdd6456df7e0"
+    },
+    {
+      "slug": "tronus-footwear",
+      "device": "mobile",
+      "name": "Tronus Footwear",
+      "filename": "tronus-footwear-mobile.webp",
+      "capturedAt": "2026-11-19T09:00:01.856Z",
+      "size": 9012,
+      "sha256": "5a38f635e5608213ab1c7c7c62136a16bf5c78c25f87b262c3675834d26fb2ed"
+    }
+  ]
+}
