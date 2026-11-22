@@ -57,6 +57,15 @@ for (const check of checks) {
   descriptions.add(description);
 }
 
+// Branded Open Graph preview is generated locally using the maintained JRV palette.
+const socialHtml = await readPage('/');
+const socialUrl = attr(findTag(socialHtml, 'meta', 'property', 'og:image') || '', 'content');
+assert.match(socialUrl, /^https:\/\/www\.jrvallite\.com\/opengraph-image(?:\?.*)?$/,
+  'Homepage must expose a first-party Open Graph social image');
+const socialCard = await fetch(base + '/opengraph-image');
+assert.equal(socialCard.status, 200, 'Generated Open Graph social card route');
+assert.match(socialCard.headers.get('content-type') || '', /^image\/png/i,
+  'Generated social card must return a PNG');
 const xml = await readPage('/sitemap.xml');
 for (const check of checks) {
   assert.ok(xml.includes('<loc>https://www.jrvallite.com' + check.path + '</loc>'),

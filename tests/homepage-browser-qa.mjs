@@ -3,7 +3,7 @@
 // Screenshots are review artefacts, not evidence of real performance metrics.
 // The project studio must genuinely respond to visitor actions at every size.
 // Restored website previews are selected without triggering live-site navigation
-// or requiring a third-party thumbnail to load successfully.
+// or making third-party screenshot requests.
 // The privacy preferences control must have a 44px touch target and report its
 // expanded state; reopening/rejecting must not enable analytics.
 // The goal-led hero routes are native links to existing contact and experience
@@ -38,11 +38,13 @@ try {
     const page = await context.newPage();
     const failures = [];
     const trackingRequests = [];
+    const screenshotServiceRequests = [];
     page.on('pageerror', err => failures.push(err.message));
     page.on('request', req => {
       if (/googletagmanager\.com|clarity\.ms\/tag|vercel-insights\.com|\/_vercel\/insights/.test(req.url())) {
         trackingRequests.push(req.url());
       }
+      if (/s\.wordpress\.com\/mshots|mshots\/v1/i.test(req.url())) screenshotServiceRequests.push(req.url());
     });
 
     const response = await page.goto(baseURL + '/', { waitUntil: 'domcontentloaded', timeout: 45000 });
@@ -60,7 +62,7 @@ try {
     assert.equal(await systems.locator('.jrv2-flagship-node').count(), 3,
       size.name + ': Shopify / Worker / CartonCloud conceptual diagram');
     assert.equal(await systems.getByRole('link', { name: /Explore the interactive case study/ }).getAttribute('href'),
-      '/projects/commerce-integration-engineering', 'New lab CTA points to draft route');
+      '/projects/commerce-integration-engineering', 'Published lab CTA points to engineering route');
     assert.equal(await systems.getByRole('link', { name: /Earlier integration case study/ }).getAttribute('href'),
       '/cartoncloud-integration', 'Legacy case study remains directly accessible');
     assert.equal(await page.locator('.jrv2-case a[href="/cartoncloud-integration"]').count(), 1,
@@ -89,6 +91,15 @@ try {
     assert.ok(siteTarget && siteTarget.height >= 44,
       size.name + ': published website CTA provides an accessible touch target');
     assert.ok((await liveSites.first().getAttribute('href'))?.startsWith('https://www.peteraugustus.com.au/'));
+    await showcase.getByRole('button', { name: 'Show Axlrodd' }).click();
+    assert.equal(await showcase.locator('.storefront-device.desktop .storefront-shot-unavailable').count(), 1,
+      size.name + ': excluded desktop capture shows an honest fallback');
+    assert.equal(await showcase.locator('.storefront-device.mobile img').count(), 1,
+      size.name + ': mobile preview remains a local WebP');
+    assert.equal(await showcase.locator('.storefront-device.desktop .storefront-shot-unavailable a').getAttribute('href'),
+      'https://axlrodd.com/', size.name + ': fallback links to the original site');
+    await showcase.getByRole('button', { name: 'Show Peter Augustus' }).click();
+    assert.deepEqual(screenshotServiceRequests, [], size.name + ': no third-party screenshot requests');
 
     assert.equal(await page.locator('.jrv2-service').count(), 4, 'Four linked services');
     assert.ok(await page.locator('.jrv2-hero-actions a').count() >= 2, 'Prominent hero actions');
