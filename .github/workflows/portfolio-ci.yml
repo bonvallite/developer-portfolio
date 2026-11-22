@@ -1,7 +1,10 @@
 name: Portfolio checks
 on:
   push:
-    branches: [main]
+    # The commerce showcase draft needs a direct push trigger because
+    # Git Data API commits have not reliably raised PR synchronize events.
+    # Keep this scope exact: no other feature branch or production deploy.
+    branches: [main, feature/commerce-integration-lab-20261122]
   pull_request:
 permissions:
   contents: read
@@ -42,7 +45,9 @@ jobs:
     # Run browser QA for reviewed case studies, cinematic projects, privacy
     # changes, content-audit fixes and interactive homepage/case-study PRs.
     # Unit/SEO/safety checks still run for all pull requests.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || github.head_ref == 'feature/commerce-integration-lab-20261122')
+    # Run the same browser suite on ordinary PRs and the one approved
+    # feature-branch push; Vercel deploys only a preview for this branch.
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/feature/commerce-integration-lab-20261122') || (github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || github.head_ref == 'feature/commerce-integration-lab-20261122'))
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -74,7 +79,7 @@ jobs:
       # The draft systems-lab branch also changes the homepage, so exercise
       # its responsive layout, original four modes, consent and both case links.
       - name: Cinematic homepage layout, privacy and conversion QA
-        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || github.head_ref == 'feature/commerce-integration-lab-20261122'
+        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || github.head_ref == 'feature/commerce-integration-lab-20261122' || (github.event_name == 'push' && github.ref == 'refs/heads/feature/commerce-integration-lab-20261122')
         run: node tests/homepage-browser-qa.mjs
       # The Spend & Save case study connects shopper, merchant, post-checkout
       # Flow commit and notification states through a safe architecture map.
@@ -84,7 +89,7 @@ jobs:
       # New serverless commerce engineering lab must remain completely local,
       # accessible, responsive, and independent of production integrations.
       - name: Commerce integration lab interactive browser QA
-        if: github.head_ref == 'feature/commerce-integration-lab-20261122'
+        if: github.head_ref == 'feature/commerce-integration-lab-20261122' || (github.event_name == 'push' && github.ref == 'refs/heads/feature/commerce-integration-lab-20261122')
         run: node tests/commerce-integration-browser-qa.mjs
       # Check consent rejection, acceptance and withdrawal on real browser links
       # using only fictional text and no external analytics/lead submissions.
