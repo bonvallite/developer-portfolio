@@ -28,7 +28,7 @@ export default function PrivacyPage() {
     <p>Please do not submit customer information, passwords, confidential configurations or sensitive client data through an initial enquiry.</p>
 
     <h2>Links, public work and security</h2>
-    <p>Public examples distinguish documented engineering work from fictional interactive demonstrations. Links to external profiles, source repositories and storefront references open third-party websites, where those services control their own privacy practices. The website sends a restrictive no-referrer policy.</p>
+    <p>Public examples distinguish documented engineering work from fictional interactive demonstrations. Homepage previews load locally hosted screenshots only, and unavailable images show live-site links instead of requesting a third-party screenshot service. Following external profiles, source repositories or storefront links opens a third-party service with its own privacy practices. The portfolio sends a restrictive no-referrer policy.</p>
     <p>This notice does not certify zero-risk privacy or confidentiality. Source files and historic versions in a public repository are separate from the production website, and an indexing request cannot erase copies or search caches.</p>
 
     <h2>Questions and requests</h2>

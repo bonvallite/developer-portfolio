@@ -35,11 +35,13 @@ try {
     const page = await context.newPage();
     const failures = [];
     const trackingRequests = [];
+    const screenshotServiceRequests = [];
     page.on('pageerror', err => failures.push(err.message));
     page.on('request', req => {
       if (/googletagmanager\.com|clarity\.ms\/tag|vercel-insights\.com|\/_vercel\/insights/.test(req.url())) {
         trackingRequests.push(req.url());
       }
+      if (/s\.wordpress\.com\/mshots|mshots\/v1/i.test(req.url())) screenshotServiceRequests.push(req.url());
     });
 
     const response = await page.goto(baseURL + '/', { waitUntil: 'domcontentloaded', timeout: 45000 });
@@ -65,6 +67,15 @@ try {
     assert.ok(siteTarget && siteTarget.height >= 44,
       size.name + ': published website CTA provides an accessible touch target');
     assert.ok((await liveSites.first().getAttribute('href'))?.startsWith('https://www.peteraugustus.com.au/'));
+    await showcase.getByRole('button', { name: 'Show Axlrodd' }).click();
+    assert.equal(await showcase.locator('.storefront-device.desktop .storefront-shot-unavailable').count(), 1,
+      size.name + ': excluded desktop capture shows an honest fallback');
+    assert.equal(await showcase.locator('.storefront-device.mobile img').count(), 1,
+      size.name + ': mobile preview remains a local WebP');
+    assert.equal(await showcase.locator('.storefront-device.desktop .storefront-shot-unavailable a').getAttribute('href'),
+      'https://axlrodd.com/', size.name + ': fallback links to the original site');
+    await showcase.getByRole('button', { name: 'Show Peter Augustus' }).click();
+    assert.deepEqual(screenshotServiceRequests, [], size.name + ': no third-party screenshot requests');
 
     assert.equal(await page.locator('.jrv2-service').count(), 4, 'Four linked services');
     assert.ok(await page.locator('.jrv2-hero-actions a').count() >= 2, 'Prominent hero actions');

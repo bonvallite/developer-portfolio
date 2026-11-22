@@ -157,7 +157,7 @@ test('published storefronts are visible on the cinematic homepage and shared wit
   assert.ok(home.includes('href="#websites"'));
   assert.ok(home.includes('All 11 websites'));
   assert.ok(home.includes('Homepage previews were captured on 19 November 2026'));
-  assert.ok(home.includes('locally hosted images with cached-thumbnail and live-site fallbacks'));
+  assert.ok(home.includes('locally hosted captures only, with direct live-site links'));
   assert.doesNotMatch(home, /Previews are public snapshots from an independent service/);
   assert.ok(list.includes('21 locally hosted, checksum-verified'));
   assert.ok(home.includes('href="/experience#storefronts"'));
@@ -167,7 +167,10 @@ test('published storefronts are visible on the cinematic homepage and shared wit
   assert.ok(gallery.includes('StorefrontPreview name={name} url={url}'));
   assert.ok(image.includes('loading="lazy"') && image.includes('onError={recoverImage}') && image.includes('approvedStaticStorefrontShot'));
   assert.ok(image.includes('View live site'), 'Screenshot errors must preserve navigation');
-  assert.ok(image.includes("previous === 'static' ? 'remote' : 'failed'"), 'Local to cached to live-site fallback');
+  assert.ok(image.includes('setUnavailable(true)'), 'Missing or failed image must show live-site fallback');
+  assert.ok(image.includes('preview not archived'), 'Missing capture gets an honest label');
+  assert.doesNotMatch(image, /mshots|wordpress\.com/i, 'No third-party screenshot network calls');
+  assert.doesNotMatch(gallery, /mshots|wordpress\.com/i, 'Gallery must not call external screenshot service');
   assert.ok(list.includes("slug === 'axlrodd' && device === 'desktop'"), 'Exclude incomplete captured desktop view');
   assert.ok(css.includes('.jrv2-websites-links{'));
   assert.ok(css.includes('grid-template-columns:minmax(0,1fr)'));
