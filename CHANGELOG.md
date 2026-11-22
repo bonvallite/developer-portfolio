@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-22 - Move Spend & Save baseline CSS out of client page for stable first paint
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release` PR #96. No Shopify theme edits or production deployment.
+- **Files:** `app/projects/spend-and-save/page.tsx`, new `app/projects/spend-and-save/spend-save-base.css`, `app/projects/spend-and-save/spend-save-visual.css`, new `tests/spend-save-css-loading.test.mjs`, `docs/portfolio-release-candidate-2026-11-22.md`, and `CHANGELOG.md`.
+- **What and why:** Synthetic Chromium layout-shift readings flagged Spend & Save (desktop 0.5883, phone 0.2308). A long globally applied layout stylesheet was previously rendered after the content inside a client component. Move its exact declarations to a static, earlier CSS import and retain the existing JRV visual overrides. This aims to prevent late baseline-style application and improve first-paint stability without touching the reward logic.
+- **Inline documentation:** Updated component header and import note, baseline CSS header, visual override comments, and source regression tests. The release guide records the measured baseline and caveats.
+- **Validation:** Inspected the original page JSX, inline CSS block, route visual styles, reward/Flow test coverage and exact integration branch head. Preserved the complete baseline CSS verbatim and verified there was no dynamic interpolation; added assertions for import order, no legacy global JSX style block and unchanged simulated reward steps. Fresh Next build, GitHub browser QA, and synthetic desktop/mobile layout-shift comparison are required before declaring a fix.
+- **Release:** Draft PR only, no production merge/alias. Real-user CLS, code rights, public résumé/analytics decisions and a manual assistive-technology check are still outstanding.
+
 ## 2026-11-22 - Add reproducible local navigation report and disclose publication gates
 
 - **Repository and branch:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. No Shopify theme changes, Vercel promotion, or production publication.

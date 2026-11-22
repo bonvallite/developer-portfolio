@@ -4,7 +4,9 @@
  * simulated shopper, merchant and Flow screens into the JRV Ember & Teal
  * portfolio language without changing reward calculations or order states.
  * All diagrams and code samples remain fictional and client-side only.
- * Kept separate from the older inline demonstration styles intentionally.
+ * Loaded after spend-save-base.css. The baseline declarations are now static
+ * rather than injected at the end of the client page; keep the import order
+ * to avoid an unstyled initial layout and unnecessary layout movement.
  */
 .ss-page.ss-cinematic{
   --ss-ink:#0b1419;--ss-deep:#10232c;--ss-panel:#142b34;

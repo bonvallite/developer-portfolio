@@ -43,6 +43,14 @@ Measurements include navigation response time, DOMContentLoaded, load-event dura
 
 No content, customer records, business credentials, résumé files, or analytics vendor settings were changed as part of these reviews.
 
+## Spend & Save first-paint CSS correction (22 November 2026)
+
+The first synthetic Chrome lab report for the integrated candidate recorded an **initial layout-shift observation of 0.5883 at 1366px and 0.2308 at 390px** on `/projects/spend-and-save`, while the other four tested routes recorded zero. These are one-run, unthrottled, local lab observations, not field CLS or Core Web Vitals.
+
+The Spend & Save page still emitted a large legacy `<style jsx global>` block **after all its page content** inside a client component. That creates an avoidable risk of initial content painting before the final layout CSS takes effect. The complete legacy CSS was moved **unchanged** into `spend-save-base.css`, imported before `spend-save-visual.css`. Product data, reward calculations, shopper/merchant/engineering tabs, Flow sequencing, simulated order edits and email previews were not changed. Route comments and a new source regression test explain and protect the order.
+
+The next exact-commit GitHub performance lab must compare the desktop/mobile shift readings with the original 0.5883/0.2308 values. If they remain elevated, investigate other first-render changes and collect element-level layout-shift attribution. **Do not claim that the issue is resolved based on a CSS refactor alone.** The final Vercel preview and standard browser QA must also pass. Do not confuse loopback timing with live-site speeds.
+
 ## Preview acceptance gates
 
 - [ ] GitHub Actions are green **on the integration SHA** and actually run all seven browser test commands.
