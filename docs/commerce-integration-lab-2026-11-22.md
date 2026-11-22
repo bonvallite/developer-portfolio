@@ -151,3 +151,19 @@ Inspected current branch sources and confirmed homepage has the new featured sec
 **Corrections for this QA commit:** Updated the new route's inline documentation to reflect the already-approved preview homepage link without implying permission to index or publish. Extended `tests/seo-rendered-metadata.mjs` to assert the rendered homepage contains the featured section and both case-study links, that the original four cards remain intact, that the draft engineering page emits a `noindex` robots meta tag and that its URL is absent from the XML sitemap.
 
 **Unverified items / blockers:** GitHub Actions did not return a run for the previous integrated homepage commit through the available connector. Closing and reopening Draft PR #98 did not produce a new run in the visible results. The Vercel-protected preview's authenticated content-fetch operation timed out. These missing results do not justify claiming that the new Playwright desktop/tablet/mobile interaction suite, accessibility audit, or rendered SEO checks have passed at this commit. No production merge is authorised.
+
+## 22 November 2026: authenticated preview HTTP checks
+
+After the prior protected-page fetch timed out, subsequent Vercel-authenticated requests succeeded. Verified on deployment `developer-portfolio-5mzmlinxh-my-dojo.vercel.app` at source commit `814d802`:
+
+| Preview route | HTTP | Verified content and metadata |
+|---|---|---|
+| `/` | 200 | One featured `#systems-lab` section; navigation and CTAs to new engineering page and original CartonCloud page; all four original project cards remain; homepage is indexable |
+| `/projects/commerce-integration-engineering` | 200 | All major interactive lab sections appear in server HTML; `noindex,nofollow`; canonical `https://www.jrvallite.com/projects/commerce-integration-engineering` |
+| `/cartoncloud-integration` | 200 | Original case study and own canonical remain; existing page is indexable |
+| `/sitemap.xml` | 200 | 22 routes; contains original case study; **excludes** draft engineering page |
+| `/robots.txt` | 200 | Published sitemap and existing robot rules present |
+
+Preview response headers include `x-frame-options: DENY`, `x-content-type-options: nosniff` and `referrer-policy: no-referrer` on the new case study. These are HTTP-level checks only: JavaScript hydration, interactions, screenshots, Core Web Vitals, WCAG and end-to-end provider behaviour require separate evidence.
+
+**GitHub Actions remediation attempt:** The final documentation commit was made through the GitHub Contents API rather than a low-level ref update, to test whether the normal push event restores automated PR checks. The result must be verified from GitHub Actions; a Vercel build alone does not imply browser QA passed. The PR remains draft and `main` and production are untouched.
