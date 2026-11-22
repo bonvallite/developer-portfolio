@@ -271,6 +271,13 @@
 .cie-communication-controls>label:first-child{font-size:11px;font-weight:850;color:#d2e9e7}
 .cie-communication-controls select{color:#ebf6f4;background:#10232b;border:1px solid #5f7981;border-radius:5px;padding:11px 12px;width:100%;font-size:12px}
 .cie-communication-controls .cie-check{font-size:11px;line-height:1.5;align-items:flex-start}
+/* 23 Nov 2026: the recipient choice is automatic, not an independently
+   enabled SMS marketing channel. The two contact checkboxes model Shopify's
+   merchant-reported email-first/SMS-if-no-email notification fallback. */
+.cie-communication-route{display:grid;gap:6px;border-left:3px solid #38c7bc;background:#18343b;border-radius:5px;padding:12px 13px}
+.cie-communication-route strong{color:#ebf7f3;font-size:11px;line-height:1.4}
+.cie-communication-route small{color:#bdd2d1;font-size:10px;line-height:1.6}
+
 .cie-communication-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:19px}
 .cie-communication-stage{display:flex;align-items:flex-start;gap:10px;background:#10232b;border:1px solid #45636a;color:#e9f2f1;border-radius:9px;padding:16px 11px;min-width:0;text-align:left}
 .cie-communication-stage.is-active{background:#203d40;border-color:#f28c52;box-shadow:inset 0 3px #f28c52}

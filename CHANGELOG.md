@@ -1,5 +1,17 @@
 # Portfolio changelog
 
+## 2026-11-23 - Correct Shopify native email/SMS fallback in post-order ETA demo
+
+- **Branch/PR:** `integration/commerce-systems-latest-main-20261122`, Draft PR #100; no merge or live `jrvallite.com` deployment.
+- **Files:** `app/projects/commerce-integration-engineering/CustomerCommunicationLab.tsx`, `page.tsx`, `CodeExplorer.tsx`, `engineering-lab.css`, `app/components/FeaturedSystemsLab.tsx`, `lib/commerce-integration-demo.{mjs,d.mts}`, `tests/commerce-integration-demo.test.mjs`, `tests/commerce-integration-browser-qa.mjs`, `docs/commerce-integration-lab-2026-11-22.md`, `docs/JRV_DESIGN_SYSTEM.md`, `CHANGELOG.md`.
+- **User clarification:** The store uses Shopify to send customer notifications: **when an order has an email address, use email; if no email exists but a mobile number is available, Shopify sends SMS instead**. Do not involve Klaviyo. The original demo wrongly portrayed SMS as a separately enabled, parallel channel; remove that interaction and correct all current documentation.
+- **What changed:** Demo controls now select whether an order has an email address and/or a mobile number. The derived recipient route is `email`, `sms` (only when email is absent), or `none`. Two message-stage tabs show either the email or SMS automatically; email has priority when both contacts exist, and no recipient or message is assumed when both are missing. Preserve the four event stages, typed `custom.*` Shopify order metafields, five-minute *reported* ETA notice and later fulfilment/tracking. New code explorer explicitly models this Shopify routing rather than a separate SMS provider.
+- **Accuracy boundaries:** Worker source verifies ETA calculation, typed Shopify metafield writes and later fulfilment/tracking update API calls. The merchant identifies Shopify's notification channel fallback. The exact five-minute notification configuration, template, opt-in and actual delivery receipts remain uninspected; do not claim the Worker itself sends SMS or email or that Shopify delivered a notification. No external messaging system is connected or called.
+- **Testing:** Replaced unit and real-browser selectors to assert email priority, SMS-only-when-no-email, no contact destination, missing tracking, failed ETA persistence and the original source-safe code demo. New exact-head CI and Vercel preview verification **pending**; previous successful runs certify earlier code only.
+- **UI/accessibility:** Existing JRV Obsidian/Teal/Ember palette, responsive timeline, email and SMS mock-ups preserved. Added scoped status styling with live channel-selection feedback; no root token, icon, gallery, sitemap or SEO policy change.
+- **Release:** Draft-only; no Shopify theme, Worker, fulfilment, order, Shopify notification settings, SMS, Klaviyo or production website was changed.
+
+
 ## 2026-11-22 - Fix ambiguous SMS browser selector in new notification demo
 
 - **Branch:** `integration/commerce-systems-latest-main-20261122`, Draft PR #100; published `main` and `jrvallite.com` unchanged.

@@ -13,8 +13,9 @@ import './featured-systems-lab.css';
  * write back tracking, fulfilment events and order metafields. Customer email
  * is Shopify-native and not guaranteed merely by a notification request.
  * Order-created ETA metafields and later tracking calls are verified Worker
- * paths. The five-minute email and SMS channels are merchant-reported
- * external notification configuration and modelled only as fictional UI.
+ * paths. Merchant reports Shopify sends email when available and SMS only
+ * if no email address is present (but a mobile number is). The five-minute
+ * notification delay is store-configured, not a Worker sending function.
  * No provider network requests, customer records or production data.
  */
 export default function FeaturedSystemsLab() {
@@ -26,7 +27,7 @@ export default function FeaturedSystemsLab() {
             <span className="jrv2-overline">FEATURED ENGINEERING / CUSTOM SHOPIFY APP</span>
             <h2 id="jrv2-flagship-title">Beyond the storefront.<br/><em>Into the systems.</em></h2>
             <p className="jrv2-flagship-lead">A custom Shopify app, a Cloudflare Workers backend and an event-driven delivery workflow, connecting orders, fulfilment and customer updates.</p>
-            <p className="jrv2-flagship-support">Explore the architecture, location-aware last-mile rules, Workers KV authentication, order ETA metafields, and the reported five-minute email/SMS journey before later tracking updates.</p>
+            <p className="jrv2-flagship-support">Explore the architecture, location-aware last-mile rules, Workers KV authentication, order ETA metafields, and the reported five-minute Shopify email-to-SMS fallback before later tracking updates.</p>
             <div className="jrv2-flagship-tech" aria-label="Featured project technologies">
               <span>SHOPIFY APP</span><span>WORKERS KV</span><span>REST + GRAPHQL</span><span>ETA &amp; NOTIFICATIONS</span>
             </div>

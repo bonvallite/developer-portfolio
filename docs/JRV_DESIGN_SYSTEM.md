@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.9 (draft customer communication reconstruction), established 22 November 2026; version 1.6 remains the published production baseline  
+**Version:** 1.10 (draft Shopify customer channel fallback), established 23 November 2026; version 1.6 remains the published production baseline  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Published on `jrvallite.com` through PR #96 on 22 November 2026. GitHub merge `2c95f43c`; Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY, with both `www.jrvallite.com` and `jrvallite.com` aliases assigned. Code-level safety and CI checks passed; independent client image rights, third-party analytics settings, field performance and spoken screen-reader behaviour were not certified.
 
@@ -91,6 +91,8 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | 22 November 2026 | 1.8 | Clarify the draft systems page's environment-aware publication rule: Vercel previews remain noindex and omit its sitemap URL; a separately approved production merge enables a self-canonical indexable page without retiring the original integration case study. No palette or component styling changed. | Draft PR #100 SEO staging; GitHub Actions `45028014444` and `45028021908` passed at `8634961`; preview HTTP confirmed noindex and sitemap exclusion. No production release. |
 
 | 22 November 2026 | 1.9 | Add a dedicated Worker ETA → typed Shopify order metafields → reported five-minute customer email/SMS → later fulfilment/tracking presentation to the draft engineering case study. The actual five-minute schedule and SMS provider are not verified in Worker source, and sample messages use fictional values only. Retain the canonical JRV Obsidian/Teal/Ember palette with a pale email preview and mobile-stacked layout; no new global tokens or favicon changes. | Draft PR #100; `aecd1ff` passed complete GitHub Actions run `45029976900`, including 1440/768/390 responsive interaction checks and desktop/mobile screenshot review. No production release. |
+
+| 23 November 2026 | 1.10 | Correct the customer notification illustration: the merchant reports Shopify uses email when present, otherwise SMS if a mobile number is available and no email exists. Remove the independent SMS toggle and show recipient-channel fallback as an automatic routing decision in the ETA and fulfilment previews. Maintain JRV colour tokens, responsive layout, and clear evidence boundaries; do not involve Klaviyo or send messages. | Draft PR #100; unit/browser QA and Vercel review pending. Published v1.6 remains unchanged. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

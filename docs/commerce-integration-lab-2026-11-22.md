@@ -1,3 +1,5 @@
+> **23 November 2026 clarification, overriding the earlier SMS depiction:** The merchant confirms **Shopify sends email if an order has an email address, and falls back to SMS only when the email address is absent and a mobile number is available**. Do not connect or attribute this workflow to Klaviyo. The earlier 22 November descriptions of an independently enabled SMS channel are historical and superseded for the draft portfolio demonstration. This is merchant-reported Shopify configuration, not a send operation implemented in `worker.js`.
+
 > **Updated customer communication scope · 22 November 2026:** The draft now adds an ETA-to-email/SMS customer journey, based on the owner's customer message example. The Worker-confirmed component is the typed order-metafield write and later tracking update. Five-minute scheduling, email templates and SMS delivery are merchant-reported and remain unverified in the inspected Worker source. No live messaging configuration is changed.
 
 > **Current staged release candidate · 22 November 2026:** `integration/commerce-systems-latest-main-20261122` / Draft PR #100. The new app-engineering page now has **environment-aware SEO staging**: Vercel previews are `noindex,nofollow` and omit the route from their sitemaps, while the future owner-approved production build will use unique indexable metadata and its own sitemap entry. The original `/cartoncloud-integration` remains separately indexable, linked and unredirected. The original Draft PR #98 documentation below is historical. **No production publication or merge has been authorised.**
@@ -302,3 +304,23 @@ The initial full browser run for source `565b75b` failed because the SMS tab but
 **Screenshot review:** Desktop full-page image `1440×13261` and mobile full-page image `390×21213` were inspected, with targeted crops around the new `#communications` section. On desktop, the four-stage rail and separate metafields/email panels are legible; on mobile, stages stack above the metafield list and email/SMS preview, retaining JRV Obsidian, Teal and Ember styling. No obvious clipping or cross-section horizontal overflow was observed; Chromium regression test also checks overflow. Screenshot and synthetic browser test success are not proof of real SMS/email delivery or merchant notification configuration.
 
 **Production boundary unchanged:** no merge, no actual customer message, no Shopify theme, no Cloudflare Worker update, no CartonCloud or order modification. Public source contains only fictional identifiers and places. The order example supplied by the owner is not published.
+
+## 23 November 2026 — Shopify notification contact-channel correction
+
+The merchant clarified that Shopify, not a separate Klaviyo flow, handles customer contact selection. We now model **one customer notice per stage**, with the channel derived from order contact availability rather than an SMS-toggle or parallel communication campaign.
+
+| Order contact availability | Demonstration channel | Notes |
+| --- | --- | --- |
+| Email available, with or without mobile | **Shopify email** | Email takes priority when both are available |
+| No email, mobile available | **Shopify SMS fallback** | Same ETA or shipping stage, not an additional marketing SMS |
+| No email and no mobile | **No recipient** | Do not infer that any notice can be delivered |
+
+**Worker responsibility confirmed from previously reviewed source:** Shopify `orders/create` data and postcode/time rules produce a delivery estimate; the Worker writes typed `custom.*` Shopify **order metafields** via the custom app's authorised GraphQL Admin API. Later fulfilment and CartonCloud carrier callbacks update tracking and may request Shopify native notification through `notifyCustomer`. The Worker is not a notification sender.
+
+**Merchant-reported store behaviour:** A five-minute delay allows ETA fields to populate before the store's ETA notice; Shopify uses email if present, or the SMS fallback only if no email address is present but a mobile is available. The exact timer implementation, notification template, SMS consent logic and actual delivery receipts have not been independently retrieved. No Klaviyo configuration is part of this workflow, and no Klaviyo connector is required.
+
+**Updated interactive UI:** `CustomerCommunicationLab.tsx` now has `Customer email address available` and `Customer mobile number available` checkboxes, a live recipient-route indicator, and two tabs for `ETA notice` and `Shipping confirmation`. The mock-up automatically changes between email and SMS. It represents recipient absence, unsuccessful ETA persistence, and late/missing tracking without inventing a message or tracking URL. `calculateDemoCommunication` exposes `notificationChannel`, `emailNoticeReady` and `smsNoticeReady` only as fictional UI-state decisions. The Code Explorer has a non-operational example of the same contact prioritisation.
+
+**Tests and privacy:** New unit cases and Chrome desktop/tablet/mobile interaction assertions cover email priority, SMS fallback, both-contact absence, no premature tracking and the unchanged Worker data separation. No real customer email, phone number, postcode, tracking link, notification template or provider credentials are accessed or published. No Shopify theme change was made.
+
+**Release gate:** Fresh exact-commit CI, design/visual review and Vercel preview metadata verification must pass before this draft change is called tested. PR #100 remains unmerged and production remains unchanged.

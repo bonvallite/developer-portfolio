@@ -122,16 +122,22 @@ test('special South Australia schedule remains separate from route-mode calculat
   assert.equal(result.transitReadyISO,null);
 });
 
-test('order-created demo shows no ETA fields or customer notices before Worker save',()=>{
+
+// 23 Nov 2026: Shopify notification destination is selected from available
+// order contact details. Email wins when present; SMS only if email is missing
+// and a phone is available. This is merchant-reported behaviour (not a
+// verified Worker sending routine) and has no Klaviyo or SMS-provider calls.
+test('order-created demo shows no ETA fields or messages before Worker save',()=>{
   const x=calculateDemoCommunication({stage:'order'});
   assert.equal(x.estimateSaved,false);
   assert.deepEqual(x.orderMetafields,[]);
   assert.equal(x.etaNoticeReady,false);
   assert.equal(x.shippingConfirmationReady,false);
   assert.equal(x.trackingReference,null);
+  assert.equal(x.notificationChannel,'email');
   assert.equal(x.smsNoticeReady,false);
 });
-test('Worker order ETA appears as typed Shopify order metafields, not a metaobject',()=>{
+test('Worker ETA appears as typed Shopify order metafields, not a metaobject',()=>{
   const x=calculateDemoCommunication({stage:'saved',zoneId:'qld-wed'});
   const fields=Object.fromEntries(x.orderMetafields.map(item=>[item.key,item]));
   assert.equal(x.estimateSaved,true);
@@ -142,19 +148,42 @@ test('Worker order ETA appears as typed Shopify order metafields, not a metaobje
   assert.equal(fields['custom.delivery_zone'].value,x.eta.zoneLabel);
   assert.equal(fields['custom.delivery_postcode'].value,'DEMO-W');
   assert.equal(fields['custom.delivery_breakdown'].type,'multi_line_text_field');
-  assert.equal(x.etaNoticeReady,false,'save is not itself an email send');
+  assert.equal(x.etaNoticeReady,false,'a saved ETA is not a sent notification');
 });
-test('reported five-minute ETA email and SMS cannot surface a future tracking URL',()=>{
-  const x=calculateDemoCommunication({stage:'eta-notice',trackingReady:true,smsEnabled:true});
+test('Shopify email takes priority when email and mobile contact both exist',()=>{
+  const x=calculateDemoCommunication({stage:'eta-notice',hasEmail:true,hasPhone:true,trackingReady:true});
   assert.equal(DEMO_COMMUNICATION_STAGES[2].offset,'T+5 min reported');
+  assert.equal(x.notificationChannel,'email');
   assert.equal(x.etaNoticeReady,true);
-  assert.equal(x.smsNoticeReady,true);
-  assert.equal(x.trackingReady,false);
+  assert.equal(x.emailNoticeReady,true);
+  assert.equal(x.smsNoticeReady,false,'SMS is not an independent channel');
+  assert.equal(x.trackingReady,false,'tracking may arrive after the five-minute notice');
   assert.equal(x.trackingReference,null);
   assert.equal(x.nativeTrackingNoticeRequested,false);
   assert.equal(x.shippingConfirmationReady,false);
 });
-test('fulfilment and carrier response can expose tracking but do not prove email receipt',()=>{
+test('Shopify SMS is fallback only when order email is absent and mobile exists',()=>{
+  const x=calculateDemoCommunication({stage:'eta-notice',hasEmail:false,hasPhone:true});
+  assert.equal(x.notificationChannel,'sms');
+  assert.equal(x.etaNoticeReady,true);
+  assert.equal(x.smsNoticeReady,true);
+  assert.equal(x.emailNoticeReady,false);
+  const shipping=calculateDemoCommunication({stage:'fulfilled',hasEmail:false,hasPhone:true,trackingReady:true});
+  assert.equal(shipping.shippingConfirmationReady,true);
+  assert.equal(shipping.notificationChannel,'sms');
+  assert.equal(shipping.trackingReady,true);
+});
+test('without either contact field do not invent an SMS or email recipient',()=>{
+  const eta=calculateDemoCommunication({stage:'eta-notice',hasEmail:false,hasPhone:false});
+  assert.equal(eta.notificationChannel,'none');
+  assert.equal(eta.etaNoticeReady,false);
+  assert.equal(eta.smsNoticeReady,false);
+  assert.equal(eta.emailNoticeReady,false);
+  const shipping=calculateDemoCommunication({stage:'fulfilled',hasEmail:false,hasPhone:false});
+  assert.equal(shipping.shippingConfirmationReady,false);
+  assert.equal(shipping.trackingReady,true,'tracking data can exist without a notification recipient');
+});
+test('fulfilment and carrier response can expose tracking but do not prove receipt',()=>{
   const x=calculateDemoCommunication({stage:'fulfilled',trackingReady:true});
   assert.equal(x.shippingConfirmationReady,true);
   assert.equal(x.trackingReady,true);
@@ -169,20 +198,27 @@ test('missing carrier tracking cannot be fabricated in a shipping confirmation',
   assert.equal(x.trackingReference,null);
   assert.equal(x.nativeTrackingNoticeRequested,false);
 });
-test('failed ETA metafield mutation blocks ETA email and SMS but not independent fulfilment',()=>{
-  const eta=calculateDemoCommunication({stage:'eta-notice',estimateSaved:false});
-  assert.deepEqual(eta.orderMetafields,[]);
-  assert.equal(eta.etaNoticeReady,false);
-  assert.equal(eta.smsNoticeReady,false);
+test('failed ETA write blocks the five-minute email or fallback SMS, but not fulfilment',()=>{
+  for(const hasEmail of [false,true]){
+    const eta=calculateDemoCommunication({stage:'eta-notice',estimateSaved:false,hasEmail,hasPhone:true});
+    assert.deepEqual(eta.orderMetafields,[]);
+    assert.equal(eta.etaNoticeReady,false);
+    assert.equal(eta.smsNoticeReady,false);
+    assert.equal(eta.emailNoticeReady,false);
+  }
   const shipped=calculateDemoCommunication({stage:'fulfilled',estimateSaved:false,trackingReady:true});
   assert.equal(shipped.shippingConfirmationReady,true);
   assert.equal(shipped.trackingReady,true);
   assert.deepEqual(shipped.orderMetafields,[]);
 });
-test('SMS channel toggle and invalid stages are handled deliberately',()=>{
-  const x=calculateDemoCommunication({stage:'eta-notice',smsEnabled:false});
-  assert.equal(x.etaNoticeReady,true);
-  assert.equal(x.smsNoticeReady,false);
+test('phone availability does not send SMS when a usable email exists',()=>{
+  const withPhone=calculateDemoCommunication({stage:'eta-notice',hasEmail:true,hasPhone:true});
+  const withoutPhone=calculateDemoCommunication({stage:'eta-notice',hasEmail:true,hasPhone:false});
+  assert.equal(withPhone.notificationChannel,'email');
+  assert.equal(withoutPhone.notificationChannel,'email');
+  assert.equal(withoutPhone.smsNoticeReady,false);
+});
+test('unknown stages and zones are rejected without real message delivery',()=>{
   assert.throws(()=>calculateDemoCommunication({stage:'unknown'}),/Unknown demonstration/);
   assert.throws(()=>calculateDemoCommunication({zoneId:'secret-zone'}),/Unknown demonstration delivery/);
 });

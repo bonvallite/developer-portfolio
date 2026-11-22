@@ -3,7 +3,8 @@
  * Public-safe, hand-authored engineering code inspector.
  * Examples are educational reconstructions, not production Worker source.
  * The ETA metafield names/types are backed by the inspected Worker; five-minute
- * email timing and SMS are user-reported store configuration, not Worker sends.
+ * email timing and Shopify email-first/SMS-if-no-email channel selection are
+ * merchant-reported behaviour, not implemented as Worker sends. No Klaviyo.
  */
 import { useState } from 'react';
 import { Check, ClipboardCopy, Code2, Database, LockKeyhole, Mail, MessageSquareText, Truck, Workflow } from 'lucide-react';
@@ -134,22 +135,25 @@ const SNIPPETS = [
     '// Saving data does not itself send a customer email.'
    ].join('\n')
  },
- { title:'Customer message gating', tag:'REPORTED NOTIFICATIONS', icon:MessageSquareText,
-   context:'A reported five-minute store notification uses ETA fields from the Worker; fulfilment and carrier tracking are later events. Email/SMS scheduling and delivery are separate store/provider responsibilities, not code verified in the Worker.',
+ { title:'Customer message gating', tag:'SHOPIFY FALLBACK', icon:MessageSquareText,
+   context:'The merchant reports Shopify prioritises the order email. If no email exists but a mobile number does, Shopify uses SMS instead. The five-minute ETA delay is store-side configuration, not a verified Worker timer. This is a fictional routing example with no send operation.',
    code:[
-    '// Conceptual policy only: NO email, SMS or external calls.',
-    'function chooseDemoMessage({minutes, etaSaved, fulfilled, hasTracking}) {',
+    '// Model only. Does not send email, SMS or API requests.',
+    'function chooseDemoNotice({minutes, etaSaved, fulfilled, hasTracking, hasEmail, hasPhone}) {',
+    '  const recipient = hasEmail ? "email" : hasPhone ? "sms" : "none";',
+    '  if (recipient === "none") return {type:"no_contact"};',
     '  if (fulfilled) return {',
     '    type:"shipping_confirmation",',
-    '    includeTracking:Boolean(hasTracking)',
+    '    via:recipient, includeTracking:Boolean(hasTracking)',
     '  };',
     '  if (minutes >= 5 && etaSaved) return {',
-    '    type:"estimated_delivery_email", includeTracking:false',
+    '    type:"estimated_delivery_notice",',
+    '    via:recipient, includeTracking:false',
     '  };',
     '  return {type:"waiting"};',
     '}',
-    '// Actual Shopify notification templates and SMS provider',
-    '// require a separate audit; none was read or copied.'
+    '// Shopify notification configuration remains store-managed;',
+    '// the Worker writes typed order metafields, not a sent message.'
    ].join('\n')
  },
  { title:'Status mapping', tag:'NORMALISATION', icon:Workflow,

@@ -17,8 +17,9 @@ import './engineering-lab.css';
 // the older case study stays available and never redirects automatically.
 // All interactive demos use fictional data and no live provider API calls.
 // This release candidate also shows typed order metafields and a fictional
-// customer communication timeline. The five-minute email/SMS process is
-// merchant-reported and not a verified Worker scheduling/sending function.
+// customer communication timeline. The five-minute ETA notice is merchant-
+// reported; Shopify selects email when present or SMS when no email but a
+// mobile number exists. Neither timing nor sending is a Worker function.
 const isVercelPreview = process.env.VERCEL_ENV === 'preview';
 const title = 'Custom Shopify App Engineering | Cloudflare Workers';
 const description = 'Interactive Shopify app engineering: Cloudflare Workers, Workers KV, fulfilment tracking, last-mile delivery, and simulated email/SMS workflows.';
@@ -149,7 +150,7 @@ export default function CommerceIntegrationEngineering() {
           <div className="cie-section-header">
             <p className="cie-kicker">03B / ETA → CUSTOMER COMMUNICATION</p>
             <h2>The date arrives first.<br /><em>The tracking link comes later.</em></h2>
-            <p>Show how postcode-based delivery dates move from the Cloudflare Worker to Shopify order metafields and then to customer-facing email and SMS examples. The five-minute notice is a reported store-side configuration, not a Worker sending function, and a tracking notification is not proof an email was delivered.</p>
+            <p>Show how postcode-based delivery dates move from Cloudflare Workers to Shopify order metafields and into customer notifications. The merchant reports Shopify sends email when available, falling back to SMS only when the order has no email but has a mobile number. The five-minute notice is a store-side configuration, not a Worker sending function, and tracking arrives later.</p>
           </div>
           <CustomerCommunicationLab />
         </section>

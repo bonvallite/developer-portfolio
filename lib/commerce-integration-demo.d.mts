@@ -28,9 +28,11 @@ export function calculateDemoShipment(input:{
 export function mapDemoCarrierStatus(rawStatus:string):{status:string;label:string};
 export function formatDemoDate(iso:string|null):string;
 
-// The notification sequence is a browser-only model. Shopify/other store-side
-// automation owns any real waiting, email or SMS sending; Worker owns the
-// typed order metafields and later fulfilment tracking updates.
+// Browser-only model: the Worker stores typed ETA order metafields and later
+// writes fulfilment tracking. Merchant reports Shopify customer notifications
+// use email when available, otherwise SMS when only a phone exists. The
+// five-minute store-side notice delay and actual message delivery remain
+// unverified in the Worker source. No Klaviyo or external sender is modelled.
 export type DemoCommunicationStage = 'order'|'saved'|'eta-notice'|'fulfilled';
 export const DEMO_COMMUNICATION_STAGES:ReadonlyArray<{
   readonly id:DemoCommunicationStage;
@@ -38,12 +40,13 @@ export const DEMO_COMMUNICATION_STAGES:ReadonlyArray<{
 }>;
 export function calculateDemoCommunication(input?:{
   zoneId?:string;orderedAt?:string;stage?:DemoCommunicationStage;
-  estimateSaved?:boolean;trackingReady?:boolean;smsEnabled?:boolean;
+  estimateSaved?:boolean;trackingReady?:boolean;hasEmail?:boolean;hasPhone?:boolean;
 }):{
   stage:DemoCommunicationStage;stageIndex:number;
   eta:ReturnType<typeof calculateDemoEta>;
   orderMetafields:Array<{key:string;type:string;value:string}>;
-  estimateSaved:boolean;etaNoticeReady:boolean;smsNoticeReady:boolean;
+  estimateSaved:boolean;notificationChannel:'email'|'sms'|'none';
+  etaNoticeReady:boolean;emailNoticeReady:boolean;smsNoticeReady:boolean;
   shippingConfirmationReady:boolean;trackingReady:boolean;
   trackingReference:string|null;nativeTrackingNoticeRequested:boolean;
   orderReference:string;notificationWaitMinutes:number;isIllustrative:boolean;
