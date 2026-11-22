@@ -73,3 +73,12 @@ The feature has no `fetch` calls in browser components. Optional site-wide analy
 - The demo has a selectable closure date and fixed illustrative carton capacity; these are not merchant promises.
 - In the reviewed private Worker, missing webhook secrets can allow a specific handler to continue, and repeated status callbacks can produce further status events; this demo describes the risk, not a production fix.
 - Live customer email receipt, provider latency, retries and message deduplication are not independently certified.
+
+## Verified validation evidence (22 November 2026)
+
+- **Github Actions workflow run:** https://github.com/bonvallite/developer-portfolio/actions/runs/44996672711
+- **Verified test commit:** `9ca6756906c6e2f3de05894360866bac79a99e5d`
+- **Source checks:** publication safety, SEO source guard, npm unit tests, Python tests, TypeScript typecheck, Next.js build, rendered SEO and sitemap: all passed.
+- **Browser checks:** generic case-study QA and dedicated commerce integration lab QA passed. The latter exercised three integrations, state/closure and weight calculations, mocked failed webhook behaviour, masked KV/OAuth flow, code tabs and responsive overflow at 1440x900, 768x1024 and 390x844. Screenshot artifact was uploaded.
+- **Still pending:** owner visual review, explicit future homepage integration, final canonical migration decision and live third-party production end-to-end verification. The successful browser simulation does not certify production delivery operations.
+- **Publication:** no `main` merge and no production deployment. Vercel branch preview only, while the new route remains noindex and unlinked.
