@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-22 - Owner-approved production hotfix: retire original résumé PDF only
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, `hotfix/2026-11-22-retire-original-resume`, derived from `main` `ac519c363bb303249adc911d0600679857df4a8d`. This narrow hotfix is separate from draft integrated portfolio PR #96 and does not include its feature changes.
+- **Affected files:** Remove `public/JRV-Resume.pdf` and `backups/resumes/JRV-Resume-2026-Original.pdf` (both historic blob `a7d4648238f748f625004890bb8aac4b5443915b`). Update `next.config.ts`, `README.md`, `scripts/check-seo-publication.mjs`, `tests/seo-rendered-metadata.mjs` and `CHANGELOG.md`.
+- **What and why:** The owner explicitly approved retiring the older original PDF from the public website and current Git branch while retaining ATS-Friendly and Classic online/PDF/Word versions. Make `/JRV-Resume.pdf` redirect permanently to `/resume` to preserve old bookmarks without serving the older contact information.
+- **Inline documentation:** Added Next.js route comments; clarified README current/public scope; added source and rendered redirect tests. Preserved existing history and source conventions.
+- **Validation:** Reviewed both original binary path SHA values in GitHub directory metadata and confirmed the production main base. This hotfix uses the exact inspected redirect/README/source-guard changes with a main-compatible rendered regression, leaving the current generated résumé code untouched. GitHub CI, Vercel preview and final production verification must be completed on the hotfix commit before marking the live website updated.
+- **Limitations:** Deleting files from new/current main commits does not erase earlier public Git history, backup branches, old Vercel deployments, search caches or downloaded copies. ATS and Classic still contain explicitly published personal details and are noindex, not private. This is not a Shopify theme change or an approval to release the pending full portfolio redesign.
+
 ## 2026-11-20 - Back up and rebuild the cinematic JRV portfolio on a protected branch
 
 - **Scope:** `bonvallite/developer-portfolio`; backup `backup/2026-11-20-pre-cinematic-rebuild` at `cbb656e9`; proposed branch `redesign/2026-11-20-cinematic-portfolio`. Production unchanged until review.

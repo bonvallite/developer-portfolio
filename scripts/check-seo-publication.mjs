@@ -123,5 +123,16 @@ for (const file of allRoutes) {
     assert.ok(existsSync(join(root, expected)), file + ' links to missing path ' + target);
   }
 }
-assert.equal(existsSync(join(root, 'public/' + given + '-' + family + '-Resume.pdf')), false, 'Removed resume still public');
-console.log('SEO source checks passed for ' + allRoutes.length + ' routes, ' + routes.length + ' service pages, metadata and internal link targets.');
+assert.equal(existsSync(join(root, 'public/' + given + '-' + family + '-Resume.pdf')), false, 'Removed personal-name résumé still public');
+// Owner-approved retirement: neither original PDF may reappear in this tree.
+// Historical public Git blobs and other branches are outside this check.
+for (const retired of ['public/JRV-Resume.pdf', 'backups/resumes/JRV-Resume-2026-Original.pdf']) {
+  assert.equal(existsSync(join(root, retired)), false, retired + ': legacy résumé reintroduced');
+}
+const retirementConfig = read('next.config.ts');
+assert.match(retirementConfig, /source:\s*'\/JRV-Resume\.pdf'/,
+  'Original PDF URL must redirect rather than return the legacy document');
+assert.match(retirementConfig, /destination:\s*'\/resume'/,
+  'Legacy bookmarks must open the ATS/Classic chooser');
+assert.match(retirementConfig, /permanent:\s*true/, 'Legacy retirement redirect must be permanent');
+console.log('SEO source checks passed for ' + allRoutes.length + ' routes, ' + routes.length + ' service pages, metadata, retired résumé and internal links.');

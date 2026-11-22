@@ -8,9 +8,11 @@ The Git-tracked site was backed up **before editing** at branch [`backup/2026-11
 
 The [rebuild plan, confidentiality review and recovery instructions](./docs/portfolio-rebuild-2026-11-20.md) cover the wide CSS-first cinematic homepage, responsive project storytelling, direct enquiry composer, context-aware internal CTAs, service-led SEO and opt-in analytics. On long internal case-study routes a floating enquiry prompt appears only after scrolling; it is absent from pages with their own primary enquiry CTAs. The four canonical Shopify service routes now share a [cinematic server-rendered service page](./app/components/ServicePage.tsx) with responsive [service-page styling](./app/components/cinematic-service.css), visual process story and direct mailto enquiry CTA. Homepage and service-page screenshots are tested at desktop and mobile widths. No fictional dashboard is represented as actual client performance. A successful build does **not** certify zero data leaks, and public historical résumé/source material still requires a privacy and ownership review.
 
-## Résumé backup and public PDF release
+## Owner-approved retirement of the original résumé PDF (22 November 2026)
 
-The original 2026 PDF is archived byte-for-byte at `backups/resumes/JRV-Resume-2026-Original.pdf` (Git blob `a7d4648238f748f625004890bb8aac4b5443915b`). It is not linked from the homepage, but this repository and its history are public and the archive may contain personal details and obsolete contact information. Once the approved American English revision is uploaded, the active public path must remain `public/JRV-Resume.pdf` so existing resume links continue working. Do not publish or state that the replacement is live until CI, Vercel production, and PDF content checks succeed.
+The original 2026 résumé previously existed at `public/JRV-Resume.pdf` and `backups/resumes/JRV-Resume-2026-Original.pdf` (Git blob `a7d4648238f748f625004890bb8aac4b5443915b`). With the owner's explicit approval, **both binaries have been removed from the current main Git tree through the approved retirement hotfix**. The old URL `/JRV-Resume.pdf` permanently redirects to the résumé chooser at `/resume`, preserving old bookmarks without serving the original document. ATS-Friendly and Classic HTML previews, downloadable PDFs, and Word exports remain intentionally available, with noindex controls. A separate unreleased integration draft proposes stronger download-cache controls.
+
+**Publication scope:** This targeted hotfix is intended for the live `jrvallite.com` site; verify Vercel's production deployment before claiming the redirect is live. The broader cinematic release remains draft PR #96. The original may still be reachable in earlier commits, public backup branches, old Vercel deployments, search caches and downloaded copies. Current-tree deletion is not history erasure. Keep both approved résumé options and their contact details intact until any separate owner decision.
 
 ## Current public identity and contact
 
@@ -25,7 +27,7 @@ The approved public wordmark is **JRV**, matching the approved **{JRV}** browser
 
 At the owner's request, the public homepage footer links to the approved LinkedIn, Google Developer and Wikipedia contribution profiles, and provides a separate authorised-mailbox login shortcut at `https://webmail.jrvallite.com/`. This is a **login link**, not the public contact destination. Enquiries continue to use `hello@jrvallite.com`.
 
-The `/JRV-Resume.pdf` download is a neutral URL referring to the owner's originally published 2026 résumé, restored from historical Git object `a7d4648238f748f625004890bb8aac4b5443915b`. The original document may contain an older email address or other identifying information; it is not automatically updated by changing the website. Publication of the résumé and personal profile links changes the prior 18 November privacy cleanup. Keep page titles and metadata service-led; do not infer that the linked personal profiles are independent credentials or endorsements.
+**Historical note (19 November):** The original 2026 résumé was then served at `/JRV-Resume.pdf`, restored from a historical Git object. On 22 November, the owner approved retiring the original binary from the main site's source tree. The URL now redirects to `/resume`, but old Git objects, branches and caches may still retain the document. Keep titles and metadata service-led; do not infer that linked profiles are independent credentials or endorsements.
 
 ## Ecommerce API extraction case study
 
@@ -204,7 +206,7 @@ Two owner-approved public designs share one canonical data module (`app/resume/r
 
 PDF and editable DOCX endpoints are generated on demand: `/resume/classic/pdf`, `/resume/classic/word`, `/resume/modern/pdf`, and `/resume/modern/word`. Route generators live in `app/resume/resume-export.ts`; adjust the canonical data before modifying any generated format. The classic design approximates the original aesthetic; it is not a byte-identical copy of the prior document.
 
-The old `/JRV-Resume.pdf` remains unchanged as backward-compatible legacy access and an identical Git backup is at `backups/resumes/JRV-Resume-2026-Original.pdf`. The new resume routes are `noindex` (not private) and may display expressly approved personal information. Verify all four downloadable formats following every change.
+The retired `/JRV-Resume.pdf` URL now redirects to `/resume`; the original public binary and matching backup have been removed from the current main Git tree. Both new résumé routes stay `noindex` (not private), retain approved personal details and have distinct PDF/Word options. Verify all four downloadable formats, and remember old commits and backup branches remain public.
 
 
 ### Résumé downloads: primary actions and document properties
