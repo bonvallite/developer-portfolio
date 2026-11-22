@@ -8,6 +8,9 @@
 // expanded state; reopening/rejecting must not enable analytics.
 // The goal-led hero routes are native links to existing contact and experience
 // pages. Validate both at four sizes and never submit user information.
+// 22 Nov latest-main showcase integration: keep the 11-site gallery and four
+// original projects while adding a distinct, separately linked systems lab.
+// This check reads a local Next.js server and uses no external provider data.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -48,6 +51,27 @@ try {
     await page.locator('.jrv2-journey-tab').first().waitFor({ state: 'visible' });
     assert.equal(await page.locator('h1').count(), 1, 'One homepage H1');
     assert.equal(await page.locator('.jrv2-case').count(), 4, 'Four case-study stories');
+
+    // Separate flagship: don't replace the original CartonCloud case study
+    // or the newer published storefront gallery to add the app-development lab.
+    const systems = page.locator('#systems-lab');
+    assert.equal(await systems.count(), 1, size.name + ': systems section present once');
+    assert.equal(await systems.locator('h2').count(), 1, size.name + ': section title');
+    assert.equal(await systems.locator('.jrv2-flagship-node').count(), 3,
+      size.name + ': Shopify / Worker / CartonCloud conceptual diagram');
+    assert.equal(await systems.getByRole('link', { name: /Explore the interactive case study/ }).getAttribute('href'),
+      '/projects/commerce-integration-engineering', 'New lab CTA points to draft route');
+    assert.equal(await systems.getByRole('link', { name: /Earlier integration case study/ }).getAttribute('href'),
+      '/cartoncloud-integration', 'Legacy case study remains directly accessible');
+    assert.equal(await page.locator('.jrv2-case a[href="/cartoncloud-integration"]').count(), 1,
+      size.name + ': original CartonCloud Selected Work card retained');
+    assert.equal(await page.locator('nav[aria-label="Primary navigation"] a[href="#systems-lab"]').count(), 1,
+      size.name + ': desktop navigation reaches systems section');
+    assert.equal(await page.locator('nav[aria-label="Mobile navigation"] a[href="#systems-lab"]').count(), 1,
+      size.name + ': mobile navigation reaches systems section');
+    const newRouteResponse = await page.request.get(baseURL + '/projects/commerce-integration-engineering');
+    assert.equal(newRouteResponse.status(), 200, size.name + ': engineering route returns HTTP 200');
+
     // Website references are present without waiting on remote image delivery.
     const showcase = page.locator('#websites .cinematic-showcase');
     const liveSites = page.locator('#websites .jrv2-websites-links a');

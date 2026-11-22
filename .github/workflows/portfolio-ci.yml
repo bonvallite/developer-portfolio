@@ -1,7 +1,9 @@
 name: Portfolio checks
 on:
   push:
-    branches: [main]
+    # Isolated QA trigger for the new engineering integration candidate.
+    # This does not deploy or change the production branch.
+    branches: [main, integration/commerce-systems-latest-main-20261122]
   pull_request:
 permissions:
   contents: read
@@ -43,7 +45,9 @@ jobs:
     # changes, content-audit fixes, accessibility, or interactive case studies.
     # This integration branch runs all of the flagship browser suites together.
     # Unit/SEO/safety checks still run for all pull requests.
-    if: github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || startsWith(github.head_ref, 'fix/home-journey-') || startsWith(github.head_ref, 'feature/cartoncloud-event-studio-') || startsWith(github.head_ref, 'feature/python-analytics-story-studio-') || startsWith(github.head_ref, 'feature/b2b-entitlement-story-') || github.head_ref == 'integration/2026-11-22-cinematic-release')
+    # PR checks continue normally; this single draft branch also runs full
+    # local browser QA on push when GitHub App PR synchronisation is delayed.
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122') || (github.event_name == 'pull_request' && (github.head_ref == 'feature/google-analytics-api-portfolio-20261119' || github.head_ref == 'feature/analytics-visual-demo-20261120' || github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'fix/portfolio-audit-content-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || startsWith(github.head_ref, 'fix/home-journey-') || startsWith(github.head_ref, 'feature/cartoncloud-event-studio-') || startsWith(github.head_ref, 'feature/python-analytics-story-studio-') || startsWith(github.head_ref, 'feature/b2b-entitlement-story-') || github.head_ref == 'integration/2026-11-22-cinematic-release') || github.head_ref == 'integration/commerce-systems-latest-main-20261122')
     needs: validate
     # Playwright 1.56 Chromium supports Ubuntu 24.04; latest runners may be 26.04.
     runs-on: ubuntu-24.04
@@ -73,39 +77,44 @@ jobs:
       - name: Desktop tablet and mobile interaction checks
         run: node tests/case-study-browser-qa.mjs
       - name: Cinematic homepage layout, privacy and conversion QA
-        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'fix/home-journey-') || github.head_ref == 'integration/2026-11-22-cinematic-release'
+        if: github.head_ref == 'redesign/2026-11-20-cinematic-portfolio' || github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || startsWith(github.head_ref, 'feature/interactive-hero-project-studio-') || startsWith(github.head_ref, 'fix/home-journey-') || github.head_ref == 'integration/2026-11-22-cinematic-release' || github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
         run: node tests/homepage-browser-qa.mjs
       # The Spend & Save case study connects shopper, merchant, post-checkout
       # Flow commit and notification states through a safe architecture map.
       - name: Spend and Save visual case-study and Flow browser QA
-        if: startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || github.head_ref == 'integration/2026-11-22-cinematic-release'
+        if: startsWith(github.head_ref, 'feature/spend-save-architecture-story-') || github.head_ref == 'integration/2026-11-22-cinematic-release' || github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
         run: node tests/spend-save-visual-browser-qa.mjs
       # CartonCloud simulated event/safe-recovery and static enquiry QA.
       - name: CartonCloud interactive event and incident browser QA
-        if: startsWith(github.head_ref, 'feature/cartoncloud-event-studio-') || github.head_ref == 'integration/2026-11-22-cinematic-release'
+        if: startsWith(github.head_ref, 'feature/cartoncloud-event-studio-') || github.head_ref == 'integration/2026-11-22-cinematic-release' || github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
         run: node tests/cartoncloud-event-studio-browser-qa.mjs
       # Fictional B2B catalogue/pricing entitlement and responsive selector QA.
       - name: Shopify B2B pricing and entitlement visual browser QA
-        if: startsWith(github.head_ref, 'feature/b2b-entitlement-story-') || github.head_ref == 'integration/2026-11-22-cinematic-release'
+        if: startsWith(github.head_ref, 'feature/b2b-entitlement-story-') || github.head_ref == 'integration/2026-11-22-cinematic-release' || github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
         run: node tests/b2b-entitlement-story-browser-qa.mjs
+      # Draft custom Shopify app / last-mile lab: purely fictional browser
+      # calculations and API write-back simulation, with no provider calls.
+      - name: Commerce integration lab desktop tablet and mobile QA
+        if: github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
+        run: node tests/commerce-integration-browser-qa.mjs
       # Check consent rejection, acceptance and withdrawal on real browser links
       # using only fictional text and no external analytics/lead submissions.
       - name: Consent-first portfolio event privacy QA
-        if: startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || github.head_ref == 'integration/2026-11-22-cinematic-release'
+        if: startsWith(github.head_ref, 'feature/portfolio-enquiry-analytics-') || github.head_ref == 'integration/2026-11-22-cinematic-release' || github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
         run: node tests/portfolio-events-browser-qa.mjs
       - name: Python analytics lab desktop tablet and mobile QA
-        if: github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/python-analytics-story-studio-') || github.head_ref == 'integration/2026-11-22-cinematic-release'
+        if: github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/python-analytics-story-studio-') || github.head_ref == 'integration/2026-11-22-cinematic-release' || github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
         run: node tests/analytics-lab-browser-qa.mjs
       # Sample local Next.js navigations for each flagship project at 1366px
       # and 390px. This informational lab report is not a Lighthouse audit
       # or real-user Core Web Vitals and never activates optional tracking.
       - name: Local browser navigation metrics (synthetic, informational)
-        if: github.head_ref == 'integration/2026-11-22-cinematic-release'
+        if: github.head_ref == 'integration/2026-11-22-cinematic-release' || github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
         run: node tests/performance-lab-browser-qa.mjs
       # Cross-route brand consistency with accessible light surfaces in
       # editorial/printable demos. Browser tests never opt in to analytics.
       - name: Unified JRV colour system desktop and mobile browser QA
-        if: github.head_ref == 'integration/2026-11-22-cinematic-release'
+        if: github.head_ref == 'integration/2026-11-22-cinematic-release' || github.head_ref == 'integration/commerce-systems-latest-main-20261122' || github.ref == 'refs/heads/integration/commerce-systems-latest-main-20261122'
         run: node tests/portfolio-palette-browser-qa.mjs
       - name: Save case-study screenshots
         if: always()
@@ -121,5 +130,6 @@ jobs:
             artifacts/b2b-entitlement-story-qa/
             artifacts/performance-lab/
             artifacts/portfolio-palette-qa/
+            artifacts/commerce-integration-lab/
           if-no-files-found: ignore
           retention-days: 7

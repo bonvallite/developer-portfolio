@@ -64,6 +64,28 @@ for (const check of checks) {
 }
 assert.equal(xml.includes('<loc>https://www.jrvallite.com/resume</loc>'), false,
   'Resume is noindex and must stay out of the sitemap');
+
+// 22 Nov 2026: The draft engineering lab may be linked from a preview
+// homepage, but its route is not released to search engines or the sitemap.
+// Keep the published 11-website homepage index and original integration story.
+const integratedHome = await readPage('/');
+assert.ok(integratedHome.includes('id="systems-lab"'),
+  'New server-rendered systems engineering section must appear on homepage');
+assert.ok(integratedHome.includes('href="/projects/commerce-integration-engineering"'),
+  'Homepage must link to engineering lab');
+assert.ok(integratedHome.includes('href="/cartoncloud-integration"'),
+  'Original CartonCloud case study must remain linked');
+assert.ok(integratedHome.includes('id="websites"'),
+  'Approved eleven-website gallery must remain on homepage');
+assert.equal((integratedHome.match(/class="jrv2-case-heading"/g) || []).length, 4,
+  'All four original selected-work cards must remain');
+const integratedLab = await readPage('/projects/commerce-integration-engineering');
+const draftRobots = attr(findTag(integratedLab,'meta','name','robots') || '', 'content');
+assert.match(draftRobots,/noindex/i,
+  'Engineering lab must remain noindex until separate publication approval');
+assert.equal(xml.includes('<loc>https://www.jrvallite.com/projects/commerce-integration-engineering</loc>'),false,
+  'Draft engineering lab must not enter sitemap prematurely');
+
 // Audit 21 Nov: the CSS lab was in the sitemap but lacked an internal link,
 // while the weight-based B2B demo had insufficient server-visible context.
 // Guard rendered HTML so crawl visibility cannot regress silently.

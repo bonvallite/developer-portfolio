@@ -1,5 +1,17 @@
 # Portfolio changelog
 
+## 2026-11-22 - Reconcile Shopify systems lab with published 11-site portfolio (draft integration)
+
+- **Source and branch:** Current published `main` at `90ea2d30ba0470828b451cb76fd8595df060e06b`; new preview-only `integration/commerce-systems-latest-main-20261122`. Existing draft PR #98 remains separate, unmerged, and non-mergeable due to mainline divergence. Do not modify `main` or the production Vercel domain without further approval.
+- **New standalone route:** `app/projects/commerce-integration-engineering/{page.tsx,SystemsLab.tsx,CodeExplorer.tsx,AdvancedLabs.tsx,engineering-lab.css}`; `lib/commerce-integration-demo.{mjs,d.mts}`; `tests/commerce-integration-{demo.test,browser-qa}.mjs`; and `docs/commerce-integration-lab-2026-11-22.md`. Public-safe fiction only, no real API calls or client information.
+- **New homepage flagship:** `app/components/FeaturedSystemsLab.tsx`, `app/components/featured-systems-lab.css`; integrate under `app/page.tsx` **after** the already-published 11-site desktop/mobile gallery and **before** Expertise. Add concise Systems navigation links and a footer link. The original four selected-work cards, current gallery and original CartonCloud case study remain.
+- **Reconciled checks:** Retain latest-main `.github/workflows/portfolio-ci.yml` and existing test suites while adding candidate-branch CI and the dedicated commerce-lab desktop/tablet/mobile browser step. Extend `tests/homepage-browser-qa.mjs`, `tests/seo-rendered-metadata.mjs` and `tests/portfolio-palette.test.mjs` to verify the 11-site gallery, all four original projects, separate system diagram, two case-study CTAs, draft `noindex` and sitemap exclusion.
+- **Palette and documentation:** The permanent `docs/JRV_DESIGN_SYSTEM.md` v1.7 draft entry describes the new route and canonical CSS-token reuse (Obsidian `#0B1419`, Electric Teal `#38C7BC`, Ember `#F28C52`) with responsive/reduced-motion requirements. Update the `AGENTS.md` release rule to reflect that PR #96 is already published, not still draft. Retain source comments and prior history.
+- **Why:** The original feature branch was 19 commits behind `main`; copying its old homepage/workflow would have overwritten published design and 11-storefront gallery enhancements. A fresh exact-main integration candidate avoids those conflicts.
+- **Validation:** Existing PR #98 passed CI and responsive tests on its older base. New merged-branch build, privacy/safety, full automated CI, interactive browser QA, actual screenshots and Vercel preview remain **pending** until verified. Treat this as a new integration, not an already approved release.
+- **SEO/release boundary:** New route remains `noindex,nofollow` and excluded from the sitemap, with self-canonical. Existing `/cartoncloud-integration` stays published and indexable. No retirement, redirect, third-party integration change, Shopify theme change or production publication in this commit.
+
+
 ## 2026-11-22 - Publish cinematic portfolio, 11-site gallery and maintained JRV palette
 
 - **Release:** Owner authorised the final release review; integrated PR #96 merged into `main` as `2c95f43c`, publishing to `www.jrvallite.com` and `jrvallite.com`. Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY with both custom-domain aliases assigned.
