@@ -16,7 +16,10 @@ export function calculateDemoEta(input?:{
 }):{
   zoneId:string;zoneLabel:string;postcode:string;orderedAt:string;
   orderedISO:string;productionISO:string|null;dispatchISO:string;
-  deliveryISO:string;rule:string;closureDate:string|null;isIllustrative:boolean;
+  deliveryISO:string;transitReadyISO:string|null;lastMileISO:string|null;
+  routeWaitDays:number|null;leadDays:number;deliveryWeekdays:number[];
+  deliveryMode:'route'|'state-dispatch-rule'|'special-schedule';
+  rule:string;closureDate:string|null;isIllustrative:boolean;
 };
 export function calculateDemoShipment(input:{
   items:Array<{grams:number;quantity:number;requiresShipping:boolean;giftCard?:boolean}>;

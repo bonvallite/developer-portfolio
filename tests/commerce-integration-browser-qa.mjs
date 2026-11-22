@@ -55,6 +55,44 @@ try {
     await page.locator('.cie-code-tabs button').nth(2).click();
     await page.locator('.cie-editor-body').getByText(/TOKEN_STORE/).waitFor();
 
+
+    // Both new features must work without accessing Shopify or CartonCloud.
+    const zoneOptions=page.locator('.cie-mile-option');
+    assert.equal(await zoneOptions.count(),3,'Three fictional Queensland subzones');
+    await zoneOptions.nth(1).click();
+    await page.locator('.cie-mile-date').getByText('Wed, 25 Nov 2026').waitFor();
+    await zoneOptions.nth(2).click();
+    await page.locator('.cie-mile-date').getByText('Thu, 26 Nov 2026').waitFor();
+    await page.locator('.cie-lastmile').getByRole('checkbox',{name:/Fictional closure/}).check();
+    await page.locator('.cie-mile-date').getByText('Mon, 30 Nov 2026').waitFor();
+    await page.locator('.cie-lastmile').getByText(/already included/).waitFor();
+
+    const writeback=page.locator('.cie-writeback');
+    await writeback.locator('#cie-write-status').selectOption('DELIVERED');
+    for(let i=0;i<6;i++) await writeback.getByRole('button',{name:/Start simulation|Next write-back step/}).click();
+    await writeback.locator('.cie-writeback-fields').getByText('delivered_at').waitFor();
+    await writeback.getByText('Requested via Shopify').waitFor();
+    await writeback.getByText('Not proof of email delivery').waitFor();
+
+    await writeback.locator('#cie-write-scenario').selectOption('no-url');
+    for(let i=0;i<6;i++) await writeback.getByRole('button',{name:/Start simulation|Next write-back step/}).click();
+    await writeback.getByText('Not supplied',{exact:true}).waitFor();
+
+    await writeback.locator('#cie-write-scenario').selectOption('rejected');
+    await writeback.getByRole('button',{name:'Start simulation'}).click();
+    assert.equal(await writeback.getByRole('button',{name:/Next write-back step/}).isDisabled(),true);
+    await writeback.getByText(/No order update simulated yet/).waitFor();
+
+    await writeback.locator('#cie-write-scenario').selectOption('api-error');
+    for(let i=0;i<3;i++) await writeback.getByRole('button',{name:/Start simulation|Next write-back step/}).click();
+    await writeback.getByText('USER_ERRORS').waitFor();
+    await writeback.getByText('Not requested',{exact:true}).waitFor();
+
+    await writeback.locator('#cie-write-scenario').selectOption('replay');
+    for(let i=0;i<5;i++) await writeback.getByRole('button',{name:/Start simulation|Next write-back step/}).click();
+    await writeback.locator('.cie-writeback-fields').getByText('delivery_status_raw').waitFor();
+    await writeback.getByText(/does not guarantee complete webhook deduplication/).first().waitFor();
+
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+3),
       false,viewport.name+' no horizontal overflow');
     assert.deepEqual(errors,[],viewport.name+' no browser JS errors');

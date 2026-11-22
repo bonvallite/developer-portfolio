@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-22 - Extend draft commerce lab with last-mile route and Shopify app write-back demos
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, `feature/commerce-integration-lab-20261122`; draft PR #98 remains unmerged.
+- **Affected files:** New `app/projects/commerce-integration-engineering/AdvancedLabs.tsx`; update `app/projects/commerce-integration-engineering/page.tsx`, `engineering-lab.css`, `lib/commerce-integration-demo.mjs`, `lib/commerce-integration-demo.d.mts`, `tests/commerce-integration-demo.test.mjs`, `tests/commerce-integration-browser-qa.mjs`, `docs/commerce-integration-lab-2026-11-22.md`, and `CHANGELOG.md`.
+- **What changed:** Add a fictional three-route Queensland last-mile comparison with shared transit time and distinct delivery weekdays, selection, timeline, closure control and route-wait calculations. Add a complete fictional Shopify app write-back console covering Cloudflare callback authentication, OAuth token/KV access, Shopify fulfilment lookup, GraphQL tracking update, fulfilment-event creation, order-metafield writes, customer notification request and success/failure behaviour.
+- **Why:** Make the case study demonstrate postcode-zone service variability and the technically correct Worker-to-Shopify Admin API write-back and customer notification semantics, not just high-level integrations.
+- **Privacy/inline documentation:** Updated comments and implementation descriptions to distinguish private business rules from fictional examples, avoid presenting the app as a separate receiving server, and distinguish a Shopify notification request from actual email delivery. No production Worker code, hostnames, customers, real postcode mapping data or credentials.
+- **Validation:** Updated node unit tests and three-viewport browser QA with new route and write-back scenarios. Final full CI and screenshot checks **pending** on this refinement commit. No changes to Shopify, CartonCloud, Cloudflare production, homepage, original case study or `main`.
+- **Release gate:** Keep draft PR and branch preview only. No merge or homepage integration until reviewed.
+
+
 ## 2026-11-22 - Build isolated serverless commerce engineering lab on an unpublished branch
 
 - **Repository/branch:** `bonvallite/developer-portfolio`; `feature/commerce-integration-lab-20261122`, created from `main` commit `ecf8e5ad05fd2a9186b9b01111ffc1df28bb0ae9`. No change to `main` or production is part of this commit.

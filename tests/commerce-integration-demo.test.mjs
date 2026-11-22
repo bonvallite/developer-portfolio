@@ -7,8 +7,8 @@ import {
 
 // These validate ONLY deterministic, public-safe illustrations. They are not
 // tests of the private production Worker or an actual carrier delivery promise.
-test('five labelled synthetic destinations are available',()=>{
-  assert.equal(DEMO_ZONES.length,5);
+test('seven labelled synthetic destinations are available',()=>{
+  assert.equal(DEMO_ZONES.length,7);
   assert.equal(DEMO_ZONES.find(zone=>zone.id==='sa').state,'SA');
 });
 test('QLD weekday example uses the next-day delivery window',()=>{
@@ -79,4 +79,44 @@ test('carrier mapping distinguishes collection and actual delivery',()=>{
 });
 test('readable calendar values are stable across environments',()=>{
   assert.match(formatDemoDate('2026-11-27'),/27 Nov 2026/);
+});
+
+test('fictional QLD postcode zones share transit but differ by last-mile route calendar',()=>{
+  const base={orderedAt:'2026-11-23T10:00'};
+  const weekday=calculateDemoEta({...base,zoneId:'qld'});
+  const wednesday=calculateDemoEta({...base,zoneId:'qld-wed'});
+  const monThu=calculateDemoEta({...base,zoneId:'qld-mon-thu'});
+  assert.equal(weekday.dispatchISO,'2026-11-23');
+  assert.equal(weekday.transitReadyISO,'2026-11-24');
+  assert.equal(weekday.deliveryISO,'2026-11-24');
+  assert.equal(weekday.routeWaitDays,0);
+  assert.equal(wednesday.dispatchISO,weekday.dispatchISO);
+  assert.equal(wednesday.transitReadyISO,weekday.transitReadyISO);
+  assert.equal(wednesday.deliveryISO,'2026-11-25');
+  assert.equal(wednesday.routeWaitDays,1);
+  assert.deepEqual(wednesday.deliveryWeekdays,[3]);
+  assert.equal(monThu.deliveryISO,'2026-11-26');
+  assert.equal(monThu.routeWaitDays,2);
+  assert.equal(monThu.deliveryMode,'route');
+  assert.equal(monThu.lastMileISO,monThu.deliveryISO);
+});
+test('fictional destination closure skips last-mile service rather than adding a second transit leg',()=>{
+  const eta=calculateDemoEta({zoneId:'qld-mon-thu',orderedAt:'2026-11-23T10:00',closureDate:'2026-11-26'});
+  assert.equal(eta.transitReadyISO,'2026-11-24');
+  assert.equal(eta.deliveryISO,'2026-11-30');
+  assert.equal(eta.lastMileISO,'2026-11-30');
+  assert.equal(eta.routeWaitDays,6);
+});
+test('NSW VIC exceptions do not pretend to have a separate route calendar stage',()=>{
+  for(const zoneId of ['nsw','vic']){
+    const result=calculateDemoEta({zoneId,orderedAt:'2026-11-23T10:00'});
+    assert.equal(result.deliveryMode,'state-dispatch-rule');
+    assert.equal(result.transitReadyISO,null);
+    assert.equal(result.routeWaitDays,null);
+  }
+});
+test('special South Australia schedule remains separate from route-mode calculation',()=>{
+  const result=calculateDemoEta({zoneId:'sa',orderedAt:'2026-11-23T10:00'});
+  assert.equal(result.deliveryMode,'special-schedule');
+  assert.equal(result.transitReadyISO,null);
 });

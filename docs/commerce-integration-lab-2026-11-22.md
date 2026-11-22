@@ -82,3 +82,41 @@ The feature has no `fetch` calls in browser components. Optional site-wide analy
 - **Browser checks:** generic case-study QA and dedicated commerce integration lab QA passed. The latter exercised three integrations, state/closure and weight calculations, mocked failed webhook behaviour, masked KV/OAuth flow, code tabs and responsive overflow at 1440x900, 768x1024 and 390x844. Screenshot artifact was uploaded.
 - **Still pending:** owner visual review, explicit future homepage integration, final canonical migration decision and live third-party production end-to-end verification. The successful browser simulation does not certify production delivery operations.
 - **Publication:** no `main` merge and no production deployment. Vercel branch preview only, while the new route remains noindex and unlinked.
+
+## 22 November 2026: zone-aware last-mile and app write-back refinements
+
+**Owner request:** Extend the existing unpublished case study, without linking it from the homepage or changing any production service.
+
+**New files and code:** `app/projects/commerce-integration-engineering/AdvancedLabs.tsx` contains two isolated client-only UI components. Updates to `page.tsx`, `engineering-lab.css`, `lib/commerce-integration-demo.mjs`, its `.d.mts` declaration, unit tests and Playwright browser QA bring both capabilities into the same route.
+
+### Destination-specific last-mile comparison
+
+- Three **invented Queensland subzones**, labelled as examples, each share a one-day transit lead but use different delivery calendars: weekdays, Wednesday-only, and Monday/Thursday.
+- User changes fictional Brisbane order time, chooses a route, and can inject a fictional 26 November closure.
+- The model returns `transitReadyISO`, `lastMileISO`, `deliveryWeekdays`, `routeWaitDays`, `leadDays` and `deliveryMode`.
+- The last-mile waiting period is **already included** in the final estimated date; no arbitrary extra day is added.
+- NSW/VIC special dispatch-day rules and SA production scheduling intentionally do not fabricate a separate transit-ready stage. These stay in the existing calculation lab.
+- Example zone labels and `DEMO-` identifiers are never an assertion that any specific real postcode is on that delivery route. Do not copy the private postcode mapping table.
+
+### Custom Shopify app write-back console
+
+The simulation models, but never executes, the behaviour verified in the private Worker bundle:
+
+1. CartonCloud callback arrives and is authenticated by the Cloudflare-hosted Worker.
+2. The Worker retrieves an offline Shopify app token from Workers KV and finds an eligible Shopify order/fulfilment.
+3. `fulfillmentTrackingInfoUpdate` writes available carrier number/link and may supply `notifyCustomer`.
+4. `fulfillmentEventCreate` records a mapped fulfilment status when eligible.
+5. `metafieldsSet` updates order delivery status, raw status, event status, status timestamp, delivery timestamp on delivered, tracking number and URL when available.
+6. Shopify may process a **native** notification request; a mutation's success does **not** prove email receipt.
+
+The app registration is an OAuth identity and permission layer for the Worker, **not a separately verified incoming app server**. A customer email panel is illustrative copy, not a screenshot or template from a real merchant. No customer email is sent.
+
+Scenarios: success, missing tracking URL, same-number callback replay, rejected authentication, and Shopify GraphQL validation failure. The replay case can still write fulfilment status events and metafields, so it must not be presented as fully idempotent.
+
+### Visual and safety boundaries
+
+All styles remain scoped to `.cie-page`; no modifications to the homepage, original case study, sitemap, production Worker, connected app or third-party providers. No actual tokens, URLs, postcodes from private route lists, customers or fulfilment records. Example tracking references are invented. No browser network requests.
+
+### Validation for refinement
+
+Updated regression tests cover zone comparison, last-mile closure dates, NSW/VIC overrides, SA special schedules and the write-back console's state transitions and failure scenarios. **New CI results pending**, until the new branch commit has run. Existing first-version successful CI is not evidence for this refinement.

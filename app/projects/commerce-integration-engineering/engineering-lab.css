@@ -192,3 +192,65 @@
 @media(max-width:680px){.cie-shell{width:min(100% - 34px,1480px)}.cie-header{min-height:73px}.cie-brand-caption{display:none}.cie-header nav{gap:12px}.cie-header nav a:not(.cie-back-small){display:none}.cie-hero{padding-block:64px 68px}.cie-hero h1{font-size:clamp(43px,11vw,67px)}.cie-hero-lead{font-size:18px}.cie-hero-visual{min-height:300px}.cie-console{transform:none;animation:none}.cie-console-lines div{font-size:10px;grid-template-columns:18px 37px 1fr 28px;padding:9px 6px}.cie-float-tag{font-size:8px;padding:7px 8px}.cie-float-a{left:-1%;top:0}.cie-float-c{right:0;top:-4%}.cie-float-b{right:0;bottom:0}.cie-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.cie-proof-grid span{font-size:9px}.cie-section{padding-block:75px}.cie-tabs{grid-template-columns:1fr}.cie-network{min-height:430px}.cie-nodes{padding:18px 12px 52px;gap:6px}.cie-node{min-height:95px;padding:9px 5px;border-radius:9px}.cie-node--worker{min-height:112px}.cie-node strong{font-size:10px}.cie-node span{font-size:8px}.cie-node svg{width:20px;height:20px}.cie-event-track{grid-template-columns:1fr 1fr}.cie-event-track-item{min-height:74px}.cie-result-highlight,.cie-journey-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.cie-result-highlight strong{font-size:26px}.cie-oauth-layout,.cie-code-explorer{grid-template-columns:1fr}.cie-code-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.cie-code-tabs button{padding:12px;font-size:11px}.cie-editor-caption{flex-direction:column}.cie-translation{gap:8px}.cie-capability-grid{grid-template-columns:1fr 1fr}.cie-capability{padding:19px;min-height:170px}.cie-footer-inner{align-items:flex-start;flex-direction:column}}
 @media(max-width:390px){.cie-brand-mark{font-size:22px}.cie-header nav a.cie-back-small{font-size:10px}.cie-node span{display:none}.cie-capability-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.cie-page *, .cie-page *:before,.cie-page *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.cie-console{transform:none!important}}
+
+
+/*
+ * 22 Nov 2026: Last-mile route comparison and Shopify app write-back additions.
+ * These selectors remain scoped to .cie-page and use the existing JRV palette.
+ * Local interactions never make network requests or send Shopify notifications.
+ */
+.cie-mini-kicker{display:flex;align-items:center;gap:8px;color:var(--cie-teal);font-size:10px;font-weight:850;letter-spacing:.12em}
+.cie-lastmile,.cie-writeback{border:1px solid #446268;background:linear-gradient(150deg,#192d35,#111e26);border-radius:14px;padding:clamp(16px,2.8vw,34px)}
+.cie-lastmile-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(250px,.8fr);align-items:start;gap:24px;margin-bottom:24px}
+.cie-lastmile-intro h3,.cie-writeback-controls h3{font-size:clamp(24px,3vw,36px);line-height:1.15;letter-spacing:-.045em;margin:14px 0}
+.cie-lastmile-intro p{color:#b9ced0;font-size:13px;max-width:665px;line-height:1.8}
+.cie-lastmile-inputs{border:1px solid #416268;background:#0d2027;padding:18px;border-radius:9px}
+.cie-lastmile-inputs>label:not(.cie-check){font-weight:700;font-size:12px;display:block;margin-bottom:10px;color:#dcece9}
+.cie-lastmile-inputs input[type=datetime-local]{width:100%;border:1px solid #54747b;border-radius:5px;padding:10px;background:#0c171d;color:#f3f9f7;color-scheme:dark}
+.cie-mile-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:16px}
+.cie-mile-option{display:flex;align-items:center;text-align:left;gap:12px;padding:17px 14px;border:1px solid #48666e;border-radius:9px;background:#10232b;color:#edf7f4;min-width:0}
+.cie-mile-option.is-active{border-color:var(--cie-ember);background:#284248;box-shadow:inset 0 2px var(--cie-ember)}
+.cie-mile-option>span:nth-child(2){flex:1;display:grid;gap:4px;min-width:0}
+.cie-mile-option strong{font-size:12px;line-height:1.35}.cie-mile-option small{font-size:10px;line-height:1.4;color:#adc7c9}
+.cie-mile-option svg{flex-shrink:0;color:var(--cie-teal)}
+.cie-mile-pin{display:inline-block;flex-shrink:0;height:11px;width:11px;border:2px solid var(--cie-teal);border-radius:50%;box-shadow:0 0 0 4px #38c7bc22}
+.cie-mile-pin.orange{border-color:var(--cie-ember);box-shadow:0 0 0 4px #f28c5222}.cie-mile-pin.violet{border-color:#c5b1ff;box-shadow:0 0 0 4px #c5b1ff22}
+.cie-mile-output{border:1px solid #47636c;background:#102029;border-radius:10px;padding:clamp(16px,2.5vw,27px)}
+.cie-mile-date{display:grid;gap:7px;margin-bottom:20px}.cie-mile-date span,.cie-mile-stages span{font-size:10px;font-weight:850;letter-spacing:.12em;color:#a7d4ce}
+.cie-mile-date strong{font-size:clamp(25px,3.7vw,43px);line-height:1.13;letter-spacing:-.05em;color:#f3e7db}
+.cie-mile-date small{font-size:12px;color:#bfd0d0}
+.cie-mile-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-bottom:22px}
+.cie-mile-calendar>div{display:grid;place-items:center;gap:8px;border:1px solid #38515a;border-radius:6px;padding:13px 5px;background:#182830;color:#8aa0a9}
+.cie-mile-calendar>div.is-route-day{border-color:#389e99;background:#18403f;color:#eaf8f5}.cie-mile-calendar span{font-size:10px;font-weight:850}.cie-mile-calendar strong{font-size:17px;line-height:1}
+.cie-mile-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.cie-mile-stages>div{min-width:0;display:grid;align-content:start;gap:8px;background:#20333b;padding:17px 13px;border-top:2px solid var(--cie-teal)}
+.cie-mile-stages>div:nth-child(3){border-top-color:var(--cie-ember)}
+.cie-mile-stages strong{font-size:13px;color:#f4f3ec;line-height:1.4}
+.cie-mile-stages small{font-size:10px;color:#acbfc4}
+.cie-writeback{display:grid;grid-template-columns:minmax(280px,.62fr) minmax(0,1.38fr);gap:18px}
+.cie-writeback-controls,.cie-writeback-monitor{min-width:0}
+.cie-writeback-controls{border-right:1px solid #47646b;padding-right:clamp(15px,2vw,25px)}
+.cie-writeback-controls .cie-note{margin-top:23px}
+.cie-writeback-steps{margin-top:24px;display:grid;gap:7px}
+.cie-writeback-steps button{display:flex;align-items:center;gap:11px;border:1px solid #3a555d;background:#102129;padding:12px;text-align:left;color:#c8d9dc}
+.cie-writeback-steps button span{display:grid;place-items:center;width:26px;height:26px;flex-shrink:0;color:var(--cie-teal);background:#1d3439;font-size:10px;font-weight:800}
+.cie-writeback-steps button strong{font-size:12px}.cie-writeback-steps button.is-active{border-color:var(--cie-ember);background:#294248}.cie-writeback-steps button.is-done{border-color:#3a8981}
+.cie-writeback-monitor>.cie-monitor-top{margin-bottom:16px}
+.cie-writeback-route{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:17px}
+.cie-writeback-route>div{display:grid;justify-items:center;gap:8px;min-width:0;flex:1;border:1px solid #42636b;background:#193139;padding:12px 6px;border-radius:7px;color:#e6f6f0}
+.cie-writeback-route>div svg{color:var(--cie-teal)}.cie-writeback-route>div span{font-size:10px;font-weight:800;text-align:center;line-height:1.35}
+.cie-writeback-route>svg{flex-shrink:0;color:var(--cie-ember)}
+.cie-writeback-explainer{border:1px solid #41626a;background:#0e232a;border-radius:9px;padding:17px;margin-bottom:17px}
+.cie-writeback-explainer strong{font-size:16px;color:#f5f3ec}.cie-writeback-explainer p{font-size:12px;line-height:1.7;color:#b8cfd0;margin:7px 0}.cie-writeback-explainer small{font-size:10px;color:var(--cie-teal)}
+.cie-writeback-snapshot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:17px}
+.cie-writeback-card{background:#12262e;border:1px solid #3d5d65;border-radius:10px;padding:clamp(15px,1.7vw,23px);min-width:0}
+.cie-writeback-card .cie-mini-kicker{line-height:1.4;margin-bottom:13px}
+.cie-writeback-card dl{margin:0;display:grid;gap:5px;font-size:11px}.cie-writeback-card dt{color:#90adb5;margin-top:7px}.cie-writeback-card dd{margin:0;color:#f2f6f0;font-weight:800;overflow-wrap:anywhere}
+.cie-writeback-card small{color:#b2c6c8;font-size:10px;line-height:1.55}.cie-writeback-placeholder{font-size:13px;color:#f1f1e9;line-height:1.5;margin:0 0 8px}
+.cie-writeback-fields{display:grid;gap:7px;max-height:240px;overflow:auto;padding:4px 0}.cie-writeback-fields>div{display:grid;gap:2px;overflow-wrap:anywhere;border-bottom:1px solid #ffffff14;padding-bottom:6px}.cie-writeback-fields span{font:10px/1.5 ui-monospace,Consolas,monospace;color:#9dbdc0}.cie-writeback-fields strong{font-size:10px;line-height:1.5;color:#e5f9f1;font-weight:700}
+.cie-email-preview{padding:20px;margin-top:13px;background:#ece5dc;border:1px solid #e5b17d;border-radius:9px;color:#1c3139}
+.cie-email-preview>.cie-mini-kicker{color:#355b60}
+.cie-email-preview>div{display:grid;gap:2px;margin:15px 0}.cie-email-preview>div strong{font-size:18px;letter-spacing:-.02em}.cie-email-preview>div small,.cie-email-preview>small{font-size:11px;color:#53656c}
+.cie-email-preview p{font-size:13px;line-height:1.7;margin-bottom:13px}
+@media(max-width:1050px){.cie-writeback{grid-template-columns:1fr}.cie-writeback-controls{border-right:0;border-bottom:1px solid #47646b;padding-right:0;padding-bottom:20px}.cie-lastmile-intro{grid-template-columns:1fr}}
+@media(max-width:680px){.cie-mile-options{grid-template-columns:1fr}.cie-mile-calendar{gap:4px}.cie-mile-calendar>div{padding:10px 2px}.cie-mile-stages{grid-template-columns:repeat(2,minmax(0,1fr))}.cie-writeback-snapshot{grid-template-columns:1fr}.cie-writeback-route>div{padding:10px 3px}.cie-writeback-route>div span{font-size:9px}.cie-writeback-route>svg{width:12px}.cie-writeback{padding:17px}.cie-lastmile{padding:17px}}

@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { ArchitectureLab, CalculationLab, EventLab, OAuthLab } from './SystemsLab';
 import CodeExplorer from './CodeExplorer';
+import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import './engineering-lab.css';
 
 // Draft case study only. Do not index or add to sitemap/homepage until the
@@ -38,6 +39,7 @@ export default function CommerceIntegrationEngineering() {
         <nav aria-label="Case study navigation">
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
+          <a href="#writeback">App write-back</a>
           <a href="#code">Code</a>
           <Link href="/cartoncloud-integration" className="cie-back-small">Earlier case study <ArrowUpRight size={14} /></Link>
         </nav>
@@ -102,9 +104,27 @@ export default function CommerceIntegrationEngineering() {
             <CalculationLab />
           </div>
         </section>
+        <section className="cie-section cie-shell" id="last-mile">
+          <div className="cie-section-header">
+            <p className="cie-kicker">02B / LAST-MILE INTELLIGENCE</p>
+            <h2>One dispatch.<br /><em>Different delivery days.</em></h2>
+            <p>Transit is not the whole story. Compare three fictional Queensland postcode zones with identical transit time but different last-mile route calendars, then inspect how each final estimated date is selected.</p>
+          </div>
+          <LastMileLab />
+        </section>
+        <section className="cie-section cie-section-banded" id="writeback">
+          <div className="cie-shell">
+            <div className="cie-section-header">
+              <p className="cie-kicker">03 / SHOPIFY APPLICATION WRITE-BACK</p>
+              <h2>The app doesn't just connect.<br /><em>It updates the order.</em></h2>
+              <p>Follow a CartonCloud callback through the Cloudflare-hosted Shopify app backend, authorised Shopify Admin API operations, fulfilment tracking, order metafields, and the native customer notification decision. Compare missing links, callback replays and failures.</p>
+            </div>
+            <ShopifyWritebackLab />
+          </div>
+        </section>
         <section className="cie-section cie-shell" id="event-trace">
           <div className="cie-section-header">
-            <p className="cie-kicker">03 / EVENT INTELLIGENCE</p>
+            <p className="cie-kicker">04 / EVENT INTELLIGENCE</p>
             <h2>Watch the update.<br /><em>Inspect the failure.</em></h2>
             <p>Follow CartonCloud status callbacks into Shopify. Compare a normal milestone with missing tracking data, a replay and a rejected signature, without touching any real customer record.</p>
           </div>
@@ -113,7 +133,7 @@ export default function CommerceIntegrationEngineering() {
         <section className="cie-section cie-section-banded" id="auth">
           <div className="cie-shell">
             <div className="cie-section-header">
-              <p className="cie-kicker">04 / CUSTOM APPLICATION</p>
+              <p className="cie-kicker">05 / CUSTOM APPLICATION</p>
               <h2>The app is the bridge.<br /><em>KV keeps the connection.</em></h2>
               <p>A non-embedded Shopify app grants authenticated Admin API access. The Cloudflare Worker hosts its OAuth routes; Workers KV persists temporary state and the offline token used for subsequent requests.</p>
             </div>
@@ -122,7 +142,7 @@ export default function CommerceIntegrationEngineering() {
         </section>
         <section className="cie-section cie-shell" id="code">
           <div className="cie-section-header">
-            <p className="cie-kicker">05 / ENGINEERING NOTES</p>
+            <p className="cie-kicker">06 / ENGINEERING NOTES</p>
             <h2>Readable code.<br /><em>Defensible decisions.</em></h2>
             <p>Explore hand-written educational JavaScript for the patterns behind the system. These snippets are intentionally reconstructed, not copies of production source.</p>
           </div>
@@ -131,7 +151,7 @@ export default function CommerceIntegrationEngineering() {
         <section className="cie-section cie-section-banded" id="ownership">
           <div className="cie-shell">
             <div className="cie-section-header">
-              <p className="cie-kicker">06 / RESPONSIBILITY & BOUNDARIES</p>
+              <p className="cie-kicker">07 / RESPONSIBILITY & BOUNDARIES</p>
               <h2>Built end to end.<br /><em>Explained without exposing it.</em></h2>
             </div>
             <div className="cie-capability-grid">
