@@ -282,10 +282,23 @@ Visitors can turn off the ETA field write, tracking availability, or SMS channel
 
 The private example's actual order reference, postal address, delivery zone membership, tracking reference, logo and contact address are **not copied to public source**. An externally configured message journey is deliberately labelled as merchant-reported rather than a verified function of `worker.js`.
 
-**Validation status:** New exact-head GitHub CI, Vercel preview, responsive screenshots and browser interactions need to pass before this draft change can be called tested.
+**Validation status:** The corrected exact-source commit `aecd1ff527e5f92edf77e3a15b4a90fdbbc8621e` passed GitHub Actions run `45029976900` including source/safety, JavaScript, Python, TypeScript, build, rendered SEO and desktop/tablet/mobile interactions. Vercel preview `developer-portfolio-hqp180t0f-my-dojo.vercel.app` is READY. Reviewed the uploaded desktop and mobile screenshot artefacts, including the new timeline, typed order metafields and email mock-up. The previously failed `565b75b` browser run is retained accurately as a test-selector regression; no production notification delivery was tested.
 
 ## Notification demo browser selector fix — 22 November 2026
 
 Exact source commit `565b75b3a080f4201862e5f567a247e84ffb1e33` passed the GitHub validation job (Node/Python, source/public safety, TypeScript, Next.js, and rendered SEO). Its separate browser job failed at `tests/commerce-integration-browser-qa.mjs:117` with a Playwright strict-mode violation: the button name `SMS` also matched the timeline step whose description contained SMS. The application had rendered the ETA email and earlier stages before the ambiguous selector; the log does not establish that later simulated email/SMS interactions or responsive layouts passed.
 
 **Patch:** Target the SMS tab by exact accessible role name and leave all customer message business logic unchanged. New full browser QA must run on the patch commit before approval. Main, production, private worker and Shopify notifications remain unchanged.
+
+## 22 November 2026: corrected browser QA and screenshot review
+
+**Final tested source:** `aecd1ff527e5f92edf77e3a15b4a90fdbbc8621e`  
+**GitHub Actions:** https://github.com/bonvallite/developer-portfolio/actions/runs/45029976900 — **validate SUCCESS, case-study-browser-qa SUCCESS**.  
+**Vercel Preview:** https://developer-portfolio-hqp180t0f-my-dojo.vercel.app/projects/commerce-integration-engineering#communications — READY and preview-only.  
+**Screenshot artifact:** GitHub Actions `case-study-browser-qa`, id `14757561997` (desktop, tablet, mobile engineering page plus existing home/case suites).
+
+The initial full browser run for source `565b75b` failed because the SMS tab button was matched by an insufficiently specific Playwright role query that also selected a timeline step; it did not reveal a failing app transaction. Fix `aecd1ff` added `exact:true` to the SMS tab selector without changing implementation logic. The corrected full job passed all screens and scripts: four communication stages, ETA field types, delayed notification gating, no tracking at the ETA-only stage, fictional SMS, later shipping preview, missing carrier tracking, failed GraphQL ETA write, and both new code-inspector examples.
+
+**Screenshot review:** Desktop full-page image `1440×13261` and mobile full-page image `390×21213` were inspected, with targeted crops around the new `#communications` section. On desktop, the four-stage rail and separate metafields/email panels are legible; on mobile, stages stack above the metafield list and email/SMS preview, retaining JRV Obsidian, Teal and Ember styling. No obvious clipping or cross-section horizontal overflow was observed; Chromium regression test also checks overflow. Screenshot and synthetic browser test success are not proof of real SMS/email delivery or merchant notification configuration.
+
+**Production boundary unchanged:** no merge, no actual customer message, no Shopify theme, no Cloudflare Worker update, no CartonCloud or order modification. Public source contains only fictional identifiers and places. The order example supplied by the owner is not published.

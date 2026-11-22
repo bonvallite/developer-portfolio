@@ -6,7 +6,7 @@
 - **Affected files:** `tests/commerce-integration-browser-qa.mjs`, `docs/commerce-integration-lab-2026-11-22.md`, `CHANGELOG.md`.
 - **Why:** The first exact-head CI for source `565b75b` passed all source, public-safety, JavaScript unit, Python, TypeScript, Next.js, and rendered SEO checks. The browser suite failed specifically at the SMS tab interaction because the role selector `getByRole('button',{name:'SMS'})` matched both the SMS tab and a timeline step whose accessible name mentioned SMS. The GitHub Actions log reports a Playwright strict-mode ambiguity, not a failed app operation.
 - **Change:** Use an exact accessible name for the SMS tab (`name:'SMS', exact:true`) and document this regression rule inline. No customer communication logic, visual styling, Shopify notification, production Worker or external API behaviour changed.
-- **Validation:** New full CI and three-viewport browser rerun **pending** on this patch commit; do not mark the earlier failed browser job as passed.
+- **Validation:** Corrected source commit `aecd1ff527e5f92edf77e3a15b4a90fdbbc8621e` passed both GitHub Actions validation and browser QA jobs in [run 45029976900](https://github.com/bonvallite/developer-portfolio/actions/runs/45029976900). The 1440px desktop, 768px tablet and 390px mobile engineering-lab interactions completed, including ETA save and failure gates, reported five-minute notice, SMS tab, shipping confirmation and missing tracking. Screenshot artefact `14757561997` was downloaded; visually inspected desktop and mobile full-page captures and close-up new sections. The earlier `565b75b` browser runs remain correctly recorded as failed due to the non-exact selector.
 - **Release:** Draft only, no production merge.
 
 
