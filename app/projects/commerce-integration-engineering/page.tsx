@@ -9,16 +9,26 @@ import CodeExplorer from './CodeExplorer';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import './engineering-lab.css';
 
-// Draft case study: the user approved a homepage link on the isolated preview
-// branch, but NOT public indexing, sitemap publication, a production merge or
-// retirement of the original integration case study. Keep robots noindex until
-// a separately approved SEO release; all demonstrations use fictional data
-// and never invoke live Shopify, Cloudflare or CartonCloud integrations.
+// 22 Nov 2026 / draft PR #100: production-ready SEO metadata is staged for
+// owner review, NOT published. A Vercel preview must remain noindex even when
+// the same source would be indexable after a separately approved main merge.
+// Keep a distinct canonical and description from /cartoncloud-integration;
+// the older case study stays available and never redirects automatically.
+// All interactive demos use fictional data and no live provider API calls.
+const isVercelPreview = process.env.VERCEL_ENV === 'preview';
+const title = 'Custom Shopify App Engineering | Cloudflare Workers';
+const description = 'Interactive Shopify app engineering with Cloudflare Workers, Workers KV, webhooks, fulfilment tracking, last-mile delivery and order updates.';
 export const metadata: Metadata = {
-  title: 'Serverless Commerce Systems | Cloudflare Workers & Shopify App',
-  description: 'Explore a simulated, interactive commerce integration: custom Shopify app authentication, Cloudflare Workers, Workers KV, delivery calculations and logistics event processing.',
-  robots: { index: false, follow: false },
-  alternates: { canonical: '/projects/commerce-integration-engineering' }
+  title,
+  description,
+  robots: { index: !isVercelPreview, follow: !isVercelPreview },
+  alternates: { canonical: '/projects/commerce-integration-engineering' },
+  openGraph: {
+    title,
+    description,
+    url: 'https://www.jrvallite.com/projects/commerce-integration-engineering',
+    type: 'article'
+  }
 };
 
 const capabilities = [

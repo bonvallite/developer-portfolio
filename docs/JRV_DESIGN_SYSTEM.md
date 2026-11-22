@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.7 (draft integration branch), established 22 November 2026; version 1.6 is the published production baseline  
+**Version:** 1.8 (draft SEO release candidate), established 22 November 2026; version 1.6 remains the published production baseline  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Published on `jrvallite.com` through PR #96 on 22 November 2026. GitHub merge `2c95f43c`; Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY, with both `www.jrvallite.com` and `jrvallite.com` aliases assigned. Code-level safety and CI checks passed; independent client image rights, third-party analytics settings, field performance and spoken screen-reader behaviour were not certified.
 
@@ -42,7 +42,7 @@ The `:root` CSS custom properties in `app/globals.css` are the **runtime source 
 10. **Project-page identity:** All flagship engineering demos retain Obsidian backgrounds (`#0B1419`), Electric Teal (`#38C7BC`) to communicate systems, and Ember (`#F28C52`) for actions. Shared legacy `.flow-page` backgrounds and the experience gallery now use `--jrv-bg` and `--jrv-surface`; distinctive light ecommerce/print layouts remain intentional exceptions. Maintain contrast and accessibility, not exact colour on every decorative element.
 11. **Published website references:** Keep the full active storefront list in `app/data/storefronts.ts` and the capture script aligned. Show a responsive, user-controlled desktop/mobile gallery and individually accessible live-homepage links on `/#websites`, plus the detailed `/experience` case study. Preserve the owner's retired-site exclusion. Website names and images illustrate self-reported contributions, not endorsements, exclusive ownership or verified uplift. Prefer owner-reviewed, locally hosted dated WebP captures; if a local capture is absent, fall back to a cached public snapshot, then a live-site link. Never fabricate a screenshot, mislabel dated visuals as current, or silently publish an incomplete capture.
 
-12. **Dedicated systems engineering flagship (draft only):** A separate homepage section introduces the public-safe Shopify app, Cloudflare Workers/Workers KV and CartonCloud integration case study without displacing the eleven published website previews or four existing project cards. Reuse Obsidian / Electric Teal / Ember in conceptual CSS-only diagrams, preserve reduced motion and accessible CTAs, and keep fictional API demonstrations clearly labelled. This feature is preview-only until independent publication approval; the new route remains noindex and outside the sitemap.
+12. **Dedicated systems engineering flagship (draft only):** A separate homepage section introduces the public-safe Shopify app, Cloudflare Workers/Workers KV and CartonCloud integration case study without displacing the eleven published website previews or four existing project cards. Reuse Obsidian / Electric Teal / Ember in conceptual CSS-only diagrams, preserve reduced motion and accessible CTAs, and keep fictional API demonstrations clearly labelled. This feature remains unmerged until independent publication approval. Vercel **preview** builds remain `noindex,nofollow` and exclude the new route from their sitemap; the owner-approved future **production** build will have its own self canonical, unique app-engineering metadata and sitemap entry while preserving the older CartonCloud route. Do not interpret staged source metadata as permission to merge.
 
 ## Maintained file map
 
@@ -87,6 +87,8 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | 22 November 2026 | 1.6 | Record completed production publication, exact-head CI, website preview gallery, 11 site links, four project colour families and remaining external review limitations. No changes to brand tokens or runtime code. | PR #96 merged as `2c95f43c`; final source CI `44997913434` passed; Vercel deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` READY and aliases assigned. |
 
 | 22 November 2026 | 1.7 | Draft a separate custom Shopify app engineering flagship after the published 11-site gallery, retaining the original four selected-work cards and existing CartonCloud case study. Reuse the established Obsidian/Teal/Ember palette and add educational browser-only systems diagrams. No new global CSS tokens or changes to the published favicon. | New draft integration branch `integration/commerce-systems-latest-main-20261122`; source CI `45026760172` passed at `afee9c51`, including wide/mobile visual screenshots and colour QA. **Not published**. |
+
+| 22 November 2026 | 1.8 | Clarify the draft systems page's environment-aware publication rule: Vercel previews remain noindex and omit its sitemap URL; a separately approved production merge enables a self-canonical indexable page without retiring the original integration case study. No palette or component styling changed. | Draft PR #100 SEO preparation; local rendered SEO and preview HTTP validation pending. No production release. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

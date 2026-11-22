@@ -1,5 +1,17 @@
 # Portfolio changelog
 
+## 2026-11-22 - Stage production SEO for custom Shopify app case study (draft only)
+
+- **Branch and release:** `integration/commerce-systems-latest-main-20261122`, Draft PR #100; published `main` and `jrvallite.com` untouched. Existing `/cartoncloud-integration` remains published, indexable, independently canonicalised and linked; no redirect.
+- **Files:** `app/projects/commerce-integration-engineering/page.tsx`, `app/sitemap.ts`, `scripts/check-seo-publication.mjs`, `tests/seo-rendered-metadata.mjs`, `docs/commerce-integration-lab-2026-11-22.md`, `docs/JRV_DESIGN_SYSTEM.md`, and `CHANGELOG.md`.
+- **Purpose:** Distinguish the new interactive **custom Shopify app / Cloudflare Workers engineering** case study from the original **Shopify–CartonCloud integration** story. Stage a concise 51-character base title (plus site suffix), an honest 141-character metadata description, self canonical, matching Open Graph and separate sitemap listing on an eventual approved production build.
+- **Preview protection:** `VERCEL_ENV === 'preview'` makes the new page `noindex,nofollow` and **omits the route from the preview sitemap**. The locally built production-equivalent candidate includes the route and allows indexing only when actually published. Platform preview protection remains an additional defence, not the sole mechanism.
+- **Tests added:** Source guards verify per-environment indexing, canonical alignment, preservation of the older integration route; rendered Next.js tests verify distinct page titles/descriptions, explicit indexable metadata, both self canonicals/OG URLs, both sitemap entries in production-equivalent local build, and existing 11-gallery/four-card coverage.
+- **Visual identity:** No CSS, logo, site palette or homepage layout changes. Maintained JRV design guide v1.8 clarifies the preview-versus-production route-policy exception; previous 1.7 remains historical.
+- **Validation:** New exact-head CI (Node, Python, public safety, TypeScript, Next.js, rendered SEO and real Chrome responsive QA) **pending**; preview HTTP verification of `noindex` and sitemap omission **pending**. Do not claim production SEO publication until an explicitly authorised merge.
+- **Rollback gate:** Before any release, confirm current main has not advanced, PR is clean, tests pass, and both case-study pages provide different user value. Restoring `noindex` and removing the new sitemap route is a small reversible source change if publication is deferred.
+
+
 ## 2026-11-22 - Reconcile Shopify systems lab with published 11-site portfolio (draft integration)
 
 - **Source and branch:** Current published `main` at `90ea2d30ba0470828b451cb76fd8595df060e06b`; new preview-only `integration/commerce-systems-latest-main-20261122`. Existing draft PR #98 remains separate, unmerged, and non-mergeable due to mainline divergence. Do not modify `main` or the production Vercel domain without further approval.

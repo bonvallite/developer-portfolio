@@ -7,6 +7,10 @@ import type { MetadataRoute } from 'next';
 // declare self-referencing canonicals. Keep flagship client-only lab routes in
 // sync with the adjacent server layouts that own their route metadata.
 // Resume pages deliberately remain noindex and absent from this sitemap.
+// 22 Nov 2026: Stage the new engineering case study for future production
+// indexing only. Vercel preview builds exclude it, matching the route's
+// preview-specific noindex metadata. Existing CartonCloud stays published.
+const isVercelPreview = process.env.VERCEL_ENV === 'preview';
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     '/', '/shopify-developer', '/ecommerce-management', '/shopify-cro', '/shopify-app-development',
@@ -15,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/shipping-integration', '/shopify-flow', '/b2b-demo', '/eve-curls',
     '/editorial-homepage-demo', '/chilled-delivery-demo', '/engineering-standards',
     '/css-lab', '/python-automation', '/data-extraction-automation', '/privacy',
+    // One production-ready route. Do not leak this draft onto preview sitemaps.
+    ...(!isVercelPreview ? ['/projects/commerce-integration-engineering'] : []),
   ];
   return paths.map((path) => ({
     url: new URL(path, 'https://www.jrvallite.com').toString(),
