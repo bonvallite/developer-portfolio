@@ -10,6 +10,12 @@ Read the target's current changelog, any linked archives, the relevant source an
 
 For Shopify theme work, the authoritative history is `pa-theme-changelog` and its linked archives. Develop on an unpublished duplicate of the current live theme. A theme's role and available rollback versions must be checked again at release time.
 
+## JRV portfolio design system and colour changes
+
+Before any JRV portfolio colour, illustration, component styling, favicon or layout update, read the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md), the affected code and comments, and the dated changelog. The current CSS values live in `app/globals.css`, and the human-approved roles, exceptions and update process live in the design guide. Keep both aligned in the **same commit**, update the guide's dated decision history and affected inline comments, and document actual test/preview results in `CHANGELOG.md`. Source tests reject mismatched canonical colour tokens, but cannot replace manual screenshot, contrast and responsive review.
+
+This JRV palette is **not** the Peter Augustus Shopify brand and must not override that separate theme's documentation or change-control process.
+
 ## Keep the explanation beside the code
 
 Update the affected comments whenever behaviour, purpose, dependencies or constraints change. Explain why a rule exists, what owns the data, which callers depend on it and how failures are handled. Correct or remove superseded notes.

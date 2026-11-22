@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Establish the permanent JRV design-system document and update contract
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release` (PR #96). No production release or Shopify theme changes.
+- **New files:** `docs/JRV_DESIGN_SYSTEM.md` (living, maintained reference for ten `--jrv-*` palette tokens, visual roles, scoped exceptions, file ownership, update process and dated decision history); `AGENTS.md` (future contributor/code assistant instructions).
+- **Updated files:** `README.md`, `CONTRIBUTING.md`, `ENGINEERING_STANDARDS.md`, `.github/pull_request_template.md`, `app/globals.css`, `docs/jrv-brand-palette-2026-11-22.md`, `tests/portfolio-palette.test.mjs`, and `CHANGELOG.md`.
+- **What/why:** Make brand colours discoverable and consistently maintained in future portfolio changes instead of relying on a dated November release note. The runtime CSS tokens remain authoritative for rendering; a permanent human reference now lists matching HEX values and describes when and how future changes must update the guide, inline comments, project changelog, browser QA and PR checklist.
+- **Inline and written documentation:** Updated `app/globals.css` header to name the maintained source and ownership. Kept historical palette snapshot as evidence and linked its living successor. Added links and change-control requirements to contributor/engineering/PR instructions; no page design, résumé binaries, consent rules or runtime behaviour were changed.
+- **Validation performed:** Read existing dated palette guide, all ten `:root` CSS tokens, active palette tests, README, engineering/contribution standards, PR template and release status. Checked all ten documented HEX codes against the existing runtime declarations, added unit tests to compare the complete token table with `app/globals.css`, and required documentation links in all contributor entry points. An exact-commit GitHub Actions run and preview check are required after commit; automated tests cannot certify the prose or contrast.
+- **Release boundary:** The design guide and process changes remain on draft PR #96, pending the broader portfolio release approval; published `main` and the original-résumé retirement stay untouched.
+
 ## 2026-11-22 - Recognise the JRV hover shade in mobile-colour browser QA
 
 - **Repository/branch:** `bonvallite/developer-portfolio`, draft PR #96 `integration/2026-11-22-cinematic-release`, no Shopify theme or production edits.

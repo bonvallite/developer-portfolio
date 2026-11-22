@@ -2,6 +2,8 @@
 
 Read [ENGINEERING_STANDARDS.md](ENGINEERING_STANDARDS.md), the current [CHANGELOG.md](CHANGELOG.md), relevant source and existing comments before editing. Follow the repository's publication policy in [README.md](README.md#security-and-publication-policy).
 
+For every portfolio visual update, first read the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md) and its dated design history. `app/globals.css` owns the runtime CSS variables. When a token, colour usage, component rule or approved exception changes, update the living guide and its history **in the same pull request**. Check desktop/mobile and keyboard focus before release. The palette unit tests guard against silent CSS/documentation drift.
+
 For each change:
 
 1. Confirm the target and keep the change scoped.

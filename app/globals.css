@@ -1,4 +1,8 @@
-/* JRV shared palette · 22 Nov 2026: obsidian surfaces, teal links/evidence and ember primary actions. Retains original selectors and functional status colours. */
+/* JRV shared colour tokens, 22 Nov 2026. Obsidian = base, teal = links and
+   technical evidence, Ember = primary actions/focus. Maintain these --jrv-*
+   values together with the table and dated history in
+   docs/JRV_DESIGN_SYSTEM.md for every future brand-colour update.
+   Do not apply JRV colours to private Peter Augustus Shopify themes. */
 /* 2026-11-20: no render-blocking third-party font requests. All routes use
    native system UI font stacks to reduce external calls and improve loading. */
 @tailwind base;

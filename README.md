@@ -2,6 +2,8 @@
 
 Service-led portfolio covering Shopify development, ecommerce management, conversion rate optimisation, custom API integrations, and storefront performance. Public pages intentionally avoid personal-name SEO.
 
+**For future design or colour changes:** Start with the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md). Read it before editing UI and update its palette, affected areas, and dated history whenever a design-system rule changes; keep the CSS tokens, inline comments and `CHANGELOG.md` in sync. The dated November palette note is evidence of the earlier rollout, not the living guide.
+
 ## 20 November 2026 cinematic rebuild and backup
 
 The Git-tracked site was backed up **before editing** at branch [`backup/2026-11-20-pre-cinematic-rebuild`](https://github.com/bonvallite/developer-portfolio/tree/backup/2026-11-20-pre-cinematic-rebuild), commit `cbb656e9`. The preview rebuild lives on `redesign/2026-11-20-cinematic-portfolio` and must pass automated/visual QA before replacing production. The backup branch is public along with this repository; it is not a private archive or a backup of DNS and environment settings.
@@ -43,7 +45,7 @@ The public GTM ID remains intentionally allowlisted; never publish other live ac
 
 The shared portfolio palette is **obsidian `#0B1419`**, **electric teal `#38C7BC`**, **ember orange `#F28C52`**, deep-teal surfaces and cool light text. `app/globals.css` defines the canonical tokens; teal conveys evidence and links, while ember highlights primary conversion actions and keyboard focus. The homepage, service pages, older case studies, interactive labs, résumé gallery and favicon now use the same brand family.
 
-The editorial storefront deliberately remains a light ecommerce composition. ATS retains printable white paper, and Classic retains a teal masthead with Ember accents. These remain distinct demos instead of losing readability or turning every screen dark. Functional data, pricing examples, SEO, lead collection/consent rules and existing résumé paths are unchanged. See the [palette guide](./docs/jrv-brand-palette-2026-11-22.md) and [Chrome route QA](./tests/portfolio-palette-browser-qa.mjs). This visual release remains unpublished until PR #96 is reviewed and merged.
+The editorial storefront deliberately remains a light ecommerce composition. ATS retains printable white paper, and Classic retains a teal masthead with Ember accents. These remain distinct demos instead of losing readability or turning every screen dark. Functional data, pricing examples, SEO, lead collection/consent rules and existing résumé paths are unchanged. See the **maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md)** for canonical tokens and next-update instructions, the [dated palette QA record](docs/jrv-brand-palette-2026-11-22.md) for historical evidence, and the [Chrome route QA](./tests/portfolio-palette-browser-qa.mjs). The living document must change in the same PR as any changed token or brand rule. This visual release remains unpublished until PR #96 is reviewed and merged.
 
 ## Site favicon
 

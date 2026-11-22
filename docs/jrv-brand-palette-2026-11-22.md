@@ -1,5 +1,7 @@
 # JRV shared colour system — 22 November 2026
 
+**Historical implementation and QA record.** For all subsequent portfolio design updates, read and maintain the permanent [JRV Design System](JRV_DESIGN_SYSTEM.md). Its token table, usage rules, file map and dated design history must agree with `app/globals.css` and `CHANGELOG.md` in each design-system change. Do not treat this dated snapshot as the live source of truth.
+
 **Target:** `bonvallite/developer-portfolio`, integrated draft PR #96. These are portfolio changes, **not** Shopify theme changes. Do not merge or deploy production until approved.
 
 ## Canonical brand tokens

@@ -83,3 +83,35 @@ test('indexed favicon keeps approved 64px JRV artwork format and transparent pal
   assert.equal(colours.subarray(10 * 3, 10 * 3 + 3).toString('hex'), '38c7bc');
   assert.notEqual(colours.subarray(10 * 3, 10 * 3 + 3).toString('hex'), 'd9b47c');
 });
+
+// A permanent design-system contract guards future changes. The dated palette
+// note is historical; docs/JRV_DESIGN_SYSTEM.md must reflect the real :root.
+test('living design system documents every canonical JRV CSS token and its value', () => {
+  const guide = read('docs/JRV_DESIGN_SYSTEM.md');
+  const rootTokens = globalCss.match(/:root\{([^}]*)\}/)?.[1] || '';
+  const source = [...rootTokens.matchAll(/(--jrv-[a-z-]+):\s*(#[0-9a-f]{6})\b/gi)];
+  assert.equal(source.length, 10, 'Update the living design system whenever token inventory changes');
+  const names = new Set();
+  const tick = String.fromCharCode(96);
+  for (const [, name, hex] of source) {
+    assert.ok(!names.has(name), name + ': duplicated CSS token');
+    names.add(name);
+    const pattern = new RegExp('\\|\\s*' + tick + name + tick +
+      '\\s*\\|\\s*' + tick + '(#[A-Fa-f0-9]{6})' + tick + '\\s*\\|', 'g');
+    const rows = [...guide.matchAll(pattern)];
+    assert.equal(rows.length, 1, name + ': expected exactly one living design-system row');
+    assert.equal(rows[0][1].toLowerCase(), hex.toLowerCase(),
+      name + ': code ' + hex + ' differs from design-system document ' + rows[0][1]);
+  }
+  assert.match(guide, /## Required process for every future visual update/);
+  assert.match(guide, /## Design-system history \(maintained\)/);
+});
+test('contributor instructions always point back to the living JRV design system', () => {
+  for (const path of [
+    'AGENTS.md', 'README.md', 'CONTRIBUTING.md',
+    'ENGINEERING_STANDARDS.md', '.github/pull_request_template.md',
+  ]) {
+    assert.ok(read(path).includes('docs/JRV_DESIGN_SYSTEM.md'),
+      path + ': missing maintained brand design-system reference');
+  }
+});
