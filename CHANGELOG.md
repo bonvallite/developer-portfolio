@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Retire original résumé PDF from current draft on owner's approval
+
+- **Target:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. Production main and Shopify themes unchanged.
+- **Affected files:** Delete `public/JRV-Resume.pdf` and `backups/resumes/JRV-Resume-2026-Original.pdf`. Update `next.config.ts`, `README.md`, `scripts/check-seo-publication.mjs`, `tests/seo-rendered-metadata.mjs`, `docs/portfolio-release-candidate-2026-11-22.md`, and `CHANGELOG.md`.
+- **What and why:** With explicit owner approval, remove both copies of the older original 2026 PDF (matching blob `a7d4648238f748f625004890bb8aac4b5443915b`) from the current draft Git tree because it may expose obsolete contact information. Redirect existing `/JRV-Resume.pdf` bookmarks permanently to the `/resume` chooser rather than returning the original document. Preserve ATS-Friendly and Classic HTML, PDF and Word alternatives.
+- **Documentation:** Add Next.js redirect comment, replace outdated current-status README guidance while retaining dated historical context, expand source/rendered SEO tests and release-review notes.
+- **Validation:** Checked both legacy file paths and identical blob hashes using the GitHub directory metadata, verified exact draft branch head and maintained approved résumé paths. Added source checks for binary absence and configured redirect, and HTTP GET/HEAD checks that the old path redirects to the chooser while both new options stay linked. Fresh GitHub CI and Vercel preview are required before a release claim.
+- **Limitations:** This does **not** erase old Git objects, backup branches, previous deployments, caches or downloads. Live `jrvallite.com` remains unchanged until a separately approved production release. Optional GTM/Clarity settings remain a separate decision.
+- **Release boundary:** Do not merge or publish PR #96 without final approval; do not touch private backups or unrelated source files.
+
 ## 2026-11-22 - Harden generated résumé caches and test public crawler controls
 
 - **Target:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release` PR #96; Shopify theme and production untouched.

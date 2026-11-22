@@ -51,12 +51,20 @@ The Spend & Save page still emitted a large legacy `<style jsx global>` block **
 
 The next exact-commit GitHub performance lab must compare the desktop/mobile shift readings with the original 0.5883/0.2308 values. If they remain elevated, investigate other first-render changes and collect element-level layout-shift attribution. **Do not claim that the issue is resolved based on a CSS refactor alone.** The final Vercel preview and standard browser QA must also pass. Do not confuse loopback timing with live-site speeds.
 
-## Verified résumé discoverability and cache policy (22 November 2026)
+## Verified résumé discoverability and cache policy (22 November 2026, pre-retirement baseline)
 
 - Both currently published résumé formats remain directly accessible at `/resume/ats` and `/resume/classic`, including downloadable PDF and editable Word versions. The original legacy PDF remains accessible under `/JRV-Resume.pdf` for backward compatibility. The repository contains an identical original file in `backups/resumes/`; the public site and public Git tree are **not private storage**.
 - Direct checks on the previous ready Vercel preview returned HTTP 200 and `X-Robots-Tag: noindex` for the résumé HTML routes and downloads. The site's Next.js configuration also applies noindex to the legacy PDF. Existing generated PDF/Word handlers returned `Cache-Control: public, max-age=3600`, even though the files contain career identity and contact details. These generated responses are now configured `private, no-store` while retaining the same routes, content, and attachment filenames. The binary backup and legacy static PDF were **not altered**.
 - The local rendered-SEO regression now checks that the home page, case studies and privacy page do **not** emit app-level noindex, while all résumé routes and file handlers do; it also checks PDF/Word MIME types, attachment disposition and private/no-store cache headers. Vercel deliberately adds `noindex` to preview deployments, which is separate from production indexing. Neither noindex nor no-store removes old Git history, search caches, direct links or copies of downloaded files.
 - The existing README explicitly says the legacy PDF is retained for old links, pending an approved updated replacement. Do not delete or redirect it, or claim complete privacy removal, without reviewing existing links and obtaining owner approval. No identifying résumé text or downloadable file content was changed in this release candidate.
+
+## Owner-approved original résumé retirement (22 November 2026)
+
+The owner has explicitly authorised retiring the original legacy 2026 PDF from the current public website and GitHub branch while keeping **both** ATS-Friendly and Classic designs available. Draft PR #96 deletes the identical old copies at `public/JRV-Resume.pdf` and `backups/resumes/JRV-Resume-2026-Original.pdf`. Older links to `/JRV-Resume.pdf` now receive a permanent redirect to `/resume`, where users can choose either approved format. The new PDF/Word generators, source data, private no-store cache rules, noindex metadata, and download paths remain unchanged.
+
+This is **only a draft-branch change until production approval**. The prior paragraphs above describe the pre-retirement state. Historical Git commits, older public branches, previous Vercel deployments, third-party copies and downloaded files are **not erased**. The new source guard checks the absence of both original binaries in the current tree and the redirect configuration; rendered SEO tests verify GET/HEAD redirects and retained links to both ATS and Classic formats.
+
+Required before release: successful exact-commit CI, READY Vercel preview, HTTP redirect (not PDF) for the old route, both updated résumé downloads, and normal site QA. Analytics vendor/container configuration remains a separate publication review.
 
 ## Preview acceptance gates
 

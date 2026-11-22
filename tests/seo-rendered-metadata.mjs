@@ -179,11 +179,22 @@ for (const format of ['pdf', 'word']) {
       path + ': wrong document MIME type');
   }
 }
-// The legacy PDF is deliberately retained for existing direct links. It is
-// public, not secret, and must remain excluded from search indexing.
-const legacyPdf = await fetch(base + '/JRV-Resume.pdf', { method: 'HEAD' });
-assert.equal(legacyPdf.status, 200, 'Legacy résumé compatibility file missing');
-assert.match(legacyPdf.headers.get('x-robots-tag') || '', /\bnoindex\b/i,
-  'Legacy résumé file must be requested not to index');
+// The owner retired the original 2026 PDF binary from the current tree.
+// Preserve old bookmarks via a permanent redirect, never the old document.
+for (const method of ['HEAD', 'GET']) {
+  const response = await fetch(base + '/JRV-Resume.pdf', { method, redirect: 'manual' });
+  assert.equal(response.status, 308, 'Original résumé must redirect, not serve a PDF');
+  assert.equal(new URL(response.headers.get('location') || '/', base).pathname, '/resume',
+    'Retired PDF bookmark must open the approved résumé chooser');
+  assert.doesNotMatch(response.headers.get('content-type') || '', /^application\/pdf/i,
+    'Retired PDF URL must not serve a PDF');
+}
+const chooser = await fetch(base + '/resume');
+assert.equal(chooser.status, 200, 'ATS/Classic résumé chooser must remain accessible');
+const chooserHtml = await chooser.text();
+for (const route of ['/resume/ats/pdf', '/resume/classic/pdf']) {
+  assert.ok(chooserHtml.includes('href="' + route + '"'),
+    'Approved résumé choice missing: ' + route);
+}
 
-console.log('Rendered metadata, résumé download cache controls, crawler headers and sitemap regression: PASSED');
+console.log('Rendered metadata, original résumé retirement redirect, both approved downloads, crawler headers and sitemap regression: PASSED');
