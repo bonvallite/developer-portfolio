@@ -169,10 +169,11 @@ test('new Shopify systems flagship uses the maintained JRV palette and preserves
   assert.match(siteHome,/<StorefrontShowcase stores=\{storefronts\}\s*\/>/);
   assert.ok(siteHome.indexOf('<StorefrontShowcase stores={storefronts}/>') < siteHome.indexOf('<FeaturedSystemsLab />'),
     'The published website gallery remains ahead of the systems flagship');
-  // PR #100 remains published, while hardening introduces design-system
-  // candidate v1.12. Guard both the new maintained version and PR #100 record.
+  // PR #100 remains published alongside PR #101's production hardening.
+  // Validate the maintained v1.12 publication record and PR #100 history.
   assert.match(guide,/12\. \*\*Published systems engineering flagship:/);
-  assert.match(guide,/\*\*Version:\*\* 1\.12 \(portfolio hardening release candidate\)/);
+  assert.match(guide,/\*\*Version:\*\* 1\.12 \(production publication record\)/);
+  assert.match(guide,/PR #101 merged 23 November 2026/);
   assert.match(guide,/\| 23 November 2026 \| 1\.11 \| Publish PR #100 to production/);
   assert.match(guide,/PR #100 was approved and merged/);
 });

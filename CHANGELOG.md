@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-23 - Publish portfolio hardening through PR #101
+
+- **Release:** Owner approved deploying the next portfolio hardening package. PR #101 merged into `main` as `7ec0548e5b1837145f067c902cbfe660e7fe5d15`; exact reviewed candidate `4aa0db4fb54da8ee5867b79881794893b68d95a3`. The unrelated older draft PR #99 was not merged.
+- **Affected files:** `app/experience/StorefrontPreview.tsx`, `app/experience/StorefrontShowcase.tsx`, `app/data/storefronts.ts`, `app/page.tsx`, `app/experience/page.tsx`, `app/cinematic-home.css`, `app/globals.css`, `app/shipping-integration/page.tsx`, `app/shipping-integration/shipping-case-study.css`, `app/opengraph-image.tsx`, `app/layout.tsx`, `app/privacy/page.tsx`, `docs/STOREFRONT_CAPTURE_WORKFLOW.md`, `docs/JRV_DESIGN_SYSTEM.md`, `README.md`, `CHANGELOG.md`, `.github/workflows/portfolio-ci.yml` and affected unit/browser/SEO tests.
+- **Why / effect:** Remove external WordPress mShots fallback, keep all 21 same-origin WebP captures and direct-site links, make the shipping integration case study readable at mobile and desktop sizes, provide first-party social preview imagery, and prevent future PRs from silently skipping browser suites. Preserve all 11 website links, original four cards, published Shopify App Engineering and earlier CartonCloud, source-safe fictional examples and existing canonical colours.
+- **Validation:** First candidate `7e71608` failed one outdated version-string assertion, fixed at `4aa0db4`. GitHub Actions run `45084247730`: `validate` SUCCESS, `case-study-browser-qa` SUCCESS, including source safety, unit, Python, TypeScript, build, rendered SEO and responsive colour/browser tests. Vercel preview `dpl_DxcvuqATfcHJC89YyzFiuj9GV62R` READY. Production deployment `dpl_6FQT6JQ68gHQYg1BxrhNNMByaBs4` READY with www and apex aliases, source merge `7ec0548`; independent external live HTTP and search-engine indexing remain unverified.
+- **Documentation and tests:** Publish maintained JRV Design System v1.12 and revise its version assertions; preserve all earlier history. No Peter Augustus Shopify theme, Cloudflare Worker, CartonCloud production, customer notification, order or Klaviyo change.
+
+
 ## 2026-11-23 - Resolve exact-commit CI regression in candidate documentation assertion
 
 - **Observed:** PR #101 GitHub Actions run `45084151122`, commit `7e716086`, failed 1 of 199 unit tests. The test still required the old version-1.11 heading after updating the maintained guide to the v1.12 candidate. The other 198 unit tests passed; browser QA was skipped because its validation dependency failed.
