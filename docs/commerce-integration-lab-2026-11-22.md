@@ -205,4 +205,24 @@ The previously missing workflow trigger was solved by adding `feature/commerce-i
 - **CI reconciliation:** Preserve the newer main workflow, all existing browser suites and the full latest-main Node/Python/TypeScript/SEO/public-safety checks. Add the dedicated fictional commerce-lab browser suite and a narrowly scoped candidate branch push trigger. Verify homepage and route on wide/desktop/tablet/mobile, with published gallery and 11-site index retained.
 - **SEO release gate:** The new route retains `robots: {index:false,follow:false}`, self canonical and is excluded from the public sitemap on this candidate. Existing `/cartoncloud-integration` remains linked, indexable, separately canonicalised and unredirected. Before any **authorised** merge, decide whether to index both meaningfully distinct cases or redirect one; either approach requires separate validation.
 - **Safety:** This is a public-safe educational interface, not a live CartonCloud, Shopify, Cloudflare or customer notification endpoint. No actual merchant data, secrets, production shipping postcode tables, employee PII or private Worker source.
-- **Validation status:** Integration test result **pending** until GitHub Actions confirms exact new branch commit. Prior successful PR #98 CI is historical evidence for the previous base and cannot certify the current main reconciliation.
+- **Validation status:** Exact integration source commit `afee9c51822c9ac22fad32f7785e9f827403471c` **passed** GitHub Actions run `45026760172`, including both validation and full browser jobs. The old PR #98 CI remains historical evidence, but the latest-main integration was separately and successfully tested. No production release is authorised.
+
+## Final current-main integration QA evidence (22 November 2026)
+
+**Draft PR:** https://github.com/bonvallite/developer-portfolio/pull/100  
+**Tested source:** `afee9c51822c9ac22fad32f7785e9f827403471c`  
+**GitHub Actions:** https://github.com/bonvallite/developer-portfolio/actions/runs/45026760172 — **both jobs SUCCESS**  
+**Vercel preview:** https://developer-portfolio-9u0010ugi-my-dojo.vercel.app — **READY**, preview environment, not production.
+
+Tests passed on the exact integration commit:
+
+- SEO source/publication and privacy checks, public-safety scan, Node and Python suites, TypeScript, Next.js build, and server-rendered metadata and sitemap assertions
+- General case-study Chrome interaction suites at 1440/768/390 px; homepage suite at 1600/1366/768/390 px
+- All eleven published storefront references and screenshot gallery, the current four selected project cards, native contact/experience links, analytics consent and privacy choices
+- New systems engineering lab at desktop/tablet/mobile sizes: architecture, selectable last-mile zone calendars and closures, OAuth/KV, carrier events, failed authentication, Shopify tracking/metafield updates, notification-request semantics and code browser
+- Preserved existing Spend & Save, CartonCloud, B2B, Python Analytics, synthetic navigation metrics and cross-route JRV palette browser checks
+- Screenshot archive `case-study-browser-qa` (GitHub Actions artefact `14756511012`) includes homepage wide and mobile plus engineering lab desktop and mobile. Inspected screenshots show the feature after the 11-site gallery, responsive diagram layout, no obvious visual overlap or colour departure. Automated screenshots do not replace a manual screen-reader review.
+
+Authenticated Vercel preview HTTP checks for this commit showed `/` 200 with 11-site gallery, four original cards and `#systems-lab`; new engineering page 200 with `noindex,nofollow`, last-mile, app write-back and OAuth sections; older CartonCloud page 200; sitemap 200 with 22 published entries including the older route and **excluding the new draft route**.
+
+**Production gate remains closed:** No merge, no homepage change on `main`, no SEO indexing of the new route, no original-route redirect/retirement, and no live Shopify/CartonCloud/Worker customer events. A release requires express owner approval and a decision on making the new route indexable and discoverable.
