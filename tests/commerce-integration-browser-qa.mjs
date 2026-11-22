@@ -36,7 +36,7 @@ try {
     assert.equal(await page.locator('.cie-tab').count(),3,'Three event journeys');
     await page.locator('.cie-tab').nth(2).click();
     await page.getByRole('heading',{name:'Carrier emits tracking milestone'}).waitFor();
-    await page.locator('.cie-event-track-item').nth(4).click();
+    await page.locator('.cie-event-track-item').nth(3).click();
     await page.getByRole('heading',{name:'Custom app authorises updates'}).waitFor();
 
     await page.locator('#cie-zone').selectOption('sa');
