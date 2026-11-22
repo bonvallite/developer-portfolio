@@ -1,5 +1,11 @@
 # Shopify Commerce Engineering | Developer Portfolio
 
+## 23 November 2026 portfolio hardening integration (release candidate)
+
+This work is being rebased selectively onto the published Shopify App Engineering release (`44fb23d`), rather than merging older Draft PR #99 wholesale. It removes all client-side WordPress mShots requests in favour of 21 locally hosted WebP captures and direct live-site links for missing captures, improves the cold-chain shipping integration case study with responsive diagrams and accessible navigation, adds an original first-party JRV-branded social sharing image, and runs every browser suite on every pull request. The 11 website links, four original selected-work cards, previous CartonCloud route, and newer Shopify App Engineering showcase remain unchanged. The maintained design-system candidate is v1.12, with no colour-token change.
+
+**Release gate:** Validate exact-commit GitHub CI, public-safety scan, responsive screenshots, build and Vercel preview before production publication. Historical `draft` labels below describe the earlier versions of PRs #96 and #99 and must not be mistaken for the current published gallery or published PR #100. Dated screenshots are not proof of current storefront appearance, endorsements, or client publication rights.
+
 Service-led portfolio covering Shopify development, ecommerce management, conversion rate optimisation, custom API integrations, and storefront performance. Public pages intentionally avoid personal-name SEO.
 
 **For future design or colour changes:** Start with the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md). Read it before editing UI and update its palette, affected areas, and dated history whenever a design-system rule changes; keep the CSS tokens, inline comments and `CHANGELOG.md` in sync. The dated November palette note is evidence of the earlier rollout, not the living guide.

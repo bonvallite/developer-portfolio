@@ -4,36 +4,32 @@ import { useState } from 'react';
 import { ArrowUpRight, ImageOff } from 'lucide-react';
 import { approvedStaticStorefrontShot } from '../data/storefronts';
 
-// Prefer reviewed local 19 Nov 2026 captures, with a cache-friendly WebP.
-// If a local image is missing, fall back once to the cached WordPress mShots
-// service and then to a direct live-site link. The recovered Axlrodd desktop
-// image was nearly empty and is intentionally not published. Screenshots
-// never prove ownership, endorsement, outcomes or a site's current appearance.
-// Keep dimensions stable to avoid shifting layout on a failed image.
-function storefrontShot(url: string, device: 'desktop' | 'mobile') {
-  const viewport = device === 'desktop' ? { width: 1280, height: 800 } : { width: 390, height: 844 };
-  // Keep the source viewport accurate, but request thumbnails sized for the UI.
-  // This reduces bytes for warm captures without altering the site's responsive view.
-  const output = device === 'desktop' ? { width: 680, height: 425 } : { width: 220, height: 476 };
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?vpw=${viewport.width}&vph=${viewport.height}&w=${output.width}&h=${output.height}`;
-}
-
+// Only same-origin, checksum-verified WebPs from 19 November 2026 are shown.
+// No external screenshot service or remote thumbnails run in the browser.
+// An image that is absent or fails loading instead shows a direct live-site
+// link without changing the device-frame size. Axlrodd desktop is excluded.
+// Historical screenshots are not evidence of endorsement or current designs.
 function Screenshot({ name, url, device }: { name: string; url: string; device: 'desktop' | 'mobile' }) {
   const localShot = approvedStaticStorefrontShot(name, device);
-  const [source, setSource] = useState<'static' | 'remote' | 'failed'>(localShot ? 'static' : 'remote');
+  const [unavailable, setUnavailable] = useState(!localShot);
   const [loaded, setLoaded] = useState(false);
-  const sourceUrl = source === 'static' ? localShot : storefrontShot(url, device);
   function recoverImage() {
     setLoaded(false);
-    setSource(previous => previous === 'static' ? 'remote' : 'failed');
+    setUnavailable(true);
   }
   return <div className={`storefront-device ${device}`}>
     <span className="overline">{device === 'desktop' ? 'DESKTOP / 1280 PX VIEWPORT' : 'MOBILE / 390 PX VIEWPORT'}</span>
-    <div className={`storefront-screen${loaded ? " is-ready" : ""}`}>
-      {source === 'failed' ? <div className="storefront-shot-unavailable" role="status"><ImageOff size={20} aria-hidden="true"/><p>Preview unavailable</p><a href={url} target="_blank" rel="noopener noreferrer" aria-label={`View ${name} live website instead`}>View live site <ArrowUpRight size={12} aria-hidden="true"/></a></div> :
-      // First-party WebP preferred; WordPress mShots only as fallback.
-      // eslint-disable-next-line @next/next/no-img-element
-      <img src={sourceUrl ?? storefrontShot(url, device)} alt={`${device === 'desktop' ? 'Desktop' : 'Mobile'} homepage preview of ${name}`} loading="lazy" decoding="async" referrerPolicy="no-referrer" onLoad={() => setLoaded(true)} onError={recoverImage} />}
+    <div className={`storefront-screen${loaded ? ' is-ready' : ''}`}>
+      {unavailable || !localShot
+        ? <div className="storefront-shot-unavailable" role="status">
+            <ImageOff size={20} aria-hidden="true"/>
+            <p>{localShot ? 'Preview unavailable' : `${device === 'desktop' ? 'Desktop' : 'Mobile'} preview not archived`}</p>
+            <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`View ${name} live website instead`}>View live site <ArrowUpRight size={12} aria-hidden="true"/></a>
+          </div>
+        : <img src={localShot}
+            alt={`${device === 'desktop' ? 'Desktop' : 'Mobile'} homepage preview of ${name}`}
+            loading="lazy" decoding="async" referrerPolicy="no-referrer"
+            onLoad={() => setLoaded(true)} onError={recoverImage} />}
     </div>
   </div>;
 }

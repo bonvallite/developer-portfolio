@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.11 (production publication record), updated 23 November 2026; version 1.10 implementation is now live  
+**Version:** 1.12 (portfolio hardening release candidate), updated 23 November 2026; the v1.11 Shopify App Engineering release remains live  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Published on `jrvallite.com`. The existing storefront gallery and design system v1.6 were published through PR #96 (merge `2c95f43c`). **PR #100 was approved and merged 23 November 2026 as `d8d2df7c9a6ddaf9551a7e2d2f8c3d052b6fe287`.** Vercel production deployment `dpl_31QnTs1A9tFqJ1gxdtiGLyqTUT45` READY. Both www and apex domains are configured for this project. Production HTTP checks confirmed the homepage, new engineering route, previous CartonCloud route and sitemap; Chrome unit and responsive checks passed on source `ae4e1b2` in [GitHub Actions 45075036701](https://github.com/bonvallite/developer-portfolio/actions/runs/45075036701), and post-merge source validation passed in run 45081426570. These checks do not prove merchant notification delivery, external search indexing, individual client contribution rights or live third-party API operation.
 
@@ -95,6 +95,8 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | 23 November 2026 | 1.10 | Correct the customer notification illustration: the merchant reports Shopify uses email when present, otherwise SMS if a mobile number is available and no email exists. Remove the independent SMS toggle and show recipient-channel fallback as an automatic routing decision in the ETA and fulfilment previews. Maintain JRV colour tokens, responsive layout, and clear evidence boundaries; do not involve Klaviyo or send messages. | Draft PR #100; unit/browser QA and Vercel review pending. Published v1.6 remains unchanged. |
 
 | 23 November 2026 | 1.11 | Publish PR #100 to production, preserving the established 11-site gallery, four earlier projects, original CartonCloud case study and the Obsidian/Teal/Ember palette. Maintain environment-aware indexing, source-safe ETA order metafields and the merchant-reported Shopify email-first/SMS-fallback explanation. No visual tokens, assets or customer notification infrastructure changed in the release-record follow-up. | Explicit owner approval; merge `d8d2df7`, production Vercel `dpl_31QnTs1A9tFqJ1gxdtiGLyqTUT45` READY; homepage, engineering route, original CartonCloud route, canonical and sitemap verified; source/browser QA `45075036701` SUCCESS, post-merge validation `45081426570` SUCCESS. |
+
+| 23 November 2026 | 1.12 | Integrate same-origin WebP-only storefront previews with direct accessible live-site fallbacks; upgrade the shipping-integration case study to an Obsidian/Teal/Ember responsive diagram-led layout; publish a first-party social sharing image; and run every browser regression suite for every pull request. The JRV palette and favicon remain unchanged. | Approved hardening release candidate based on `44fb23d`, selectively ported from draft PR #99. GitHub CI, Vercel preview and production release verification required before claiming publication. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

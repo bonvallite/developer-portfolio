@@ -195,8 +195,8 @@ export default function Home() {
 
       {/* Public storefront references are separate from the four fictional
           interactive engineering labs. One active desktop/mobile pair at a
-          time prefers locally hosted 19 Nov 2026 WebPs, then a cached remote
-          thumbnail, then a link to the live site. Keep the 11-link index. */}
+          time uses locally hosted 19 Nov 2026 WebPs, with direct live-site
+          links when captures are missing or fail. Keep the 11-link index. */}
       <section className="jrv2-section jrv2-websites" id="websites" aria-labelledby="jrv2-websites-title">
         <div className="jrv2-wrap">
           <div className="jrv2-section-head"><div>
@@ -219,14 +219,14 @@ export default function Home() {
             </div>
           </div>
           <div className="jrv2-websites-after">
-            <p>These are self-reported contributions, not client endorsements or claims of exclusive authorship. Homepage previews were captured on 19 November 2026 and may show promotions or overlays. The gallery prefers locally hosted images with cached-thumbnail and live-site fallbacks; current homepages may look different.</p>
+            <p>These are self-reported contributions, not client endorsements or claims of exclusive authorship. Homepage previews were captured on 19 November 2026 and may show promotions or overlays. The gallery uses locally hosted captures only, with direct live-site links when a preview is unavailable; current homepages may look different.</p>
             <Link href="/experience#storefronts">See the experience and homepage case study <ArrowUpRight size={16} aria-hidden="true"/></Link>
           </div>
         </div>
       </section>
 
       {/* Keep all eleven published homepage previews above the new engineering
-          flagship. The new project is a separate draft-only addition, not a
+          flagship. The published engineering project is a separate addition, not a
           replacement for the earlier CartonCloud case study or selected work. */}
       <FeaturedSystemsLab />
 

@@ -1,5 +1,19 @@
 # Portfolio changelog
 
+## 2026-11-23 - Resolve exact-commit CI regression in candidate documentation assertion
+
+- **Observed:** PR #101 GitHub Actions run `45084151122`, commit `7e716086`, failed 1 of 199 unit tests. The test still required the old version-1.11 heading after updating the maintained guide to the v1.12 candidate. The other 198 unit tests passed; browser QA was skipped because its validation dependency failed.
+- **Correction:** Keep the published PR #100 rule and v1.11 history checks, but assert the new v1.12 candidate heading rather than the superseded v1.11 heading. Update the test's inline explanation.
+- **Validation:** Fresh exact-commit GitHub Actions and Vercel preview checks required. No storefront UI, runtime logic, customer data, Shopify theme or production release changed.
+
+
+## 2026-11-23 - Integrate portfolio hardening safely atop released PR #100 (candidate)
+
+- **Base:** Published production `44fb23d`; source draft PR #99 `d1b5408c`, which was 11 commits behind current main and cannot be merged wholesale. Prepare a separate integration branch, preserve the newer Shopify App Engineering route and browser assertions, original CartonCloud case study, 11 storefronts and four original project cards.
+- **Changes:** Replace the WordPress mShots screenshot fallback with direct live links, preserve local WebPs and accessible screenshot frames; redesign `/shipping-integration` as a responsive diagram-led case study; introduce same-origin 1200x630 Open Graph image and Twitter card; expand mobile colour route coverage and run all browser regression suites on every pull request.
+- **Code and documentation:** Update gallery, page metadata, privacy description, screenshot workflow, affected comments, `README.md`, and maintained `docs/JRV_DESIGN_SYSTEM.md` v1.12. No palette token, favicon or client images modified. All educational demonstrations retain fictional-data and evidence limitations.
+- **Validation:** GitHub CI, Vercel preview, safety/SEO, rendered metadata, responsive and runtime tests **pending** on the new integration commit. Do not claim production publication until verification. No Shopify theme, customer order, Cloudflare Worker, CartonCloud system, or Klaviyo configuration changes.
+
 ## 2026-11-23 - Correct post-release palette test for published engineering heading
 
 - **Branch / release:** `main`, after published PR #100 merge `d8d2df7` and documentation release-record commit `3e31af9`. The approved interactive showcase is live and verified on `www.jrvallite.com`.
