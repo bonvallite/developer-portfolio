@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-22 - Publish cinematic portfolio, 11-site gallery and maintained JRV palette
+
+- **Release:** Owner authorised the final release review; integrated PR #96 merged into `main` as `2c95f43c`, publishing to `www.jrvallite.com` and `jrvallite.com`. Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY with both custom-domain aliases assigned.
+- **Scope:** All 11 live storefront references and 21 dated optimised homepage captures, selected desktop/mobile gallery, existing direct-homepage links, four cinematic engineering case studies, and canonical JRV Obsidian `#0B1419`, Electric Teal `#38C7BC`, Ember `#F28C52` palette. Excluded the incomplete Axlrodd desktop image.
+- **Validation:** Final source commit `9b68f13b` passed GitHub Actions `44997913434`, including build, type, public-safety and desktop/mobile browser checks. Production merge `2c95f43c` compiled successfully in Vercel; the deployment was READY and the custom domains assigned. No independent HTTP fetch through this assistant's environment was available.
+- **Publication limitations:** Public screenshot rights beyond owner acceptance, external GTM/Clarity account configurations, field performance, historic document copies and spoken screen-reader interaction were not independently certified. The production site had existing consent-gated GTM/Clarity logic before this PR; the release did not introduce the vendors.
+- **Post-release documentation:** Updated `docs/JRV_DESIGN_SYSTEM.md` to v1.6, `docs/portfolio-release-candidate-2026-11-22.md` and this changelog to reflect publication; no runtime code, inline behaviour, screenshot assets, tokens or live Shopify themes were changed by this documentation commit. Older draft changelog entries remain as dated snapshots.
+
 ## 2026-11-22 - Complete draft homepage visual review and correct gallery provenance wording
 
 - **Repository and release:** `bonvallite/developer-portfolio`, draft PR #96, branch `integration/2026-11-22-cinematic-release`; production `main` remains unchanged.

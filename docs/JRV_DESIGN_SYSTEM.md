@@ -1,9 +1,9 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.5, established 22 November 2026; updated with verified homepage gallery provenance and preview wording  
+**Version:** 1.6, established 22 November 2026; updated with production publication and final release evidence  
 **Repository:** `bonvallite/developer-portfolio`  
-**Release status:** Draft PR #96. This palette is not on the production `jrvallite.com` website until the PR is separately approved and published.
+**Release status:** Published on `jrvallite.com` through PR #96 on 22 November 2026. GitHub merge `2c95f43c`; Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY, with both `www.jrvallite.com` and `jrvallite.com` aliases assigned. Code-level safety and CI checks passed; independent client image rights, third-party analytics settings, field performance and spoken screen-reader behaviour were not certified.
 
 This is the permanent design reference for **future JRV portfolio UI, styling, branding, component, and favicon changes**. Update this document when the design system changes. Do not create a new date-stamped palette file as a substitute for updating this guide.
 
@@ -80,7 +80,8 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | 22 November 2026 | 1.3 | Reinstate the 11-site public-homepage gallery after the technical projects, update legacy experience/card colours to Obsidian/Teal/Ember, keep the dated screenshot source and fallbacks explicit. No new root palette tokens. | Draft PR #96; exact-commit source, visual and responsive QA required. Not published. |
 | 22 November 2026 | 1.4 | Prefer optimised, locally hosted dated homepage screenshots over unreliable remote thumbnail generation; preserve two-level fallbacks and exclude the incomplete Axlrodd desktop image. | Draft PR #96; 21 WebP assets imported at `4a0d040b`, importer removed, full responsive CI and owner publication-rights review required. Not live. |
 
-| 22 November 2026 | 1.5 | Correct the public homepage gallery's provenance copy and source comments so 21 first-party-hosted dated WebPs are not mischaracterised as third-party-only captures. Inspect exact-head CI desktop/mobile galleries and flagship case-study palette screenshots. No palette tokens, layout, assets or runtime image logic changed. | Draft PR #96; visual source run `44995892908` at `d5b9b936`; post-copy CI and preview required. Not published. |
+| 22 November 2026 | 1.5 | Correct the public homepage gallery's provenance copy and source comments so 21 first-party-hosted dated WebPs are not mischaracterised as third-party-only captures. Inspect exact-head CI desktop/mobile galleries and flagship case-study palette screenshots. No palette tokens, layout, assets or runtime image logic changed. | Draft PR #96; visual source run `44995892908` at `d5b9b936`; post-copy CI and preview required. Not published at that point. |
+| 22 November 2026 | 1.6 | Record completed production publication, exact-head CI, website preview gallery, 11 site links, four project colour families and remaining external review limitations. No changes to brand tokens or runtime code. | PR #96 merged as `2c95f43c`; final source CI `44997913434` passed; Vercel deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` READY and aliases assigned. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

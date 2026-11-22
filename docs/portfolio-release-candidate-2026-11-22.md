@@ -1,9 +1,16 @@
-# JRV cinematic release candidate — 22 November 2026
+# JRV cinematic portfolio release record — 22 November 2026
 
 **Repository:** `bonvallite/developer-portfolio`  
-**Base:** `main` `ac519c363bb303249adc911d0600679857df4a8d`  
+**Original integration baseline:** `main` `ac519c363bb303249adc911d0600679857df4a8d`  
 **Integration branch:** `integration/2026-11-22-cinematic-release`  
-**Status:** Draft, **not merged to production**.
+**Final source:** `9b68f13be1b4757cd272f2e1bce116cee4e10f3d`  
+**Release:** PR #96 merged to `main` at `2c95f43c1d682ced8cb09107e973d37e645e9afe` on 22 November 2026; Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` is READY, aliased to both `www.jrvallite.com` and `jrvallite.com`.
+
+## Final production verification
+
+The final exact-source GitHub Actions run [44997913434](https://github.com/bonvallite/developer-portfolio/actions/runs/44997913434) completed successfully, including validation and full desktop/mobile browser QA. Vercel preview `dpl_GsC11LmbPn5U6iYiZC8iatgooSc3` was READY for the same source SHA before merging; Vercel independently built the merged `main` commit successfully and assigned the production domains.
+
+The published homepage includes the 11-site registry and user-operated desktop/mobile website previews, preferring 21 checksum-verified, dated local WebP captures while omitting the incomplete Axlrodd desktop capture. The four case-study pages keep the Obsidian / Electric Teal / Ember visual identity. Existing public résumé retirement and consent-gated optional analytics were preserved. Final automated publication and source-safety tests passed; this does **not** certify third-party screenshot permissions, GTM/Clarity vendor-side settings, historical copied résumé documents, field Core Web Vitals, or manual NVDA/VoiceOver interaction. The sections below retain **historical pre-release notes** and their earlier pending statuses for audit rather than rewriting them as if already verified.
 
 ## Scope and exact provenance
 
