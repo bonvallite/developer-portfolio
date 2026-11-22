@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.4, established 22 November 2026; updated with first-party screenshot preference and fallback rules  
+**Version:** 1.5, established 22 November 2026; updated with verified homepage gallery provenance and preview wording  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Draft PR #96. This palette is not on the production `jrvallite.com` website until the PR is separately approved and published.
 
@@ -79,6 +79,8 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | 22 November 2026 | 1.2 | Replace generic hero proof badges with first-screen goal-led client and hiring links; sharpen Shopify, B2B, Python and Cloudflare capability copy. No new site-wide colour tokens. | Draft PR #96; GitHub desktop/mobile CI `44993640538` succeeded. Not published. |
 | 22 November 2026 | 1.3 | Reinstate the 11-site public-homepage gallery after the technical projects, update legacy experience/card colours to Obsidian/Teal/Ember, keep the dated screenshot source and fallbacks explicit. No new root palette tokens. | Draft PR #96; exact-commit source, visual and responsive QA required. Not published. |
 | 22 November 2026 | 1.4 | Prefer optimised, locally hosted dated homepage screenshots over unreliable remote thumbnail generation; preserve two-level fallbacks and exclude the incomplete Axlrodd desktop image. | Draft PR #96; 21 WebP assets imported at `4a0d040b`, importer removed, full responsive CI and owner publication-rights review required. Not live. |
+
+| 22 November 2026 | 1.5 | Correct the public homepage gallery's provenance copy and source comments so 21 first-party-hosted dated WebPs are not mischaracterised as third-party-only captures. Inspect exact-head CI desktop/mobile galleries and flagship case-study palette screenshots. No palette tokens, layout, assets or runtime image logic changed. | Draft PR #96; visual source run `44995892908` at `d5b9b936`; post-copy CI and preview required. Not published. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

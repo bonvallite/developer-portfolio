@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-22 - Complete draft homepage visual review and correct gallery provenance wording
+
+- **Repository and release:** `bonvallite/developer-portfolio`, draft PR #96, branch `integration/2026-11-22-cinematic-release`; production `main` remains unchanged.
+- **Files:** `app/page.tsx`, `app/data/storefronts.ts`, `tests/cinematic-home.test.mjs`, `docs/JRV_DESIGN_SYSTEM.md` (v1.5), `docs/portfolio-release-candidate-2026-11-22.md` and `CHANGELOG.md`.
+- **Why:** User-facing copy and the store registry comment incorrectly implied preview images came only from an external thumbnail service. The draft actually prioritises 21 locally hosted, checksum-verified 19 November 2026 WebP captures with remote-thumbnail and live-site fallbacks.
+- **What changed:** Corrected dated screenshot disclosures and inline comments, added a source regression, and recorded visual review. No changes to portfolio palette tokens, screenshot pixels, external sites, gallery behaviour, tracking, Shopify themes, or live Vercel deployment.
+- **Validation before the copy change:** CI run `44995892908` passed at `d5b9b936`; inspected its 1366px desktop and 390px mobile homepage screenshots for the 11-site index and Peter Augustus preview pair, and the four flagship desktop/mobile project palette captures. CI screenshots do not establish image publication rights or production performance. **The new exact-head CI and preview must still pass.**
+- **Release gate:** Draft only; client-screenshot rights/attribution, optional analytics configuration, final accessibility/privacy review, and explicit owner approval are outstanding.
+
 ## 2026-11-22 - Verify imported website previews, lock project palettes and remove temporary write workflow
 
 - **Repository/branch:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. No Shopify theme change or production publication.

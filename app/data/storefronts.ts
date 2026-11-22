@@ -4,11 +4,11 @@
  * capacities. Names and public URLs do not imply exclusive authorship,
  * endorsement, continuing employment, or measured commercial outcomes.
  *
- * A dated capture artefact from GitHub Actions run 44490966868 contains
- * desktop/mobile public-site screenshots for these 11 active targets;
- * reviewers must inspect legitimacy and permissions before publishing those
- * exact pixels as locally hosted static images. The live gallery currently
- * uses public-site thumbnail requests with visible fallbacks.
+ * Capture run 44490966868 (19 November 2026) supplied 22 public homepage
+ * screenshots. Draft PR #96 now prefers 21 locally hosted, checksum-verified
+ * WebPs; the incomplete Axlrodd desktop view is excluded. On an image error,
+ * fall back to a cached public thumbnail and then the live-site link.
+ * Owner publication-rights and visual review are required before release.
  *
  * A retired Skull Seeker website was intentionally excluded by the owner.
  * Keep this list and scripts/capture-storefronts.mjs in sync.

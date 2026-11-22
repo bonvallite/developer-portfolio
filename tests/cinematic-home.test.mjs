@@ -156,6 +156,10 @@ test('published storefronts are visible on the cinematic homepage and shared wit
   assert.ok(home.includes('id="websites"') && home.includes('<StorefrontShowcase stores={storefronts}/>'));
   assert.ok(home.includes('href="#websites"'));
   assert.ok(home.includes('All 11 websites'));
+  assert.ok(home.includes('Homepage previews were captured on 19 November 2026'));
+  assert.ok(home.includes('locally hosted images with cached-thumbnail and live-site fallbacks'));
+  assert.doesNotMatch(home, /Previews are public snapshots from an independent service/);
+  assert.ok(list.includes('21 locally hosted, checksum-verified'));
   assert.ok(home.includes('href="/experience#storefronts"'));
   assert.ok(experience.includes('id="storefronts"'));
   assert.ok(experience.includes('<StorefrontShowcase stores={secondaryStorefronts}/>'));

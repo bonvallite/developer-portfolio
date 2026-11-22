@@ -116,3 +116,10 @@ Automated browser checks do not independently certify spoken screen-reader annou
 ## Merge handling
 
 The aggregate PR is offered as **one optional release target**; do not merge both the aggregate and individual PRs as duplicate changes. Preserve the individual PRs and their commit history for review. Release coordination and previous stop point are documented in issue #95.
+
+
+## Final gallery provenance-copy and project visual review (22 November 2026)
+
+The successful exact-head GitHub run [44995892908](https://github.com/bonvallite/developer-portfolio/actions/runs/44995892908) at `d5b9b936` included responsive homepage and 19-route palette browser screenshots. Manual review of the archived **CI-generated** desktop/mobile homepages confirmed that the "Websites I've built and worked on" section follows the four technical projects, shows the Peter Augustus desktop/mobile homepage pair, and contains the complete 11-site link index. Flagship Spend & Save, Python Analytics, Shopify–CartonCloud and Shopify B2B screenshots retain the Obsidian/Teal/Ember visual family. These are CI screenshots, not independent production-browser captures or publication approval.
+
+The homepage disclosure and `app/data/storefronts.ts` comments previously said the gallery used external thumbnails only; that became outdated when the 21 reviewed-position, checksum-verified local WebPs were imported. This correction describes the actual static-first, cached-thumbnail-second, direct-link-last behaviour and its dated promotion/overlay limitations. A source regression guards against that outdated copy recurring. No client screenshot pixels, code samples, URLs, production settings, visual tokens or Shopify theme changed. The new commit must pass its own exact-head CI and Vercel preview; external client-image rights, analytics container settings, real-device accessibility and owner production approval remain separate gates.
