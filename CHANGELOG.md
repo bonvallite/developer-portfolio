@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-23 - Resolve exact-commit CI regression in candidate documentation assertion
+
+- **Observed:** PR #101 GitHub Actions run `45084151122`, commit `7e716086`, failed 1 of 199 unit tests. The test still required the old version-1.11 heading after updating the maintained guide to the v1.12 candidate. The other 198 unit tests passed; browser QA was skipped because its validation dependency failed.
+- **Correction:** Keep the published PR #100 rule and v1.11 history checks, but assert the new v1.12 candidate heading rather than the superseded v1.11 heading. Update the test's inline explanation.
+- **Validation:** Fresh exact-commit GitHub Actions and Vercel preview checks required. No storefront UI, runtime logic, customer data, Shopify theme or production release changed.
+
+
 ## 2026-11-23 - Integrate portfolio hardening safely atop released PR #100 (candidate)
 
 - **Base:** Published production `44fb23d`; source draft PR #99 `d1b5408c`, which was 11 commits behind current main and cannot be merged wholesale. Prepare a separate integration branch, preserve the newer Shopify App Engineering route and browser assertions, original CartonCloud case study, 11 storefronts and four original project cards.
