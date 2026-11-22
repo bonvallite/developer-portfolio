@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-22 - Repair cramped shipping integration case study discovered by visual QA (draft)
+
+- **Branch:** `fix/portfolio-hardening-20261122`, draft PR #99. Production `main` untouched.
+- **Files:** `app/shipping-integration/page.tsx` rewritten as a responsive, accessible case-study narrative; new scoped `app/shipping-integration/shipping-case-study.css`; `tests/portfolio-palette-browser-qa.mjs` gains shipping-specific readability and architecture-count checks; `docs/JRV_DESIGN_SYSTEM.md` v1.8 and `CHANGELOG.md` updated.
+- **Why:** CI visual evidence for the expanded palette suite showed the published shipping-integration page was a cramped, unstyled wall of text, especially at 390px width, even though palette tokens and horizontal overflow checks passed.
+- **Behaviour:** Large readable single H1, JRV-branded hero and direct actions, conceptual Recharge/Zapiet/Shopify checkout responsibility diagram, diagnostic steps, validation scenario cards and evidence limitations. All numeric rate tables, real customer records and private configuration remain absent. Original SEO title, description, canonical, service links and sample-only outcomes are preserved.
+- **Validation:** New exact-head CI, responsive browser screenshots, source safety, SEO and Vercel preview pending. This is a draft visual fix, not a production release.
+
 ## 2026-11-22 - Stage gallery privacy and portfolio release hardening (draft)
 
 - **Repository and release:** `bonvallite/developer-portfolio`, branch `fix/portfolio-hardening-20261122`, from `main` at `90ea2d30`. This work is not merged and does not change production, Shopify themes or live Workers.

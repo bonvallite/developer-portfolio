@@ -103,6 +103,16 @@ try {
           assert.equal(await element.evaluate(el => getComputedStyle(el).color),
             'rgb(56, 199, 188)', item.path + ': emphasis uses JRV teal');
         }
+        if (item.path === '/shipping-integration') {
+          const title = page.locator('.shipping-story-hero h1');
+          await title.waitFor({ state: 'visible' });
+          const sizePx = await title.evaluate(el => parseFloat(getComputedStyle(el).fontSize));
+          assert.ok(sizePx >= 39, 'Shipping integration hero must remain readable, not a raw text wall');
+          assert.equal(await page.locator('.shipping-story-system').count(), 3,
+            'Shipping diagram must show the three system responsibilities');
+          assert.equal(await page.locator('.shipping-story-scenarios article').count(), 4,
+            'Shipping validation scenarios must remain accessible');
+        }
         if (item.path === '/editorial-homepage-demo') {
           const demo = page.locator('[class*="site"]').first();
           assert.equal(await demo.evaluate(el => getComputedStyle(el).getPropertyValue('--ember').trim()),

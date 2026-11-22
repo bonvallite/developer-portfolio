@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.7, established 22 November 2026; updated with privacy-safe gallery fallbacks, comprehensive PR QA and first-party social preview  
+**Version:** 1.8, established 22 November 2026; updated with a readable shipping case-study layout and expanded mobile visual QA  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Published on `jrvallite.com` through PR #96 on 22 November 2026. GitHub merge `2c95f43c`; Vercel production deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` reported READY, with both `www.jrvallite.com` and `jrvallite.com` aliases assigned. Code-level safety and CI checks passed; independent client image rights, third-party analytics settings, field performance and spoken screen-reader behaviour were not certified.
 
@@ -84,6 +84,8 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | 22 November 2026 | 1.6 | Record completed production publication, exact-head CI, website preview gallery, 11 site links, four project colour families and remaining external review limitations. No changes to brand tokens or runtime code. | PR #96 merged as `2c95f43c`; final source CI `44997913434` passed; Vercel deployment `dpl_2MmaXk9YgwnKr5dVAxQS8e5henky` READY and aliases assigned. |
 
 | 22 November 2026 | 1.7 | Draft hardening: same-origin screenshot-only gallery, accessible direct live-site fallbacks for missing images, first-party social preview using JRV colours, browser regression checks for all public sitemap routes and full suites for every PR. No canonical token changed. | Branch `fix/portfolio-hardening-20261122`; exact-head CI and owner review required before a release. Production unchanged. |
+
+| 22 November 2026 | 1.8 | Visual QA uncovered the unstyled shipping-integration case study. Add a scoped responsive Obsidian/Teal/Ember narrative with a conceptual app-responsibility diagram, checkout scenario cards, links and preserved sample-only evidence boundaries. Add browser assertions for shipping headings and diagram counts. No root token changes. | Draft PR #99 (`fix/portfolio-hardening-20261122`); exact-head CI/screenshots pending, production unchanged. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 
