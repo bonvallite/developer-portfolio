@@ -96,6 +96,12 @@ jobs:
       - name: Python analytics lab desktop tablet and mobile QA
         if: github.head_ref == 'feature/ember-teal-interactive-portfolio' || startsWith(github.head_ref, 'feature/python-analytics-story-studio-') || github.head_ref == 'integration/2026-11-22-cinematic-release'
         run: node tests/analytics-lab-browser-qa.mjs
+      # Sample local Next.js navigations for each flagship project at 1366px
+      # and 390px. This informational lab report is not a Lighthouse audit
+      # or real-user Core Web Vitals and never activates optional tracking.
+      - name: Local browser navigation metrics (synthetic, informational)
+        if: github.head_ref == 'integration/2026-11-22-cinematic-release'
+        run: node tests/performance-lab-browser-qa.mjs
       - name: Save case-study screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -108,5 +114,6 @@ jobs:
             artifacts/spend-save-visual-browser-qa/
             artifacts/cartoncloud-event-studio-qa/
             artifacts/b2b-entitlement-story-qa/
+            artifacts/performance-lab/
           if-no-files-found: ignore
           retention-days: 7

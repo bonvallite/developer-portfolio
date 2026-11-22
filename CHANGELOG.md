@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-22 - Add reproducible local navigation report and disclose publication gates
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. No Shopify theme changes, Vercel promotion, or production publication.
+- **Affected files:** `tests/performance-lab-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, `docs/portfolio-release-candidate-2026-11-22.md`, and `CHANGELOG.md`.
+- **Change and reason:** Generate a fixed, reproducible JSON sample of Chrome navigation, paint, layout-shift, and same-origin resource timings at desktop and phone widths for five representative portfolio routes. Keep the test on GitHub's local Next.js server and retain its report in CI artefacts. Browser checks fail for HTTP errors, missing H1, visible horizontal overflow, JS page errors, or optional tracking requested without consent. This provides directional lab evidence without inventing real-user or CDN performance claims.
+- **Documentation:** The test file explains synthetic measurement limits and data minimisation; the CI comments document its conditional execution and artefact; the release guide describes field-vs-lab limitations, the public backup résumé and accessible résumé contact data, and unverified optional GTM/Clarity vendor settings. No previously published data or analytics controls changed.
+- **Validation performed:** Reviewed current GitHub Actions, Playwright browser conventions, the existing consent architecture, the public résumé backup and release notes. Checked the new JavaScript syntax with Node 22 locally. Created exact-branch Git blobs and added the report to the existing CI screenshot upload stage. A fresh GitHub Actions run is required to verify the actual lab measurements and release-candidate tests.
+- **Release boundary:** PR #96 stays draft and unmerged. A branch push may trigger a Vercel preview; that is not production. Owner decisions on public résumé material, optional analytics configuration, third-party code rights, and actual live performance remain open.
+
 ## 2026-11-22 - Fix mobile consent-control size and align privacy palette
 
 - **Target:** `bonvallite/developer-portfolio`, integration branch `integration/2026-11-22-cinematic-release`, draft PR #96. No Shopify theme edit or production release.

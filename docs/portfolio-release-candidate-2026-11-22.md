@@ -28,6 +28,21 @@ The full-page 390px screenshot showed a persistent `Privacy choices` button with
 
 Unit and browser tests now verify the styles, actual computed target size, viewport containment, keyboard opening, ARIA expansion, re-rejection and absence of tracking requests after rejection. Screenshots and the Vercel preview generated for the previous `a05ed676` commit must not be treated as visual proof of this updated control. A fresh CI run and new exact-head preview are required.
 
+## Synthetic performance lab (22 November 2026)
+
+The integrated PR now includes `tests/performance-lab-browser-qa.mjs` and a local-only CI step. It measures one page navigation in **Chrome on the GitHub Actions runner**, at desktop (1366 x 768) and phone (390 x 844) sizes, for the homepage, CartonCloud integration, Python Analytics Lab, Shopify B2B, and Spend & Save. A structured JSON report is uploaded alongside existing browser screenshots. The browser keeps reduced-motion on and never grants analytics consent; checks also fail on unexpected browser errors, horizontal overflow, or optional tracking before consent.
+
+Measurements include navigation response time, DOMContentLoaded, load-event duration, first contentful paint when supported, last observed largest contentful paint, observed layout shifts, and same-origin encoded asset bytes. **These are unthrottled loopback lab samples, not Vercel CDN timings, Lighthouse scores, production mobile field data, p75 values, or definitive Core Web Vitals.** A live PageSpeed/Lighthouse audit or approved consent-based real-user telemetry is still necessary before claiming a speed improvement. The Vercel metrics endpoint has not provided usable results for this review, and no Speed Insights library was added because it would introduce new visitor measurements requiring separate approval.
+
+## Public résumé and optional analytics release review
+
+- The public repository currently includes `backups/resumes/JRV-Resume-2026-Original.pdf`. Removing it from the current tree does not remove older commits or external copies. The original PDF has not been modified or removed.
+- The site's online résumé/source data intentionally includes personal identification and contact details. `noindex` requests on résumé routes reduce indexing but do not make the pages private. Confirm which contact details, if any, are permitted to remain publicly accessible, while preserving both intended résumé versions.
+- `ConsentManager.tsx` currently conditionally loads Google Tag Manager, Microsoft Clarity, and Vercel Analytics **after opt-in**. The actual Tag Manager container rules and Clarity configuration have not been independently verified against the owner's intended Google Analytics setup. Do not certify vendor privacy settings from the source code alone.
+- The automated source scan is a regression guard, not a repository-history, binary-document, embedded metadata, employer-rights, or third-party tag audit. A privacy/publication decision is required before marking the release complete.
+
+No content, customer records, business credentials, résumé files, or analytics vendor settings were changed as part of these reviews.
+
 ## Preview acceptance gates
 
 - [ ] GitHub Actions are green **on the integration SHA** and actually run all seven browser test commands.
@@ -35,7 +50,7 @@ Unit and browser tests now verify the styles, actual computed target size, viewp
 - [ ] Review all desktop, tablet and 390px phone screenshots, keyboard focus, mobile menu, reduced-motion and route navigation.
 - [ ] Verify normal and failure simulation states, two-column fictional B2B options at phone width, Python synthetic CSV and contact links.
 - [ ] Verify public source safety, fictional-data disclaimers, metadata, sitemap, production canonicals and consent opt-out.
-- [ ] Measure actual page speed/Core Web Vitals before asserting a performance improvement.
+- [ ] Review the new synthetic local performance report from the exact GitHub commit; obtain a separate live Lighthouse/PageSpeed or approved field measurement before asserting any speed improvement.
 - [ ] Review any personal contact details, private code history, customer/order records and third-party implementation rights before public publication.
 - [ ] Obtain explicit release approval before merging to main or changing production aliases.
 
