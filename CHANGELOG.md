@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-22 - Audit preview and add rendered-SEO release guard (draft only)
+
+- **Branch/PR:** `feature/commerce-integration-lab-20261122`, Draft PR #98. Do not merge into main or publish to jrvallite.com.
+- **Files:** `app/projects/commerce-integration-engineering/page.tsx`; `tests/seo-rendered-metadata.mjs`; `docs/commerce-integration-lab-2026-11-22.md`; `CHANGELOG.md`.
+- **Why and change:** Correct obsolete inline documentation that said the draft case study could not be linked from the homepage, although the owner has now approved a preview-branch-only link. Add rendered-HTML and sitemap regression assertions covering the featured section, both case-study links, retained four original cards, and continued noindex/sitemap omission for the draft route.
+- **Validation observed:** Vercel preview for commit `ef8896f` is READY; Next.js compiled successfully, checked types/lint, and generated both routes. GitHub source review confirms the new section and old links. Full updated browser/SEO test execution remains **pending**. The authenticated Vercel HTML fetch timed out; GitHub Actions has not surfaced an execution for the current branch commit. No success is claimed for unrun tests.
+- **Safety:** No external data or production API calls, no private customer fields. No actual Shopify theme or Worker changes.
+
+
 ## 2026-11-22 - Stage featured Shopify app engineering lab on homepage (draft PR only)
 
 - **Repository and branch:** bonvallite/developer-portfolio, feature/commerce-integration-lab-20261122, draft PR #98. No merge to main or change to the production domain.

@@ -141,3 +141,13 @@ The homepage illustration shows Shopify order events reaching Cloudflare Workers
 ### Release and validation
 
 The new project remains noindex and outside the sitemap while under review. The original CartonCloud case study and the four working homepage previews remain visible alongside the new featured section. No production changes are authorised. The full code and visual regression tests are pending a fresh run on the new commit; prior green CI applies only to earlier commits. Before a future production merge, decide on noindex removal, sitemap publication, canonical URLs and whether to preserve or redirect the original case study.
+
+## 22 November 2026: preview deployment audit and SEO safety regression
+
+Audited Vercel preview build for feature commit `ef8896f88010ed36d31f74fec7f01e531f3eb00b`. Vercel reports **READY** for the `developer-portfolio` Next.js project, with a successful compilation, Next.js lint and type checks and 34 static pages including the homepage and engineering route. The build output reports about **113 kB first-load JavaScript** for the homepage and **123 kB** for the new engineering route (Next.js build estimates, not measured browser Core Web Vitals).
+
+Inspected current branch sources and confirmed homepage has the new featured section, two navigation anchors, the dedicated case-study CTA, the previous integration case-study link, and all four original selected-work cards. The sitemap still omits the new route and its metadata specifies `index: false` while the project is a draft.
+
+**Corrections for this QA commit:** Updated the new route's inline documentation to reflect the already-approved preview homepage link without implying permission to index or publish. Extended `tests/seo-rendered-metadata.mjs` to assert the rendered homepage contains the featured section and both case-study links, that the original four cards remain intact, that the draft engineering page emits a `noindex` robots meta tag and that its URL is absent from the XML sitemap.
+
+**Unverified items / blockers:** GitHub Actions did not return a run for the previous integrated homepage commit through the available connector. Closing and reopening Draft PR #98 did not produce a new run in the visible results. The Vercel-protected preview's authenticated content-fetch operation timed out. These missing results do not justify claiming that the new Playwright desktop/tablet/mobile interaction suite, accessibility audit, or rendered SEO checks have passed at this commit. No production merge is authorised.

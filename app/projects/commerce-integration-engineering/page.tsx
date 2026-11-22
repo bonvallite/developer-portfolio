@@ -9,9 +9,11 @@ import CodeExplorer from './CodeExplorer';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import './engineering-lab.css';
 
-// Draft case study only. Do not index or add to sitemap/homepage until the
-// owner reviews the content and explicitly approves replacing the old study.
-// The demo is local, fictional and never calls production integrations.
+// Draft case study: the user approved a homepage link on the isolated preview
+// branch, but NOT public indexing, sitemap publication, a production merge or
+// retirement of the original integration case study. Keep robots noindex until
+// a separately approved SEO release; all demonstrations use fictional data
+// and never invoke live Shopify, Cloudflare or CartonCloud integrations.
 export const metadata: Metadata = {
   title: 'Serverless Commerce Systems | Cloudflare Workers & Shopify App',
   description: 'Explore a simulated, interactive commerce integration: custom Shopify app authentication, Cloudflare Workers, Workers KV, delivery calculations and logistics event processing.',
