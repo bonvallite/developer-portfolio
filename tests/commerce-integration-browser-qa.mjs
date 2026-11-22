@@ -3,6 +3,8 @@
 // This is intentionally independent of the homepage and prior case-study route.
 // 22 Nov: includes fictional ETA email/SMS timing and later Shopify tracking;
 // no real customer message, phone number or store notification is accessed.
+// Use exact role names for notification tabs; timeline descriptions also
+// contain the term SMS and would otherwise match the same Playwright selector.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -114,7 +116,7 @@ try {
     await messages.getByRole('heading',{name:'Your estimated delivery date'}).waitFor();
     assert.equal(await messages.locator('.cie-customer-email-tracking').count(),0,
       'No invented tracking link before fulfilment');
-    await messages.getByRole('button',{name:'SMS'}).click();
+    await messages.getByRole('button',{name:'SMS',exact:true}).click();
     await messages.locator('.cie-sms-display').getByText(/Tracking details will follow after fulfilment/).waitFor();
     await messages.locator('.cie-communication-controls').getByRole('checkbox',{name:/Include reported SMS channel/}).uncheck();
     await messages.getByText('SMS disabled or not yet scheduled').waitFor();

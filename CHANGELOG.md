@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Fix ambiguous SMS browser selector in new notification demo
+
+- **Branch:** `integration/commerce-systems-latest-main-20261122`, Draft PR #100; published `main` and `jrvallite.com` unchanged.
+- **Affected files:** `tests/commerce-integration-browser-qa.mjs`, `docs/commerce-integration-lab-2026-11-22.md`, `CHANGELOG.md`.
+- **Why:** The first exact-head CI for source `565b75b` passed all source, public-safety, JavaScript unit, Python, TypeScript, Next.js, and rendered SEO checks. The browser suite failed specifically at the SMS tab interaction because the role selector `getByRole('button',{name:'SMS'})` matched both the SMS tab and a timeline step whose accessible name mentioned SMS. The GitHub Actions log reports a Playwright strict-mode ambiguity, not a failed app operation.
+- **Change:** Use an exact accessible name for the SMS tab (`name:'SMS', exact:true`) and document this regression rule inline. No customer communication logic, visual styling, Shopify notification, production Worker or external API behaviour changed.
+- **Validation:** New full CI and three-viewport browser rerun **pending** on this patch commit; do not mark the earlier failed browser job as passed.
+- **Release:** Draft only, no production merge.
+
+
 ## 2026-11-22 - Showcase post-order ETA email, SMS and later shipping confirmation (draft only)
 
 - **Repository / branch:** `bonvallite/developer-portfolio`, `integration/commerce-systems-latest-main-20261122`, Draft PR #100; `main` and `jrvallite.com` unchanged. No Peter Augustus Shopify theme, Cloudflare Worker or Shopify notification configuration edited.

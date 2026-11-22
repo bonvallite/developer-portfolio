@@ -283,3 +283,9 @@ Visitors can turn off the ETA field write, tracking availability, or SMS channel
 The private example's actual order reference, postal address, delivery zone membership, tracking reference, logo and contact address are **not copied to public source**. An externally configured message journey is deliberately labelled as merchant-reported rather than a verified function of `worker.js`.
 
 **Validation status:** New exact-head GitHub CI, Vercel preview, responsive screenshots and browser interactions need to pass before this draft change can be called tested.
+
+## Notification demo browser selector fix — 22 November 2026
+
+Exact source commit `565b75b3a080f4201862e5f567a247e84ffb1e33` passed the GitHub validation job (Node/Python, source/public safety, TypeScript, Next.js, and rendered SEO). Its separate browser job failed at `tests/commerce-integration-browser-qa.mjs:117` with a Playwright strict-mode violation: the button name `SMS` also matched the timeline step whose description contained SMS. The application had rendered the ETA email and earlier stages before the ambiguous selector; the log does not establish that later simulated email/SMS interactions or responsive layouts passed.
+
+**Patch:** Target the SMS tab by exact accessible role name and leave all customer message business logic unchanged. New full browser QA must run on the patch commit before approval. Main, production, private worker and Shopify notifications remain unchanged.
