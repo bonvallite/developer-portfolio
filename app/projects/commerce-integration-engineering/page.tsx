@@ -10,13 +10,13 @@ import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
 
-// 22 Nov 2026 / draft PR #100: production-ready SEO metadata is staged for
-// owner review, NOT published. A Vercel preview must remain noindex even when
-// the same source would be indexable after a separately approved main merge.
+// 23 Nov 2026: Owner-approved PR #100 is published. Production is indexable;
+// Vercel previews remain noindex and are excluded from the preview sitemap.
+// This environment-aware metadata was verified in the production release.
 // Keep a distinct canonical and description from /cartoncloud-integration;
 // the older case study stays available and never redirects automatically.
 // All interactive demos use fictional data and no live provider API calls.
-// This release candidate also shows typed order metafields and a fictional
+// This published teaching case also shows typed order metafields and a fictional
 // customer communication timeline. The five-minute ETA notice is merchant-
 // reported; Shopify selects email when present or SMS when no email but a
 // mobile number exists. Neither timing nor sending is a Worker function.

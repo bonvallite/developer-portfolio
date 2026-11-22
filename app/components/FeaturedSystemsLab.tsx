@@ -3,7 +3,7 @@ import { ArrowRight, ArrowUpRight, Cloud, Database, ShieldCheck, ShoppingBag, Tr
 import './featured-systems-lab.css';
 
 /**
- * 22 Nov 2026: Self-contained, preview-only homepage entry for the independent
+ * 23 Nov 2026: Owner-approved, published homepage entry for the independent
  * serverless commerce engineering lab. The original integration case study
  * and all four studio modes remain in place for side-by-side review.
  *

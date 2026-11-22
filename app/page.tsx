@@ -33,10 +33,9 @@ import './components/commerce-workbench.css';
 // direct client/hiring paths. They reuse existing homepage contact and
 // experience routes, not a new form or visitor analytics. All four project
 // demos, source-safe evidence and existing public SEO metadata remain intact.
-// 22 Nov 2026: integration preview combines the published 11-site gallery with
-// a separate, fictional-data Shopify app systems section. The four original
-// case studies, current homepage navigation and all website previews remain.
-// It is staged on a draft branch, not the production main deployment.
+// 23 Nov 2026: approved PR #100 now publishes a separate, fictional-data
+// Shopify app systems section after the preserved 11-site gallery. All four
+// original case studies, homepage navigation and website previews remain.
 export const metadata: Metadata = {
   title: 'Shopify Developer, Ecommerce Management & CRO',
   description: 'Shopify developer for ecommerce teams. Explore Liquid storefronts, CRO, B2B workflows, custom apps and API integration case studies.',

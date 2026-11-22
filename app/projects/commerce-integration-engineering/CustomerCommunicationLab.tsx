@@ -1,6 +1,6 @@
 'use client';
 /**
- * 22 Nov 2026: customer communication reconstruction for Draft PR #100.
+ * 23 Nov 2026: Published customer-communication teaching demo (PR #100).
  * The inspected Worker calculates ETA on orders/create and writes typed
  * custom.* order METAFIELDS through the app-authorised Admin GraphQL API.
  * Fulfilment and CartonCloud tracking arrive later through a separate path.

@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-23 - Publish Shopify App Engineering, ETA metafields and Shopify email/SMS fallback
+
+- **Release:** User approved publishing the previously reviewed Draft PR #100 to production on 23 November 2026. PR #100 is now **merged** into `main` as `d8d2df7c9a6ddaf9551a7e2d2f8c3d052b6fe287`, source commit `ae4e1b29635ef5e8d838909f1e6ab1c72480508b`. Previous entries below describe genuine historical preview/draft milestones; their status is superseded by this release.
+- **Deployment:** Vercel project `developer-portfolio` production deployment `dpl_31QnTs1A9tFqJ1gxdtiGLyqTUT45` (`developer-portfolio-q6bxewjft-my-dojo.vercel.app`) reached READY from merge commit `d8d2df7`. Authenticated HTTP 200 checks on live `https://www.jrvallite.com/`, `/projects/commerce-integration-engineering`, `/cartoncloud-integration`, and `/sitemap.xml`.
+- **Verified scope:** Homepage still has the eleven website previews, four original case-study cards and a distinct Systems section/link. The new page provides fictional, interactive architecture, last-mile ETA, typed Shopify order metafields, reported five-minute customer notification, Shopify email-first/SMS-if-email-absent fallback, late carrier tracking and illustrative app write-back. No real orders, customer contacts, private Worker code, secrets, CartonCloud calls, notification sends, or Shopify theme changes.
+- **SEO:** The new production page renders `index, follow`, distinct title/description, and the self canonical `https://www.jrvallite.com/projects/commerce-integration-engineering`. The 23-URL production sitemap includes both the new route and original CartonCloud case study; the original canonical and URL remain unchanged. Vercel preview builds continue to use noindex and exclude the new case study. Indexability is not proof search engines have indexed the route.
+- **Validation:** Exact feature-source CI including desktop/tablet/mobile browser checks passed in [run 45075036701](https://github.com/bonvallite/developer-portfolio/actions/runs/45075036701). Post-merge GitHub `main` validation passed in [run 45081426570](https://github.com/bonvallite/developer-portfolio/actions/runs/45081426570). Vercel production READY and HTTP/canonical/robots/sitemap checks succeeded. Actual live email/SMS delivery, individual customer outcomes, client endorsements and real third-party operations were **not** tested.
+- **Documentation-only release follow-up:** `docs/JRV_DESIGN_SYSTEM.md` 1.11, `docs/commerce-integration-lab-2026-11-22.md`, `CHANGELOG.md`, `AGENTS.md` and affected `app/page.tsx`, `app/components/FeaturedSystemsLab.tsx`, `app/projects/commerce-integration-engineering/{page.tsx,CustomerCommunicationLab.tsx}` source comments updated to distinguish the now-published feature from historical draft notes. No runtime logic, palette tokens, SEO policy or integrations changed.
+- **Future changes:** Continue reading the permanent JRV design guide, changelog, source and inline comments before editing. Preserve user-approved palette, privacy and test requirements.
+
+
 ## 2026-11-23 - Correct Shopify native email/SMS fallback in post-order ETA demo
 
 - **Branch/PR:** `integration/commerce-systems-latest-main-20261122`, Draft PR #100; no merge or live `jrvallite.com` deployment.

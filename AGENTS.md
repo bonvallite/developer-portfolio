@@ -8,7 +8,7 @@ For every portfolio UI, visual, CSS, diagram, component styling, favicon, or bra
 2. Use the `:root` palette in `app/globals.css`; the site's Obsidian, Electric Teal, and Ember colours and the permitted light-paper/editorial exceptions are documented in the guide.
 3. In the **same change**, update `docs/JRV_DESIGN_SYSTEM.md` when tokens, usage, route exceptions, or brand rules change. Add a dated design-system history entry and update relevant source comments plus `CHANGELOG.md`.
 4. Validate with project tests, public safety scan, TypeScript/build checks, and desktop/mobile browser QA for visual work. The palette unit test catches undocumented root token changes.
-5. PR #96 has already been merged into the published production site. For any subsequent draft integration (including the Shopify app engineering showcase), keep its PR unmerged and leave the published production branch/domain unchanged without explicit release approval. Do not restore retired original résumé files, introduce private client code, or disable consent protections.
+5. PR #96 was published on 22 November 2026 and **PR #100 was explicitly approved, merged and published 23 November 2026**. Keep any future feature PR unmerged and leave production unchanged without its own express release approval. Do not restore retired original résumé files, introduce private client code, or disable consent protections. Preserve both the original CartonCloud story and the new distinct engineering route.
 
 Other work follows [ENGINEERING_STANDARDS.md](ENGINEERING_STANDARDS.md) and [CONTRIBUTING.md](CONTRIBUTING.md). Peter Augustus Shopify theme changes instead follow the private `pa-theme-changelog`, exact theme ID, source documentation, and private GitHub backup process.
 
