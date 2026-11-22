@@ -7,6 +7,12 @@ import type { NextConfig } from 'next';
 // These headers cannot remove public Git history or provider-held visitor data.
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Owner-approved 22 November 2026 retirement of the original public PDF.
+  // Old bookmarks should reach the ATS/Classic chooser, not a legacy binary.
+  // A redirect cannot erase previous public Git commits or deployed copies.
+  async redirects() {
+    return [{ source: '/JRV-Resume.pdf', destination: '/resume', permanent: true }];
+  },
   async headers() {
     return [
       {
@@ -25,6 +31,8 @@ const nextConfig: NextConfig = {
         source: '/resume/:path*',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],
       },
+      // Legacy URL remains discouraged from indexing during the redirect;
+      // the original static PDF is removed from the current main Git tree.
       {
         source: '/JRV-Resume.pdf',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],

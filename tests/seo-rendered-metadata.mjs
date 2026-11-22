@@ -135,4 +135,20 @@ for (const path of ['/resume', '/resume/ats', '/resume/classic']) {
     path + ': intentionally noindex résumé route appeared in sitemap');
 }
 
-console.log('Rendered metadata, concise SEO snippets and XML sitemap regression: PASSED');
+// The legacy 2026 PDF has been retired with owner approval. The old URL
+// must redirect to the two-design chooser rather than expose that binary.
+// Confirm the current main build retains both ATS and Classic entry points.
+for (const method of ['HEAD', 'GET']) {
+  const response = await fetch(base + '/JRV-Resume.pdf', { method, redirect: 'manual' });
+  assert.equal(response.status, 308, 'Retired legacy PDF URL must permanently redirect');
+  assert.equal(new URL(response.headers.get('location') || '/', base).pathname, '/resume',
+    'Legacy bookmark must lead to the approved résumé chooser');
+  assert.doesNotMatch(response.headers.get('content-type') || '', /^application\/pdf/i,
+    'Original résumé binary must not remain at the old URL');
+}
+const approvedChooser = await readPage('/resume');
+for (const route of ['/resume/ats/pdf', '/resume/classic/pdf']) {
+  assert.ok(approvedChooser.includes('href="' + route + '"'),
+    'Retirement removed an approved résumé download: ' + route);
+}
+console.log('Rendered metadata, résumé retirement redirect, approved downloads and sitemap regression: PASSED');
