@@ -1,7 +1,9 @@
 /* JRV cinematic homepage, 20 Nov 2026.
    Route-scoped design system: no third-party image, video or animation library.
    Decorative motion is disabled for reduced-motion visitors; content and CTAs
-   remain useful without hydration. Brand: shared JRV obsidian / electric teal / ember orange. Retired gold decorative hues now use cool-brand shades. Keep contrast and reduced-motion behaviour. */
+   remain useful without hydration. Brand: shared JRV obsidian / electric teal / ember orange. Retired gold decorative hues now use cool-brand shades. Keep contrast and reduced-motion behaviour.
+   22 Nov: hero audience choices reuse existing routes, CSS-only, and replace
+   non-interactive proof badges; no additional downloads or tracking. */
 .jrv2-page{--jrv-bg:#0b1419;--jrv-paper:#eaf4f3;--jrv-teal:#38c7bc;--jrv-muted:#a9c1c3;--jrv-border:#343841;--jrv-panel:#162b32;background:var(--jrv-bg);color:var(--jrv-paper);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow:visible;min-height:100vh}
 .jrv2-page h1,.jrv2-page h2,.jrv2-page h3{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 .jrv2-page a,.jrv2-page button{transition:background-color .18s,border-color .18s,color .18s,transform .18s}
@@ -48,9 +50,29 @@
 .jrv2-cta-primary:hover{background:#ffb58b}
 .jrv2-cta-ghost{border:1px solid #36a6a0;color:#d3f4ed;background:#ffffff03}
 .jrv2-cta-ghost:hover{border-color:#8ce3da;background:#ffffff0a}
-.jrv2-hero-proof{display:flex;gap:15px 25px;flex-wrap:wrap;margin-top:42px;border-top:1px solid #ffffff20;padding-top:20px}
-.jrv2-hero-proof span{display:flex;align-items:center;gap:8px;color:#9fa3ac;font-size:11px;line-height:1.5}
-.jrv2-hero-proof svg{color:#38c7bc}
+/* Goal-led shortcuts sit under the two evidence/resume actions. Their
+ * targets are already maintained public routes; no new form or click tracker. */
+.jrv2-hero-paths{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;margin-top:28px;padding-top:20px;
+  border-top:1px solid #ffffff23;
+}
+.jrv2-hero-path{
+  min-width:0;min-height:96px;display:flex;gap:12px;align-items:center;
+  padding:15px 14px;border:1px solid #365c64;border-radius:11px;
+  background:linear-gradient(145deg,#17323a,#10242c);
+  color:var(--jrv-paper);text-decoration:none;
+}
+.jrv2-hero-path:hover{border-color:var(--jrv-teal);background:#1b3b44}
+.jrv2-hero-path>svg:first-child{flex:0 0 auto;color:var(--jrv-teal)}
+.jrv2-hero-path>svg:last-child{flex:0 0 auto;margin-left:auto;color:#f28c52}
+.jrv2-hero-path-text{display:flex;flex-direction:column;gap:5px;min-width:0}
+.jrv2-hero-path-text small{
+  color:var(--jrv-teal);font-size:9px;font-weight:790;
+  letter-spacing:1px;line-height:1.4;
+}
+.jrv2-hero-path-text strong{font-size:12px;line-height:1.4;color:var(--jrv-paper)}
+.jrv2-hero-path-text span{color:#b6cdd0;font-size:10px;line-height:1.45}
 .jrv2-hero-showcase{min-width:0;position:relative;perspective:1200px}
 .jrv2-console{position:relative;z-index:2;border:1px solid #2c767680;background:linear-gradient(146deg,#25231f 0%,#171b23 44%,#0f131a 100%);border-radius:17px;box-shadow:0 38px 110px #0009,0 0 90px #36a6a015;overflow:hidden;transform:rotateY(-3deg) rotateX(1deg);animation:jrv2-float 9s ease-in-out infinite}
 @keyframes jrv2-float{50%{transform:rotateY(0deg) rotateX(0deg) translateY(-8px)}}
@@ -268,7 +290,7 @@
 .jrv2-hero-support{font-size:13px}
 .jrv2-hero-actions{align-items:stretch}
 .jrv2-hero-actions .jrv2-cta{flex:1}
-.jrv2-hero-proof{gap:10px 17px}
+.jrv2-hero-paths{gap:10px;margin-top:23px}
 .jrv2-console-body{padding:28px 20px}
 .jrv2-console h2{font-size:48px}
 .jrv2-console-nodes>div{padding:14px 4px;min-height:83px}
@@ -295,7 +317,9 @@
 .jrv2-hero h1{font-size:clamp(51px,12.4vw,65px)}
 .jrv2-eyebrow{font-size:9px;letter-spacing:.9px}
 .jrv2-hero-actions .jrv2-cta{flex-basis:100%;width:100%;justify-content:space-between}
-.jrv2-hero-proof{margin-top:27px}
+.jrv2-hero-paths{grid-template-columns:minmax(0,1fr);gap:9px;margin-top:21px}
+.jrv2-hero-path{min-height:75px;padding:12px 14px}
+.jrv2-hero-path-text strong{font-size:12px}
 .jrv2-console h2{font-size:39px}
 .jrv2-console-nodes{grid-template-columns:1fr 12px 1fr 12px 1fr;gap:3px}
 .jrv2-console-nodes b{display:none}

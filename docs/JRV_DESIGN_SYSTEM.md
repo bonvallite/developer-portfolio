@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.1, established 22 November 2026; updated with conversion-story guidance  
+**Version:** 1.2, established 22 November 2026; updated with first-screen audience journeys  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Draft PR #96. This palette is not on the production `jrvallite.com` website until the PR is separately approved and published.
 
@@ -38,13 +38,14 @@ The `:root` CSS custom properties in `app/globals.css` are the **runtime source 
 6. **Intentional light contexts:** The standalone editorial storefront is a **light ecommerce design demonstration**, not a dark portfolio page. ATS résumé uses plain white print paper; Classic uses a deep-teal masthead and Ember trim. Keep both PDF and Word downloads readable. Do not recolour user-provided photography.
 7. **Brand mark:** Keep the owner-approved 64×64 indexed `{JRV}` artwork. A palette edit must preserve the approved shape, pixel indices, and corner transparency; verify PNG checksums, 16px/32px appearance, and the rendered icon.
 8. **Case-study endings and conversion:** After demonstrating a technical system, explain what the implementation must validate, then offer a direct project-enquiry path and a separate hiring/experience path. Use route-scoped Ember/Teal controls, visible focus and mobile-sized targets. Do not imply that fictional calculations demonstrate measured commercial results or submit personal details to a new form.
+9. **Homepage audience routing:** Give ecommerce businesses and hiring teams clear, distinct first-screen paths. Link to existing direct-contact and experience routes, preserve visible case-study exploration and résumé choices, and avoid inventing outcomes, new forms, or visitor tracking. Both choices need a visible keyboard focus state and at least 44px touch height; on phones they should stack rather than clip.
 
 ## Maintained file map
 
 | Area | Relevant source and review point |
 | --- | --- |
 | Global visual tokens, base navigation and footer | `app/globals.css` |
-| Cinematic homepage and shared component accents | `app/cinematic-home.css`, `app/components/commerce-workbench.css`, `app/components/consent-manager.css` |
+| Cinematic homepage and shared component accents | `app/page.tsx`, `app/cinematic-home.css`, `app/components/commerce-workbench.css`, `app/components/consent-manager.css`; verify the client/hiring first-screen paths |
 | Shopify service routes | `app/components/cinematic-service.css` |
 | Analytics, B2B, and CartonCloud case studies | `app/analytics-lab/*.css`, `app/b2b-modernisation/*.css`, `app/cartoncloud-integration/*.css` |
 | Spend & Save and data pipeline | `app/projects/spend-and-save/page.tsx`, `app/projects/spend-and-save/*.css`, `app/data-extraction-automation/*`; inspect the project/hiring closing panel |
@@ -72,6 +73,7 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | --- | --- | --- | --- |
 | 22 November 2026 | 1.0 | Establish Obsidian / Electric Teal / Ember; document ten canonical CSS tokens, allowed light contexts, favicon and contribution policy. | Draft PR #96, initial palette commit `c6950c48`, responsive CI `ff7e05de`. Not published. |
 | 22 November 2026 | 1.1 | Establish a shared conversion-story ending: scope and evidence boundaries, direct project enquiry, and a separate hiring path. First use on Spend & Save, without new brand tokens or visitor tracking. | Draft PR #96; exact-commit source and responsive browser checks required. Not published. |
+| 22 November 2026 | 1.2 | Replace generic hero proof badges with first-screen goal-led client and hiring links; sharpen Shopify, B2B, Python and Cloudflare capability copy. No new site-wide colour tokens. | Draft PR #96; exact-commit GitHub and mobile/desktop checks pending. Not published. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

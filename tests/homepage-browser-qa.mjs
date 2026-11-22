@@ -4,6 +4,8 @@
 // The project studio must genuinely respond to visitor actions at every size.
 // The privacy preferences control must have a 44px touch target and report its
 // expanded state; reopening/rejecting must not enable analytics.
+// The goal-led hero routes are native links to existing contact and experience
+// pages. Validate both at four sizes and never submit user information.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -46,6 +48,22 @@ try {
     assert.equal(await page.locator('.jrv2-case').count(), 4, 'Four case-study stories');
     assert.equal(await page.locator('.jrv2-service').count(), 4, 'Four linked services');
     assert.ok(await page.locator('.jrv2-hero-actions a').count() >= 2, 'Prominent hero actions');
+    // Two purposeful visitor journeys begin before the selected project list:
+    // owners can reach direct contact, while hiring teams reach experience.
+    const goalPaths = page.getByRole('navigation', { name: 'Choose how to work together' });
+    assert.equal(await goalPaths.locator('a').count(), 2,
+      size.name + ': exactly two first-screen visitor paths');
+    const clientRoute = goalPaths.getByRole('link', { name: /Discuss a Shopify challenge/ });
+    const hiringRoute = goalPaths.getByRole('link', { name: /Review Shopify experience/ });
+    assert.equal(await clientRoute.getAttribute('href'), '#contact',
+      size.name + ': ecommerce team route leads to contact');
+    assert.equal(await hiringRoute.getAttribute('href'), '/experience',
+      size.name + ': hiring route leads to experience');
+    for (const link of [clientRoute, hiringRoute]) {
+      const target = await link.boundingBox();
+      assert.ok(target && target.height >= 44,
+        size.name + ': first-screen audience link must be touch accessible');
+    }
     assert.equal(await page.locator('.jrv2-console').count(), 1, 'Visual commerce engine');
 
     const consent = page.locator('.jrv-consent');

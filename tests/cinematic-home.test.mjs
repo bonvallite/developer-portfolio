@@ -1,6 +1,8 @@
 // Regression guard for the cinematic Ember & Teal JRV portfolio and its four flagship labs.
 // Source checks complement (but do not replace) real rendered browser QA,
 // Lighthouse measurement, confidentiality review or accessibility testing.
+// Audience shortcuts must be clear, direct and consent-safe on the first
+// screen, without removing either the project studio or résumé route.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
@@ -106,4 +108,30 @@ test('common response headers reduce referrer, framing and device exposure', () 
   assert.match(headers, /'Permissions-Policy'/);
   assert.match(headers, /source: '\/resume\/:path\*'/);
   assert.match(headers, /source: '\/case-studies\/ecommerce-analytics\/:path\*'/);
+});
+
+test('first-screen visitor paths make Shopify project and hiring goals explicit', () => {
+  for (const fragment of [
+    'aria-label="Choose how to work together"',
+    'className="jrv2-hero-paths"',
+    '<a href="#contact" className="jrv2-hero-path">',
+    '<Link href="/experience" className="jrv2-hero-path">',
+    'ECOMMERCE TEAMS', 'HIRING TEAMS',
+    'Discuss a Shopify challenge', 'Review Shopify experience',
+    'Cloudflare Workers', 'Python analytics', 'Custom apps',
+  ]) {
+    assert.ok(home.includes(fragment), 'Homepage hero missing audience or capability: ' + fragment);
+  }
+  assert.ok(home.indexOf('jrv2-hero-paths') < home.indexOf('id="work"'),
+    'First-screen audience paths must precede selected work');
+  for (const forbidden of ['jrv2-hero-proof', '<form', 'fetch(', 'sendBeacon(']) {
+    assert.ok(!home.includes(forbidden), 'Unexpected hero decoration or data submission: ' + forbidden);
+  }
+  for (const fragment of [
+    '.jrv2-hero-paths{', '.jrv2-hero-path{',
+    'grid-template-columns:minmax(0,1fr)',
+    'min-height:75px', '.jrv2-hero-path:hover',
+  ]) {
+    assert.ok(css.includes(fragment), 'Missing responsive or interactive path CSS: ' + fragment);
+  }
 });

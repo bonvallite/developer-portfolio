@@ -82,6 +82,14 @@ The styles reuse JRV Ember/Teal values, remain scoped to `/projects/spend-and-sa
 
 **Pending:** Validate the exact new GitHub commit, review end-of-page desktop/tablet/mobile screenshots, confirm production-ready preview and source/rights decisions before separately approving draft PR #96. No new enquiries are stored or sent by the site.
 
+## Homepage audience journey and first-screen routes (22 November 2026)
+
+The homepage already had a real interactive four-project studio, case-study links, and a contact composer, but its intent split appeared only in the later hiring section. The hero now explains the commercial/technical Shopify remit in clear language and replaces generic proof badges with two immediate, native-link audience paths: **ECOMMERCE TEAMS → /#contact** and **HIRING TEAMS → /experience**. Existing **Explore my work** and **View résumé options** buttons remain. Visitors can still inspect all four flagship examples and their original fictional-data disclosures.
+
+The first-screen path cards are CSS-only, aligned to maintained JRV Obsidian/Teal/Ember colours and stacked at phone widths. They add no image, new JavaScript state, event collection, form or external request. Source and desktop/tablet/mobile browser tests confirm the targets, usable touch height, responsive overflow and normal homepage studio/consent behaviour. The living design guide records the repeatable routing pattern and affected files.
+
+**Pending:** exact-commit GitHub Actions, Vercel preview and visual screenshot review before claiming success. This feature is in draft PR #96 and not approved for production.
+
 ## Preview acceptance gates
 
 - [ ] GitHub Actions are green **on the integration SHA** and actually run all seven browser test commands.

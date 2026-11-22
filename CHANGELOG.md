@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-22 - Put distinct Shopify client and hiring routes on the homepage first screen
+
+- **Repository and branch:** `bonvallite/developer-portfolio`, draft PR #96 at `integration/2026-11-22-cinematic-release`. No changes to the Peter Augustus Shopify theme or live portfolio.
+- **Files:** `app/page.tsx`, `app/cinematic-home.css`, `tests/cinematic-home.test.mjs`, `tests/homepage-browser-qa.mjs`, `docs/JRV_DESIGN_SYSTEM.md`, `docs/portfolio-release-candidate-2026-11-22.md`, and `CHANGELOG.md`.
+- **What/why:** The first-screen introduction explained Shopify engineering but its generic proof badges did not help two important audiences quickly choose a relevant next action. Clarified the storefront/operations remit and named Liquid/JavaScript, B2B, Python and Cloudflare. Replaced three generic noninteractive badges with two accessible direct paths to existing contact and professional experience destinations, while preserving the working project studio, selected work and résumé buttons.
+- **Inline/documentation:** Updated homepage and route CSS comments, source/browser test headers, and the maintained design guide to version 1.2 with the distinct first-screen journeys documented in its decision history. All canonical colour tokens remain unchanged; the route styles reuse existing JRV tokens and colours.
+- **Privacy, SEO and evidence:** No visitor input, new lead form, event beacon, external imagery, private source, fabricated results, structured-data change, or additional analytics. All existing fictional-demo disclosures and technical evidence remain. Original résumé retirement is preserved.
+- **Validation:** Reviewed the original hero, site-wide CTA and consent rules, four-viewport homepage QA, existing source guards, design guide and release history. Added source checks and four-viewport tests for first-screen client/hiring links, destinations, keyboard/touch reach and layout overflow. A new exact-commit CI run, Vercel preview and screenshot inspection remain required before marking visual QA complete.
+- **Release:** Draft/unmerged, no production push or deployment promotion.
+
 ## 2026-11-22 - Fix escaped source assertions in conversion-ending regression
 
 - **Repository and branch:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release`, PR #96. No production or Shopify theme changes.
