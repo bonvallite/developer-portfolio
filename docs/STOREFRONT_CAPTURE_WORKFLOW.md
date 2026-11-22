@@ -34,7 +34,13 @@ Review every PNG for correct site, visible homepage, correct mobile rendering, c
 4. Update `app/experience/StorefrontPreview.tsx` to use those static paths only after both device assets for a store are approved and present. Preserve the fallback link if either image is unavailable.
 5. Run tests, safety checks, type check and build, then use the normal PR and Vercel preview review process.
 
-The homepage and experience page currently use third-party WordPress mShots previews with lazy loading and a live-site fallback when thumbnails fail. The restored captures are audit artefacts, **not** committed static assets. A reviewer must validate appearance, client rights and compression before static publication; the source request can initially show a generating-preview placeholder.
+The homepage and experience page now **prefer approved local WebP screenshot paths**, falling back to WordPress mShots when a local file is not present or cannot load, and finally to the direct live-site link. Axlrodd's nearly empty recovered desktop capture remains excluded; its desktop preview is sourced from the live thumbnail service. This is a draft-branch feature and local images are not considered published until the separate asset-import run and PR review succeed.
+
+## Bounded draft-only WebP import
+
+The short-lived `.github/workflows/import-storefront-captures.yml` runs only when its own workflow file is introduced or changed on the draft integration branch. It fetches the already-recorded 19 November `44490966868` artefact using an ephemeral GitHub Actions token with read-artifact and draft-branch write permissions. `scripts/optimise-storefront-captures.py` verifies the original 11-site capture registry, unique manifest records, PNG file signatures, expected viewport sizes, source date and filenames; it produces 21 WebP files (all except the incomplete Axlrodd desktop screenshot) plus a public provenance JSON. The workflow attempts only a non-forced draft-branch commit under `public/portfolio/storefronts/`.
+
+After successful import and review, **remove the temporary write-permission workflow** before production merge. If the artefact expires or the repository denies Actions write permission, the import fails without touching `main`, and the gallery's WordPress fallback still works. The original PNGs remain available in the saved capture archive.
 
 ## Capture limitations
 

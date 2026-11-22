@@ -1,5 +1,16 @@
 # Portfolio changelog
 
+## 2026-11-22 - Stage provenance-checked local website screenshots with safe fallbacks
+
+- **Repository/branch:** `bonvallite/developer-portfolio`, draft `integration/2026-11-22-cinematic-release`, PR #96. No production publication or Shopify theme edit.
+- **Files:** `app/data/storefronts.ts`, `app/experience/StorefrontPreview.tsx`, `scripts/optimise-storefront-captures.py` (new), `.github/workflows/import-storefront-captures.yml` (new, temporary), `tests/cinematic-home.test.mjs`, `README.md`, `docs/JRV_DESIGN_SYSTEM.md`, `docs/STOREFRONT_CAPTURE_WORKFLOW.md`, `docs/portfolio-release-candidate-2026-11-22.md` and `CHANGELOG.md`.
+- **Why:** Third-party WordPress mShots can return placeholders, stale previews or blocked responses. Prefer genuine compressed local screenshot assets from the already inspected 19 Nov GitHub Actions archive and retain fallback behaviour for missing images.
+- **Behaviour:** Derive approved filenames from the single 11-site registry; prefer local WebP, downgrade once to WordPress mShots on failure, then display the direct live-site link. The incomplete Axlrodd desktop capture is not used. No fabricated screenshots, new tracking, personalised code, Shopify API calls or additional font downloads.
+- **Controlled asset staging:** A temporary scoped workflow runs only when its file is introduced/updated on the draft integration branch, downloads pinned run `44490966868`, validates manifest, dates, store identities, PNG signatures and sizes, compresses 21 images, and tries to commit only `public/portfolio/storefronts/` without force-push. It must be removed after review; do not retain a permanent contents-write workflow in the public release.
+- **Documentation:** Updated relevant source comments, living design-system version 1.4 and history, README, screenshot workflow and release gates. Keep published files out of production until external rights and visual review are approved.
+- **Validation:** Verified the original archived 22 successful site captures and two retired-site failures, selected acceptable imagery from a contact sheet, excluded near-empty desktop state, and prepared runtime/source checks for local-to-remote-to-live fallbacks. Import job, exact-head GitHub CI and preview asset responses remain pending.
+- **Release:** PR #96 remains draft; existing original-résumé privacy retirement and main are unchanged.
+
 ## 2026-11-22 - Restore the 11-site storefront homepage gallery and unify project framing
 
 - **Repo and branch:** `bonvallite/developer-portfolio`, `integration/2026-11-22-cinematic-release`, draft PR #96. No Shopify theme or production edit.

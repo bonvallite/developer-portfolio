@@ -1,7 +1,7 @@
 # JRV Design System
 
 **Maintained document:** `docs/JRV_DESIGN_SYSTEM.md`  
-**Version:** 1.3, established 22 November 2026; updated with published-storefront gallery and project consistency  
+**Version:** 1.4, established 22 November 2026; updated with first-party screenshot preference and fallback rules  
 **Repository:** `bonvallite/developer-portfolio`  
 **Release status:** Draft PR #96. This palette is not on the production `jrvallite.com` website until the PR is separately approved and published.
 
@@ -40,7 +40,7 @@ The `:root` CSS custom properties in `app/globals.css` are the **runtime source 
 8. **Case-study endings and conversion:** After demonstrating a technical system, explain what the implementation must validate, then offer a direct project-enquiry path and a separate hiring/experience path. Use route-scoped Ember/Teal controls, visible focus and mobile-sized targets. Do not imply that fictional calculations demonstrate measured commercial results or submit personal details to a new form.
 9. **Homepage audience routing:** Give ecommerce businesses and hiring teams clear, distinct first-screen paths. Link to existing direct-contact and experience routes, preserve visible case-study exploration and résumé choices, and avoid inventing outcomes, new forms, or visitor tracking. Both choices need a visible keyboard focus state and at least 44px touch height; on phones they should stack rather than clip.
 10. **Project-page identity:** All flagship engineering demos retain Obsidian backgrounds (`#0B1419`), Electric Teal (`#38C7BC`) to communicate systems, and Ember (`#F28C52`) for actions. Shared legacy `.flow-page` backgrounds and the experience gallery now use `--jrv-bg` and `--jrv-surface`; distinctive light ecommerce/print layouts remain intentional exceptions. Maintain contrast and accessibility, not exact colour on every decorative element.
-11. **Published website references:** Keep the full active storefront list in `app/data/storefronts.ts` and the capture script aligned. Show a responsive, user-controlled desktop/mobile gallery and individually accessible live-homepage links on `/#websites`, plus the detailed `/experience` case study. Preserve the owner's retired-site exclusion. Website names and images illustrate self-reported contributions, not endorsements, exclusive ownership or verified uplift. A missing/blocked screenshot must display a live-site fallback rather than a fabricated image.
+11. **Published website references:** Keep the full active storefront list in `app/data/storefronts.ts` and the capture script aligned. Show a responsive, user-controlled desktop/mobile gallery and individually accessible live-homepage links on `/#websites`, plus the detailed `/experience` case study. Preserve the owner's retired-site exclusion. Website names and images illustrate self-reported contributions, not endorsements, exclusive ownership or verified uplift. Prefer owner-reviewed, locally hosted dated WebP captures; if a local capture is absent, fall back to a cached public snapshot, then a live-site link. Never fabricate a screenshot, mislabel dated visuals as current, or silently publish an incomplete capture.
 
 ## Maintained file map
 
@@ -53,7 +53,7 @@ The `:root` CSS custom properties in `app/globals.css` are the **runtime source 
 | Spend & Save and data pipeline | `app/projects/spend-and-save/page.tsx`, `app/projects/spend-and-save/*.css`, `app/data-extraction-automation/*`; inspect the project/hiring closing panel |
 | CSS Lab and editorial storefront | `app/css-lab/css-lab.module.css`, `app/editorial-homepage-demo/demo.module.css` |
 | Résumé gallery and exported documents | `app/resume/resume.css`, `app/resume/resume-export.ts` |
-| Published storefronts, their homepage screenshot sources and gallery | `app/data/storefronts.ts`, `app/experience/StorefrontShowcase.tsx`, `app/experience/StorefrontPreview.tsx`, `app/experience/page.tsx`, `scripts/capture-storefronts.mjs`, `docs/STOREFRONT_CAPTURE_WORKFLOW.md`; keep gallery data and screenshots aligned | 
+| Published storefronts, their homepage screenshot sources and gallery | `app/data/storefronts.ts`, `app/experience/StorefrontShowcase.tsx`, `app/experience/StorefrontPreview.tsx`, `app/experience/page.tsx`, `scripts/capture-storefronts.mjs`, `scripts/optimise-storefront-captures.py`, `docs/STOREFRONT_CAPTURE_WORKFLOW.md`; maintain screenshot provenance and asset review | 
 | Favicon and diagrams | `app/icon.svg`, `public/portfolio/eve-curls-markets.svg` |
 | Automated checks | `tests/portfolio-palette.test.mjs`, `tests/portfolio-palette-browser-qa.mjs`, CI in `.github/workflows/portfolio-ci.yml` |
 | Documentation | This guide, `README.md`, `CONTRIBUTING.md`, `ENGINEERING_STANDARDS.md`, `CHANGELOG.md` |
@@ -78,6 +78,7 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 | 22 November 2026 | 1.1 | Establish a shared conversion-story ending: scope and evidence boundaries, direct project enquiry, and a separate hiring path. First use on Spend & Save, without new brand tokens or visitor tracking. | Draft PR #96; exact-commit source and responsive browser checks required. Not published. |
 | 22 November 2026 | 1.2 | Replace generic hero proof badges with first-screen goal-led client and hiring links; sharpen Shopify, B2B, Python and Cloudflare capability copy. No new site-wide colour tokens. | Draft PR #96; GitHub desktop/mobile CI `44993640538` succeeded. Not published. |
 | 22 November 2026 | 1.3 | Reinstate the 11-site public-homepage gallery after the technical projects, update legacy experience/card colours to Obsidian/Teal/Ember, keep the dated screenshot source and fallbacks explicit. No new root palette tokens. | Draft PR #96; exact-commit source, visual and responsive QA required. Not published. |
+| 22 November 2026 | 1.4 | Prefer optimised, locally hosted dated homepage screenshots over unreliable remote thumbnail generation; preserve two-level fallbacks and exclude the incomplete Axlrodd desktop image. | Draft PR #96; bounded one-time asset importer, manual rights/visual review and branch CI pending. Not published. |
 
 **Next design-system change:** add a new row with the actual date, version, affected tokens/routes, reason and PR/commit. Update the current table, source comments and `CHANGELOG.md` as needed. Never overwrite the historical row.
 

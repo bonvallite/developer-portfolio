@@ -160,8 +160,10 @@ test('published storefronts are visible on the cinematic homepage and shared wit
   assert.ok(experience.includes('<StorefrontShowcase stores={secondaryStorefronts}/>'));
   assert.ok(experience.includes('StorefrontPreview name="Peter Augustus"'));
   assert.ok(gallery.includes('StorefrontPreview name={name} url={url}'));
-  assert.ok(image.includes('loading="lazy"') && image.includes('onError={() => setFailed(true)}'));
+  assert.ok(image.includes('loading="lazy"') && image.includes('onError={recoverImage}') && image.includes('approvedStaticStorefrontShot'));
   assert.ok(image.includes('View live site'), 'Screenshot errors must preserve navigation');
+  assert.ok(image.includes("previous === 'static' ? 'remote' : 'failed'"), 'Local to cached to live-site fallback');
+  assert.ok(list.includes("slug === 'axlrodd' && device === 'desktop'"), 'Exclude incomplete captured desktop view');
   assert.ok(css.includes('.jrv2-websites-links{'));
   assert.ok(css.includes('grid-template-columns:minmax(0,1fr)'));
   assert.ok(globalCss.includes('.cinematic-showcase'));
