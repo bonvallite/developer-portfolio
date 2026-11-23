@@ -31,3 +31,6 @@ Run `npm test`, `npm run check:safety`, `npm run build`, and desktop/mobile brow
 
 ## 24 November 2026: homepage discovery and test alignment
 The homepage selected-work footer now links to this lab without replacing existing case studies or storefront gallery entries. Source assertions check the brand-neutral page, tabbed code samples and information-led section. Build, CI and visual QA remain pending.
+
+## 24 November 2026: interactive architecture and journey diagrams
+Added a five-node keyboard-selectable architecture diagram and a five-stage customer shopping workflow. Both are fictional educational models using local React state, `aria-pressed`, JRV design tokens and responsive CSS. The diagram is not an extracted client architecture, and the purchase stage does not initiate checkout. Source assertions cover presence of diagrams and selection states. Runtime/browser/build validation pending.
