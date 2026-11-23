@@ -16,6 +16,12 @@ test('case study offers the three local interactive views', () => {
 test('public demonstration avoids private data and external integrations', () => {
   assert.doesNotMatch(page,/fetch\s*\(|localStorage|sessionStorage|api\.shopify|admin\.shopify|myshopify\.com|PA00\d{4}/);
   assert.match(page,/Original fictional storefront/);\n  assert.doesNotMatch(page,/Peter Augustus|pa-home-|pa-layout|Wagyu|Angus|Butcher/);\n  assert.match(page,/codeSamples\[codeTab\]/);\n  assert.match(page,/Information-first sections/);
+  assert.match(page,/aria-labelledby="diagram-heading"/);
+  assert.match(page,/aria-labelledby="workflow-heading"/);
+  assert.match(page,/aria-pressed=\{architectureStage===index\}/);
+  assert.match(page,/aria-pressed=\{journeyStage===index\}/);
+  assert.match(css,/\.se-diagram/);
+  assert.match(css,/\.se-workflow/);
   assert.match(page,/cannot confirm a shipping zone/);
 });
 test('design system and responsive safeguards', () => {
