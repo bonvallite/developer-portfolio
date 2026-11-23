@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-24 - Additive homepage showcase (draft)
+
+- Added a standalone brand-neutral Commerce Experience Lab feature after Selected Work, preserving all existing case-study cards, order, published-store gallery and navigation.
+- Added responsive JRV-styled static preview, technology tags, CTA and explicit fictional-demo disclaimer.
+- Affected: `app/page.tsx`, `app/cinematic-home.css`, case-study documentation and this changelog. Inline comments added.
+- Validation: GitHub commits verified; latest previous Vercel status was pending. New commit build, safety checks and responsive QA remain unverified. No merge or production deployment.
+
+
+
 ## 2026-11-24 - Component-to-code explorer (draft)
 
 - Added three selectable fictional storefront components (hero, navigation, product panel), each with original Liquid/CSS/JavaScript examples and a synchronised local preview.
