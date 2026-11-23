@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-24 - Link commerce experience lab from homepage (draft)
+
+- Added a direct route from the selected-work footer to `/projects/storefront-engineering`, preserving the four flagship cards and existing eleven-site gallery.
+- Updated the case-study source tests to check the new fictional copy and absence of client names and proprietary file markers.
+- Affected: `app/page.tsx`, `tests/storefront-engineering-source.test.mjs`, case-study documentation and this changelog. Updated inline comments.
+- Validation: committed on PR #105 branch; CI, browser QA and production publication not yet verified.
+
+
+
 ## 2026-11-24 - Brand-neutral content-to-commerce polish (draft)
 
 - Replaced client-specific case-study copy, product examples and proprietary source-path references with a fictional storefront and original educational code samples.
