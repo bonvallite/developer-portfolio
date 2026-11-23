@@ -28,3 +28,6 @@ Reuse the maintained `--jrv-*` palette. Avoid new colour tokens or external imag
 
 ## Validation required
 Run `npm test`, `npm run check:safety`, `npm run build`, and desktop/mobile browser QA at 320, 390, 768 and 1366 pixels. Check tab selection, menu disclosure, focus visibility, input feedback, SEO and source-safety boundaries. GitHub commits alone do not establish that these checks passed.
+
+## 24 November 2026: homepage discovery and test alignment
+The homepage selected-work footer now links to this lab without replacing existing case studies or storefront gallery entries. Source assertions check the brand-neutral page, tabbed code samples and information-led section. Build, CI and visual QA remain pending.
