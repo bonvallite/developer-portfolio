@@ -37,3 +37,6 @@ Added a five-node keyboard-selectable architecture diagram and a five-stage cust
 
 ## 24 November 2026: component-to-code explorer
 Visitors can select editorial hero, navigation or product panel, switch between original Liquid/CSS/JavaScript examples and inspect a synchronised local preview. The navigation disclosure has `aria-expanded` and the product selector uses a native labelled select. The examples are educational, not executable storefront source; no cart or checkout is connected. Responsive CSS stacks the preview below code at narrow widths. Source tests updated; runtime/build/browser QA pending.
+
+## 24 November 2026: additive homepage feature
+A new full-width featured section links to the lab from the homepage after Selected Work, with a static fictional preview, technology labels and CTA. Existing case cards, their order and the eleven-site gallery are preserved. Styles live in `app/cinematic-home.css` and use JRV tokens. Build and browser QA pending.
