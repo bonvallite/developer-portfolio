@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-24 - Evidence-led skills showcase (draft PR #105)
+
+- Added six responsive capability cards to the storefront-engineering case study: Figma-to-Shopify, navigation, PDP engineering, integrations, optimisation and release documentation.
+- Affected: `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, case-study documentation and this changelog. Inline comments updated.
+- Purpose: show what the engineer does, with implementation evidence instead of generic skills badges or invented business metrics.
+- Validation: GitHub writes completed; build, source tests and browser QA remain pending. No live Shopify or portfolio production change.
+
+
+
 ## 2026-11-24 - Draft storefront engineering interactive case study
 
 - **Scope:** New `/projects/storefront-engineering` route with original, fictional homepage, menu, PDP and delivery input demonstrations, architecture mapping, and service-led contact choices.
