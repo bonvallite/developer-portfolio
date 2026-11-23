@@ -1,5 +1,15 @@
 # Portfolio changelog
 
+## 2026-11-24 - Draft storefront engineering interactive case study
+
+- **Scope:** New `/projects/storefront-engineering` route with original, fictional homepage, menu, PDP and delivery input demonstrations, architecture mapping, and service-led contact choices.
+- **Affected files:** `app/projects/storefront-engineering/page.tsx`, `layout.tsx`, `storefront-engineering.css`, `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`, `tests/storefront-engineering-source.test.mjs`, maintained JRV design documentation and this changelog.
+- **Design:** Reuse existing JRV Obsidian/Teal/Ember tokens; no palette or favicon changes. No Peter Augustus theme files edited.
+- **Boundaries:** No actual production Liquid source, customer data, internal Figma links, real shipping decisions, new analytics or checkout requests. Demo is illustrative, not an audited performance result.
+- **Validation:** Source-level test added. CI, browser QA, visual review and production publication remain pending. Branch is draft only.
+
+
+
 ## 2026-11-23 - Publish mobile privacy and consent accessibility (PR #103, JRV v1.14)
 
 - **Approval and release:** PR #103 merged into `main` as `ae92409dda03541da0303552e228e4363113bf94` after owner approval of tested head `78b15a1be7179ad1716b88db0e94f7f24d4e1f04`. GitHub Actions `45100658874` passed full source/build, rendered SEO and all Chrome browser suites. Vercel preview `dpl_FVu6qw5M86JCfTPshev6roeKcDTR` was READY. Production Vercel deployment `dpl_6HpFimqrgbTKW8tJi6oavZ1cnGWf` confirmed READY at merge SHA `ae92409`, assigned to both `www.jrvallite.com` and `jrvallite.com`. Post-merge GitHub Actions `45103204365` source/build/SEO validation passed; the full browser suite passed on exact PR head as designed.
