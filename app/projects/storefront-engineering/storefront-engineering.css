@@ -75,3 +75,17 @@
 .se-page a:focus-visible,.se-page button:focus-visible,.se-page input:focus-visible{outline:3px solid var(--jrv-focus,#f28c52);outline-offset:3px}
 @media(max-width:720px){.se-wrap{padding:0 16px 65px}.se-hero{padding:65px 0}.se-heading{display:block}.se-section{padding:46px 0}.se-mapping,.se-product{grid-template-columns:1fr}.se-demo-bar{font-size:9px}.se-shop-header{padding:13px}.se-menu{top:59px;grid-template-columns:1fr}.se-delivery{display:block}.se-delivery>svg{margin-bottom:16px}.se-top span{display:none}.se-architecture li{padding:17px;gap:14px}.se-architecture li>svg{display:none}}
 @media(prefers-reduced-motion:reduce){.se-shop{transition:none}}
+
+/* 24 Nov: evidence-led skills grid; inherited JRV palette, no new tokens. */
+.se-skills-intro{max-width:760px;color:var(--jrv-muted,#a9c1c3);line-height:1.7;font-size:18px}
+.se-skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:32px}
+.se-skill-card{padding:25px;border:1px solid var(--jrv-border,#365b63);background:var(--jrv-surface,#122b34);border-radius:12px;display:flex;flex-direction:column;min-height:285px}
+.se-skill-number{color:var(--jrv-teal,#38c7bc);font-size:11px;letter-spacing:.09em;text-transform:uppercase}
+.se-skill-card h3{font-size:23px;letter-spacing:-.03em;margin:18px 0 10px}
+.se-skill-card p{line-height:1.65;color:var(--jrv-muted,#a9c1c3);margin:0 0 24px}
+.se-skill-proof{margin-top:auto;border-top:1px solid var(--jrv-border,#365b63);padding-top:15px;display:grid;gap:7px;font-size:12px}
+.se-skill-proof strong{color:var(--jrv-ember-light,#ffb58b)}
+.se-skill-proof span{color:var(--jrv-muted,#a9c1c3);line-height:1.5}
+.se-skills-note{color:var(--jrv-muted,#a9c1c3);font-size:12px;line-height:1.6;margin-top:20px}
+@media(max-width:950px){.se-skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.se-skills{grid-template-columns:1fr}.se-skill-card{min-height:0}}
