@@ -33,7 +33,7 @@ import './components/commerce-workbench.css';
 // direct client/hiring paths. They reuse existing homepage contact and
 // experience routes, not a new form or visitor analytics. All four project
 // demos, source-safe evidence and existing public SEO metadata remain intact.
-// 23 Nov 2026: approved PR #100 now publishes a separate, fictional-data
+// 24 Nov 2026: the selected-work footer now links to the fictional,\n// brand-neutral commerce experience lab without changing the four flagship\n// cards, eleven-site gallery, contact tracking or existing metadata.\n// 23 Nov 2026: approved PR #100 now publishes a separate, fictional-data
 // Shopify app systems section after the preserved 11-site gallery. All four
 // original case studies, homepage navigation and website previews remain.
 export const metadata: Metadata = {
@@ -188,7 +188,7 @@ export default function Home() {
               </div>
             </article>)}
           </div>
-          <div className="jrv2-work-after"><p>See responsive storefront concepts, documented integrations and more technical evidence in the full portfolio.</p><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
+          <div className="jrv2-work-after"><p>Explore an original brand-neutral Shopify storefront laboratory, from editorial hero and educational sections to product discovery, navigation and code.</p><Link href="/projects/storefront-engineering">Explore the commerce experience lab <ArrowUpRight size={17} aria-hidden="true"/></Link><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
         </div>
       </section>
 
