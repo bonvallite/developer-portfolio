@@ -89,3 +89,13 @@
 .se-skills-note{color:var(--jrv-muted,#a9c1c3);font-size:12px;line-height:1.6;margin-top:20px}
 @media(max-width:950px){.se-skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.se-skills{grid-template-columns:1fr}.se-skill-card{min-height:0}}
+
+/* 24 Nov: fictional discovery-to-purchase story and code explorer.
+   Scoped, responsive and token-based; no external assets or animation loops. */
+.se-journey{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+.se-journey article{background:var(--jrv-surface,#122b34);border:1px solid var(--jrv-border,#365b63);padding:23px;border-radius:12px}
+.se-journey h3{font-size:22px;letter-spacing:-.03em;margin:18px 0 10px}
+.se-journey p{font-size:14px;color:var(--jrv-muted,#a9c1c3);line-height:1.65;margin:0}
+.se-code{padding:25px;background:#071216;color:#b5e8df;border:1px solid var(--jrv-border,#365b63);border-radius:12px;overflow-x:auto;white-space:pre;font-size:13px;line-height:1.8;tab-size:2}
+@media(max-width:950px){.se-journey{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.se-journey{grid-template-columns:1fr}.se-code{font-size:11px;padding:16px}}
