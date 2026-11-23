@@ -1,32 +1,30 @@
-# Storefront engineering case study
+# Brand-neutral Shopify storefront engineering lab
 
-**Date:** 24 November 2026
-**Status:** Draft feature branch, not a production release
+**Updated:** 24 November 2026
+**Status:** Draft, unpublished
 **Route:** `/projects/storefront-engineering`
 
 ## Purpose
-Explain the engineering work behind a Figma-led Shopify Online Store 2.0 customisation, using an original educational interface. The public demonstration is not a copy of client theme files.
+An original fictional storefront demonstrates the full content-to-commerce journey: hero, information-led content, shopping discovery, product details, delivery guidance and technical implementation.
 
-## Source audit and scope
-A read-only inspection of Peter Augustus theme 139265507536 confirmed `templates/index.json`, `sections/pa-home-hero.liquid`, `sections/header.liquid`, `assets/pa-layout.js`, `assets/pa-layout.css`, `templates/product.pa-build.json`, `sections/pa-main-product.liquid` and `sections/pa-home-delivery.liquid`. The homepage template contains fifteen ordered sections. The header source documents its use of original theme header hooks and the replacement of prior Globo menu output. The PDP template contains nested gallery, beef-education, purchase and information blocks.
+## Interactive experience
+- Hero and responsive storefront shell, plus a local mega-menu state.
+- Product options are fictional and do not add items to any cart.
+- Discovery-to-purchase journey: discover, understand, explore, decide.
+- Behind-the-interface tabbed examples of Liquid schema, CSS and JavaScript. All examples are newly authored educational samples, not production theme code.
+- Postcode input validates only the four-digit format. It never claims delivery eligibility.
+- Six engineering skills connect interface design to reusable theme architecture, accessibility, integrations, debugging and release practices.
 
-These findings are architectural observations, not a full accessibility, production-performance or business-results certification.
+## Brand and privacy boundaries
+No real merchant name, logo, products, campaign assets, customer records, proprietary file paths, Figma frame references, actual pricing, performance claims, internal order data, credentials or production shipping zones appear in the public page. This is a portfolio lab, not a live merchant or a fully working checkout.
 
-## Public demonstration
-- Homepage: static fictional editorial hero, no remote image or video.
-- Mega menu: interactive open/close state with a simplified two-column structure.
-- PDP: locally selected fictional portion size, no cart or pricing API.
-- Delivery: four-digit input and explicit non-eligibility response. No postcode, rate or date claims.
-- Architecture: five stages and four inspected file-family mappings.
+## Architecture and maintenance
+Page: `app/projects/storefront-engineering/page.tsx`.
+Metadata: `app/projects/storefront-engineering/layout.tsx`.
+Styles: `app/projects/storefront-engineering/storefront-engineering.css`.
+Source checks: `tests/storefront-engineering-source.test.mjs`.
 
-## Privacy and ownership
-No production theme source, actual customer records, credentials, unpublished assets, internal Figma URLs, pricing tables, revenue metrics, webhooks, shipping zones or order details are embedded. No new analytics calls, third-party images or checkout actions. The public project credits the technical work without claiming sole design ownership or endorsement.
+Reuse the maintained `--jrv-*` palette. Avoid new colour tokens or external image services. Keyboard, responsive and reduced-motion requirements apply. No Shopify theme was edited.
 
-## Follow-up verification
-Run `npm test`, `npm run check:safety`, `npm run build` and the repository's browser QA. Review keyboard interaction, 320/390/768/1366px layouts, reduced-motion behaviour, SEO metadata, visual fidelity, contact routes and privacy boundaries. Only then consider a production merge.
-
-## Maintenance
-Styles use the existing `--jrv-*` palette; any future token changes must be made in `app/globals.css` and recorded in `docs/JRV_DESIGN_SYSTEM.md`. This page does not change Peter Augustus themes or `pa-theme-changelog`.
-
-## 24 November 2026: skills showcase extension
-Six capability cards now connect each skill to inspected engineering evidence, with no claim of sole Figma design authorship or commercial uplift. The grid adapts from three to two to one column at narrower widths. JRV palette and existing route remain unchanged. Build and browser validation are pending.
+## Validation required
+Run `npm test`, `npm run check:safety`, `npm run build`, and desktop/mobile browser QA at 320, 390, 768 and 1366 pixels. Check tab selection, menu disclosure, focus visibility, input feedback, SEO and source-safety boundaries. GitHub commits alone do not establish that these checks passed.
