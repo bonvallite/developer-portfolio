@@ -8,8 +8,9 @@ import './cinematic-service.css';
 // copy and links to existing case studies. Do not add personal-name SEO or unverified
 // outcomes. Contact CTA returns to the homepage's existing contact choices.
 // Keep the privacy notice accessible from service pages, not just the homepage.
-// Enquiry links carry fixed click-intent markers; the global consent manager
-// gates events and never reads their mailto URLs or visitor-entered text.
+// Project and hiring enquiries use separate fixed mailto templates. Only
+// consent-gated, allowlisted intent/source markers enter the click counter;
+// no visitor-entered text, role descriptions or mailto URLs enter analytics.
 // Cross-link the four existing service routes. Minimal WebPage JSON-LD repeats only
 // visible route content and the explicit canonical path; never include identity claims.
 export type ServiceContent = {
@@ -35,6 +36,11 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
   const enquiry = 'mailto:hello@jrvallite.com?subject=' +
     encodeURIComponent('Shopify project enquiry | JRV') + '&body=' +
     encodeURIComponent('I viewed ' + content.heading + '.\n\nBusiness or company:\nChallenge:\nDesired outcome:\nTimeline:\n');
+  // Static prompt only: unlike the homepage composer, neither mailto contains
+  // visitor-entered information. The same message is used across service routes.
+  const hiringEnquiry = 'mailto:hello@jrvallite.com?subject=' +
+    encodeURIComponent('Shopify / ecommerce hiring enquiry | JRV') + '&body=' +
+    encodeURIComponent('Company:\nRole title:\nResponsibilities:\nEmployment arrangement:\nNext step:\n');
   return (
     <main className="service-page jrv-svc">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: webPageSchema }} />
@@ -48,8 +54,9 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
         <p className="service-lead">{content.lead}</p>
         <p className="service-audience">{content.audience}</p>
         <div className="actions">
-          <a href={enquiry} className="button primary" data-jrv-track="email" data-jrv-intent="project" data-jrv-source="service_page">Start a conversation <ArrowUpRight size={17} /></a>
-          <a href="#examples" className="button secondary">Review relevant work <ArrowRight size={17} /></a>
+          <a href={enquiry} className="button primary" data-jrv-track="email" data-jrv-intent="project" data-jrv-source="service_page">Discuss a Shopify project <ArrowUpRight size={17} /></a>
+          <a href={hiringEnquiry} className="button secondary" data-jrv-track="email" data-jrv-intent="hiring" data-jrv-source="service_page">Discuss a hiring role <ArrowUpRight size={17} /></a>
+          <a href="#examples" className="jrv-svc-evidence-link">Review relevant work <ArrowRight size={17} /></a>
         </div></div>
         <div className="jrv-svc-hero-art" aria-label="Illustrative engineering process, from discovery to verification">
           <div className="jrv-svc-art-heading"><span>JRV / COMMERCE ENGINEERING</span><span>01 → 03</span></div>
@@ -81,10 +88,28 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
           <Link href="/shopify-app-development">Custom apps and integrations <ArrowUpRight size={16} /></Link>
         </div>
       </nav>
-      <section className="container service-bottom-cta">
-        <h2>Looking for Shopify expertise?</h2>
-        <p>Share the role, store challenge, desired outcome, and any relevant technical constraints to start a practical discussion.</p>
-        <a href={enquiry} className="button primary">Make an enquiry <ArrowUpRight size={17} /></a>
+      {/* Keep merchant enquiries and recruitment distinct at the decision point.
+          These are fixed email templates, not submission forms or verified leads. */}
+      <section className="container service-bottom-cta" aria-labelledby="jrv-svc-next-title">
+        <span className="overline">YOUR NEXT STEP</span>
+        <h2 id="jrv-svc-next-title">Choose the right conversation.</h2>
+        <p>Whether you need a Shopify improvement or are building an ecommerce team, start with the requirement. Both options open a draft in your own email app.</p>
+        <div className="jrv-svc-contact-routes">
+          <article>
+            <span className="overline">01 / MERCHANTS &amp; STORES</span>
+            <h3>Have a project to solve?</h3>
+            <p>Tell me about the storefront, integration, or conversion problem and what success would look like.</p>
+            <a href={enquiry} className="button primary" data-jrv-track="email" data-jrv-intent="project" data-jrv-source="service_page">Send a project enquiry <ArrowUpRight size={17} aria-hidden="true" /></a>
+          </article>
+          <article>
+            <span className="overline">02 / HIRING TEAMS</span>
+            <h3>Hiring Shopify expertise?</h3>
+            <p>Share the role, responsibilities, and employment arrangement, or review the experience and résumé first.</p>
+            <a href={hiringEnquiry} className="button secondary" data-jrv-track="email" data-jrv-intent="hiring" data-jrv-source="service_page">Discuss a hiring role <ArrowUpRight size={17} aria-hidden="true" /></a>
+            <Link href="/experience" className="jrv-svc-evidence-link">Review experience <ArrowRight size={16} aria-hidden="true" /></Link>
+          </article>
+        </div>
+        <p className="jrv-svc-contact-note">No message is sent until you choose to send it. Please leave customer records and confidential credentials out of initial enquiries.</p>
       </section>
       <footer className="container service-footer"><Link href="/">Shopify Commerce Engineering <ArrowRight size={15} /></Link><Link href="/privacy">Privacy and analytics</Link></footer>
     </main>

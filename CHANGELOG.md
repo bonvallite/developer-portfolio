@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-23 - Differentiate merchant and hiring journeys (draft)
+
+- **Base:** `310461d7e941ec82cfd0e683a115247311578321` (JRV v1.12 production); this is a distinct draft PR, not a production update.
+- **Affected routes/files:** `app/components/ServicePage.tsx`, `app/components/cinematic-service.css`, `app/components/LeadComposer.tsx`, `app/experience/page.tsx`, `tests/hiring-enquiry.test.mjs`, `tests/hiring-enquiry-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, `docs/ENQUIRY_JOURNEY.md`, `docs/JRV_DESIGN_SYSTEM.md`, `README.md`, `tests/portfolio-palette.test.mjs` and this changelog.
+- **Changes and why:** Four service routes previously offered a project-draft template for hiring visitors. Add distinct, accessible project and role actions in the hero and closing cards; use a separate static hiring mailto template with fixed source/intent markers. Experience page now offers a hiring CTA that opens the existing homepage contact composer with a *fixed category marker only* and corrects a stale statement about external screenshots. Improve role-specific composer heading and placeholder without collecting or storing the description.
+- **Privacy, colour and evidence:** No new APIs, cookies, tracking services, customer data, URL-carried free text or sensitive values; do not send an actual email. Preserve the 11 website links, original CartonCloud case study, Shopify App Engineering lab, four project cards and ten published JRV colour tokens. Maintained design-system candidate v1.13 and documentation are updated.
+- **Validation:** New source and desktop/mobile browser regression tests added; require GitHub Actions exact-head checks, mobile screenshots, and Vercel preview before any publication. Production unchanged.
+
+
 ## 2026-11-23 - Publish portfolio hardening through PR #101
 
 - **Release:** Owner approved deploying the next portfolio hardening package. PR #101 merged into `main` as `7ec0548e5b1837145f067c902cbfe660e7fe5d15`; exact reviewed candidate `4aa0db4fb54da8ee5867b79881794893b68d95a3`. The unrelated older draft PR #99 was not merged.
