@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type MouseEvent } from 'react';
+import { useEffect, useState, type MouseEvent } from 'react';
 import { ArrowUpRight, Copy, Mail, ShieldCheck } from 'lucide-react';
 
 // No lead database, third-party form, or tracking of visitor-entered text.
@@ -9,7 +9,8 @@ import { ArrowUpRight, Copy, Mail, ShieldCheck } from 'lucide-react';
 // brief: an enabled vendor click tag might otherwise capture the full URL.
 // For normal left clicks, optional text is added only during the email handoff.
 // Fixed intent/source markers are handled by the consent-gated click counter;
-// clicking is not a sent enquiry.
+// clicking is not a sent enquiry. The optional ?intent=hiring URL marker
+// selects a fixed, non-identifying hiring template; it cannot carry free text.
 const mailbox = 'hello@jrvallite.com';
 const choices = {
   project: {
@@ -28,6 +29,11 @@ export default function LeadComposer() {
   const [intent, setIntent] = useState<keyof typeof choices>('project');
   const [brief, setBrief] = useState('');
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'unavailable'>('idle');
+  useEffect(() => {
+    // Only the exact public hiring marker changes the local choice. Never
+    // ingest arbitrary query values into the draft or analytics payload.
+    if (new URLSearchParams(window.location.search).get('intent') === 'hiring') setIntent('role');
+  }, []);
   const selected = choices[intent];
   const safeMailto = 'mailto:' + mailbox + '?subject=' + encodeURIComponent(selected.subject) +
     '&body=' + encodeURIComponent(selected.questions);
@@ -54,7 +60,7 @@ export default function LeadComposer() {
   return <div className="jrv2-lead" aria-labelledby="jrv2-lead-heading">
     <div className="jrv2-lead-intro">
       <span className="jrv2-overline">YOUR NEXT STEP / DIRECT CONTACT</span>
-      <h3 id="jrv2-lead-heading">Start with the challenge.</h3>
+      <h3 id="jrv2-lead-heading">{intent === 'role' ? 'Tell me about the role.' : 'Start with the challenge.'}</h3>
       <p>Choose the kind of conversation and open a pre-filled email. No account, tracking form or unnecessary steps.</p>
       <div className="jrv2-lead-promise"><ShieldCheck size={19} aria-hidden="true" /> Your message stays on your device until you choose to send it.</div>
     </div>
@@ -65,9 +71,11 @@ export default function LeadComposer() {
             aria-pressed={intent === value} onClick={() => setIntent(value)}>{choices[value].label}</button>
         )}
       </fieldset>
-      <label htmlFor="jrv2-project-brief">Optional: a short description</label>
+      <label htmlFor="jrv2-project-brief">{intent === 'role' ? 'Optional: role details' : 'Optional: a short project description'}</label>
       <textarea id="jrv2-project-brief" value={brief} onChange={event => setBrief(event.target.value)}
-        rows={3} maxLength={600} placeholder="Tell me what you need help with. Do not include passwords, customer information or confidential data." />
+        rows={3} maxLength={600} placeholder={intent === 'role'
+          ? 'Role, responsibilities and employment arrangement. Do not include personal or confidential information.'
+          : 'Tell me what you need help with. Do not include passwords, customer information or confidential data.'} />
       <div className="jrv2-lead-actions">
         <a className="jrv2-cta jrv2-cta-primary" href={safeMailto} onClick={openDraft} data-jrv-track="email" data-jrv-intent={intent === 'role' ? 'hiring' : 'project'} data-jrv-source="homepage_form"><Mail size={18} aria-hidden="true" /> Open email draft <ArrowUpRight size={18} aria-hidden="true" /></a>
         <button type="button" className="jrv2-copy" onClick={copyEmail}><Copy size={16} aria-hidden="true" /> Copy email</button>

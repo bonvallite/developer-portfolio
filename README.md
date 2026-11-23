@@ -1,5 +1,11 @@
 # Shopify Commerce Engineering | Developer Portfolio
 
+## 23 November 2026: hiring and merchant enquiry journey (draft)
+
+The next narrowly scoped PR separates merchant projects from hiring enquiries on the four shared Shopify service pages, adds two accessible contact-choice cards, and lets the Experience page route hiring teams into the existing homepage composer using only the fixed, non-identifying `?intent=hiring` marker. It also corrects outdated screenshot-service copy on Experience. No visitor-entered brief is placed in page URLs, no external form service is added, and no contact email is sent by the site. Click analytics remains consent gated; this work does not configure GTM or GA4.
+
+Source tests and a dedicated desktop/mobile browser suite guard both journeys; see [Enquiry Journey](docs/ENQUIRY_JOURNEY.md). JRV Design System **v1.13 is a candidate** without any colour-token or favicon changes. The production v1.12 release remains in place until exact-commit CI and preview review are complete.
+
 ## 23 November 2026 portfolio hardening publication (PR #101)
 
 The production hardening release was selectively integrated atop the published Shopify App Engineering release (`44fb23d`) and merged through PR #101 as `7ec0548`, rather than merging older Draft PR #99 wholesale. It removes all client-side WordPress mShots requests in favour of 21 locally hosted WebP captures and direct live-site links for missing captures, improves the cold-chain shipping integration case study with responsive diagrams and accessible navigation, adds an original first-party JRV-branded social sharing image, and runs every browser suite on every pull request. The 11 website links, four original selected-work cards, previous CartonCloud route, and newer Shopify App Engineering showcase remain unchanged. The maintained design system is now published as v1.12, with no colour-token change.

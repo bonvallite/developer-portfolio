@@ -74,6 +74,10 @@ jobs:
         run: node tests/case-study-browser-qa.mjs
       - name: Cinematic homepage layout, privacy and conversion QA
         run: node tests/homepage-browser-qa.mjs
+      # Distinct hiring/merchant choices, fixed mailto prompts, privacy gating,
+      # contextual experience hand-off and mobile contact-layout checks.
+      - name: Hiring and merchant enquiry journey browser QA
+        run: node tests/hiring-enquiry-browser-qa.mjs
       # The Spend & Save case study connects shopper, merchant, post-checkout
       # Flow commit and notification states through a safe architecture map.
       - name: Spend and Save visual case-study and Flow browser QA
@@ -111,6 +115,7 @@ jobs:
           path: |
             artifacts/case-study-browser-qa/
             artifacts/homepage-browser-qa/
+            artifacts/hiring-enquiry-browser-qa/
             artifacts/analytics-lab-browser-qa/
             artifacts/spend-save-visual-browser-qa/
             artifacts/cartoncloud-event-studio-qa/
