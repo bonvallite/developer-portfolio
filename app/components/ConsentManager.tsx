@@ -19,7 +19,15 @@ import { reportPortfolioClick } from './portfolio-intent-events';
 // without accepting analytics; settings remains available to reopen it.
 // Reversing an accepted choice reloads because already-loaded vendor scripts
 // cannot be reliably unloaded in a running document.
+/**
+ * Browser-only preference key. This value MUST match
+ * PORTFOLIO_CONSENT_KEY in portfolio-intent-events.ts so link telemetry and
+ * script loading use the same permission. A future key change requires an
+ * explicit migration plan for existing choices, not an unreviewed rename.
+ */
 const storageKey = 'jrv-optional-analytics-consent-v1';
+/** loading prevents an SSR/first-hydration consent flash; unresolved means
+ * no persistent decision and never implies permission. */
 type Choice = 'loading' | 'unresolved' | 'accepted' | 'rejected';
 type ClarityQueue = ((...args: unknown[]) => void) & { q?: unknown[][] };
 type TrackingWindow = Window & {
@@ -27,9 +35,20 @@ type TrackingWindow = Window & {
   clarity?: ClarityQueue;
 };
 
+/**
+ * Load optional third-party scripts only in the accepted state.
+ *
+ * data-jrv-analytics guards make this idempotent when React effects rerun.
+ * GTM may load additional tags configured outside this repository, so this
+ * code does not certify which upstream events or cookies those vendors use.
+ * There is no safe in-document script teardown; accepted -> rejected reloads.
+ * Vercel Analytics is gated separately in the component's rendered output.
+ */
 function enableExternalAnalytics() {
   const w = window as TrackingWindow;
   if (!document.querySelector('script[data-jrv-analytics="gtm"]')) {
+    // GTM's bootstrap event is created only on this opt-in path.
+    // The portfolio's own click events are still checked per click.
     w.dataLayer = w.dataLayer || [];
     w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
     const script = document.createElement('script');
@@ -40,6 +59,8 @@ function enableExternalAnalytics() {
   }
   if (!document.querySelector('script[data-jrv-analytics="clarity"]')) {
     if (!w.clarity) {
+      // Clarity can queue calls before its asynchronously loaded script runs.
+      // Initialising the stub here avoids creating a vendor queue pre-consent.
       const stub: ClarityQueue = (...args: unknown[]) => {
         stub.q = stub.q || [];
         stub.q.push(args);
@@ -55,6 +76,19 @@ function enableExternalAnalytics() {
   }
 }
 
+/**
+ * Owns the local consent state and the visible privacy controls.
+ * - First visit: unresolved with a notice; optional analytics stay OFF.
+ * - Reopening settings: focus the labelled heading, not on initial load.
+ * - Escape: hide only the panel, without recording a consent decision.
+ * - Accepted -> rejected: reload to stop future execution in this document,
+ *   without claiming deletion of third-party data already retained elsewhere.
+ *
+ * Layout dependency: RootLayout mounts this before {children}, and
+ * consent-manager.css switches the panel from fixed desktop to in-flow
+ * mobile/tablet at <=800px. Never assume this section is a focus-trapping
+ * modal. The separate settings control is hidden while expanded on mobile.
+ */
 export default function ConsentManager() {
   const [choice, setChoice] = useState<Choice>('loading');
   const [open, setOpen] = useState(false);
@@ -63,6 +97,9 @@ export default function ConsentManager() {
   const focusOnReopen = useRef(false);
   const restoreFocusOnClose = useRef(false);
 
+  // One document listener also handles links rendered after client navigation.
+  // Registration itself is harmless before consent: reportPortfolioClick
+  // rechecks the stored permission and uses fixed enums, never href or text.
   useEffect(() => {
     // Delegation covers server-rendered links and client-side route transitions
     // without turning every portfolio page into a client component. Never read
@@ -77,6 +114,8 @@ export default function ConsentManager() {
     return () => document.removeEventListener('click', onTrackedClick, true);
   }, []);
 
+  // Hydrate the stored choice on the client. Blocked localStorage falls back
+  // to unresolved; neither lack of storage nor dismissed UI grants permission.
   useEffect(() => {
     let previous: string | null = null;
     try { previous = window.localStorage.getItem(storageKey); } catch { /* Storage may be blocked. */ }
@@ -85,6 +124,8 @@ export default function ConsentManager() {
     setOpen(stored === 'unresolved');
   }, []);
 
+  // The sole opt-in transition for GTM/Clarity. Do not move this to layout,
+  // or rendering a server component would bypass the consent gate.
   useEffect(() => {
     if (choice === 'accepted') enableExternalAnalytics();
   }, [choice]);
@@ -102,6 +143,9 @@ export default function ConsentManager() {
     }
   }, [open]);
 
+  // A deliberate toggle sets a focus intent for the next render. React refs
+  // distinguish reopening from the initial first-visit notice, which must not
+  // steal focus from a keyboard or screen-reader visitor.
   function togglePreferences() {
     if (open) restoreFocusOnClose.current = true;
     else focusOnReopen.current = true;
@@ -115,6 +159,12 @@ export default function ConsentManager() {
     setOpen(false);
   }
 
+  /**
+   * Store only the literal decision, not an identifier or enquiry content.
+   * If storage is unavailable, the decision applies to this mounted page only
+   * and next visit begins unresolved. Revocation reloads after best-effort
+   * storage rather than attempting to erase already-loaded vendor scripts.
+   */
   function choose(value: 'accepted' | 'rejected') {
     try { window.localStorage.setItem(storageKey, value); } catch { /* Respect blocked storage. */ }
     if (choice === 'accepted' && value === 'rejected') {
@@ -128,6 +178,8 @@ export default function ConsentManager() {
     setOpen(false);
   }
 
+  // Avoid rendering a wrong pre-hydration banner or vendor component before
+  // the browser's previously stored permission has been read.
   if (choice === 'loading') return null;
 
   return <>

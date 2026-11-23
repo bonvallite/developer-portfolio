@@ -5,20 +5,36 @@
    bottom-safe-area allowance. While expanded, it hides on mobile so the
    redundant pill cannot cover page text. Reopening focuses the heading.
    Colours reuse JRV obsidian/teal/ember, with no external fonts or assets. */
+/* Desktop keeps a compact bottom notice. Only this presentation is fixed;
+   at <=800px the media rule switches its positioning to normal document flow.
+   RootLayout must render ConsentManager before {children} for that to work. */
 .jrv-consent{position:fixed;z-index:200;left:20px;right:20px;bottom:20px;max-width:1030px;margin:auto;border:1px solid #508c86;background:#0d222bf2;box-shadow:0 25px 85px #000a;color:#eaf8f6;border-radius:10px;display:flex;align-items:center;gap:25px;justify-content:space-between;padding:22px 24px;backdrop-filter:blur(16px)}
 .jrv-consent h2{display:block;font-size:15px;line-height:1.45;font-weight:750;margin:0 0 7px;letter-spacing:-.2px}
 .jrv-consent p{margin:0;font-size:12px;line-height:1.65;color:#c2d8d7;max-width:700px}
 .jrv-consent a{color:#a1eadc;text-decoration:underline;text-underline-offset:3px}
+/* These are explicit Reject / Allow choices, not a tracking preference toggle
+   inferred from navigation, Escape, scrolling or opening the notice. */
 .jrv-consent-actions{display:flex;gap:10px;flex-shrink:0}
 .jrv-consent-actions button{min-height:45px;padding:10px 16px;border:1px solid #527e7e;background:#173941;color:#eaf8f6;font-size:13px;font-weight:750;cursor:pointer}
 .jrv-consent-actions button.jrv-consent-accept{background:#f28c52;color:#13242b;border-color:#f28c52}
 /* Kept available after rejection, with a 44px target and non-obscuring inset. */
+/* Separate from the notice so users can reopen preferences after either
+   choice or an Escape dismissal. Fixed positioning is intentional; the
+   in-flow mobile notice temporarily hides this redundant pill below. */
 .jrv-consent-settings{position:fixed;z-index:190;bottom:8px;left:8px;min-height:44px;min-width:124px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #518e89;background:#102731f2;color:#e1f8f4;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:750;line-height:1.35;cursor:pointer}
 .jrv-consent-settings:hover{background:#1d4750}
+/* Heading focus is programmatic on deliberate reopening. Buttons remain
+   keyboard operable; retain the canonical Ember focus token for contrast. */
 .jrv-consent h2:focus,.jrv-consent button:focus-visible,.jrv-consent-settings:focus-visible{outline:3px solid var(--jrv-focus);outline-offset:3px}
 /* Reserve scroll space for the small persistent settings control. Consent
    remains in-flow, is not modal and never blocks the page behind it on mobile. */
+/* Breakpoint is shared with the RootLayout order and the corresponding Chrome
+   geometry tests. The 64px scroll reserve plus safe-area inset keeps end-page
+   content reachable above the closed-state fixed settings pill. This is NOT
+   permission to load analytics or hide the full notice. */
 @media(max-width:800px){body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}.jrv-consent{position:relative;z-index:2;flex-direction:column;align-items:stretch;gap:12px;left:auto;right:auto;bottom:auto;width:calc(100% - 24px);max-width:720px;margin:12px auto 0;padding:16px;box-shadow:0 10px 35px #0006;backdrop-filter:none}.jrv-consent p{font-size:13px;line-height:1.55}.jrv-consent-actions{width:100%}.jrv-consent-actions button{flex:1;min-height:48px}.jrv-consent-settings{min-height:44px;font-size:12px;padding:10px 14px;bottom:calc(8px + env(safe-area-inset-bottom));left:8px}}
+/* At the narrowest handsets, stack both explicit consent actions instead of
+   allowing their text or minimum 44px targets to compress. */
 @media(max-width:350px){.jrv-consent-actions{flex-direction:column}}
 /* The expanded notice contains all consent actions: hide only the redundant
    mobile pill until the notice closes; never change analytics consent itself. */

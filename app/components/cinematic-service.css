@@ -51,6 +51,9 @@
 .jrv-svc .service-disclaimer svg{color:#38c7bc;flex-shrink:0;margin-top:2px}
 .jrv-svc .service-card-grid>a{padding:23px;border:1px solid #2c7676;background:#201e1b;color:#8ce3da;display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:14px}
 .jrv-svc .service-card-grid>a:hover{background:#17313b}
+/* The closing contact area is shared by all four Shopify service routes.
+   Hiring and project cards must remain actionable independently of the
+   sitewide consent notice; this selector is not a consent state control. */
 .jrv-svc .service-bottom-cta{margin-top:42px;margin-bottom:64px;padding:55px 40px;background:radial-gradient(ellipse at 75% 40%,#2c767623,transparent 65%),#1d1b19;border:1px solid #2c7676;border-radius:12px}
 .jrv-svc .service-bottom-cta h2{font-size:clamp(38px,4vw,63px);letter-spacing:-2px;line-height:1.08;margin:0 0 16px}
 .jrv-svc .service-bottom-cta p{color:#c1bcb4;font-size:15px}
@@ -75,6 +78,8 @@
    become cramped; no new motion is introduced for reduced-motion visitors. */
 @media(max-width:720px){.jrv-svc .jrv-svc-contact-routes{grid-template-columns:1fr}.jrv-svc .jrv-svc-contact-routes article .button{width:100%;min-height:48px}.jrv-svc .service-hero .jrv-svc-evidence-link{width:100%;justify-content:flex-start}}
 
-/* A mobile closing-card tail keeps the small fixed privacy pill on blank
-   padding rather than covering the final disclosure when scrolled into view. */
+/* PR #103 dependency: reserve a non-interactive 94px tail beneath the last
+   mobile disclosure so the closed-state 44px fixed Privacy choices pill
+   does not cover that text or a hiring/project CTA. Never replace this
+   padding with a new overlay, and preserve 44px tap targets. */
 @media(max-width:800px){.jrv-svc .service-bottom-cta{padding-bottom:94px}}

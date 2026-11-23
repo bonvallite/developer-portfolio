@@ -5,6 +5,11 @@ import Link from 'next/link';
 // appears in normal flow, Escape may dismiss without making a consent choice,
 // and the persistent control reopens it. This is an implementation summary,
 // not an audit of GTM tags, third-party auto-events or legal compliance.
+// Documentation dependency: the live consent state machine belongs in
+// app/components/ConsentManager.tsx, while only allowlisted click labels may
+// be enqueued by app/components/portfolio-intent-events.ts. Keep this public
+// notice in sync when either source file changes, without implying that a
+// visitor's email draft was submitted or received.
 export const metadata: Metadata = {
   title: 'Privacy and Analytics',
   description: 'How this Shopify commerce portfolio handles optional analytics and direct enquiries.',

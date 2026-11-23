@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-23 - Inline privacy/accessibility source documentation (review candidate)
+
+- **Scope and base:** Documentation-only maintenance on published JRV v1.14, based on GitHub `main` commit `604eafbc9d495777ddec97d2a12b5b6bcaece425`. Changes are proposed in an isolated PR, not automatically deployed to production.
+- **Affected code/comment files:** `app/components/ConsentManager.tsx`, `app/components/portfolio-intent-events.ts`, `app/components/QuickContactDock.tsx`, `app/layout.tsx`, `app/components/consent-manager.css`, `app/components/cinematic-service.css`, `app/globals.css`, and `app/privacy/page.tsx`. Document the browser storage-key dependency, unresolved/accepted/rejected states, idempotent GTM/Clarity injection, focus and Escape behaviour, privacy-safe event allowlists, local mailto-only path context, layout order, mobile <=800px in-flow notice, 350px consent controls, 94px contact tail, and <=760px safe-area dock spacing.
+- **Maintained references:** Update `docs/JRV_DESIGN_SYSTEM.md` file map and inline-comment conventions, `README.md` maintenance note, and this `CHANGELOG.md` entry while retaining all v1.14 and prior publication history. No design-system version bump is required for commentary-only maintenance.
+- **Reason:** Make the accessibility/privacy behaviour and coupling between source modules explicit for future maintainers without introducing a runtime regression or exposing visitor information. Comments must not overclaim external GTM/GA4/Clarity settings, delivered enquiries or legal compliance.
+- **Validation:** Source diff should contain only valid TSX/TypeScript/CSS comments and Markdown docs. Exact-head unit/TypeScript/Next.js build and Vercel preview checks are pending; keep the PR draft until verified. No Shopify theme, pa-theme-changelog, Cloudflare Worker, customer record or analytics account changes.
+
+
 ## 2026-11-23 - Publish mobile privacy and consent accessibility (PR #103, JRV v1.14)
 
 - **Approval and release:** PR #103 merged into `main` as `ae92409dda03541da0303552e228e4363113bf94` after owner approval of tested head `78b15a1be7179ad1716b88db0e94f7f24d4e1f04`. GitHub Actions `45100658874` passed full source/build, rendered SEO and all Chrome browser suites. Vercel preview `dpl_FVu6qw5M86JCfTPshev6roeKcDTR` was READY. Production Vercel deployment `dpl_6HpFimqrgbTKW8tJi6oavZ1cnGWf` confirmed READY at merge SHA `ae92409`, assigned to both `www.jrvallite.com` and `jrvallite.com`. Post-merge GitHub Actions `45103204365` source/build/SEO validation passed; the full browser suite passed on exact PR head as designed.

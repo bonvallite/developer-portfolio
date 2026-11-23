@@ -11,6 +11,9 @@ import { ArrowUpRight } from 'lucide-react';
 // never obscures hero copy or primary actions, especially on small devices.
 // No visitor inputs, server submissions or lead storage. The mailto link
 // declares only fixed, consent-gated click-intent metadata (not a sent lead).
+// Source of truth for routes with an existing primary contact experience.
+// Keep this list aligned when a new page gains its own contact/hiring panel;
+// the résumé exclusion below intentionally covers the entire route prefix.
 const handledRoutes = new Set([
   '/', '/shopify-developer', '/ecommerce-management', '/shopify-cro',
   '/shopify-app-development', '/privacy',
@@ -20,6 +23,9 @@ export default function QuickContactDock() {
   const pathname = usePathname() || '/';
   const [visible, setVisible] = useState(false);
 
+  // Only reveal the dock after meaningful scroll depth. Route changes
+  // re-evaluate the threshold and remove the previous scroll listener.
+  // This uses passive scrolling and never inspects enquiry inputs.
   useEffect(() => {
     const update = () => {
       const next = window.scrollY > Math.max(560, window.innerHeight * 0.7);
@@ -31,6 +37,9 @@ export default function QuickContactDock() {
   }, [pathname]);
 
   if (!visible || handledRoutes.has(pathname) || pathname.startsWith('/resume')) return null;
+  // The public pathname only personalises the visitor's local email draft.
+  // Consent-gated click telemetry sends fixed intent/source labels instead;
+  // it must never read this mailto URL, pathname, or typed message.
   const subject = encodeURIComponent('Shopify project discussion | JRV');
   const body = encodeURIComponent('I found your work on ' + pathname + '.\n\nMy project or role:\nDesired outcome:\n');
   return <aside className="jrv-quick-dock" aria-label="Discuss a Shopify project">
