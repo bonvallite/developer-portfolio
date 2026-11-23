@@ -32,6 +32,10 @@ export const metadata: Metadata = {
 // Desktop still renders a fixed compact panel. Mobile settings are reachable
 // whenever the notice is closed; while expanded, the redundant pill hides.
 // Analytics still requires explicit opt-in.
+// IMPORTANT ORDER: ConsentManager precedes children so its <=800px in-flow
+// banner occupies its own vertical space; QuickContactDock comes afterwards
+// and is independently positioned. Moving either may reintroduce CTA overlap.
+// This layout intentionally does not load GTM/Clarity or persist enquiries.
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-AU">

@@ -10,6 +10,9 @@
  * This only queues events for an already-consented GTM container. GA4 collection
  * additionally requires reviewed/published GTM tags; no vendor is called here.
  */
+// Shared contract: ConsentManager.storageKey must use this exact string.
+// It is deliberately not moved into server metadata or a cookie. Any rename
+// requires migration and consent review before release.
 export const PORTFOLIO_CONSENT_KEY = 'jrv-optional-analytics-consent-v1';
 
 type EmailIntent = 'project' | 'hiring' | 'general';
@@ -23,6 +26,12 @@ type PortfolioClickEvent =
   | { event: 'jrv_resume_download_click'; jrv_design: ResumeDesign; jrv_format: ResumeFormat }
   | { event: 'jrv_case_study_click'; jrv_case: FeaturedCase };
 
+/**
+ * Convert only explicit data-jrv-* attributes into a narrow, typed payload.
+ * The allowlists are a privacy boundary, not just a TypeScript convenience:
+ * NEVER add an href, URL path, label text, free-form role, or draft message.
+ * New action types must be reviewed in this source and the privacy notice.
+ */
 function buildEvent(link: Element): PortfolioClickEvent | null {
   const kind = link.getAttribute('data-jrv-track');
   if (kind === 'email') {
@@ -49,6 +58,12 @@ function buildEvent(link: Element): PortfolioClickEvent | null {
   return null;
 }
 
+/**
+ * An attempted click is not proof that an email was sent or file downloaded.
+ * Gate each event against browser consent at click time; returning false means
+ * no local dataLayer event was enqueued. A true return only indicates local
+ * enqueueing, NOT GA4 receipt or published GTM forwarding configuration.
+ */
 export function reportPortfolioClick(link: Element): boolean {
   if (typeof window === 'undefined') return false;
   // Read consent at the moment of each click; a stale React state or DOM marker

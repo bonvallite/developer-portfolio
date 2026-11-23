@@ -381,6 +381,10 @@
 /* 20 November conversion route: unobtrusive enquiry dock on service and case
    study pages. Hidden on homepage, privacy and résumé by QuickContactDock.
    No dependency on analytics, cookies, third-party forms or JavaScript events. */
+/* Floating project prompt is only rendered by QuickContactDock on long
+   case-study routes after meaningful scroll. It is independent of the
+   consent manager, and its mailto text is never forwarded as click analytics.
+   Keep z-index and spacing coordinated with consent-manager.css. */
 .jrv-quick-dock{position:fixed;z-index:80;bottom:24px;right:24px;display:flex;align-items:center;gap:18px;max-width:620px;background:#181b20ed;border:1px solid #36a6a0;border-radius:10px;color:#d3f4ed;box-shadow:0 18px 50px #0007;padding:15px 18px;backdrop-filter:blur(12px)}
 .jrv-quick-dock>div{display:flex;flex-direction:column;gap:3px}
 .jrv-quick-dock strong{font-size:12px;color:#d3f4ed}
@@ -389,8 +393,11 @@
 .jrv-quick-dock>a:first-of-type:hover{background:#8ce3da}
 .jrv-quick-dock .jrv-quick-dock-secondary{font-size:11px;color:#38c7bc;white-space:nowrap}
 .jrv-quick-dock a:focus-visible{outline:3px solid #8ce3da;outline-offset:3px}
-/* Clear the 44px fixed privacy pill and device safe-area bottom inset on
-   long case-study pages, so both project and privacy actions are operable. */
+/* Consent dependency (JRV v1.14): the fixed Privacy choices pill is bottom-left,
+   44px high, and stays available while the notice is closed. On <=760px
+   case-study screens, raise the project dock to 70px + safe-area inset so
+   the two fixed actions cannot overlap. Browser QA checks hit regions at
+   320/390/768/1366px. Do not reduce this offset without rerunning tests. */
 @media(max-width:760px){.jrv-quick-dock{bottom:calc(70px + env(safe-area-inset-bottom));right:14px;left:14px;justify-content:space-between;gap:10px;padding:11px}.jrv-quick-dock span,.jrv-quick-dock-secondary{display:none}.jrv-quick-dock strong{font-size:11px}.jrv-quick-dock>a:first-of-type{font-size:10px}}
 @media(max-width:380px){.jrv-quick-dock>div{display:none}.jrv-quick-dock{left:auto;max-width:260px}}
 @media(prefers-reduced-motion:reduce){.jrv-quick-dock *{transition:none!important}}

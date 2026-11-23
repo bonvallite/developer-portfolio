@@ -1,5 +1,9 @@
 # Shopify Commerce Engineering | Developer Portfolio
 
+## 23 November 2026: inline code documentation maintenance (review candidate)
+
+The published JRV v1.14 mobile-privacy release has an in-source documentation review focused on `ConsentManager.tsx`, `portfolio-intent-events.ts`, `QuickContactDock.tsx`, the root layout and mobile CSS. Comments explain the shared consent storage key, opt-in-only vendor loading, focus restoration, fixed telemetry enums, the <=800px in-flow consent breakpoint, and contact/dock clearance. These are implementation contracts, not claims that third-party analytics settings or real email delivery have been audited. `docs/JRV_DESIGN_SYSTEM.md` and `CHANGELOG.md` retain the governance and history. This is a documentation-only PR; the live v1.14 release stays unchanged until separate approval and validation.
+
 ## 23 November 2026: mobile privacy and contact accessibility (published PR #103)
 
 JRV v1.14 moves the first-visit consent notice into normal document flow above the page at screen widths up to 800px. It does not hide merchant or recruiter contact choices, while the persistent Privacy choices button stays reachable near the viewport bottom with a safe-area allowance. A labelled heading, Escape dismissal without consent, and keyboard focus restoration improve access when reopening preferences. Optional GTM, Clarity and Vercel Analytics still load only after explicit acceptance. No consent is inferred from Escape or navigation; no new tracker, lead form or client data is introduced. Existing JRV colours, 11 sites, published demos, email contact paths, canonicals and resume access are preserved.
