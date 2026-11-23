@@ -54,6 +54,8 @@ export default function StorefrontEngineering(){
   const [postcode,setPostcode]=useState('');
   const [checked,setChecked]=useState(false);
   const [codeTab,setCodeTab]=useState<'liquid'|'css'|'javascript'>('liquid');
+  const [architectureStage,setArchitectureStage]=useState(0);
+  const [journeyStage,setJourneyStage]=useState(0);
   return <main className="se-page">
     <div className="se-wrap">
       <nav className="se-top" aria-label="Case study"><Link href="/#work"><ArrowLeft size={17}/> Back to projects</Link><span>{'{JRV}'} / COMMERCE ENGINEERING</span></nav>
@@ -107,20 +109,53 @@ export default function StorefrontEngineering(){
         </div>
         <pre className="se-code"><code>{codeSamples[codeTab]}</code></pre>
       </section>
+      {/* Original educational diagram: select a node to reveal its role.
+          Nodes are buttons, not decorative graphics, for keyboard access. */}
+      <section className="se-section" aria-labelledby="diagram-heading">
+        <span className="se-eyebrow">04 / INTERACTIVE ARCHITECTURE</span>
+        <h2 id="diagram-heading">From design intent to customer experience.</h2>
+        <p className="se-skills-intro">Select a stage to explore how storefront components connect. This is a conceptual workflow, not a client system diagram.</p>
+        <div className="se-diagram" role="group" aria-label="Storefront architecture stages">
+          {steps.map((stage,index)=><div className="se-diagram-step" key={stage.title}>
+            <button type="button" aria-pressed={architectureStage===index} className={architectureStage===index?'se-node se-node-active':'se-node'} onClick={()=>setArchitectureStage(index)}>
+              <span>0{index+1}</span><strong>{stage.title}</strong>
+            </button>
+            {index<steps.length-1&&<span className="se-diagram-arrow" aria-hidden="true">→</span>}
+          </div>)}
+        </div>
+        <div className="se-diagram-detail" role="status"><strong>{steps[architectureStage].title}</strong><p>{steps[architectureStage].description}</p></div>
+      </section>
+      {/* Journey selector models intent, not a live commerce funnel. */}
+      <section className="se-section" aria-labelledby="workflow-heading">
+        <span className="se-eyebrow">05 / SHOPPING WORKFLOW</span>
+        <h2 id="workflow-heading">The path from discovery to decision.</h2>
+        <div className="se-workflow" role="group" aria-label="Customer journey steps">
+          {[
+            ['Discover','Hero and category entry points'],
+            ['Learn','Guides, comparison and delivery information'],
+            ['Explore','Collections and product discovery'],
+            ['Decide','Variants, specifications and availability'],
+            ['Purchase','Cart and platform-managed checkout']
+          ].map(([title,description],index)=><button type="button" key={title} aria-pressed={journeyStage===index} className={journeyStage===index?'se-workflow-step se-workflow-active':'se-workflow-step'} onClick={()=>setJourneyStage(index)}>
+            <span>0{index+1}</span><strong>{title}</strong>{journeyStage===index&&<small>{description}</small>}
+          </button>)}
+        </div>
+        <p className="se-skills-note">Illustrative journey only. No live cart, checkout, customer tracking or conversion measurements.</p>
+      </section>
       <section className="se-section" aria-labelledby="architecture-heading">
-        <div className="se-heading"><div><span className="se-eyebrow">04 / ENGINEERING</span><h2 id="architecture-heading">From frame to functioning storefront.</h2></div><p>The layer-by-layer model connects visual intent with maintainable platform behaviour.</p></div>
+        <div className="se-heading"><div><span className="se-eyebrow">06 / ENGINEERING</span><h2 id="architecture-heading">From frame to functioning storefront.</h2></div><p>The layer-by-layer model connects visual intent with maintainable platform behaviour.</p></div>
         <ol className="se-architecture">{steps.map((step,i)=><li key={step.title}><span className="se-step">{String(i+1).padStart(2,'0')}</span><div><h3>{step.title}</h3><p>{step.description}</p></div><ArrowRight size={18} aria-hidden="true"/></li>)}</ol>
       </section>
       <section className="se-section" aria-labelledby="mapping-heading">
-        <span className="se-eyebrow">05 / IMPLEMENTATION MAPPING</span><h2 id="mapping-heading">How I structure the implementation.</h2>
+        <span className="se-eyebrow">07 / IMPLEMENTATION MAPPING</span><h2 id="mapping-heading">How I structure the implementation.</h2>
         <div className="se-mapping">{mappings.map(([feature,source,behaviour])=><article key={feature}><div><Layers3 size={20}/><h3>{feature}</h3></div><code>{source}</code><p>{behaviour}</p></article>)}</div>
       </section>
       <section className="se-section se-delivery" aria-labelledby="boundary-heading">
-        <Truck size={28}/><div><span className="se-eyebrow">06 / REAL-WORLD BOUNDARIES</span><h2 id="boundary-heading">A beautiful delivery checker still needs trusted rules.</h2><p>A production design should connect postcode input to authorised shipping logic. This example deliberately does not calculate delivery dates or claim postcode eligibility.</p><form onSubmit={e=>{e.preventDefault();setChecked(true);}}><label htmlFor="se-postcode">Try the demonstration input</label><div><input id="se-postcode" inputMode="numeric" pattern="[0-9]{4}" maxLength={4} value={postcode} onChange={e=>{setPostcode(e.target.value.replace(/\D/g,'').slice(0,4));setChecked(false);}} placeholder="4-digit postcode" required/><button type="submit">Inspect UI state</button></div></form>{checked&&<p role="status" className="se-result">Input received: {postcode}. This public demonstration cannot confirm a shipping zone, fee or delivery date.</p>}</div>
+        <Truck size={28}/><div><span className="se-eyebrow">08 / REAL-WORLD BOUNDARIES</span><h2 id="boundary-heading">A beautiful delivery checker still needs trusted rules.</h2><p>A production design should connect postcode input to authorised shipping logic. This example deliberately does not calculate delivery dates or claim postcode eligibility.</p><form onSubmit={e=>{e.preventDefault();setChecked(true);}}><label htmlFor="se-postcode">Try the demonstration input</label><div><input id="se-postcode" inputMode="numeric" pattern="[0-9]{4}" maxLength={4} value={postcode} onChange={e=>{setPostcode(e.target.value.replace(/\D/g,'').slice(0,4));setChecked(false);}} placeholder="4-digit postcode" required/><button type="submit">Inspect UI state</button></div></form>{checked&&<p role="status" className="se-result">Input received: {postcode}. This public demonstration cannot confirm a shipping zone, fee or delivery date.</p>}</div>
       </section>
       {/* Skill cards describe observed implementation patterns, not invented outcomes. */}
       <section className="se-section" aria-labelledby="skills-heading">
-        <span className="se-eyebrow">07 / ENGINEERING SKILLS</span>
+        <span className="se-eyebrow">09 / ENGINEERING SKILLS</span>
         <h2 id="skills-heading">What I do, from design to delivery.</h2>
         <p className="se-skills-intro">I turn Figma designs and commercial requirements into maintainable Shopify experiences, then diagnose, document and improve the systems behind them.</p>
         <div className="se-skills">
@@ -135,7 +170,7 @@ export default function StorefrontEngineering(){
         </div>
         <p className="se-skills-note">These are engineering capabilities demonstrated through original examples, not claims of client endorsement or measured commercial uplift.</p>
       </section>
-      <section className="se-section se-conclusion"><span className="se-eyebrow">08 / WHAT THIS DEMONSTRATES</span><h2>Design fidelity meets engineering discipline.</h2><p>Reusable blocks, theme compatibility, responsive interactions and clear operational boundaries create a more maintainable storefront. The next engineering checks are keyboard access, performance budgets, delivery-rule parity and regression coverage; none is presented here as a completed live-store certification.</p><div className="se-actions"><Link href="/#contact">Discuss a Shopify project <ArrowRight size={18}/></Link><Link href="/?intent=hiring#contact">Hiring or collaboration <Code2 size={18}/></Link></div></section>
+      <section className="se-section se-conclusion"><span className="se-eyebrow">10 / WHAT THIS DEMONSTRATES</span><h2>Design fidelity meets engineering discipline.</h2><p>Reusable blocks, theme compatibility, responsive interactions and clear operational boundaries create a more maintainable storefront. The next engineering checks are keyboard access, performance budgets, delivery-rule parity and regression coverage; none is presented here as a completed live-store certification.</p><div className="se-actions"><Link href="/#contact">Discuss a Shopify project <ArrowRight size={18}/></Link><Link href="/?intent=hiring#contact">Hiring or collaboration <Code2 size={18}/></Link></div></section>
     </div>
   </main>;
 }
