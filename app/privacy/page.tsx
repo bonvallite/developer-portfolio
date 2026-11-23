@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-// Updated 2026-11-23 for the v1.14 accessibility candidate: mobile notice
+// Updated 2026-11-23 for the published v1.14 accessibility release: mobile notice
 // appears in normal flow, Escape may dismiss without making a consent choice,
 // and the persistent control reopens it. This is an implementation summary,
 // not an audit of GTM tags, third-party auto-events or legal compliance.
@@ -34,6 +34,6 @@ export default function PrivacyPage() {
 
     <h2>Questions and requests</h2>
     <p>For questions about this portfolio&apos;s analytics or a direct enquiry, email <a href="mailto:hello@jrvallite.com?subject=Portfolio%20privacy%20enquiry" style={{ color: '#8ce3da', textDecoration: 'underline' }}>hello@jrvallite.com</a>.</p>
-    <p><small>Implementation update: 23 November 2026, privacy panel accessibility candidate. Upstream service settings, retention policies, third-party click tracking and Tag Manager configuration require separate verification.</small></p>
+    <p><small>Implementation updated: 23 November 2026, published mobile consent-accessibility improvements. Upstream service settings, retention policies, third-party click tracking and Tag Manager configuration require separate verification.</small></p>
   </main>;
 }

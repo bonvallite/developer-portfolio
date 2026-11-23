@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-23 - Publish mobile privacy and consent accessibility (PR #103, JRV v1.14)
+
+- **Approval and release:** PR #103 merged into `main` as `ae92409dda03541da0303552e228e4363113bf94` after owner approval of tested head `78b15a1be7179ad1716b88db0e94f7f24d4e1f04`. GitHub Actions `45100658874` passed full source/build, rendered SEO and all Chrome browser suites. Vercel preview `dpl_FVu6qw5M86JCfTPshev6roeKcDTR` was READY. Production Vercel deployment `dpl_6HpFimqrgbTKW8tJi6oavZ1cnGWf` confirmed READY at merge SHA `ae92409`, assigned to both `www.jrvallite.com` and `jrvallite.com`. Post-merge GitHub Actions `45103204365` source/build/SEO validation passed; the full browser suite passed on exact PR head as designed.
+- **Behaviour and purpose:** On <=800px screens place privacy consent notice in normal document flow above homepage and case studies; hide the redundant fixed settings pill only while the full consent panel is expanded, return it on closing, and reserve space for merchant/hiring contact notes and the case-study dock. Accessible heading, Escape dismissal without consenting, focus on deliberate reopening, and focus restoration after choosing a preference. Optional analytics remain OFF without explicit acceptance.
+- **Affected source:** `app/components/ConsentManager.tsx`, `app/components/consent-manager.css`, `app/layout.tsx`, `app/components/cinematic-service.css`, `app/globals.css`, and public `app/privacy/page.tsx`; preserve existing source comments and conventions. QA: `tests/privacy-choice-layout.test.mjs`, `tests/mobile-privacy-accessibility-browser-qa.mjs`, `tests/homepage-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, and `tests/portfolio-palette.test.mjs`.
+- **Documentation:** Maintained `docs/JRV_DESIGN_SYSTEM.md` updated to published v1.14; `docs/ENQUIRY_JOURNEY.md`, README and CHANGELOG updated while historical v1.13/earlier records are preserved.
+- **Validation and bounds:** First QA candidate `aa44989` passed GitHub run `45099555502`; screenshots revealed remaining overlay and were corrected in `78b15a1`. Final screenshots and GitHub run `45100658874` passed. No new third-party tags, GTM/GA4 config, actual email sends, Shopify theme/Worker changes or exposure of client data. Automated browser checks are not comprehensive manual assistive-technology tests or legal compliance verification.
+
+
 ## 2026-11-23 - Visual QA refinement for privacy-settings overlap (candidate)
 
 - **Observed:** PR #103 source/browser CI passed at `aa449899` in GitHub Actions `45099555502`; its real Chrome screenshots confirmed the full privacy notice was in normal flow on mobile, but the small redundant fixed settings pill still covered first-screen hero text. The closing contact disclosure also sat beneath the pill in the element screenshot. The optional case-study dock used only 47px bottom clearance, less than the fixed settings pill's height plus safe inset.
