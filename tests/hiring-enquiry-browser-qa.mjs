@@ -27,6 +27,12 @@ try {
       const response = await page.goto(base + service, { waitUntil: 'domcontentloaded', timeout: 45000 });
       assert.equal(response?.status(), 200, size.name + ' ' + service + ': HTTP 200');
       await page.locator('.service-hero h1').waitFor({ state: 'visible' });
+      // Dismiss the existing opt-in panel by rejecting optional analytics,
+      // so contact-card screenshots show the actual unobscured interaction.
+      // This intentionally verifies the consent-off path, not acceptance.
+      if (service === services[0]) {
+        await page.getByRole('button', { name: 'Reject optional' }).click();
+      }
       const actions = page.locator('.service-hero .actions');
       const project = actions.getByRole('link', { name: /Discuss a Shopify project/ });
       const hiring = actions.getByRole('link', { name: /Discuss a hiring role/ });
@@ -50,8 +56,7 @@ try {
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
       assert.ok(overflow <= 2, size.name + ' ' + service + ': no horizontal overflow (' + overflow + 'px)');
       if (service === '/shopify-developer') {
-        await section.scrollIntoViewIfNeeded();
-        await page.screenshot({ path: directory + '/' + size.name + '-contact-choices.png' });
+        await section.screenshot({ path: directory + '/' + size.name + '-contact-choices.png' });
       }
     }
 
@@ -76,7 +81,9 @@ try {
       'Optional typed text must never be exposed in the DOM href');
     assert.equal(await page.evaluate(() => Array.isArray(window.dataLayer)), false,
       'No optional events without analytics consent');
-    await page.screenshot({ path: directory + '/' + size.name + '-hiring-composer.png' });
+    // Capture the whole composer, not a viewport partly covered by the
+    // initial optional-analytics choice panel.
+    await page.locator('.jrv2-lead').screenshot({ path: directory + '/' + size.name + '-hiring-composer.png' });
 
     await page.goto(base + '/?intent=unexpected#contact', { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => document.querySelector('.jrv2-lead-choice[aria-pressed="true"]')?.textContent?.includes('I have a Shopify project'));

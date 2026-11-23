@@ -1,5 +1,11 @@
 # Portfolio changelog
 
+## 2026-11-23 - Improve the visual QA evidence for the hiring draft
+
+- **Reason:** Review of PR #102's first Chrome screenshot artefacts found that the pre-existing privacy-choice panel obscured the lower mobile contact card. That overlay is present before a visitor chooses consent, not a defect introduced by this PR.
+- **Affected files:** `tests/hiring-enquiry-browser-qa.mjs`, `docs/ENQUIRY_JOURNEY.md`, `CHANGELOG.md`. Explicitly choose **Reject optional** before collecting screenshots, then capture the full contact-choice element and composer rather than a partially obstructed viewport. Continue asserting no optional analytics requests or tracking events. Do not alter consent runtime, page copy, underlying CTA logic or source privacy rules.
+- **Validation:** Re-run exact-head GitHub Actions and inspect refreshed desktop/mobile artefacts before declaring the draft reviewed. A separate future usability decision may evaluate the initial consent panel without disabling privacy controls.
+
 ## 2026-11-23 - Differentiate merchant and hiring journeys (draft)
 
 - **Base:** `310461d7e941ec82cfd0e683a115247311578321` (JRV v1.12 production); this is a distinct draft PR, not a production update.
