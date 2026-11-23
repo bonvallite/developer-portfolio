@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-23 - Publish hiring and merchant enquiry journeys (PR #102, JRV v1.13)
+
+- **Approval and release:** Owner approved the reviewed proposal. PR #102, source `b8fdc07277d84f6ca70d6703ab4f7172d5f2bf07`, merged to `main` as `ba78cd8ae6688e06411d965428deef490899ba84`. Vercel preview `dpl_2T9NHfJC7CW4Bff2W5jgDog6kJt5` and production deployment `dpl_8biWWYLeNYHi4n7txq9KmuVdF47X` were READY. Both www and apex domains were assigned. Source and browser CI succeeded at `45096347418`; post-merge source CI succeeded at `45097176393`. Browser suites run on PRs, not post-merge pushes.
+- **Change and rationale:** Four service pages now distinguish project enquiries from hiring roles in both the hero and the responsive closing cards, preserving static mailto templates and accessible links. `/experience` leads hiring users through a fixed `?intent=hiring` marker to the existing homepage composer, whose optional description is not exposed in the DOM href, URL or analytics. Corrected obsolete third-party screenshot copy on Experience. The release corrects a mismatched visitor journey; no increase in conversion or delivered email has been measured.
+- **Files and documentation:** Runtime changes in `app/components/ServicePage.tsx`, `app/components/cinematic-service.css`, `app/components/LeadComposer.tsx`, and `app/experience/page.tsx`. Source/browser regression tests and CI updated in PR #102. Post-release publication record updates `docs/JRV_DESIGN_SYSTEM.md`, `docs/ENQUIRY_JOURNEY.md`, `README.md`, `tests/portfolio-palette.test.mjs` and this changelog. No JRV palette tokens, favicon, other projects, client data, Shopify theme, Worker, GTM or GA4 changes.
+- **Validation:** Exact PR-head GitHub Actions `45096347418` passed both `validate` and `case-study-browser-qa` with desktop/mobile screenshots reviewed. Vercel READY proves successful deployment and domain alias assignment; independently verified public-page HTTP availability and real-world message delivery require separate evidence. The pre-existing mobile consent-panel overlap is tracked as a separate usability item and was not altered by this release.
+
+
 ## 2026-11-23 - Improve the visual QA evidence for the hiring draft
 
 - **Reason:** Review of PR #102's first Chrome screenshot artefacts found that the pre-existing privacy-choice panel obscured the lower mobile contact card. That overlay is present before a visitor chooses consent, not a defect introduced by this PR.

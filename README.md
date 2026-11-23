@@ -1,10 +1,10 @@
 # Shopify Commerce Engineering | Developer Portfolio
 
-## 23 November 2026: hiring and merchant enquiry journey (draft)
+## 23 November 2026: hiring and merchant enquiry journey (published PR #102)
 
-The next narrowly scoped PR separates merchant projects from hiring enquiries on the four shared Shopify service pages, adds two accessible contact-choice cards, and lets the Experience page route hiring teams into the existing homepage composer using only the fixed, non-identifying `?intent=hiring` marker. It also corrects outdated screenshot-service copy on Experience. No visitor-entered brief is placed in page URLs, no external form service is added, and no contact email is sent by the site. Click analytics remains consent gated; this work does not configure GTM or GA4.
+The published release separates merchant projects from hiring enquiries on the four shared Shopify service pages, adds two accessible contact-choice cards, and lets the Experience page route hiring teams into the existing homepage composer using only the fixed, non-identifying `?intent=hiring` marker. It also corrects outdated screenshot-service copy on Experience. No visitor-entered brief is placed in page URLs, no external form service is added, and no contact email is sent by the site. Click analytics remains consent gated; this work does not configure GTM or GA4.
 
-Source tests and a dedicated desktop/mobile browser suite guard both journeys; see [Enquiry Journey](docs/ENQUIRY_JOURNEY.md). JRV Design System **v1.13 is a candidate** without any colour-token or favicon changes. The production v1.12 release remains in place until exact-commit CI and preview review are complete.
+Source tests and a dedicated desktop/mobile browser suite guard both journeys; see [Enquiry Journey](docs/ENQUIRY_JOURNEY.md). JRV Design System **v1.13 is published** without any colour-token or favicon changes. PR #102 merged as `ba78cd8`, and GitHub Actions `45096347418` passed both source and full browser QA before Vercel production `dpl_8biWWYLeNYHi4n7txq9KmuVdF47X` reached READY with both domains assigned. The v1.12 history is retained.
 
 ## 23 November 2026 portfolio hardening publication (PR #101)
 

@@ -1,7 +1,7 @@
 # JRV Enquiry Journey
 
 **Updated:** 23 November 2026  
-**Status:** Draft release candidate, not production-verified  
+**Status:** Published JRV v1.13. PR #102 merged as `ba78cd8` on 23 November 2026; Vercel production `dpl_8biWWYLeNYHi4n7txq9KmuVdF47X` READY on www and apex.  
 **Applies to:** `bonvallite/developer-portfolio`, not Peter Augustus Shopify themes
 
 ## Problem and decision
@@ -26,10 +26,9 @@ The site does **not** send messages itself, post forms, or confirm that someone 
 
 Contact choices are links, remain keyboard-operable and have visible focus outlines. On narrow screens the two closing cards stack vertically, while touch targets remain at least 44 pixels. Browser automation checks 1366px and 390px widths, the correct email subjects and labels, harmless-query fallback, no accidental optional analytics calls, and absence of layout overflow. To inspect the full contact experience, visual captures reject optional analytics first and screenshot the entire contact sections. The existing pre-consent privacy panel can overlap lower mobile content until the visitor makes a choice; this is a separate privacy-UX review item, not justification to change opt-in semantics. Real email delivery, third-party vendor configuration, spoken screen-reader behaviour, and client conversion outcomes require separate review.
 
-## Release criteria
+## Published release verification
 
-- Source, Python, TypeScript, privacy, SEO and Next.js build checks pass for the exact integration commit.
-- Dedicated hiring browser QA and existing full browser suites pass with Chrome screenshots reviewed.
-- Vercel preview reaches READY and the source commit matches the PR.
-- No existing routes, résumés, website gallery, contact options or canonical/robots directives regress.
-- The JRV v1.13 design-system candidate and `CHANGELOG.md` record the change; production remains v1.12 until an explicitly approved merge.
+- **PR and commit:** PR #102 merged on 23 November 2026 as `ba78cd8ae6688e06411d965428deef490899ba84`; reviewed source `b8fdc07277d84f6ca70d6703ab4f7172d5f2bf07`.
+- **GitHub CI:** [Run 45096347418](https://github.com/bonvallite/developer-portfolio/actions/runs/45096347418) passed source safety, unit/Python, TypeScript, Next.js build, rendered SEO, all previously published browser suites, and dedicated 1366px/390px hiring and merchant paths. The subsequent merge commit passed source validation in run 45097176393; its browser job is intentionally PR-only.
+- **Vercel:** Exact-head preview `dpl_2T9NHfJC7CW4Bff2W5jgDog6kJt5` READY, production `dpl_8biWWYLeNYHi4n7txq9KmuVdF47X` READY with `www.jrvallite.com` and `jrvallite.com` aliases.
+- **Limitations:** Vercel readiness and local browser testing do not prove external email delivery, successful receipt of an enquiry, accessibility in every assistive technology, or new organic search indexing. The previously observed pre-consent mobile privacy overlay is separately documented for UX review. No production Shopify themes, Workers, customer records, GTM or GA4 were changed by this release.
