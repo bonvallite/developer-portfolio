@@ -19,7 +19,12 @@ test('mobile privacy notice appears before main and is no longer a fixed overlay
   assert.match(styles, /safe-area-inset-bottom/);
   assert.match(styles, /@media\(max-width:350px\)\{\.jrv-consent-actions\{flex-direction:column\}/);
   assert.match(styles, /min-height:48px/);
+  assert.match(styles, /\.jrv-consent-settings\[aria-expanded="true"\]\{display:none\}/);
   assert.match(styles, /\.jrv-consent-settings\{position:fixed/);
+  const serviceCss = read('app/components/cinematic-service.css');
+  const globalCss = read('app/globals.css');
+  assert.match(serviceCss, /\.jrv-svc \.service-bottom-cta\{padding-bottom:94px\}/);
+  assert.match(globalCss, /bottom:calc\(70px \+ env\(safe-area-inset-bottom\)\)/);
   assert.doesNotMatch(styles, /@media\(max-width:800px\)\{\.jrv-consent\{[^}]*position:fixed/);
 });
 

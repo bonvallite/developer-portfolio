@@ -4,6 +4,8 @@
 
 A focused JRV v1.14 candidate moves the first-visit consent notice into normal document flow above the page at screen widths up to 800px. It does not hide merchant or recruiter contact choices, while the persistent Privacy choices button stays reachable near the viewport bottom with a safe-area allowance. A labelled heading, Escape dismissal without consent, and keyboard focus restoration improve access when reopening preferences. Optional GTM, Clarity and Vercel Analytics still load only after explicit acceptance. No consent is inferred from Escape or navigation; no new tracker, lead form or client data is introduced. Existing JRV colours, 11 sites, published demos, email contact paths, canonicals and resume access are preserved.
 
+After inspecting the first Chrome captures, the mobile settings pill is also hidden while the full consent notice is expanded, preventing a redundant floating control over the first-screen headlines. When the notice closes, the pill returns; the closing contact disclosure reserves clearance, and the optional case-study dock sits above it. Consent and vendor loading semantics are unchanged.
+
 The change is a **draft**, documented in [Enquiry Journey](docs/ENQUIRY_JOURNEY.md) and the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md) v1.14 candidate. New source and real Chrome tests cover 320px, 390px, 768px and 1366px layouts, keyboard focus and privacy controls, with screenshots saved by CI. Production remains v1.13 until validation and explicit approval.
 
 ## 23 November 2026: hiring and merchant enquiry journey (published PR #102)

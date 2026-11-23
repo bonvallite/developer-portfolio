@@ -42,6 +42,9 @@ try {
     assert.equal(await page.evaluate(key => localStorage.getItem(key), consentKey), null,
       size.name + ': first visit is unresolved');
     assert.deepEqual(optionalRequests, [], size.name + ': no optional vendor requests on initial page load');
+    const settingsNode = page.locator('.jrv-consent-settings');
+    assert.equal(await settingsNode.isVisible(), size.width > 800,
+      size.name + ': redundant mobile pill hidden while the notice is open');
 
     // The mobile panel must be a normal-flow sibling BEFORE the main content,
     // not fixed on top of hiring or project CTAs. Desktop retains the original
@@ -92,7 +95,8 @@ try {
     await region.waitFor({ state: 'hidden' });
     assert.equal(await page.evaluate(key => localStorage.getItem(key), consentKey), null,
       size.name + ': Escape does not set a consent value');
-    const settings = page.getByRole('button', { name: 'Change analytics privacy choices' });
+    const settings = page.locator('.jrv-consent-settings');
+    assert.equal(await settings.getAttribute('aria-label'), 'Change analytics privacy choices');
     assert.equal(await settings.getAttribute('aria-expanded'), 'false');
     assert.equal(await settings.getAttribute('aria-controls'), 'jrv-consent-panel');
     await settings.focus();
@@ -135,6 +139,16 @@ try {
     assert.ok((await page.getByRole('link', { name: /Open email draft/ }).getAttribute('href'))?.includes('mailto:'),
       size.name + ': hiring draft remains usable');
     assert.deepEqual(optionalRequests, [], size.name + ': no optional trackers across the hiring route');
+    // The long-case-study project dock must stay clear of the privacy button.
+    await page.goto(base + '/cartoncloud-integration', { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => window.scrollTo(0, 1400));
+    await page.locator('.jrv-quick-dock').waitFor({ state: 'visible' });
+    const dockSpace = await page.evaluate(() => {
+      const a = document.querySelector('.jrv-quick-dock').getBoundingClientRect();
+      const b = document.querySelector('.jrv-consent-settings').getBoundingClientRect();
+      return { overlap: a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top };
+    });
+    assert.equal(dockSpace.overlap, false, size.name + ': case-study dock clears privacy settings');
     assert.deepEqual(errors, [], size.name + ': no browser exceptions');
     console.log(size.name + ': first-visit privacy, keyboard, consent and contact QA passed');
     await context.close();

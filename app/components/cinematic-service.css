@@ -74,3 +74,7 @@
 /* Separate hiring and merchant contact cards stack before mobile CTA labels
    become cramped; no new motion is introduced for reduced-motion visitors. */
 @media(max-width:720px){.jrv-svc .jrv-svc-contact-routes{grid-template-columns:1fr}.jrv-svc .jrv-svc-contact-routes article .button{width:100%;min-height:48px}.jrv-svc .service-hero .jrv-svc-evidence-link{width:100%;justify-content:flex-start}}
+
+/* A mobile closing-card tail keeps the small fixed privacy pill on blank
+   padding rather than covering the final disclosure when scrolled into view. */
+@media(max-width:800px){.jrv-svc .service-bottom-cta{padding-bottom:94px}}

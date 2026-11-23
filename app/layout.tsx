@@ -29,8 +29,9 @@ export const metadata: Metadata = {
 // Neither this component nor its manager verifies upstream vendor retention.
 // Put the consent manager before main content: the mobile (<800px) choice
 // panel is part of normal flow, instead of covering contact and hiring CTAs.
-// Desktop still renders a fixed compact panel; the settings control remains
-// accessible everywhere and analytics continues to require opt-in.
+// Desktop still renders a fixed compact panel. Mobile settings are reachable
+// whenever the notice is closed; while expanded, the redundant pill hides.
+// Analytics still requires explicit opt-in.
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-AU">

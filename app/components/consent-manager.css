@@ -1,8 +1,9 @@
 /* Sitewide optional analytics consent. No vendors load before explicit opt-in.
    At <=800px the initial notice sits in normal document flow ABOVE page content,
    avoiding the former fixed mobile overlay that covered contact CTAs. The compact
-   always-available settings control remains fixed with 44px hit target and a
-   bottom-safe-area allowance. Keyboard reopening focuses the labelled heading.
+   settings control remains fixed when closed with a 44px hit target and
+   bottom-safe-area allowance. While expanded, it hides on mobile so the
+   redundant pill cannot cover page text. Reopening focuses the heading.
    Colours reuse JRV obsidian/teal/ember, with no external fonts or assets. */
 .jrv-consent{position:fixed;z-index:200;left:20px;right:20px;bottom:20px;max-width:1030px;margin:auto;border:1px solid #508c86;background:#0d222bf2;box-shadow:0 25px 85px #000a;color:#eaf8f6;border-radius:10px;display:flex;align-items:center;gap:25px;justify-content:space-between;padding:22px 24px;backdrop-filter:blur(16px)}
 .jrv-consent h2{display:block;font-size:15px;line-height:1.45;font-weight:750;margin:0 0 7px;letter-spacing:-.2px}
@@ -19,4 +20,7 @@
    remains in-flow, is not modal and never blocks the page behind it on mobile. */
 @media(max-width:800px){body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}.jrv-consent{position:relative;z-index:2;flex-direction:column;align-items:stretch;gap:12px;left:auto;right:auto;bottom:auto;width:calc(100% - 24px);max-width:720px;margin:12px auto 0;padding:16px;box-shadow:0 10px 35px #0006;backdrop-filter:none}.jrv-consent p{font-size:13px;line-height:1.55}.jrv-consent-actions{width:100%}.jrv-consent-actions button{flex:1;min-height:48px}.jrv-consent-settings{min-height:44px;font-size:12px;padding:10px 14px;bottom:calc(8px + env(safe-area-inset-bottom));left:8px}}
 @media(max-width:350px){.jrv-consent-actions{flex-direction:column}}
+/* The expanded notice contains all consent actions: hide only the redundant
+   mobile pill until the notice closes; never change analytics consent itself. */
+@media(max-width:800px){.jrv-consent-settings[aria-expanded="true"]{display:none}}
 @media(prefers-reduced-motion:reduce){.jrv-consent,.jrv-consent-settings{transition:none}}

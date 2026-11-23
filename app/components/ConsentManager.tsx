@@ -10,7 +10,9 @@ import { reportPortfolioClick } from './portfolio-intent-events';
 // contact forms, customer records or session recordings by itself.
 // Explicit portfolio link markers can produce fixed, non-PII click-intent
 // events through GTM only after consent. No clicks are confirmed enquiries.
-// The always-available privacy settings button exposes its expanded state.
+// Privacy settings remain available when the mobile notice is closed; while
+// the notice itself is expanded the redundant fixed button is hidden to avoid
+// covering page text. The notice already contains both consent actions.
 // Mobile shows the initial panel before page content in normal document flow
 // rather than overlaying contact actions. Only explicit user reopening moves
 // keyboard focus to the panel heading. Escape may dismiss an unresolved panel
