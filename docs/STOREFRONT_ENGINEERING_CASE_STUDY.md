@@ -27,3 +27,6 @@ Run `npm test`, `npm run check:safety`, `npm run build` and the repository's bro
 
 ## Maintenance
 Styles use the existing `--jrv-*` palette; any future token changes must be made in `app/globals.css` and recorded in `docs/JRV_DESIGN_SYSTEM.md`. This page does not change Peter Augustus themes or `pa-theme-changelog`.
+
+## 24 November 2026: skills showcase extension
+Six capability cards now connect each skill to inspected engineering evidence, with no claim of sole Figma design authorship or commercial uplift. The grid adapts from three to two to one column at narrower widths. JRV palette and existing route remain unchanged. Build and browser validation are pending.
