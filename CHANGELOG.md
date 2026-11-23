@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-24 - Brand-neutral content-to-commerce polish (draft)
+
+- Replaced client-specific case-study copy, product examples and proprietary source-path references with a fictional storefront and original educational code samples.
+- Added a four-stage information-to-shopping narrative and interactive Liquid/CSS/JavaScript explorer; preserved local navigation, PDP options and delivery-input demonstrations.
+- Affected: `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`, and this changelog. Existing JRV palette unchanged; no Shopify theme files edited.
+- Validation: GitHub changes committed; CI, browser and build verification pending. No production deployment.
+
+
 ## 2026-11-24 - Evidence-led skills showcase (draft PR #105)
 
 - Added six responsive capability cards to the storefront-engineering case study: Figma-to-Shopify, navigation, PDP engineering, integrations, optimisation and release documentation.
