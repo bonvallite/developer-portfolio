@@ -34,3 +34,6 @@ The homepage selected-work footer now links to this lab without replacing existi
 
 ## 24 November 2026: interactive architecture and journey diagrams
 Added a five-node keyboard-selectable architecture diagram and a five-stage customer shopping workflow. Both are fictional educational models using local React state, `aria-pressed`, JRV design tokens and responsive CSS. The diagram is not an extracted client architecture, and the purchase stage does not initiate checkout. Source assertions cover presence of diagrams and selection states. Runtime/browser/build validation pending.
+
+## 24 November 2026: component-to-code explorer
+Visitors can select editorial hero, navigation or product panel, switch between original Liquid/CSS/JavaScript examples and inspect a synchronised local preview. The navigation disclosure has `aria-expanded` and the product selector uses a native labelled select. The examples are educational, not executable storefront source; no cart or checkout is connected. Responsive CSS stacks the preview below code at narrow widths. Source tests updated; runtime/build/browser QA pending.
