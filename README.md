@@ -1,5 +1,11 @@
 # Shopify Commerce Engineering | Developer Portfolio
 
+## 23 November 2026: mobile privacy and contact accessibility (draft)
+
+A focused JRV v1.14 candidate moves the first-visit consent notice into normal document flow above the page at screen widths up to 800px. It does not hide merchant or recruiter contact choices, while the persistent Privacy choices button stays reachable near the viewport bottom with a safe-area allowance. A labelled heading, Escape dismissal without consent, and keyboard focus restoration improve access when reopening preferences. Optional GTM, Clarity and Vercel Analytics still load only after explicit acceptance. No consent is inferred from Escape or navigation; no new tracker, lead form or client data is introduced. Existing JRV colours, 11 sites, published demos, email contact paths, canonicals and resume access are preserved.
+
+The change is a **draft**, documented in [Enquiry Journey](docs/ENQUIRY_JOURNEY.md) and the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md) v1.14 candidate. New source and real Chrome tests cover 320px, 390px, 768px and 1366px layouts, keyboard focus and privacy controls, with screenshots saved by CI. Production remains v1.13 until validation and explicit approval.
+
 ## 23 November 2026: hiring and merchant enquiry journey (published PR #102)
 
 The published release separates merchant projects from hiring enquiries on the four shared Shopify service pages, adds two accessible contact-choice cards, and lets the Experience page route hiring teams into the existing homepage composer using only the fixed, non-identifying `?intent=hiring` marker. It also corrects outdated screenshot-service copy on Experience. No visitor-entered brief is placed in page URLs, no external form service is added, and no contact email is sent by the site. Click analytics remains consent gated; this work does not configure GTM or GA4.

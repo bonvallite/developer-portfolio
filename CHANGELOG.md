@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-23 - Mobile privacy panel and contact accessibility (draft)
+
+- **Base:** JRV v1.13 publication `46c8ad575d60700270098fb497053949b9f3a413`. This change is in a separate draft branch and is not yet merged or published.
+- **Affected source:** `app/components/ConsentManager.tsx`, `app/components/consent-manager.css`, `app/layout.tsx`, and `app/privacy/page.tsx`. The pre-consent fixed panel covered contact CTAs on mobile. Place it ahead of main content in normal document flow up to 800px. Maintain the fixed settings control and add mobile bottom scroll allowance and safe-area inset; preserve JRV obsidian/teal/Ember palette. Add a labelled heading, `aria-controls`, Escape dismissal that does not accept tracking, focus on deliberate reopening, and focus restoration after decisions.
+- **Tests:** `tests/privacy-choice-layout.test.mjs`, `tests/mobile-privacy-accessibility-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, and `tests/portfolio-palette.test.mjs`. Check 320/390/768/1366 viewports, notice-versus-content geometry, consent-off network requests, keyboard interactions, project/hiring contact access, and rendered screenshots. Keep all previously published browser suites.
+- **Docs:** `docs/JRV_DESIGN_SYSTEM.md` v1.14 candidate, `docs/ENQUIRY_JOURNEY.md`, `README.md`, `CHANGELOG.md`, and the public privacy notice. The historical 19 Nov analytics audit and v1.13 release record remain preserved.
+- **Boundary:** No underlying consent opt-in changes, vendor setup, customer data, direct email sending, Shopify themes, Workers or analytics configuration. Validation is **pending**: exact PR GitHub CI, Vercel READY preview, browser screenshots, and manual assistive-technology testing where available. Do not claim compliance or measured conversion improvements.
+
+
 ## 2026-11-23 - Publish hiring and merchant enquiry journeys (PR #102, JRV v1.13)
 
 - **Approval and release:** Owner approved the reviewed proposal. PR #102, source `b8fdc07277d84f6ca70d6703ab4f7172d5f2bf07`, merged to `main` as `ba78cd8ae6688e06411d965428deef490899ba84`. Vercel preview `dpl_2T9NHfJC7CW4Bff2W5jgDog6kJt5` and production deployment `dpl_8biWWYLeNYHi4n7txq9KmuVdF47X` were READY. Both www and apex domains were assigned. Source and browser CI succeeded at `45096347418`; post-merge source CI succeeded at `45097176393`. Browser suites run on PRs, not post-merge pushes.
