@@ -46,6 +46,45 @@ menu?.addEventListener('click', () => {
   menu.setAttribute('aria-expanded', String(!expanded));
 });`
 };
+
+type DemoComponent = 'hero' | 'navigation' | 'product';
+const componentSamples: Record<DemoComponent, typeof codeSamples> = {
+  hero: codeSamples,
+  navigation: {
+    liquid: `<nav aria-label="Shop categories">
+  {% for link in linklists.main-menu.links %}
+    <a href="{{ link.url }}">{{ link.title | escape }}</a>
+  {% endfor %}
+</nav>`,
+    css: `.shop-nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+.shop-nav a:focus-visible { outline: 2px solid currentColor; }`,
+    javascript: `// React example: state controls disclosure and aria-expanded.
+const [isOpen, setIsOpen] = useState(false);
+<button aria-expanded={isOpen} onClick={() => setIsOpen(!isOpen)}>
+  Browse categories
+</button>`
+  },
+  product: {
+    liquid: `<h2>{{ product.title | escape }}</h2>
+{% form 'product', product %}
+  <select name="id" aria-label="Choose an option">
+    {% for variant in product.variants %}
+      <option value="{{ variant.id }}">{{ variant.title | escape }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Add to cart</button>
+{% endform %}`,
+    css: `.product-panel { display: grid; gap: 1.25rem; }
+.product-panel button { min-height: 44px; }
+@media (min-width: 48rem) {
+  .product-panel { grid-template-columns: 1fr 1fr; }
+}`,
+    javascript: `// Fictional preview only: no Shopify cart request.
+const [option, setOption] = useState('Medium');
+const options = ['Small', 'Medium', 'Large'];
+// Render selected option and keep the preview local.`
+  }
+};
 export default function StorefrontEngineering(){
   const [mode,setMode]=useState<Mode>('homepage');
   const [open,setOpen]=useState(false);
@@ -54,6 +93,9 @@ export default function StorefrontEngineering(){
   const [postcode,setPostcode]=useState('');
   const [checked,setChecked]=useState(false);
   const [codeTab,setCodeTab]=useState<'liquid'|'css'|'javascript'>('liquid');
+  const [demoComponent,setDemoComponent]=useState<DemoComponent>('hero');
+  const [previewMenuOpen,setPreviewMenuOpen]=useState(false);
+  const [previewOption,setPreviewOption]=useState('Medium');
   const [architectureStage,setArchitectureStage]=useState(0);
   const [journeyStage,setJourneyStage]=useState(0);
   return <main className="se-page">
@@ -104,10 +146,26 @@ export default function StorefrontEngineering(){
         <span className="se-eyebrow">03 / BEHIND THE INTERFACE</span>
         <h2 id="code-heading">Explore how I build it.</h2>
         <p className="se-skills-intro">Switch between original, simplified Liquid, CSS and JavaScript examples. These demonstrate the design-to-code approach rather than exposing a client repository.</p>
-        <div className="se-tabs" role="group" aria-label="Code language">
-          {(['liquid','css','javascript'] as const).map(language=><button type="button" key={language} aria-pressed={codeTab===language} className={codeTab===language?'selected':''} onClick={()=>setCodeTab(language)}>{language==='javascript'?'JavaScript':language==='liquid'?'Liquid':'CSS'}</button>)}
+        {/* Component selection updates both source and rendered example.
+            Samples are authored for this portfolio, not copied from a merchant. */}
+        <div className="se-tabs" role="group" aria-label="Storefront component">
+          {(['hero','navigation','product'] as const).map(component=><button type="button" key={component} aria-pressed={demoComponent===component} className={demoComponent===component?'selected':''} onClick={()=>setDemoComponent(component)}>{component==='hero'?'Editorial hero':component==='navigation'?'Navigation':'Product panel'}</button>)}
         </div>
-        <pre className="se-code"><code>{codeSamples[codeTab]}</code></pre>
+        <div className="se-explorer-grid">
+          <div className="se-explorer-source">
+            <div className="se-tabs" role="group" aria-label="Code language">
+              {(['liquid','css','javascript'] as const).map(language=><button type="button" key={language} aria-pressed={codeTab===language} className={codeTab===language?'selected':''} onClick={()=>setCodeTab(language)}>{language==='javascript'?'JavaScript':language==='liquid'?'Liquid':'CSS'}</button>)}
+            </div>
+            <pre className="se-code"><code>{componentSamples[demoComponent][codeTab]}</code></pre>
+          </div>
+          <div className="se-explorer-preview">
+            <span className="se-eyebrow">LIVE LOCAL PREVIEW</span>
+            {demoComponent==='hero'&&<div className="se-preview-hero"><span>FORM / GOODS</span><h3>Find your everyday favourite.</h3><p>A fictional editorial hero with a clear message and call to action.</p><span className="se-preview-cta">Explore collection <ArrowRight size={14}/></span></div>}
+            {demoComponent==='navigation'&&<div className="se-preview-nav"><button type="button" aria-expanded={previewMenuOpen} aria-controls="se-preview-categories" onClick={()=>setPreviewMenuOpen(value=>!value)}>{previewMenuOpen?'Close categories':'Browse categories'} <Menu size={16}/></button><div id="se-preview-categories" hidden={!previewMenuOpen}><span>New arrivals</span><span>Everyday essentials</span><span>Curated sets</span></div></div>}
+            {demoComponent==='product'&&<div className="se-preview-product"><div className="se-preview-product-art" aria-hidden="true"><Package size={46}/></div><h3>Everyday essential</h3><label htmlFor="se-preview-option">Select option</label><select id="se-preview-option" value={previewOption} onChange={event=>setPreviewOption(event.target.value)}>{['Small','Medium','Large'].map(option=><option key={option}>{option}</option>)}</select><p>Selected: {previewOption}</p><span className="se-preview-cta">Preview only · no checkout</span></div>}
+            <p className="se-preview-note">Original illustrative UI. Code examples show patterns, not an executable Shopify theme or a connected shop.</p>
+          </div>
+        </div>
       </section>
       {/* Original educational diagram: select a node to reveal its role.
           Nodes are buttons, not decorative graphics, for keyboard access. */}
