@@ -75,7 +75,24 @@ export default function StorefrontEngineering(){
       <section className="se-section se-delivery" aria-labelledby="boundary-heading">
         <Truck size={28}/><div><span className="se-eyebrow">04 / REAL-WORLD BOUNDARIES</span><h2 id="boundary-heading">A beautiful delivery checker still needs trusted rules.</h2><p>The production design connects a postcode field to store delivery logic. This example deliberately does not calculate delivery dates or claim postcode eligibility.</p><form onSubmit={e=>{e.preventDefault();setChecked(true);}}><label htmlFor="se-postcode">Try the demonstration input</label><div><input id="se-postcode" inputMode="numeric" pattern="[0-9]{4}" maxLength={4} value={postcode} onChange={e=>{setPostcode(e.target.value.replace(/\D/g,'').slice(0,4));setChecked(false);}} placeholder="4-digit postcode" required/><button type="submit">Inspect UI state</button></div></form>{checked&&<p role="status" className="se-result">Input received: {postcode}. This public demonstration cannot confirm a shipping zone, fee or delivery date.</p>}</div>
       </section>
-      <section className="se-section se-conclusion"><span className="se-eyebrow">05 / WHAT THIS DEMONSTRATES</span><h2>Design fidelity meets engineering discipline.</h2><p>Reusable blocks, theme compatibility, responsive interactions and clear operational boundaries create a more maintainable storefront. The next engineering checks are keyboard access, performance budgets, delivery-rule parity and regression coverage; none is presented here as a completed live-store certification.</p><div className="se-actions"><Link href="/#contact">Discuss a Shopify project <ArrowRight size={18}/></Link><Link href="/?intent=hiring#contact">Hiring or collaboration <Code2 size={18}/></Link></div></section>
+      {/* Skill cards describe observed implementation patterns, not invented outcomes. */}
+      <section className="se-section" aria-labelledby="skills-heading">
+        <span className="se-eyebrow">05 / MY ROLE AND CAPABILITIES</span>
+        <h2 id="skills-heading">What I do, from design to delivery.</h2>
+        <p className="se-skills-intro">I turn Figma designs and commercial requirements into maintainable Shopify experiences, then diagnose, document and improve the systems behind them.</p>
+        <div className="se-skills">
+          {[
+            ['01','Figma to Shopify','Frontend engineering','Translate visual designs into responsive Liquid sections, editable settings, JSON templates and maintainable CSS.','Custom homepage sections and design-to-code mapping'],
+            ['02','Navigation and UX','Interaction design','Engineer mega menus, mobile navigation and keyboard interactions while preserving core theme behaviour.','Header Liquid, menu blocks and layout JavaScript'],
+            ['03','Product page engineering','Conversion-focused development','Build modular galleries, portion selection, product education, purchase controls and reassurance content.','Custom product template and nested PDP blocks'],
+            ['04','Commerce integrations','Systems thinking','Connect customer-facing interfaces to delivery logic and order workflows without confusing UI with operational truth.','Delivery checker and post-checkout workflow boundaries'],
+            ['05','Debugging and optimisation','Technical quality','Investigate JavaScript errors, mobile usability, accessibility and performance regressions; prioritise validation.','Read-only audit findings and regression priorities'],
+            ['06','Documentation and release control','Maintainability','Maintain inline explanations, change histories, review branches and verification records.','Theme changelog conventions and GitHub review workflow']
+          ].map(([number,title,skill,detail,proof])=><article key={number} className="se-skill-card"><span className="se-skill-number">{number} / {skill}</span><h3>{title}</h3><p>{detail}</p><div className="se-skill-proof"><strong>Engineering evidence</strong><span>{proof}</span></div></article>)}
+        </div>
+        <p className="se-skills-note">These capabilities reflect inspected engineering patterns, not sole authorship of Figma designs, invented revenue uplift or certified live performance.</p>
+      </section>
+      <section className="se-section se-conclusion"><span className="se-eyebrow">06 / WHAT THIS DEMONSTRATES</span><h2>Design fidelity meets engineering discipline.</h2><p>Reusable blocks, theme compatibility, responsive interactions and clear operational boundaries create a more maintainable storefront. The next engineering checks are keyboard access, performance budgets, delivery-rule parity and regression coverage; none is presented here as a completed live-store certification.</p><div className="se-actions"><Link href="/#contact">Discuss a Shopify project <ArrowRight size={18}/></Link><Link href="/?intent=hiring#contact">Hiring or collaboration <Code2 size={18}/></Link></div></section>
     </div>
   </main>;
 }
