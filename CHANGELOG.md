@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-24 - Interactive diagrams and workflow (draft)
+
+- Added selectable five-stage architecture diagram and five-step fictional customer workflow, with accessible button states and responsive CSS.
+- Affected: `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, `tests/storefront-engineering-source.test.mjs`, `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`, and this changelog.
+- Updated inline comments, added source-level assertions. GitHub commits verified; runtime tests, browser QA and build remain pending. No theme or production change.
+
+
+
 ## 2026-11-24 - Link commerce experience lab from homepage (draft)
 
 - Added a direct route from the selected-work footer to `/projects/storefront-engineering`, preserving the four flagship cards and existing eleven-site gallery.
