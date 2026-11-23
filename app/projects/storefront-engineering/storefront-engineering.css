@@ -1,5 +1,5 @@
 /* 24 Nov 2026: JRV storefront case-study styles. Reuses maintained global
-   --jrv-* palette; no Peter Augustus brand tokens or private theme CSS.
+   --jrv-* palette; no client brand tokens or private theme CSS.
    Responsive and reduced-motion behaviour are intentionally self-contained. */
 .se-page{background:var(--jrv-bg,#0b1419);color:var(--jrv-fg,#eaf4f3);min-height:100vh;font-family:inherit}
 .se-wrap{max-width:1200px;margin:auto;padding:0 24px 90px}
@@ -99,3 +99,22 @@
 .se-code{padding:25px;background:#071216;color:#b5e8df;border:1px solid var(--jrv-border,#365b63);border-radius:12px;overflow-x:auto;white-space:pre;font-size:13px;line-height:1.8;tab-size:2}
 @media(max-width:950px){.se-journey{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.se-journey{grid-template-columns:1fr}.se-code{font-size:11px;padding:16px}}
+
+/* 24 Nov 2026: architecture and shopping workflow controls.
+   Buttons expose selected state via aria-pressed and remain keyboard reachable. */
+.se-diagram{display:flex;align-items:stretch;flex-wrap:wrap;gap:10px;margin:28px 0 18px}
+.se-diagram-step{display:flex;align-items:center;gap:10px;flex:1 1 170px;min-width:0}
+.se-node{width:100%;min-height:100px;text-align:left;padding:18px;border:1px solid var(--jrv-border,#365b63);border-radius:12px;background:var(--jrv-surface,#122b34);color:var(--jrv-fg,#eaf4f3);cursor:pointer}
+.se-node span,.se-workflow-step span{display:block;font-size:11px;color:var(--jrv-teal,#38c7bc);margin-bottom:10px}
+.se-node strong{display:block;font-size:14px;line-height:1.45}
+.se-node-active,.se-workflow-active{border-color:var(--jrv-teal,#38c7bc)!important;box-shadow:inset 0 0 0 1px var(--jrv-teal,#38c7bc)}
+.se-diagram-arrow{color:var(--jrv-ember,#f28c52);font-size:22px}
+.se-diagram-detail{border-left:3px solid var(--jrv-ember,#f28c52);padding:16px 22px;background:var(--jrv-surface,#122b34);border-radius:0 10px 10px 0}
+.se-diagram-detail p{color:var(--jrv-muted,#a9c1c3);margin:8px 0 0;line-height:1.6}
+.se-workflow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:26px 0}
+.se-workflow-step{text-align:left;min-height:112px;padding:18px;border:1px solid var(--jrv-border,#365b63);border-radius:12px;background:var(--jrv-surface,#122b34);color:var(--jrv-fg,#eaf4f3);cursor:pointer}
+.se-workflow-step strong{display:block;font-size:15px}
+.se-workflow-step small{display:block;color:var(--jrv-muted,#a9c1c3);font-size:12px;line-height:1.5;margin-top:10px}
+.se-node:focus-visible,.se-workflow-step:focus-visible{outline:3px solid var(--jrv-focus,#f28c52);outline-offset:3px}
+@media(max-width:900px){.se-workflow{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.se-diagram{flex-direction:column}.se-diagram-step{flex-basis:auto}.se-diagram-arrow{display:none}.se-workflow{grid-template-columns:1fr 1fr}.se-workflow-step{min-height:85px}}
