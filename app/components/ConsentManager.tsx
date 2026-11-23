@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 import './consent-manager.css';
 import { reportPortfolioClick } from './portfolio-intent-events';
@@ -10,9 +10,15 @@ import { reportPortfolioClick } from './portfolio-intent-events';
 // contact forms, customer records or session recordings by itself.
 // Explicit portfolio link markers can produce fixed, non-PII click-intent
 // events through GTM only after consent. No clicks are confirmed enquiries.
-// The always-available privacy settings button exposes whether its panel is expanded.
-// Reversing an accepted choice reloads the page because already-loaded external
-// vendor scripts cannot be reliably unloaded in a running document.
+// Privacy settings remain available when the mobile notice is closed; while
+// the notice itself is expanded the redundant fixed button is hidden to avoid
+// covering page text. The notice already contains both consent actions.
+// Mobile shows the initial panel before page content in normal document flow
+// rather than overlaying contact actions. Only explicit user reopening moves
+// keyboard focus to the panel heading. Escape may dismiss an unresolved panel
+// without accepting analytics; settings remains available to reopen it.
+// Reversing an accepted choice reloads because already-loaded vendor scripts
+// cannot be reliably unloaded in a running document.
 const storageKey = 'jrv-optional-analytics-consent-v1';
 type Choice = 'loading' | 'unresolved' | 'accepted' | 'rejected';
 type ClarityQueue = ((...args: unknown[]) => void) & { q?: unknown[][] };
@@ -52,6 +58,10 @@ function enableExternalAnalytics() {
 export default function ConsentManager() {
   const [choice, setChoice] = useState<Choice>('loading');
   const [open, setOpen] = useState(false);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const settingsRef = useRef<HTMLButtonElement>(null);
+  const focusOnReopen = useRef(false);
+  const restoreFocusOnClose = useRef(false);
 
   useEffect(() => {
     // Delegation covers server-rendered links and client-side route transitions
@@ -79,6 +89,32 @@ export default function ConsentManager() {
     if (choice === 'accepted') enableExternalAnalytics();
   }, [choice]);
 
+  useEffect(() => {
+    // A first-visit banner does not steal focus. When the settings control
+    // explicitly reopens it, announce the labelled section by focusing its
+    // heading. Return focus to settings after closing or choosing a preference.
+    if (open && focusOnReopen.current) {
+      focusOnReopen.current = false;
+      headingRef.current?.focus();
+    } else if (!open && restoreFocusOnClose.current) {
+      restoreFocusOnClose.current = false;
+      settingsRef.current?.focus();
+    }
+  }, [open]);
+
+  function togglePreferences() {
+    if (open) restoreFocusOnClose.current = true;
+    else focusOnReopen.current = true;
+    setOpen(value => !value);
+  }
+
+  function dismissWithoutConsent() {
+    // Escape changes only panel visibility, never the consent decision.
+    // A visitor who has not opted in must remain untracked.
+    restoreFocusOnClose.current = true;
+    setOpen(false);
+  }
+
   function choose(value: 'accepted' | 'rejected') {
     try { window.localStorage.setItem(storageKey, value); } catch { /* Respect blocked storage. */ }
     if (choice === 'accepted' && value === 'rejected') {
@@ -87,6 +123,7 @@ export default function ConsentManager() {
       window.location.reload();
       return;
     }
+    restoreFocusOnClose.current = true;
     setChoice(value);
     setOpen(false);
   }
@@ -95,13 +132,18 @@ export default function ConsentManager() {
 
   return <>
     {choice === 'accepted' && <Analytics />}
-    {open && <section className="jrv-consent" aria-label="Optional website analytics preferences">
-      <div><strong>Your privacy. Your choice.</strong><p>Essential site functions work without analytics. With your permission, this portfolio loads Google Tag Manager, Microsoft Clarity and Vercel Analytics, and may count clicks on enquiry emails, résumé downloads and featured projects. Clicks are not confirmed enquiries. No optional analytics runs before you opt in. <a href="/privacy">Read the privacy notice</a>.</p></div>
+    {open && <section id="jrv-consent-panel" className="jrv-consent" aria-labelledby="jrv-consent-title" aria-describedby="jrv-consent-description" onKeyDown={event => {
+      if (event.key === 'Escape') {
+        event.stopPropagation();
+        dismissWithoutConsent();
+      }
+    }}>
+      <div><h2 ref={headingRef} id="jrv-consent-title" tabIndex={-1}>Your privacy. Your choice.</h2><p id="jrv-consent-description">Optional analytics are off until you agree. Allowing them loads Google Tag Manager, Microsoft Clarity and Vercel Analytics, which may count enquiry-email, résumé and project clicks, not sent enquiries. The site works without analytics. <a href="/privacy">Read the privacy notice</a>.</p></div>
       <div className="jrv-consent-actions">
         <button type="button" onClick={() => choose('rejected')}>Reject optional</button>
         <button type="button" className="jrv-consent-accept" onClick={() => choose('accepted')}>Allow analytics</button>
       </div>
     </section>}
-    <button type="button" className="jrv-consent-settings" onClick={() => setOpen(value => !value)} aria-label="Change analytics privacy choices" aria-expanded={open}>Privacy choices</button>
+    <button ref={settingsRef} type="button" className="jrv-consent-settings" onClick={togglePreferences} aria-label="Change analytics privacy choices" aria-controls="jrv-consent-panel" aria-expanded={open}>Privacy choices</button>
   </>;
 }

@@ -1,8 +1,12 @@
-/* Sitewide optional analytics consent. All choices are optional and keyboard-accessible.
-   The privacy control is a minimum 44px target with readable mobile typography.
-   Styling uses JRV obsidian, teal and ember; no external fonts or assets. */
+/* Sitewide optional analytics consent. No vendors load before explicit opt-in.
+   At <=800px the initial notice sits in normal document flow ABOVE page content,
+   avoiding the former fixed mobile overlay that covered contact CTAs. The compact
+   settings control remains fixed when closed with a 44px hit target and
+   bottom-safe-area allowance. While expanded, it hides on mobile so the
+   redundant pill cannot cover page text. Reopening focuses the heading.
+   Colours reuse JRV obsidian/teal/ember, with no external fonts or assets. */
 .jrv-consent{position:fixed;z-index:200;left:20px;right:20px;bottom:20px;max-width:1030px;margin:auto;border:1px solid #508c86;background:#0d222bf2;box-shadow:0 25px 85px #000a;color:#eaf8f6;border-radius:10px;display:flex;align-items:center;gap:25px;justify-content:space-between;padding:22px 24px;backdrop-filter:blur(16px)}
-.jrv-consent strong{display:block;font-size:15px;margin-bottom:7px;letter-spacing:-.2px}
+.jrv-consent h2{display:block;font-size:15px;line-height:1.45;font-weight:750;margin:0 0 7px;letter-spacing:-.2px}
 .jrv-consent p{margin:0;font-size:12px;line-height:1.65;color:#c2d8d7;max-width:700px}
 .jrv-consent a{color:#a1eadc;text-decoration:underline;text-underline-offset:3px}
 .jrv-consent-actions{display:flex;gap:10px;flex-shrink:0}
@@ -11,7 +15,12 @@
 /* Kept available after rejection, with a 44px target and non-obscuring inset. */
 .jrv-consent-settings{position:fixed;z-index:190;bottom:8px;left:8px;min-height:44px;min-width:124px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #518e89;background:#102731f2;color:#e1f8f4;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:750;line-height:1.35;cursor:pointer}
 .jrv-consent-settings:hover{background:#1d4750}
-.jrv-consent button:focus-visible,.jrv-consent-settings:focus-visible{outline:3px solid #f28c52;outline-offset:3px}
-@media(max-width:800px){.jrv-consent{flex-direction:column;align-items:stretch;gap:15px;left:12px;right:12px;bottom:30px;padding:18px}.jrv-consent-actions{width:100%}.jrv-consent-actions button{flex:1}.jrv-consent-settings{min-height:44px;font-size:12px;padding:10px 14px;bottom:8px;left:8px}}
-@media(max-width:390px){.jrv-consent-actions{flex-direction:column}}
+.jrv-consent h2:focus,.jrv-consent button:focus-visible,.jrv-consent-settings:focus-visible{outline:3px solid var(--jrv-focus);outline-offset:3px}
+/* Reserve scroll space for the small persistent settings control. Consent
+   remains in-flow, is not modal and never blocks the page behind it on mobile. */
+@media(max-width:800px){body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}.jrv-consent{position:relative;z-index:2;flex-direction:column;align-items:stretch;gap:12px;left:auto;right:auto;bottom:auto;width:calc(100% - 24px);max-width:720px;margin:12px auto 0;padding:16px;box-shadow:0 10px 35px #0006;backdrop-filter:none}.jrv-consent p{font-size:13px;line-height:1.55}.jrv-consent-actions{width:100%}.jrv-consent-actions button{flex:1;min-height:48px}.jrv-consent-settings{min-height:44px;font-size:12px;padding:10px 14px;bottom:calc(8px + env(safe-area-inset-bottom));left:8px}}
+@media(max-width:350px){.jrv-consent-actions{flex-direction:column}}
+/* The expanded notice contains all consent actions: hide only the redundant
+   mobile pill until the notice closes; never change analytics consent itself. */
+@media(max-width:800px){.jrv-consent-settings[aria-expanded="true"]{display:none}}
 @media(prefers-reduced-motion:reduce){.jrv-consent,.jrv-consent-settings{transition:none}}

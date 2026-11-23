@@ -1,5 +1,22 @@
 # Portfolio changelog
 
+## 2026-11-23 - Visual QA refinement for privacy-settings overlap (candidate)
+
+- **Observed:** PR #103 source/browser CI passed at `aa449899` in GitHub Actions `45099555502`; its real Chrome screenshots confirmed the full privacy notice was in normal flow on mobile, but the small redundant fixed settings pill still covered first-screen hero text. The closing contact disclosure also sat beneath the pill in the element screenshot. The optional case-study dock used only 47px bottom clearance, less than the fixed settings pill's height plus safe inset.
+- **Affected files:** `app/components/ConsentManager.tsx` comments, `app/components/consent-manager.css`, `app/layout.tsx` comments, `app/components/cinematic-service.css`, `app/globals.css`, `tests/homepage-browser-qa.mjs`, `tests/privacy-choice-layout.test.mjs`, `tests/mobile-privacy-accessibility-browser-qa.mjs`, `docs/JRV_DESIGN_SYSTEM.md`, `docs/ENQUIRY_JOURNEY.md`, `README.md`, `app/privacy/page.tsx` and this changelog.
+- **Correction:** Hide the fixed settings pill only while the full mobile notice is expanded; it returns after Escape, Reject, Allow or closing, with the prior keyboard focus behaviour. Reserve blank space below the mobile contact note and raise the mobile case-study dock above the persistent control, using safe-area insets. Do not change consent state transitions, GTM/Clarity/Vercel integrations, the site's approved colours or content, or Shopify themes and Workers.
+- **Validation:** First candidate's full CI passed, but the refined exact-head source and browser CI, responsive screenshots, and READY Vercel preview are **pending**. No production release.
+
+
+## 2026-11-23 - Mobile privacy panel and contact accessibility (draft)
+
+- **Base:** JRV v1.13 publication `46c8ad575d60700270098fb497053949b9f3a413`. This change is in a separate draft branch and is not yet merged or published.
+- **Affected source:** `app/components/ConsentManager.tsx`, `app/components/consent-manager.css`, `app/layout.tsx`, and `app/privacy/page.tsx`. The pre-consent fixed panel covered contact CTAs on mobile. Place it ahead of main content in normal document flow up to 800px. Maintain the fixed settings control and add mobile bottom scroll allowance and safe-area inset; preserve JRV obsidian/teal/Ember palette. Add a labelled heading, `aria-controls`, Escape dismissal that does not accept tracking, focus on deliberate reopening, and focus restoration after decisions.
+- **Tests:** `tests/privacy-choice-layout.test.mjs`, `tests/mobile-privacy-accessibility-browser-qa.mjs`, `.github/workflows/portfolio-ci.yml`, and `tests/portfolio-palette.test.mjs`. Check 320/390/768/1366 viewports, notice-versus-content geometry, consent-off network requests, keyboard interactions, project/hiring contact access, and rendered screenshots. Keep all previously published browser suites.
+- **Docs:** `docs/JRV_DESIGN_SYSTEM.md` v1.14 candidate, `docs/ENQUIRY_JOURNEY.md`, `README.md`, `CHANGELOG.md`, and the public privacy notice. The historical 19 Nov analytics audit and v1.13 release record remain preserved.
+- **Boundary:** No underlying consent opt-in changes, vendor setup, customer data, direct email sending, Shopify themes, Workers or analytics configuration. Validation is **pending**: exact PR GitHub CI, Vercel READY preview, browser screenshots, and manual assistive-technology testing where available. Do not claim compliance or measured conversion improvements.
+
+
 ## 2026-11-23 - Publish hiring and merchant enquiry journeys (PR #102, JRV v1.13)
 
 - **Approval and release:** Owner approved the reviewed proposal. PR #102, source `b8fdc07277d84f6ca70d6703ab4f7172d5f2bf07`, merged to `main` as `ba78cd8ae6688e06411d965428deef490899ba84`. Vercel preview `dpl_2T9NHfJC7CW4Bff2W5jgDog6kJt5` and production deployment `dpl_8biWWYLeNYHi4n7txq9KmuVdF47X` were READY. Both www and apex domains were assigned. Source and browser CI succeeded at `45096347418`; post-merge source CI succeeded at `45097176393`. Browser suites run on PRs, not post-merge pushes.

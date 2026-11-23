@@ -129,7 +129,10 @@ try {
     await consent.waitFor({ state: 'hidden' });
     assert.deepEqual(trackingRequests, [], size.name + ': tracking requested after rejection');
     // Prevent a regression to the old 9px phone label and small hit target.
-    const settings = page.getByRole('button', { name: 'Change analytics privacy choices' });
+    // The mobile settings pill hides while its full consent panel is visible;
+    // use the stable DOM element to inspect aria-expanded in either state.
+    const settings = page.locator('.jrv-consent-settings');
+    assert.equal(await settings.getAttribute('aria-label'), 'Change analytics privacy choices');
     const settingsMetrics = await settings.evaluate(el => {
       const rect = el.getBoundingClientRect();
       return { width: rect.width, height: rect.height,

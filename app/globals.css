@@ -389,7 +389,8 @@
 .jrv-quick-dock>a:first-of-type:hover{background:#8ce3da}
 .jrv-quick-dock .jrv-quick-dock-secondary{font-size:11px;color:#38c7bc;white-space:nowrap}
 .jrv-quick-dock a:focus-visible{outline:3px solid #8ce3da;outline-offset:3px}
-/* Keep the mobile dock above the persistent bottom-left privacy control. */
-@media(max-width:760px){.jrv-quick-dock{bottom:47px;right:14px;left:14px;justify-content:space-between;gap:10px;padding:11px}.jrv-quick-dock span,.jrv-quick-dock-secondary{display:none}.jrv-quick-dock strong{font-size:11px}.jrv-quick-dock>a:first-of-type{font-size:10px}}
+/* Clear the 44px fixed privacy pill and device safe-area bottom inset on
+   long case-study pages, so both project and privacy actions are operable. */
+@media(max-width:760px){.jrv-quick-dock{bottom:calc(70px + env(safe-area-inset-bottom));right:14px;left:14px;justify-content:space-between;gap:10px;padding:11px}.jrv-quick-dock span,.jrv-quick-dock-secondary{display:none}.jrv-quick-dock strong{font-size:11px}.jrv-quick-dock>a:first-of-type{font-size:10px}}
 @media(max-width:380px){.jrv-quick-dock>div{display:none}.jrv-quick-dock{left:auto;max-width:260px}}
 @media(prefers-reduced-motion:reduce){.jrv-quick-dock *{transition:none!important}}
