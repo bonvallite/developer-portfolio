@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-24 - Component-to-code explorer (draft)
+
+- Added three selectable fictional storefront components (hero, navigation, product panel), each with original Liquid/CSS/JavaScript examples and a synchronised local preview.
+- Navigation disclosure and product option controls use local state only. No client assets, checkout, external API or tracking added.
+- Affected: `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, source tests, case-study documentation, and changelog. Inline comments updated.
+- Validation: GitHub commits confirmed; build, automated tests and browser QA not yet executed. No production changes.
+
+
+
 ## 2026-11-24 - Interactive diagrams and workflow (draft)
 
 - Added selectable five-stage architecture diagram and five-step fictional customer workflow, with accessible button states and responsive CSS.
