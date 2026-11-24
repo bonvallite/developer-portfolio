@@ -1,5 +1,13 @@
 # Portfolio changelog
 
+## 2026-11-24 - Technical-first lab discoverability (draft)
+
+- Moved architecture, workflow, and code explorer above the original storefront demo; added four responsive jump links and direct homepage CTA to `#technical-lab`. Preserved existing projects and gallery.
+- Updated `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, `app/page.tsx`, source tests, case-study documentation, and inline comments.
+- Previous commit `1da5b550` passed GitHub workflow #542 and Vercel; corrected a literal newline syntax issue in the source tests. New technical-first changes require fresh CI and direct visual review; no production deployment.
+
+
+
 ## 2026-11-24 - Additive homepage showcase (draft)
 
 - Added a standalone brand-neutral Commerce Experience Lab feature after Selected Work, preserving all existing case-study cards, order, published-store gallery and navigation.
