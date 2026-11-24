@@ -139,3 +139,18 @@
 .se-preview-product select{width:100%;padding:12px;border:1px solid var(--jrv-border,#365b63);border-radius:7px;background:#0b1419;color:var(--jrv-fg,#eaf4f3)}
 .se-preview-note{font-size:12px;margin:20px 0 0}
 @media(max-width:800px){.se-explorer-grid{grid-template-columns:1fr}}
+
+/* 24 Nov 2026: technical-first jump navigation. Native fragment links
+   expose the architecture, workflow, source examples and storefront preview.
+   Responsive grid and focus indicators use the existing JRV palette. */
+.se-quick-nav{padding:22px 0 32px;border-bottom:1px solid var(--jrv-border,#365b63)}
+.se-quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.se-quick-grid a{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0;padding:22px 18px;border:1px solid var(--jrv-border,#365b63);border-radius:12px;text-decoration:none;background:var(--jrv-surface,#122b34);color:var(--jrv-fg,#eaf4f3)}
+.se-quick-grid a svg{color:var(--jrv-teal,#38c7bc)}
+.se-quick-grid a strong{font-size:15px;line-height:1.4}
+.se-quick-grid a small{font-size:12px;line-height:1.5;color:var(--jrv-muted,#a9c1c3)}
+.se-quick-grid a:hover{border-color:var(--jrv-teal,#38c7bc)}
+.se-quick-grid a:focus-visible{outline:3px solid var(--jrv-ember,#f28c52);outline-offset:3px}
+.se-page :is(#technical-lab,#architecture-diagram,#shopping-workflow,#code-explorer,#storefront-demo){scroll-margin-top:32px}
+@media(max-width:850px){.se-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:380px){.se-quick-grid{grid-template-columns:1fr}.se-quick-grid a{padding:16px}}
