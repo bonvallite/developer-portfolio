@@ -1,0 +1,56 @@
+// Public case-study safety and structure guard, 24 November 2026.
+// Source checks are not a substitute for responsive browser and accessibility QA.
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+const root = 'app/projects/storefront-engineering/';
+const page = readFileSync(root + 'page.tsx', 'utf8');
+const css = readFileSync(root + 'storefront-engineering.css', 'utf8');
+const layout = readFileSync(root + 'layout.tsx', 'utf8');
+test('case study offers the three local interactive views', () => {
+  for (const value of ['homepage','navigation','product']) assert.ok(page.includes(value));
+  assert.match(page,/aria-expanded/);
+  assert.match(page,/aria-pressed/);
+  assert.match(page,/role="status"/);
+});
+test('public demonstration avoids private data and external integrations', () => {
+  assert.doesNotMatch(page,/fetch\s*\(|localStorage|sessionStorage|api\.shopify|admin\.shopify|myshopify\.com|PA00\d{4}/);
+  assert.match(page,/Original fictional storefront/);
+  assert.doesNotMatch(page,/Peter Augustus|pa-home-|pa-layout|Wagyu|Angus|Butcher/);
+  assert.match(page,/componentSamples\[demoComponent\]\[codeTab\]/);
+  assert.match(page,/aria-label="Storefront component"/);
+  assert.match(page,/LIVE LOCAL PREVIEW/);
+  assert.match(page,/aria-expanded=\{previewMenuOpen\}/);
+  assert.match(page,/value=\{previewOption\}/);
+  assert.match(page,/Information-first sections/);
+  assert.match(page,/aria-labelledby="diagram-heading"/);
+  assert.match(page,/aria-labelledby="workflow-heading"/);
+  assert.match(page,/aria-pressed=\{architectureStage===index\}/);
+  assert.match(page,/aria-pressed=\{journeyStage===index\}/);
+  assert.match(css,/\.se-diagram/);
+  assert.match(css,/\.se-workflow/);
+  assert.match(page,/cannot confirm a shipping zone/);
+});
+test('design system and responsive safeguards', () => {
+  assert.match(css,/var\(--jrv-teal/);
+  assert.match(css,/var\(--jrv-ember/);
+  assert.match(css,/@media\(max-width:720px\)/);
+  assert.match(css,/prefers-reduced-motion/);
+  assert.match(layout,/canonical: '\/projects\/storefront-engineering'/);
+});
+
+test('technical entry points precede the storefront demo and match homepage CTA', () => {
+  const ids = ['architecture-diagram','shopping-workflow','code-explorer','storefront-demo'];
+  assert.match(page,/id="technical-lab"/);
+  let previous = page.indexOf('id="technical-lab"');
+  for (const id of ids) {
+    assert.ok(page.includes('href="#'+id+'"'));
+    const position = page.indexOf('id="'+id+'"');
+    assert.ok(position > previous, 'Technical section order: '+id);
+    previous = position;
+  }
+  const home = readFileSync('app/page.tsx','utf8');
+  assert.ok(home.includes('href="/projects/storefront-engineering#technical-lab"'));
+  assert.match(css,/\.se-quick-grid/);
+  assert.match(css,/\.se-quick-grid a:focus-visible/);
+});

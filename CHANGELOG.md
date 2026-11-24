@@ -1,5 +1,75 @@
 # Portfolio changelog
 
+## 2026-11-24 - Technical-first lab discoverability (draft)
+
+- Moved architecture, workflow, and code explorer above the original storefront demo; added four responsive jump links and direct homepage CTA to `#technical-lab`. Preserved existing projects and gallery.
+- Updated `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, `app/page.tsx`, source tests, case-study documentation, and inline comments.
+- Previous commit `1da5b550` passed GitHub workflow #542 and Vercel; corrected a literal newline syntax issue in the source tests. New technical-first changes require fresh CI and direct visual review; no production deployment.
+
+
+
+## 2026-11-24 - Additive homepage showcase (draft)
+
+- Added a standalone brand-neutral Commerce Experience Lab feature after Selected Work, preserving all existing case-study cards, order, published-store gallery and navigation.
+- Added responsive JRV-styled static preview, technology tags, CTA and explicit fictional-demo disclaimer.
+- Affected: `app/page.tsx`, `app/cinematic-home.css`, case-study documentation and this changelog. Inline comments added.
+- Validation: GitHub commits verified; latest previous Vercel status was pending. New commit build, safety checks and responsive QA remain unverified. No merge or production deployment.
+
+
+
+## 2026-11-24 - Component-to-code explorer (draft)
+
+- Added three selectable fictional storefront components (hero, navigation, product panel), each with original Liquid/CSS/JavaScript examples and a synchronised local preview.
+- Navigation disclosure and product option controls use local state only. No client assets, checkout, external API or tracking added.
+- Affected: `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, source tests, case-study documentation, and changelog. Inline comments updated.
+- Validation: GitHub commits confirmed; build, automated tests and browser QA not yet executed. No production changes.
+
+
+
+## 2026-11-24 - Interactive diagrams and workflow (draft)
+
+- Added selectable five-stage architecture diagram and five-step fictional customer workflow, with accessible button states and responsive CSS.
+- Affected: `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, `tests/storefront-engineering-source.test.mjs`, `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`, and this changelog.
+- Updated inline comments, added source-level assertions. GitHub commits verified; runtime tests, browser QA and build remain pending. No theme or production change.
+
+
+
+## 2026-11-24 - Link commerce experience lab from homepage (draft)
+
+- Added a direct route from the selected-work footer to `/projects/storefront-engineering`, preserving the four flagship cards and existing eleven-site gallery.
+- Updated the case-study source tests to check the new fictional copy and absence of client names and proprietary file markers.
+- Affected: `app/page.tsx`, `tests/storefront-engineering-source.test.mjs`, case-study documentation and this changelog. Updated inline comments.
+- Validation: committed on PR #105 branch; CI, browser QA and production publication not yet verified.
+
+
+
+## 2026-11-24 - Brand-neutral content-to-commerce polish (draft)
+
+- Replaced client-specific case-study copy, product examples and proprietary source-path references with a fictional storefront and original educational code samples.
+- Added a four-stage information-to-shopping narrative and interactive Liquid/CSS/JavaScript explorer; preserved local navigation, PDP options and delivery-input demonstrations.
+- Affected: `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`, and this changelog. Existing JRV palette unchanged; no Shopify theme files edited.
+- Validation: GitHub changes committed; CI, browser and build verification pending. No production deployment.
+
+
+## 2026-11-24 - Evidence-led skills showcase (draft PR #105)
+
+- Added six responsive capability cards to the storefront-engineering case study: Figma-to-Shopify, navigation, PDP engineering, integrations, optimisation and release documentation.
+- Affected: `app/projects/storefront-engineering/page.tsx`, `storefront-engineering.css`, case-study documentation and this changelog. Inline comments updated.
+- Purpose: show what the engineer does, with implementation evidence instead of generic skills badges or invented business metrics.
+- Validation: GitHub writes completed; build, source tests and browser QA remain pending. No live Shopify or portfolio production change.
+
+
+
+## 2026-11-24 - Draft storefront engineering interactive case study
+
+- **Scope:** New `/projects/storefront-engineering` route with original, fictional homepage, menu, PDP and delivery input demonstrations, architecture mapping, and service-led contact choices.
+- **Affected files:** `app/projects/storefront-engineering/page.tsx`, `layout.tsx`, `storefront-engineering.css`, `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`, `tests/storefront-engineering-source.test.mjs`, maintained JRV design documentation and this changelog.
+- **Design:** Reuse existing JRV Obsidian/Teal/Ember tokens; no palette or favicon changes. No Peter Augustus theme files edited.
+- **Boundaries:** No actual production Liquid source, customer data, internal Figma links, real shipping decisions, new analytics or checkout requests. Demo is illustrative, not an audited performance result.
+- **Validation:** Source-level test added. CI, browser QA, visual review and production publication remain pending. Branch is draft only.
+
+
+
 ## 2026-11-23 - Publish mobile privacy and consent accessibility (PR #103, JRV v1.14)
 
 - **Approval and release:** PR #103 merged into `main` as `ae92409dda03541da0303552e228e4363113bf94` after owner approval of tested head `78b15a1be7179ad1716b88db0e94f7f24d4e1f04`. GitHub Actions `45100658874` passed full source/build, rendered SEO and all Chrome browser suites. Vercel preview `dpl_FVu6qw5M86JCfTPshev6roeKcDTR` was READY. Production Vercel deployment `dpl_6HpFimqrgbTKW8tJi6oavZ1cnGWf` confirmed READY at merge SHA `ae92409`, assigned to both `www.jrvallite.com` and `jrvallite.com`. Post-merge GitHub Actions `45103204365` source/build/SEO validation passed; the full browser suite passed on exact PR head as designed.

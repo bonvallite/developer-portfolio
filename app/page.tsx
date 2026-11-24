@@ -33,7 +33,7 @@ import './components/commerce-workbench.css';
 // direct client/hiring paths. They reuse existing homepage contact and
 // experience routes, not a new form or visitor analytics. All four project
 // demos, source-safe evidence and existing public SEO metadata remain intact.
-// 23 Nov 2026: approved PR #100 now publishes a separate, fictional-data
+// 24 Nov 2026: the selected-work footer now links to the fictional,\n// brand-neutral commerce experience lab without changing the four flagship\n// cards, eleven-site gallery, contact tracking or existing metadata.\n// 23 Nov 2026: approved PR #100 now publishes a separate, fictional-data
 // Shopify app systems section after the preserved 11-site gallery. All four
 // original case studies, homepage navigation and website previews remain.
 export const metadata: Metadata = {
@@ -188,10 +188,31 @@ export default function Home() {
               </div>
             </article>)}
           </div>
-          <div className="jrv2-work-after"><p>See responsive storefront concepts, documented integrations and more technical evidence in the full portfolio.</p><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
+          <div className="jrv2-work-after"><p>Explore an original brand-neutral Shopify storefront laboratory, from editorial hero and educational sections to product discovery, navigation and code.</p><Link href="/projects/storefront-engineering#technical-lab">Explore the commerce experience lab <ArrowUpRight size={17} aria-hidden="true"/></Link><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
         </div>
       </section>
 
+
+      {/* 24 Nov 2026: additive, brand-neutral Shopify lab showcase.
+          This section does not alter existing project cards or site gallery.
+          The demonstration is fictional; the CTA jumps to the technical navigation in the separate case study. */}
+      <section className="jrv2-section jrv2-lab-feature" aria-labelledby="jrv2-lab-title">
+        <div className="jrv2-wrap jrv2-lab-layout">
+          <div className="jrv2-lab-copy">
+            <span className="jrv2-overline">FEATURED / SHOPIFY ENGINEERING LAB</span>
+            <h2 id="jrv2-lab-title">The experience behind <em>the storefront.</em></h2>
+            <p>Explore how a Shopify shopping experience comes together, from editorial hero and product education to navigation, product options, and the code that connects them.</p>
+            <div className="jrv2-lab-tags" aria-label="Demonstrated skills"><span>Liquid</span><span>CSS</span><span>JavaScript</span><span>Online Store 2.0</span></div>
+            <Link className="jrv2-lab-cta" href="/projects/storefront-engineering#technical-lab">Explore diagrams, workflows and code <ArrowUpRight size={18} aria-hidden="true"/></Link>
+            <p className="jrv2-lab-disclaimer">Original fictional demonstration. No merchant data or live checkout.</p>
+          </div>
+          <div className="jrv2-lab-preview" aria-label="Illustration of the storefront engineering process">
+            <div className="jrv2-lab-preview-top"><span>COMMERCE EXPERIENCE LAB</span><span>01 / 04</span></div>
+            <div className="jrv2-lab-preview-hero"><span>EDITORIAL EXPERIENCE</span><strong>Discover. Understand. Shop.</strong><p>From visual storytelling to confident product decisions.</p></div>
+            <div className="jrv2-lab-preview-grid"><div><Code2 size={21} aria-hidden="true"/><strong>Behind the code</strong><small>Liquid · CSS · JS</small></div><div><Workflow size={21} aria-hidden="true"/><strong>Interactive workflow</strong><small>Architecture · Journey</small></div></div>
+          </div>
+        </div>
+      </section>
 
       {/* Public storefront references are separate from the four fictional
           interactive engineering labs. One active desktop/mobile pair at a

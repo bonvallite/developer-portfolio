@@ -1,0 +1,156 @@
+/* 24 Nov 2026: JRV storefront case-study styles. Reuses maintained global
+   --jrv-* palette; no client brand tokens or private theme CSS.
+   Responsive and reduced-motion behaviour are intentionally self-contained. */
+.se-page{background:var(--jrv-bg,#0b1419);color:var(--jrv-fg,#eaf4f3);min-height:100vh;font-family:inherit}
+.se-wrap{max-width:1200px;margin:auto;padding:0 24px 90px}
+.se-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 0;border-bottom:1px solid var(--jrv-border,#365b63);font-size:12px;letter-spacing:.09em}
+.se-top a{display:inline-flex;align-items:center;gap:10px;color:var(--jrv-fg,#eaf4f3);text-decoration:none}
+.se-hero{padding:95px 0 76px;max-width:900px}
+.se-eyebrow{font-size:11px;font-weight:750;letter-spacing:.17em;color:var(--jrv-teal,#38c7bc)}
+.se-hero h1{font-size:clamp(45px,7.4vw,94px);line-height:1.03;letter-spacing:-.055em;margin:24px 0}
+.se-hero h1 em{font-style:normal;color:var(--jrv-ember,#f28c52)}
+.se-hero>p{font-size:clamp(17px,2vw,21px);line-height:1.65;color:var(--jrv-muted,#a9c1c3);max-width:760px}
+.se-pills{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}
+.se-pills span{border:1px solid var(--jrv-border,#365b63);border-radius:40px;padding:9px 14px;font-size:12px}
+.se-hero .se-disclaimer{font-size:13px;border-left:2px solid var(--jrv-teal,#38c7bc);padding-left:16px}
+.se-section{padding:65px 0;border-top:1px solid var(--jrv-border,#365b63)}
+.se-heading{display:flex;align-items:end;justify-content:space-between;gap:35px;margin-bottom:28px}
+.se-heading p{max-width:350px;color:var(--jrv-muted,#a9c1c3);line-height:1.6}
+.se-section h2{font-size:clamp(30px,4vw,52px);letter-spacing:-.04em;line-height:1.13;margin:15px 0 20px}
+.se-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.se-tabs button,.se-demo-bar button{border:1px solid var(--jrv-border,#365b63);background:transparent;color:inherit;border-radius:10px;padding:12px 18px;cursor:pointer;min-height:44px}
+.se-tabs button.selected{background:var(--jrv-teal,#38c7bc);color:var(--jrv-bg,#0b1419);border-color:transparent;font-weight:700}
+.se-stage{border:1px solid var(--jrv-border,#365b63);border-radius:18px;background:var(--jrv-surface,#122b34);padding:18px}
+.se-demo-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;font-size:11px;letter-spacing:.1em;color:var(--jrv-muted,#a9c1c3)}
+.se-demo-dot{display:inline-block;background:var(--jrv-teal,#38c7bc);width:8px;height:8px;border-radius:50%;margin-right:8px}
+.se-shop{position:relative;max-width:100%;margin:auto;background:#edf6f4;color:#102b35;min-height:380px;overflow:hidden;border-radius:10px;transition:max-width .25s}
+.se-shop-mobile{max-width:390px}
+.se-shop-header{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #c4d4d3;gap:10px;font-size:12px}
+.se-shop-header strong{letter-spacing:.1em}
+.se-shop-header button{display:inline-flex;align-items:center;gap:7px;padding:10px;background:transparent;border:1px solid #8da7a7;color:inherit;cursor:pointer;border-radius:6px}
+.se-bag{font-size:11px}
+.se-menu{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;z-index:2;box-shadow:0 14px 28px #102b3520;padding:28px;grid-template-columns:1fr 1fr;gap:20px}
+.se-menu-open{display:grid}
+.se-menu>div{display:grid;gap:16px}
+.se-menu strong{font-size:15px}
+.se-shop-hero{min-height:320px;padding:55px clamp(22px,6vw,80px);background:linear-gradient(110deg,#173d47,#46736d);color:#fff}
+.se-shop-hero>span{font-size:11px;letter-spacing:.2em;color:#bce6dc}
+.se-shop h3{font-size:clamp(27px,4vw,45px);line-height:1.12;letter-spacing:-.04em;max-width:520px;margin:17px 0}
+.se-shop p{max-width:520px;line-height:1.6}
+.se-sample-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;background:#e6a26e;color:#102b35;border-radius:5px;font-weight:700;font-size:13px;margin-top:15px}
+.se-feature{padding:55px clamp(22px,6vw,80px)}
+.se-sample-button{display:inline-flex;align-items:center;gap:10px;border:0;background:#102b35;color:#fff;padding:13px 17px;cursor:pointer;border-radius:6px}
+.se-product{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:26px}
+.se-product-art{background:linear-gradient(140deg,#bed5cc,#91b5a9);min-height:290px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;color:#345d5d}
+.se-product-art span{font-size:10px;letter-spacing:.13em}
+.se-product-info{padding:12px}
+.se-product-info fieldset{border:0;padding:0;margin-top:20px}
+.se-product-info legend{font-weight:700;margin-bottom:10px}
+.se-product-info fieldset button{background:transparent;border:1px solid #a5b8b5;border-radius:5px;margin:0 7px 7px 0;padding:10px;min-height:44px;color:#102b35;cursor:pointer}
+.se-product-info fieldset button[aria-pressed=true]{background:#102b35;color:#fff}
+.se-architecture{list-style:none;margin:25px 0 0;padding:0;display:grid;gap:12px}
+.se-architecture li{display:flex;align-items:center;gap:24px;padding:24px;background:var(--jrv-surface,#122b34);border:1px solid var(--jrv-border,#365b63);border-radius:12px}
+.se-architecture li>div{flex:1}
+.se-architecture h3,.se-mapping h3{margin:0 0 7px;font-size:19px}
+.se-architecture p,.se-mapping p,.se-conclusion p,.se-delivery p{color:var(--jrv-muted,#a9c1c3);line-height:1.65;margin:0}
+.se-step{font-size:24px;font-weight:800;color:var(--jrv-teal,#38c7bc)}
+.se-mapping{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:30px}
+.se-mapping article{background:var(--jrv-surface,#122b34);border:1px solid var(--jrv-border,#365b63);border-radius:12px;padding:25px}
+.se-mapping article>div{display:flex;gap:12px;align-items:center}
+.se-mapping svg{color:var(--jrv-teal,#38c7bc)}
+.se-mapping code{display:block;color:var(--jrv-ember-light,#ffb58b);margin:15px 0;font-size:12px;overflow-wrap:anywhere}
+.se-delivery{display:flex;gap:24px}
+.se-delivery>svg{flex-shrink:0;color:var(--jrv-teal,#38c7bc)}
+.se-delivery form{margin-top:24px}
+.se-delivery label{display:block;margin-bottom:10px}
+.se-delivery form>div{display:flex;gap:8px;flex-wrap:wrap}
+.se-delivery input{padding:14px;background:var(--jrv-surface,#122b34);color:inherit;border:1px solid var(--jrv-border,#365b63);border-radius:7px;max-width:220px}
+.se-delivery button,.se-actions a:first-child{background:var(--jrv-ember,#f28c52);color:var(--jrv-bg,#0b1419);border:0;border-radius:7px;padding:14px 19px;font-weight:750;cursor:pointer}
+.se-result{margin-top:18px!important;color:var(--jrv-teal-light,#8ce3da)!important}
+.se-conclusion{max-width:950px}
+.se-conclusion>p{font-size:18px}
+.se-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.se-actions a{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;text-decoration:none}
+.se-actions a:last-child{border:1px solid var(--jrv-border,#365b63);border-radius:7px;padding:14px 19px;color:inherit}
+.se-page a:focus-visible,.se-page button:focus-visible,.se-page input:focus-visible{outline:3px solid var(--jrv-focus,#f28c52);outline-offset:3px}
+@media(max-width:720px){.se-wrap{padding:0 16px 65px}.se-hero{padding:65px 0}.se-heading{display:block}.se-section{padding:46px 0}.se-mapping,.se-product{grid-template-columns:1fr}.se-demo-bar{font-size:9px}.se-shop-header{padding:13px}.se-menu{top:59px;grid-template-columns:1fr}.se-delivery{display:block}.se-delivery>svg{margin-bottom:16px}.se-top span{display:none}.se-architecture li{padding:17px;gap:14px}.se-architecture li>svg{display:none}}
+@media(prefers-reduced-motion:reduce){.se-shop{transition:none}}
+
+/* 24 Nov: evidence-led skills grid; inherited JRV palette, no new tokens. */
+.se-skills-intro{max-width:760px;color:var(--jrv-muted,#a9c1c3);line-height:1.7;font-size:18px}
+.se-skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:32px}
+.se-skill-card{padding:25px;border:1px solid var(--jrv-border,#365b63);background:var(--jrv-surface,#122b34);border-radius:12px;display:flex;flex-direction:column;min-height:285px}
+.se-skill-number{color:var(--jrv-teal,#38c7bc);font-size:11px;letter-spacing:.09em;text-transform:uppercase}
+.se-skill-card h3{font-size:23px;letter-spacing:-.03em;margin:18px 0 10px}
+.se-skill-card p{line-height:1.65;color:var(--jrv-muted,#a9c1c3);margin:0 0 24px}
+.se-skill-proof{margin-top:auto;border-top:1px solid var(--jrv-border,#365b63);padding-top:15px;display:grid;gap:7px;font-size:12px}
+.se-skill-proof strong{color:var(--jrv-ember-light,#ffb58b)}
+.se-skill-proof span{color:var(--jrv-muted,#a9c1c3);line-height:1.5}
+.se-skills-note{color:var(--jrv-muted,#a9c1c3);font-size:12px;line-height:1.6;margin-top:20px}
+@media(max-width:950px){.se-skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.se-skills{grid-template-columns:1fr}.se-skill-card{min-height:0}}
+
+/* 24 Nov: fictional discovery-to-purchase story and code explorer.
+   Scoped, responsive and token-based; no external assets or animation loops. */
+.se-journey{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+.se-journey article{background:var(--jrv-surface,#122b34);border:1px solid var(--jrv-border,#365b63);padding:23px;border-radius:12px}
+.se-journey h3{font-size:22px;letter-spacing:-.03em;margin:18px 0 10px}
+.se-journey p{font-size:14px;color:var(--jrv-muted,#a9c1c3);line-height:1.65;margin:0}
+.se-code{padding:25px;background:#071216;color:#b5e8df;border:1px solid var(--jrv-border,#365b63);border-radius:12px;overflow-x:auto;white-space:pre;font-size:13px;line-height:1.8;tab-size:2}
+@media(max-width:950px){.se-journey{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.se-journey{grid-template-columns:1fr}.se-code{font-size:11px;padding:16px}}
+
+/* 24 Nov 2026: architecture and shopping workflow controls.
+   Buttons expose selected state via aria-pressed and remain keyboard reachable. */
+.se-diagram{display:flex;align-items:stretch;flex-wrap:wrap;gap:10px;margin:28px 0 18px}
+.se-diagram-step{display:flex;align-items:center;gap:10px;flex:1 1 170px;min-width:0}
+.se-node{width:100%;min-height:100px;text-align:left;padding:18px;border:1px solid var(--jrv-border,#365b63);border-radius:12px;background:var(--jrv-surface,#122b34);color:var(--jrv-fg,#eaf4f3);cursor:pointer}
+.se-node span,.se-workflow-step span{display:block;font-size:11px;color:var(--jrv-teal,#38c7bc);margin-bottom:10px}
+.se-node strong{display:block;font-size:14px;line-height:1.45}
+.se-node-active,.se-workflow-active{border-color:var(--jrv-teal,#38c7bc)!important;box-shadow:inset 0 0 0 1px var(--jrv-teal,#38c7bc)}
+.se-diagram-arrow{color:var(--jrv-ember,#f28c52);font-size:22px}
+.se-diagram-detail{border-left:3px solid var(--jrv-ember,#f28c52);padding:16px 22px;background:var(--jrv-surface,#122b34);border-radius:0 10px 10px 0}
+.se-diagram-detail p{color:var(--jrv-muted,#a9c1c3);margin:8px 0 0;line-height:1.6}
+.se-workflow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:26px 0}
+.se-workflow-step{text-align:left;min-height:112px;padding:18px;border:1px solid var(--jrv-border,#365b63);border-radius:12px;background:var(--jrv-surface,#122b34);color:var(--jrv-fg,#eaf4f3);cursor:pointer}
+.se-workflow-step strong{display:block;font-size:15px}
+.se-workflow-step small{display:block;color:var(--jrv-muted,#a9c1c3);font-size:12px;line-height:1.5;margin-top:10px}
+.se-node:focus-visible,.se-workflow-step:focus-visible{outline:3px solid var(--jrv-focus,#f28c52);outline-offset:3px}
+@media(max-width:900px){.se-workflow{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.se-diagram{flex-direction:column}.se-diagram-step{flex-basis:auto}.se-diagram-arrow{display:none}.se-workflow{grid-template-columns:1fr 1fr}.se-workflow-step{min-height:85px}}
+
+/* 24 Nov 2026: component-linked code explorer. No network, assets or checkout.
+   Grid collapses on small screens; native controls preserve keyboard access. */
+.se-explorer-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;align-items:stretch;margin-top:22px}
+.se-explorer-source,.se-explorer-preview{min-width:0}
+.se-explorer-preview{border:1px solid var(--jrv-border,#365b63);border-radius:12px;padding:22px;background:var(--jrv-surface,#122b34)}
+.se-explorer-preview h3{font-size:clamp(23px,3vw,34px);line-height:1.15;letter-spacing:-.03em;margin:14px 0}
+.se-explorer-preview p{line-height:1.6;color:var(--jrv-muted,#a9c1c3)}
+.se-preview-hero{margin-top:20px;padding:30px 24px;background:linear-gradient(130deg,#173c45,#0b1419);border-radius:10px;min-height:245px}
+.se-preview-hero>span:first-child{color:var(--jrv-teal,#38c7bc);font-size:11px;letter-spacing:.14em}
+.se-preview-cta{display:inline-flex;align-items:center;gap:8px;background:var(--jrv-ember,#f28c52);color:#0b1419;padding:10px 13px;border-radius:6px;font-size:12px;font-weight:700;margin-top:8px}
+.se-preview-nav{margin-top:25px}
+.se-preview-nav button{display:flex;justify-content:space-between;align-items:center;width:100%;padding:15px;border-radius:8px;border:1px solid var(--jrv-border,#365b63);background:#0b1419;color:var(--jrv-fg,#eaf4f3);cursor:pointer}
+.se-preview-nav button:focus-visible,.se-preview-product select:focus-visible{outline:3px solid var(--jrv-focus,#f28c52);outline-offset:3px}
+.se-preview-nav #se-preview-categories:not([hidden]){display:grid;gap:12px;margin-top:12px;padding:18px;background:#0b1419;border-radius:8px}
+.se-preview-product{display:grid;gap:10px;margin-top:20px}
+.se-preview-product-art{display:grid;place-items:center;height:120px;background:#0b1419;border-radius:8px;color:var(--jrv-teal,#38c7bc)}
+.se-preview-product label{font-size:12px}
+.se-preview-product select{width:100%;padding:12px;border:1px solid var(--jrv-border,#365b63);border-radius:7px;background:#0b1419;color:var(--jrv-fg,#eaf4f3)}
+.se-preview-note{font-size:12px;margin:20px 0 0}
+@media(max-width:800px){.se-explorer-grid{grid-template-columns:1fr}}
+
+/* 24 Nov 2026: technical-first jump navigation. Native fragment links
+   expose the architecture, workflow, source examples and storefront preview.
+   Responsive grid and focus indicators use the existing JRV palette. */
+.se-quick-nav{padding:22px 0 32px;border-bottom:1px solid var(--jrv-border,#365b63)}
+.se-quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.se-quick-grid a{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0;padding:22px 18px;border:1px solid var(--jrv-border,#365b63);border-radius:12px;text-decoration:none;background:var(--jrv-surface,#122b34);color:var(--jrv-fg,#eaf4f3)}
+.se-quick-grid a svg{color:var(--jrv-teal,#38c7bc)}
+.se-quick-grid a strong{font-size:15px;line-height:1.4}
+.se-quick-grid a small{font-size:12px;line-height:1.5;color:var(--jrv-muted,#a9c1c3)}
+.se-quick-grid a:hover{border-color:var(--jrv-teal,#38c7bc)}
+.se-quick-grid a:focus-visible{outline:3px solid var(--jrv-ember,#f28c52);outline-offset:3px}
+.se-page :is(#technical-lab,#architecture-diagram,#shopping-workflow,#code-explorer,#storefront-demo){scroll-margin-top:32px}
+@media(max-width:850px){.se-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:380px){.se-quick-grid{grid-template-columns:1fr}.se-quick-grid a{padding:16px}}

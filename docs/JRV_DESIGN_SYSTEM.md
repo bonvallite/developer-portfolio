@@ -108,3 +108,7 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 
 - [Dated palette implementation and QA record](jrv-brand-palette-2026-11-22.md), retained as historical evidence rather than the maintained guide.
 - [Engineering standards](../ENGINEERING_STANDARDS.md), [contribution guidance](../CONTRIBUTING.md), and [release coordination](portfolio-release-candidate-2026-11-22.md).
+
+## 24 November 2026: storefront engineering case study (draft)
+
+The new `/projects/storefront-engineering` case study reuses the established JRV palette and existing site-wide layout; it introduces no new colour tokens, font or favicon changes. The route uses local state to demonstrate a fictional homepage, accessible menu control, product portion selector and a deliberately non-authoritative delivery input. Its styles are isolated in `app/projects/storefront-engineering/storefront-engineering.css`. Review at 320px, 390px, 768px and 1366px before publication. Source and ownership boundaries are documented in `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`. Status: draft, not published.
