@@ -188,14 +188,14 @@ export default function Home() {
               </div>
             </article>)}
           </div>
-          <div className="jrv2-work-after"><p>Explore an original brand-neutral Shopify storefront laboratory, from editorial hero and educational sections to product discovery, navigation and code.</p><Link href="/projects/storefront-engineering">Explore the commerce experience lab <ArrowUpRight size={17} aria-hidden="true"/></Link><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
+          <div className="jrv2-work-after"><p>Explore an original brand-neutral Shopify storefront laboratory, from editorial hero and educational sections to product discovery, navigation and code.</p><Link href="/projects/storefront-engineering#technical-lab">Explore the commerce experience lab <ArrowUpRight size={17} aria-hidden="true"/></Link><Link href="/experience">Explore the project archive <ArrowUpRight size={17} aria-hidden="true"/></Link></div>
         </div>
       </section>
 
 
       {/* 24 Nov 2026: additive, brand-neutral Shopify lab showcase.
           This section does not alter existing project cards or site gallery.
-          The demonstration is fictional and links to a separate case study. */}
+          The demonstration is fictional; the CTA jumps to the technical navigation in the separate case study. */}
       <section className="jrv2-section jrv2-lab-feature" aria-labelledby="jrv2-lab-title">
         <div className="jrv2-wrap jrv2-lab-layout">
           <div className="jrv2-lab-copy">
@@ -203,7 +203,7 @@ export default function Home() {
             <h2 id="jrv2-lab-title">The experience behind <em>the storefront.</em></h2>
             <p>Explore how a Shopify shopping experience comes together, from editorial hero and product education to navigation, product options, and the code that connects them.</p>
             <div className="jrv2-lab-tags" aria-label="Demonstrated skills"><span>Liquid</span><span>CSS</span><span>JavaScript</span><span>Online Store 2.0</span></div>
-            <Link className="jrv2-lab-cta" href="/projects/storefront-engineering">Explore the interactive lab <ArrowUpRight size={18} aria-hidden="true"/></Link>
+            <Link className="jrv2-lab-cta" href="/projects/storefront-engineering#technical-lab">Explore diagrams, workflows and code <ArrowUpRight size={18} aria-hidden="true"/></Link>
             <p className="jrv2-lab-disclaimer">Original fictional demonstration. No merchant data or live checkout.</p>
           </div>
           <div className="jrv2-lab-preview" aria-label="Illustration of the storefront engineering process">
