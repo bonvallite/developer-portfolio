@@ -109,7 +109,77 @@ export default function StorefrontEngineering(){
         <p className="se-disclaimer">Original fictional storefront and source examples. No client branding, production product data, private theme code or measured sales claims.</p>
       </header>
 
-      <section className="se-section" aria-labelledby="demo-heading">
+      {/* 24 Nov 2026: direct technical entry points, before the long-form demo.
+          Native fragment links work without JavaScript and preserve keyboard navigation. */}
+      <nav className="se-quick-nav" id="technical-lab" aria-label="Explore technical demonstrations">
+        <span className="se-eyebrow">START HERE / EXPLORE THE LAB</span>
+        <div className="se-quick-grid">
+          <a href="#architecture-diagram"><Layers3 size={24} aria-hidden="true"/><strong>Architecture diagram</strong><small>From Figma to Shopify</small></a>
+          <a href="#shopping-workflow"><ArrowRight size={24} aria-hidden="true"/><strong>Customer workflow</strong><small>Discovery to purchase</small></a>
+          <a href="#code-explorer"><Code2 size={24} aria-hidden="true"/><strong>Code and examples</strong><small>Liquid, CSS, JavaScript</small></a>
+          <a href="#storefront-demo"><Package size={24} aria-hidden="true"/><strong>Storefront demo</strong><small>Try the interactive UI</small></a>
+        </div>
+      </nav>
+
+      {/* Original educational diagram: select a node to reveal its role.
+          Nodes are buttons, not decorative graphics, for keyboard access. */}
+      <section className="se-section" id="architecture-diagram" aria-labelledby="diagram-heading">
+        <span className="se-eyebrow">01 / INTERACTIVE ARCHITECTURE</span>
+        <h2 id="diagram-heading">From design intent to customer experience.</h2>
+        <p className="se-skills-intro">Select a stage to explore how storefront components connect. This is a conceptual workflow, not a client system diagram.</p>
+        <div className="se-diagram" role="group" aria-label="Storefront architecture stages">
+          {steps.map((stage,index)=><div className="se-diagram-step" key={stage.title}>
+            <button type="button" aria-pressed={architectureStage===index} className={architectureStage===index?'se-node se-node-active':'se-node'} onClick={()=>setArchitectureStage(index)}>
+              <span>0{index+1}</span><strong>{stage.title}</strong>
+            </button>
+            {index<steps.length-1&&<span className="se-diagram-arrow" aria-hidden="true">→</span>}
+          </div>)}
+        </div>
+        <div className="se-diagram-detail" role="status"><strong>{steps[architectureStage].title}</strong><p>{steps[architectureStage].description}</p></div>
+      </section>
+      {/* Journey selector models intent, not a live commerce funnel. */}
+      <section className="se-section" id="shopping-workflow" aria-labelledby="workflow-heading">
+        <span className="se-eyebrow">02 / SHOPPING WORKFLOW</span>
+        <h2 id="workflow-heading">The path from discovery to decision.</h2>
+        <div className="se-workflow" role="group" aria-label="Customer journey steps">
+          {[
+            ['Discover','Hero and category entry points'],
+            ['Learn','Guides, comparison and delivery information'],
+            ['Explore','Collections and product discovery'],
+            ['Decide','Variants, specifications and availability'],
+            ['Purchase','Cart and platform-managed checkout']
+          ].map(([title,description],index)=><button type="button" key={title} aria-pressed={journeyStage===index} className={journeyStage===index?'se-workflow-step se-workflow-active':'se-workflow-step'} onClick={()=>setJourneyStage(index)}>
+            <span>0{index+1}</span><strong>{title}</strong>{journeyStage===index&&<small>{description}</small>}
+          </button>)}
+        </div>
+        <p className="se-skills-note">Illustrative journey only. No live cart, checkout, customer tracking or conversion measurements.</p>
+      </section>
+      <section className="se-section" id="code-explorer" aria-labelledby="code-heading">
+        <span className="se-eyebrow">03 / BEHIND THE INTERFACE</span>
+        <h2 id="code-heading">Explore how I build it.</h2>
+        <p className="se-skills-intro">Switch between original, simplified Liquid, CSS and JavaScript examples. These demonstrate the design-to-code approach rather than exposing a client repository.</p>
+        {/* Component selection updates both source and rendered example.
+            Samples are authored for this portfolio, not copied from a merchant. */}
+        <div className="se-tabs" role="group" aria-label="Storefront component">
+          {(['hero','navigation','product'] as const).map(component=><button type="button" key={component} aria-pressed={demoComponent===component} className={demoComponent===component?'selected':''} onClick={()=>setDemoComponent(component)}>{component==='hero'?'Editorial hero':component==='navigation'?'Navigation':'Product panel'}</button>)}
+        </div>
+        <div className="se-explorer-grid">
+          <div className="se-explorer-source">
+            <div className="se-tabs" role="group" aria-label="Code language">
+              {(['liquid','css','javascript'] as const).map(language=><button type="button" key={language} aria-pressed={codeTab===language} className={codeTab===language?'selected':''} onClick={()=>setCodeTab(language)}>{language==='javascript'?'JavaScript':language==='liquid'?'Liquid':'CSS'}</button>)}
+            </div>
+            <pre className="se-code"><code>{componentSamples[demoComponent][codeTab]}</code></pre>
+          </div>
+          <div className="se-explorer-preview">
+            <span className="se-eyebrow">LIVE LOCAL PREVIEW</span>
+            {demoComponent==='hero'&&<div className="se-preview-hero"><span>FORM / GOODS</span><h3>Find your everyday favourite.</h3><p>A fictional editorial hero with a clear message and call to action.</p><span className="se-preview-cta">Explore collection <ArrowRight size={14}/></span></div>}
+            {demoComponent==='navigation'&&<div className="se-preview-nav"><button type="button" aria-expanded={previewMenuOpen} aria-controls="se-preview-categories" onClick={()=>setPreviewMenuOpen(value=>!value)}>{previewMenuOpen?'Close categories':'Browse categories'} <Menu size={16}/></button><div id="se-preview-categories" hidden={!previewMenuOpen}><span>New arrivals</span><span>Everyday essentials</span><span>Curated sets</span></div></div>}
+            {demoComponent==='product'&&<div className="se-preview-product"><div className="se-preview-product-art" aria-hidden="true"><Package size={46}/></div><h3>Everyday essential</h3><label htmlFor="se-preview-option">Select option</label><select id="se-preview-option" value={previewOption} onChange={event=>setPreviewOption(event.target.value)}>{['Small','Medium','Large'].map(option=><option key={option}>{option}</option>)}</select><p>Selected: {previewOption}</p><span className="se-preview-cta">Preview only · no checkout</span></div>}
+            <p className="se-preview-note">Original illustrative UI. Code examples show patterns, not an executable Shopify theme or a connected shop.</p>
+          </div>
+        </div>
+      </section>
+      <section className="se-section" id="storefront-demo" aria-labelledby="demo-heading">
         <div className="se-heading"><div><span className="se-eyebrow">01 / EXPLORE</span><h2 id="demo-heading">One theme. Multiple engineered journeys.</h2></div><p>Switch between simplified interface demonstrations. All interactions run locally in your browser.</p></div>
         <div className="se-tabs" role="group" aria-label="Demo view">
           {([['homepage','Homepage'],['navigation','Mega menu'],['product','Product page']] as const).map(([value,label])=><button key={value} type="button" aria-pressed={mode===value} className={mode===value?'selected':''} onClick={()=>{setMode(value);setOpen(false);}}>{label}</button>)}
@@ -141,64 +211,6 @@ export default function StorefrontEngineering(){
             ['04 / DECIDE','Product experience','Media, variants, specifications, availability and clear purchase actions.']
           ].map(([number,title,description])=><article key={number}><span className="se-eyebrow">{number}</span><h3>{title}</h3><p>{description}</p></article>)}
         </div>
-      </section>
-      <section className="se-section" aria-labelledby="code-heading">
-        <span className="se-eyebrow">03 / BEHIND THE INTERFACE</span>
-        <h2 id="code-heading">Explore how I build it.</h2>
-        <p className="se-skills-intro">Switch between original, simplified Liquid, CSS and JavaScript examples. These demonstrate the design-to-code approach rather than exposing a client repository.</p>
-        {/* Component selection updates both source and rendered example.
-            Samples are authored for this portfolio, not copied from a merchant. */}
-        <div className="se-tabs" role="group" aria-label="Storefront component">
-          {(['hero','navigation','product'] as const).map(component=><button type="button" key={component} aria-pressed={demoComponent===component} className={demoComponent===component?'selected':''} onClick={()=>setDemoComponent(component)}>{component==='hero'?'Editorial hero':component==='navigation'?'Navigation':'Product panel'}</button>)}
-        </div>
-        <div className="se-explorer-grid">
-          <div className="se-explorer-source">
-            <div className="se-tabs" role="group" aria-label="Code language">
-              {(['liquid','css','javascript'] as const).map(language=><button type="button" key={language} aria-pressed={codeTab===language} className={codeTab===language?'selected':''} onClick={()=>setCodeTab(language)}>{language==='javascript'?'JavaScript':language==='liquid'?'Liquid':'CSS'}</button>)}
-            </div>
-            <pre className="se-code"><code>{componentSamples[demoComponent][codeTab]}</code></pre>
-          </div>
-          <div className="se-explorer-preview">
-            <span className="se-eyebrow">LIVE LOCAL PREVIEW</span>
-            {demoComponent==='hero'&&<div className="se-preview-hero"><span>FORM / GOODS</span><h3>Find your everyday favourite.</h3><p>A fictional editorial hero with a clear message and call to action.</p><span className="se-preview-cta">Explore collection <ArrowRight size={14}/></span></div>}
-            {demoComponent==='navigation'&&<div className="se-preview-nav"><button type="button" aria-expanded={previewMenuOpen} aria-controls="se-preview-categories" onClick={()=>setPreviewMenuOpen(value=>!value)}>{previewMenuOpen?'Close categories':'Browse categories'} <Menu size={16}/></button><div id="se-preview-categories" hidden={!previewMenuOpen}><span>New arrivals</span><span>Everyday essentials</span><span>Curated sets</span></div></div>}
-            {demoComponent==='product'&&<div className="se-preview-product"><div className="se-preview-product-art" aria-hidden="true"><Package size={46}/></div><h3>Everyday essential</h3><label htmlFor="se-preview-option">Select option</label><select id="se-preview-option" value={previewOption} onChange={event=>setPreviewOption(event.target.value)}>{['Small','Medium','Large'].map(option=><option key={option}>{option}</option>)}</select><p>Selected: {previewOption}</p><span className="se-preview-cta">Preview only · no checkout</span></div>}
-            <p className="se-preview-note">Original illustrative UI. Code examples show patterns, not an executable Shopify theme or a connected shop.</p>
-          </div>
-        </div>
-      </section>
-      {/* Original educational diagram: select a node to reveal its role.
-          Nodes are buttons, not decorative graphics, for keyboard access. */}
-      <section className="se-section" aria-labelledby="diagram-heading">
-        <span className="se-eyebrow">04 / INTERACTIVE ARCHITECTURE</span>
-        <h2 id="diagram-heading">From design intent to customer experience.</h2>
-        <p className="se-skills-intro">Select a stage to explore how storefront components connect. This is a conceptual workflow, not a client system diagram.</p>
-        <div className="se-diagram" role="group" aria-label="Storefront architecture stages">
-          {steps.map((stage,index)=><div className="se-diagram-step" key={stage.title}>
-            <button type="button" aria-pressed={architectureStage===index} className={architectureStage===index?'se-node se-node-active':'se-node'} onClick={()=>setArchitectureStage(index)}>
-              <span>0{index+1}</span><strong>{stage.title}</strong>
-            </button>
-            {index<steps.length-1&&<span className="se-diagram-arrow" aria-hidden="true">→</span>}
-          </div>)}
-        </div>
-        <div className="se-diagram-detail" role="status"><strong>{steps[architectureStage].title}</strong><p>{steps[architectureStage].description}</p></div>
-      </section>
-      {/* Journey selector models intent, not a live commerce funnel. */}
-      <section className="se-section" aria-labelledby="workflow-heading">
-        <span className="se-eyebrow">05 / SHOPPING WORKFLOW</span>
-        <h2 id="workflow-heading">The path from discovery to decision.</h2>
-        <div className="se-workflow" role="group" aria-label="Customer journey steps">
-          {[
-            ['Discover','Hero and category entry points'],
-            ['Learn','Guides, comparison and delivery information'],
-            ['Explore','Collections and product discovery'],
-            ['Decide','Variants, specifications and availability'],
-            ['Purchase','Cart and platform-managed checkout']
-          ].map(([title,description],index)=><button type="button" key={title} aria-pressed={journeyStage===index} className={journeyStage===index?'se-workflow-step se-workflow-active':'se-workflow-step'} onClick={()=>setJourneyStage(index)}>
-            <span>0{index+1}</span><strong>{title}</strong>{journeyStage===index&&<small>{description}</small>}
-          </button>)}
-        </div>
-        <p className="se-skills-note">Illustrative journey only. No live cart, checkout, customer tracking or conversion measurements.</p>
       </section>
       <section className="se-section" aria-labelledby="architecture-heading">
         <div className="se-heading"><div><span className="se-eyebrow">06 / ENGINEERING</span><h2 id="architecture-heading">From frame to functioning storefront.</h2></div><p>The layer-by-layer model connects visual intent with maintainable platform behaviour.</p></div>
