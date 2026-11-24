@@ -180,7 +180,7 @@ export default function StorefrontEngineering(){
         </div>
       </section>
       <section className="se-section" id="storefront-demo" aria-labelledby="demo-heading">
-        <div className="se-heading"><div><span className="se-eyebrow">01 / EXPLORE</span><h2 id="demo-heading">One theme. Multiple engineered journeys.</h2></div><p>Switch between simplified interface demonstrations. All interactions run locally in your browser.</p></div>
+        <div className="se-heading"><div><span className="se-eyebrow">04 / EXPLORE</span><h2 id="demo-heading">One theme. Multiple engineered journeys.</h2></div><p>Switch between simplified interface demonstrations. All interactions run locally in your browser.</p></div>
         <div className="se-tabs" role="group" aria-label="Demo view">
           {([['homepage','Homepage'],['navigation','Mega menu'],['product','Product page']] as const).map(([value,label])=><button key={value} type="button" aria-pressed={mode===value} className={mode===value?'selected':''} onClick={()=>{setMode(value);setOpen(false);}}>{label}</button>)}
         </div>
@@ -201,7 +201,7 @@ export default function StorefrontEngineering(){
 
       {/* Fictional content-to-commerce sequence; no product catalogue or live API. */}
       <section className="se-section" aria-labelledby="journey-heading">
-        <span className="se-eyebrow">02 / CONTENT TO COMMERCE</span>
+        <span className="se-eyebrow">05 / CONTENT TO COMMERCE</span>
         <h2 id="journey-heading">Information, shopping and product design work together.</h2>
         <div className="se-journey">
           {[
