@@ -40,3 +40,6 @@ Visitors can select editorial hero, navigation or product panel, switch between 
 
 ## 24 November 2026: additive homepage feature
 A new full-width featured section links to the lab from the homepage after Selected Work, with a static fictional preview, technology labels and CTA. Existing case cards, their order and the eleven-site gallery are preserved. Styles live in `app/cinematic-home.css` and use JRV tokens. Build and browser QA pending.
+
+## 24 November 2026: technical-first discovery
+The `#technical-lab` entry contains four native jump links, targeting `#architecture-diagram`, `#shopping-workflow`, `#code-explorer`, and `#storefront-demo` in that order. Architecture, workflow and code now precede the storefront demo. The homepage feature and existing lab link point to the navigation. Responsive CSS uses existing JRV tokens and visible keyboard focus. Source checks verify anchor targets, order and homepage link. Previous commit `1da5b550` passed CI workflow #542 and Vercel; the revised layout requires fresh checks and direct visual review. Existing case studies and gallery are unchanged.
