@@ -38,3 +38,19 @@ test('design system and responsive safeguards', () => {
   assert.match(css,/prefers-reduced-motion/);
   assert.match(layout,/canonical: '\/projects\/storefront-engineering'/);
 });
+
+test('technical entry points precede the storefront demo and match homepage CTA', () => {
+  const ids = ['architecture-diagram','shopping-workflow','code-explorer','storefront-demo'];
+  assert.match(page,/id="technical-lab"/);
+  let previous = page.indexOf('id="technical-lab"');
+  for (const id of ids) {
+    assert.ok(page.includes('href="#'+id+'"'));
+    const position = page.indexOf('id="'+id+'"');
+    assert.ok(position > previous, 'Technical section order: '+id);
+    previous = position;
+  }
+  const home = readFileSync('app/page.tsx','utf8');
+  assert.ok(home.includes('href="/projects/storefront-engineering#technical-lab"'));
+  assert.match(css,/\.se-quick-grid/);
+  assert.match(css,/\.se-quick-grid a:focus-visible/);
+});
