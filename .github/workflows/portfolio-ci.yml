@@ -74,6 +74,10 @@ jobs:
         run: node tests/case-study-browser-qa.mjs
       - name: Cinematic homepage layout, privacy and conversion QA
         run: node tests/homepage-browser-qa.mjs
+      # GSAP v3 loads only on the homepage. Exercise real rendered headings,
+      # no-reduced-motion animation cleanup and reduced-motion static fallback.
+      - name: GSAP homepage reduced-motion browser QA
+        run: node tests/gsap-hero-browser-qa.mjs
       # Distinct hiring/merchant choices, fixed mailto prompts, privacy gating,
       # contextual experience hand-off and mobile contact-layout checks.
       - name: Hiring and merchant enquiry journey browser QA
@@ -119,6 +123,7 @@ jobs:
           path: |
             artifacts/case-study-browser-qa/
             artifacts/homepage-browser-qa/
+            artifacts/gsap-hero-qa/
             artifacts/hiring-enquiry-browser-qa/
             artifacts/privacy-accessibility-qa/
             artifacts/analytics-lab-browser-qa/

@@ -1,5 +1,14 @@
 # Portfolio changelog
 
+## 2026-11-26 - GSAP and React animation foundation (draft)
+
+- **Repository/base:** `bonvallite/developer-portfolio` `main` commit `e6c066e6b10ce531774aed0ac473124f3e8707e2`. Isolated feature branch, not an approved production change.
+- **Affected files:** `package.json`, `app/components/GsapHeroMotion.tsx` (new), `app/page.tsx`, `app/cinematic-home.css`, `tests/gsap-integration.test.mjs` (new), `tests/gsap-hero-browser-qa.mjs` (new), `.github/workflows/portfolio-ci.yml`, `tests/portfolio-palette.test.mjs`, `docs/GSAP_INTEGRATION.md` (new), `docs/JRV_DESIGN_SYSTEM.md`, `README.md` and `CHANGELOG.md`.
+- **Purpose and behaviour:** Introduce stable pinned `gsap@3.15.1` and `@gsap/react@2.1.2` for the Next.js 15 / React 19 portfolio. Use a small scoped, transform-only hero entrance, React hook cleanup and reduced-motion matching; preserve complete server-rendered text, accessible contact/experience links, site consent-first analytics, JRV tokens, and every existing case study. Correct the CSS documentation that previously claimed no animation library was used. No ScrollTrigger, new external tracking, extra global scrolling handler or content changes.
+- **Dependency practice:** The repository does not currently contain a tracked `package-lock.json`; CI already invokes `npm install`. Keep that convention and pin the two new direct versions, while noting that a separately approved lockfile policy would improve transitive reproducibility.
+- **Validation:** Source tests for version pins and safe animation, Chrome QA on reduced-motion mobile and full-motion desktop, TypeScript/build/SEO/safety, all published browser suites and exact-commit Vercel preview to be verified before merge. No Shopify theme, Worker, real customer data, GTM, Clarity account settings or Klaviyo changes.
+
+
 ## 2026-11-24 - Technical-first lab discoverability (draft)
 
 - Moved architecture, workflow, and code explorer above the original storefront demo; added four responsive jump links and direct homepage CTA to `#technical-lab`. Preserved existing projects and gallery.

@@ -11,6 +11,7 @@ import StorefrontShowcase from './experience/StorefrontShowcase';
 import FeaturedSystemsLab from './components/FeaturedSystemsLab';
 import { storefronts } from './data/storefronts';
 import LeadComposer from './components/LeadComposer';
+import GsapHeroMotion from './components/GsapHeroMotion';
 import './cinematic-home.css';
 import './components/commerce-workbench.css';
 
@@ -141,7 +142,9 @@ export default function Home() {
       <section className="jrv2-hero" id="home" aria-labelledby="jrv2-title">
         <div className="jrv2-hero-grid" aria-hidden="true" />
         <div className="jrv2-wrap jrv2-hero-inner">
-          <div className="jrv2-hero-copy">
+          {/* GSAP enhances this copy only after hydration; static HTML and
+              keyboard-accessible links remain visible without JavaScript. */}
+          <GsapHeroMotion>
             <div className="jrv2-eyebrow"><span className="jrv2-pulse" aria-hidden="true" /> 9 YEARS OF SHOPIFY & ECOMMERCE EXPERIENCE</div>
             <h1 id="jrv2-title">I build Shopify stores.<br/><span>And the systems behind them.</span></h1>
             <p className="jrv2-hero-lead">Shopify development and ecommerce management, from conversion-focused storefronts to the systems that keep orders moving.</p>
@@ -162,7 +165,7 @@ export default function Home() {
                 <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
             </nav>
-          </div>
+          </GsapHeroMotion>
           <div className="jrv2-hero-showcase" id="studio" aria-label="Explore four interactive portfolio project previews">
             <CommerceWorkbench />
             <span className="jrv2-hero-orbit jrv2-hero-orbit-one" aria-hidden="true"/><span className="jrv2-hero-orbit jrv2-hero-orbit-two" aria-hidden="true"/>
