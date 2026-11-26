@@ -222,3 +222,11 @@
     transition:none!important;animation:none!important;transform:none!important;
   }
 }
+
+/* GSAP v1.15 candidate: visual focus follows existing fictional step state.
+   Play trace is opt-in and stops on signature rejection or failed Shopify
+   write; it never attempts network work or displays a false success stage.
+   Reduced-motion users retain all manual stage and recovery controls. */
+.jrv-integration-lab__actions button.is-play{background:#173d43;color:#dcf8f3;border-color:#389e93}
+.jrv-integration-lab__actions button.is-play:hover{background:#24565b;border-color:var(--cc-teal)}
+@media(prefers-reduced-motion:reduce){.jrv-integration-lab__actions button.is-play{display:none!important}}

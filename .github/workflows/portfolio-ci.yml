@@ -78,6 +78,10 @@ jobs:
       # no-reduced-motion animation cleanup and reduced-motion static fallback.
       - name: GSAP homepage reduced-motion browser QA
         run: node tests/gsap-hero-browser-qa.mjs
+      # Explicit system-diagram playback: shipping replay, Shopify event flow,
+      # CartonCloud signature-failure guard, and Spend & Save manual stages.
+      - name: GSAP explanatory project diagram and reduced-motion browser QA
+        run: node tests/gsap-diagrams-browser-qa.mjs
       # Distinct hiring/merchant choices, fixed mailto prompts, privacy gating,
       # contextual experience hand-off and mobile contact-layout checks.
       - name: Hiring and merchant enquiry journey browser QA
@@ -124,6 +128,7 @@ jobs:
             artifacts/case-study-browser-qa/
             artifacts/homepage-browser-qa/
             artifacts/gsap-hero-qa/
+            artifacts/gsap-diagram-qa/
             artifacts/hiring-enquiry-browser-qa/
             artifacts/privacy-accessibility-qa/
             artifacts/analytics-lab-browser-qa/

@@ -4,6 +4,8 @@
  * simulated shopper, merchant and Flow screens into the JRV Ember & Teal
  * portfolio language without changing reward calculations or order states.
  * All diagrams and code samples remain fictional and client-side only.
+ * GSAP v1.15 enhances focus on the manually selected system layer; it does
+ * not change reward calculations, order-edit commits or email previews.
  * Loaded after spend-save-base.css. The baseline declarations are now static
  * rather than injected at the end of the client page; keep the import order
  * to avoid an unstyled initial layout and unnecessary layout movement.

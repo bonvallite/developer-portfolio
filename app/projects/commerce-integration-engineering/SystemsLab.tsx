@@ -6,10 +6,11 @@
  * Production is an operational handoff through Shopify fulfilment events; this
  * panel does not claim an unverified direct production webhook.
  */
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useDiagramStageMotion } from '../../components/useDiagramStageMotion';
 import {
   ArrowDownRight, ArrowRight, Check, ChevronRight, Cloud, Database,
-  Factory, FileJson2, KeyRound, LockKeyhole, Package, Play, RotateCcw,
+  Factory, FileJson2, KeyRound, LockKeyhole, Package, Play, Pause, RotateCcw,
   ShieldAlert, ShieldCheck, ShoppingBag, Truck, Workflow
 } from 'lucide-react';
 import {
@@ -57,13 +58,31 @@ export function ArchitectureLab() {
   const [flowIndex,setFlowIndex]=useState(0);
   const [step,setStep]=useState(0);
   const [nodeId,setNodeId]=useState<string | null>(null);
+  const [playing,setPlaying]=useState(false);
+  const scope=useDiagramStageMotion(flowIndex+':'+step+':'+(nodeId ?? ''));
   const flow=FLOWS[flowIndex];
   const current=flow.steps[step];
   const detailNode=NODES.find(node=>node.id === (nodeId || current.node)) || NODES[0];
-  const changeFlow=(index:number)=>{setFlowIndex(index);setStep(0);setNodeId(null);};
-  const selectStep=(index:number)=>{setStep(index);setNodeId(null);};
-  const goNext=()=>{setStep(index=>(index+1)%flow.steps.length);setNodeId(null);};
-  return <div className="cie-arch-lab">
+  // An optional, explicitly started walkthrough advances the SAME fictional
+  // React stage state as the manual Next button. It never calls Shopify or
+  // implies a live webhook. Stop on the final step, flow switch or selection.
+  useEffect(()=>{
+    if(!playing) return;
+    if(step>=flow.steps.length-1){setPlaying(false);return;}
+    const timer=window.setTimeout(()=>{
+      setStep(index=>Math.min(index+1,flow.steps.length-1));
+      setNodeId(null);
+    },1150);
+    return ()=>window.clearTimeout(timer);
+  },[playing,step,flow.steps.length]);
+  const changeFlow=(index:number)=>{setPlaying(false);setFlowIndex(index);setStep(0);setNodeId(null);};
+  const selectStep=(index:number)=>{setPlaying(false);setStep(index);setNodeId(null);};
+  const goNext=()=>{setPlaying(false);setStep(index=>(index+1)%flow.steps.length);setNodeId(null);};
+  const togglePlayback=()=>{
+    if(playing){setPlaying(false);return;}
+    setStep(0);setNodeId(null);setPlaying(true);
+  };
+  return <div ref={scope} className="cie-arch-lab">
     <div className="cie-tabs" role="group" aria-label="Integration journey">
       {FLOWS.map((item,index)=><button key={item.id} type="button" className={'cie-tab '+(index===flowIndex?'is-active':'')} onClick={()=>changeFlow(index)} aria-pressed={index===flowIndex}><strong>{item.label}</strong><small>{item.subtitle}</small></button>)}
     </div>
@@ -75,23 +94,30 @@ export function ArchitectureLab() {
           <path d="M500 438 L500 290" />
         </svg>
         <div className="cie-nodes">
-          {NODES.map(({id,title,subtitle,icon:Icon})=><button key={id} type="button" className={'cie-node cie-node--'+id+' '+(current.node===id?'is-flow-active ':'')+(detailNode.id===id?'is-inspected':'')} onClick={()=>setNodeId(id)} aria-pressed={detailNode.id===id}><Icon size={id==='worker'?31:23} aria-hidden="true" /><strong>{title}</strong><span>{subtitle}</span></button>)}
+          {NODES.map(({id,title,subtitle,icon:Icon})=><button key={id} type="button" data-gsap-focus={current.node===id?'true':undefined} className={'cie-node cie-node--'+id+' '+(current.node===id?'is-flow-active ':'')+(detailNode.id===id?'is-inspected':'')} onClick={()=>setNodeId(id)} aria-pressed={detailNode.id===id}><Icon size={id==='worker'?31:23} aria-hidden="true" /><strong>{title}</strong><span>{subtitle}</span></button>)}
         </div>
         <div className="cie-network-label" aria-hidden="true"><span className="cie-network-blink" /> SIX CONCEPTUAL SYSTEM NODES</div>
       </div>
-      <div className="cie-arch-inspector">
+      <div className="cie-arch-inspector" data-gsap-detail>
         <div className="cie-inspector-top"><span><Workflow size={15}/> EVENT INSPECTOR</span><strong>{String(step+1).padStart(2,'0')} / {flow.steps.length}</strong></div>
         <p className="cie-minor-title">SELECTED STEP</p>
-        <h3>{current.label}</h3>
+        <h3 aria-live={playing?'off':'polite'}>{current.label}</h3>
         <p>{current.detail}</p>
         <div className="cie-inspector-meta"><span>TECHNOLOGY</span><strong>{current.tech}</strong></div>
         <div className="cie-inspector-meta"><span>SELECTED NODE</span><strong>{detailNode.title}</strong></div>
         <p className="cie-node-explanation">{detailNode.detail}</p>
-        <button type="button" className="cie-next-button" onClick={goNext}>Next event <ArrowRight size={17}/></button>
+        <div className="cie-flow-controls">
+          {/* Deliberate playback uses only the existing stage inspector state.
+              Reduced-motion users retain the manually selectable event track. */}
+          <button type="button" className="cie-play-button" onClick={togglePlayback} aria-pressed={playing}>
+            {playing?<><Pause size={17} aria-hidden="true"/> Pause flow</>:<><Play size={17} aria-hidden="true"/> Play flow</>}
+          </button>
+          <button type="button" className="cie-next-button" onClick={goNext}>Next event <ArrowRight size={17}/></button>
+        </div>
       </div>
     </div>
     <div className="cie-event-track" role="group" aria-label="Event stages">
-      {flow.steps.map((item,index)=><button key={item.label} type="button" onClick={()=>selectStep(index)} aria-pressed={step===index} className={'cie-event-track-item '+(step===index?'is-active':'')}><span>{String(index+1).padStart(2,'0')}</span><strong>{item.label}</strong></button>)}
+      {flow.steps.map((item,index)=><button key={item.label} type="button" data-gsap-focus={step===index?'true':undefined} onClick={()=>selectStep(index)} aria-pressed={step===index} className={'cie-event-track-item '+(step===index?'is-active':'')}><span>{String(index+1).padStart(2,'0')}</span><strong>{item.label}</strong></button>)}
     </div>
     <p className="cie-note"><ShieldCheck size={15}/> The animated connections are conceptual. Specific API boundaries are described in the stage inspector; this diagram does not represent a captured production trace.</p>
   </div>;

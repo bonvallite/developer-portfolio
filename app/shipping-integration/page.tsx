@@ -4,6 +4,7 @@ import {
   ShoppingCart, Workflow,
 } from 'lucide-react';
 import CaseStudyContext from '../components/CaseStudyContext';
+import ShippingFlowMotion from './ShippingFlowMotion';
 import './shipping-case-study.css';
 
 // Public case study, 22 November 2026: the old unstyled route was difficult to
@@ -62,7 +63,9 @@ export default function ShippingIntegrationCaseStudy() {
           <h2 id="shipping-architecture-title">Three services. <em>One checkout decision.</em></h2>
           <p>Each system had a different responsibility. Overlapping rules could cause duplicate charges, unexpected fees or unavailable delivery options for subscription and one-time combinations.</p>
         </div>
-        <div className="shipping-story-architecture" role="group" aria-label="Conceptual flow from Recharge, Zapiet and Shopify into a final checkout rate">
+        {/* Server-rendered responsibilities remain readable without motion;
+            the client wrapper only animates flow highlights on view/replay. */}
+        <ShippingFlowMotion>
           <div className="shipping-story-system-grid">
             {systems.map(({ name, role, Icon }, index) => <article className="shipping-story-system" key={name}>
               <span className="shipping-story-system-number">SYSTEM {String(index + 1).padStart(2, '0')}</span>
@@ -77,7 +80,7 @@ export default function ShippingIntegrationCaseStudy() {
             <div><strong>Customer-facing shipping outcome</strong><span>Eligible rate → applied discount → final charged amount</span></div>
           </div>
           <p className="shipping-story-diagram-note">Conceptual responsibility map, not a live integration, checkout simulation or proprietary configuration.</p>
-        </div>
+        </ShippingFlowMotion>
       </section>
 
       <section className="shipping-story-section shipping-story-approach" aria-labelledby="shipping-approach-title">

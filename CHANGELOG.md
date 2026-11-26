@@ -1,5 +1,18 @@
 # Portfolio changelog
 
+## 2026-11-26 - Animate only diagram paths that explain commerce engineering (PR #106 draft)
+
+- **Scope / base:** GSAP v1.15 candidate feature PR #106, continuing from tested source `94e651162bfb322d5e2fb95a9832b670f77228e6` while published production stays on `e6c066e6b10ce531774aed0ac473124f3e8707e2`.
+- **New reusable motion:** `app/components/useDiagramStageMotion.ts` scopes GSAP transformations to the current manually selected React stage, with reduced-motion matching and cleanup on route/step updates. The hook never changes business decisions, event results, tracking or accessibility state.
+- **Shipping responsibility map:** `app/shipping-integration/ShippingFlowMotion.tsx` (new), `app/shipping-integration/page.tsx` and `app/shipping-integration/shipping-case-study.css`. On view, show three integration services, decorative arrows and a conceptual checkout outcome in sequence; explicit Replay. All content remains visible without hydration and no real checkout or rates API is accessed. A page-scoped ScrollTrigger is the only newly registered plugin.
+- **Shopify App Engineering:** `app/projects/commerce-integration-engineering/SystemsLab.tsx` and `engineering-lab.css`. Add Play/Pause for the selected fictional event journey. Animate currently active architecture nodes, event-track item and inspector, preserving three flow types, existing manually selected steps, click interactions, API/evidence boundary disclaimers, and no live calls.
+- **CartonCloud:** `app/cartoncloud-integration/IntegrationLab.tsx` and `integration-lab.css`. Add optional playback of six example stages; invalid-authentication scenario MUST stop at verification, and failed-write scenario MUST stop at the write boundary. Preserve disabled future steps, safe-recovery notes and no real network calls.
+- **Spend & Save:** `app/projects/spend-and-save/SpendSaveSystemMap.tsx` and `spend-save-visual.css`. Highlight active configuration/storefront/Flow/confirmation layer and code on manual selection only. No automatic gift commits, threshold changes or sent email.
+- **Tests and documentation:** `tests/gsap-diagrams.test.mjs` and `tests/gsap-diagrams-browser-qa.mjs` check stage gating, SSR visibility, replay, responsive/reduced motion and JavaScript errors. `.github/workflows/portfolio-ci.yml` retains old suites and collects project-diagram screenshots. Updated `docs/GSAP_INTEGRATION.md`, `docs/JRV_DESIGN_SYSTEM.md` v1.15 candidate, `README.md` and inline TSX/CSS comments.
+- **Why:** Replace generic decorative motion with storytelling at genuine system boundaries while preserving privacy, performance, JRV palette, and accessible static explanations. No Shopify theme, pa-theme-changelog, production Worker, Klaviyo/GTM/GA4 or customer-order data was modified.
+- **Validation:** Exact-head unit/TypeScript/build/source safety, full desktop/mobile Chrome QA, preview screenshots and Vercel READY required before merging; not yet verified at this new commit.
+
+
 ## 2026-11-26 - GSAP and React animation foundation (draft)
 
 - **Repository/base:** `bonvallite/developer-portfolio` `main` commit `e6c066e6b10ce531774aed0ac473124f3e8707e2`. Isolated feature branch, not an approved production change.
