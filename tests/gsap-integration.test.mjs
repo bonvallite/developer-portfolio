@@ -34,7 +34,10 @@ test('hero preserves rendered markup while motion is client-scoped and cleaned u
 });
 
 test('progressive animation adds no content hiding or visitor data channel', () => {
-  assert.doesNotMatch(component, /opacity\s*:|visibility\s*:|display\s*:|ScrollTrigger|localStorage|fetch\(|sendBeacon|gtag\(|dataLayer|setTimeout/);
+  // Comments may explain why ScrollTrigger is deliberately not installed;
+  // only executable imports/registrations must be absent in this first phase.
+  assert.doesNotMatch(component, /opacity\s*:|visibility\s*:|display\s*:|localStorage|fetch\(|sendBeacon|gtag\(|dataLayer|setTimeout/);
+  assert.doesNotMatch(component, /import[^\n]*ScrollTrigger|registerPlugin\s*\(\s*ScrollTrigger/);
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.match(css, /client-only GSAP v3 entrance/);
   assert.match(guide, /No production deployment/);
