@@ -1,6 +1,8 @@
 // 21 November 2026 regression for a public-safe Shopify–CartonCloud story.
 // The event studio is an explanatory React simulation. Source tests guard the
 // failure-state gates and evidence language; browser tests cover interactions.
+// 26 Nov GSAP extension: manual selections still announce politely, but
+// autoplay disables repetitive live-region announcements while it progresses.
 // Closing project/hiring links are static; no lead API or form is introduced.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -55,7 +57,8 @@ test('event studio stops at invalid sender or failed Shopify write', () => {
   assert.match(studio, /No downstream write or success notification is represented/);
   assert.match(studio, /not deployed Worker source or a live API trace/i);
   assert.match(studio, /aria-pressed=\{scenario === option\.key\}/);
-  assert.match(studio, /aria-live="polite" aria-atomic="true"/);
+  assert.match(studio, /aria-live=\{playing \? 'off' : 'polite'\} aria-atomic="true"/);
+  assert.match(studio, /const last = stopAt \?\? stages\.length - 1/);
 });
 
 test('public illustrations do not connect to merchant systems or introduce media dependencies', () => {

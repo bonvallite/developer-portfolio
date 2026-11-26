@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-26 - Align CartonCloud accessibility regression with optional GSAP playback (candidate fix)
+
+- **Files:** `tests/cartoncloud-story.test.mjs`, `docs/GSAP_INTEGRATION.md` and `CHANGELOG.md`. The old source assertion required a literal `aria-live="polite"` even though the new failure-aware autoplay intentionally turns announcements off while stages advance, returning to polite on manual selection. The test now verifies that specific conditional expression and the unchanged `stopAt` failure gate.
+- **Reason:** Keep screen-reader narration useful without spamming announcements during a voluntary, timed walkthrough. This adjusts a static source expectation, not the business scenario result or network behaviour.
+- **Validation:** First expanded-head CI run `45782044406` identified the assertion mismatch; rerun exact-head GitHub source/build/browser QA and Vercel preview after updating this test. No production merge.
+
+
 ## 2026-11-26 - Animate only diagram paths that explain commerce engineering (PR #106 draft)
 
 - **Scope / base:** GSAP v1.15 candidate feature PR #106, continuing from tested source `94e651162bfb322d5e2fb95a9832b670f77228e6` while published production stays on `e6c066e6b10ce531774aed0ac473124f3e8707e2`.
