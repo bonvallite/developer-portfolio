@@ -9,10 +9,11 @@
  * No credentials, shop names, order identifiers, customer data, private
  * integration code, analytics events, or external assets are used.
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDiagramStageMotion } from '../components/useDiagramStageMotion';
 import {
   ArrowRight, AlertTriangle, CheckCircle2, Cloud, Code2, Database,
-  GitBranch, RotateCcw, ShieldCheck, Truck,
+  GitBranch, Play, Pause, RotateCcw, ShieldCheck, Truck,
 } from 'lucide-react';
 import './integration-lab.css';
 
@@ -134,6 +135,8 @@ export default function IntegrationLab() {
   const [scenario, setScenario] = useState<Scenario>('normal');
   const [step, setStep] = useState(0);
   const [showRecovery, setShowRecovery] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const scope = useDiagramStageMotion(scenario + ':' + step);
   const stopAt = scenario === 'invalid' ? 1 : scenario === 'writeFailed' ? 4 : null;
   const blocked = stopAt !== null && step === stopAt;
   const completed = scenario === 'normal' && step === stages.length - 1;
@@ -141,16 +144,40 @@ export default function IntegrationLab() {
   const canAdvance = !blocked && step < stages.length - 1;
   const failure = scenario === 'normal' ? null : failureCopy[scenario];
 
+  // Optional automatic narration: the identical local step state used by
+  // manual navigation advances until the scenario's actual failure boundary.
+  // A rejected signature cannot animate into a successful Shopify write.
+  useEffect(() => {
+    if (!playing) return;
+    const last = stopAt ?? stages.length - 1;
+    if (step >= last) { setPlaying(false); return; }
+    const timer = window.setTimeout(() => {
+      setStep(index => Math.min(index + 1, last));
+      setShowRecovery(false);
+    }, 1150);
+    return () => window.clearTimeout(timer);
+  }, [playing, step, stopAt]);
+
+  function togglePlayback() {
+    if (playing) { setPlaying(false); return; }
+    setShowRecovery(false);
+    setStep(0);
+    setPlaying(true);
+  }
+
   function setMode(next: Scenario) {
+    setPlaying(false);
     setScenario(next);
     setStep(0);
     setShowRecovery(false);
   }
   function selectStep(index: number) {
+    setPlaying(false);
     setStep(stopAt === null ? index : Math.min(index, stopAt));
     setShowRecovery(false);
   }
   function advance() {
+    setPlaying(false);
     if (canAdvance) {
       setStep(index => Math.min(index + 1, stages.length - 1));
       setShowRecovery(false);
@@ -165,7 +192,7 @@ export default function IntegrationLab() {
         <p>Choose a fictional scenario and trace it through the systems. See how verification, mapping, Shopify writes, and failure recovery should be treated, without connecting to a real warehouse or customer order.</p>
       </div>
 
-      <div className="jrv-integration-lab__shell">
+      <div ref={scope} className="jrv-integration-lab__shell">
         <div className="jrv-integration-lab__topbar">
           <span className="jrv-integration-lab__dots" aria-hidden="true"><i/><i/><i/></span>
           <strong>JRV / INTEGRATION EVENT STUDIO</strong>
@@ -205,6 +232,7 @@ export default function IntegrationLab() {
             const passed = index < step;
             return (
               <button type="button" key={stage.title}
+                data-gsap-focus={step === index ? 'true' : undefined}
                 aria-pressed={step === index} disabled={futureBlocked}
                 className={(step === index ? 'is-selected ' : '') +
                   (stopped ? 'is-stopped ' : '') + (passed ? 'is-passed' : '')}
@@ -218,9 +246,9 @@ export default function IntegrationLab() {
         </div>
 
         <div className="jrv-integration-lab__grid">
-          <div className="jrv-integration-lab__detail">
+          <div className="jrv-integration-lab__detail" data-gsap-detail>
             <span>STAGE {String(step + 1).padStart(2, '0')} / 06 · {current.system}</span>
-            <h3 aria-live="polite" aria-atomic="true">{blocked && failure ? failure.title : current.title}</h3>
+            <h3 aria-live={playing ? 'off' : 'polite'} aria-atomic="true">{blocked && failure ? failure.title : current.title}</h3>
             <p>{blocked && failure ? failure.explanation : current.detail}</p>
             <div className={'jrv-integration-lab__event' + (blocked ? ' is-failure' : '')}>
               {blocked ? <AlertTriangle size={21} aria-hidden="true"/> : completed ? <CheckCircle2 size={21} aria-hidden="true"/> : <ShieldCheck size={21} aria-hidden="true"/>}
@@ -236,6 +264,13 @@ export default function IntegrationLab() {
               </div>
             )}
             <div className="jrv-integration-lab__actions">
+              {/* Playback never bypasses the selected invalid/write-failure
+                  gate. Reduced-motion visitors retain Next and stage buttons. */}
+              <button type="button" className="is-play" onClick={togglePlayback}
+                aria-pressed={playing}>
+                {playing ? <Pause size={16} aria-hidden="true"/> : <Play size={16} aria-hidden="true"/>}
+                {playing ? 'Pause trace' : 'Play trace'}
+              </button>
               {blocked
                 ? <button type="button" onClick={() => setShowRecovery(value => !value)}>
                     <AlertTriangle size={16} aria-hidden="true"/>{showRecovery ? 'Hide recovery notes' : 'Inspect safe recovery'}
@@ -244,7 +279,7 @@ export default function IntegrationLab() {
                     Next stage <ArrowRight size={16} aria-hidden="true"/>
                   </button>}
               <button type="button" className="is-quiet"
-                onClick={() => { setStep(0); setShowRecovery(false); }}>
+                onClick={() => { setPlaying(false); setStep(0); setShowRecovery(false); }}>
                 <RotateCcw size={15} aria-hidden="true"/> Reset trace
               </button>
             </div>
@@ -255,7 +290,7 @@ export default function IntegrationLab() {
               <span>EXAMPLE ONLY</span>
             </div>
             <pre><code>{current.code.join('\n')}</code></pre>
-            <div className="jrv-integration-lab__inspector-status" aria-live="polite">
+            <div className="jrv-integration-lab__inspector-status" aria-live={playing ? 'off' : 'polite'}>
               <span>{blocked ? 'STOPPED' : completed ? 'END OF EXAMPLE' : 'INSPECTION MODE'}</span>
               <p>{blocked ? 'No downstream write or success notification is represented.' : 'This is illustrative pseudocode, not deployed Worker source or a live API trace.'}</p>
             </div>

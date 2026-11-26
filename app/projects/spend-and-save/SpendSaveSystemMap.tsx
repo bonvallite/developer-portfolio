@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useDiagramStageMotion } from '../../components/useDiagramStageMotion';
 import { ArrowRight, CheckCircle2, Code2, Database, MailCheck, ShoppingCart, Workflow } from 'lucide-react';
 
 // Public architecture inspector for a fictional Spend & Save implementation.
@@ -53,6 +54,9 @@ export default function SpendSaveSystemMap({
   subtotal, thresholds, flowStage, orderEditCommitted, notificationReady,
 }: Props) {
   const [selected, setSelected] = useState<StageKey>('storefront');
+  // Focus animation mirrors, but never replaces, the selected fictitious
+  // engineering layer. Thresholds and order-edit state remain authoritative.
+  const scope = useDiagramStageMotion(selected);
   const active = stages.find(item => item.key === selected) ?? stages[1];
   const qualifying = subtotal >= thresholds.first;
   const additionalGift = subtotal >= thresholds.final;
@@ -108,7 +112,7 @@ export default function SpendSaveSystemMap({
   };
 
   return (
-    <div className="ss-system" aria-label="Interactive Spend and Save engineering architecture">
+    <div ref={scope} className="ss-system" aria-label="Interactive Spend and Save engineering architecture">
       <div className="ss-system-head">
         <div><span>THE IMPLEMENTATION MAP</span>
           <p>Follow one promotion from configuration to customer confirmation.</p>
@@ -119,6 +123,7 @@ export default function SpendSaveSystemMap({
       <div className="ss-system-map" role="group" aria-label="Select a system layer">
         {stages.map((item, index) =>
           <button key={item.key} type="button" aria-pressed={selected === item.key}
+            data-gsap-focus={selected === item.key ? 'true' : undefined}
             className={'ss-system-node' + (selected === item.key ? ' is-selected' : '')}
             onClick={() => setSelected(item.key)}>
             <span className="ss-system-node-number">{String(index + 1).padStart(2, '0')}</span>
@@ -131,7 +136,7 @@ export default function SpendSaveSystemMap({
       </div>
 
       <div className="ss-system-detail">
-        <div className="ss-system-explainer">
+        <div className="ss-system-explainer" data-gsap-detail>
           <span className="ss-system-step-label">{active.label}</span>
           <h3 aria-live="polite" aria-atomic="true">{active.title}</h3>
           <p>{active.explanation}</p>
@@ -141,7 +146,7 @@ export default function SpendSaveSystemMap({
           </div>
           <p className="ss-system-limit"><strong>Production consideration:</strong> {active.note}</p>
         </div>
-        <div className="ss-system-code">
+        <div className="ss-system-code" data-gsap-detail>
           <div><span><Code2 size={15} aria-hidden="true"/> {active.name.toUpperCase()} / LOGIC VIEW</span><span>EXAMPLE ONLY</span></div>
           <pre><code>{code[selected]}</code></pre>
           <p>Illustrative code, not private merchant source or an executable Shopify API call.</p>

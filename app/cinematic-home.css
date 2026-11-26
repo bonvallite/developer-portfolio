@@ -1,6 +1,9 @@
 /* JRV cinematic homepage, 20 Nov 2026.
-   Route-scoped design system: no third-party image, video or animation library.
-   Decorative motion is disabled for reduced-motion visitors; content and CTAs
+   Route-scoped design system: no third-party image or video runtime.
+   From 26 Nov, the homepage hero has an optional client-only GSAP v3 entrance
+   (GsapHeroMotion.tsx). Its scoped transform never hides the HTML or replaces
+   native navigation and is skipped by prefers-reduced-motion. Existing CSS
+   decorative motion is disabled for reduced-motion visitors; content and CTAs
    remain useful without hydration. Brand: shared JRV obsidian / electric teal / ember orange. Retired gold decorative hues now use cool-brand shades. Keep contrast and reduced-motion behaviour.
    22 Nov: hero audience choices reuse existing routes, CSS-only, and replace
    non-interactive proof badges; no additional downloads or tracking.

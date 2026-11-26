@@ -2,7 +2,9 @@
    Public, source-safe narrative and conceptual responsibility diagram.
    Obsidian / Electric Teal / Ember reuse canonical tokens from globals.css.
    Independent scoped layout fixes the former unstyled text wall at mobile
-   sizes. No client prices, tracking, remote images, font loads or new APIs. */
+   sizes. No client prices, tracking, remote images, font loads or new APIs.
+   GSAP playback is a progressive, page-scoped explanation of the existing
+   responsibility cards, not a live rates calculation or hidden dependency. */
 .shipping-story{min-height:100vh;background:var(--jrv-bg);color:var(--jrv-fg);padding:0 0 105px;overflow:visible}
 .shipping-story-wrap{width:min(1150px,calc(100% - 72px));margin:0 auto}
 .shipping-story-back{display:inline-flex;align-items:center;gap:9px;color:var(--jrv-teal-light);font-size:14px;font-weight:650;margin:35px 0 0;text-decoration:none}
@@ -42,6 +44,12 @@
 .shipping-story-result strong{font-size:20px;color:var(--jrv-fg)}
 .shipping-story-result span{font-size:14px;line-height:1.55;margin-top:5px}
 .shipping-story-diagram-note{font-size:12px!important;text-align:center;margin:16px 0 0;color:var(--jrv-muted)}
+/* Replay is intentional: the first pass activates once on scroll, but the
+   static cards and outcome are always visible. No GSAP initial opacity:0. */
+.shipping-story-motion-controls{display:flex;justify-content:flex-end;margin-top:15px}
+.shipping-story-replay{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;cursor:pointer;background:#133740;color:var(--jrv-teal-light);border:1px solid var(--jrv-border);border-radius:8px;padding:11px 16px;font-size:12px;font-weight:700;line-height:1.35;font-family:inherit}
+.shipping-story-replay:hover{border-color:var(--jrv-teal);color:var(--jrv-fg)}
+.shipping-story-replay:focus-visible{outline:3px solid var(--jrv-focus);outline-offset:3px}
 .shipping-story-steps{counter-reset:none;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0;margin:0}
 .shipping-story-steps li{display:flex;align-items:flex-start;gap:18px;border:1px solid var(--jrv-border);background:var(--jrv-surface);border-radius:14px;padding:25px}
 .shipping-story-steps li>span{font-size:29px;color:var(--jrv-ember);font-weight:800;line-height:1}
@@ -89,4 +97,6 @@
 }
 @media(prefers-reduced-motion:reduce){
   .shipping-story *{scroll-behavior:auto;transition:none!important;animation:none!important}
+  /* Replay has no animation to play in reduced-motion mode. */
+  .shipping-story-replay{display:none}
 }

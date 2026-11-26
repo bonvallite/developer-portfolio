@@ -1,5 +1,13 @@
 # Shopify Commerce Engineering | Developer Portfolio
 
+## 26 November 2026: GSAP motion for engineering diagrams (draft, PR #106)
+
+The GSAP feature branch now animates four system explanations where motion improves comprehension: a scroll-triggered and replayable shipping-rate responsibilities diagram; Play/Pause event journeys in Shopify App Engineering; a **failure-aware** CartonCloud event trace that stops at invalid signatures or failed writes; and manually selected Spend & Save responsibility layers. Each keeps its textual explanations, functional stage buttons and fictional data even with reduced motion. GSAP is scoped and cleaned up, optional playback never sends events or notifications, and only the shipping route imports ScrollTrigger. These changes are staged on top of the GSAP foundation in PR #106; production remains unchanged until exact-commit CI and Vercel preview review.
+
+## 26 November 2026: GSAP React animation foundation (draft)
+
+The GSAP foundation branch adds pinned stable versions `gsap@3.15.1` and `@gsap/react@2.1.2`, referencing the official [GSAP repository](https://github.com/greensock/GSAP) and [React integration](https://github.com/greensock/react). Its first working example is a small, scoped homepage hero entrance using `useGSAP()` and `gsap.matchMedia()`; the real heading, description, hiring/project links and privacy choices remain visible and functional before JavaScript. Reduced-motion visitors see no added GSAP motion, and cleanup runs on unmount. The project currently has no tracked `package-lock.json` and its existing CI uses `npm install`; we keep that convention and pin the two new direct versions instead of introducing an unrelated lockfile rewrite. See [GSAP guidance](docs/GSAP_INTEGRATION.md) and the maintained [JRV Design System](docs/JRV_DESIGN_SYSTEM.md) v1.15 candidate. **Production remains v1.14 pending review and CI.**
+
 ## 23 November 2026: mobile privacy and contact accessibility (published PR #103)
 
 JRV v1.14 moves the first-visit consent notice into normal document flow above the page at screen widths up to 800px. It does not hide merchant or recruiter contact choices, while the persistent Privacy choices button stays reachable near the viewport bottom with a safe-area allowance. A labelled heading, Escape dismissal without consent, and keyboard focus restoration improve access when reopening preferences. Optional GTM, Clarity and Vercel Analytics still load only after explicit acceptance. No consent is inferred from Escape or navigation; no new tracker, lead form or client data is introduced. Existing JRV colours, 11 sites, published demos, email contact paths, canonicals and resume access are preserved.

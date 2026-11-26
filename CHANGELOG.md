@@ -1,5 +1,34 @@
 # Portfolio changelog
 
+## 2026-11-26 - Align CartonCloud accessibility regression with optional GSAP playback (candidate fix)
+
+- **Files:** `tests/cartoncloud-story.test.mjs`, `docs/GSAP_INTEGRATION.md` and `CHANGELOG.md`. The old source assertion required a literal `aria-live="polite"` even though the new failure-aware autoplay intentionally turns announcements off while stages advance, returning to polite on manual selection. The test now verifies that specific conditional expression and the unchanged `stopAt` failure gate.
+- **Reason:** Keep screen-reader narration useful without spamming announcements during a voluntary, timed walkthrough. This adjusts a static source expectation, not the business scenario result or network behaviour.
+- **Validation:** First expanded-head CI run `45782044406` identified the assertion mismatch; rerun exact-head GitHub source/build/browser QA and Vercel preview after updating this test. No production merge.
+
+
+## 2026-11-26 - Animate only diagram paths that explain commerce engineering (PR #106 draft)
+
+- **Scope / base:** GSAP v1.15 candidate feature PR #106, continuing from tested source `94e651162bfb322d5e2fb95a9832b670f77228e6` while published production stays on `e6c066e6b10ce531774aed0ac473124f3e8707e2`.
+- **New reusable motion:** `app/components/useDiagramStageMotion.ts` scopes GSAP transformations to the current manually selected React stage, with reduced-motion matching and cleanup on route/step updates. The hook never changes business decisions, event results, tracking or accessibility state.
+- **Shipping responsibility map:** `app/shipping-integration/ShippingFlowMotion.tsx` (new), `app/shipping-integration/page.tsx` and `app/shipping-integration/shipping-case-study.css`. On view, show three integration services, decorative arrows and a conceptual checkout outcome in sequence; explicit Replay. All content remains visible without hydration and no real checkout or rates API is accessed. A page-scoped ScrollTrigger is the only newly registered plugin.
+- **Shopify App Engineering:** `app/projects/commerce-integration-engineering/SystemsLab.tsx` and `engineering-lab.css`. Add Play/Pause for the selected fictional event journey. Animate currently active architecture nodes, event-track item and inspector, preserving three flow types, existing manually selected steps, click interactions, API/evidence boundary disclaimers, and no live calls.
+- **CartonCloud:** `app/cartoncloud-integration/IntegrationLab.tsx` and `integration-lab.css`. Add optional playback of six example stages; invalid-authentication scenario MUST stop at verification, and failed-write scenario MUST stop at the write boundary. Preserve disabled future steps, safe-recovery notes and no real network calls.
+- **Spend & Save:** `app/projects/spend-and-save/SpendSaveSystemMap.tsx` and `spend-save-visual.css`. Highlight active configuration/storefront/Flow/confirmation layer and code on manual selection only. No automatic gift commits, threshold changes or sent email.
+- **Tests and documentation:** `tests/gsap-diagrams.test.mjs` and `tests/gsap-diagrams-browser-qa.mjs` check stage gating, SSR visibility, replay, responsive/reduced motion and JavaScript errors. `.github/workflows/portfolio-ci.yml` retains old suites and collects project-diagram screenshots. Updated `docs/GSAP_INTEGRATION.md`, `docs/JRV_DESIGN_SYSTEM.md` v1.15 candidate, `README.md` and inline TSX/CSS comments.
+- **Why:** Replace generic decorative motion with storytelling at genuine system boundaries while preserving privacy, performance, JRV palette, and accessible static explanations. No Shopify theme, pa-theme-changelog, production Worker, Klaviyo/GTM/GA4 or customer-order data was modified.
+- **Validation:** Exact-head unit/TypeScript/build/source safety, full desktop/mobile Chrome QA, preview screenshots and Vercel READY required before merging; not yet verified at this new commit.
+
+
+## 2026-11-26 - GSAP and React animation foundation (draft)
+
+- **Repository/base:** `bonvallite/developer-portfolio` `main` commit `e6c066e6b10ce531774aed0ac473124f3e8707e2`. Isolated feature branch, not an approved production change.
+- **Affected files:** `package.json`, `app/components/GsapHeroMotion.tsx` (new), `app/page.tsx`, `app/cinematic-home.css`, `tests/gsap-integration.test.mjs` (new), `tests/gsap-hero-browser-qa.mjs` (new), `.github/workflows/portfolio-ci.yml`, `tests/portfolio-palette.test.mjs`, `docs/GSAP_INTEGRATION.md` (new), `docs/JRV_DESIGN_SYSTEM.md`, `README.md` and `CHANGELOG.md`.
+- **Purpose and behaviour:** Introduce stable pinned `gsap@3.15.1` and `@gsap/react@2.1.2` for the Next.js 15 / React 19 portfolio. Use a small scoped, transform-only hero entrance, React hook cleanup and reduced-motion matching; preserve complete server-rendered text, accessible contact/experience links, site consent-first analytics, JRV tokens, and every existing case study. Correct the CSS documentation that previously claimed no animation library was used. No ScrollTrigger, new external tracking, extra global scrolling handler or content changes.
+- **Dependency practice:** The repository does not currently contain a tracked `package-lock.json`; CI already invokes `npm install`. Keep that convention and pin the two new direct versions, while noting that a separately approved lockfile policy would improve transitive reproducibility.
+- **Validation:** Source tests for version pins and safe animation, Chrome QA on reduced-motion mobile and full-motion desktop, TypeScript/build/SEO/safety, all published browser suites and exact-commit Vercel preview to be verified before merge. During the first CI run, a source-only test was corrected to distinguish the documentation comment explaining unused ScrollTrigger from an actual plugin import/registration; no runtime file changed. No Shopify theme, Worker, real customer data, GTM, Clarity account settings or Klaviyo changes.
+
+
 ## 2026-11-24 - Technical-first lab discoverability (draft)
 
 - Moved architecture, workflow, and code explorer above the original storefront demo; added four responsive jump links and direct homepage CTA to `#technical-lab`. Preserved existing projects and gallery.
