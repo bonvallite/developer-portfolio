@@ -1,8 +1,8 @@
 # GSAP integration — JRV portfolio
 
 **Updated:** 26 November 2026  
-**Status:** Draft feature branch. No production deployment.  
-**Design system:** v1.15 candidate; published v1.14 remains active.
+**Status:** Published to JRV production through PR #106 on 26 November 2026 (merge `7ec6d0c`).  
+**Design system:** v1.15 published; v1.14 remains in release history.
 
 ## Official source and dependency versions
 
@@ -20,7 +20,7 @@ The component is client-only, uses the official `useGSAP()` hook to bind its wor
 
 ## Four existing diagrams that benefit from animation
 
-The next stage extends the same review candidate with **four existing diagrams**, selected because motion reveals *causality* rather than adding decoration. All existing project headings, text, source/evidence boundaries, state controls and fictional demo rules remain visible and operable without JavaScript animation.
+The published v1.15 release extends the foundation with **four existing diagrams**, selected because motion reveals *causality* rather than adding decoration. All existing project headings, text, source/evidence boundaries, state controls and fictional demo rules remain visible and operable without JavaScript animation.
 
 | Route | What animates | Why it improves understanding |
 | --- | --- | --- |
@@ -68,8 +68,8 @@ The dependencies will be downloaded from npm during GitHub CI/Vercel preview bui
 - `tests/gsap-hero-browser-qa.mjs` opens local Next.js pages in real Chrome at 390px with reduced motion and 1366px with full motion, checks the H1, links, layout, console exceptions, and transform cleanup.
 - `tests/gsap-diagrams.test.mjs` checks SSR visibility, scoped motion, replay, reduced motion and fiction/failure safety. `tests/gsap-diagrams-browser-qa.mjs` visits all four routes with desktop and mobile reduced-motion contexts and tests real flow controls, invalid webhook stops and no client exceptions. CI retains all pre-existing browser suites and uploads diagram screenshots.
 - Existing JRV SEO, safety, privacy, portfolio and desktop/mobile browser suites must pass.
-- Verify GitHub exact-commit CI and Vercel Preview for the draft branch, and review screenshots before approval.
-- No production deployment, Shopify theme, Worker, customer notification or analytics configuration is included.
+- **Released evidence:** Approved PR #106 merged as `7ec6d0c3bc74142b091859b96675b162bcfc1933` from source `1c91d931cefe2672db5eb54fc2461a2a19e8f4a5`. [GitHub Actions 45782301947](https://github.com/bonvallite/developer-portfolio/actions/runs/45782301947) passed `validate` and the complete Chrome browser suite; the corresponding Vercel preview `dpl_4VysrqHHS8Bi4G4h45Gi9WVTQguF` was READY. Production deployment `dpl_3vENrX4TXaUPDbVqMj9K3sXWGsnk` confirmed READY on www and apex. These tests confirm the reviewed implementation, not production integrations or every assistive technology.
+- The deployment changes only this Next.js portfolio. Shopify themes, Cloudflare Workers, customer notifications, real order data and analytics configuration are unchanged.
 
 ## Possible later work
 

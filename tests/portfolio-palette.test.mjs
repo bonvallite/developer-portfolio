@@ -173,8 +173,10 @@ test('new Shopify systems flagship uses the maintained JRV palette and preserves
   // v1.14 mobile consent accessibility is published alongside the earlier
   // PR #100/101/102 commerce and hiring showcases; preserve release history.
   assert.match(guide,/12\. \*\*Published systems engineering flagship:/);
-  // Preserve JRV v1.14 history while trialling the additive GSAP v1.15 motion foundation.
-  assert.match(guide,/\*\*Version:\*\* 1\.15 \(GSAP motion foundation candidate\)/);
+  // JRV v1.15 is published through PR #106; preserve the previous v1.14
+  // and earlier palette, privacy and engineering release history.
+  assert.match(guide,/\*\*Version:\*\* 1\.15 \(GSAP animations and diagrams published\)/);
+  assert.match(guide,/PR #106 merged 26 November 2026/);
   assert.match(guide,/\| 23 November 2026 \| 1\.14 \| Published:/);
   assert.match(guide,/PR #103 merged 23 November 2026/);
   assert.match(guide,/\| 23 November 2026 \| 1\.13 \| Published: separate project enquiries/);

@@ -40,6 +40,7 @@ test('progressive animation adds no content hiding or visitor data channel', () 
   assert.doesNotMatch(component, /import[^\n]*ScrollTrigger|registerPlugin\s*\(\s*ScrollTrigger/);
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.match(css, /client-only GSAP v3 entrance/);
-  assert.match(guide, /No production deployment/);
+  assert.match(guide, /Status:\*\* Published to JRV production/);
+  assert.match(guide, /GitHub Actions 45782301947/);
   assert.match(guide, /useGSAP/);
 });
