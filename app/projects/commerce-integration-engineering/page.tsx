@@ -14,6 +14,7 @@ import SecurityLab from './SecurityLab';
 import ApiPlayground from './ApiPlayground';
 import FreightJourney from './FreightJourney';
 import NotificationStudio from './NotificationStudio';
+import RecoveryLab from './RecoveryLab';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
@@ -70,6 +71,7 @@ export default function CommerceIntegrationEngineering() {
           <a href="#api-playground">API playground</a>
           <a href="#freight-journey">Cold-chain freight</a>
           <a href="#notification-studio">Liquid notifications</a>
+          <a href="#recovery-lab">Recovery</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -161,6 +163,11 @@ export default function CommerceIntegrationEngineering() {
         <section id="notification-studio" className="cie-section cie-shell">
           <div className="cie-section-header"><p className="cie-kicker">COMMUNICATIONS / LIQUID ENGINEERING</p><h2>Stored data.<br/><em>A customer-facing message.</em></h2><p>Render fictional order notices from typed metafields, conditional delivery windows, holiday impacts and later tracking milestones.</p></div>
           <NotificationStudio />
+        </section>
+        {/* Proposed reliability patterns in a serial, fictional in-memory model. */}
+        <section id="recovery-lab" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">RELIABILITY / INCIDENT ENGINEERING</p><h2>When events fail.<br/><em>Recover without repeating.</em></h2><p>Explore duplicate detection, stale milestones, checkpointed retries, dead-letter incidents and administrative recovery in a proposed local reliability model.</p></div>
+          <RecoveryLab />
         </section>
         <section id="architecture" className="cie-section cie-shell">
           <div className="cie-section-header">

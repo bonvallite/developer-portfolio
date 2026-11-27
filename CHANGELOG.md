@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Proposed incident recovery and checkpointed retry lab (PR #107 draft)
+
+- **Files:** RecoveryLab.tsx, recovery-lab.css, lib/logistics-recovery-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** demonstrate proposed event deduplication, monotonic tracking, partial-write checkpoints, virtual backoff, dead-letter and administrative replay without external effects. Serial in-memory model only; no durable or distributed guarantees. Existing portfolio and palette retained.
+- **Validation:** Phase 8 source/build job passed in 45950982152, including corrected freight types; browser job was running at start. Six dedicated regression groups and browser checks added; exact-head verification pending. No production merge.
+
+
 ## 2026-11-27 - Dynamic Liquid notification studio and freight type correction (PR #107 draft)
 
 - **Files:** NotificationStudio.tsx, notification-studio.css, lib/logistics-notification-demo.mjs, FreightJourney.tsx, case-study page, unit/browser tests, CI, maintained guides and README.

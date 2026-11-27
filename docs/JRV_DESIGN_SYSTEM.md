@@ -132,3 +132,5 @@ Phase 6 candidate adds a responsive API workbench with labelled controls, reques
 Phase 7 candidate adds a responsive schematic freight scene, dynamic carton icons, journey controls, metrics and digital event inspector. Teal marks data and Ember physical motion; existing tokens remain unchanged. Browser verification pending.
 
 Phase 8 candidate adds a responsive fixed-template inspector and customer email/SMS text preview with existing JRV tokens, explicit readiness labels and reduced-motion support. No palette changes. Exact-head browser verification pending.
+
+Phase 9 candidate adds an incident inbox, metrics, checkpoint inspector, audit trail and explicit recovery controls using existing JRV tokens. State is communicated with text, not colour alone. No palette changes; exact-head browser QA pending.

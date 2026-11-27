@@ -1,0 +1,23 @@
+
+/* Scoped reliability workspace; existing tokens, accessible native controls. */
+.jrv-recovery{background:var(--jrv-bg);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:14px;padding:clamp(12px,2vw,24px);min-width:0}
+.jrv-recovery-note,.jrv-recovery p{color:var(--jrv-muted);font-size:.85rem;line-height:1.6}
+.jrv-recovery label{display:grid;gap:6px;max-width:440px;font-size:.8rem;color:var(--jrv-muted);margin:12px 0}
+.jrv-recovery :is(button,select){background:var(--jrv-surface);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:6px;padding:9px;min-height:44px;min-width:0;font-size:.8rem}
+.jrv-recovery button{cursor:pointer}.jrv-recovery button:disabled{opacity:.5;cursor:default}
+.jrv-recovery :is(button,select):focus-visible{outline:2px solid var(--jrv-focus);outline-offset:2px}
+.jrv-recovery .jrv-recovery-primary{background:var(--jrv-ember);color:var(--jrv-bg);font-weight:700}
+.jrv-recovery-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.jrv-recovery-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));gap:8px;margin:14px 0}
+.jrv-recovery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+.jrv-recovery-panel,.jrv-recovery-metrics>div{background:var(--jrv-surface);border:1px solid var(--jrv-border);border-radius:8px;padding:12px;min-width:0}
+.jrv-recovery-panel h3{color:var(--jrv-teal);font-size:1rem;margin:0 0 12px}
+.jrv-recovery :is(small,code,strong){display:block;overflow-wrap:anywhere}
+.jrv-recovery small{font-size:.7rem;color:var(--jrv-muted);margin:3px 0}
+.jrv-recovery-metrics strong{font-size:.9rem;color:var(--jrv-teal-light)}
+.jrv-recovery-inbox,.jrv-recovery-log{max-height:270px;overflow:auto;display:grid;gap:6px}
+.jrv-recovery-inbox>div,.jrv-recovery-log>div{border:1px solid var(--jrv-border);border-radius:6px;padding:8px;min-width:0;font-size:.78rem;overflow-wrap:anywhere}
+.jrv-recovery-inbox .processed{border-left:3px solid var(--jrv-teal)}
+.jrv-recovery [role=status] span,.jrv-recovery-log span{display:block;font-size:.75rem;color:var(--jrv-muted);margin:4px 0}
+.jrv-recovery pre{background:var(--jrv-bg);color:var(--jrv-teal-light);border-radius:6px;padding:10px;max-height:230px;overflow:auto;font:.75rem/1.5 monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:850px){.jrv-recovery-grid{grid-template-columns:minmax(0,1fr)}}
