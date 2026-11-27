@@ -122,3 +122,5 @@ The new scoped studio uses the existing JRV v1.15 tokens, responsive graph/inspe
 Phase 2 candidate adds a sticky desktop graph with native scrolling, a responsive chapter list, explicit manual controls and shared system topology. No token changes; exact-head verification pending.
 
 Phase 3 candidate adds a responsive Worker function selector, editable JSON and execution output, visible focus and Ember Run control using existing tokens. No colour changes. Dedicated browser tests pending.
+
+Phase 4 candidate adds searchable 29-key order data explorer, six lifecycle choices, previous/attempted/stored comparisons and a responsive inspector using the existing JRV tokens. No palette changes; exact-head browser verification pending.

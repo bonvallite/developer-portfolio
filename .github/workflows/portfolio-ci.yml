@@ -86,6 +86,8 @@ jobs:
         run: node tests/logistics-tour-browser-qa.mjs
       - name: Executable Worker function inspector browser QA
         run: node tests/worker-function-browser-qa.mjs
+      - name: Logistics metafield explorer browser QA
+        run: node tests/logistics-metafield-browser-qa.mjs
       # Distinct hiring/merchant choices, fixed mailto prompts, privacy gating,
       # contextual experience hand-off and mobile contact-layout checks.
       - name: Hiring and merchant enquiry journey browser QA
@@ -135,6 +137,7 @@ jobs:
             artifacts/gsap-diagram-qa/
             artifacts/logistics-tour-qa/
             artifacts/worker-function-qa/
+            artifacts/logistics-metafield-qa/
             artifacts/hiring-enquiry-browser-qa/
             artifacts/privacy-accessibility-qa/
             artifacts/analytics-lab-browser-qa/

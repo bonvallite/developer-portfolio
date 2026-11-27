@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Documented 29-key metafield explorer (PR #107 draft)
+
+- **Files:** MetafieldExplorer.tsx, metafield-explorer.css, lib/logistics-metafield-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** expose the 22 ETA and seven tracking keys with calculated/conditional values, illustrative types, previous/attempted/stored state, GraphQL variables and Liquid access previews. Preserve independent ETA and carrier write paths; do not invent a tariff or send anything. No new tokens or production changes.
+- **Validation:** Phase 3 source/build passed in run 45949064306; browser job was still running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
 ## 2026-11-27 - Executable Worker function inspector (PR #107 draft)
 
 - **Files:** WorkerFunctionLab.tsx, worker-function-lab.css, lib/worker-function-lab.mjs, existing engineering page, tests/worker-function-lab.test.mjs, tests/worker-function-browser-qa.mjs, CI, maintained guides and README.

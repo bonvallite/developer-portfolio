@@ -14,7 +14,7 @@ Shopify order and fulfilment webhooks enter a Worker; the Worker uses custom app
 - Local delivery bypass reflects intended business separation, not verified production gatekeeper behaviour. The older public model has illustrative zone fixtures and carrier status aliases; no production parity is asserted. Only a subset of fields is emitted by this first increment.
 
 ## Verification and follow-up
-Run npm test, npm run check:safety, npx tsc --noEmit, npm run build, then review the exact-head Vercel preview on desktop/mobile and reduced motion. Pending: deeper OAuth visualisation, complete schema inspector, editable payloads, repeat/out-of-order callback handling and retry, actual production source reconciliation in a restricted environment. Do not merge without checks and owner review.
+Run npm test, npm run check:safety, npx tsc --noEmit, npm run build, then review the exact-head Vercel preview on desktop/mobile and reduced motion. Pending: deeper OAuth visualisation, editable payloads, repeat/out-of-order callback handling and retry, actual production source reconciliation in a restricted environment. Do not merge without checks and owner review.
 
 ## Phase 2 — 14-chapter tour
 
@@ -23,3 +23,7 @@ The first increment passed both jobs of GitHub Actions 45947771464 at d0186e0. T
 ## Phase 3 — executable Worker function inspector
 
 Eleven independently authored examples execute on explicit Run with editable JSON, normal and edge fixtures, result validation and explanatory code excerpts. The scheduling, carton and status examples reuse the existing public model; the other functions validate and normalise inputs. No arbitrary code execution, real authentication, real postcode eligibility determination, private identifiers, external requests or notification sends. The GraphQL response example checks HTTP, errors, userErrors and presence of data, not actual stored state. GSAP highlights the local result pipeline only; reduced motion retains all controls. New unit and Chrome tests cover execution, invalid inputs and mobile layout. Phase 2 source/build checks passed in run 45948599782; its browser job was still running at the start of this increment. Exact-head Phase 3 validation pending.
+
+## Phase 4 — documented metafield explorer
+
+The independent snapshot model covers the supplied 22 ETA and seven tracking keys; six type examples are corroborated by the earlier public communication model, and all other types are marked illustrative. The actual merchant definitions and conditional writes are not independently verified. Delivery dates come from the shared schedule engine; no tariff is available, so delivery_fee stays unset. Tracking timestamps and identifiers are fictional. Previous, attempted and stored values are separated, and a rejected selected carrier write retains the prior assumed-success milestone. ETA and tracking acceptance are independent. GraphQL variables use string values, placeholder owner IDs and omit unset fields; they are not sent. The Liquid access expression and customer view are illustrative, not verified store templates. Five regression groups and dedicated browser QA are added; Phase 3 source/build passed in run 45949064306, browser checks were still running at the start. Exact-head verification pending.
