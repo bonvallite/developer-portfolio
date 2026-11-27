@@ -12,6 +12,7 @@ import WorkerFunctionLab from './WorkerFunctionLab';
 import MetafieldExplorer from './MetafieldExplorer';
 import SecurityLab from './SecurityLab';
 import ApiPlayground from './ApiPlayground';
+import FreightJourney from './FreightJourney';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
@@ -66,6 +67,7 @@ export default function CommerceIntegrationEngineering() {
           <a href="#metafields">Metafields</a>
           <a href="#security-lab">Security</a>
           <a href="#api-playground">API playground</a>
+          <a href="#freight-journey">Cold-chain freight</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -147,6 +149,11 @@ export default function CommerceIntegrationEngineering() {
         <section id="api-playground" className="cie-section cie-shell">
           <div className="cie-section-header"><p className="cie-kicker">API / DEVELOPER WORKBENCH</p><h2>Send the example.<br/><em>Inspect the contract.</em></h2><p>Execute local webhook, REST and GraphQL handlers, inspect computed responses, and distinguish transport errors from mutation errors.</p></div>
           <ApiPlayground />
+        </section>
+        {/* Schematic physical freight and its digital trace; no live GPS or sensors. */}
+        <section id="freight-journey" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">OPERATIONS / COLD-CHAIN FREIGHT</p><h2>From packing bench.<br/><em>To the customer's door.</em></h2><p>Calculate illustrative cartons, inspect the warehouse handoff and animate the carrier milestones that feed back into Shopify.</p></div>
+          <FreightJourney />
         </section>
         <section id="architecture" className="cie-section cie-shell">
           <div className="cie-section-header">

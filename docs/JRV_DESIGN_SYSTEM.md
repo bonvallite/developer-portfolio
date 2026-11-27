@@ -128,3 +128,5 @@ Phase 4 candidate adds searchable 29-key order data explorer, six lifecycle choi
 Phase 5 candidate adds an optional-motion trust-boundary graph, labelled security controls and execution inspector using existing JRV tokens. Text distinguishes acceptance from rejection; no palette changes. Dedicated browser verification pending.
 
 Phase 6 candidate adds a responsive API workbench with labelled controls, request/response panels, trace cards and existing Ember execution control. Existing colour tokens are unchanged; dedicated desktop and mobile QA pending.
+
+Phase 7 candidate adds a responsive schematic freight scene, dynamic carton icons, journey controls, metrics and digital event inspector. Teal marks data and Ember physical motion; existing tokens remain unchanged. Browser verification pending.

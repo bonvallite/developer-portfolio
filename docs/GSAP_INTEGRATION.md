@@ -88,3 +88,5 @@ Phase 4 candidate: MetafieldExplorer uses scoped useGSAP and matchMedia for a sh
 Phase 5 candidate: SecurityLab animates only selected completed local security trace steps with scoped useGSAP, MotionPathPlugin and matchMedia. Cryptographic execution is initiated explicitly and independent of GSAP; stale asynchronous results are ignored after scenario changes. Reduced motion retains all inputs, trace controls and results.
 
 Phase 6 candidate: ApiPlayground uses scoped useGSAP and matchMedia for short result and trace transitions after explicit local execution. Animation neither executes requests nor writes state. Stale asynchronous responses are ignored after controls change.
+
+Phase 7 candidate: FreightJourney uses scoped useGSAP, matchMedia and explicit playback/manual selection. The computed event trace selects the final schematic truck position; GSAP animates relative displacement, carton appearance and scan feedback only. Reduced motion retains static positions and all manual stages; no live vehicle telemetry or operations occur.

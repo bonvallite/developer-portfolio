@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Animated physical cold-chain freight journey (PR #107 draft)
+
+- **Files:** FreightJourney.tsx, freight-journey.css, lib/logistics-freight-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** show the physical lifecycle and corresponding digital events using calculated carton weights, regional allocation, schematic truck motion and explicit failure/bypass branches. No real packing, shipment, tracking, sensor data, notifications or provider calls. Existing portfolio and palette retained.
+- **Validation:** Phase 5 passed both jobs in run 45949948535; Phase 6 source/build passed in run 45950402425 with browser checks running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
 ## 2026-11-27 - Local webhook, REST and GraphQL workbench (PR #107 draft)
 
 - **Files:** ApiPlayground.tsx, api-playground.css, lib/logistics-api-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.

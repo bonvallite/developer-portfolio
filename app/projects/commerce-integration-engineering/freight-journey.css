@@ -1,0 +1,31 @@
+
+/* Physical journey uses scoped JRV tokens. Motion is optional; the static
+ * SVG truck location and explicit trace remain informative without it. */
+.jrv-freight{background:var(--jrv-bg);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:14px;padding:clamp(12px,2vw,24px);min-width:0}
+.jrv-freight-note,.jrv-freight p{color:var(--jrv-muted);font-size:.85rem;line-height:1.6}
+.jrv-freight-controls,.jrv-freight-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,165px),1fr));gap:12px;margin:14px 0}
+.jrv-freight label{display:grid;gap:6px;color:var(--jrv-muted);font-size:.8rem;min-width:0}
+.jrv-freight :is(button,select){background:var(--jrv-surface);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:6px;padding:9px;min-height:44px;min-width:0;font-size:.8rem}
+.jrv-freight input[type=range]{width:100%;accent-color:var(--jrv-teal);min-height:44px}
+.jrv-freight button{cursor:pointer;text-align:left;overflow-wrap:anywhere}.jrv-freight button:disabled{opacity:.5;cursor:default}
+.jrv-freight :is(button,select,input,summary):focus-visible{outline:2px solid var(--jrv-focus);outline-offset:2px}
+.jrv-freight-scene{background:var(--jrv-surface);border:1px solid var(--jrv-border);border-radius:10px;overflow:hidden}
+.jrv-freight-scene svg{display:block;width:100%;height:auto}
+.jrv-freight-road{stroke:var(--jrv-border);stroke-width:30;stroke-linecap:round;fill:none}
+.jrv-freight-road-line{stroke:var(--jrv-muted);stroke-width:1.5;stroke-dasharray:10 8;fill:none}
+.jrv-freight-stop{fill:var(--jrv-bg);stroke:var(--jrv-muted)}.jrv-freight-stop.reached{fill:var(--jrv-ember);stroke:var(--jrv-ember)}
+.jrv-freight-label,.jrv-freight-legend{fill:var(--jrv-muted);font-size:12px;text-anchor:middle}.jrv-freight-legend{text-anchor:start;font-size:10px}
+.jrv-freight-building :is(path,rect){fill:var(--jrv-bg);stroke:var(--jrv-teal);stroke-width:1.4}.jrv-freight-building text{fill:var(--jrv-teal-light);font-size:10px;text-anchor:middle}
+.jrv-freight-carton rect{fill:var(--jrv-ember);stroke:var(--jrv-fg)}.jrv-freight-carton path{stroke:var(--jrv-bg)}.jrv-freight-carton text{fill:var(--jrv-muted);font-size:9px;text-anchor:middle}
+.jrv-freight-truck rect{fill:var(--jrv-bg);stroke:var(--jrv-teal);stroke-width:2}.jrv-freight-truck .cab{fill:var(--jrv-ember);stroke:var(--jrv-ember)}.jrv-freight-truck .window{fill:var(--jrv-bg)}.jrv-freight-truck .wheel{fill:var(--jrv-bg);stroke:var(--jrv-muted);stroke-width:3}.jrv-freight-truck text{fill:var(--jrv-teal-light);font-size:9px;text-anchor:middle}
+.jrv-freight-scan circle{fill:var(--jrv-bg);stroke:var(--jrv-teal);stroke-width:2}.jrv-freight-scan path{stroke:var(--jrv-teal);stroke-width:3;fill:none}.jrv-freight-scan text{fill:var(--jrv-teal-light);font-size:9px;text-anchor:middle}
+.jrv-freight-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.jrv-freight .jrv-freight-play{background:var(--jrv-ember);color:var(--jrv-bg);font-weight:700}
+.jrv-freight-metrics>div,.jrv-freight-inspector{background:var(--jrv-surface);border:1px solid var(--jrv-border);border-radius:8px;padding:12px;min-width:0}
+.jrv-freight-metrics span,.jrv-freight-steps small{display:block;font-size:.72rem;color:var(--jrv-muted);margin-bottom:5px}
+.jrv-freight-metrics strong{display:block;font-size:.9rem;color:var(--jrv-teal-light);overflow-wrap:anywhere}
+.jrv-freight-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));gap:6px;margin:12px 0}
+.jrv-freight-steps button[aria-pressed=true]{border-color:var(--jrv-teal);box-shadow:inset 3px 0 var(--jrv-teal)}
+.jrv-freight-inspector h3{color:var(--jrv-teal);font-size:1.15rem}.jrv-freight-inspector summary{cursor:pointer;font-size:.85rem;padding:8px 0}
+.jrv-freight-inspector pre{background:var(--jrv-bg);color:var(--jrv-teal-light);border-radius:6px;padding:10px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow:auto;font:.75rem/1.5 monospace}
+@media(prefers-reduced-motion:reduce){.jrv-freight-play,.jrv-freight-actions button:last-child{display:none}}
