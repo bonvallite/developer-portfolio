@@ -80,3 +80,5 @@ After reviewing the four diagrams and foundation, separate PRs may explore riche
 Adds scoped MotionPathPlugin packet travel on the existing systems engineering route. React owns trace navigation; motion follows the selected edge and reverts on changes. No scroll pinning or new dependency. See [Lifecycle studio](LOGISTICS_LIFECYCLE_STUDIO.md) for scope and pending verification.
 
 Phase 2 candidate: the read-only architecture tour uses scoped ScrollTrigger chapter observers on desktop and MotionPathPlugin with matchMedia cleanup. CSS sticky positioning preserves native scroll; mobile and reduced-motion retain chapter buttons and static descriptions. Shared SVG markers are instance-specific. Dedicated lifecycle browser QA is included.
+
+Phase 3 candidate: WorkerFunctionLab uses scoped useGSAP and matchMedia to highlight the validated local execution result and connection lines after explicit Run. It never executes a function from animation or scroll. Reduced motion and normal JSON inspection remain available.

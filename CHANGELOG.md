@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Executable Worker function inspector (PR #107 draft)
+
+- **Files:** WorkerFunctionLab.tsx, worker-function-lab.css, lib/worker-function-lab.mjs, existing engineering page, tests/worker-function-lab.test.mjs, tests/worker-function-browser-qa.mjs, CI, maintained guides and README.
+- **Why:** expose eleven real local example functions with editable JSON, edge cases, validation and scoped result animation; preserve existing diagrams, source boundaries and palette. No provider calls or production changes.
+- **Validation:** Phase 2 source/build job passed in run 45948599782; its browser job was running when work began. New dedicated tests included; exact-head validation pending. No production merge.
+
+
 ## 2026-11-27 - Scroll-driven fourteen-chapter logistics tour (PR #107 draft)
 
 - **Files:** LifecycleTour, LifecycleTopology, LifecycleStudio, lifecycle-tour.css, case-study page, lib/logistics-tour.mjs, lib/logistics-lifecycle-demo.mjs, unit/browser tests and CI, maintained guides and README.

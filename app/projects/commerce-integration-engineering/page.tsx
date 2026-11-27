@@ -8,6 +8,7 @@ import { ArchitectureLab, CalculationLab, EventLab, OAuthLab } from './SystemsLa
 import CodeExplorer from './CodeExplorer';
 import LifecycleStudio from './LifecycleStudio';
 import LifecycleTour from './LifecycleTour';
+import WorkerFunctionLab from './WorkerFunctionLab';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
@@ -58,6 +59,7 @@ export default function CommerceIntegrationEngineering() {
         <nav aria-label="Case study navigation">
           <a href="#lifecycle-tour">Lifecycle tour</a>
           <a href="#lifecycle-studio">Lifecycle studio</a>
+          <a href="#worker-functions">Worker functions</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -118,6 +120,12 @@ export default function CommerceIntegrationEngineering() {
         <section id="lifecycle-studio" className="cie-section cie-shell">
           <div className="cie-section-header"><p className="cie-kicker">NEW / CLOSED-LOOP SYSTEMS LAB</p><h2>One order.<br/><em>Every system boundary.</em></h2><p>Run an independently reconstructed delivery lifecycle. Inspect inputs, calculated dates, carton allocation, failures, carrier scans and native notification previews. All operations remain in your browser.</p></div>
           <LifecycleStudio />
+        </section>
+        {/* Executable public-safe examples complement the existing code explorer;
+            no external execution, private source or provider requests. */}
+        <section id="worker-functions" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">WORKER / INTERNAL ENGINEERING</p><h2>Inspect the function.<br/><em>Execute the decision.</em></h2><p>Explore eleven independently authored functions, change the JSON input and compare actual local outputs with edge cases.</p></div>
+          <WorkerFunctionLab />
         </section>
         <section id="architecture" className="cie-section cie-shell">
           <div className="cie-section-header">

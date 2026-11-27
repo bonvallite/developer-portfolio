@@ -120,3 +120,5 @@ The new `/projects/storefront-engineering` case study reuses the established JRV
 The new scoped studio uses the existing JRV v1.15 tokens, responsive graph/inspector layout, visible focus and manual controls. Motion is optional. See [Lifecycle studio](LOGISTICS_LIFECYCLE_STUDIO.md). This is an unmerged candidate, not a published design-system release.
 
 Phase 2 candidate adds a sticky desktop graph with native scrolling, a responsive chapter list, explicit manual controls and shared system topology. No token changes; exact-head verification pending.
+
+Phase 3 candidate adds a responsive Worker function selector, editable JSON and execution output, visible focus and Ember Run control using existing tokens. No colour changes. Dedicated browser tests pending.

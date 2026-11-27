@@ -1,0 +1,25 @@
+
+/* Local function lab extends the JRV v1.15 palette without new tokens.
+ * All results and controls remain visible with reduced motion. */
+.jrv-function-lab{background:var(--jrv-bg);border:1px solid var(--jrv-border);border-radius:14px;padding:clamp(12px,2vw,24px);min-width:0;color:var(--jrv-fg)}
+.jrv-function-note,.jrv-function-main p{font-size:.9rem;color:var(--jrv-muted);line-height:1.6;margin:8px 0 16px}
+.jrv-function-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.5fr);gap:16px}
+.jrv-function-list{display:grid;gap:6px;align-content:start}
+.jrv-function-lab button{border:1px solid var(--jrv-border);border-radius:6px;background:var(--jrv-surface);color:var(--jrv-fg);padding:9px 12px;min-height:44px;font-size:.8rem;text-align:left;cursor:pointer;overflow-wrap:anywhere}
+.jrv-function-list small,.jrv-function-label,.jrv-function-grid label{display:block;color:var(--jrv-muted);font-size:.75rem;margin-bottom:6px}
+.jrv-function-list strong{font-size:.84rem}
+.jrv-function-list button[aria-pressed=true]{border-color:var(--jrv-teal);box-shadow:inset 3px 0 var(--jrv-teal)}
+.jrv-function-main{min-width:0;background:var(--jrv-surface);border:1px solid var(--jrv-border);border-radius:10px;padding:14px}
+.jrv-function-main h3{color:var(--jrv-teal);font-size:1.2rem;overflow-wrap:anywhere}
+.jrv-function-pipeline{display:flex;align-items:center;gap:7px;margin:16px 0;font-size:.72rem;color:var(--jrv-teal-light)}
+.jrv-function-pipeline span:nth-child(even){height:2px;min-width:8px;flex:1;background:var(--jrv-teal)}
+.jrv-function-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.jrv-function-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.jrv-function-lab pre,.jrv-function-lab textarea{background:var(--jrv-bg);color:var(--jrv-teal-light);border:1px solid var(--jrv-border);border-radius:6px;padding:10px;font: .75rem/1.65 monospace;white-space:pre-wrap;overflow-wrap:anywhere;width:100%;min-width:0}
+.jrv-function-lab textarea{height:240px;resize:vertical}
+.jrv-function-grid pre{max-height:210px;overflow:auto}
+.jrv-function-status{font-size:.76rem;margin-bottom:6px;min-height:24px}
+.jrv-function-lab .jrv-function-run{background:var(--jrv-ember);color:var(--jrv-bg);font-weight:700;margin:12px 0}
+.jrv-function-lab summary{cursor:pointer;color:var(--jrv-muted);padding:8px 0;font-size:.8rem}
+.jrv-function-lab :is(button,textarea,summary):focus-visible{outline:2px solid var(--jrv-focus);outline-offset:2px}
+@media(max-width:850px){.jrv-function-layout,.jrv-function-grid{grid-template-columns:minmax(0,1fr)}.jrv-function-list{grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr))}}
