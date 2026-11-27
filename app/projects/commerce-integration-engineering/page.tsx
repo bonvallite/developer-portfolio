@@ -11,6 +11,7 @@ import LifecycleTour from './LifecycleTour';
 import WorkerFunctionLab from './WorkerFunctionLab';
 import MetafieldExplorer from './MetafieldExplorer';
 import SecurityLab from './SecurityLab';
+import ApiPlayground from './ApiPlayground';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
@@ -64,6 +65,7 @@ export default function CommerceIntegrationEngineering() {
           <a href="#worker-functions">Worker functions</a>
           <a href="#metafields">Metafields</a>
           <a href="#security-lab">Security</a>
+          <a href="#api-playground">API playground</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -140,6 +142,11 @@ export default function CommerceIntegrationEngineering() {
         <section id="security-lab" className="cie-section cie-shell">
           <div className="cie-section-header"><p className="cie-kicker">SECURITY / TRUST BOUNDARIES</p><h2>Verify first.<br/><em>Execute only when authorised.</em></h2><p>Test HMAC verification, app installation state, expiry, carrier authentication and administrative authorisation using public teaching fixtures.</p></div>
           <SecurityLab />
+        </section>
+        {/* Local allowlisted transport; no production routes or arbitrary network requests. */}
+        <section id="api-playground" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">API / DEVELOPER WORKBENCH</p><h2>Send the example.<br/><em>Inspect the contract.</em></h2><p>Execute local webhook, REST and GraphQL handlers, inspect computed responses, and distinguish transport errors from mutation errors.</p></div>
+          <ApiPlayground />
         </section>
         <section id="architecture" className="cie-section cie-shell">
           <div className="cie-section-header">

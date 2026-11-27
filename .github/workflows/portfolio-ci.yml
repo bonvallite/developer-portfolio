@@ -90,6 +90,8 @@ jobs:
         run: node tests/logistics-metafield-browser-qa.mjs
       - name: Logistics security lab browser QA
         run: node tests/logistics-security-browser-qa.mjs
+      - name: Logistics API workbench browser QA
+        run: node tests/logistics-api-browser-qa.mjs
       # Distinct hiring/merchant choices, fixed mailto prompts, privacy gating,
       # contextual experience hand-off and mobile contact-layout checks.
       - name: Hiring and merchant enquiry journey browser QA
@@ -141,6 +143,7 @@ jobs:
             artifacts/worker-function-qa/
             artifacts/logistics-metafield-qa/
             artifacts/logistics-security-qa/
+            artifacts/logistics-api-qa/
             artifacts/hiring-enquiry-browser-qa/
             artifacts/privacy-accessibility-qa/
             artifacts/analytics-lab-browser-qa/

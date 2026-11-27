@@ -86,3 +86,5 @@ Phase 3 candidate: WorkerFunctionLab uses scoped useGSAP and matchMedia to highl
 Phase 4 candidate: MetafieldExplorer uses scoped useGSAP and matchMedia for a short detail-panel transition after field or scenario selection. The snapshot model owns all simulated write outcomes; animation cannot perform a mutation. Reduced motion preserves all field and stage controls.
 
 Phase 5 candidate: SecurityLab animates only selected completed local security trace steps with scoped useGSAP, MotionPathPlugin and matchMedia. Cryptographic execution is initiated explicitly and independent of GSAP; stale asynchronous results are ignored after scenario changes. Reduced motion retains all inputs, trace controls and results.
+
+Phase 6 candidate: ApiPlayground uses scoped useGSAP and matchMedia for short result and trace transitions after explicit local execution. Animation neither executes requests nor writes state. Stale asynchronous responses are ignored after controls change.

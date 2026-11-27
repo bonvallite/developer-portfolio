@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Local webhook, REST and GraphQL workbench (PR #107 draft)
+
+- **Files:** ApiPlayground.tsx, api-playground.css, lib/logistics-api-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** execute eleven local allowlisted operations with editable JSON, method/auth/validation gates, computed outputs, separate GraphQL error envelopes and trace animation. No external requests, provider writes or real credentials. Existing portfolio and palette retained.
+- **Validation:** Phase 4 passed both jobs in run 45949490767; Phase 5 source/build passed in run 45949948535 with browser checks still running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
 ## 2026-11-27 - Executable OAuth and security laboratory (PR #107 draft)
 
 - **Files:** SecurityLab.tsx, security-lab.css, lib/logistics-security-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.

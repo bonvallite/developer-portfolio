@@ -14,7 +14,7 @@ Shopify order and fulfilment webhooks enter a Worker; the Worker uses custom app
 - Local delivery bypass reflects intended business separation, not verified production gatekeeper behaviour. The older public model has illustrative zone fixtures and carrier status aliases; no production parity is asserted. Only a subset of fields is emitted by this first increment.
 
 ## Verification and follow-up
-Run npm test, npm run check:safety, npx tsc --noEmit, npm run build, then review the exact-head Vercel preview on desktop/mobile and reduced motion. Pending: editable payloads, repeat/out-of-order callback handling and retry, actual production source reconciliation in a restricted environment. Do not merge without checks and owner review.
+Run npm test, npm run check:safety, npx tsc --noEmit, npm run build, then review the exact-head Vercel preview on desktop/mobile and reduced motion. Pending: repeat/out-of-order callback handling and retry, actual production source reconciliation in a restricted environment. Do not merge without checks and owner review.
 
 ## Phase 2 — 14-chapter tour
 
@@ -31,3 +31,7 @@ The independent snapshot model covers the supplied 22 ETA and seven tracking key
 ## Phase 5 — executable security laboratory
 
 The standalone security model executes real Web Crypto HMAC-SHA256 signing and verification with a deliberately public fixture key, including a byte-level tamper test. The 16 choices across four flows model accepted/rejected webhooks, OAuth callback HMAC, state and cookie matching, virtual 600-second expiry, replay before code exchange, example scope verification, masked offline grant, Basic and Bearer header comparison. OAuth/KV are in-memory examples: no actual install, cookie, token exchange, distributed storage, production scopes, persistent replay protection or network request occurs. The earlier lifecycle authentication remains a simulated flag. GSAP animates completed selected steps only. Four test groups and dedicated desktop/mobile browser QA are added. Phase 3 passed both jobs in run 45949064306; Phase 4 source/build passed in run 45949490767 with browser QA still running when work began. Exact-head verification pending.
+
+## Phase 6 — API workbench
+
+Eleven allowlisted fictional operations cover health, install, callback, order ETA, fulfilment, carrier tracking, admin retry, consignment creation and three GraphQL examples. The transport is in-process only. Shared scheduling, shipment, status, security and metafield helpers produce actual local results. Method, authentication, malformed JSON, business validation, upstream failure, GraphQL errors and userErrors are distinguished; mock write outputs do not persist or send messages. GET installation/callback are separate educational fixtures, not a shared real OAuth session. GraphQL documents are fixed illustrative examples and validation covers a subset of variables, not the complete provider schema. Request copy exports local JSON, not executable cURL. GSAP animates results and trace cards; reduced motion preserves all controls. Phase 4 passed both jobs in run 45949490767; Phase 5 source/build passed in run 45949948535, browser QA still running at start. Exact-head tests and preview remain pending.
