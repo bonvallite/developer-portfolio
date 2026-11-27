@@ -90,3 +90,5 @@ Phase 5 candidate: SecurityLab animates only selected completed local security t
 Phase 6 candidate: ApiPlayground uses scoped useGSAP and matchMedia for short result and trace transitions after explicit local execution. Animation neither executes requests nor writes state. Stale asynchronous responses are ignored after controls change.
 
 Phase 7 candidate: FreightJourney uses scoped useGSAP, matchMedia and explicit playback/manual selection. The computed event trace selects the final schematic truck position; GSAP animates relative displacement, carton appearance and scan feedback only. Reduced motion retains static positions and all manual stages; no live vehicle telemetry or operations occur.
+
+Phase 8 candidate: NotificationStudio uses scoped useGSAP and matchMedia for message and data-path transitions. Fixed LiquidJS rendering reads the local snapshot independently of motion; no send or real schedule. FreightJourney event callback annotations correct the Phase 7 TypeScript failure. Revalidation pending.

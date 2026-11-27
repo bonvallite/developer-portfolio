@@ -1,0 +1,27 @@
+
+/* Scoped JRV notification workbench; text is rendered by React, not injected
+ * as HTML. Existing colour tokens and reduced-motion-safe controls. */
+.jrv-notice{background:var(--jrv-bg);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:14px;padding:clamp(12px,2vw,24px);min-width:0}
+.jrv-notice-note,.jrv-notice p{font-size:.85rem;line-height:1.6;color:var(--jrv-muted)}
+.jrv-notice-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr));gap:10px;margin:16px 0}
+.jrv-notice label{display:grid;gap:6px;min-width:0;color:var(--jrv-muted);font-size:.8rem}
+.jrv-notice .jrv-notice-check{display:flex;align-items:center;min-height:44px}
+.jrv-notice :is(select,input[type=date],button){background:var(--jrv-surface);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:6px;min-height:44px;min-width:0;padding:9px;font-size:.8rem;color-scheme:dark}
+.jrv-notice input[type=range]{width:100%;accent-color:var(--jrv-teal)}
+.jrv-notice button{cursor:pointer}
+.jrv-notice :is(button,input,select,summary):focus-visible{outline:2px solid var(--jrv-focus);outline-offset:2px}
+.jrv-notice-stages{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.jrv-notice-stages button[aria-pressed=true]{border-color:var(--jrv-teal);box-shadow:inset 3px 0 var(--jrv-teal)}
+.jrv-notice-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;color:var(--jrv-teal-light);font-size:.75rem;margin:14px 0}
+.jrv-notice-flow i{height:2px;min-width:12px;flex:1;background:var(--jrv-teal)}
+.jrv-notice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.jrv-notice-panel{background:var(--jrv-surface);border:1px solid var(--jrv-border);padding:14px;border-radius:9px;min-width:0}
+.jrv-notice-panel h3{color:var(--jrv-teal);font-size:1.1rem;margin:0 0 10px}
+.jrv-notice summary{cursor:pointer;font-size:.8rem;color:var(--jrv-muted);padding:8px 0}
+.jrv-notice pre{background:var(--jrv-bg);color:var(--jrv-teal-light);border-radius:6px;padding:10px;max-height:280px;overflow:auto;font:.75rem/1.6 monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.jrv-notice-status span,.jrv-notice-status strong{display:block;font-size:.75rem;overflow-wrap:anywhere;margin:4px 0}
+.jrv-notice-message{background:var(--jrv-bg);border:1px solid var(--jrv-border);padding:18px;border-radius:10px;margin:12px 0;overflow-wrap:anywhere}
+.jrv-notice-message small{color:var(--jrv-teal-light);font-size:.7rem;letter-spacing:.05em}
+.jrv-notice-message p{white-space:pre-wrap;color:var(--jrv-fg)}
+.jrv-notice-message.sms{border-radius:16px;max-width:290px;border-color:var(--jrv-teal)}
+@media(max-width:850px){.jrv-notice-grid{grid-template-columns:minmax(0,1fr)}}

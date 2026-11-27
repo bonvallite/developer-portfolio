@@ -13,6 +13,7 @@ import MetafieldExplorer from './MetafieldExplorer';
 import SecurityLab from './SecurityLab';
 import ApiPlayground from './ApiPlayground';
 import FreightJourney from './FreightJourney';
+import NotificationStudio from './NotificationStudio';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
@@ -68,6 +69,7 @@ export default function CommerceIntegrationEngineering() {
           <a href="#security-lab">Security</a>
           <a href="#api-playground">API playground</a>
           <a href="#freight-journey">Cold-chain freight</a>
+          <a href="#notification-studio">Liquid notifications</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -154,6 +156,11 @@ export default function CommerceIntegrationEngineering() {
         <section id="freight-journey" className="cie-section cie-shell">
           <div className="cie-section-header"><p className="cie-kicker">OPERATIONS / COLD-CHAIN FREIGHT</p><h2>From packing bench.<br/><em>To the customer's door.</em></h2><p>Calculate illustrative cartons, inspect the warehouse handoff and animate the carrier milestones that feed back into Shopify.</p></div>
           <FreightJourney />
+        </section>
+        {/* Fixed local LiquidJS templates; no merchant templates, real messages or scheduling. */}
+        <section id="notification-studio" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">COMMUNICATIONS / LIQUID ENGINEERING</p><h2>Stored data.<br/><em>A customer-facing message.</em></h2><p>Render fictional order notices from typed metafields, conditional delivery windows, holiday impacts and later tracking milestones.</p></div>
+          <NotificationStudio />
         </section>
         <section id="architecture" className="cie-section cie-shell">
           <div className="cie-section-header">

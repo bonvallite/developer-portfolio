@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Dynamic Liquid notification studio and freight type correction (PR #107 draft)
+
+- **Files:** NotificationStudio.tsx, notification-studio.css, lib/logistics-notification-demo.mjs, FreightJourney.tsx, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** render fixed Liquid templates from typed stored data, model early ETA and later milestones, channel fallback and failure gates; correct three implicit-any callback errors in FreightJourney reported by CI. No merchant template, real recipient, provider send or production changes. Existing portfolio and palette retained.
+- **Validation:** Phase 7 run 45950692426 failed TypeScript; browser job skipped. Phase 6 source/build passed in 45950402425 with browser checks running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
 ## 2026-11-27 - Animated physical cold-chain freight journey (PR #107 draft)
 
 - **Files:** FreightJourney.tsx, freight-journey.css, lib/logistics-freight-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.

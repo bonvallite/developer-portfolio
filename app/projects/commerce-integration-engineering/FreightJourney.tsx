@@ -1,7 +1,8 @@
 
 'use client';
 /** Schematic freight movement follows the selected computed trace. GSAP
- * animates visual positions only; manual navigation works without motion. */
+ * animates visual positions only; manual navigation works without motion.
+ * 27 Nov: explicitly type trace event callbacks at the JS/TS boundary. */
 import {useEffect,useRef,useState} from 'react';
 import gsap from 'gsap';
 import {useGSAP} from '@gsap/react';
@@ -26,7 +27,7 @@ export default function FreightJourney(){
   mm.add('(prefers-reduced-motion: no-preference)',()=>{
    if(moving)gsap.fromTo('[data-freight-truck]',{x:prevX-x},{x:0,duration:.85,ease:'power2.inOut',clearProps:'transform'});
    if(step.id==='packing')gsap.fromTo('[data-freight-carton]',{y:12,opacity:.45},{y:0,opacity:1,stagger:.055,duration:.35,clearProps:'transform,opacity'});
-   if(step.events.some(e=>e.title.startsWith('Carrier scan:')))gsap.fromTo('[data-freight-scan]',{scale:.65,opacity:.2},{scale:1,opacity:1,duration:.4,transformOrigin:'center',clearProps:'transform,opacity'});
+   if(step.events.some((e:{title:string})=>e.title.startsWith('Carrier scan:')))gsap.fromTo('[data-freight-scan]',{scale:.65,opacity:.2},{scale:1,opacity:1,duration:.4,transformOrigin:'center',clearProps:'transform,opacity'});
   });
   return()=>mm.revert();
  },{scope,dependencies:[current,profile,weight,method,fault,replay],revertOnUpdate:true});
@@ -56,14 +57,14 @@ export default function FreightJourney(){
     {moving&&<g transform={'translate('+x+' 0)'}><g data-freight-truck className="jrv-freight-truck">
      <rect x="-55" y="153" width="75" height="49" rx="4"/><path className="cab" d="M20 163H42L60 182V202H20Z"/><path className="window" d="M30 168H41L49 181H30Z"/><circle className="wheel" cx="-35" cy="204" r="10"/><circle className="wheel" cx="43" cy="204" r="10"/><text x="-17" y="175">CHILLED</text><text x="-17" y="190">{journey.cartons.length} CTN</text>
     </g></g>}
-    {step.events.some(e=>e.title.startsWith('Carrier scan:'))&&<g transform={'translate('+x+' 0)'}><g data-freight-scan className="jrv-freight-scan"><circle cx="0" cy="120" r="19"/><path d="M-8 120L-2 126L9 114"/><text x="0" y="94">SCAN RECORDED</text></g></g>}
+    {step.events.some((e:{title:string})=>e.title.startsWith('Carrier scan:'))&&<g transform={'translate('+x+' 0)'}><g data-freight-scan className="jrv-freight-scan"><circle cx="0" cy="120" r="19"/><path d="M-8 120L-2 126L9 114"/><text x="0" y="94">SCAN RECORDED</text></g></g>}
     <text className="jrv-freight-legend" x="20" y="286">EMBER / PHYSICAL FREIGHT · TEAL / DIGITAL EVENT</text>
    </svg>
   </div>
   <div className="jrv-freight-actions"><button type="button" onClick={reset}>Reset journey</button><button type="button" disabled={current===0} onClick={()=>{setPlaying(false);setIndex(current-1);}}>Previous freight step</button><button type="button" className="jrv-freight-play" onClick={()=>{if(playing){setPlaying(false);return;}if(current===last)setIndex(0);setPlaying(true);}}>{playing?'Pause journey':'Play journey'}</button><button type="button" disabled={current===last} onClick={()=>{setPlaying(false);setIndex(current+1);}}>Next freight step</button><button type="button" onClick={()=>{setPlaying(false);setReplay(n=>n+1);}}>Replay motion</button></div>
   <div className="jrv-freight-metrics"><div><span>Allocated cartons</span><strong data-freight-count>{showCartons?journey.cartons.length:'Pending'}</strong></div><div><span>Example warehouse</span><strong>{showCartons?journey.warehouse:'Pending'}</strong></div><div><span>Consignment</span><strong>{showRef?journey.reference:'Not created'}</strong></div><div><span>Computed ETA</span><strong>{journey.eta?journey.eta.windowStart+(journey.eta.isWindow?' – '+journey.eta.windowEnd:''):'Unavailable'}</strong></div></div>
   <div className="jrv-freight-steps" aria-label="Freight journey stages">{journey.steps.map((s,i)=><button type="button" key={s.id} aria-pressed={current===i} onClick={()=>{setPlaying(false);setIndex(i);}}><small>{String(i+1).padStart(2,'0')} · {s.status}</small>{s.title}</button>)}</div>
-  <div className="jrv-freight-inspector"><p className="jrv-freight-note" role="status">STEP {current+1} / {journey.steps.length} · {step.status.toUpperCase()}</p><h3>{step.title}</h3><p>{step.detail}</p>{showCartons&&<p>Illustrative carton weights: {journey.cartons.map(c=>c.kg+' kg').join(' + ')} = {weight} kg.</p>}<details open><summary>Associated digital events ({step.events.length})</summary><pre>{step.events.length?JSON.stringify(step.events.map(e=>({operation:e.operation,input:e.input,output:e.output,status:e.status})),null,2):'No external carrier event.'}</pre></details></div>
+  <div className="jrv-freight-inspector"><p className="jrv-freight-note" role="status">STEP {current+1} / {journey.steps.length} · {step.status.toUpperCase()}</p><h3>{step.title}</h3><p>{step.detail}</p>{showCartons&&<p>Illustrative carton weights: {journey.cartons.map(c=>c.kg+' kg').join(' + ')} = {weight} kg.</p>}<details open><summary>Associated digital events ({step.events.length})</summary><pre>{step.events.length?JSON.stringify(step.events.map((e:{operation:string;input:unknown;output:unknown;status:string})=>({operation:e.operation,input:e.input,output:e.output,status:e.status})),null,2):'No external carrier event.'}</pre></details></div>
   <p className="jrv-freight-note">Physical milestones are separate from digital updates. All locations, tracking references and vehicle movements are schematic; no actual consignment, proof of delivery or message is generated.</p>
  </div>;
 }

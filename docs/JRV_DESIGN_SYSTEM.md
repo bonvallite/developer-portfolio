@@ -130,3 +130,5 @@ Phase 5 candidate adds an optional-motion trust-boundary graph, labelled securit
 Phase 6 candidate adds a responsive API workbench with labelled controls, request/response panels, trace cards and existing Ember execution control. Existing colour tokens are unchanged; dedicated desktop and mobile QA pending.
 
 Phase 7 candidate adds a responsive schematic freight scene, dynamic carton icons, journey controls, metrics and digital event inspector. Teal marks data and Ember physical motion; existing tokens remain unchanged. Browser verification pending.
+
+Phase 8 candidate adds a responsive fixed-template inspector and customer email/SMS text preview with existing JRV tokens, explicit readiness labels and reduced-motion support. No palette changes. Exact-head browser verification pending.
