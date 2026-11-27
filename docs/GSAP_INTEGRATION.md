@@ -74,3 +74,7 @@ The dependencies will be downloaded from npm during GitHub CI/Vercel preview bui
 ## Possible later work
 
 After reviewing the four diagrams and foundation, separate PRs may explore richer SVG route tracing or Flip motion for fictional B2B UI transitions. Do not add animation across all products indiscriminately: prioritise relationships a static diagram cannot explain as clearly. The interactive case studies remain illustrative, not live system traces.
+
+## 27 November 2026 — lifecycle studio candidate
+
+Adds scoped MotionPathPlugin packet travel on the existing systems engineering route. React owns trace navigation; motion follows the selected edge and reverts on changes. No scroll pinning or new dependency. See [Lifecycle studio](LOGISTICS_LIFECYCLE_STUDIO.md) for scope and pending verification.

@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Closed-loop logistics studio (draft)
+
+- **Files:** existing engineering route, new LifecycleStudio and scoped CSS, lib/logistics-lifecycle-demo.mjs, tests/logistics-lifecycle.test.mjs, docs/LOGISTICS_LIFECYCLE_STUDIO.md, maintained GSAP/design guides and README.
+- **Why:** replace purely illustrative playback with a local computed event trace, SVG packet motion, editable scenarios and request/response inspector. Preserve all older labs and routes; no production systems or secrets involved.
+- **Validation:** regression tests added; exact-head CI and preview review pending at this commit. No production merge or deployment.
+
+
 ## 2026-11-26 - Publish GSAP animation foundation and interactive engineering diagrams (PR #106, JRV v1.15)
 
 - **Approval and commit:** PR #106 merged into `main` as `7ec6d0c3bc74142b091859b96675b162bcfc1933` after owner approval of exact source `1c91d931cefe2672db5eb54fc2461a2a19e8f4a5`. Source/build/SEO and all responsive browser suites passed in [GitHub Actions 45782301947](https://github.com/bonvallite/developer-portfolio/actions/runs/45782301947). Exact-head preview `dpl_4VysrqHHS8Bi4G4h45Gi9WVTQguF` READY; production `dpl_3vENrX4TXaUPDbVqMj9K3sXWGsnk` READY and assigned to both `www.jrvallite.com` and `jrvallite.com`.

@@ -114,3 +114,7 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 ## 24 November 2026: storefront engineering case study (draft)
 
 The new `/projects/storefront-engineering` case study reuses the established JRV palette and existing site-wide layout; it introduces no new colour tokens, font or favicon changes. The route uses local state to demonstrate a fictional homepage, accessible menu control, product portion selector and a deliberately non-authoritative delivery input. Its styles are isolated in `app/projects/storefront-engineering/storefront-engineering.css`. Review at 320px, 390px, 768px and 1366px before publication. Source and ownership boundaries are documented in `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`. Status: draft, not published.
+
+## 27 November 2026 — lifecycle studio candidate (no palette change)
+
+The new scoped studio uses the existing JRV v1.15 tokens, responsive graph/inspector layout, visible focus and manual controls. Motion is optional. See [Lifecycle studio](LOGISTICS_LIFECYCLE_STUDIO.md). This is an unmerged candidate, not a published design-system release.

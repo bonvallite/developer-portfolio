@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { ArchitectureLab, CalculationLab, EventLab, OAuthLab } from './SystemsLab';
 import CodeExplorer from './CodeExplorer';
+import LifecycleStudio from './LifecycleStudio';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
@@ -54,6 +55,7 @@ export default function CommerceIntegrationEngineering() {
           <span className="cie-brand-caption">COMMERCE SYSTEMS ENGINEERING</span>
         </Link>
         <nav aria-label="Case study navigation">
+          <a href="#lifecycle-studio">Lifecycle studio</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -103,6 +105,12 @@ export default function CommerceIntegrationEngineering() {
             <span><b>04</b> REST + GRAPHQL</span>
             <span><b>05</b> EVENT PROCESSING</span>
           </div>
+        </section>
+        {/* 27 Nov 2026: local event-driven studio extends, rather than replaces,
+            the existing public architecture, calculations and communication labs. */}
+        <section id="lifecycle-studio" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">NEW / CLOSED-LOOP SYSTEMS LAB</p><h2>One order.<br/><em>Every system boundary.</em></h2><p>Run an independently reconstructed delivery lifecycle. Inspect inputs, calculated dates, carton allocation, failures, carrier scans and native notification previews. All operations remain in your browser.</p></div>
+          <LifecycleStudio />
         </section>
         <section id="architecture" className="cie-section cie-shell">
           <div className="cie-section-header">

@@ -1,0 +1,39 @@
+
+/* Scoped to the lifecycle studio; uses the published JRV v1.15 tokens.
+ * The static graph and explicit controls remain usable without GSAP motion. */
+.jrv-lifecycle{border:1px solid var(--jrv-border);background:var(--jrv-bg);color:var(--jrv-fg);padding:clamp(12px,2vw,24px);border-radius:16px;min-width:0}
+.jrv-life-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;color:var(--jrv-teal);font-size:.75rem;letter-spacing:.08em;margin-bottom:16px}
+.jrv-life-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px}
+.jrv-life-controls label{display:grid;gap:5px;color:var(--jrv-muted);font-size:.8rem;min-width:0}
+.jrv-life-controls input:not([type=checkbox]),.jrv-life-controls select{background:var(--jrv-surface);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:6px;padding:8px;min-height:44px;width:100%;min-width:0;color-scheme:dark}
+.jrv-life-controls .jrv-life-check{display:flex;align-items:center;min-height:44px;gap:8px}
+.jrv-life-workspace{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;margin:22px 0}
+.jrv-life-svg{width:100%;height:auto;display:block;background:var(--jrv-surface);border-radius:10px}
+.jrv-life-edge{stroke:var(--jrv-muted);color:var(--jrv-muted);stroke-width:1.5;fill:none;opacity:.5;stroke-dasharray:5 4}
+.jrv-life-edge.active{stroke:var(--jrv-teal);color:var(--jrv-teal);stroke-width:3;opacity:1;stroke-dasharray:none}
+.jrv-life-node rect{fill:var(--jrv-bg);stroke:var(--jrv-border);stroke-width:1.5}
+.jrv-life-node.active rect{stroke:var(--jrv-teal);stroke-width:2}
+.jrv-life-node.worker rect{stroke:var(--jrv-ember)}
+.jrv-life-node text{fill:var(--jrv-fg);font-size:13px;text-anchor:middle;font-weight:600}
+.jrv-life-node text.sub{font-size:10px;fill:var(--jrv-muted);font-weight:400}
+.jrv-life-node .worker-module{fill:var(--jrv-surface);stroke-width:1}
+.jrv-life-packet{fill:var(--jrv-teal-light);opacity:0}
+.jrv-life-caption,.jrv-life-kicker{color:var(--jrv-muted);font-size:.75rem;margin:8px 0}
+.jrv-life-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.jrv-lifecycle button{border:1px solid var(--jrv-border);border-radius:6px;background:var(--jrv-surface);color:var(--jrv-fg);padding:8px 12px;min-height:44px;cursor:pointer}
+.jrv-lifecycle button:disabled{opacity:.45;cursor:default}
+.jrv-lifecycle button:focus-visible,.jrv-lifecycle select:focus-visible,.jrv-lifecycle input:focus-visible,.jrv-lifecycle summary:focus-visible{outline:2px solid var(--jrv-focus);outline-offset:2px}
+.jrv-lifecycle progress{width:100%;accent-color:var(--jrv-teal)}
+.jrv-life-inspector,.jrv-life-results article{background:var(--jrv-surface);border:1px solid var(--jrv-border);border-radius:10px;padding:14px;min-width:0}
+.jrv-life-inspector h3,.jrv-life-results h3{font-size:1rem;color:var(--jrv-teal);margin:4px 0 8px}
+.jrv-life-inspector p,.jrv-life-results p{font-size:.85rem;overflow-wrap:anywhere}
+.jrv-life-inspector summary{cursor:pointer;color:var(--jrv-muted);padding:10px 0;font-size:.8rem}
+.jrv-life-inspector pre{background:var(--jrv-bg);border-radius:6px;padding:10px;font-size:.72rem;max-height:200px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--jrv-teal-light)}
+.jrv-life-trace{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:6px;max-height:320px;overflow:auto}
+.jrv-life-trace button{text-align:left;display:grid;grid-template-columns:25px 1fr;gap:5px;font-size:.78rem;align-content:start}
+.jrv-life-trace button span,.jrv-life-trace button small{color:var(--jrv-muted);font-size:.7rem}
+.jrv-life-trace button small{grid-column:2}
+.jrv-life-trace button[aria-pressed=true]{border-color:var(--jrv-teal);box-shadow:inset 3px 0 var(--jrv-teal)}
+.jrv-life-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px;margin-top:16px}
+@media(max-width:850px){.jrv-life-workspace{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.jrv-life-packet,.jrv-life-play{display:none}}

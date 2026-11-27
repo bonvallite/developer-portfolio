@@ -1,5 +1,10 @@
 # Shopify Commerce Engineering | Developer Portfolio
 
+## 27 November 2026 — closed-loop logistics studio (draft)
+
+An additive local simulation and GSAP network visualisation on the existing engineering flagship. See [technical scope and validation](docs/LOGISTICS_LIFECYCLE_STUDIO.md). No production credentials, customer data, API calls or sends. Existing projects are retained; candidate verification is pending.
+
+
 ## 26 November 2026: GSAP motion for engineering diagrams (published PR #106)
 
 The GSAP feature branch now animates four system explanations where motion improves comprehension: a scroll-triggered and replayable shipping-rate responsibilities diagram; Play/Pause event journeys in Shopify App Engineering; a **failure-aware** CartonCloud event trace that stops at invalid signatures or failed writes; and manually selected Spend & Save responsibility layers. Each keeps its textual explanations, functional stage buttons and fictional data even with reduced motion. GSAP is scoped and cleaned up, optional playback never sends events or notifications, and only the shipping route imports ScrollTrigger. Approved PR #106 is published as `7ec6d0c`. GitHub Actions `45782301947` passed source/build/SEO and full browser QA at the exact reviewed source `1c91d93`. Vercel production `dpl_3vENrX4TXaUPDbVqMj9K3sXWGsnk` is READY on both JRV domains. These examples remain fictional and do not send live events.
