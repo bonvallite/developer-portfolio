@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Executable OAuth and security laboratory (PR #107 draft)
+
+- **Files:** SecurityLab.tsx, security-lab.css, lib/logistics-security-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** show real local HMAC verification and tampering, simulated OAuth state/cookie/TTL/replay and permission gates, offline grant and Basic/Bearer checks with explicit failure boundaries. No actual provider authentication or production credentials. Existing palette and projects retained.
+- **Validation:** Phase 3 passed both jobs in run 45949064306; Phase 4 source/build passed in run 45949490767 with browser checks still running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
 ## 2026-11-27 - Documented 29-key metafield explorer (PR #107 draft)
 
 - **Files:** MetafieldExplorer.tsx, metafield-explorer.css, lib/logistics-metafield-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.

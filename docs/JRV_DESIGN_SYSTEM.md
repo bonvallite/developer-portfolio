@@ -124,3 +124,5 @@ Phase 2 candidate adds a sticky desktop graph with native scrolling, a responsiv
 Phase 3 candidate adds a responsive Worker function selector, editable JSON and execution output, visible focus and Ember Run control using existing tokens. No colour changes. Dedicated browser tests pending.
 
 Phase 4 candidate adds searchable 29-key order data explorer, six lifecycle choices, previous/attempted/stored comparisons and a responsive inspector using the existing JRV tokens. No palette changes; exact-head browser verification pending.
+
+Phase 5 candidate adds an optional-motion trust-boundary graph, labelled security controls and execution inspector using existing JRV tokens. Text distinguishes acceptance from rejection; no palette changes. Dedicated browser verification pending.

@@ -10,6 +10,7 @@ import LifecycleStudio from './LifecycleStudio';
 import LifecycleTour from './LifecycleTour';
 import WorkerFunctionLab from './WorkerFunctionLab';
 import MetafieldExplorer from './MetafieldExplorer';
+import SecurityLab from './SecurityLab';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
@@ -62,6 +63,7 @@ export default function CommerceIntegrationEngineering() {
           <a href="#lifecycle-studio">Lifecycle studio</a>
           <a href="#worker-functions">Worker functions</a>
           <a href="#metafields">Metafields</a>
+          <a href="#security-lab">Security</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -133,6 +135,11 @@ export default function CommerceIntegrationEngineering() {
         <section id="metafields" className="cie-section cie-shell">
           <div className="cie-section-header"><p className="cie-kicker">SHOPIFY / DATA CONTRACT</p><h2>Twenty-nine keys.<br/><em>One order record.</em></h2><p>Inspect how calculated delivery values and later carrier milestones become typed order metafields, with explicit previous, attempted and stored values.</p></div>
           <MetafieldExplorer />
+        </section>
+        {/* Actual local Web Crypto; all provider authentication exchanges remain mocked. */}
+        <section id="security-lab" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">SECURITY / TRUST BOUNDARIES</p><h2>Verify first.<br/><em>Execute only when authorised.</em></h2><p>Test HMAC verification, app installation state, expiry, carrier authentication and administrative authorisation using public teaching fixtures.</p></div>
+          <SecurityLab />
         </section>
         <section id="architecture" className="cie-section cie-shell">
           <div className="cie-section-header">

@@ -14,7 +14,7 @@ Shopify order and fulfilment webhooks enter a Worker; the Worker uses custom app
 - Local delivery bypass reflects intended business separation, not verified production gatekeeper behaviour. The older public model has illustrative zone fixtures and carrier status aliases; no production parity is asserted. Only a subset of fields is emitted by this first increment.
 
 ## Verification and follow-up
-Run npm test, npm run check:safety, npx tsc --noEmit, npm run build, then review the exact-head Vercel preview on desktop/mobile and reduced motion. Pending: deeper OAuth visualisation, editable payloads, repeat/out-of-order callback handling and retry, actual production source reconciliation in a restricted environment. Do not merge without checks and owner review.
+Run npm test, npm run check:safety, npx tsc --noEmit, npm run build, then review the exact-head Vercel preview on desktop/mobile and reduced motion. Pending: editable payloads, repeat/out-of-order callback handling and retry, actual production source reconciliation in a restricted environment. Do not merge without checks and owner review.
 
 ## Phase 2 — 14-chapter tour
 
@@ -27,3 +27,7 @@ Eleven independently authored examples execute on explicit Run with editable JSO
 ## Phase 4 — documented metafield explorer
 
 The independent snapshot model covers the supplied 22 ETA and seven tracking keys; six type examples are corroborated by the earlier public communication model, and all other types are marked illustrative. The actual merchant definitions and conditional writes are not independently verified. Delivery dates come from the shared schedule engine; no tariff is available, so delivery_fee stays unset. Tracking timestamps and identifiers are fictional. Previous, attempted and stored values are separated, and a rejected selected carrier write retains the prior assumed-success milestone. ETA and tracking acceptance are independent. GraphQL variables use string values, placeholder owner IDs and omit unset fields; they are not sent. The Liquid access expression and customer view are illustrative, not verified store templates. Five regression groups and dedicated browser QA are added; Phase 3 source/build passed in run 45949064306, browser checks were still running at the start. Exact-head verification pending.
+
+## Phase 5 — executable security laboratory
+
+The standalone security model executes real Web Crypto HMAC-SHA256 signing and verification with a deliberately public fixture key, including a byte-level tamper test. The 16 choices across four flows model accepted/rejected webhooks, OAuth callback HMAC, state and cookie matching, virtual 600-second expiry, replay before code exchange, example scope verification, masked offline grant, Basic and Bearer header comparison. OAuth/KV are in-memory examples: no actual install, cookie, token exchange, distributed storage, production scopes, persistent replay protection or network request occurs. The earlier lifecycle authentication remains a simulated flag. GSAP animates completed selected steps only. Four test groups and dedicated desktop/mobile browser QA are added. Phase 3 passed both jobs in run 45949064306; Phase 4 source/build passed in run 45949490767 with browser QA still running when work began. Exact-head verification pending.

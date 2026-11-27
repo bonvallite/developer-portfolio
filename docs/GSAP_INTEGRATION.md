@@ -84,3 +84,5 @@ Phase 2 candidate: the read-only architecture tour uses scoped ScrollTrigger cha
 Phase 3 candidate: WorkerFunctionLab uses scoped useGSAP and matchMedia to highlight the validated local execution result and connection lines after explicit Run. It never executes a function from animation or scroll. Reduced motion and normal JSON inspection remain available.
 
 Phase 4 candidate: MetafieldExplorer uses scoped useGSAP and matchMedia for a short detail-panel transition after field or scenario selection. The snapshot model owns all simulated write outcomes; animation cannot perform a mutation. Reduced motion preserves all field and stage controls.
+
+Phase 5 candidate: SecurityLab animates only selected completed local security trace steps with scoped useGSAP, MotionPathPlugin and matchMedia. Cryptographic execution is initiated explicitly and independent of GSAP; stale asynchronous results are ignored after scenario changes. Reduced motion retains all inputs, trace controls and results.
