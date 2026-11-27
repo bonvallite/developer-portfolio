@@ -108,6 +108,8 @@ jobs:
       # focus restoration, 320px contact access, and tablet/desktop parity.
       - name: Mobile privacy and contact accessibility browser QA
         run: node tests/mobile-privacy-accessibility-browser-qa.mjs
+      - name: Mobile consent first-paint and returning-visitor layout stability
+        run: node tests/consent-first-paint-browser-qa.mjs
       # The Spend & Save case study connects shopper, merchant, post-checkout
       # Flow commit and notification states through a safe architecture map.
       - name: Spend and Save visual case-study and Flow browser QA

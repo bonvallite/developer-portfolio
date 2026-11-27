@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Mobile first-paint stability candidate (PR #107 draft)
+
+- **Files:** ConsentManager.tsx, consent-manager.css, root layout comment, consent-first-paint and performance browser tests, CI, README and design/logistics guides.
+- **Why:** exact-head 3d66e3a passed full CI (45951631001) and Vercel preview was READY, but all six mobile synthetic routes reported 0.3028 layout shift. The shared in-flow privacy notice inserted after hydration is a likely cause. Server-render initial notice and use a constant localStorage visibility bootstrap before content; retain existing analytics consent and contact layout. No new cookies, external requests or palette changes.
+- **Validation:** prior candidate HTTP 200 and full suite passed. New browser tests exercise pre-hydration first/stored views, normal first/returning visits, local shift target <=0.1 and no optional requests. Attribution and exact-head results pending. No production merge.
+
+
 ## 2026-11-27 - Integrated logistics QA and navigation hardening (PR #107 draft)
 
 - **Files:** recovery engine and RecoveryLab.tsx, engineering case-study page/CSS, whole-page and performance browser tests, CI, README and maintained guides.

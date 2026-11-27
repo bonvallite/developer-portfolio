@@ -47,7 +47,7 @@ try {
       try {
         await context.addInitScript(() => {
           // Observe after navigation starts, not after page JS has already loaded.
-          window.__jrvLab = { lcpMs: null, cls: 0 };
+          window.__jrvLab = { lcpMs: null, cls: 0, shifts: [] };
           try {
             new PerformanceObserver(list => {
               for (const entry of list.getEntries()) {
@@ -58,7 +58,14 @@ try {
           try {
             new PerformanceObserver(list => {
               for (const entry of list.getEntries()) {
-                if (!entry.hadRecentInput) window.__jrvLab.cls += entry.value;
+                if (!entry.hadRecentInput) {
+                  window.__jrvLab.cls += entry.value;
+                  // Tag names and geometric displacement only; no text, IDs,
+                  // visitor input, URLs or identifiers are captured.
+                  window.__jrvLab.shifts.push({value: entry.value, atMs: entry.startTime,
+                    sources: (entry.sources || []).map(s=>({tag:s.node?.nodeName||null,
+                      deltaY:s.currentRect.y-s.previousRect.y}))});
+                }
               }
             }).observe({ type: 'layout-shift', buffered: true });
           } catch { /* An absent observer is reported as unavailable below. */ }
@@ -96,6 +103,7 @@ try {
             fcpMs: fcp ? round(fcp.startTime) : null,
             observedLcpMs: typeof observer.lcpMs === 'number' ? round(observer.lcpMs) : null,
             observedCls: typeof observer.cls === 'number' ? Math.round(observer.cls * 10000) / 10000 : null,
+            layoutShiftSources: observer.shifts || [],
             sameOriginEncodedBytes,
             hasH1: !!document.querySelector('h1'),
             horizontalOverflow: document.documentElement.scrollWidth > window.innerWidth + 3,

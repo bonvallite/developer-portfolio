@@ -17,9 +17,16 @@ import { reportPortfolioClick } from './portfolio-intent-events';
 // rather than overlaying contact actions. Only explicit user reopening moves
 // keyboard focus to the panel heading. Escape may dismiss an unresolved panel
 // without accepting analytics; settings remains available to reopen it.
+// Initial notice markup is rendered before hydration to reserve its actual
+// mobile height. A fixed, local-only script hides this initial notice before
+// paint if a stored decision exists. The script controls visibility only;
+// the existing effect remains the sole initial consent-state authority.
 // Reversing an accepted choice reloads because already-loaded vendor scripts
 // cannot be reliably unloaded in a running document.
 const storageKey = 'jrv-optional-analytics-consent-v1';
+// This literal reads the existing localStorage key only; it neither sets a
+// preference nor activates analytics. No user input is interpolated.
+const initialVisibilityScript = "try{var v=localStorage.getItem('jrv-optional-analytics-consent-v1');if(v==='accepted'||v==='rejected'){document.currentScript.parentElement.setAttribute('data-jrv-resolved','true')}}catch(e){}";
 type Choice = 'loading' | 'unresolved' | 'accepted' | 'rejected';
 type ClarityQueue = ((...args: unknown[]) => void) & { q?: unknown[][] };
 type TrackingWindow = Window & {
@@ -57,7 +64,7 @@ function enableExternalAnalytics() {
 
 export default function ConsentManager() {
   const [choice, setChoice] = useState<Choice>('loading');
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const settingsRef = useRef<HTMLButtonElement>(null);
   const focusOnReopen = useRef(false);
@@ -128,11 +135,12 @@ export default function ConsentManager() {
     setOpen(false);
   }
 
-  if (choice === 'loading') return null;
-
-  return <>
+  return <div className="jrv-consent-bootstrap" suppressHydrationWarning>
+    {/* The parser executes this constant before the initial panel and main
+        content. Only this wrapper's pre-hydration attribute may differ. */}
+    <script dangerouslySetInnerHTML={{ __html: initialVisibilityScript }} />
     {choice === 'accepted' && <Analytics />}
-    {open && <section id="jrv-consent-panel" className="jrv-consent" aria-labelledby="jrv-consent-title" aria-describedby="jrv-consent-description" onKeyDown={event => {
+    {open && <section id="jrv-consent-panel" className="jrv-consent" data-consent-loading={choice === "loading" ? "true" : undefined} aria-labelledby="jrv-consent-title" aria-describedby="jrv-consent-description" onKeyDown={event => {
       if (event.key === 'Escape') {
         event.stopPropagation();
         dismissWithoutConsent();
@@ -140,10 +148,10 @@ export default function ConsentManager() {
     }}>
       <div><h2 ref={headingRef} id="jrv-consent-title" tabIndex={-1}>Your privacy. Your choice.</h2><p id="jrv-consent-description">Optional analytics are off until you agree. Allowing them loads Google Tag Manager, Microsoft Clarity and Vercel Analytics, which may count enquiry-email, résumé and project clicks, not sent enquiries. The site works without analytics. <a href="/privacy">Read the privacy notice</a>.</p></div>
       <div className="jrv-consent-actions">
-        <button type="button" onClick={() => choose('rejected')}>Reject optional</button>
-        <button type="button" className="jrv-consent-accept" onClick={() => choose('accepted')}>Allow analytics</button>
+        <button type="button" disabled={choice === "loading"} onClick={() => choose('rejected')}>Reject optional</button>
+        <button type="button" className="jrv-consent-accept" disabled={choice === "loading"} onClick={() => choose('accepted')}>Allow analytics</button>
       </div>
     </section>}
-    <button ref={settingsRef} type="button" className="jrv-consent-settings" onClick={togglePreferences} aria-label="Change analytics privacy choices" aria-controls="jrv-consent-panel" aria-expanded={open}>Privacy choices</button>
-  </>;
+    <button ref={settingsRef} type="button" className="jrv-consent-settings" disabled={choice === "loading"} onClick={togglePreferences} aria-label="Change analytics privacy choices" aria-controls="jrv-consent-panel" aria-expanded={open}>Privacy choices</button>
+  </div>;
 }

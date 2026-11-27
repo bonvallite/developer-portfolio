@@ -24,3 +24,10 @@
    mobile pill until the notice closes; never change analytics consent itself. */
 @media(max-width:800px){.jrv-consent-settings[aria-expanded="true"]{display:none}}
 @media(prefers-reduced-motion:reduce){.jrv-consent,.jrv-consent-settings{transition:none}}
+
+/* The server-rendered notice reserves its natural height from the first
+   paint. The bootstrap wrapper has no box; an already-resolved stored
+   preference hides only the loading panel, never a manually reopened one.
+   If script/storage is blocked the notice remains visible and no opt-in occurs. */
+.jrv-consent-bootstrap{display:contents}
+.jrv-consent-bootstrap[data-jrv-resolved="true"] .jrv-consent[data-consent-loading="true"]{display:none}

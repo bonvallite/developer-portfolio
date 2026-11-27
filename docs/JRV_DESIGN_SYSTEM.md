@@ -136,3 +136,5 @@ Phase 8 candidate adds a responsive fixed-template inspector and customer email/
 Phase 9 candidate adds an incident inbox, metrics, checkpoint inspector, audit trail and explicit recovery controls using existing JRV tokens. State is communicated with text, not colour alone. No palette changes; exact-head browser QA pending.
 
 Phase 10 candidate: all-viewport chapter index, compact wrapping header and direct hero CTAs. Existing tokens and earlier lab sections retained; 320/390/768/1366px keyboard/navigation checks added. No palette changes. Exact-head verification pending.
+
+27 November 2026 follow-up candidate: prior 3d66e3a passed full CI 45951631001. All six sampled mobile routes reported 0.3028 local layout shift. The first-paint candidate preserves the approved in-flow privacy layout, renders the initial notice server-side, and hides it before hydration only for a stored decision. Existing storage key, analytics opt-in, focus behaviour, tokens and contact accessibility are retained. Pre-hydration and normal first/returning-visitor regression tests added; revalidation pending.
