@@ -14,4 +14,8 @@ Shopify order and fulfilment webhooks enter a Worker; the Worker uses custom app
 - Local delivery bypass reflects intended business separation, not verified production gatekeeper behaviour. The older public model has illustrative zone fixtures and carrier status aliases; no production parity is asserted. Only a subset of fields is emitted by this first increment.
 
 ## Verification and follow-up
-Run npm test, npm run check:safety, npx tsc --noEmit, npm run build, then review the exact-head Vercel preview on desktop/mobile and reduced motion. Pending: scroll-linked cinematic chapter tour, deeper OAuth visualisation, complete schema inspector, editable payloads, repeat/out-of-order callback handling and retry, actual production source reconciliation in a restricted environment. Do not merge without checks and owner review.
+Run npm test, npm run check:safety, npx tsc --noEmit, npm run build, then review the exact-head Vercel preview on desktop/mobile and reduced motion. Pending: deeper OAuth visualisation, complete schema inspector, editable payloads, repeat/out-of-order callback handling and retry, actual production source reconciliation in a restricted environment. Do not merge without checks and owner review.
+
+## Phase 2 — 14-chapter tour
+
+The first increment passed both jobs of GitHub Actions 45947771464 at d0186e0. This candidate adds a read-only tour derived from the same normal-path event trace; desktop ScrollTrigger observes chapter boundaries without pinning, and manual selection works on all layouts. The studio and tour share one topology with unique SVG markers. Successful app writes illuminate the return leg; failed writes never do. Physical handover and scan steps are distinct mock events. New unit and dedicated Chrome checks are added; exact-head verification remains pending.

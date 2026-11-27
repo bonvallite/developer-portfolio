@@ -59,7 +59,7 @@ The dependencies will be downloaded from npm during GitHub CI/Vercel preview bui
 3. Use `useGSAP()` and scoped selectors; add `contextSafe()` if future user-event handlers create tweens after mounting.
 4. Use `gsap.matchMedia()` for reduced motion. Respect users who change preferences during a session.
 5. Keep animations decorative, lightweight, and local. Do not block native scrolling, keyboard focus, analytics consent choices, or the independent interactive labs.
-6. Only register plugins that are actually used. `ScrollTrigger` is imported only by the shipping architecture route. Review bundle/performance costs before introducing Flip, DrawSVG, MotionPath, SplitText or ScrollSmoother; avoid scroll hijacking or pinning on this portfolio.
+6. Only register plugins that are actually used. `ScrollTrigger` is imported by the shipping architecture route and the draft lifecycle tour. Review bundle/performance costs before introducing Flip, DrawSVG, MotionPath, SplitText or ScrollSmoother; avoid scroll hijacking or pinning on this portfolio.
 7. Keep source comments, `docs/JRV_DESIGN_SYSTEM.md`, and `CHANGELOG.md` aligned whenever the animation behaviour changes.
 
 ## Verification and release gate
@@ -78,3 +78,5 @@ After reviewing the four diagrams and foundation, separate PRs may explore riche
 ## 27 November 2026 — lifecycle studio candidate
 
 Adds scoped MotionPathPlugin packet travel on the existing systems engineering route. React owns trace navigation; motion follows the selected edge and reverts on changes. No scroll pinning or new dependency. See [Lifecycle studio](LOGISTICS_LIFECYCLE_STUDIO.md) for scope and pending verification.
+
+Phase 2 candidate: the read-only architecture tour uses scoped ScrollTrigger chapter observers on desktop and MotionPathPlugin with matchMedia cleanup. CSS sticky positioning preserves native scroll; mobile and reduced-motion retain chapter buttons and static descriptions. Shared SVG markers are instance-specific. Dedicated lifecycle browser QA is included.

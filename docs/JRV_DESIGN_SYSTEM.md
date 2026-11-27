@@ -118,3 +118,5 @@ The new `/projects/storefront-engineering` case study reuses the established JRV
 ## 27 November 2026 — lifecycle studio candidate (no palette change)
 
 The new scoped studio uses the existing JRV v1.15 tokens, responsive graph/inspector layout, visible focus and manual controls. Motion is optional. See [Lifecycle studio](LOGISTICS_LIFECYCLE_STUDIO.md). This is an unmerged candidate, not a published design-system release.
+
+Phase 2 candidate adds a sticky desktop graph with native scrolling, a responsive chapter list, explicit manual controls and shared system topology. No token changes; exact-head verification pending.

@@ -32,3 +32,15 @@ test('notification preview uses email first and never sends',()=>{
  assert.equal(runLifecycle({hasEmail:true,hasPhone:true}).notice.channel,'Email');
 });
 test('invalid input fails safely',()=>{assert.throws(()=>schedule('fnq','2026-02-30T10:00'));assert.throws(()=>runLifecycle({weight:-1}));});
+
+import {buildTour,visualEdges} from '../lib/logistics-tour.mjs';
+test('fourteen populated chapters model the actual read-only trace',()=>{
+ const chapters=buildTour();
+ assert.equal(chapters.length,14);
+ assert.ok(chapters.every(c=>c.events.length>0&&c.events.every(Boolean)));
+ assert.deepEqual(chapters[6].edges,['worker-app','app-shopify','shopify-notice']);
+ assert.ok(chapters[10].edges.includes('carrier-fleet'));
+ assert.ok(chapters[11].edges.includes('fleet-carrier'));
+ assert.ok(chapters[13].edges.includes('app-shopify'));
+ assert.deepEqual(visualEdges({from:'worker',to:'app',status:'failed'}),['worker-app']);
+});

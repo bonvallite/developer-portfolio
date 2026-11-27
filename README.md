@@ -2,7 +2,7 @@
 
 ## 27 November 2026 — closed-loop logistics studio (draft)
 
-An additive local simulation and GSAP network visualisation on the existing engineering flagship. See [technical scope and validation](docs/LOGISTICS_LIFECYCLE_STUDIO.md). No production credentials, customer data, API calls or sends. Existing projects are retained; candidate verification is pending.
+An additive local simulation and GSAP network visualisation on the existing engineering flagship. See [technical scope and validation](docs/LOGISTICS_LIFECYCLE_STUDIO.md). No production credentials, customer data, API calls or sends. Existing projects are retained. Initial candidate d0186e0 passed GitHub Actions 45947771464. Phase 2 adds a 14-chapter scroll-observed tour and dedicated browser QA; its exact-head verification is pending.
 
 
 ## 26 November 2026: GSAP motion for engineering diagrams (published PR #106)

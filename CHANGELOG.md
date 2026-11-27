@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Scroll-driven fourteen-chapter logistics tour (PR #107 draft)
+
+- **Files:** LifecycleTour, LifecycleTopology, LifecycleStudio, lifecycle-tour.css, case-study page, lib/logistics-tour.mjs, lib/logistics-lifecycle-demo.mjs, unit/browser tests and CI, maintained guides and README.
+- **Why:** add scroll-observed architecture and explicit app return, physical handover and scan paths while retaining local simulation. No pinning, new tokens or production API calls.
+- **Validation:** prior phase passed both GitHub Actions jobs in run 45947771464 at d0186e0. New dedicated regression and browser checks added; exact-head candidate validation pending. No production merge.
+
+
 ## 2026-11-27 - Closed-loop logistics studio (draft)
 
 - **Files:** existing engineering route, new LifecycleStudio and scoped CSS, lib/logistics-lifecycle-demo.mjs, tests/logistics-lifecycle.test.mjs, docs/LOGISTICS_LIFECYCLE_STUDIO.md, maintained GSAP/design guides and README.
