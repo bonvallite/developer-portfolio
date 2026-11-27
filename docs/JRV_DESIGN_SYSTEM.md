@@ -114,3 +114,27 @@ This map is not exhaustive. Always inspect the actual affected files and comment
 ## 24 November 2026: storefront engineering case study (draft)
 
 The new `/projects/storefront-engineering` case study reuses the established JRV palette and existing site-wide layout; it introduces no new colour tokens, font or favicon changes. The route uses local state to demonstrate a fictional homepage, accessible menu control, product portion selector and a deliberately non-authoritative delivery input. Its styles are isolated in `app/projects/storefront-engineering/storefront-engineering.css`. Review at 320px, 390px, 768px and 1366px before publication. Source and ownership boundaries are documented in `docs/STOREFRONT_ENGINEERING_CASE_STUDY.md`. Status: draft, not published.
+
+## 27 November 2026 — lifecycle studio candidate (no palette change)
+
+The new scoped studio uses the existing JRV v1.15 tokens, responsive graph/inspector layout, visible focus and manual controls. Motion is optional. See [Lifecycle studio](LOGISTICS_LIFECYCLE_STUDIO.md). This is an unmerged candidate, not a published design-system release.
+
+Phase 2 candidate adds a sticky desktop graph with native scrolling, a responsive chapter list, explicit manual controls and shared system topology. No token changes; exact-head verification pending.
+
+Phase 3 candidate adds a responsive Worker function selector, editable JSON and execution output, visible focus and Ember Run control using existing tokens. No colour changes. Dedicated browser tests pending.
+
+Phase 4 candidate adds searchable 29-key order data explorer, six lifecycle choices, previous/attempted/stored comparisons and a responsive inspector using the existing JRV tokens. No palette changes; exact-head browser verification pending.
+
+Phase 5 candidate adds an optional-motion trust-boundary graph, labelled security controls and execution inspector using existing JRV tokens. Text distinguishes acceptance from rejection; no palette changes. Dedicated browser verification pending.
+
+Phase 6 candidate adds a responsive API workbench with labelled controls, request/response panels, trace cards and existing Ember execution control. Existing colour tokens are unchanged; dedicated desktop and mobile QA pending.
+
+Phase 7 candidate adds a responsive schematic freight scene, dynamic carton icons, journey controls, metrics and digital event inspector. Teal marks data and Ember physical motion; existing tokens remain unchanged. Browser verification pending.
+
+Phase 8 candidate adds a responsive fixed-template inspector and customer email/SMS text preview with existing JRV tokens, explicit readiness labels and reduced-motion support. No palette changes. Exact-head browser verification pending.
+
+Phase 9 candidate adds an incident inbox, metrics, checkpoint inspector, audit trail and explicit recovery controls using existing JRV tokens. State is communicated with text, not colour alone. No palette changes; exact-head browser QA pending.
+
+Phase 10 candidate: all-viewport chapter index, compact wrapping header and direct hero CTAs. Existing tokens and earlier lab sections retained; 320/390/768/1366px keyboard/navigation checks added. No palette changes. Exact-head verification pending.
+
+27 November 2026 follow-up candidate: prior 3d66e3a passed full CI 45951631001. All six sampled mobile routes reported 0.3028 local layout shift. The first-paint candidate preserves the approved in-flow privacy layout, renders the initial notice server-side, and hides it before hydration only for a stored decision. Existing storage key, analytics opt-in, focus behaviour, tokens and contact accessibility are retained. Pre-hydration and normal first/returning-visitor regression tests added; revalidation pending.

@@ -59,7 +59,7 @@ The dependencies will be downloaded from npm during GitHub CI/Vercel preview bui
 3. Use `useGSAP()` and scoped selectors; add `contextSafe()` if future user-event handlers create tweens after mounting.
 4. Use `gsap.matchMedia()` for reduced motion. Respect users who change preferences during a session.
 5. Keep animations decorative, lightweight, and local. Do not block native scrolling, keyboard focus, analytics consent choices, or the independent interactive labs.
-6. Only register plugins that are actually used. `ScrollTrigger` is imported only by the shipping architecture route. Review bundle/performance costs before introducing Flip, DrawSVG, MotionPath, SplitText or ScrollSmoother; avoid scroll hijacking or pinning on this portfolio.
+6. Only register plugins that are actually used. `ScrollTrigger` is imported by the shipping architecture route and the draft lifecycle tour. Review bundle/performance costs before introducing Flip, DrawSVG, MotionPath, SplitText or ScrollSmoother; avoid scroll hijacking or pinning on this portfolio.
 7. Keep source comments, `docs/JRV_DESIGN_SYSTEM.md`, and `CHANGELOG.md` aligned whenever the animation behaviour changes.
 
 ## Verification and release gate
@@ -74,3 +74,25 @@ The dependencies will be downloaded from npm during GitHub CI/Vercel preview bui
 ## Possible later work
 
 After reviewing the four diagrams and foundation, separate PRs may explore richer SVG route tracing or Flip motion for fictional B2B UI transitions. Do not add animation across all products indiscriminately: prioritise relationships a static diagram cannot explain as clearly. The interactive case studies remain illustrative, not live system traces.
+
+## 27 November 2026 — lifecycle studio candidate
+
+Adds scoped MotionPathPlugin packet travel on the existing systems engineering route. React owns trace navigation; motion follows the selected edge and reverts on changes. No scroll pinning or new dependency. See [Lifecycle studio](LOGISTICS_LIFECYCLE_STUDIO.md) for scope and pending verification.
+
+Phase 2 candidate: the read-only architecture tour uses scoped ScrollTrigger chapter observers on desktop and MotionPathPlugin with matchMedia cleanup. CSS sticky positioning preserves native scroll; mobile and reduced-motion retain chapter buttons and static descriptions. Shared SVG markers are instance-specific. Dedicated lifecycle browser QA is included.
+
+Phase 3 candidate: WorkerFunctionLab uses scoped useGSAP and matchMedia to highlight the validated local execution result and connection lines after explicit Run. It never executes a function from animation or scroll. Reduced motion and normal JSON inspection remain available.
+
+Phase 4 candidate: MetafieldExplorer uses scoped useGSAP and matchMedia for a short detail-panel transition after field or scenario selection. The snapshot model owns all simulated write outcomes; animation cannot perform a mutation. Reduced motion preserves all field and stage controls.
+
+Phase 5 candidate: SecurityLab animates only selected completed local security trace steps with scoped useGSAP, MotionPathPlugin and matchMedia. Cryptographic execution is initiated explicitly and independent of GSAP; stale asynchronous results are ignored after scenario changes. Reduced motion retains all inputs, trace controls and results.
+
+Phase 6 candidate: ApiPlayground uses scoped useGSAP and matchMedia for short result and trace transitions after explicit local execution. Animation neither executes requests nor writes state. Stale asynchronous responses are ignored after controls change.
+
+Phase 7 candidate: FreightJourney uses scoped useGSAP, matchMedia and explicit playback/manual selection. The computed event trace selects the final schematic truck position; GSAP animates relative displacement, carton appearance and scan feedback only. Reduced motion retains static positions and all manual stages; no live vehicle telemetry or operations occur.
+
+Phase 8 candidate: NotificationStudio uses scoped useGSAP and matchMedia for message and data-path transitions. Fixed LiquidJS rendering reads the local snapshot independently of motion; no send or real schedule. FreightJourney event callback annotations correct the Phase 7 TypeScript failure. Revalidation pending.
+
+Phase 9 candidate: RecoveryLab uses scoped useGSAP and matchMedia for a short latest-incident transition. Explicit reducer actions alone change the local state and virtual clock. No animation triggers retries, provider writes or scheduling; reduced motion retains all actions.
+
+Phase 10 candidate: native chapter anchors retain existing scoped motion controllers and reduced-motion controls. Recovery state contract fixes TypeScript inference without changing animation behaviour. Existing dedicated motion tests remain and whole-page navigation QA is added.

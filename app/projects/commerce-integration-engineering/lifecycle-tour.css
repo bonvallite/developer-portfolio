@@ -1,0 +1,26 @@
+
+/* Native scrolling with a CSS sticky graph, not GSAP pinning. All fourteen
+ * chapter descriptions remain readable without JavaScript or motion. */
+.jrv-tour{color:var(--jrv-fg);min-width:0}
+.jrv-tour-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(12px,2vw,28px);align-items:start}
+.jrv-tour-visual{position:sticky;top:16px;border:1px solid var(--jrv-border);background:var(--jrv-bg);padding:14px;border-radius:12px;min-width:0}
+.jrv-tour-visual h3{color:var(--jrv-teal);font-size:1.15rem;margin:12px 0 4px}
+.jrv-tour-visual p,.jrv-tour-chapters p{font-size:.9rem;color:var(--jrv-muted);line-height:1.6}
+.jrv-tour-visual .jrv-life-svg{max-height:clamp(170px,40vh,360px)}
+.jrv-tour-payload{margin:12px 0;color:var(--jrv-muted);font-size:.7rem}
+.jrv-tour-payload pre{background:var(--jrv-surface);border-radius:6px;padding:8px;font-size:.72rem;color:var(--jrv-teal-light);max-height:96px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.jrv-tour-controls{display:flex;gap:8px;flex-wrap:wrap}
+.jrv-tour button{min-height:44px;padding:8px 12px;border:1px solid var(--jrv-border);border-radius:6px;background:var(--jrv-surface);color:var(--jrv-fg);cursor:pointer;font-size:.85rem}
+.jrv-tour button:focus-visible{outline:2px solid var(--jrv-focus);outline-offset:2px}
+.jrv-tour button:disabled{opacity:.45;cursor:default}
+.jrv-tour-chapters{display:grid;gap:12px}
+.jrv-tour-chapters article{min-height:210px;background:var(--jrv-surface);border:1px solid var(--jrv-border);padding:18px;border-radius:10px}
+.jrv-tour-chapters article.active{border-color:var(--jrv-teal);box-shadow:inset 3px 0 var(--jrv-teal)}
+.jrv-tour-number{font-size:.7rem;letter-spacing:.08em;color:var(--jrv-ember)}
+.jrv-tour-chapters h3{font-size:1.1rem;margin:8px 0}
+.jrv-tour-chapters ul{font-size:.78rem;color:var(--jrv-teal-light);margin:10px 0;overflow-wrap:anywhere;list-style:none}
+.jrv-tour-chapters button[aria-pressed=true]{border-color:var(--jrv-teal)}
+.jrv-life-edge.physical.active{stroke:var(--jrv-ember);color:var(--jrv-ember)}
+.jrv-life-node .active-module .worker-module{fill:var(--jrv-border);stroke:var(--jrv-ember);stroke-width:2}
+@media(max-width:999px),(max-height:650px){.jrv-tour-layout{grid-template-columns:minmax(0,1fr)}.jrv-tour-visual{position:static}.jrv-tour-chapters article{min-height:0}}
+@media(prefers-reduced-motion:reduce){.jrv-tour-visual{position:static}}

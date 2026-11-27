@@ -82,6 +82,24 @@ jobs:
       # CartonCloud signature-failure guard, and Spend & Save manual stages.
       - name: GSAP explanatory project diagram and reduced-motion browser QA
         run: node tests/gsap-diagrams-browser-qa.mjs
+      - name: Closed-loop architecture tour and lifecycle browser QA
+        run: node tests/logistics-tour-browser-qa.mjs
+      - name: Executable Worker function inspector browser QA
+        run: node tests/worker-function-browser-qa.mjs
+      - name: Logistics metafield explorer browser QA
+        run: node tests/logistics-metafield-browser-qa.mjs
+      - name: Logistics security lab browser QA
+        run: node tests/logistics-security-browser-qa.mjs
+      - name: Logistics API workbench browser QA
+        run: node tests/logistics-api-browser-qa.mjs
+      - name: Physical cold-chain freight journey browser QA
+        run: node tests/logistics-freight-browser-qa.mjs
+      - name: Liquid notification studio browser QA
+        run: node tests/logistics-notification-browser-qa.mjs
+      - name: Logistics incident recovery browser QA
+        run: node tests/logistics-recovery-browser-qa.mjs
+      - name: Whole logistics studio chapter navigation and network boundary QA
+        run: node tests/logistics-whole-page-browser-qa.mjs
       # Distinct hiring/merchant choices, fixed mailto prompts, privacy gating,
       # contextual experience hand-off and mobile contact-layout checks.
       - name: Hiring and merchant enquiry journey browser QA
@@ -90,6 +108,8 @@ jobs:
       # focus restoration, 320px contact access, and tablet/desktop parity.
       - name: Mobile privacy and contact accessibility browser QA
         run: node tests/mobile-privacy-accessibility-browser-qa.mjs
+      - name: Mobile consent first-paint and returning-visitor layout stability
+        run: node tests/consent-first-paint-browser-qa.mjs
       # The Spend & Save case study connects shopper, merchant, post-checkout
       # Flow commit and notification states through a safe architecture map.
       - name: Spend and Save visual case-study and Flow browser QA
@@ -129,6 +149,15 @@ jobs:
             artifacts/homepage-browser-qa/
             artifacts/gsap-hero-qa/
             artifacts/gsap-diagram-qa/
+            artifacts/logistics-tour-qa/
+            artifacts/worker-function-qa/
+            artifacts/logistics-metafield-qa/
+            artifacts/logistics-security-qa/
+            artifacts/logistics-api-qa/
+            artifacts/logistics-freight-qa/
+            artifacts/logistics-notification-qa/
+            artifacts/logistics-recovery-qa/
+            artifacts/logistics-whole-page-qa/
             artifacts/hiring-enquiry-browser-qa/
             artifacts/privacy-accessibility-qa/
             artifacts/analytics-lab-browser-qa/

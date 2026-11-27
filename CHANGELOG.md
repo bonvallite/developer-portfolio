@@ -1,5 +1,82 @@
 # Portfolio changelog
 
+## 2026-11-27 - Mobile first-paint stability candidate (PR #107 draft)
+
+- **Files:** ConsentManager.tsx, consent-manager.css, root layout comment, consent-first-paint and performance browser tests, CI, README and design/logistics guides.
+- **Why:** exact-head 3d66e3a passed full CI (45951631001) and Vercel preview was READY, but all six mobile synthetic routes reported 0.3028 layout shift. The shared in-flow privacy notice inserted after hydration is a likely cause. Server-render initial notice and use a constant localStorage visibility bootstrap before content; retain existing analytics consent and contact layout. No new cookies, external requests or palette changes.
+- **Validation:** prior candidate HTTP 200 and full suite passed. New browser tests exercise pre-hydration first/stored views, normal first/returning visits, local shift target <=0.1 and no optional requests. Attribution and exact-head results pending. No production merge.
+
+
+## 2026-11-27 - Integrated logistics QA and navigation hardening (PR #107 draft)
+
+- **Files:** recovery engine and RecoveryLab.tsx, engineering case-study page/CSS, whole-page and performance browser tests, CI, README and maintained guides.
+- **Why:** correct Phase 9 narrow state inference; make nine new modules directly navigable on mobile/desktop and include the route in performance sampling. No palette changes, new dependencies or external calls.
+- **Validation:** combined Phase 7/8 passed both jobs in 45950982152. Phase 9 unit/safety/Python checks passed but TypeScript failed in 45951246348; browser skipped. New typed contract and QA checks require exact-head revalidation, preview inspection and confidentiality approval before release.
+
+
+## 2026-11-27 - Proposed incident recovery and checkpointed retry lab (PR #107 draft)
+
+- **Files:** RecoveryLab.tsx, recovery-lab.css, lib/logistics-recovery-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** demonstrate proposed event deduplication, monotonic tracking, partial-write checkpoints, virtual backoff, dead-letter and administrative replay without external effects. Serial in-memory model only; no durable or distributed guarantees. Existing portfolio and palette retained.
+- **Validation:** Phase 8 source/build job passed in 45950982152, including corrected freight types; browser job was running at start. Six dedicated regression groups and browser checks added; exact-head verification pending. No production merge.
+
+
+## 2026-11-27 - Dynamic Liquid notification studio and freight type correction (PR #107 draft)
+
+- **Files:** NotificationStudio.tsx, notification-studio.css, lib/logistics-notification-demo.mjs, FreightJourney.tsx, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** render fixed Liquid templates from typed stored data, model early ETA and later milestones, channel fallback and failure gates; correct three implicit-any callback errors in FreightJourney reported by CI. No merchant template, real recipient, provider send or production changes. Existing portfolio and palette retained.
+- **Validation:** Phase 7 run 45950692426 failed TypeScript; browser job skipped. Phase 6 source/build passed in 45950402425 with browser checks running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
+## 2026-11-27 - Animated physical cold-chain freight journey (PR #107 draft)
+
+- **Files:** FreightJourney.tsx, freight-journey.css, lib/logistics-freight-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** show the physical lifecycle and corresponding digital events using calculated carton weights, regional allocation, schematic truck motion and explicit failure/bypass branches. No real packing, shipment, tracking, sensor data, notifications or provider calls. Existing portfolio and palette retained.
+- **Validation:** Phase 5 passed both jobs in run 45949948535; Phase 6 source/build passed in run 45950402425 with browser checks running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
+## 2026-11-27 - Local webhook, REST and GraphQL workbench (PR #107 draft)
+
+- **Files:** ApiPlayground.tsx, api-playground.css, lib/logistics-api-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** execute eleven local allowlisted operations with editable JSON, method/auth/validation gates, computed outputs, separate GraphQL error envelopes and trace animation. No external requests, provider writes or real credentials. Existing portfolio and palette retained.
+- **Validation:** Phase 4 passed both jobs in run 45949490767; Phase 5 source/build passed in run 45949948535 with browser checks still running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
+## 2026-11-27 - Executable OAuth and security laboratory (PR #107 draft)
+
+- **Files:** SecurityLab.tsx, security-lab.css, lib/logistics-security-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** show real local HMAC verification and tampering, simulated OAuth state/cookie/TTL/replay and permission gates, offline grant and Basic/Bearer checks with explicit failure boundaries. No actual provider authentication or production credentials. Existing palette and projects retained.
+- **Validation:** Phase 3 passed both jobs in run 45949064306; Phase 4 source/build passed in run 45949490767 with browser checks still running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
+## 2026-11-27 - Documented 29-key metafield explorer (PR #107 draft)
+
+- **Files:** MetafieldExplorer.tsx, metafield-explorer.css, lib/logistics-metafield-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.
+- **Why:** expose the 22 ETA and seven tracking keys with calculated/conditional values, illustrative types, previous/attempted/stored state, GraphQL variables and Liquid access previews. Preserve independent ETA and carrier write paths; do not invent a tariff or send anything. No new tokens or production changes.
+- **Validation:** Phase 3 source/build passed in run 45949064306; browser job was still running at start. New dedicated tests added; exact-head validation pending. No production merge.
+
+
+## 2026-11-27 - Executable Worker function inspector (PR #107 draft)
+
+- **Files:** WorkerFunctionLab.tsx, worker-function-lab.css, lib/worker-function-lab.mjs, existing engineering page, tests/worker-function-lab.test.mjs, tests/worker-function-browser-qa.mjs, CI, maintained guides and README.
+- **Why:** expose eleven real local example functions with editable JSON, edge cases, validation and scoped result animation; preserve existing diagrams, source boundaries and palette. No provider calls or production changes.
+- **Validation:** Phase 2 source/build job passed in run 45948599782; its browser job was running when work began. New dedicated tests included; exact-head validation pending. No production merge.
+
+
+## 2026-11-27 - Scroll-driven fourteen-chapter logistics tour (PR #107 draft)
+
+- **Files:** LifecycleTour, LifecycleTopology, LifecycleStudio, lifecycle-tour.css, case-study page, lib/logistics-tour.mjs, lib/logistics-lifecycle-demo.mjs, unit/browser tests and CI, maintained guides and README.
+- **Why:** add scroll-observed architecture and explicit app return, physical handover and scan paths while retaining local simulation. No pinning, new tokens or production API calls.
+- **Validation:** prior phase passed both GitHub Actions jobs in run 45947771464 at d0186e0. New dedicated regression and browser checks added; exact-head candidate validation pending. No production merge.
+
+
+## 2026-11-27 - Closed-loop logistics studio (draft)
+
+- **Files:** existing engineering route, new LifecycleStudio and scoped CSS, lib/logistics-lifecycle-demo.mjs, tests/logistics-lifecycle.test.mjs, docs/LOGISTICS_LIFECYCLE_STUDIO.md, maintained GSAP/design guides and README.
+- **Why:** replace purely illustrative playback with a local computed event trace, SVG packet motion, editable scenarios and request/response inspector. Preserve all older labs and routes; no production systems or secrets involved.
+- **Validation:** regression tests added; exact-head CI and preview review pending at this commit. No production merge or deployment.
+
+
 ## 2026-11-26 - Publish GSAP animation foundation and interactive engineering diagrams (PR #106, JRV v1.15)
 
 - **Approval and commit:** PR #106 merged into `main` as `7ec6d0c3bc74142b091859b96675b162bcfc1933` after owner approval of exact source `1c91d931cefe2672db5eb54fc2461a2a19e8f4a5`. Source/build/SEO and all responsive browser suites passed in [GitHub Actions 45782301947](https://github.com/bonvallite/developer-portfolio/actions/runs/45782301947). Exact-head preview `dpl_4VysrqHHS8Bi4G4h45Gi9WVTQguF` READY; production `dpl_3vENrX4TXaUPDbVqMj9K3sXWGsnk` READY and assigned to both `www.jrvallite.com` and `jrvallite.com`.

@@ -1,0 +1,22 @@
+
+/* Scoped security workspace, existing JRV tokens, no new colour palette. */
+.jrv-security{background:var(--jrv-bg);border:1px solid var(--jrv-border);border-radius:14px;padding:clamp(12px,2vw,24px);min-width:0;color:var(--jrv-fg)}
+.jrv-security-note,.jrv-security p{color:var(--jrv-muted);font-size:.85rem;line-height:1.6}
+.jrv-security-controls,.jrv-security-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.jrv-security label{display:grid;gap:6px;color:var(--jrv-muted);font-size:.8rem;min-width:0}
+.jrv-security :is(select,textarea,button){background:var(--jrv-surface);border:1px solid var(--jrv-border);border-radius:6px;color:var(--jrv-fg);padding:9px;min-height:44px;min-width:0;font-size:.8rem}
+.jrv-security textarea{font: .8rem/1.6 monospace;min-height:85px;width:100%;resize:vertical}
+.jrv-security button{cursor:pointer;text-align:left;overflow-wrap:anywhere}
+.jrv-security button:disabled{opacity:.5;cursor:default}
+.jrv-security :is(button,select,textarea,summary):focus-visible{outline:2px solid var(--jrv-focus);outline-offset:2px}
+.jrv-security .jrv-security-run{background:var(--jrv-ember);color:var(--jrv-bg);font-weight:700;margin:12px 0}
+.jrv-security svg{width:100%;height:auto;background:var(--jrv-surface);border-radius:8px}
+.jrv-security-result,.jrv-security-output{border:1px solid var(--jrv-border);border-radius:8px;padding:12px;background:var(--jrv-surface);min-width:0}
+.jrv-security-result span,.jrv-security-result strong{display:block;margin:4px 0;font-size:.8rem;overflow-wrap:anywhere}
+.jrv-security-output h3{color:var(--jrv-teal);font-size:1.05rem;overflow-wrap:anywhere}
+.jrv-security-output pre{background:var(--jrv-bg);color:var(--jrv-teal-light);font:.75rem/1.5 monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto;padding:10px;border-radius:6px}
+.jrv-security summary{font-size:.8rem;cursor:pointer;padding:8px 0}
+.jrv-security-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:6px}
+.jrv-security-steps small{display:block;color:var(--jrv-muted);margin-bottom:5px}
+.jrv-security-steps button[aria-pressed=true]{border-color:var(--jrv-teal);box-shadow:inset 3px 0 var(--jrv-teal)}
+@media(max-width:850px){.jrv-security-controls,.jrv-security-grid{grid-template-columns:minmax(0,1fr)}}

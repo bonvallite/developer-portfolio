@@ -1,0 +1,24 @@
+
+/* Existing palette, native controls and scoped optional motion. */
+.jrv-api{background:var(--jrv-bg);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:14px;padding:clamp(12px,2vw,24px);min-width:0}
+.jrv-api-note,.jrv-api p{color:var(--jrv-muted);font-size:.85rem;line-height:1.6}
+.jrv-api-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,2fr);gap:10px;margin:16px 0}
+.jrv-api label{display:grid;gap:6px;color:var(--jrv-muted);font-size:.8rem;min-width:0}
+.jrv-api :is(select,textarea,button){background:var(--jrv-surface);border:1px solid var(--jrv-border);color:var(--jrv-fg);border-radius:6px;padding:9px;min-height:44px;min-width:0;font-size:.8rem}
+.jrv-api button{cursor:pointer}.jrv-api button:disabled{opacity:.5;cursor:default}
+.jrv-api :is(button,select,textarea,summary):focus-visible{outline:2px solid var(--jrv-focus);outline-offset:2px}
+.jrv-api-route{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px;border:1px solid var(--jrv-border);border-radius:7px;background:var(--jrv-surface)}
+.jrv-api-route strong{color:var(--jrv-ember)}.jrv-api-route code{overflow-wrap:anywhere;min-width:0;color:var(--jrv-teal-light)}.jrv-api-route span{font-size:.65rem;color:var(--jrv-muted);margin-left:auto}
+.jrv-api-workspace{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+.jrv-api-panel{background:var(--jrv-surface);border:1px solid var(--jrv-border);border-radius:9px;padding:12px;min-width:0}
+.jrv-api-panel h3{color:var(--jrv-teal);font-size:1.05rem;margin:0 0 12px}
+.jrv-api pre,.jrv-api textarea{background:var(--jrv-bg);color:var(--jrv-teal-light);border-radius:6px;padding:10px;font:.75rem/1.6 monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:300px;overflow:auto}
+.jrv-api textarea{width:100%;height:215px;resize:vertical}
+.jrv-api summary{color:var(--jrv-muted);font-size:.8rem;cursor:pointer;padding:10px 0}
+.jrv-api-actions{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.jrv-api .jrv-api-send{background:var(--jrv-ember);color:var(--jrv-bg);font-weight:700}
+.jrv-api [role=status]>*{display:block;font-size:.8rem;margin:4px 0;overflow-wrap:anywhere}
+.jrv-api-trace{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,165px),1fr));gap:7px}
+.jrv-api-trace>div{background:var(--jrv-surface);border:1px solid var(--jrv-border);border-radius:7px;padding:10px;min-width:0}
+.jrv-api-trace :is(small,strong,span){display:block;overflow-wrap:anywhere;font-size:.75rem;margin:3px 0}.jrv-api-trace small,.jrv-api-trace span{color:var(--jrv-muted)}
+@media(max-width:850px){.jrv-api-workspace,.jrv-api-controls{grid-template-columns:minmax(0,1fr)}}

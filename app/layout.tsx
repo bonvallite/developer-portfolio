@@ -31,7 +31,9 @@ export const metadata: Metadata = {
 // panel is part of normal flow, instead of covering contact and hiring CTAs.
 // Desktop still renders a fixed compact panel. Mobile settings are reachable
 // whenever the notice is closed; while expanded, the redundant pill hides.
-// Analytics still requires explicit opt-in.
+// The manager now includes pre-hydration notice markup and a local-only
+// visibility check for stored preferences; analytics still requires explicit
+// opt-in. No new cookie, external script or tracking behaviour is introduced.
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-AU">

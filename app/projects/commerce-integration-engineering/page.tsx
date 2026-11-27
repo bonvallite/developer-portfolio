@@ -6,6 +6,15 @@ import {
 } from 'lucide-react';
 import { ArchitectureLab, CalculationLab, EventLab, OAuthLab } from './SystemsLab';
 import CodeExplorer from './CodeExplorer';
+import LifecycleStudio from './LifecycleStudio';
+import LifecycleTour from './LifecycleTour';
+import WorkerFunctionLab from './WorkerFunctionLab';
+import MetafieldExplorer from './MetafieldExplorer';
+import SecurityLab from './SecurityLab';
+import ApiPlayground from './ApiPlayground';
+import FreightJourney from './FreightJourney';
+import NotificationStudio from './NotificationStudio';
+import RecoveryLab from './RecoveryLab';
 import { LastMileLab, ShopifyWritebackLab } from './AdvancedLabs';
 import CustomerCommunicationLab from './CustomerCommunicationLab';
 import './engineering-lab.css';
@@ -54,6 +63,7 @@ export default function CommerceIntegrationEngineering() {
           <span className="cie-brand-caption">COMMERCE SYSTEMS ENGINEERING</span>
         </Link>
         <nav aria-label="Case study navigation">
+          <a href="#studio-index">Engineering labs</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -70,8 +80,8 @@ export default function CommerceIntegrationEngineering() {
             <p className="cie-hero-lead">One developer. A custom Shopify app. A Cloudflare serverless backend. A connected order-to-delivery experience.</p>
             <p className="cie-hero-sub">An interactive exploration of how authenticated APIs, Workers KV, logistics events and calculated delivery rules turn separate platforms into a coordinated commerce workflow.</p>
             <div className="cie-actions">
-              <a href="#architecture" className="cie-button cie-button-primary">Explore the architecture <ArrowDownRight size={17} /></a>
-              <a href="#calculator" className="cie-button cie-button-outline">Run the Worker lab <ArrowRight size={17} /></a>
+              <a href="#lifecycle-tour" className="cie-button cie-button-primary">Explore the architecture <ArrowDownRight size={17} /></a>
+              <a href="#worker-functions" className="cie-button cie-button-outline">Run the Worker lab <ArrowRight size={17} /></a>
             </div>
             <p className="cie-hero-footnote"><ShieldCheck size={15} /> Public-safe engineering reconstruction. Every interactive event is simulated.</p>
           </div>
@@ -103,6 +113,70 @@ export default function CommerceIntegrationEngineering() {
             <span><b>04</b> REST + GRAPHQL</span>
             <span><b>05</b> EVENT PROCESSING</span>
           </div>
+        </section>
+        {/* 27 Nov 2026: local event-driven studio extends, rather than replaces,
+            the existing public architecture, calculations and communication labs. */}
+        {/* Native scroll-driven chapter view; the following studio remains independently controlled. */}
+        {/* 27 Nov 2026: visible on every viewport; native anchors, no scroll interception.
+            The earlier compact header links and original labs remain available. */}
+        <nav id="studio-index" className="cie-shell cie-studio-index" aria-label="Engineering studio chapters">
+          <p className="cie-kicker">ENGINEERING STUDIO / 09 CHAPTERS</p>
+          <h2>Choose your investigation.</h2>
+          <div className="cie-studio-index-grid">
+            <a href="#lifecycle-tour"><span>01</span><strong>Architecture tour</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#lifecycle-studio"><span>02</span><strong>Lifecycle simulation</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#worker-functions"><span>03</span><strong>Worker functions</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#metafields"><span>04</span><strong>Order metafields</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#security-lab"><span>05</span><strong>OAuth and security</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#api-playground"><span>06</span><strong>API workbench</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#freight-journey"><span>07</span><strong>Cold-chain freight</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#notification-studio"><span>08</span><strong>Liquid notifications</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#recovery-lab"><span>09</span><strong>Incident recovery</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+          </div>
+        </nav>
+        <section id="lifecycle-tour" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">14 CHAPTERS / ARCHITECTURE TOUR</p><h2>Follow the event.<br/><em>Close the loop.</em></h2><p>Explore the entire simulated delivery lifecycle, including the custom app return path, physical freight, carrier scans and Shopify notification previews.</p></div>
+          <LifecycleTour />
+        </section>
+        <section id="lifecycle-studio" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">NEW / CLOSED-LOOP SYSTEMS LAB</p><h2>One order.<br/><em>Every system boundary.</em></h2><p>Run an independently reconstructed delivery lifecycle. Inspect inputs, calculated dates, carton allocation, failures, carrier scans and native notification previews. All operations remain in your browser.</p></div>
+          <LifecycleStudio />
+        </section>
+        {/* Executable public-safe examples complement the existing code explorer;
+            no external execution, private source or provider requests. */}
+        <section id="worker-functions" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">WORKER / INTERNAL ENGINEERING</p><h2>Inspect the function.<br/><em>Execute the decision.</em></h2><p>Explore eleven independently authored functions, change the JSON input and compare actual local outputs with edge cases.</p></div>
+          <WorkerFunctionLab />
+        </section>
+        {/* Documented keys with a reconstructed typed local model, not a merchant schema export. */}
+        <section id="metafields" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">SHOPIFY / DATA CONTRACT</p><h2>Twenty-nine keys.<br/><em>One order record.</em></h2><p>Inspect how calculated delivery values and later carrier milestones become typed order metafields, with explicit previous, attempted and stored values.</p></div>
+          <MetafieldExplorer />
+        </section>
+        {/* Actual local Web Crypto; all provider authentication exchanges remain mocked. */}
+        <section id="security-lab" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">SECURITY / TRUST BOUNDARIES</p><h2>Verify first.<br/><em>Execute only when authorised.</em></h2><p>Test HMAC verification, app installation state, expiry, carrier authentication and administrative authorisation using public teaching fixtures.</p></div>
+          <SecurityLab />
+        </section>
+        {/* Local allowlisted transport; no production routes or arbitrary network requests. */}
+        <section id="api-playground" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">API / DEVELOPER WORKBENCH</p><h2>Send the example.<br/><em>Inspect the contract.</em></h2><p>Execute local webhook, REST and GraphQL handlers, inspect computed responses, and distinguish transport errors from mutation errors.</p></div>
+          <ApiPlayground />
+        </section>
+        {/* Schematic physical freight and its digital trace; no live GPS or sensors. */}
+        <section id="freight-journey" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">OPERATIONS / COLD-CHAIN FREIGHT</p><h2>From packing bench.<br/><em>To the customer's door.</em></h2><p>Calculate illustrative cartons, inspect the warehouse handoff and animate the carrier milestones that feed back into Shopify.</p></div>
+          <FreightJourney />
+        </section>
+        {/* Fixed local LiquidJS templates; no merchant templates, real messages or scheduling. */}
+        <section id="notification-studio" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">COMMUNICATIONS / LIQUID ENGINEERING</p><h2>Stored data.<br/><em>A customer-facing message.</em></h2><p>Render fictional order notices from typed metafields, conditional delivery windows, holiday impacts and later tracking milestones.</p></div>
+          <NotificationStudio />
+        </section>
+        {/* Proposed reliability patterns in a serial, fictional in-memory model. */}
+        <section id="recovery-lab" className="cie-section cie-shell">
+          <div className="cie-section-header"><p className="cie-kicker">RELIABILITY / INCIDENT ENGINEERING</p><h2>When events fail.<br/><em>Recover without repeating.</em></h2><p>Explore duplicate detection, stale milestones, checkpointed retries, dead-letter incidents and administrative recovery in a proposed local reliability model.</p></div>
+          <RecoveryLab />
         </section>
         <section id="architecture" className="cie-section cie-shell">
           <div className="cie-section-header">
