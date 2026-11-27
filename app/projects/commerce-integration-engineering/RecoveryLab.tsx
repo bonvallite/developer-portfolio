@@ -1,7 +1,9 @@
 
 'use client';
 /** Explicit actions advance a pure in-memory incident model. GSAP highlights
- * the resulting log only; no timer, external writes or actual retries. */
+ * the resulting log only; no timer, external writes or actual retries.
+ * RecoveryState is declared at the engine boundary so empty initial arrays
+ * and null checkpoints retain their full lifecycle types. */
 import {useRef,useState} from 'react';
 import gsap from 'gsap';
 import {useGSAP} from '@gsap/react';
@@ -10,7 +12,7 @@ import './recovery-lab.css';
 gsap.registerPlugin(useGSAP);
 export default function RecoveryLab(){
  const scope=useRef<HTMLDivElement>(null);
- const [state,setState]=useState(()=>createRecoveryState());
+ const [state,setState]=useState<ReturnType<typeof createRecoveryState>>(()=>createRecoveryState());
  const dispatch=(action:string)=>setState(s=>recoveryTransition(s,action));
  const blocked=state.job?.state==='waiting'||state.job?.state==='dead';
  const latest=state.log.at(-1);

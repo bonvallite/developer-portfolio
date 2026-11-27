@@ -94,3 +94,5 @@ Phase 7 candidate: FreightJourney uses scoped useGSAP, matchMedia and explicit p
 Phase 8 candidate: NotificationStudio uses scoped useGSAP and matchMedia for message and data-path transitions. Fixed LiquidJS rendering reads the local snapshot independently of motion; no send or real schedule. FreightJourney event callback annotations correct the Phase 7 TypeScript failure. Revalidation pending.
 
 Phase 9 candidate: RecoveryLab uses scoped useGSAP and matchMedia for a short latest-incident transition. Explicit reducer actions alone change the local state and virtual clock. No animation triggers retries, provider writes or scheduling; reduced motion retains all actions.
+
+Phase 10 candidate: native chapter anchors retain existing scoped motion controllers and reduced-motion controls. Recovery state contract fixes TypeScript inference without changing animation behaviour. Existing dedicated motion tests remain and whole-page navigation QA is added.

@@ -98,6 +98,8 @@ jobs:
         run: node tests/logistics-notification-browser-qa.mjs
       - name: Logistics incident recovery browser QA
         run: node tests/logistics-recovery-browser-qa.mjs
+      - name: Whole logistics studio chapter navigation and network boundary QA
+        run: node tests/logistics-whole-page-browser-qa.mjs
       # Distinct hiring/merchant choices, fixed mailto prompts, privacy gating,
       # contextual experience hand-off and mobile contact-layout checks.
       - name: Hiring and merchant enquiry journey browser QA
@@ -153,6 +155,7 @@ jobs:
             artifacts/logistics-freight-qa/
             artifacts/logistics-notification-qa/
             artifacts/logistics-recovery-qa/
+            artifacts/logistics-whole-page-qa/
             artifacts/hiring-enquiry-browser-qa/
             artifacts/privacy-accessibility-qa/
             artifacts/analytics-lab-browser-qa/

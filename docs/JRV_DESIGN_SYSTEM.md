@@ -134,3 +134,5 @@ Phase 7 candidate adds a responsive schematic freight scene, dynamic carton icon
 Phase 8 candidate adds a responsive fixed-template inspector and customer email/SMS text preview with existing JRV tokens, explicit readiness labels and reduced-motion support. No palette changes. Exact-head browser verification pending.
 
 Phase 9 candidate adds an incident inbox, metrics, checkpoint inspector, audit trail and explicit recovery controls using existing JRV tokens. State is communicated with text, not colour alone. No palette changes; exact-head browser QA pending.
+
+Phase 10 candidate: all-viewport chapter index, compact wrapping header and direct hero CTAs. Existing tokens and earlier lab sections retained; 320/390/768/1366px keyboard/navigation checks added. No palette changes. Exact-head verification pending.

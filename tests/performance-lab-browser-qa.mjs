@@ -15,6 +15,7 @@ const routes = [
   { name: 'python', path: '/analytics-lab' },
   { name: 'b2b', path: '/b2b-modernisation' },
   { name: 'spend-save', path: '/projects/spend-and-save' },
+  { name: 'logistics-studio', path: '/projects/commerce-integration-engineering' },
 ];
 const viewports = [
   { name: 'desktop', width: 1366, height: 768 },

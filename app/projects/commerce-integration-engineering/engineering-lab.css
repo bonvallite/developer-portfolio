@@ -358,3 +358,18 @@
 .cie-play-button:hover{background:#255a5b}
 .cie-play-button:focus-visible{outline:3px solid var(--jrv-focus);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.cie-play-button{display:none!important}}
+
+/* Phase 10: compact header plus an all-viewport chapter index. Native anchor
+ * navigation preserves keyboard access and avoids scroll interception. */
+.cie-header nav{flex-wrap:wrap;justify-content:flex-end;gap:12px 20px;min-width:0}
+.cie-studio-index{padding-block:24px 40px;scroll-margin-top:20px}
+.cie-studio-index h2{font-size:clamp(24px,3vw,42px);letter-spacing:-.04em;margin:10px 0 20px}
+.cie-studio-index-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cie-studio-index-grid a{display:flex;align-items:center;gap:10px;min-height:54px;padding:12px;background:var(--jrv-surface);color:var(--jrv-fg);border:1px solid var(--jrv-border);border-radius:8px;min-width:0}
+.cie-studio-index-grid a span{color:var(--jrv-ember);font-size:.75rem}
+.cie-studio-index-grid a strong{font-size:.85rem;overflow-wrap:anywhere;flex:1}
+.cie-studio-index-grid a svg{flex-shrink:0;color:var(--jrv-teal)}
+.cie-studio-index-grid a:focus-visible{outline:2px solid var(--jrv-focus);outline-offset:3px}
+.cie-studio-index-grid a:hover{border-color:var(--jrv-teal)}
+@media(max-width:850px){.cie-studio-index-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:470px){.cie-studio-index-grid{grid-template-columns:minmax(0,1fr)}}

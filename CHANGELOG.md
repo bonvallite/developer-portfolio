@@ -1,5 +1,12 @@
 # Portfolio changelog
 
+## 2026-11-27 - Integrated logistics QA and navigation hardening (PR #107 draft)
+
+- **Files:** recovery engine and RecoveryLab.tsx, engineering case-study page/CSS, whole-page and performance browser tests, CI, README and maintained guides.
+- **Why:** correct Phase 9 narrow state inference; make nine new modules directly navigable on mobile/desktop and include the route in performance sampling. No palette changes, new dependencies or external calls.
+- **Validation:** combined Phase 7/8 passed both jobs in 45950982152. Phase 9 unit/safety/Python checks passed but TypeScript failed in 45951246348; browser skipped. New typed contract and QA checks require exact-head revalidation, preview inspection and confidentiality approval before release.
+
+
 ## 2026-11-27 - Proposed incident recovery and checkpointed retry lab (PR #107 draft)
 
 - **Files:** RecoveryLab.tsx, recovery-lab.css, lib/logistics-recovery-demo.mjs, case-study page, unit/browser tests, CI, maintained guides and README.

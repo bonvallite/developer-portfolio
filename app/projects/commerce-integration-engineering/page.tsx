@@ -63,15 +63,7 @@ export default function CommerceIntegrationEngineering() {
           <span className="cie-brand-caption">COMMERCE SYSTEMS ENGINEERING</span>
         </Link>
         <nav aria-label="Case study navigation">
-          <a href="#lifecycle-tour">Lifecycle tour</a>
-          <a href="#lifecycle-studio">Lifecycle studio</a>
-          <a href="#worker-functions">Worker functions</a>
-          <a href="#metafields">Metafields</a>
-          <a href="#security-lab">Security</a>
-          <a href="#api-playground">API playground</a>
-          <a href="#freight-journey">Cold-chain freight</a>
-          <a href="#notification-studio">Liquid notifications</a>
-          <a href="#recovery-lab">Recovery</a>
+          <a href="#studio-index">Engineering labs</a>
           <a href="#architecture">Architecture</a>
           <a href="#calculator">Calculations</a>
           <a href="#writeback">App write-back</a>
@@ -88,8 +80,8 @@ export default function CommerceIntegrationEngineering() {
             <p className="cie-hero-lead">One developer. A custom Shopify app. A Cloudflare serverless backend. A connected order-to-delivery experience.</p>
             <p className="cie-hero-sub">An interactive exploration of how authenticated APIs, Workers KV, logistics events and calculated delivery rules turn separate platforms into a coordinated commerce workflow.</p>
             <div className="cie-actions">
-              <a href="#architecture" className="cie-button cie-button-primary">Explore the architecture <ArrowDownRight size={17} /></a>
-              <a href="#calculator" className="cie-button cie-button-outline">Run the Worker lab <ArrowRight size={17} /></a>
+              <a href="#lifecycle-tour" className="cie-button cie-button-primary">Explore the architecture <ArrowDownRight size={17} /></a>
+              <a href="#worker-functions" className="cie-button cie-button-outline">Run the Worker lab <ArrowRight size={17} /></a>
             </div>
             <p className="cie-hero-footnote"><ShieldCheck size={15} /> Public-safe engineering reconstruction. Every interactive event is simulated.</p>
           </div>
@@ -125,6 +117,23 @@ export default function CommerceIntegrationEngineering() {
         {/* 27 Nov 2026: local event-driven studio extends, rather than replaces,
             the existing public architecture, calculations and communication labs. */}
         {/* Native scroll-driven chapter view; the following studio remains independently controlled. */}
+        {/* 27 Nov 2026: visible on every viewport; native anchors, no scroll interception.
+            The earlier compact header links and original labs remain available. */}
+        <nav id="studio-index" className="cie-shell cie-studio-index" aria-label="Engineering studio chapters">
+          <p className="cie-kicker">ENGINEERING STUDIO / 09 CHAPTERS</p>
+          <h2>Choose your investigation.</h2>
+          <div className="cie-studio-index-grid">
+            <a href="#lifecycle-tour"><span>01</span><strong>Architecture tour</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#lifecycle-studio"><span>02</span><strong>Lifecycle simulation</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#worker-functions"><span>03</span><strong>Worker functions</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#metafields"><span>04</span><strong>Order metafields</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#security-lab"><span>05</span><strong>OAuth and security</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#api-playground"><span>06</span><strong>API workbench</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#freight-journey"><span>07</span><strong>Cold-chain freight</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#notification-studio"><span>08</span><strong>Liquid notifications</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+            <a href="#recovery-lab"><span>09</span><strong>Incident recovery</strong><ArrowDownRight size={16} aria-hidden="true" /></a>
+          </div>
+        </nav>
         <section id="lifecycle-tour" className="cie-section cie-shell">
           <div className="cie-section-header"><p className="cie-kicker">14 CHAPTERS / ARCHITECTURE TOUR</p><h2>Follow the event.<br/><em>Close the loop.</em></h2><p>Explore the entire simulated delivery lifecycle, including the custom app return path, physical freight, carrier scans and Shopify notification previews.</p></div>
           <LifecycleTour />
